@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Operators Guide :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.5/v1.5-en/IvorySQL运维人员指南-英文版-0.1.html">
+    <link rel="prev" href="Administrator%20Guide.html">
+    <link rel="next" href="安装部署-英文版-0.1.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="docs.ivorysql.org">IvorySQL</a>
+            <a class="navbar-item" href="docs.ivorysql.org">Migrations</a>
+            <a class="navbar-item" href="docs.ivorysql.org">AdminUI</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Migration Services</a>
+            <a class="navbar-item" href="#">Remote DBA</a>
+            <a class="navbar-item" href="#">Perfornace Tuning</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v1.5">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">IvorySQL-EN</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../welcome.html">Welcome to IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="IvorySQL1.5发行说明.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="IvorySQL关于-英文版-0.2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="IvorySQL入门-英文版-0.1.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Administrator%20Guide.html">Administrator</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="IvorySQL运维人员指南-英文版-0.1.html">Operating personnel</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="安装部署-英文版-0.1.html">Installation Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="Developer%20Guide.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="运维管理指南-英文版-0.2.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="IvorySQL迁移指南-英文版-0.1.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="IvorySQL社区贡献指南-英文版-0.3.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="Tool%20Reference.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ-en.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL-EN</span>
+    <span class="version">v1.5</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../v2.2/welcome.html">IvorySQL-EN</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version is-current">
+          <a href="../welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../v2.2/welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">IvorySQL-EN</a></li>
+    <li>Getting Started with IvorySQL</li>
+    <li><a href="IvorySQL运维人员指南-英文版-0.1.html">Operating personnel</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">v1.5</button>
+  <div class="version-menu">
+    <a class="version is-missing" href="../../v2.2/welcome.html">v2.2</a>
+    <a class="version is-missing" href="../../v2.1/welcome.html">v2.1</a>
+    <a class="version is-current" href="IvorySQL运维人员指南-英文版-0.1.html">v1.5</a>
+    <a class="version is-missing" href="../../v1.4/welcome.html">v1.4</a>
+    <a class="version is-missing" href="../../v1.3/welcome.html">v1.3</a>
+    <a class="version is-missing" href="../../v1.2/welcome.html">v1.2</a>
+    <a class="version is-missing" href="../../v1.1/welcome.html">v1.1</a>
+    <a class="version is-missing" href="../../v1.0/welcome.html">v1.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/DutMsn/Document/edit/v1.5/modules/ROOT/pages/v1.5-en/IvorySQL运维人员指南-英文版-0.1.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Operators Guide</h1>
+<div id="toc" class="toc">
+<div id="toctitle">目录</div>
+<ul class="sectlevel1">
+<li><a href="#routine-vacuuming">1. Routine Vacuuming</a>
+<ul class="sectlevel2">
+<li><a href="#vacuuming-basics">1.1. Vacuuming Basics</a></li>
+<li><a href="#recovering-disk-space">1.2. Recovering Disk Space</a></li>
+<li><a href="#updating-planner-statistics">1.3. Updating Planner Statistics</a></li>
+<li><a href="#updating-the-visibility-map">1.4. Updating the Visibility Map</a></li>
+<li><a href="#preventing-transaction-id-wraparound-failures">1.5. Preventing Transaction ID Wraparound Failures</a></li>
+<li><a href="#the-autovacuum-daemon">1.6. The Autovacuum Daemon</a></li>
+</ul>
+</li>
+<li><a href="#routine-reindexing">2. Routine Reindexing</a></li>
+<li><a href="#log-file-maintenance">3. Log File Maintenance</a></li>
+<li><a href="#high-availability-load-balancing-and-replication">4. High Availability, Load Balancing, and Replication</a>
+<ul class="sectlevel2">
+<li><a href="#comparison-of-different-solutions">4.1. Comparison of Different Solutions</a>
+<ul class="sectlevel3">
+<li><a href="#shared-disk-failover">4.1.1. Shared Disk Failover</a></li>
+<li><a href="#file-system-block-device-replication">4.1.2. File System (Block Device) Replication</a></li>
+<li><a href="#write-ahead-log-shipping">4.1.3. Write-Ahead Log Shipping</a></li>
+<li><a href="#logical-replication">4.1.4. Logical Replication</a></li>
+<li><a href="#trigger-based-primary-standby-replication">4.1.5. Trigger-Based Primary-Standby Replication</a></li>
+<li><a href="#sql-based-replication-middleware">4.1.6. SQL-Based Replication Middleware</a></li>
+<li><a href="#asynchronous-multimaster-replication">4.1.7. Asynchronous Multimaster Replication</a></li>
+<li><a href="#synchronous-multimaster-replication">4.1.8. Synchronous Multimaster Replication</a></li>
+</ul>
+</li>
+<li><a href="#log-shipping-standby-servers">4.2. Log-Shipping Standby Servers</a>
+<ul class="sectlevel3">
+<li><a href="#planning">4.2.1. Planning</a></li>
+<li><a href="#standby-server-operation">4.2.2. Standby Server Operation</a></li>
+<li><a href="#preparing-the-primary-for-standby-servers">4.2.3. Preparing the Primary for Standby Servers</a></li>
+<li><a href="#setting-up-a-standby-server">4.2.4. Setting Up a Standby Server</a></li>
+<li><a href="#streaming-replication">4.2.5. Streaming Replication</a>
+<ul class="sectlevel4">
+<li><a href="#authentication">4.2.5.1. Authentication</a></li>
+<li><a href="#monitoring">4.2.5.2. Monitoring</a></li>
+</ul>
+</li>
+<li><a href="#replication-slots">4.2.6. Replication Slots</a>
+<ul class="sectlevel4">
+<li><a href="#querying-and-manipulating-replication-slots">4.2.6.1. Querying And Manipulating Replication Slots</a></li>
+<li><a href="#configuration-example">4.2.6.2. Configuration Example</a></li>
+</ul>
+</li>
+<li><a href="#cascading-replication">4.2.7. Cascading Replication</a></li>
+<li><a href="#synchronous-replication">4.2.8. Synchronous Replication</a>
+<ul class="sectlevel4">
+<li><a href="#basic-configuration">4.2.8.1. Basic Configuration</a></li>
+<li><a href="#multiple-synchronous-standbys">4.2.8.2. Multiple Synchronous Standbys</a></li>
+<li><a href="#planning-for-performance">4.2.8.3. Planning For Performance</a></li>
+<li><a href="#planning-for-high-availability">4.2.8.4. Planning For High Availability</a></li>
+</ul>
+</li>
+<li><a href="#continuous-archiving-in-standby">4.2.9. Continuous Archiving in Standby</a></li>
+</ul>
+</li>
+<li><a href="#failover">4.3. Failover</a></li>
+<li><a href="#hot-standby">4.4. Hot Standby</a>
+<ul class="sectlevel3">
+<li><a href="#users-overview">4.4.1. User&#8217;s Overview</a></li>
+<li><a href="#handling-query-conflicts">4.4.2. Handling Query Conflicts</a></li>
+<li><a href="#administrators-overview">4.4.3. Administrator&#8217;s Overview</a></li>
+<li><a href="#hot-standby-parameter-reference">4.4.4. Hot Standby Parameter Reference</a></li>
+<li><a href="#caveats">4.4.5. Caveats</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="routine-vacuuming"><a class="anchor" href="#routine-vacuuming"></a>1. Routine Vacuuming</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL  databases require periodic maintenance known as <strong>vacuuming</strong>. For many installations, it is sufficient to let vacuuming be performed by the <strong>autovacuum daemon</strong>. You might need to adjust the autovacuuming parameters described there to obtain best results for your situation. Some database administrators will want to supplement or replace the daemon&#8217;s activities with manually-managed <code>VACUUM</code> commands, which typically are executed according to a schedule by cron or Task Scheduler scripts. To set up manually-managed vacuuming properly, it is essential to understand the issues discussed in the next few subsections. Administrators who rely on autovacuuming may still wish to skim this material to help them understand and adjust autovacuuming.</p>
+</div>
+<div class="sect2">
+<h3 id="vacuuming-basics"><a class="anchor" href="#vacuuming-basics"></a>1.1. Vacuuming Basics</h3>
+<div class="paragraph">
+<p>IvorySQL&#8217;s command has to process each table on a regular basis for several reasons:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>To recover or reuse disk space occupied by updated or deleted rows.</p>
+</li>
+<li>
+<p>To update data statistics used by the PostgreSQL query planner.</p>
+</li>
+<li>
+<p>To update the visibility map, which speeds up <a href="https://www.postgresql.org/docs/current/indexes-index-only-scans.html">index-only scans</a>.</p>
+</li>
+<li>
+<p>To protect against loss of very old data due to <strong>transaction ID wraparound</strong> or <strong>multixact ID wraparound</strong>.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Each of these reasons dictates performing <code>VACUUM</code> operations of varying frequency and scope, as explained in the following subsections.</p>
+</div>
+<div class="paragraph">
+<p>There are two variants of <code>VACUUM</code>: standard <code>VACUUM</code> and <code>VACUUM FULL</code>. <code>VACUUM FULL</code> can reclaim more disk space but runs much more slowly. Also, the standard form of <code>VACUUM</code> can run in parallel with production database operations. (Commands such as <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, and <code>DELETE</code> will continue to function normally, though you will not be able to modify the definition of a table with commands such as <code>ALTER TABLE</code> while it is being vacuumed.) <code>VACUUM FULL</code> requires an <code>ACCESS EXCLUSIVE</code> lock on the table it is working on, and therefore cannot be done in parallel with other use of the table. Generally, therefore, administrators should strive to use standard <code>VACUUM</code> and avoid <code>VACUUM FULL</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>VACUUM</code> creates a substantial amount of I/O traffic, which can cause poor performance for other active sessions. There are configuration parameters that can be adjusted to reduce the performance impact of background vacuuming.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recovering-disk-space"><a class="anchor" href="#recovering-disk-space"></a>1.2. Recovering Disk Space</h3>
+<div class="paragraph">
+<p>In IvorySQL，an <code>UPDATE</code> or <code>DELETE</code> of a row does not immediately remove the old version of the row. This approach is necessary to gain the benefits of multiversion concurrency control : the row version must not be deleted while it is still potentially visible to other transactions. But eventually, an outdated or deleted row version is no longer of interest to any transaction. The space it occupies must then be reclaimed for reuse by new rows, to avoid unbounded growth of disk space requirements. This is done by running <code>VACUUM</code>.</p>
+</div>
+<div class="paragraph">
+<p>The standard form of <code>VACUUM</code> removes dead row versions in tables and indexes and marks the space available for future reuse. However, it will not return the space to the operating system, except in the special case where one or more pages at the end of a table become entirely free and an exclusive table lock can be easily obtained. In contrast, <code>VACUUM FULL</code> actively compacts tables by writing a complete new version of the table file with no dead space. This minimizes the size of the table, but can take a long time. It also requires extra disk space for the new copy of the table, until the operation completes.</p>
+</div>
+<div class="paragraph">
+<p>The usual goal of routine vacuuming is to do standard <code>VACUUM`s often enough to avoid needing `VACUUM FULL</code>. The autovacuum daemon attempts to work this way, and in fact will never issue <code>VACUUM FULL</code>. In this approach, the idea is not to keep tables at their minimum size, but to maintain steady-state usage of disk space: each table occupies space equivalent to its minimum size plus however much space gets used up between vacuum runs. Although <code>VACUUM FULL</code> can be used to shrink a table back to its minimum size and return the disk space to the operating system, there is not much point in this if the table will just grow again in the future. Thus, moderately-frequent standard <code>VACUUM</code> runs are a better approach than infrequent <code>VACUUM FULL</code> runs for maintaining heavily-updated tables.</p>
+</div>
+<div class="paragraph">
+<p>Some administrators prefer to schedule vacuuming themselves, for example doing all the work at night when load is low. The difficulty with doing vacuuming according to a fixed schedule is that if a table has an unexpected spike in update activity, it may get bloated to the point that <code>VACUUM FULL</code> is really necessary to reclaim space. Using the autovacuum daemon alleviates this problem, since the daemon schedules vacuuming dynamically in response to update activity. It is unwise to disable the daemon completely unless you have an extremely predictable workload. One possible compromise is to set the daemon&#8217;s parameters so that it will only react to unusually heavy update activity, thus keeping things from getting out of hand, while scheduled `VACUUM`s are expected to do the bulk of the work when the load is typical.</p>
+</div>
+<div class="paragraph">
+<p>For those not using autovacuum, a typical approach is to schedule a database-wide <code>VACUUM</code> once a day during a low-usage period, supplemented by more frequent vacuuming of heavily-updated tables as necessary. (Some installations with extremely high update rates vacuum their busiest tables as often as once every few minutes.) If you have multiple databases in a cluster, don&#8217;t forget to <code>VACUUM</code> each one; the program <a href="https://www.postgresql.org/docs/current/app-vacuumdb.html">vacuumdb</a> might be helpful.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Tip</div>
+<div class="paragraph">
+<p>Plain <code>VACUUM</code> may not be satisfactory when a table contains large numbers of dead row versions as a result of massive update or delete activity. If you have such a table and you need to reclaim the excess disk space it occupies, you will need to use <code>VACUUM FULL</code>, or alternatively <a href="https://www.postgresql.org/docs/current/sql-cluster.html"><code>CLUSTER</code></a> or one of the table-rewriting variants of <a href="https://www.postgresql.org/docs/current/sql-altertable.html"><code>ALTER TABLE</code></a>. These commands rewrite an entire new copy of the table and build new indexes for it. All these options require an <code>ACCESS EXCLUSIVE</code> lock. Note that they also temporarily use extra disk space approximately equal to the size of the table, since the old copies of the table and indexes can&#8217;t be released until the new ones are complete.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Tip</div>
+<div class="paragraph">
+<p>If you have a table whose entire contents are deleted on a periodic basis, consider doing it with <a href="https://www.postgresql.org/docs/current/sql-truncate.html"><code>TRUNCATE</code></a> rather than using <code>DELETE</code> followed by <code>VACUUM</code>. <code>TRUNCATE</code> removes the entire content of the table immediately, without requiring a subsequent <code>VACUUM</code> or <code>VACUUM FULL</code> to reclaim the now-unused disk space. The disadvantage is that strict MVCC semantics are violated.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-planner-statistics"><a class="anchor" href="#updating-planner-statistics"></a>1.3. Updating Planner Statistics</h3>
+<div class="paragraph">
+<p>The IvorySQL query planner relies on statistical information about the contents of tables in order to generate good plans for queries. These statistics are gathered by the <a href="https://www.postgresql.org/docs/current/sql-analyze.html"><code>ANALYZE</code></a> command, which can be invoked by itself or as an optional step in <code>VACUUM</code>. It is important to have reasonably accurate statistics, otherwise poor choices of plans might degrade database performance.</p>
+</div>
+<div class="paragraph">
+<p>The autovacuum daemon, if enabled, will automatically issue <code>ANALYZE</code> commands whenever the content of a table has changed sufficiently. However, administrators might prefer to rely on manually-scheduled <code>ANALYZE</code> operations, particularly if it is known that update activity on a table will not affect the statistics of “interesting” columns. The daemon schedules <code>ANALYZE</code> strictly as a function of the number of rows inserted or updated; it has no knowledge of whether that will lead to meaningful statistical changes.</p>
+</div>
+<div class="paragraph">
+<p>Tuples changed in partitions and inheritance children do not trigger analyze on the parent table. If the parent table is empty or rarely changed, it may never be processed by autovacuum, and the statistics for the inheritance tree as a whole won&#8217;t be collected. It is necessary to run <code>ANALYZE</code> on the parent table manually in order to keep the statistics up to date.</p>
+</div>
+<div class="paragraph">
+<p>As with vacuuming for space recovery, frequent updates of statistics are more useful for heavily-updated tables than for seldom-updated ones. But even for a heavily-updated table, there might be no need for statistics updates if the statistical distribution of the data is not changing much. A simple rule of thumb is to think about how much the minimum and maximum values of the columns in the table change. For example, a <code>timestamp</code> column that contains the time of row update will have a constantly-increasing maximum value as rows are added and updated; such a column will probably need more frequent statistics updates than, say, a column containing URLs for pages accessed on a website. The URL column might receive changes just as often, but the statistical distribution of its values probably changes relatively slowly.</p>
+</div>
+<div class="paragraph">
+<p>It is possible to run <code>ANALYZE</code> on specific tables and even just specific columns of a table, so the flexibility exists to update some statistics more frequently than others if your application requires it. In practice, however, it is usually best to just analyze the entire database, because it is a fast operation. <code>ANALYZE</code> uses a statistically random sampling of the rows of a table rather than reading every single row.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Tip</div>
+<div class="paragraph">
+<p>Although per-column tweaking of <code>ANALYZE</code> frequency might not be very productive, you might find it worthwhile to do per-column adjustment of the level of detail of the statistics collected by <code>ANALYZE</code>. Columns that are heavily used in <code>WHERE</code> clauses and have highly irregular data distributions might require a finer-grain data histogram than other columns. See <code>ALTER TABLE SET STATISTICS</code>, or change the database-wide default using the <a href="https://www.postgresql.org/docs/current/runtime-config-query.html#GUC-DEFAULT-STATISTICS-TARGET">default_statistics_target</a> configuration parameter.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Tip</div>
+<div class="paragraph">
+<p>The autovacuum daemon does not issue <code>ANALYZE</code> commands for foreign tables, since it has no means of determining how often that might be useful. If your queries require statistics on foreign tables for proper planning, it&#8217;s a good idea to run manually-managed <code>ANALYZE</code> commands on those tables on a suitable schedule.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Tip</div>
+<div class="paragraph">
+<p>The autovacuum daemon does not issue <code>ANALYZE</code> commands for partitioned tables. Inheritance parents will only be analyzed if the parent itself is changed - changes to child tables do not trigger autoanalyze on the parent table. If your queries require statistics on parent tables for proper planning, it is necessary to periodically run a manual <code>ANALYZE</code> on those tables to keep the statistics up to date.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="updating-the-visibility-map"><a class="anchor" href="#updating-the-visibility-map"></a>1.4. Updating the Visibility Map</h3>
+<div class="paragraph">
+<p>Vacuum maintains a <a href="https://www.postgresql.org/docs/current/storage-vm.html">visibility map</a> for each table to keep track of which pages contain only tuples that are known to be visible to all active transactions (and all future transactions, until the page is again modified). This has two purposes. First, vacuum itself can skip such pages on the next run, since there is nothing to clean up.</p>
+</div>
+<div class="paragraph">
+<p>Second, it allows IvorySQL to answer some queries using only the index, without reference to the underlying table. Since PostgreSQL indexes don&#8217;t contain tuple visibility information, a normal index scan fetches the heap tuple for each matching index entry, to check whether it should be seen by the current transaction. An <a href="https://www.postgresql.org/docs/current/indexes-index-only-scans.html"><strong>index-only scan</strong></a>, on the other hand, checks the visibility map first. If it&#8217;s known that all tuples on the page are visible, the heap fetch can be skipped. This is most useful on large data sets where the visibility map can prevent disk accesses. The visibility map is vastly smaller than the heap, so it can easily be cached even when the heap is very large.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="preventing-transaction-id-wraparound-failures"><a class="anchor" href="#preventing-transaction-id-wraparound-failures"></a>1.5. Preventing Transaction ID Wraparound Failures</h3>
+<div class="paragraph">
+<p>IvorySQL&#8217;s <a href="https://www.postgresql.org/docs/current/mvcc-intro.html">MVCC</a> transaction semantics depend on being able to compare transaction ID (XID) numbers: a row version with an insertion XID greater than the current transaction&#8217;s XID is “in the future” and should not be visible to the current transaction. But since transaction IDs have limited size (32 bits) a cluster that runs for a long time (more than 4 billion transactions) would suffer <strong>transaction ID wraparound</strong>: the XID counter wraps around to zero, and all of a sudden transactions that were in the past appear to be in the future — which means their output become invisible. In short, catastrophic data loss. (Actually the data is still there, but that&#8217;s cold comfort if you cannot get at it.) To avoid this, it is necessary to vacuum every table in every database at least once every two billion transactions.</p>
+</div>
+<div class="paragraph">
+<p>The reason that periodic vacuuming solves the problem is that <code>VACUUM</code> will mark rows as <strong>frozen</strong>, indicating that they were inserted by a transaction that committed sufficiently far in the past that the effects of the inserting transaction are certain to be visible to all current and future transactions. Normal XIDs are compared using modulo-232 arithmetic. This means that for every normal XID, there are two billion XIDs that are “older” and two billion that are “newer”; another way to say it is that the normal XID space is circular with no endpoint. Therefore, once a row version has been created with a particular normal XID, the row version will appear to be “in the past” for the next two billion transactions, no matter which normal XID we are talking about. If the row version still exists after more than two billion transactions, it will suddenly appear to be in the future. To prevent this, IvorySQL reserves a special XID, <code>FrozenTransactionId</code>, which does not follow the normal XID comparison rules and is always considered older than every normal XID. Frozen row versions are treated as if the inserting XID were <code>FrozenTransactionId</code>, so that they will appear to be “in the past” to all normal transactions regardless of wraparound issues, and so such row versions will be valid until deleted, no matter how long that is.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-VACUUM-FREEZE-MIN-AGE">vacuum_freeze_min_age</a> controls how old an XID value has to be before rows bearing that XID will be frozen. Increasing this setting may avoid unnecessary work if the rows that would otherwise be frozen will soon be modified again, but decreasing this setting increases the number of transactions that can elapse before the table must be vacuumed again.</p>
+</div>
+<div class="paragraph">
+<p><code>VACUUM</code> uses the <a href="https://www.postgresql.org/docs/current/storage-vm.html">visibility map</a> to determine which pages of a table must be scanned. Normally, it will skip pages that don&#8217;t have any dead row versions even if those pages might still have row versions with old XID values. Therefore, normal <code>VACUUM`s won&#8217;t always freeze every old row version in the table. When that happens, `VACUUM</code> will eventually need to perform an <strong>aggressive vacuum</strong>, which will freeze all eligible unfrozen XID and MXID values, including those from all-visible but not all-frozen pages. In practice most tables require periodic aggressive vacuuming. <a href="https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-VACUUM-FREEZE-TABLE-AGE">vacuum_freeze_table_age</a> controls when <code>VACUUM</code> does that: all-visible but not all-frozen pages are scanned if the number of transactions that have passed since the last such scan is greater than <code>vacuum_freeze_table_age</code> minus <code>vacuum_freeze_min_age</code>. Setting <code>vacuum_freeze_table_age</code> to 0 forces <code>VACUUM</code> to always use its aggressive strategy.</p>
+</div>
+<div class="paragraph">
+<p>The maximum time that a table can go unvacuumed is two billion transactions minus the <code>vacuum_freeze_min_age</code> value at the time of the last aggressive vacuum. If it were to go unvacuumed for longer than that, data loss could result. To ensure that this does not happen, autovacuum is invoked on any table that might contain unfrozen rows with XIDs older than the age specified by the configuration parameter <a href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html#GUC-AUTOVACUUM-FREEZE-MAX-AGE">autovacuum_freeze_max_age</a>. (This will happen even if autovacuum is disabled.)</p>
+</div>
+<div class="paragraph">
+<p>This implies that if a table is not otherwise vacuumed, autovacuum will be invoked on it approximately once every <code>autovacuum_freeze_max_age</code> minus <code>vacuum_freeze_min_age</code> transactions. For tables that are regularly vacuumed for space reclamation purposes, this is of little importance. However, for static tables (including tables that receive inserts, but no updates or deletes), there is no need to vacuum for space reclamation, so it can be useful to try to maximize the interval between forced autovacuums on very large static tables. Obviously one can do this either by increasing <code>autovacuum_freeze_max_age</code> or decreasing <code>vacuum_freeze_min_age</code>.</p>
+</div>
+<div class="paragraph">
+<p>The effective maximum for <code>vacuum_freeze_table_age</code> is 0.95 * <code>autovacuum_freeze_max_age</code>; a setting higher than that will be capped to the maximum. A value higher than <code>autovacuum_freeze_max_age</code> wouldn&#8217;t make sense because an anti-wraparound autovacuum would be triggered at that point anyway, and the 0.95 multiplier leaves some breathing room to run a manual <code>VACUUM</code> before that happens. As a rule of thumb, <code>vacuum_freeze_table_age</code> should be set to a value somewhat below <code>autovacuum_freeze_max_age</code>, leaving enough gap so that a regularly scheduled <code>VACUUM</code> or an autovacuum triggered by normal delete and update activity is run in that window. Setting it too close could lead to anti-wraparound autovacuums, even though the table was recently vacuumed to reclaim space, whereas lower values lead to more frequent aggressive vacuuming.</p>
+</div>
+<div class="paragraph">
+<p>The sole disadvantage of increasing <code>autovacuum_freeze_max_age</code> (and <code>vacuum_freeze_table_age</code> along with it) is that the <code>pg_xact</code> and <code>pg_commit_ts</code> subdirectories of the database cluster will take more space, because it must store the commit status and (if <code>track_commit_timestamp</code> is enabled) timestamp of all transactions back to the <code>autovacuum_freeze_max_age</code> horizon. The commit status uses two bits per transaction, so if <code>autovacuum_freeze_max_age</code> is set to its maximum allowed value of two billion, <code>pg_xact</code> can be expected to grow to about half a gigabyte and <code>pg_commit_ts</code> to about 20GB. If this is trivial compared to your total database size, setting <code>autovacuum_freeze_max_age</code> to its maximum allowed value is recommended. Otherwise, set it depending on what you are willing to allow for <code>pg_xact</code> and <code>pg_commit_ts</code> storage. (The default, 200 million transactions, translates to about 50MB of <code>pg_xact</code> storage and about 2GB of <code>pg_commit_ts</code> storage.)</p>
+</div>
+<div class="paragraph">
+<p>One disadvantage of decreasing <code>vacuum_freeze_min_age</code> is that it might cause <code>VACUUM</code> to do useless work: freezing a row version is a waste of time if the row is modified soon thereafter (causing it to acquire a new XID). So the setting should be large enough that rows are not frozen until they are unlikely to change any more.</p>
+</div>
+<div class="paragraph">
+<p>To track the age of the oldest unfrozen XIDs in a database, <code>VACUUM</code> stores XID statistics in the system tables <code>pg_class</code> and <code>pg_database</code>. In particular, the <code>relfrozenxid</code> column of a table&#8217;s <code>pg_class</code> row contains the oldest remaining unfrozen XID at the end of the most recent <code>VACUUM</code> that successfully advanced <code>relfrozenxid</code> (typically the most recent aggressive VACUUM). Similarly, the <code>datfrozenxid</code> column of a database&#8217;s <code>pg_database</code> row is a lower bound on the unfrozen XIDs appearing in that database — it is just the minimum of the per-table <code>relfrozenxid</code> values within the database. A convenient way to examine this information is to execute queries such as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT c.oid::regclass as table_name,
+       greatest(age(c.relfrozenxid),age(t.relfrozenxid)) as age
+FROM pg_class c
+LEFT JOIN pg_class t ON c.reltoastrelid = t.oid
+WHERE c.relkind IN ('r', 'm');
+
+SELECT datname, age(datfrozenxid) FROM pg_database;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>age</code> column measures the number of transactions from the cutoff XID to the current transaction&#8217;s XID.</p>
+</div>
+<div class="paragraph">
+<p><code>VACUUM</code> normally only scans pages that have been modified since the last vacuum, but <code>relfrozenxid</code> can only be advanced when every page of the table that might contain unfrozen XIDs is scanned. This happens when <code>relfrozenxid</code> is more than <code>vacuum_freeze_table_age</code> transactions old, when <code>VACUUM&#8217;s `FREEZE</code> option is used, or when all pages that are not already all-frozen happen to require vacuuming to remove dead row versions. When <code>VACUUM</code> scans every page in the table that is not already all-frozen, it should set <code>age(relfrozenxid)</code> to a value just a little more than the <code>vacuum_freeze_min_age</code> setting that was used (more by the number of transactions started since the <code>VACUUM</code> started). <code>VACUUM</code> will set <code>relfrozenxid</code> to the oldest XID that remains in the table, so it&#8217;s possible that the final value will be much more recent than strictly required. If no <code>relfrozenxid</code>-advancing <code>VACUUM</code> is issued on the table until <code>autovacuum_freeze_max_age</code> is reached, an autovacuum will soon be forced for the table.</p>
+</div>
+<div class="paragraph">
+<p>If for some reason autovacuum fails to clear old XIDs from a table, the system will begin to emit warning messages like this when the database&#8217;s oldest XIDs reach forty million transactions from the wraparound point:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">WARNING:  database "mydb" must be vacuumed within 39985967 transactions
+HINT:  To avoid a database shutdown, execute a database-wide VACUUM in that database.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(A manual <code>VACUUM</code> should fix the problem, as suggested by the hint; but note that the <code>VACUUM</code> must be performed by a superuser, else it will fail to process system catalogs and thus not be able to advance the database&#8217;s <code>datfrozenxid</code>.) If these warnings are ignored, the system will shut down and refuse to start any new transactions once there are fewer than three million transactions left until wraparound:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ERROR:  database is not accepting commands to avoid wraparound data loss in database "mydb"
+HINT:  Stop the postmaster and vacuum that database in single-user mode.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The three-million-transaction safety margin exists to let the administrator recover without data loss, by manually executing the required <code>VACUUM</code> commands. However, since the system will not execute commands once it has gone into the safety shutdown mode, the only way to do this is to stop the server and start the server in single-user mode to execute <code>VACUUM</code>. The shutdown mode is not enforced in single-user mode. See the <a href="https://www.postgresql.org/docs/current/app-postgres.html">postgres</a> reference page for details about using single-user mode.</p>
+</div>
+<div class="paragraph">
+<p><strong>Multixact IDs</strong> are used to support row locking by multiple transactions. Since there is only limited space in a tuple header to store lock information, that information is encoded as a “multiple transaction ID”, or multixact ID for short, whenever there is more than one transaction concurrently locking a row. Information about which transaction IDs are included in any particular multixact ID is stored separately in the <code>pg_multixact</code> subdirectory, and only the multixact ID appears in the <code>xmax</code> field in the tuple header. Like transaction IDs, multixact IDs are implemented as a 32-bit counter and corresponding storage, all of which requires careful aging management, storage cleanup, and wraparound handling. There is a separate storage area which holds the list of members in each multixact, which also uses a 32-bit counter and which must also be managed.</p>
+</div>
+<div class="paragraph">
+<p>Whenever <code>VACUUM</code> scans any part of a table, it will replace any multixact ID it encounters which is older than <a href="https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-VACUUM-MULTIXACT-FREEZE-MIN-AGE">vacuum_multixact_freeze_min_age</a> by a different value, which can be the zero value, a single transaction ID, or a newer multixact ID. For each table, <code>pg_class</code>.<code>relminmxid</code> stores the oldest possible multixact ID still appearing in any tuple of that table. If this value is older than <a href="https://www.postgresql.org/docs/current/runtime-config-client.html#GUC-VACUUM-MULTIXACT-FREEZE-TABLE-AGE">vacuum_multixact_freeze_table_age</a>, an aggressive vacuum is forced. As discussed in the previous section, an aggressive vacuum means that only those pages which are known to be all-frozen will be skipped. <code>mxid_age()</code> can be used on <code>pg_class</code>.<code>relminmxid</code> to find its age.</p>
+</div>
+<div class="paragraph">
+<p>Aggressive <code>VACUUM`s, regardless of what causes them, are <strong>guaranteed</strong> to be able to advance the table&#8217;s `relminmxid</code>. Eventually, as all tables in all databases are scanned and their oldest multixact values are advanced, on-disk storage for older multixacts can be removed.</p>
+</div>
+<div class="paragraph">
+<p>As a safety device, an aggressive vacuum scan will occur for any table whose multixact-age is greater than <a href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html#GUC-AUTOVACUUM-MULTIXACT-FREEZE-MAX-AGE">autovacuum_multixact_freeze_max_age</a>. Also, if the storage occupied by multixacts members exceeds 2GB, aggressive vacuum scans will occur more often for all tables, starting with those that have the oldest multixact-age. Both of these kinds of aggressive scans will occur even if autovacuum is nominally disabled.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-autovacuum-daemon"><a class="anchor" href="#the-autovacuum-daemon"></a>1.6. The Autovacuum Daemon</h3>
+<div class="paragraph">
+<p>IvorySQL has an optional but highly recommended feature called <strong>autovacuum</strong>, whose purpose is to automate the execution of <code>VACUUM</code> and <code>ANALYZE</code> commands. When enabled, autovacuum checks for tables that have had a large number of inserted, updated or deleted tuples. These checks use the statistics collection facility; therefore, autovacuum cannot be used unless <a href="https://www.postgresql.org/docs/current/runtime-config-statistics.html#GUC-TRACK-COUNTS">track_counts</a> is set to <code>true</code>. In the default configuration, autovacuuming is enabled and the related configuration parameters are appropriately set.</p>
+</div>
+<div class="paragraph">
+<p>The “autovacuum daemon” actually consists of multiple processes. There is a persistent daemon process, called the <strong>autovacuum launcher</strong>, which is in charge of starting <strong>autovacuum worker</strong> processes for all databases. The launcher will distribute the work across time, attempting to start one worker within each database every <a href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html#GUC-AUTOVACUUM-NAPTIME">autovacuum_naptime</a> seconds. (Therefore, if the installation has <strong><code>N</code></strong> databases, a new worker will be launched every <code>autovacuum_naptime</code>/<strong><code>N</code></strong> seconds.) A maximum of <a href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html#GUC-AUTOVACUUM-MAX-WORKERS">autovacuum_max_workers</a> worker processes are allowed to run at the same time. If there are more than <code>autovacuum_max_workers</code> databases to be processed, the next database will be processed as soon as the first worker finishes. Each worker process will check each table within its database and execute <code>VACUUM</code> and/or <code>ANALYZE</code> as needed. <a href="https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-LOG-AUTOVACUUM-MIN-DURATION">log_autovacuum_min_duration</a> can be set to monitor autovacuum workers' activity.</p>
+</div>
+<div class="paragraph">
+<p>If several large tables all become eligible for vacuuming in a short amount of time, all autovacuum workers might become occupied with vacuuming those tables for a long period. This would result in other tables and databases not being vacuumed until a worker becomes available. There is no limit on how many workers might be in a single database, but workers do try to avoid repeating work that has already been done by other workers. Note that the number of running workers does not count towards <a href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-MAX-CONNECTIONS">max_connections</a> or <a href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-SUPERUSER-RESERVED-CONNECTIONS">superuser_reserved_connections</a> limits.</p>
+</div>
+<div class="paragraph">
+<p>Tables whose <code>relfrozenxid</code> value is more than <a href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html#GUC-AUTOVACUUM-FREEZE-MAX-AGE">autovacuum_freeze_max_age</a> transactions old are always vacuumed (this also applies to those tables whose freeze max age has been modified via storage parameters; see below). Otherwise, if the number of tuples obsoleted since the last <code>VACUUM</code> exceeds the “vacuum threshold”, the table is vacuumed. The vacuum threshold is defined as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">vacuum threshold = vacuum base threshold + vacuum scale factor * number of tuples</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where the vacuum base threshold is <a href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html#GUC-AUTOVACUUM-VACUUM-THRESHOLD">autovacuum_vacuum_threshold</a>, the vacuum scale factor is <a href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html#GUC-AUTOVACUUM-VACUUM-SCALE-FACTOR">autovacuum_vacuum_scale_factor</a>, and the number of tuples is <code>pg_class</code>.<code>reltuples</code>.</p>
+</div>
+<div class="paragraph">
+<p>The table is also vacuumed if the number of tuples inserted since the last vacuum has exceeded the defined insert threshold, which is defined as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">vacuum insert threshold = vacuum base insert threshold + vacuum insert scale factor * number of tuples</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where the vacuum insert base threshold is <a href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html#GUC-AUTOVACUUM-VACUUM-INSERT-THRESHOLD">autovacuum_vacuum_insert_threshold</a>, and vacuum insert scale factor is <a href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html#GUC-AUTOVACUUM-VACUUM-INSERT-SCALE-FACTOR">autovacuum_vacuum_insert_scale_factor</a>. Such vacuums may allow portions of the table to be marked as <strong>all visible</strong> and also allow tuples to be frozen, which can reduce the work required in subsequent vacuums. For tables which receive <code>INSERT</code> operations but no or almost no <code>UPDATE</code>/<code>DELETE</code> operations, it may be beneficial to lower the table&#8217;s <a href="https://www.postgresql.org/docs/current/sql-createtable.html#RELOPTION-AUTOVACUUM-FREEZE-MIN-AGE">autovacuum_freeze_min_age</a> as this may allow tuples to be frozen by earlier vacuums. The number of obsolete tuples and the number of inserted tuples are obtained from the cumulative statistics system; it is a semi-accurate count updated by each <code>UPDATE</code>, <code>DELETE</code> and <code>INSERT</code> operation. (It is only semi-accurate because some information might be lost under heavy load.) If the <code>relfrozenxid</code> value of the table is more than <code>vacuum_freeze_table_age</code> transactions old, an aggressive vacuum is performed to freeze old tuples and advance <code>relfrozenxid</code>; otherwise, only pages that have been modified since the last vacuum are scanned.</p>
+</div>
+<div class="paragraph">
+<p>For analyze, a similar condition is used: the threshold, defined as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">analyze threshold = analyze base threshold + analyze scale factor * number of tuples</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>is compared to the total number of tuples inserted, updated, or deleted since the last <code>ANALYZE</code>.</p>
+</div>
+<div class="paragraph">
+<p>Partitioned tables are not processed by autovacuum. Statistics should be collected by running a manual <code>ANALYZE</code> when it is first populated, and again whenever the distribution of data in its partitions changes significantly.</p>
+</div>
+<div class="paragraph">
+<p>Temporary tables cannot be accessed by autovacuum. Therefore, appropriate vacuum and analyze operations should be performed via session SQL commands.</p>
+</div>
+<div class="paragraph">
+<p>The default thresholds and scale factors are taken from <code>postgresql.conf</code>, but it is possible to override them (and many other autovacuum control parameters) on a per-table basis; see <a href="https://www.postgresql.org/docs/current/sql-createtable.html#SQL-CREATETABLE-STORAGE-PARAMETERS">Storage Parameters</a> for more information. If a setting has been changed via a table&#8217;s storage parameters, that value is used when processing that table; otherwise the global settings are used. See <a href="https://www.postgresql.org/docs/current/runtime-config-autovacuum.html">Section 20.10</a> for more details on the global settings.</p>
+</div>
+<div class="paragraph">
+<p>When multiple workers are running, the autovacuum cost delay parameters (see <a href="https://www.postgresql.org/docs/current/runtime-config-resource.html#RUNTIME-CONFIG-RESOURCE-VACUUM-COST">Section 20.4.4</a>) are “balanced” among all the running workers, so that the total I/O impact on the system is the same regardless of the number of workers actually running. However, any workers processing tables whose per-table <code>autovacuum_vacuum_cost_delay</code> or <code>autovacuum_vacuum_cost_limit</code> storage parameters have been set are not considered in the balancing algorithm.</p>
+</div>
+<div class="paragraph">
+<p>Autovacuum workers generally don&#8217;t block other commands. If a process attempts to acquire a lock that conflicts with the <code>SHARE UPDATE EXCLUSIVE</code> lock held by autovacuum, lock acquisition will interrupt the autovacuum. For conflicting lock modes, see <a href="https://www.postgresql.org/docs/current/explicit-locking.html#TABLE-LOCK-COMPATIBILITY">Table 13.2</a>. However, if the autovacuum is running to prevent transaction ID wraparound (i.e., the autovacuum query name in the <code>pg_stat_activity</code> view ends with <code>(to prevent wraparound)</code>), the autovacuum is not automatically interrupted.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Warning</div>
+<div class="paragraph">
+<p>Regularly running commands that acquire locks conflicting with a <code>SHARE UPDATE EXCLUSIVE</code> lock (e.g., ANALYZE) can effectively prevent autovacuums from ever completing.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="routine-reindexing"><a class="anchor" href="#routine-reindexing"></a>2. Routine Reindexing</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In some situations it is worthwhile to rebuild indexes periodically with the <a href="https://www.postgresql.org/docs/current/sql-reindex.html">REINDEX</a> command or a series of individual rebuilding steps.</p>
+</div>
+<div class="paragraph">
+<p>B-tree index pages that have become completely empty are reclaimed for re-use. However, there is still a possibility of inefficient use of space: if all but a few index keys on a page have been deleted, the page remains allocated. Therefore, a usage pattern in which most, but not all, keys in each range are eventually deleted will see poor use of space. For such usage patterns, periodic reindexing is recommended.</p>
+</div>
+<div class="paragraph">
+<p>The potential for bloat in non-B-tree indexes has not been well researched. It is a good idea to periodically monitor the index&#8217;s physical size when using any non-B-tree index type.</p>
+</div>
+<div class="paragraph">
+<p>Also, for B-tree indexes, a freshly-constructed index is slightly faster to access than one that has been updated many times because logically adjacent pages are usually also physically adjacent in a newly built index. (This consideration does not apply to non-B-tree indexes.) It might be worthwhile to reindex periodically just to improve access speed.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.postgresql.org/docs/current/sql-reindex.html">REINDEX</a> can be used safely and easily in all cases. This command requires an <code>ACCESS EXCLUSIVE</code> lock by default, hence it is often preferable to execute it with its <code>CONCURRENTLY</code> option, which requires only a <code>SHARE UPDATE EXCLUSIVE</code> lock.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="log-file-maintenance"><a class="anchor" href="#log-file-maintenance"></a>3. Log File Maintenance</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is a good idea to save the database server&#8217;s log output somewhere, rather than just discarding it via <code>/dev/null</code>. The log output is invaluable when diagnosing problems.Log output tends to be voluminous (especially at higher debug levels) so you won&#8217;t want to save it indefinitely. You need to <strong>rotate</strong> the log files so that new log files are started and old ones removed after a reasonable period of time.</p>
+</div>
+<div class="paragraph">
+<p>If you simply direct the stderr of <code>postgres</code> into a file, you will have log output, but the only way to truncate the log file is to stop and restart the server. This might be acceptable if you are using PostgreSQL in a development environment, but few production servers would find this behavior acceptable.</p>
+</div>
+<div class="paragraph">
+<p>A better approach is to send the server&#8217;s stderr output to some type of log rotation program. There is a built-in log rotation facility, which you can use by setting the configuration parameter <code>logging_collector</code> to <code>true</code> in <code>postgresql.conf</code>. You can also use this approach to capture the log data in machine readable CSV (comma-separated values) format.</p>
+</div>
+<div class="paragraph">
+<p>Alternatively, you might prefer to use an external log rotation program if you have one that you are already using with other server software. For example, the rotatelogs tool included in the Apache distribution can be used with PostgreSQL. One way to do this is to pipe the server&#8217;s stderr output to the desired program. If you start the server with <code>pg_ctl</code>, then stderr is already redirected to stdout, so you just need a pipe command, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">pg_ctl start | rotatelogs /var/log/pgsql_log 86400</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can combine these approaches by setting up logrotate to collect log files produced by PostgreSQL built-in logging collector. In this case, the logging collector defines the names and location of the log files, while logrotate periodically archives these files. When initiating log rotation, logrotate must ensure that the application sends further output to the new file. This is commonly done with a <code>postrotate</code> script that sends a <code>SIGHUP</code> signal to the application, which then reopens the log file. In PostgreSQL, you can run <code>pg_ctl</code> with the <code>logrotate</code> option instead. When the server receives this command, the server either switches to a new log file or reopens the existing file, depending on the logging configuration.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Note</div>
+<div class="paragraph">
+<p>When using static log file names, the server might fail to reopen the log file if the max open file limit is reached or a file table overflow occurs. In this case, log messages are sent to the old log file until a successful log rotation. If logrotate is configured to compress the log file and delete it, the server may lose the messages logged in this time frame. To avoid this issue, you can configure the logging collector to dynamically assign log file names and use a <code>prerotate</code> script to ignore open log files.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>Another production-grade approach to managing log output is to send it to syslog and let syslog deal with file rotation. To do this, set the configuration parameter <code>log_destination</code> to <code>syslog</code> (to log to syslog only) in <code>postgresql.conf</code>. Then you can send a <code>SIGHUP</code> signal to the syslog daemon whenever you want to force it to start writing a new log file. If you want to automate log rotation, the logrotate program can be configured to work with log files from syslog.</p>
+</div>
+<div class="paragraph">
+<p>On many systems, however, syslog is not very reliable, particularly with large log messages; it might truncate or drop messages just when you need them the most. Also, on Linux, syslog will flush each message to disk, yielding poor performance. (You can use a “<code>-</code>” at the start of the file name in the syslog configuration file to disable syncing.)</p>
+</div>
+<div class="paragraph">
+<p>Note that all the solutions described above take care of starting new log files at configurable intervals, but they do not handle deletion of old, no-longer-useful log files. You will probably want to set up a batch job to periodically delete old log files. Another possibility is to configure the rotation program so that old log files are overwritten cyclically.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://pgbadger.darold.net/">pgBadger</a> is an external project that does sophisticated log file analysis. <a href="https://bucardo.org/check_postgres/">check_postgres</a> provides Nagios alerts when important messages appear in the log files, as well as detection of many other extraordinary conditions.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="high-availability-load-balancing-and-replication"><a class="anchor" href="#high-availability-load-balancing-and-replication"></a>4. High Availability, Load Balancing, and Replication</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="comparison-of-different-solutions"><a class="anchor" href="#comparison-of-different-solutions"></a>4.1. Comparison of Different Solutions</h3>
+<div class="sect3">
+<h4 id="shared-disk-failover"><a class="anchor" href="#shared-disk-failover"></a>4.1.1. Shared Disk Failover</h4>
+<div class="paragraph">
+<p>Shared disk failover avoids synchronization overhead by having only one copy of the database. It uses a single disk array that is shared by multiple servers. If the main database server fails, the standby server is able to mount and start the database as though it were recovering from a database crash. This allows rapid failover with no data loss.</p>
+</div>
+<div class="paragraph">
+<p>Shared hardware functionality is common in network storage devices. Using a network file system is also possible, though care must be taken that the file system has full POSIX behavior . One significant limitation of this method is that if the shared disk array fails or becomes corrupt, the primary and standby servers are both nonfunctional. Another issue is that the standby server should never access the shared storage while the primary server is running.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="file-system-block-device-replication"><a class="anchor" href="#file-system-block-device-replication"></a>4.1.2. File System (Block Device) Replication</h4>
+<div class="paragraph">
+<p>A modified version of shared hardware functionality is file system replication, where all changes to a file system are mirrored to a file system residing on another computer. The only restriction is that the mirroring must be done in a way that ensures the standby server has a consistent copy of the file system — specifically, writes to the standby must be done in the same order as those on the primary. DRBD is a popular file system replication solution for Linux.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="write-ahead-log-shipping"><a class="anchor" href="#write-ahead-log-shipping"></a>4.1.3. Write-Ahead Log Shipping</h4>
+<div class="paragraph">
+<p>Warm and hot standby servers can be kept current by reading a stream of write-ahead log (WAL) records. If the main server fails, the standby contains almost all of the data of the main server, and can be quickly made the new primary database server. This can be synchronous or asynchronous and can only be done for the entire database server.</p>
+</div>
+<div class="paragraph">
+<p>A standby server can be implemented using file-based log shipping or streaming replication, or a combination of both. For information on hot standby</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="logical-replication"><a class="anchor" href="#logical-replication"></a>4.1.4. Logical Replication</h4>
+<div class="paragraph">
+<p>Logical replication allows a database server to send a stream of data modifications to another server. IvorySQL logical replication constructs a stream of logical data modifications from the WAL. Logical replication allows replication of data changes on a per-table basis. In addition, a server that is publishing its own changes can also subscribe to changes from another server, allowing data to flow in multiple directions. For more information on logical replication. Through the logical decoding interface , third-party extensions can also provide similar functionality.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="trigger-based-primary-standby-replication"><a class="anchor" href="#trigger-based-primary-standby-replication"></a>4.1.5. Trigger-Based Primary-Standby Replication</h4>
+<div class="paragraph">
+<p>A trigger-based replication setup typically funnels data modification queries to a designated primary server. Operating on a per-table basis, the primary server sends data changes (typically) asynchronously to the standby servers. Standby servers can answer queries while the primary is running, and may allow some local data changes or write activity. This form of replication is often used for offloading large analytical or data warehouse queries.</p>
+</div>
+<div class="paragraph">
+<p>Slony-I is an example of this type of replication, with per-table granularity, and support for multiple standby servers. Because it updates the standby server asynchronously (in batches), there is possible data loss during fail over.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="sql-based-replication-middleware"><a class="anchor" href="#sql-based-replication-middleware"></a>4.1.6. SQL-Based Replication Middleware</h4>
+<div class="paragraph">
+<p>With SQL-based replication middleware, a program intercepts every SQL query and sends it to one or all servers. Each server operates independently. Read-write queries must be sent to all servers, so that every server receives any changes. But read-only queries can be sent to just one server, allowing the read workload to be distributed among them.</p>
+</div>
+<div class="paragraph">
+<p>If queries are simply broadcast unmodified, functions like <code>random()</code>, <code>CURRENT_TIMESTAMP</code>, and sequences can have different values on different servers. This is because each server operates independently, and because SQL queries are broadcast rather than actual data changes. If this is unacceptable, either the middleware or the application must determine such values from a single source and then use those values in write queries. Care must also be taken that all transactions either commit or abort on all servers, perhaps using two-phase commit (<a href="https://www.postgresql.org/docs/current/sql-prepare-transaction.html">PREPARE TRANSACTION</a> and <a href="https://www.postgresql.org/docs/current/sql-commit-prepared.html">COMMIT PREPARED</a>). Pgpool-II and Continuent Tungsten are examples of this type of replication.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="asynchronous-multimaster-replication"><a class="anchor" href="#asynchronous-multimaster-replication"></a>4.1.7. Asynchronous Multimaster Replication</h4>
+<div class="paragraph">
+<p>For servers that are not regularly connected or have slow communication links, like laptops or remote servers, keeping data consistent among servers is a challenge. Using asynchronous multimaster replication, each server works independently, and periodically communicates with the other servers to identify conflicting transactions. The conflicts can be resolved by users or conflict resolution rules. Bucardo is an example of this type of replication.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="synchronous-multimaster-replication"><a class="anchor" href="#synchronous-multimaster-replication"></a>4.1.8. Synchronous Multimaster Replication</h4>
+<div class="paragraph">
+<p>In synchronous multimaster replication, each server can accept write requests, and modified data is transmitted from the original server to every other server before each transaction commits. Heavy write activity can cause excessive locking and commit delays, leading to poor performance. Read requests can be sent to any server. Some implementations use shared disk to reduce the communication overhead. Synchronous multimaster replication is best for mostly read workloads, though its big advantage is that any server can accept write requests — there is no need to partition workloads between primary and standby servers, and because the data changes are sent from one server to another, there is no problem with non-deterministic functions like <code>random()</code>.</p>
+</div>
+<div class="paragraph">
+<p>IvorySQL does not offer this type of replication, though PostgreSQL two-phase commit (<a href="https://www.postgresql.org/docs/current/sql-prepare-transaction.html">PREPARE TRANSACTION</a> and <a href="https://www.postgresql.org/docs/current/sql-commit-prepared.html">COMMIT PREPARED</a>) can be used to implement this in application code or middleware.</p>
+</div>
+<div class="paragraph">
+<p>The following table summarizes the capabilities of each of these scenarios.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1111%;">
+<col style="width: 11.1112%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Feature</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shared Disk</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">File System Repl.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Write-Ahead Log Shipping</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logical Repl.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Trigger-Based Repl.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SQL Repl. Middle-ware</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Async. MM Repl.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sync. MM Repl.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Popular examples</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NAS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DRBD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">built-in streaming repl.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">built-in logical repl., pglogical</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Londiste, Slony</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pgpool-II</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bucardo</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comm. method</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shared disk</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">disk blocks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WAL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">logical decoding</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">table rows</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SQL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">table rows</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">table rows and row locks</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No special hardware required</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allows multiple primary servers</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No overhead on primary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No waiting for multiple servers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">with sync off</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">with sync off</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Primary failure will never lose data</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">with sync on</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">with sync on</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replicas accept read-only queries</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">with hot standby</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Per-table granularity</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No conflict resolution necessary</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">•</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>There are a few solutions that do not fit into the above categories:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Data Partitioning</p>
+<div class="literalblock">
+<div class="content">
+<pre>Data partitioning splits tables into data sets. Each set can be modified by only one server. For example, data can be partitioned by offices, e.g., London and Paris, with a server in each office. If queries combining London and Paris data are necessary, an application can query both servers, or primary/standby replication can be used to keep a read-only copy of the other office's data on each server.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Multiple-Server Parallel Query Execution</p>
+<div class="literalblock">
+<div class="content">
+<pre>Many of the above solutions allow multiple servers to handle multiple queries, but none allow a single query to use multiple servers to complete faster. This solution allows multiple servers to work concurrently on a single query. It is usually accomplished by splitting the data among servers and having each server execute its part of the query and return results to a central server where they are combined and returned to the user. This can be implemented using the PL/Proxy tool set.</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="log-shipping-standby-servers"><a class="anchor" href="#log-shipping-standby-servers"></a>4.2. Log-Shipping Standby Servers</h3>
+<div class="sect3">
+<h4 id="planning"><a class="anchor" href="#planning"></a>4.2.1. Planning</h4>
+<div class="paragraph">
+<p>It is usually wise to create the primary and standby servers so that they are as similar as possible, at least from the perspective of the database server. In particular, the path names associated with tablespaces will be passed across unmodified, so both primary and standby servers must have the same mount paths for tablespaces if that feature is used. Keep in mind that if <a href="https://www.postgresql.org/docs/current/sql-createtablespace.html">CREATE TABLESPACE</a> is executed on the primary, any new mount point needed for it must be created on the primary and all standby servers before the command is executed. Hardware need not be exactly the same, but experience shows that maintaining two identical systems is easier than maintaining two dissimilar ones over the lifetime of the application and system. In any case the hardware architecture must be the same — shipping from, say, a 32-bit to a 64-bit system will not work.</p>
+</div>
+<div class="paragraph">
+<p>In general, log shipping between servers running different major IvorySQL release levels is not possible. It is the policy of the IvorySQL Global Development Group not to make changes to disk formats during minor release upgrades, so it is likely that running different minor release levels on primary and standby servers will work successfully. However, no formal support for that is offered and you are advised to keep primary and standby servers at the same release level as much as possible. When updating to a new minor release, the safest policy is to update the standby servers first — a new minor release is more likely to be able to read WAL files from a previous minor release than vice versa.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="standby-server-operation"><a class="anchor" href="#standby-server-operation"></a>4.2.2. Standby Server Operation</h4>
+<div class="paragraph">
+<p>A server enters standby mode if a <code>standby.signal</code> file exists in the data directory when the server is started.</p>
+</div>
+<div class="paragraph">
+<p>In standby mode, the server continuously applies WAL received from the primary server. The standby server can read WAL from a WAL archive (see <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-RESTORE-COMMAND">restore_command</a>) or directly from the primary over a TCP connection (streaming replication). The standby server will also attempt to restore any WAL found in the standby cluster&#8217;s <code>pg_wal</code> directory. That typically happens after a server restart, when the standby replays again WAL that was streamed from the primary before the restart, but you can also manually copy files to <code>pg_wal</code> at any time to have them replayed.</p>
+</div>
+<div class="paragraph">
+<p>At startup, the standby begins by restoring all WAL available in the archive location, calling <code>restore_command</code>. Once it reaches the end of WAL available there and <code>restore_command</code> fails, it tries to restore any WAL available in the <code>pg_wal</code> directory. If that fails, and streaming replication has been configured, the standby tries to connect to the primary server and start streaming WAL from the last valid record found in archive or <code>pg_wal</code>. If that fails or streaming replication is not configured, or if the connection is later disconnected, the standby goes back to step 1 and tries to restore the file from the archive again. This loop of retries from the archive, <code>pg_wal</code>, and via streaming replication goes on until the server is stopped or failover is triggered by a trigger file.</p>
+</div>
+<div class="paragraph">
+<p>Standby mode is exited and the server switches to normal operation when <code>pg_ctl promote</code> is run, <code>pg_promote()</code> is called, or a trigger file is found (<code>promote_trigger_file</code>). Before failover, any WAL immediately available in the archive or in <code>pg_wal</code> will be restored, but no attempt is made to connect to the primary.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="preparing-the-primary-for-standby-servers"><a class="anchor" href="#preparing-the-primary-for-standby-servers"></a>4.2.3. Preparing the Primary for Standby Servers</h4>
+<div class="paragraph">
+<p>Set up continuous archiving on the primary to an archive directory accessible from the standby.The archive location should be accessible from the standby even when the primary is down, i.e., it should reside on the standby server itself or another trusted server, not on the primary server.</p>
+</div>
+<div class="paragraph">
+<p>If you want to use streaming replication, set up authentication on the primary server to allow replication connections from the standby server(s); that is, create a role and provide a suitable entry or entries in <code>pg_hba.conf</code> with the database field set to <code>replication</code>. Also ensure <code>max_wal_senders</code> is set to a sufficiently large value in the configuration file of the primary server. If replication slots will be used, ensure that <code>max_replication_slots</code> is set sufficiently high as well.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="setting-up-a-standby-server"><a class="anchor" href="#setting-up-a-standby-server"></a>4.2.4. Setting Up a Standby Server</h4>
+<div class="paragraph">
+<p>To set up the standby server, restore the base backup taken from primary server . Create a file <a href="https://www.postgresql.org/docs/current/warm-standby.html#FILE-STANDBY-SIGNAL"><code>standby.signal</code></a> in the standby&#8217;s cluster data directory. Set <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-RESTORE-COMMAND">restore_command</a> to a simple command to copy files from the WAL archive. If you plan to have multiple standby servers for high availability purposes, make sure that <code>recovery_target_timeline</code> is set to <code>latest</code> (the default), to make the standby server follow the timeline change that occurs at failover to another standby.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Note</div>
+<div class="paragraph">
+<p><a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-RESTORE-COMMAND">restore_command</a> should return immediately if the file does not exist; the server will retry the command again if necessary.</p>
+</div>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to use streaming replication, fill in <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-PRIMARY-CONNINFO">primary_conninfo</a> with a libpq connection string, including the host name (or IP address) and any additional details needed to connect to the primary server. If the primary needs a password for authentication, the password needs to be specified in <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-PRIMARY-CONNINFO">primary_conninfo</a> as well.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re setting up the standby server for high availability purposes, set up WAL archiving, connections and authentication like the primary server, because the standby server will work as a primary server after failover.</p>
+</div>
+<div class="paragraph">
+<p>If you&#8217;re using a WAL archive, its size can be minimized using the <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-ARCHIVE-CLEANUP-COMMAND">archive_cleanup_command</a> parameter to remove files that are no longer required by the standby server. The pg_archivecleanup utility is designed specifically to be used with <code>archive_cleanup_command</code> in typical single-standby configurations, see <a href="https://www.postgresql.org/docs/current/pgarchivecleanup.html">pg_archivecleanup</a>. Note however, that if you&#8217;re using the archive for backup purposes, you need to retain files needed to recover from at least the latest base backup, even if they&#8217;re no longer needed by the standby.</p>
+</div>
+<div class="paragraph">
+<p>A simple example of configuration is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">primary_conninfo = 'host=192.168.1.50 port=5432 user=foo password=foopass options=''-c wal_sender_timeout=5000'''
+restore_command = 'cp /path/to/archive/%f %p'
+archive_cleanup_command = 'pg_archivecleanup /path/to/archive %r'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can have any number of standby servers, but if you use streaming replication, make sure you set <code>max_wal_senders</code> high enough in the primary to allow them to be connected simultaneously.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="streaming-replication"><a class="anchor" href="#streaming-replication"></a>4.2.5. Streaming Replication</h4>
+<div class="paragraph">
+<p>Streaming replication allows a standby server to stay more up-to-date than is possible with file-based log shipping. The standby connects to the primary, which streams WAL records to the standby as they&#8217;re generated, without waiting for the WAL file to be filled.</p>
+</div>
+<div class="paragraph">
+<p>Streaming replication is asynchronous by default , in which case there is a small delay between committing a transaction in the primary and the changes becoming visible in the standby. This delay is however much smaller than with file-based log shipping, typically under one second assuming the standby is powerful enough to keep up with the load. With streaming replication, <code>archive_timeout</code> is not required to reduce the data loss window.</p>
+</div>
+<div class="paragraph">
+<p>If you use streaming replication without file-based continuous archiving, the server might recycle old WAL segments before the standby has received them. If this occurs, the standby will need to be reinitialized from a new base backup. You can avoid this by setting <code>wal_keep_size</code> to a value large enough to ensure that WAL segments are not recycled too early, or by configuring a replication slot for the standby. If you set up a WAL archive that&#8217;s accessible from the standby, these solutions are not required, since the standby can always use the archive to catch up provided it retains enough segments.</p>
+</div>
+<div class="paragraph">
+<p>To use streaming replication, set up a file-based log-shipping standby server. The step that turns a file-based log-shipping standby into streaming replication standby is setting the <code>primary_conninfo</code> setting to point to the primary server. Set <a href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-LISTEN-ADDRESSES">listen_addresses</a> and authentication options (see <code>pg_hba.conf</code>) on the primary so that the standby server can connect to the <code>replication</code> pseudo-database on the primary server.</p>
+</div>
+<div class="paragraph">
+<p>On systems that support the keepalive socket option, setting <a href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-TCP-KEEPALIVES-IDLE">tcp_keepalives_idle</a>, <a href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-TCP-KEEPALIVES-INTERVAL">tcp_keepalives_interval</a> and <a href="https://www.postgresql.org/docs/current/runtime-config-connection.html#GUC-TCP-KEEPALIVES-COUNT">tcp_keepalives_count</a> helps the primary promptly notice a broken connection.</p>
+</div>
+<div class="paragraph">
+<p>Set the maximum number of concurrent connections from the standby servers (see <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-WAL-SENDERS">max_wal_senders</a> for details).</p>
+</div>
+<div class="paragraph">
+<p>When the standby is started and <code>primary_conninfo</code> is set correctly, the standby will connect to the primary after replaying all WAL files available in the archive. If the connection is established successfully, you will see a <code>walreceiver</code> in the standby, and a corresponding <code>walsender</code> process in the primary.</p>
+</div>
+<div class="sect4">
+<h5 id="authentication"><a class="anchor" href="#authentication"></a>4.2.5.1. Authentication</h5>
+<div class="paragraph">
+<p>It is very important that the access privileges for replication be set up so that only trusted users can read the WAL stream, because it is easy to extract privileged information from it. Standby servers must authenticate to the primary as an account that has the <code>REPLICATION</code> privilege or a superuser. It is recommended to create a dedicated user account with <code>REPLICATION</code> and <code>LOGIN</code> privileges for replication. While <code>REPLICATION</code> privilege gives very high permissions, it does not allow the user to modify any data on the primary system, which the <code>SUPERUSER</code> privilege does.</p>
+</div>
+<div class="paragraph">
+<p>Client authentication for replication is controlled by a <code>pg_hba.conf</code> record specifying <code>replication</code> in the <strong><code>database</code></strong> field. For example, if the standby is running on host IP <code>192.168.1.100</code> and the account name for replication is <code>foo</code>, the administrator can add the following line to the <code>pg_hba.conf</code> file on the primary:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Allow the user "foo" from host 192.168.1.100 to connect to the primary
+# as a replication standby if the user's password is correctly supplied.
+#
+# TYPE  DATABASE        USER            ADDRESS                 METHOD
+host    replication     foo             192.168.1.100/32        md5</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The host name and port number of the primary, connection user name, and password are specified in the <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-PRIMARY-CONNINFO">primary_conninfo</a>. The password can also be set in the <code>~/.pgpass</code> file on the standby (specify <code>replication</code> in the <strong><code>database</code></strong> field). For example, if the primary is running on host IP <code>192.168.1.50</code>, port <code>5432</code>, the account name for replication is <code>foo</code>, and the password is <code>foopass</code>, the administrator can add the following line to the <code>postgresql.conf</code> file on the standby:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># The standby connects to the primary that is running on host 192.168.1.50
+# and port 5432 as the user "foo" whose password is "foopass".
+primary_conninfo = 'host=192.168.1.50 port=5432 user=foo password=foopass'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="monitoring"><a class="anchor" href="#monitoring"></a>4.2.5.2. Monitoring</h5>
+<div class="paragraph">
+<p>An important health indicator of streaming replication is the amount of WAL records generated in the primary, but not yet applied in the standby. You can calculate this lag by comparing the current WAL write location on the primary with the last WAL location received by the standby. These locations can be retrieved using <code>pg_current_wal_lsn</code> on the primary and <code>pg_last_wal_receive_lsn</code> on the standby, respectively . The last WAL receive location in the standby is also displayed in the process status of the WAL receiver process, displayed using the <code>ps</code> command .</p>
+</div>
+<div class="paragraph">
+<p>You can retrieve a list of WAL sender processes via the <a href="https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-REPLICATION-VIEW"><code>pg_stat_replication</code></a> view. Large differences between <code>pg_current_wal_lsn</code> and the view&#8217;s <code>sent_lsn</code> field might indicate that the primary server is under heavy load, while differences between <code>sent_lsn</code> and <code>pg_last_wal_receive_lsn</code> on the standby might indicate network delay, or that the standby is under heavy load.</p>
+</div>
+<div class="paragraph">
+<p>On a hot standby, the status of the WAL receiver process can be retrieved via the <a href="https://www.postgresql.org/docs/current/monitoring-stats.html#MONITORING-PG-STAT-WAL-RECEIVER-VIEW"><code>pg_stat_wal_receiver</code></a> view. A large difference between <code>pg_last_wal_replay_lsn</code> and the view&#8217;s <code>flushed_lsn</code> indicates that WAL is being received faster than it can be replayed.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="replication-slots"><a class="anchor" href="#replication-slots"></a>4.2.6. Replication Slots</h4>
+<div class="paragraph">
+<p>Replication slots provide an automated way to ensure that the primary does not remove WAL segments until they have been received by all standbys, and that the primary does not remove rows which could cause a <a href="https://www.postgresql.org/docs/current/hot-standby.html#HOT-STANDBY-CONFLICT">recovery conflict</a> even when the standby is disconnected.</p>
+</div>
+<div class="paragraph">
+<p>In lieu of using replication slots, it is possible to prevent the removal of old WAL segments using <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-WAL-KEEP-SIZE">wal_keep_size</a>, or by storing the segments in an archive using <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-ARCHIVE-COMMAND">archive_command</a> or <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-ARCHIVE-LIBRARY">archive_library</a>. However, these methods often result in retaining more WAL segments than required, whereas replication slots retain only the number of segments known to be needed. On the other hand, replication slots can retain so many WAL segments that they fill up the space allocated for <code>pg_wal</code>; <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-SLOT-WAL-KEEP-SIZE">max_slot_wal_keep_size</a> limits the size of WAL files retained by replication slots.</p>
+</div>
+<div class="paragraph">
+<p>Similarly, <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-HOT-STANDBY-FEEDBACK">hot_standby_feedback</a> and <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-VACUUM-DEFER-CLEANUP-AGE">vacuum_defer_cleanup_age</a> provide protection against relevant rows being removed by vacuum, but the former provides no protection during any time period when the standby is not connected, and the latter often needs to be set to a high value to provide adequate protection. Replication slots overcome these disadvantages.</p>
+</div>
+<div class="sect4">
+<h5 id="querying-and-manipulating-replication-slots"><a class="anchor" href="#querying-and-manipulating-replication-slots"></a>4.2.6.1. Querying And Manipulating Replication Slots</h5>
+<div class="paragraph">
+<p>Each replication slot has a name, which can contain lower-case letters, numbers, and the underscore character.</p>
+</div>
+<div class="paragraph">
+<p>Existing replication slots and their state can be seen in the <a href="https://www.postgresql.org/docs/current/view-pg-replication-slots.html"><code>pg_replication_slots</code></a> view.</p>
+</div>
+<div class="paragraph">
+<p>Slots can be created and dropped either via the streaming replication protocol  or via SQL functions .</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="configuration-example"><a class="anchor" href="#configuration-example"></a>4.2.6.2. Configuration Example</h5>
+<div class="paragraph">
+<p>You can create a replication slot like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">postgres=# SELECT * FROM pg_create_physical_replication_slot('node_a_slot');
+  slot_name  | lsn
+-------------+-----
+ node_a_slot |
+
+postgres=# SELECT slot_name, slot_type, active FROM pg_replication_slots;
+  slot_name  | slot_type | active
+-------------+-----------+--------
+ node_a_slot | physical  | f
+(1 row)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To configure the standby to use this slot, <code>primary_slot_name</code> should be configured on the standby. Here is a simple example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">primary_conninfo = 'host=192.168.1.50 port=5432 user=foo password=foopass'
+primary_slot_name = 'node_a_slot'</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="cascading-replication"><a class="anchor" href="#cascading-replication"></a>4.2.7. Cascading Replication</h4>
+<div class="paragraph">
+<p>The cascading replication feature allows a standby server to accept replication connections and stream WAL records to other standbys, acting as a relay. This can be used to reduce the number of direct connections to the primary and also to minimize inter-site bandwidth overheads.</p>
+</div>
+<div class="paragraph">
+<p>A standby acting as both a receiver and a sender is known as a cascading standby. Standbys that are more directly connected to the primary are known as upstream servers, while those standby servers further away are downstream servers. Cascading replication does not place limits on the number or arrangement of downstream servers, though each standby connects to only one upstream server which eventually links to a single primary server.</p>
+</div>
+<div class="paragraph">
+<p>A cascading standby sends not only WAL records received from the primary but also those restored from the archive. So even if the replication connection in some upstream connection is terminated, streaming replication continues downstream for as long as new WAL records are available.</p>
+</div>
+<div class="paragraph">
+<p>Cascading replication is currently asynchronous. Synchronous replication  settings have no effect on cascading replication at present.</p>
+</div>
+<div class="paragraph">
+<p>Hot standby feedback propagates upstream, whatever the cascaded arrangement.</p>
+</div>
+<div class="paragraph">
+<p>If an upstream standby server is promoted to become the new primary, downstream servers will continue to stream from the new primary if <code>recovery_target_timeline</code> is set to <code>'latest'</code> (the default).</p>
+</div>
+<div class="paragraph">
+<p>To use cascading replication, set up the cascading standby so that it can accept replication connections (that is, set <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-WAL-SENDERS">max_wal_senders</a> and <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-HOT-STANDBY">hot_standby</a>, and configure <a href="https://www.postgresql.org/docs/current/auth-pg-hba-conf.html">host-based authentication</a>). You will also need to set <code>primary_conninfo</code> in the downstream standby to point to the cascading standby.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="synchronous-replication"><a class="anchor" href="#synchronous-replication"></a>4.2.8. Synchronous Replication</h4>
+<div class="paragraph">
+<p>IvorySQL streaming replication is asynchronous by default. If the primary server crashes then some transactions that were committed may not have been replicated to the standby server, causing data loss. The amount of data loss is proportional to the replication delay at the time of failover.</p>
+</div>
+<div class="paragraph">
+<p>Synchronous replication offers the ability to confirm that all changes made by a transaction have been transferred to one or more synchronous standby servers. This extends that standard level of durability offered by a transaction commit. This level of protection is referred to as 2-safe replication in computer science theory, and group-1-safe (group-safe and 1-safe) when <code>synchronous_commit</code> is set to <code>remote_write</code>.</p>
+</div>
+<div class="paragraph">
+<p>When requesting synchronous replication, each commit of a write transaction will wait until confirmation is received that the commit has been written to the write-ahead log on disk of both the primary and standby server. The only possibility that data can be lost is if both the primary and the standby suffer crashes at the same time. This can provide a much higher level of durability, though only if the sysadmin is cautious about the placement and management of the two servers. Waiting for confirmation increases the user&#8217;s confidence that the changes will not be lost in the event of server crashes but it also necessarily increases the response time for the requesting transaction. The minimum wait time is the round-trip time between primary and standby.</p>
+</div>
+<div class="paragraph">
+<p>Read-only transactions and transaction rollbacks need not wait for replies from standby servers. Subtransaction commits do not wait for responses from standby servers, only top-level commits. Long running actions such as data loading or index building do not wait until the very final commit message. All two-phase commit actions require commit waits, including both prepare and commit.</p>
+</div>
+<div class="paragraph">
+<p>A synchronous standby can be a physical replication standby or a logical replication subscriber. It can also be any other physical or logical WAL replication stream consumer that knows how to send the appropriate feedback messages. Besides the built-in physical and logical replication systems, this includes special programs such as <code>pg_receivewal</code> and <code>pg_recvlogical</code> as well as some third-party replication systems and custom programs. Check the respective documentation for details on synchronous replication support.</p>
+</div>
+<div class="sect4">
+<h5 id="basic-configuration"><a class="anchor" href="#basic-configuration"></a>4.2.8.1. Basic Configuration</h5>
+<div class="paragraph">
+<p>Once streaming replication has been configured, configuring synchronous replication requires only one additional configuration step: <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-SYNCHRONOUS-STANDBY-NAMES">synchronous_standby_names</a> must be set to a non-empty value. <code>synchronous_commit</code> must also be set to <code>on</code>, but since this is the default value, typically no change is required.This configuration will cause each commit to wait for confirmation that the standby has written the commit record to durable storage. <code>synchronous_commit</code> can be set by individual users, so it can be configured in the configuration file, for particular users or databases, or dynamically by applications, in order to control the durability guarantee on a per-transaction basis.</p>
+</div>
+<div class="paragraph">
+<p>After a commit record has been written to disk on the primary, the WAL record is then sent to the standby. The standby sends reply messages each time a new batch of WAL data is written to disk, unless <code>wal_receiver_status_interval</code> is set to zero on the standby. In the case that <code>synchronous_commit</code> is set to <code>remote_apply</code>, the standby sends reply messages when the commit record is replayed, making the transaction visible. If the standby is chosen as a synchronous standby, according to the setting of <code>synchronous_standby_names</code> on the primary, the reply messages from that standby will be considered along with those from other synchronous standbys to decide when to release transactions waiting for confirmation that the commit record has been received. These parameters allow the administrator to specify which standby servers should be synchronous standbys. Note that the configuration of synchronous replication is mainly on the primary. Named standbys must be directly connected to the primary; the primary knows nothing about downstream standby servers using cascaded replication.</p>
+</div>
+<div class="paragraph">
+<p>Setting <code>synchronous_commit</code> to <code>remote_write</code> will cause each commit to wait for confirmation that the standby has received the commit record and written it out to its own operating system, but not for the data to be flushed to disk on the standby. This setting provides a weaker guarantee of durability than <code>on</code> does: the standby could lose the data in the event of an operating system crash, though not a PostgreSQL crash. However, it&#8217;s a useful setting in practice because it can decrease the response time for the transaction. Data loss could only occur if both the primary and the standby crash and the database of the primary gets corrupted at the same time.</p>
+</div>
+<div class="paragraph">
+<p>Setting <code>synchronous_commit</code> to <code>remote_apply</code> will cause each commit to wait until the current synchronous standbys report that they have replayed the transaction, making it visible to user queries. In simple cases, this allows for load balancing with causal consistency.</p>
+</div>
+<div class="paragraph">
+<p>Users will stop waiting if a fast shutdown is requested. However, as when using asynchronous replication, the server will not fully shutdown until all outstanding WAL records are transferred to the currently connected standby servers.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="multiple-synchronous-standbys"><a class="anchor" href="#multiple-synchronous-standbys"></a>4.2.8.2. Multiple Synchronous Standbys</h5>
+<div class="paragraph">
+<p>Synchronous replication supports one or more synchronous standby servers; transactions will wait until all the standby servers which are considered as synchronous confirm receipt of their data. The number of synchronous standbys that transactions must wait for replies from is specified in <code>synchronous_standby_names</code>. This parameter also specifies a list of standby names and the method (<code>FIRST</code> and <code>ANY</code>) to choose synchronous standbys from the listed ones.</p>
+</div>
+<div class="paragraph">
+<p>The method <code>FIRST</code> specifies a priority-based synchronous replication and makes transaction commits wait until their WAL records are replicated to the requested number of synchronous standbys chosen based on their priorities. The standbys whose names appear earlier in the list are given higher priority and will be considered as synchronous. Other standby servers appearing later in this list represent potential synchronous standbys. If any of the current synchronous standbys disconnects for whatever reason, it will be replaced immediately with the next-highest-priority standby.</p>
+</div>
+<div class="paragraph">
+<p>An example of <code>synchronous_standby_names</code> for a priority-based multiple synchronous standbys is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">synchronous_standby_names = 'FIRST 2 (s1, s2, s3)'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, if four standby servers <code>s1</code>, <code>s2</code>, <code>s3</code> and <code>s4</code> are running, the two standbys <code>s1</code> and <code>s2</code> will be chosen as synchronous standbys because their names appear early in the list of standby names. <code>s3</code> is a potential synchronous standby and will take over the role of synchronous standby when either of <code>s1</code> or <code>s2</code> fails. <code>s4</code> is an asynchronous standby since its name is not in the list.</p>
+</div>
+<div class="paragraph">
+<p>The method <code>ANY</code> specifies a quorum-based synchronous replication and makes transaction commits wait until their WAL records are replicated to <strong>at least</strong> the requested number of synchronous standbys in the list.</p>
+</div>
+<div class="paragraph">
+<p>An example of <code>synchronous_standby_names</code> for a quorum-based multiple synchronous standbys is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">synchronous_standby_names = 'ANY 2 (s1, s2, s3)'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this example, if four standby servers <code>s1</code>, <code>s2</code>, <code>s3</code> and <code>s4</code> are running, transaction commits will wait for replies from at least any two standbys of <code>s1</code>, <code>s2</code> and <code>s3</code>. <code>s4</code> is an asynchronous standby since its name is not in the list.</p>
+</div>
+<div class="paragraph">
+<p>The synchronous states of standby servers can be viewed using the <code>pg_stat_replication</code> view.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="planning-for-performance"><a class="anchor" href="#planning-for-performance"></a>4.2.8.3. Planning For Performance</h5>
+<div class="paragraph">
+<p>Synchronous replication usually requires carefully planned and placed standby servers to ensure applications perform acceptably. Waiting doesn&#8217;t utilize system resources, but transaction locks continue to be held until the transfer is confirmed. As a result, incautious use of synchronous replication will reduce performance for database applications because of increased response times and higher contention.</p>
+</div>
+<div class="paragraph">
+<p>PostgreSQL allows the application developer to specify the durability level required via replication. This can be specified for the system overall, though it can also be specified for specific users or connections, or even individual transactions.</p>
+</div>
+<div class="paragraph">
+<p>For example, an application workload might consist of: 10% of changes are important customer details, while 90% of changes are less important data that the business can more easily survive if it is lost, such as chat messages between users.</p>
+</div>
+<div class="paragraph">
+<p>With synchronous replication options specified at the application level (on the primary) we can offer synchronous replication for the most important changes, without slowing down the bulk of the total workload. Application level options are an important and practical tool for allowing the benefits of synchronous replication for high performance applications.</p>
+</div>
+<div class="paragraph">
+<p>You should consider that the network bandwidth must be higher than the rate of generation of WAL data.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="planning-for-high-availability"><a class="anchor" href="#planning-for-high-availability"></a>4.2.8.4. Planning For High Availability</h5>
+<div class="paragraph">
+<p><code>synchronous_standby_names</code> specifies the number and names of synchronous standbys that transaction commits made when <code>synchronous_commit</code> is set to <code>on</code>, <code>remote_apply</code> or <code>remote_write</code> will wait for responses from. Such transaction commits may never be completed if any one of synchronous standbys should crash.</p>
+</div>
+<div class="paragraph">
+<p>The best solution for high availability is to ensure you keep as many synchronous standbys as requested. This can be achieved by naming multiple potential synchronous standbys using <code>synchronous_standby_names</code>.</p>
+</div>
+<div class="paragraph">
+<p>In a priority-based synchronous replication, the standbys whose names appear earlier in the list will be used as synchronous standbys. Standbys listed after these will take over the role of synchronous standby if one of current ones should fail.</p>
+</div>
+<div class="paragraph">
+<p>In a quorum-based synchronous replication, all the standbys appearing in the list will be used as candidates for synchronous standbys. Even if one of them should fail, the other standbys will keep performing the role of candidates of synchronous standby.</p>
+</div>
+<div class="paragraph">
+<p>When a standby first attaches to the primary, it will not yet be properly synchronized. This is described as <code>catchup</code> mode. Once the lag between standby and primary reaches zero for the first time we move to real-time <code>streaming</code> state. The catch-up duration may be long immediately after the standby has been created. If the standby is shut down, then the catch-up period will increase according to the length of time the standby has been down. The standby is only able to become a synchronous standby once it has reached <code>streaming</code> state. This state can be viewed using the <code>pg_stat_replication</code> view.</p>
+</div>
+<div class="paragraph">
+<p>If primary restarts while commits are waiting for acknowledgment, those waiting transactions will be marked fully committed once the primary database recovers. There is no way to be certain that all standbys have received all outstanding WAL data at time of the crash of the primary. Some transactions may not show as committed on the standby, even though they show as committed on the primary. The guarantee we offer is that the application will not receive explicit acknowledgment of the successful commit of a transaction until the WAL data is known to be safely received by all the synchronous standbys.</p>
+</div>
+<div class="paragraph">
+<p>If you really cannot keep as many synchronous standbys as requested then you should decrease the number of synchronous standbys that transaction commits must wait for responses from in <code>synchronous_standby_names</code> (or disable it) and reload the configuration file on the primary server.</p>
+</div>
+<div class="paragraph">
+<p>If the primary is isolated from remaining standby servers you should fail over to the best candidate of those other remaining standby servers.</p>
+</div>
+<div class="paragraph">
+<p>If you need to re-create a standby server while transactions are waiting, make sure that the commands pg_backup_start() and pg_backup_stop() are run in a session with <code>synchronous_commit</code> = <code>off</code>, otherwise those requests will wait forever for the standby to appear.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="continuous-archiving-in-standby"><a class="anchor" href="#continuous-archiving-in-standby"></a>4.2.9. Continuous Archiving in Standby</h4>
+<div class="paragraph">
+<p>When continuous WAL archiving is used in a standby, there are two different scenarios: the WAL archive can be shared between the primary and the standby, or the standby can have its own WAL archive. When the standby has its own WAL archive, set <code>archive_mode</code> to <code>always</code>, and the standby will call the archive command for every WAL segment it receives, whether it&#8217;s by restoring from the archive or by streaming replication. The shared archive can be handled similarly, but the <code>archive_command</code> or <code>archive_library</code> must test if the file being archived exists already, and if the existing file has identical contents. This requires more care in the <code>archive_command</code> or <code>archive_library</code>, as it must be careful to not overwrite an existing file with different contents, but return success if the exactly same file is archived twice. And all that must be done free of race conditions, if two servers attempt to archive the same file at the same time.</p>
+</div>
+<div class="paragraph">
+<p>If <code>archive_mode</code> is set to <code>on</code>, the archiver is not enabled during recovery or standby mode. If the standby server is promoted, it will start archiving after the promotion, but will not archive any WAL or timeline history files that it did not generate itself. To get a complete series of WAL files in the archive, you must ensure that all WAL is archived, before it reaches the standby. This is inherently true with file-based log shipping, as the standby can only restore files that are found in the archive, but not if streaming replication is enabled. When a server is not in recovery mode, there is no difference between <code>on</code> and <code>always</code> modes.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="failover"><a class="anchor" href="#failover"></a>4.3. Failover</h3>
+<div class="paragraph">
+<p>If the primary server fails then the standby server should begin failover procedures.</p>
+</div>
+<div class="paragraph">
+<p>If the standby server fails then no failover need take place. If the standby server can be restarted, even some time later, then the recovery process can also be restarted immediately, taking advantage of restartable recovery. If the standby server cannot be restarted, then a full new standby server instance should be created.</p>
+</div>
+<div class="paragraph">
+<p>If the primary server fails and the standby server becomes the new primary, and then the old primary restarts, you must have a mechanism for informing the old primary that it is no longer the primary. This is sometimes known as STONITH (Shoot The Other Node In The Head), which is necessary to avoid situations where both systems think they are the primary, which will lead to confusion and ultimately data loss.</p>
+</div>
+<div class="paragraph">
+<p>Many failover systems use just two systems, the primary and the standby, connected by some kind of heartbeat mechanism to continually verify the connectivity between the two and the viability of the primary. It is also possible to use a third system (called a witness server) to prevent some cases of inappropriate failover, but the additional complexity might not be worthwhile unless it is set up with sufficient care and rigorous testing.</p>
+</div>
+<div class="paragraph">
+<p>PostgreSQL does not provide the system software required to identify a failure on the primary and notify the standby database server. Many such tools exist and are well integrated with the operating system facilities required for successful failover, such as IP address migration.</p>
+</div>
+<div class="paragraph">
+<p>Once failover to the standby occurs, there is only a single server in operation. This is known as a degenerate state. The former standby is now the primary, but the former primary is down and might stay down. To return to normal operation, a standby server must be recreated, either on the former primary system when it comes up, or on a third, possibly new, system. The <a href="https://www.postgresql.org/docs/current/app-pgrewind.html">pg_rewind</a> utility can be used to speed up this process on large clusters. Once complete, the primary and standby can be considered to have switched roles. Some people choose to use a third server to provide backup for the new primary until the new standby server is recreated, though clearly this complicates the system configuration and operational processes.</p>
+</div>
+<div class="paragraph">
+<p>So, switching from primary to standby server can be fast but requires some time to re-prepare the failover cluster. Regular switching from primary to standby is useful, since it allows regular downtime on each system for maintenance. This also serves as a test of the failover mechanism to ensure that it will really work when you need it. Written administration procedures are advised.</p>
+</div>
+<div class="paragraph">
+<p>To trigger failover of a log-shipping standby server, run <code>pg_ctl promote</code>, call <code>pg_promote()</code>, or create a trigger file with the file name and path specified by the <code>promote_trigger_file</code>. If you&#8217;re planning to use <code>pg_ctl promote</code> or to call <code>pg_promote()</code> to fail over, <code>promote_trigger_file</code> is not required. If you&#8217;re setting up the reporting servers that are only used to offload read-only queries from the primary, not for high availability purposes, you don&#8217;t need to promote it.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="hot-standby"><a class="anchor" href="#hot-standby"></a>4.4. Hot Standby</h3>
+<div class="paragraph">
+<p>Hot standby is the term used to describe the ability to connect to the server and run read-only queries while the server is in archive recovery or standby mode. This is useful both for replication purposes and for restoring a backup to a desired state with great precision. The term hot standby also refers to the ability of the server to move from recovery through to normal operation while users continue running queries and/or keep their connections open.</p>
+</div>
+<div class="paragraph">
+<p>Running queries in hot standby mode is similar to normal query operation, though there are several usage and administrative differences explained below.</p>
+</div>
+<div class="sect3">
+<h4 id="users-overview"><a class="anchor" href="#users-overview"></a>4.4.1. User&#8217;s Overview</h4>
+<div class="paragraph">
+<p>When the <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-HOT-STANDBY">hot_standby</a> parameter is set to true on a standby server, it will begin accepting connections once the recovery has brought the system to a consistent state. All such connections are strictly read-only; not even temporary tables may be written.</p>
+</div>
+<div class="paragraph">
+<p>The data on the standby takes some time to arrive from the primary server so there will be a measurable delay between primary and standby. Running the same query nearly simultaneously on both primary and standby might therefore return differing results. We say that data on the standby is <strong>eventually consistent</strong> with the primary. Once the commit record for a transaction is replayed on the standby, the changes made by that transaction will be visible to any new snapshots taken on the standby. Snapshots may be taken at the start of each query or at the start of each transaction, depending on the current transaction isolation level.</p>
+</div>
+<div class="paragraph">
+<p>Transactions started during hot standby may issue the following commands:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Query access: <code>SELECT</code>, <code>COPY TO</code></p>
+</li>
+<li>
+<p>Cursor commands: <code>DECLARE</code>, <code>FETCH</code>, <code>CLOSE</code></p>
+</li>
+<li>
+<p>Settings: <code>SHOW</code>, <code>SET</code>, <code>RESET</code></p>
+</li>
+<li>
+<p>Transaction management commands:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BEGIN</code>, <code>END</code>, <code>ABORT</code>, <code>START TRANSACTION</code></p>
+</li>
+<li>
+<p><code>SAVEPOINT</code>, <code>RELEASE</code>, <code>ROLLBACK TO SAVEPOINT</code></p>
+</li>
+<li>
+<p><code>EXCEPTION</code> blocks and other internal subtransactions</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><code>LOCK TABLE</code>, though only when explicitly in one of these modes: <code>ACCESS SHARE</code>, <code>ROW SHARE</code> or <code>ROW EXCLUSIVE</code>.</p>
+</li>
+<li>
+<p>Plans and resources: <code>PREPARE</code>, <code>EXECUTE</code>, <code>DEALLOCATE</code>, <code>DISCARD</code></p>
+</li>
+<li>
+<p>Plugins and extensions: <code>LOAD</code></p>
+</li>
+<li>
+<p><code>UNLISTEN</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Transactions started during hot standby will never be assigned a transaction ID and cannot write to the system write-ahead log. Therefore, the following actions will produce error messages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Data Manipulation Language (DML): <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, <code>COPY FROM</code>, <code>TRUNCATE</code>. Note that there are no allowed actions that result in a trigger being executed during recovery. This restriction applies even to temporary tables, because table rows cannot be read or written without assigning a transaction ID, which is currently not possible in a hot standby environment.</p>
+</li>
+<li>
+<p>Data Definition Language (DDL): <code>CREATE</code>, <code>DROP</code>, <code>ALTER</code>, <code>COMMENT</code>. This restriction applies even to temporary tables, because carrying out these operations would require updating the system catalog tables.</p>
+</li>
+<li>
+<p><code>SELECT &#8230;&#8203; FOR SHARE | UPDATE</code>, because row locks cannot be taken without updating the underlying data files.</p>
+</li>
+<li>
+<p>Rules on <code>SELECT</code> statements that generate DML commands.</p>
+</li>
+<li>
+<p><code>LOCK</code> that explicitly requests a mode higher than <code>ROW EXCLUSIVE MODE</code>.</p>
+</li>
+<li>
+<p><code>LOCK</code> in short default form, since it requests <code>ACCESS EXCLUSIVE MODE</code>.</p>
+</li>
+<li>
+<p>Transaction management commands that explicitly set non-read-only state:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>BEGIN READ WRITE</code>, <code>START TRANSACTION READ WRITE</code></p>
+</li>
+<li>
+<p><code>SET TRANSACTION READ WRITE</code>, <code>SET SESSION CHARACTERISTICS AS TRANSACTION READ WRITE</code></p>
+</li>
+<li>
+<p><code>SET transaction_read_only = off</code></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Two-phase commit commands: <code>PREPARE TRANSACTION</code>, <code>COMMIT PREPARED</code>, <code>ROLLBACK PREPARED</code> because even read-only transactions need to write WAL in the prepare phase (the first phase of two phase commit).</p>
+</li>
+<li>
+<p>Sequence updates: <code>nextval()</code>, <code>setval()</code></p>
+</li>
+<li>
+<p><code>LISTEN</code>, <code>NOTIFY</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In normal operation, “read-only” transactions are allowed to use <code>LISTEN</code> and <code>NOTIFY</code>, so hot standby sessions operate under slightly tighter restrictions than ordinary read-only sessions. It is possible that some of these restrictions might be loosened in a future release.</p>
+</div>
+<div class="paragraph">
+<p>During hot standby, the parameter <code>transaction_read_only</code> is always true and may not be changed. But as long as no attempt is made to modify the database, connections during hot standby will act much like any other database connection. If failover or switchover occurs, the database will switch to normal processing mode. Sessions will remain connected while the server changes mode. Once hot standby finishes, it will be possible to initiate read-write transactions (even from a session begun during hot standby).</p>
+</div>
+<div class="paragraph">
+<p>Users can determine whether hot standby is currently active for their session by issuing <code>SHOW in_hot_standby</code>. (In server versions before 14, the <code>in_hot_standby</code> parameter did not exist; a workable substitute method for older servers is <code>SHOW transaction_read_only</code>.) In addition, a set of functions allow users to access information about the standby server. These allow you to write programs that are aware of the current state of the database. These can be used to monitor the progress of recovery, or to allow you to write complex programs that restore the database to particular states.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="handling-query-conflicts"><a class="anchor" href="#handling-query-conflicts"></a>4.4.2. Handling Query Conflicts</h4>
+<div class="paragraph">
+<p>The primary and standby servers are in many ways loosely connected. Actions on the primary will have an effect on the standby. As a result, there is potential for negative interactions or conflicts between them. The easiest conflict to understand is performance: if a huge data load is taking place on the primary then this will generate a similar stream of WAL records on the standby, so standby queries may contend for system resources, such as I/O.</p>
+</div>
+<div class="paragraph">
+<p>There are also additional types of conflict that can occur with hot standby. These conflicts are <strong>hard conflicts</strong> in the sense that queries might need to be canceled and, in some cases, sessions disconnected to resolve them. The user is provided with several ways to handle these conflicts. Conflict cases include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Access Exclusive locks taken on the primary server, including both explicit <code>LOCK</code> commands and various DDL actions, conflict with table accesses in standby queries.</p>
+</li>
+<li>
+<p>Dropping a tablespace on the primary conflicts with standby queries using that tablespace for temporary work files.</p>
+</li>
+<li>
+<p>Dropping a database on the primary conflicts with sessions connected to that database on the standby.</p>
+</li>
+<li>
+<p>Application of a vacuum cleanup record from WAL conflicts with standby transactions whose snapshots can still “see” any of the rows to be removed.</p>
+</li>
+<li>
+<p>Application of a vacuum cleanup record from WAL conflicts with queries accessing the target page on the standby, whether or not the data to be removed is visible.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>On the primary server, these cases simply result in waiting; and the user might choose to cancel either of the conflicting actions. However, on the standby there is no choice: the WAL-logged action already occurred on the primary so the standby must not fail to apply it. Furthermore, allowing WAL application to wait indefinitely may be very undesirable, because the standby&#8217;s state will become increasingly far behind the primary&#8217;s. Therefore, a mechanism is provided to forcibly cancel standby queries that conflict with to-be-applied WAL records.</p>
+</div>
+<div class="paragraph">
+<p>An example of the problem situation is an administrator on the primary server running <code>DROP TABLE</code> on a table that is currently being queried on the standby server. Clearly the standby query cannot continue if the <code>DROP TABLE</code> is applied on the standby. If this situation occurred on the primary, the <code>DROP TABLE</code> would wait until the other query had finished. But when <code>DROP TABLE</code> is run on the primary, the primary doesn&#8217;t have information about what queries are running on the standby, so it will not wait for any such standby queries. The WAL change records come through to the standby while the standby query is still running, causing a conflict. The standby server must either delay application of the WAL records (and everything after them, too) or else cancel the conflicting query so that the <code>DROP TABLE</code> can be applied.</p>
+</div>
+<div class="paragraph">
+<p>When a conflicting query is short, it&#8217;s typically desirable to allow it to complete by delaying WAL application for a little bit; but a long delay in WAL application is usually not desirable. So the cancel mechanism has parameters, <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-STANDBY-ARCHIVE-DELAY">max_standby_archive_delay</a> and <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-STANDBY-STREAMING-DELAY">max_standby_streaming_delay</a>, that define the maximum allowed delay in WAL application. Conflicting queries will be canceled once it has taken longer than the relevant delay setting to apply any newly-received WAL data. There are two parameters so that different delay values can be specified for the case of reading WAL data from an archive (i.e., initial recovery from a base backup or “catching up” a standby server that has fallen far behind) versus reading WAL data via streaming replication.</p>
+</div>
+<div class="paragraph">
+<p>In a standby server that exists primarily for high availability, it&#8217;s best to set the delay parameters relatively short, so that the server cannot fall far behind the primary due to delays caused by standby queries. However, if the standby server is meant for executing long-running queries, then a high or even infinite delay value may be preferable. Keep in mind however that a long-running query could cause other sessions on the standby server to not see recent changes on the primary, if it delays application of WAL records.</p>
+</div>
+<div class="paragraph">
+<p>Once the delay specified by <code>max_standby_archive_delay</code> or <code>max_standby_streaming_delay</code> has been exceeded, conflicting queries will be canceled. This usually results just in a cancellation error, although in the case of replaying a <code>DROP DATABASE</code> the entire conflicting session will be terminated. Also, if the conflict is over a lock held by an idle transaction, the conflicting session is terminated (this behavior might change in the future).</p>
+</div>
+<div class="paragraph">
+<p>Canceled queries may be retried immediately (after beginning a new transaction, of course). Since query cancellation depends on the nature of the WAL records being replayed, a query that was canceled may well succeed if it is executed again.</p>
+</div>
+<div class="paragraph">
+<p>Keep in mind that the delay parameters are compared to the elapsed time since the WAL data was received by the standby server. Thus, the grace period allowed to any one query on the standby is never more than the delay parameter, and could be considerably less if the standby has already fallen behind as a result of waiting for previous queries to complete, or as a result of being unable to keep up with a heavy update load.</p>
+</div>
+<div class="paragraph">
+<p>The most common reason for conflict between standby queries and WAL replay is “early cleanup”. Normally, PostgreSQL allows cleanup of old row versions when there are no transactions that need to see them to ensure correct visibility of data according to MVCC rules. However, this rule can only be applied for transactions executing on the primary. So it is possible that cleanup on the primary will remove row versions that are still visible to a transaction on the standby.</p>
+</div>
+<div class="paragraph">
+<p>Experienced users should note that both row version cleanup and row version freezing will potentially conflict with standby queries. Running a manual <code>VACUUM FREEZE</code> is likely to cause conflicts even on tables with no updated or deleted rows.</p>
+</div>
+<div class="paragraph">
+<p>Users should be clear that tables that are regularly and heavily updated on the primary server will quickly cause cancellation of longer running queries on the standby. In such cases the setting of a finite value for <code>max_standby_archive_delay</code> or <code>max_standby_streaming_delay</code> can be considered similar to setting <code>statement_timeout</code>.</p>
+</div>
+<div class="paragraph">
+<p>Remedial possibilities exist if the number of standby-query cancellations is found to be unacceptable. The first option is to set the parameter <code>hot_standby_feedback</code>, which prevents <code>VACUUM</code> from removing recently-dead rows and so cleanup conflicts do not occur. If you do this, you should note that this will delay cleanup of dead rows on the primary, which may result in undesirable table bloat. However, the cleanup situation will be no worse than if the standby queries were running directly on the primary server, and you are still getting the benefit of off-loading execution onto the standby. If standby servers connect and disconnect frequently, you might want to make adjustments to handle the period when <code>hot_standby_feedback</code> feedback is not being provided. For example, consider increasing <code>max_standby_archive_delay</code> so that queries are not rapidly canceled by conflicts in WAL archive files during disconnected periods. You should also consider increasing <code>max_standby_streaming_delay</code> to avoid rapid cancellations by newly-arrived streaming WAL entries after reconnection.</p>
+</div>
+<div class="paragraph">
+<p>Another option is to increase <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-VACUUM-DEFER-CLEANUP-AGE">vacuum_defer_cleanup_age</a> on the primary server, so that dead rows will not be cleaned up as quickly as they normally would be. This will allow more time for queries to execute before they are canceled on the standby, without having to set a high <code>max_standby_streaming_delay</code>. However it is difficult to guarantee any specific execution-time window with this approach, since <code>vacuum_defer_cleanup_age</code> is measured in transactions executed on the primary server.</p>
+</div>
+<div class="paragraph">
+<p>The number of query cancels and the reason for them can be viewed using the <code>pg_stat_database_conflicts</code> system view on the standby server. The <code>pg_stat_database</code> system view also contains summary information.</p>
+</div>
+<div class="paragraph">
+<p>Users can control whether a log message is produced when WAL replay is waiting longer than <code>deadlock_timeout</code> for conflicts. This is controlled by the <a href="https://www.postgresql.org/docs/current/runtime-config-logging.html#GUC-LOG-RECOVERY-CONFLICT-WAITS">log_recovery_conflict_waits</a> parameter.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="administrators-overview"><a class="anchor" href="#administrators-overview"></a>4.4.3. Administrator&#8217;s Overview</h4>
+<div class="paragraph">
+<p>If <code>hot_standby</code> is <code>on</code> in <code>postgresql.conf</code> (the default value) and there is a <a href="https://www.postgresql.org/docs/current/warm-standby.html#FILE-STANDBY-SIGNAL"><code>standby.signal</code></a> file present, the server will run in hot standby mode. However, it may take some time for hot standby connections to be allowed, because the server will not accept connections until it has completed sufficient recovery to provide a consistent state against which queries can run. During this period, clients that attempt to connect will be refused with an error message. To confirm the server has come up, either loop trying to connect from the application, or look for these messages in the server logs:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">LOG:  entering standby mode
+
+... then some time later ...
+
+LOG:  consistent recovery state reached
+LOG:  database system is ready to accept read-only connections</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Consistency information is recorded once per checkpoint on the primary. It is not possible to enable hot standby when reading WAL written during a period when <code>wal_level</code> was not set to <code>replica</code> or <code>logical</code> on the primary. Reaching a consistent state can also be delayed in the presence of both of these conditions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A write transaction has more than 64 subtransactions</p>
+</li>
+<li>
+<p>Very long-lived write transactions</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you are running file-based log shipping ("warm standby"), you might need to wait until the next WAL file arrives, which could be as long as the <code>archive_timeout</code> setting on the primary.</p>
+</div>
+<div class="paragraph">
+<p>The settings of some parameters determine the size of shared memory for tracking transaction IDs, locks, and prepared transactions. These shared memory structures must be no smaller on a standby than on the primary in order to ensure that the standby does not run out of shared memory during recovery. For example, if the primary had used a prepared transaction but the standby had not allocated any shared memory for tracking prepared transactions, then recovery could not continue until the standby&#8217;s configuration is changed. The parameters affected are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>max_connections</code></p>
+</li>
+<li>
+<p><code>max_prepared_transactions</code></p>
+</li>
+<li>
+<p><code>max_locks_per_transaction</code></p>
+</li>
+<li>
+<p><code>max_wal_senders</code></p>
+</li>
+<li>
+<p><code>max_worker_processes</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The easiest way to ensure this does not become a problem is to have these parameters set on the standbys to values equal to or greater than on the primary. Therefore, if you want to increase these values, you should do so on all standby servers first, before applying the changes to the primary server. Conversely, if you want to decrease these values, you should do so on the primary server first, before applying the changes to all standby servers. Keep in mind that when a standby is promoted, it becomes the new reference for the required parameter settings for the standbys that follow it. Therefore, to avoid this becoming a problem during a switchover or failover, it is recommended to keep these settings the same on all standby servers.</p>
+</div>
+<div class="paragraph">
+<p>The WAL tracks changes to these parameters on the primary. If a hot standby processes WAL that indicates that the current value on the primary is higher than its own value, it will log a warning and pause recovery, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">WARNING:  hot standby is not possible because of insufficient parameter settings
+DETAIL:  max_connections = 80 is a lower setting than on the primary server, where its value was 100.
+LOG:  recovery has paused
+DETAIL:  If recovery is unpaused, the server will shut down.
+HINT:  You can then restart the server after making the necessary configuration changes.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At that point, the settings on the standby need to be updated and the instance restarted before recovery can continue. If the standby is not a hot standby, then when it encounters the incompatible parameter change, it will shut down immediately without pausing, since there is then no value in keeping it up.</p>
+</div>
+<div class="paragraph">
+<p>It is important that the administrator select appropriate settings for <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-STANDBY-ARCHIVE-DELAY">max_standby_archive_delay</a> and <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-STANDBY-STREAMING-DELAY">max_standby_streaming_delay</a>. The best choices vary depending on business priorities. For example if the server is primarily tasked as a High Availability server, then you will want low delay settings, perhaps even zero, though that is a very aggressive setting. If the standby server is tasked as an additional server for decision support queries then it might be acceptable to set the maximum delay values to many hours, or even -1 which means wait forever for queries to complete.</p>
+</div>
+<div class="paragraph">
+<p>Transaction status "hint bits" written on the primary are not WAL-logged, so data on the standby will likely re-write the hints again on the standby. Thus, the standby server will still perform disk writes even though all users are read-only; no changes occur to the data values themselves. Users will still write large sort temporary files and re-generate relcache info files, so no part of the database is truly read-only during hot standby mode. Note also that writes to remote databases using dblink module, and other operations outside the database using PL functions will still be possible, even though the transaction is read-only locally.</p>
+</div>
+<div class="paragraph">
+<p>The following types of administration commands are not accepted during recovery mode:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Data Definition Language (DDL): e.g., <code>CREATE INDEX</code></p>
+</li>
+<li>
+<p>Privilege and Ownership: <code>GRANT</code>, <code>REVOKE</code>, <code>REASSIGN</code></p>
+</li>
+<li>
+<p>Maintenance commands: <code>ANALYZE</code>, <code>VACUUM</code>, <code>CLUSTER</code>, <code>REINDEX</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Again, note that some of these commands are actually allowed during "read only" mode transactions on the primary.</p>
+</div>
+<div class="paragraph">
+<p>As a result, you cannot create additional indexes that exist solely on the standby, nor statistics that exist solely on the standby. If these administration commands are needed, they should be executed on the primary, and eventually those changes will propagate to the standby.</p>
+</div>
+<div class="paragraph">
+<p><code>pg_cancel_backend()</code> and <code>pg_terminate_backend()</code> will work on user backends, but not the startup process, which performs recovery. <code>pg_stat_activity</code> does not show recovering transactions as active. As a result, <code>pg_prepared_xacts</code> is always empty during recovery. If you wish to resolve in-doubt prepared transactions, view <code>pg_prepared_xacts</code> on the primary and issue commands to resolve transactions there or resolve them after the end of recovery.</p>
+</div>
+<div class="paragraph">
+<p><code>pg_locks</code> will show locks held by backends, as normal. <code>pg_locks</code> also shows a virtual transaction managed by the startup process that owns all <code>AccessExclusiveLocks</code> held by transactions being replayed by recovery. Note that the startup process does not acquire locks to make database changes, and thus locks other than <code>AccessExclusiveLocks</code> do not show in <code>pg_locks</code> for the Startup process; they are just presumed to exist.</p>
+</div>
+<div class="paragraph">
+<p>The Nagios plugin check_pgsql will work, because the simple information it checks for exists. The check_postgres monitoring script will also work, though some reported values could give different or confusing results. For example, last vacuum time will not be maintained, since no vacuum occurs on the standby. Vacuums running on the primary do still send their changes to the standby.</p>
+</div>
+<div class="paragraph">
+<p>WAL file control commands will not work during recovery, e.g., <code>pg_backup_start</code>, <code>pg_switch_wal</code> etc.</p>
+</div>
+<div class="paragraph">
+<p>Dynamically loadable modules work, including <code>pg_stat_statements</code>.</p>
+</div>
+<div class="paragraph">
+<p>Advisory locks work normally in recovery, including deadlock detection. Note that advisory locks are never WAL logged, so it is impossible for an advisory lock on either the primary or the standby to conflict with WAL replay. Nor is it possible to acquire an advisory lock on the primary and have it initiate a similar advisory lock on the standby. Advisory locks relate only to the server on which they are acquired.</p>
+</div>
+<div class="paragraph">
+<p>Trigger-based replication systems such as Slony, Londiste and Bucardo won&#8217;t run on the standby at all, though they will run happily on the primary server as long as the changes are not sent to standby servers to be applied. WAL replay is not trigger-based so you cannot relay from the standby to any system that requires additional database writes or relies on the use of triggers.</p>
+</div>
+<div class="paragraph">
+<p>New OIDs cannot be assigned, though some UUID generators may still work as long as they do not rely on writing new status to the database.</p>
+</div>
+<div class="paragraph">
+<p>Currently, temporary table creation is not allowed during read-only transactions, so in some cases existing scripts will not run correctly. This restriction might be relaxed in a later release. This is both an SQL standard compliance issue and a technical issue.</p>
+</div>
+<div class="paragraph">
+<p><code>DROP TABLESPACE</code> can only succeed if the tablespace is empty. Some standby users may be actively using the tablespace via their <code>temp_tablespaces</code> parameter. If there are temporary files in the tablespace, all active queries are canceled to ensure that temporary files are removed, so the tablespace can be removed and WAL replay can continue.</p>
+</div>
+<div class="paragraph">
+<p>Running <code>DROP DATABASE</code> or <code>ALTER DATABASE &#8230;&#8203; SET TABLESPACE</code> on the primary will generate a WAL entry that will cause all users connected to that database on the standby to be forcibly disconnected. This action occurs immediately, whatever the setting of <code>max_standby_streaming_delay</code>. Note that <code>ALTER DATABASE &#8230;&#8203; RENAME</code> does not disconnect users, which in most cases will go unnoticed, though might in some cases cause a program confusion if it depends in some way upon database name.</p>
+</div>
+<div class="paragraph">
+<p>In normal (non-recovery) mode, if you issue <code>DROP USER</code> or <code>DROP ROLE</code> for a role with login capability while that user is still connected then nothing happens to the connected user — they remain connected. The user cannot reconnect however. This behavior applies in recovery also, so a <code>DROP USER</code> on the primary does not disconnect that user on the standby.</p>
+</div>
+<div class="paragraph">
+<p>The cumulative statistics system is active during recovery. All scans, reads, blocks, index usage, etc., will be recorded normally on the standby. However, WAL replay will not increment relation and database specific counters. I.e. replay will not increment pg_stat_all_tables columns (like n_tup_ins), nor will reads or writes performed by the startup process be tracked in the pg_statio views, nor will associated pg_stat_database columns be incremented.</p>
+</div>
+<div class="paragraph">
+<p>Autovacuum is not active during recovery. It will start normally at the end of recovery.</p>
+</div>
+<div class="paragraph">
+<p>The checkpointer process and the background writer process are active during recovery. The checkpointer process will perform restartpoints (similar to checkpoints on the primary) and the background writer process will perform normal block cleaning activities. This can include updates of the hint bit information stored on the standby server. The <code>CHECKPOINT</code> command is accepted during recovery, though it performs a restartpoint rather than a new checkpoint.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="hot-standby-parameter-reference"><a class="anchor" href="#hot-standby-parameter-reference"></a>4.4.4. Hot Standby Parameter Reference</h4>
+<div class="paragraph">
+<p>On the primary, parameters <a href="https://www.postgresql.org/docs/current/runtime-config-wal.html#GUC-WAL-LEVEL">wal_level</a> and <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-VACUUM-DEFER-CLEANUP-AGE">vacuum_defer_cleanup_age</a> can be used. <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-STANDBY-ARCHIVE-DELAY">max_standby_archive_delay</a> and <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-STANDBY-STREAMING-DELAY">max_standby_streaming_delay</a> have no effect if set on the primary.</p>
+</div>
+<div class="paragraph">
+<p>On the standby, parameters <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-HOT-STANDBY">hot_standby</a>, <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-STANDBY-ARCHIVE-DELAY">max_standby_archive_delay</a> and <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-MAX-STANDBY-STREAMING-DELAY">max_standby_streaming_delay</a> can be used. <a href="https://www.postgresql.org/docs/current/runtime-config-replication.html#GUC-VACUUM-DEFER-CLEANUP-AGE">vacuum_defer_cleanup_age</a> has no effect as long as the server remains in standby mode, though it will become relevant if the standby becomes primary.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="caveats"><a class="anchor" href="#caveats"></a>4.4.5. Caveats</h4>
+<div class="paragraph">
+<p>There are several limitations of hot standby. These can and probably will be fixed in future releases:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Full knowledge of running transactions is required before snapshots can be taken. Transactions that use large numbers of subtransactions (currently greater than 64) will delay the start of read-only connections until the completion of the longest running write transaction. If this situation occurs, explanatory messages will be sent to the server log.</p>
+</li>
+<li>
+<p>Valid starting points for standby queries are generated at each checkpoint on the primary. If the standby is shut down while the primary is in a shutdown state, it might not be possible to re-enter hot standby until the primary is started up, so that it generates further starting points in the WAL logs. This situation isn&#8217;t a problem in the most common situations where it might happen. Generally, if the primary is shut down and not available anymore, that&#8217;s likely due to a serious failure that requires the standby being converted to operate as the new primary anyway. And in situations where the primary is being intentionally taken down, coordinating to make sure the standby becomes the new primary smoothly is also standard procedure.</p>
+</li>
+<li>
+<p>At the end of recovery, <code>AccessExclusiveLocks</code> held by prepared transactions will require twice the normal number of lock table entries. If you plan on running either a large number of concurrent prepared transactions that normally take <code>AccessExclusiveLocks</code>, or you plan on having one large transaction that takes many <code>AccessExclusiveLocks</code>, you are advised to select a larger value of <code>max_locks_per_transaction</code>, perhaps as much as twice the value of the parameter on the primary server. You need not consider this at all if your setting of <code>max_prepared_transactions</code> is 0.</p>
+</li>
+<li>
+<p>The Serializable transaction isolation level is not yet available in hot standby. An attempt to set a transaction to the serializable isolation level in hot standby mode will generate an error.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="Administrator%20Guide.html">Administrator</a></span>
+  <span class="next"><a href="安装部署-英文版-0.1.html">Installation Deployment</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

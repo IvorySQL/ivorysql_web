@@ -1,0 +1,2372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Operation and maintenance management guide :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.3/v1.3-en/运维管理指南-英文版-0.2.html">
+    <link rel="prev" href="Developer%20Guide.html">
+    <link rel="next" href="IvorySQL迁移指南-英文版-0.1.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="#">Home</a>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Products</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="docs.ivorysql.org">IvorySQL</a>
+            <a class="navbar-item" href="docs.ivorysql.org">Migrations</a>
+            <a class="navbar-item" href="docs.ivorysql.org">AdminUI</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Services</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="#">Migration Services</a>
+            <a class="navbar-item" href="#">Remote DBA</a>
+            <a class="navbar-item" href="#">Perfornace Tuning</a>
+          </div>
+        </div>
+        <div class="navbar-item">
+          <span class="control">
+            <a class="button is-primary" href="#">Download</a>
+          </span>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v1.3">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">IvorySQL-EN</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../welcome.html">Welcome to IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="IvorySQL1.3发行说明.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="IvorySQL关于-英文版-0.2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="IvorySQL入门-英文版-0.1.html">Getting Started</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="Administrator%20Guide.html">Administrator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="IvorySQL运维人员指南-英文版-0.1.html">Operating personnel</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="安装部署-英文版-0.1.html">Installation Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="Developer%20Guide.html">Developer</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="运维管理指南-英文版-0.2.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="IvorySQL迁移指南-英文版-0.1.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="IvorySQL社区贡献指南-英文版-0.3.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="Tool%20Reference.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ-en.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL-EN</span>
+    <span class="version">v1.3</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../v2.2/welcome.html">IvorySQL-EN</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version is-current">
+          <a href="../welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../v2.2/welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">IvorySQL-EN</a></li>
+    <li><a href="运维管理指南-英文版-0.2.html">Operation Management</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">v1.3</button>
+  <div class="version-menu">
+    <a class="version is-missing" href="../../v2.2/welcome.html">v2.2</a>
+    <a class="version is-missing" href="../../v2.1/welcome.html">v2.1</a>
+    <a class="version is-missing" href="../../v1.5/welcome.html">v1.5</a>
+    <a class="version is-missing" href="../../v1.4/welcome.html">v1.4</a>
+    <a class="version is-current" href="运维管理指南-英文版-0.2.html">v1.3</a>
+    <a class="version is-missing" href="../../v1.2/welcome.html">v1.2</a>
+    <a class="version is-missing" href="../../v1.1/welcome.html">v1.1</a>
+    <a class="version is-missing" href="../../v1.0/welcome.html">v1.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/DutMsn/Document/edit/v1.3/modules/ROOT/pages/v1.3-en/运维管理指南-英文版-0.2.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Operation and maintenance management guide</h1>
+<div id="toc" class="toc">
+<div id="toctitle">目录</div>
+<ul class="sectlevel1">
+<li><a href="#upgrade-ivorysql-version">1. Upgrade IvorySQL version</a>
+<ul class="sectlevel2">
+<li><a href="#overview-of-upgrade-scheme">1.1. Overview of upgrade scheme</a></li>
+<li><a href="#upgrade-data-via-pg_dumpall">1.2. Upgrade data via pg_dumpall</a></li>
+<li><a href="#upgrade-with-the-pg_upgrade-utility">1.3. Upgrade with the pg_upgrade utility</a></li>
+<li><a href="#upgrade-data-by-copying">1.4. Upgrade data by copying</a></li>
+</ul>
+</li>
+<li><a href="#managing-ivorysql-versions">2. Managing IvorySQL Versions</a></li>
+<li><a href="#managing-ivorysql-database-access">3. Managing IvorySQL database access</a></li>
+<li><a href="#defining-data-objects">4. Defining Data Objects</a>
+<ul class="sectlevel2">
+<li><a href="#nvarchar2">4.1. NVARCHAR2</a>
+<ul class="sectlevel3">
+<li><a href="#overview">4.1.1. Overview</a></li>
+<li><a href="#grammar">4.1.2. Grammar</a></li>
+<li><a href="#use-cases">4.1.3. Use Cases</a></li>
+</ul>
+</li>
+<li><a href="#varchar2">4.2. VARCHAR2</a>
+<ul class="sectlevel3">
+<li><a href="#overview-2">4.2.1. Overview</a></li>
+<li><a href="#grammar-2">4.2.2. Grammar</a></li>
+<li><a href="#use-cases-2">4.2.3. Use Cases</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#search-data">5. Search Data</a></li>
+<li><a href="#use-of-foreign-data">6. Use of foreign data</a></li>
+<li><a href="#backup-and-restore">7. Backup and Restore</a>
+<ul class="sectlevel2">
+<li><a href="#sql-dump">7.1. SQL Dump</a>
+<ul class="sectlevel3">
+<li><a href="#restoring-the-dump">7.1.1. Restoring the Dump</a></li>
+<li><a href="#using-pg_dumpall">7.1.2. Using pg_dumpall</a></li>
+<li><a href="#handling-large-databases">7.1.3. Handling Large Databases</a></li>
+</ul>
+</li>
+<li><a href="#file-system-level-backup">7.2. File System Level Backup</a></li>
+<li><a href="#continuous-archiving-and-point-in-time-recovery-pitr">7.3. Continuous Archiving and Point-in-Time Recovery (PITR)</a></li>
+</ul>
+</li>
+<li><a href="#loading-and-unloading-data">8. Loading and unloading data</a>
+<ul class="sectlevel2">
+<li><a href="#synopsis">8.1. Synopsis</a></li>
+<li><a href="#outputs">8.2. Outputs</a></li>
+<li><a href="#notes">8.3. Notes</a></li>
+<li><a href="#file-formats">8.4. File Formats</a>
+<ul class="sectlevel3">
+<li><a href="#text-format">8.4.1. Text Format</a></li>
+<li><a href="#csv-format">8.4.2. CSV Format</a></li>
+<li><a href="#binary-format">8.4.3. Binary Format</a></li>
+<li><a href="#file-trailer">8.4.4. File Trailer</a></li>
+</ul>
+</li>
+<li><a href="#examples">8.5. Examples</a></li>
+</ul>
+</li>
+<li><a href="#performance-tips">9. Performance Tips</a>
+<ul class="sectlevel2">
+<li><a href="#using-explain">9.1. Using EXPLAIN</a>
+<ul class="sectlevel3">
+<li><a href="#explain-basics">9.1.1. EXPLAIN Basics</a></li>
+<li><a href="#explain-analyze">9.1.2. EXPLAIN ANALYZE</a></li>
+<li><a href="#caveats">9.1.3. Caveats</a></li>
+</ul>
+</li>
+<li><a href="#statistics-used-by-the-planner">9.2. Statistics Used by the Planner</a>
+<ul class="sectlevel3">
+<li><a href="#single-column-statistics">9.2.1. Single-Column Statistics</a></li>
+<li><a href="#extended-statistics">9.2.2. Extended Statistics</a>
+<ul class="sectlevel4">
+<li><a href="#functional-dependencies">9.2.2.1. Functional Dependencies</a>
+<ul class="sectlevel5">
+<li><a href="#limitations-of-functional-dependencies">9.2.2.1.1. Limitations of Functional Dependencies</a></li>
+</ul>
+</li>
+<li><a href="#multivariate-n-distinct-counts">9.2.2.2. Multivariate N-Distinct Counts</a></li>
+<li><a href="#multivariate-mcv-lists">9.2.2.3. Multivariate MCV Lists</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#controlling-the-planner-with-explicit-join-clauses">9.3. Controlling the Planner with Explicit <code>JOIN</code> Clauses</a></li>
+<li><a href="#populating-a-database">9.4. Populating a Database</a>
+<ul class="sectlevel3">
+<li><a href="#disable-autocommit">9.4.1. Disable Autocommit</a></li>
+<li><a href="#use-copy">9.4.2. Use COPY</a></li>
+<li><a href="#remove-indexes">9.4.3. Remove Indexes</a></li>
+<li><a href="#remove-foreign-key-constraints">9.4.4. Remove Foreign Key Constraints</a></li>
+<li><a href="#increase-maintenance_work_mem">9.4.5. Increase maintenance_work_mem</a></li>
+<li><a href="#increase-max_wal_size">9.4.6. Increase max_wal_size</a></li>
+<li><a href="#disable-wal-archival-and-streaming-replication">9.4.7. Disable WAL Archival and Streaming Replication</a></li>
+<li><a href="#run-analyze-afterwards">9.4.8. Run ANALYZE Afterwards</a></li>
+<li><a href="#some-notes-about-pg_dump">9.4.9. Some Notes about pg_dump</a></li>
+</ul>
+</li>
+<li><a href="#non-durable-settings">9.5. Non-Durable Settings</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since IvorySQL is based on PostgreSQL, it is recommended that when reading and understanding this section, O&amp;M staff also refer to <a href="https://www.postgresql.org/docs/15/index.html">doc</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="upgrade-ivorysql-version"><a class="anchor" href="#upgrade-ivorysql-version"></a>1. Upgrade IvorySQL version</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="overview-of-upgrade-scheme"><a class="anchor" href="#overview-of-upgrade-scheme"></a>1.1. Overview of upgrade scheme</h3>
+<div class="paragraph">
+<p>The IvorySQL version number consists of a major version and a minor version. For example, 1 in IvorySQL 1.3 is the major version and 3 is the minor version.</p>
+</div>
+<div class="paragraph">
+<p>Releasing a minor version is not going to change the in-memory storage format, so it is always compatible with the same major version. For example, IvorySQL 1.3 is compatible with Ivory SQL 1.0 and the subsequent Ivory SQL 1.x. Upgrading for these compatible versions is as simple as shutting down the database service, installing a replacement binary executable, and restarting the service.</p>
+</div>
+<div class="paragraph">
+<p>​    Next, we focus on cross-version upgrades of IvorySQL, for example, from IvorySQL 1.3 to IvorySQL 2.1. Major version upgrades may modify the internal data storage format and therefore require additional operations to be performed. The common cross-version upgrade methods and applicable scenarios are as follows.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Upgrade method</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Applicable scenarios</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Shutdown time</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pg_dumpall</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Small to medium sized databases, e.g. less than 100GB to support cross-platform data migration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Depends on the size of the database</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pg_upgrade</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Large and medium-sized databases, e.g., &gt;100GB local upgrade</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A few minutes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Logical Replication</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Large and medium-sized databases, e.g. &gt;100GB cross-platform support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A few seconds</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><strong>Attention：</strong>  New major releases usually introduce some user-visible incompatibilities and may therefore require application programming changes. All user-visible changes are listed in <a href="https://www.postgresql.org/docs/current/release.html">description</a>，Please pay special attention to the section labeled "Migration". Although you may upgrade from one major version to another without upgrading an intermediate version, you should read the major release notes for all intermediate versions.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="upgrade-data-via-pg_dumpall"><a class="anchor" href="#upgrade-data-via-pg_dumpall"></a>1.2. Upgrade data via pg_dumpall</h3>
+<div class="paragraph">
+<p>The traditional cross-version upgrade method uses pg_dump/pg_dumpall to logically backup the database everywhere and then restore it in the new version via pg_restore. It is recommended to use the new version of pg_dump/pg_dumpall tool when exporting the old version of the database.You can take advantage of its latest parallel export and restore features, while reducing database bloat problems.</p>
+</div>
+<div class="paragraph">
+<p>Logical backup and restore is very simple but slow, downtime depends on the size of the database, so it is suitable for small to medium sized database upgrades.</p>
+</div>
+<div class="paragraph">
+<p>​The following describes how this upgrade method works. If the current IvorySQL software installation directory is located in /usr/local/pgsql and the data directory is located in /usr/local/pgsql/data, we do the upgrade on the same server.</p>
+</div>
+<div class="paragraph">
+<p>1.Stop the application before performing a logical backup and make sure that no data is updated, as updates after the backup has started will not be exported. If necessary, modify the /usr/local/pgsql/data/pg_hba.conf file to disable others from accessing the database. Then backup the database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">pg_dumpall &gt; outputfile</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>If you have installed a new version of IvorySQL, you can use the new version of the pg_dumpall command to back up the old version of the database.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>2.Stop the backend services of older versions.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_ctl stop</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Or stop the background service by other means.</p>
+</div>
+<div class="paragraph">
+<p>3.If the installation directory does not contain a specific version identifier, the directory can be renamed and modified back if necessary. Directories can be renamed using a command similar to the following.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>mv /usr/local/pgsql /usr/local/pgsql.old</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>4.Install the new version of IvorySQL software, if the installation directory is still /usr/local/pgsql.</p>
+</div>
+<div class="paragraph">
+<p>5.Initializing a new database cluster requires the use of a database specific user (usually postgres; if upgrading the version, this user should already exist) to perform the operation.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>/usr/local/pgsql/bin/initdb -D /usr/local/pgsql/data</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>6.Change the old configuration file pg_hba.conf, postgresql.conf, etc. in the corresponding new configuration file.</p>
+</div>
+<div class="paragraph">
+<p>7.To start a new version of the backend service using a dedicated database user.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>/usr/local/pgsql/bin/postgres -D /usr/local/pgsql/data</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>8.Finally, using the new version of the psql command to restore the data.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>/usr/local/pqsql/bin/psql -d postgres -f outputfile</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To reduce downtime, you can install the new version of IvorySQL to another directory, while starting the service using a different port. Then perform both the export and import of the database.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_dumpall -p 5432 | psql -d postgres -p 5433</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When the above operation is executed, the old and new versions of the backend service run simultaneously, with the new version using port 5433 and the old version using port 5432.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="upgrade-with-the-pg_upgrade-utility"><a class="anchor" href="#upgrade-with-the-pg_upgrade-utility"></a>1.3. Upgrade with the pg_upgrade utility</h3>
+<div class="paragraph">
+<p>The pg_upgrade utility supports in-place upgrades of IvorySQL across versions. The upgrade can be performed in minutes, especially when using the --link mode. It requires similar steps as pg_dumpall above, such as starting/stopping the server and running initdb.pg_upgrade <a href="https://www.postgresql.org/docs/current/pgupgrade.html">doc</a> outlines the steps required.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="upgrade-data-by-copying"><a class="anchor" href="#upgrade-data-by-copying"></a>1.4. Upgrade data by copying</h3>
+<div class="paragraph">
+<p>We can also create a fallback server using logical replication of an updated version of IvorySQL, which supports replication between different major versions of IvorySQL. The fallback server can be on the same computer or on a different computer. Once it is synchronized with the primary server (running an older version of IvorySQL), you can switch hosts and use the backup server as the host, and then shut down the older database instance. Such a switchover allows an upgrade with only a few seconds of downtime.</p>
+</div>
+<div class="paragraph">
+<p>This upgrade method can be used with built-in logical replication tools and external logical replication systems such as pglogical, Slony, Londiste, and Bucardo.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="managing-ivorysql-versions"><a class="anchor" href="#managing-ivorysql-versions"></a>2. Managing IvorySQL Versions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL is based on PostgreSQL and is updated at the same frequency as PostgreSQL, with one major release per year and one minor release per quarter. IvorySQL 2.1 is based on PostgreSQL 15.1, and all versions of IvorySQL are backward compatible.The relevant version features can be viewed by looking at <a href="https://deploy-preview-83&#8212;&#8203;ivorysql.netlify.app/zh-CN/releases-page">Official Website</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="managing-ivorysql-database-access"><a class="anchor" href="#managing-ivorysql-database-access"></a>3. Managing IvorySQL database access</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL uses the concept of <strong>Roles</strong>  to manage database access rights.  A role can be thought of as a database user or a group of database users, depending on how the role is set. Roles can own database objects (for example, tables and functions) and can delegate permissions on those objects to other roles to control who can access which objects. In addition, <strong>membership</strong> in one role can be granted to another role, allowing member roles to use the permissions granted to another role.</p>
+</div>
+<div class="paragraph">
+<p>The concept of roles encompasses the concepts of "user" and "group".</p>
+</div>
+<div class="paragraph">
+<p>The database roles are conceptually completely separate from the operating system users. It may in fact be easier to maintain a correspondence, but this is not necessary. Database roles are global within a database cluster installation (and not within a separate database). To create a role, use the CREATE ROLE SQL command.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE ROLE name;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Name follows the rules of SQL identifiers: either unadorned with no special characters or surrounded by double quotes (in fact, you will always have to add additional options to the command, such as LOGIN. see below for more details). To remove an existing role, use the similar DROP ROLE command.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>DROP ROLE name;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For convenience, the createuser and dropuser programs are provided as wrappers for these SQL commands, which can be invoked from the shell command line at</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>createuser name
+dropuser name</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To determine the set of existing roles, check the pg_roles system directory, e.g.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>SELECT rolname FROM pg_roles;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The \du meta command of the psql program can also be used to list existing roles.</p>
+</div>
+<div class="paragraph">
+<p>To bootstrap a database system, a system that has just been initialized always contains a predefined role. This role is always a "superuser" and by default (unless changed when running initdb) it is named the same as the OS user who initialized the database cluster. By convention, this role will be named postgres. In order to create more roles, you must first connect as the initial role.</p>
+</div>
+<div class="paragraph">
+<p>Each connection to the database server is established using a particular role name, and this role determines the initial access rights to the command that initiates the connection. The role name to use for a particular database connection is indicated by the client, which initiates the connection request in an application-related style. For example, the psql program uses the -U command line option to specify which role to connect under. Many applications assume that this name is the current operating system user by default (including createuser and psql). Therefore it is often convenient to maintain a name correspondence between the role and the OS user.</p>
+</div>
+<div class="paragraph">
+<p>The set of database roles that a given client connection can use to connect to is determined by the authentication settings of that client, so a client is not limited to connecting with a role that matches its OS user, just as a person&#8217;s login name does not need to match her real name. Because role identity determines the set of permissions available to a connected client, be careful when setting up a multi-user environment to configure permissions.</p>
+</div>
+<div class="paragraph">
+<p>A database role can have a number of attributes that define the permissions of the role and interact with the client authentication system.</p>
+</div>
+<div class="paragraph">
+<p>It is often convenient to group users together to facilitate the management of permissions: in this way, permissions can be granted to or reclaimed from an entire group. This is done in IvorySQL by creating a role that represents a group, and then granting <strong>membership</strong> in that group role to individual user roles.</p>
+</div>
+<div class="paragraph">
+<p>Since roles can own database objects and hold privileges to access other objects, deleting a role is often not a one-time DROP ROLE solution. Any objects owned by that user must first be deleted or transferred to another owner, and any privileges that have been granted to that role must be withdrawn.</p>
+</div>
+<div class="paragraph">
+<p>For more details on database access management, refers to <a href="https://www.postgresql.org/docs/15/user-manag.html">doc</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="defining-data-objects"><a class="anchor" href="#defining-data-objects"></a>4. Defining Data Objects</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL is based on PostgreSQL and has a full SQL with defined data objects that can be referred to <a href="https://www.postgresql.org/docs/current/ddl.html">doc</a>.On top of that, IvorySQL has done some Oracle proprietary data object compatibility for Oracle compatibility.</p>
+</div>
+<div class="sect2">
+<h3 id="nvarchar2"><a class="anchor" href="#nvarchar2"></a>4.1. NVARCHAR2</h3>
+<div class="sect3">
+<h4 id="overview"><a class="anchor" href="#overview"></a>4.1.1. Overview</h4>
+<div class="paragraph">
+<p>Variable-length Unicode string with maximum-length size characters. You must specify the size for NVARCHAR2. The maximum number of bytes for AL16UTF16 encoding is 2 times, and the maximum number of bytes for UTF8 encoding is 3 times.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="grammar"><a class="anchor" href="#grammar"></a>4.1.2. Grammar</h4>
+<div class="literalblock">
+<div class="content">
+<pre>NVARCHAR2(size)</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="use-cases"><a class="anchor" href="#use-cases"></a>4.1.3. Use Cases</h4>
+<div class="listingblock">
+<div class="content">
+<pre>create table test(a nvarchar2(5));
+CREATE TABLE
+
+SET NLS_LENGTH_SEMANTICS TO CHAR;
+SET
+
+SHOW NLS_LENGTH_SEMANTICS;
+ nls_length_semantics
+----------------------
+ char
+(1 row)
+
+insert into test values ('Hello,Mr.li');
+INSERT 0 1</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="varchar2"><a class="anchor" href="#varchar2"></a>4.2. VARCHAR2</h3>
+<div class="sect3">
+<h4 id="overview-2"><a class="anchor" href="#overview-2"></a>4.2.1. Overview</h4>
+<div class="paragraph">
+<p>Variable length strings with maximum length bytes or characters. You must specify the size for VARCHAR2. The minimum size is 1 byte or 1 character.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="grammar-2"><a class="anchor" href="#grammar-2"></a>4.2.2. Grammar</h4>
+<div class="literalblock">
+<div class="content">
+<pre>VARCHAR2(size)</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="use-cases-2"><a class="anchor" href="#use-cases-2"></a>4.2.3. Use Cases</h4>
+<div class="listingblock">
+<div class="content">
+<pre>create table test(a varchar2(5));
+CREATE TABLE
+
+SET NLS_LENGTH_SEMANTICS TO CHAR;
+SET
+
+SHOW NLS_LENGTH_SEMANTICS;
+ nls_length_semantics
+----------------------
+ char
+(1 row)
+
+insert into test values ('Hello,Mr.li');
+INSERT 0 1</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="search-data"><a class="anchor" href="#search-data"></a>5. Search Data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL is developed based on PostgreSQL, with full SQL, query data specific operations can be referred to <a href="https://www.postgresql.org/docs/current/queries.html">doc</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="use-of-foreign-data"><a class="anchor" href="#use-of-foreign-data"></a>6. Use of foreign data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL implements portions of the SQL/MED specification, allowing you to access data that resides outside IvorySQL using regular SQL queries. Such data is referred to as <strong>foreign data</strong>. (Note that this usage is not to be confused with foreign keys, which are a type of constraint within the database.)</p>
+</div>
+<div class="paragraph">
+<p>Foreign data is accessed with help from a <strong>foreign data wrapper</strong>. A foreign data wrapper is a library that can communicate with an external data source, hiding the details of connecting to the data source and obtaining data from it. There are some foreign data wrappers available as contrib modules;see <a href="https://www.postgresql.org/docs/current/contrib.html">Appendix F</a>. Other kinds of foreign data wrappers might be found as third party products. If none of the existing foreign data wrappers suit your needs, you can write your own; see <a href="https://www.postgresql.org/docs/current/fdwhandler.html">doc</a>.</p>
+</div>
+<div class="paragraph">
+<p>To access foreign data, you need to create a <strong>foreign server</strong> object, which defines how to connect to a particular external data source according to the set of options used by its supporting foreign data wrapper. Then you need to create one or more <strong>foreign tables</strong>, which define the structure of the remote data. A foreign table can be used in queries just like a normal table, but a foreign table has no storage in the IvorySQL server. Whenever it is used, IvorySQL asks the foreign data wrapper to fetch data from the external source, or transmit data to the external source in the case of update commands.</p>
+</div>
+<div class="paragraph">
+<p>Accessing remote data may require authenticating to the external data source. This information can be provided by a <strong>user mapping</strong>, which can provide additional data such as user names and passwords based on the current IvorySQL role.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="backup-and-restore"><a class="anchor" href="#backup-and-restore"></a>7. Backup and Restore</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As with everything that contains valuable data, IvorySQL databases should be backed up regularly. While the procedure is essentially simple, it is important to have a clear understanding of the underlying techniques and assumptions.</p>
+</div>
+<div class="paragraph">
+<p>There are three fundamentally different approaches to backing up IvorySQL data:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>SQL dump</p>
+</li>
+<li>
+<p>File system level backup</p>
+</li>
+<li>
+<p>Continuous archiving</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="sql-dump"><a class="anchor" href="#sql-dump"></a>7.1. SQL Dump</h3>
+<div class="paragraph">
+<p>The idea behind this dump method is to generate a file with SQL commands that, when fed back to the server, will recreate the database in the same state as it was at the time of the dump. IvorySQL provides the utility program pg_dumpfor this purpose. The basic usage of this command is:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_dump dbname &gt; dumpfile</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>As you see, pg_dump writes its result to the standard output. We will see below how this can be useful. While the above command creates a text file, pg_dump can create files in other formats that allow for parallelism and more fine-grained control of object restoration.</p>
+</div>
+<div class="paragraph">
+<p>pg_dump is a regular IvorySQL client application (albeit a particularly clever one). This means that you can perform this backup procedure from any remote host that has access to the database. But remember that pg_dump does not operate with special permissions. In particular, it must have read access to all tables that you want to back up, so in order to back up the entire database you almost always have to run it as a database superuser. (If you do not have sufficient privileges to back up the entire database, you can still back up portions of the database to which you do have access using options such as <code>-n <strong>`schema</code></strong>` or <code>-t <strong>`table</code></strong>`.)</p>
+</div>
+<div class="paragraph">
+<p>​To specify which database server pg_dump should contact, use the command line options <code>-h <strong>`host</code></strong>` and <code>-p <strong>`port</code></strong><code>. The default host is the local host or whatever your `HOST</code> environment variable specifies. Similarly, the default port is indicated by the <code>PORT</code> environment variable or, failing that, by the compiled-in default. (Conveniently, the server will normally have the same compiled-in default.)</p>
+</div>
+<div class="paragraph">
+<p>pg_dump will by default connect with the database user name that is equal to the current operating system user name. To override this, either specify the <code>-U</code> option or set the environment variable <code>PGUSER</code>. Remember that pg_dump connections are subject to the normal client authentication mechanisms 。</p>
+</div>
+<div class="paragraph">
+<p>​    An important advantage of pg_dump over the other backup methods described later is that pg_dump&#8217;s output can generally be re-loaded into newer versions of IvorySQL, whereas file-level backups and continuous archiving are both extremely server-version-specific. pg_dump is also the only method that will work when transferring a database to a different machine architecture, such as going from a 32-bit to a 64-bit server.</p>
+</div>
+<div class="paragraph">
+<p>​    Dumps created by pg_dump are internally consistent, meaning, the dump represents a snapshot of the database at the time pg_dump began running. pg_dump does not block other operations on the database while it is working. (Exceptions are those operations that need to operate with an exclusive lock, such as most forms of <code>ALTER TABLE</code>.)</p>
+</div>
+<div class="sect3">
+<h4 id="restoring-the-dump"><a class="anchor" href="#restoring-the-dump"></a>7.1.1. Restoring the Dump</h4>
+<div class="paragraph">
+<p>Text files created by pg_dump are intended to be read in by the psql program. The general command form to restore a dump is</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>psql dbname &lt; dumpfile</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <strong><code>dumpfile</code></strong> is the file output by the pg_dump command. The database <strong><code>dbname</code></strong> will not be created by this command, so you must create it yourself from <code>template0</code> before executing psql (e.g., with <code>createdb -T template0 <strong>`dbname</code></strong>`). psql supports options similar to pg_dump for specifying the database server to connect to and the user name to use. See the <a href="https://www.postgresql.org/docs/current/app-psql.html">psql</a> reference page for more information. Non-text file dumps are restored using the <a href="https://www.postgresql.org/docs/current/app-pgrestore.html">pg_restore</a> utility.</p>
+</div>
+<div class="paragraph">
+<p>Before restoring an SQL dump, all the users who own objects or were granted permissions on objects in the dumped database must already exist. If they do not, the restore will fail to recreate the objects with the original ownership and/or permissions. (Sometimes this is what you want, but usually it is not.)</p>
+</div>
+<div class="paragraph">
+<p>By default, the psql script will continue to execute after an SQL error is encountered. You might wish to run psql with the <code>ON_ERROR_STOP</code> variable set to alter that behavior and have psql exit with an exit status of 3 if an SQL error occurs:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>psql --set ON_ERROR_STOP=on dbname &lt; infile</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Either way, you will only have a partially restored database. Alternatively, you can specify that the whole dump should be restored as a single transaction, so the restore is either fully completed or fully rolled back. This mode can be specified by passing the <code>-1</code> or <code>--single-transaction</code> command-line options to psql. When using this mode, be aware that even a minor error can rollback a restore that has already run for many hours. However, that might still be preferable to manually cleaning up a complex database after a partially restored dump.</p>
+</div>
+<div class="paragraph">
+<p>The ability of pg_dump and psql to write to or read from pipes makes it possible to dump a database directly from one server to another, for example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_dump -h host1 dbname | psql -h host2 dbname</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Important：</strong>The dumps produced by pg_dump are relative to <code>template0</code>. This means that any languages, procedures, etc. added via <code>template1</code> will also be dumped by pg_dump. As a result, when restoring, if you are using a customized <code>template1</code>, you must create the empty database from <code>template0</code>, as in the example above.</p>
+</div>
+<div class="paragraph">
+<p>After restoring a backup, it is wise to run <a href="https://www.postgresql.org/docs/current/sql-analyze.html"><code>ANALYZE</code></a> on each database so the query optimizer has useful statistics.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="using-pg_dumpall"><a class="anchor" href="#using-pg_dumpall"></a>7.1.2. Using pg_dumpall</h4>
+<div class="paragraph">
+<p>pg_dump dumps only a single database at a time, and it does not dump information about roles or tablespaces (because those are cluster-wide rather than per-database). To support convenient dumping of the entire contents of a database cluster, the <a href="https://www.postgresql.org/docs/current/app-pg-dumpall.html">pg_dumpall</a> program is provided. pg_dumpall backs up each database in a given cluster, and also preserves cluster-wide data such as role and tablespace definitions. The basic usage of this command is:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_dumpall &gt; dumpfile</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting dump can be restored with psql:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>psql -f dumpfile ivorysql</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>(Actually, you can specify any existing database name to start from, but if you are loading into an empty cluster then ivorysql should usually be used.) It is always necessary to have database superuser access when restoring a pg_dumpall dump, as that is required to restore the role and tablespace information. If you use tablespaces, make sure that the tablespace paths in the dump are appropriate for the new installation.</p>
+</div>
+<div class="paragraph">
+<p>pg_dumpall works by emitting commands to re-create roles, tablespaces, and empty databases, then invoking pg_dump for each database. This means that while each database will be internally consistent, the snapshots of different databases are not synchronized.</p>
+</div>
+<div class="paragraph">
+<p>Cluster-wide data can be dumped alone using the pg_dumpall <code>--globals-only</code> option. This is necessary to fully backup the cluster if running the pg_dump command on individual databases.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="handling-large-databases"><a class="anchor" href="#handling-large-databases"></a>7.1.3. Handling Large Databases</h4>
+<div class="paragraph">
+<p>Some operating systems have maximum file size limits that cause problems when creating large pg_dump output files. Fortunately, pg_dump can write to the standard output, so you can use standard Unix tools to work around this potential problem. There are several possible methods:</p>
+</div>
+<div class="paragraph">
+<p><strong>Use compressed dumps.</strong> You can use your favorite compression program, for example gzip:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_dump dbname | gzip &gt; filename.gz</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Reload with：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>gunzip -c filename.gz | psql dbname</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>or:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cat filename.gz | gunzip | psql dbname</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Use <code>split</code>.</strong> The <code>split</code> command allows you to split the output into smaller files that are acceptable in size to the underlying file system. For example, to make 2 gigabyte chunks:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_dump dbname | split -b 2G - filename</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Reload with:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cat filename* | psql dbname</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If using GNU split, it is possible to use it and gzip together:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_dump dbname | split -b 2G -−filter='gzip &gt; $FILE.gz'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It can be restored using <code>zcat</code>.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use pg_dump&#8217;s custom dump format.</strong> If IvorySQL was built on a system with the zlib compression library installed, the custom dump format will compress data as it writes it to the output file. This will produce dump file sizes similar to using <code>gzip</code>, but it has the added advantage that tables can be restored selectively. The following command dumps a database using the custom dump format:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_dump -Fc dbname &gt; filename</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A custom-format dump is not a script for psql, but instead must be restored with pg_restore, for example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_restore -d dbname filename</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://www.postgresql.org/docs/current/app-pgdump.html">pg_dump</a> and <a href="https://www.postgresql.org/docs/current/app-pgrestore.html">pg_restore</a> reference pages for details.</p>
+</div>
+<div class="paragraph">
+<p>For very large databases, you might need to combine <code>split</code> with one of the other two approaches.</p>
+</div>
+<div class="paragraph">
+<p><strong>Use pg_dump&#8217;s parallel dump feature.</strong> To speed up the dump of a large database, you can use pg_dump&#8217;s parallel mode. This will dump multiple tables at the same time. You can control the degree of parallelism with the <code>-j</code> parameter. Parallel dumps are only supported for the "directory" archive format.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_dump -j num -F d -f out.dir dbname</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can use <code>pg_restore -j</code> to restore a dump in parallel. This will work for any archive of either the "custom" or the "directory" archive mode, whether or not it has been created with <code>pg_dump -j</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="file-system-level-backup"><a class="anchor" href="#file-system-level-backup"></a>7.2. File System Level Backup</h3>
+<div class="literalblock">
+<div class="content">
+<pre>An alternative backup strategy is to directly copy the files that IvorySQL uses to store the data in the database，You can use whatever method you prefer for doing file system backups; for example:</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>tar -cf backup.tar /usr/local/pgsql/data</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are two restrictions, however, which make this method impractical, or at least inferior to the pg_dump method:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The database server <strong>must</strong> be shut down in order to get a usable backup. Half-way measures such as disallowing all connections will <strong>not</strong> work (in part because <code>tar</code> and similar tools do not take an atomic snapshot of the state of the file system, but also because of internal buffering within the server).Needless to say, you also need to shut down the server before restoring the data.</p>
+</li>
+<li>
+<p>If you have dug into the details of the file system layout of the database, you might be tempted to try to back up or restore only certain individual tables or databases from their respective files or directories. This will <strong>not</strong> work because the information contained in these files is not usable without the commit log files, <code>pg_xact/*</code>, which contain the commit status of all transactions. A table file is only usable with this information. Of course it is also impossible to restore only a table and the associated <code>pg_xact</code> data because that would render all other tables in the database cluster useless. So file system backups only work for complete backup and restoration of an entire database cluster.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>​    An alternative file-system backup approach is to make a “consistent snapshot” of the data directory, if the file system supports that functionality (and you are willing to trust that it is implemented correctly). The typical procedure is to make a “frozen snapshot” of the volume containing the database, then copy the whole data directory (not just parts, see above) from the snapshot to a backup device, then release the frozen snapshot. This will work even while the database server is running. However, a backup created in this way saves the database files in a state as if the database server was not properly shut down; therefore, when you start the database server on the backed-up data, it will think the previous server instance crashed and will replay the WAL log. This is not a problem; just be aware of it (and be sure to include the WAL files in your backup). You can perform a <code>CHECKPOINT</code> before taking the snapshot to reduce recovery time.</p>
+</div>
+<div class="paragraph">
+<p>​    If your database is spread across multiple file systems, there might not be any way to obtain exactly-simultaneous frozen snapshots of all the volumes. For example, if your data files and WAL log are on different disks, or if tablespaces are on different file systems, it might not be possible to use snapshot backup because the snapshots <strong>must</strong> be simultaneous. Read your file system documentation very carefully before trusting the consistent-snapshot technique in such situations.</p>
+</div>
+<div class="paragraph">
+<p>​    If simultaneous snapshots are not possible, one option is to shut down the database server long enough to establish all the frozen snapshots. Another option is to perform a continuous archiving base backup,because such backups are immune to file system changes during the backup. This requires enabling continuous archiving just during the backup process; restore is done using continuous archive recovery</p>
+</div>
+<div class="paragraph">
+<p>​    Another option is to use rsync to perform a file system backup. This is done by first running rsync while the database server is running, then shutting down the database server long enough to do an <code>rsync --checksum</code>. (<code>--checksum</code> is necessary because <code>rsync</code> only has file modification-time granularity of one second.) The second rsync will be quicker than the first, because it has relatively little data to transfer, and the end result will be consistent because the server was down. This method allows a file system backup to be performed with minimal downtime.</p>
+</div>
+<div class="paragraph">
+<p>Note that a file system backup will typically be larger than an SQL dump. (pg_dump does not need to dump the contents of indexes for example, just the commands to recreate them.) However, taking a file system backup might be faster.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="continuous-archiving-and-point-in-time-recovery-pitr"><a class="anchor" href="#continuous-archiving-and-point-in-time-recovery-pitr"></a>7.3. Continuous Archiving and Point-in-Time Recovery (PITR)</h3>
+<div class="paragraph">
+<p>At all times,IvorySQLmaintains a <strong>write ahead log</strong> (WAL) in the <code>pg_wal/</code> subdirectory of the cluster&#8217;s data directory. The log records every change made to the database&#8217;s data files. This log exists primarily for crash-safety purposes: if the system crashes, the database can be restored to consistency by “replaying” the log entries made since the last checkpoint. However, the existence of the log makes it possible to use a third strategy for backing up databases: we can combine a file-system-level backup with backup of the WAL files. If recovery is needed, we restore the file system backup and then replay from the backed-up WAL files to bring the system to a current state. This approach is more complex to administer than either of the previous approaches, but it has some significant benefits:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>We do not need a perfectly consistent file system backup as the starting point. Any internal inconsistency in the backup will be corrected by log replay (this is not significantly different from what happens during crash recovery). So we do not need a file system snapshot capability, just tar or a similar archiving tool.</p>
+</li>
+<li>
+<p>Since we can combine an indefinitely long sequence of WAL files for replay, continuous backup can be achieved simply by continuing to archive the WAL files. This is particularly valuable for large databases, where it might not be convenient to take a full backup frequently.</p>
+</li>
+<li>
+<p>It is not necessary to replay the WAL entries all the way to the end. We could stop the replay at any point and have a consistent snapshot of the database as it was at that time. Thus, this technique supports <strong>point-in-time recovery</strong>: it is possible to restore the database to its state at any time since your base backup was taken.</p>
+</li>
+<li>
+<p>If we continuously feed the series of WAL files to another machine that has been loaded with the same base backup file, we have a <strong>warm standby</strong> system: at any point we can bring up the second machine and it will have a nearly-current copy of the database.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Note:</strong> pg_dump and pg_dumpall do not produce file-system-level backups and cannot be used as part of a continuous-archiving solution. Such dumps are <strong>logical</strong> and do not contain enough information to be used by WAL replay.</p>
+</div>
+<div class="paragraph">
+<p>​    As with the plain file-system-backup technique, this method can only support restoration of an entire database cluster, not a subset. Also, it requires a lot of archival storage: the base backup might be bulky, and a busy system will generate many megabytes of WAL traffic that have to be archived. Still, it is the preferred backup technique in many situations where high reliability is needed.</p>
+</div>
+<div class="paragraph">
+<p>​    To recover successfully using continuous archiving (also called “online backup” by many database vendors), you need a continuous sequence of archived WAL files that extends back at least as far as the start time of your backup. So to get started, you should set up and test your procedure for archiving WAL files <strong>before</strong> you take your first base backup. Accordingly, we first discuss the mechanics of archiving WAL files.For more information on how to create archives and backups and the key points during operation, please refer to <a href="https://www.postgresql.org/docs/15/backup.html">doc</a>。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="loading-and-unloading-data"><a class="anchor" href="#loading-and-unloading-data"></a>8. Loading and unloading data</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>COPY</code> moves data between IvorySQL tables and standard file-system files. <code>COPY TO</code> copies the contents of a table <strong>to</strong> a file, while <code>COPY FROM</code> copies data <strong>from</strong> a file to a table (appending the data to whatever is in the table already). <code>COPY TO</code> can also copy the results of a <code>SELECT</code> query.</p>
+</div>
+<div class="paragraph">
+<p>If a column list is specified, <code>COPY TO</code> copies only the data in the specified columns to the file. For <code>COPY FROM</code>, each field in the file is inserted, in order, into the specified column. Table columns not specified in the <code>COPY FROM</code> column list will receive their default values.</p>
+</div>
+<div class="paragraph">
+<p><code>COPY</code> with a file name instructs the IvorySQL server to directly read from or write to a file. The file must be accessible by the IvorySQL user (the user ID the server runs as) and the name must be specified from the viewpoint of the server. When <code>PROGRAM</code> is specified, the server executes the given command and reads from the standard output of the program, or writes to the standard input of the program. The command must be specified from the viewpoint of the server, and be executable by the IvorySQL user. When <code>STDIN</code> or <code>STDOUT</code> is specified, data is transmitted via the connection between the client and the server.</p>
+</div>
+<div class="paragraph">
+<p>​    Each backend running <code>COPY</code> will report its progress in the <code>pg_stat_progress_copy</code> view.</p>
+</div>
+<div class="sect2">
+<h3 id="synopsis"><a class="anchor" href="#synopsis"></a>8.1. Synopsis</h3>
+<div class="listingblock">
+<div class="content">
+<pre>COPY table_name [ ( column_name [, ...] ) ]
+    FROM { 'filename' | PROGRAM 'command' | STDIN }
+    [ [ WITH ] ( option [, ...] ) ]
+    [ WHERE condition ]
+
+COPY { table_name [ ( column_name [, ...] ) ] | ( query ) }
+    TO { 'filename' | PROGRAM 'command' | STDOUT }
+    [ [ WITH ] ( option [, ...] ) ]
+
+where option can be one of:
+
+    FORMAT format_name
+    FREEZE [ boolean ]
+    DELIMITER 'delimiter_character'
+    NULL 'null_string'
+    HEADER [ boolean ]
+    QUOTE 'quote_character'
+    ESCAPE 'escape_character'
+    FORCE_QUOTE { ( column_name [, ...] ) | * }
+    FORCE_NOT_NULL ( column_name [, ...] )
+    FORCE_NULL ( column_name [, ...] )
+    ENCODING 'encoding_name'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For detailed parameter settings, please refer to <a href="https://www.postgresql.org/docs/15/sql-copy.html">doc</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="outputs"><a class="anchor" href="#outputs"></a>8.2. Outputs</h3>
+<div class="paragraph">
+<p>On successful completion, a <code>COPY</code> command returns a command tag of the form</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>COPY count</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <strong><code>count</code></strong> is the number of rows copied.</p>
+</div>
+<div class="paragraph">
+<p><strong>Note：</strong> psql will print this command tag only if the command was not <code>COPY &#8230;&#8203; TO STDOUT</code>, or the equivalent psql meta-command <code>\copy &#8230;&#8203; to stdout</code>. This is to prevent confusing the command tag with the data that was just printed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="notes"><a class="anchor" href="#notes"></a>8.3. Notes</h3>
+<div class="paragraph">
+<p><code>COPY TO</code> can be used only with plain tables, not views, and does not copy rows from child tables or child partitions. For example, <code>COPY <strong>`table</code></strong> TO` copies the same rows as <code>SELECT * FROM ONLY <strong>`table</code></strong><code>. The syntax `COPY (SELECT * FROM <strong>`table</code></strong>) TO &#8230;&#8203;` can be used to dump all of the rows in an inheritance hierarchy, partitioned table, or view.</p>
+</div>
+<div class="paragraph">
+<p><code>COPY FROM</code> can be used with plain, foreign, or partitioned tables or with views that have <code>INSTEAD OF INSERT</code> triggers.</p>
+</div>
+<div class="paragraph">
+<p>You must have select privilege on the table whose values are read by <code>COPY TO</code>, and insert privilege on the table into which values are inserted by <code>COPY FROM</code>. It is sufficient to have column privileges on the column(s) listed in the command.</p>
+</div>
+<div class="paragraph">
+<p>If row-level security is enabled for the table, the relevant <code>SELECT</code> policies will apply to <code>COPY <strong>`table</code></strong> TO` statements. Currently, <code>COPY FROM</code> is not supported for tables with row-level security. Use equivalent <code>INSERT</code> statements instead.</p>
+</div>
+<div class="paragraph">
+<p>​    Files named in a <code>COPY</code> command are read or written directly by the server, not by the client application. Therefore, they must reside on or be accessible to the database server machine, not the client. They must be accessible to and readable or writable by the IvorySQL user (the user ID the server runs as), not the client. Similarly, the command specified with <code>PROGRAM</code> is executed directly by the server, not by the client application, must be executable by the IvorySQL user. <code>COPY</code> naming a file or command is only allowed to database superusers or users who are granted one of the roles <code>pg_read_server_files</code>, <code>pg_write_server_files</code>, or <code>pg_execute_server_program</code>, since it allows reading or writing any file or running a program that the server has privileges to access.</p>
+</div>
+<div class="paragraph">
+<p>​    Do not confuse <code>COPY</code> with the psql instruction <code>\copy</code>. <code>\copy</code> invokes <code>COPY FROM STDIN</code> or <code>COPY TO STDOUT</code>, and then fetches/stores the data in a file accessible to the psql client. Thus, file accessibility and access rights depend on the client rather than the server when <code>\copy</code> is used.</p>
+</div>
+<div class="paragraph">
+<p>It is recommended that the file name used in <code>COPY</code> always be specified as an absolute path. This is enforced by the server in the case of <code>COPY TO</code>, but for <code>COPY FROM</code> you do have the option of reading from a file specified by a relative path. The path will be interpreted relative to the working directory of the server process (normally the cluster&#8217;s data directory), not the client&#8217;s working directory.</p>
+</div>
+<div class="paragraph">
+<p>Executing a command with <code>PROGRAM</code> might be restricted by the operating system&#8217;s access control mechanisms, such as SELinux.</p>
+</div>
+<div class="paragraph">
+<p><code>COPY FROM</code> will invoke any triggers and check constraints on the destination table. However, it will not invoke rules.</p>
+</div>
+<div class="paragraph">
+<p>For identity columns, the <code>COPY FROM</code> command will always write the column values provided in the input data, like the <code>INSERT</code> option <code>OVERRIDING SYSTEM VALUE</code>.</p>
+</div>
+<div class="paragraph">
+<p><code>COPY</code> input and output is affected by <code>DateStyle</code>. To ensure portability to other IvorySQL installations that might use non-default <code>DateStyle</code> settings, <code>DateStyle</code> should be set to <code>ISO</code> before using <code>COPY TO</code>. It is also a good idea to avoid dumping data with <code>IntervalStyle</code> set to <code>sql_standard</code>, because negative interval values might be misinterpreted by a server that has a different setting for <code>IntervalStyle</code>.</p>
+</div>
+<div class="paragraph">
+<p>Input data is interpreted according to <code>ENCODING</code> option or the current client encoding, and output data is encoded in <code>ENCODING</code> or the current client encoding, even if the data does not pass through the client but is read from or written to a file directly by the server.</p>
+</div>
+<div class="paragraph">
+<p><code>COPY</code> stops operation at the first error. This should not lead to problems in the event of a <code>COPY TO</code>, but the target table will already have received earlier rows in a <code>COPY FROM</code>. These rows will not be visible or accessible, but they still occupy disk space. This might amount to a considerable amount of wasted disk space if the failure happened well into a large copy operation. You might wish to invoke <code>VACUUM</code> to recover the wasted space.</p>
+</div>
+<div class="paragraph">
+<p><code>FORCE_NULL</code> and <code>FORCE_NOT_NULL</code> can be used simultaneously on the same column. This results in converting quoted null strings to null values and unquoted null strings to empty strings.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="file-formats"><a class="anchor" href="#file-formats"></a>8.4. File Formats</h3>
+<div class="sect3">
+<h4 id="text-format"><a class="anchor" href="#text-format"></a>8.4.1. Text Format</h4>
+<div class="paragraph">
+<p>When the <code>text</code> format is used, the data read or written is a text file with one line per table row. Columns in a row are separated by the delimiter character. The column values themselves are strings generated by the output function, or acceptable to the input function, of each attribute&#8217;s data type. The specified null string is used in place of columns that are null. <code>COPY FROM</code> will raise an error if any line of the input file contains more or fewer columns than are expected.</p>
+</div>
+<div class="paragraph">
+<p>End of data can be represented by a single line containing just backslash-period (<code>\.</code>). An end-of-data marker is not necessary when reading from a file, since the end of file serves perfectly well; it is needed only when copying data to or from client applications using pre-3.0 client protocol.</p>
+</div>
+<div class="paragraph">
+<p>Backslash characters (<code>\</code>) can be used in the <code>COPY</code> data to quote data characters that might otherwise be taken as row or column delimiters. In particular, the following characters <strong>must</strong> be preceded by a backslash if they appear as part of a column value: backslash itself, newline, carriage return, and the current delimiter character.</p>
+</div>
+<div class="paragraph">
+<p>The specified null string is sent by <code>COPY TO</code> without adding any backslashes; conversely, <code>COPY FROM</code> matches the input against the null string before removing backslashes. Therefore, a null string such as <code>\N</code> cannot be confused with the actual data value <code>\N</code> (which would be represented as <code>\\N</code>).</p>
+</div>
+<div class="paragraph">
+<p>The following special backslash sequences are recognized by <code>COPY FROM</code>:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sequence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Represents</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\b</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backspace (ASCII 8)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\f</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Form feed (ASCII 12)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\n</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Newline (ASCII 10)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\r</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carriage return (ASCII 13)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\t</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tab (ASCII 9)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\v</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Vertical tab (ASCII 11)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\digits</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backslash followed by one to three octal digits specifies the byte with that numeric code</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">\xdigits</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backslash <code>x</code> followed by one or two hex digits specifies the byte with that numeric code</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Presently, <code>COPY TO</code> will never emit an octal or hex-digits backslash sequence, but it does use the other sequences listed above for those control characters.</p>
+</div>
+<div class="paragraph">
+<p>Any other backslashed character that is not mentioned in the above table will be taken to represent itself. However, beware of adding backslashes unnecessarily, since that might accidentally produce a string matching the end-of-data marker (<code>\.</code>) or the null string (<code>\N</code> by default). These strings will be recognized before any other backslash processing is done.</p>
+</div>
+<div class="paragraph">
+<p>It is strongly recommended that applications generating <code>COPY</code> data convert data newlines and carriage returns to the <code>\n</code> and <code>\r</code> sequences respectively. At present it is possible to represent a data carriage return by a backslash and carriage return, and to represent a data newline by a backslash and newline. However, these representations might not be accepted in future releases. They are also highly vulnerable to corruption if the <code>COPY</code> file is transferred across different machines (for example, from Unix to Windows or vice versa).</p>
+</div>
+<div class="paragraph">
+<p>All backslash sequences are interpreted after encoding conversion. The bytes specified with the octal and hex-digit backslash sequences must form valid characters in the database encoding.</p>
+</div>
+<div class="paragraph">
+<p><code>COPY TO</code> will terminate each row with a Unix-style newline (“<code>\n</code>”). Servers running on Microsoft Windows instead output carriage return/newline (“<code>\r\n</code>”), but only for <code>COPY</code> to a server file; for consistency across platforms, <code>COPY TO STDOUT</code> always sends “<code>\n</code>” regardless of server platform. <code>COPY FROM</code> can handle lines ending with newlines, carriage returns, or carriage return/newlines. To reduce the risk of error due to un-backslashed newlines or carriage returns that were meant as data, <code>COPY FROM</code> will complain if the line endings in the input are not all alike.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="csv-format"><a class="anchor" href="#csv-format"></a>8.4.2. CSV Format</h4>
+<div class="paragraph">
+<p>This format option is used for importing and exporting the Comma Separated Value (<code>CSV</code>) file format used by many other programs, such as spreadsheets. Instead of the escaping rules used by IvorySQL&#8217;s standard text format, it produces and recognizes the common CSV escaping mechanism.</p>
+</div>
+<div class="paragraph">
+<p>The values in each record are separated by the <code>DELIMITER</code> character. If the value contains the delimiter character, the <code>QUOTE</code> character, the <code>NULL</code> string, a carriage return, or line feed character, then the whole value is prefixed and suffixed by the <code>QUOTE</code> character, and any occurrence within the value of a <code>QUOTE</code> character or the <code>ESCAPE</code> character is preceded by the escape character. You can also use <code>FORCE_QUOTE</code> to force quotes when outputting non-<code>NULL</code> values in specific columns.</p>
+</div>
+<div class="paragraph">
+<p>The <code>CSV</code> format has no standard way to distinguish a <code>NULL</code> value from an empty string. IvorySQL&#8217;s <code>COPY</code> handles this by quoting. A <code>NULL</code> is output as the <code>NULL</code> parameter string and is not quoted, while a non-<code>NULL</code> value matching the <code>NULL</code> parameter string is quoted. For example, with the default settings, a <code>NULL</code> is written as an unquoted empty string, while an empty string data value is written with double quotes (<code>""</code>). Reading values follows similar rules. You can use <code>FORCE_NOT_NULL</code> to prevent <code>NULL</code> input comparisons for specific columns. You can also use <code>FORCE_NULL</code> to convert quoted null string data values to <code>NULL</code>.</p>
+</div>
+<div class="paragraph">
+<p>Because backslash is not a special character in the <code>CSV</code> format, <code>\.</code>, the end-of-data marker, could also appear as a data value. To avoid any misinterpretation, a <code>\.</code> data value appearing as a lone entry on a line is automatically quoted on output, and on input, if quoted, is not interpreted as the end-of-data marker. If you are loading a file created by another application that has a single unquoted column and might have a value of <code>\.</code>, you might need to quote that value in the input file.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Note</div>
+<div class="paragraph">
+<p><code>CSV</code> format, all characters are significant. A quoted value surrounded by white space, or any characters other than <code>DELIMITER</code>, will include those characters. This can cause errors if you import data from a system that pads <code>CSV</code> lines with white space out to some fixed width. If such a situation arises you might need to preprocess the <code>CSV</code> file to remove the trailing white space, before importing the data into IvorySQL.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Note</div>
+<div class="paragraph">
+<p>CSV format will both recognize and produce CSV files with quoted values containing embedded carriage returns and line feeds. Thus the files are not strictly one line per table row like text-format files.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Note</div>
+<div class="paragraph">
+<p>Many programs produce strange and occasionally perverse CSV files, so the file format is more a convention than a standard. Thus you might encounter some files that cannot be imported using this mechanism, and <code>COPY</code> might produce files that other programs cannot process.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="binary-format"><a class="anchor" href="#binary-format"></a>8.4.3. Binary Format</h4>
+<div class="paragraph">
+<p>The <code>binary</code> format option causes all data to be stored/read as binary format rather than as text. It is somewhat faster than the text and <code>CSV</code> formats, but a binary-format file is less portable across machine architectures and IvorySQL versions. Also, the binary format is very data type specific; for example it will not work to output binary data from a <code>smallint</code> column and read it into an <code>integer</code> column, even though that would work fine in text format.</p>
+</div>
+<div class="paragraph">
+<p>The <code>binary</code> file format consists of a file header, zero or more tuples containing the row data, and a file trailer. Headers and data are in network byte order.</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>File Header</strong></dt>
+<dd>
+<p>The file header consists of 15 bytes of fixed fields, followed by a variable-length header extension area.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>The fixed fields are:</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Signature</strong></dt>
+<dd>
+<p>11-byte sequence PGCOPY\n\377\r\n\0 — note that the zero byte is a required part of the signature. (The signature is designed to allow easy identification of files that have been munged by a non-8-bit-clean transfer. This signature will be changed by end-of-line-translation filters, dropped zero bytes, dropped high bits, or parity changes.)</p>
+</dd>
+<dt class="hdlist1"><strong>Flags field</strong></dt>
+<dd>
+<p>32-bit integer bit mask to denote important aspects of the file format. Bits are numbered from 0 (LSB) to 31 (MSB). Note that this field is stored in network byte order (most significant byte first), as are all the integer fields used in the file format. Bits 16–31 are reserved to denote critical file format issues; a reader should abort if it finds an unexpected bit set in this range. Bits 0–15 are reserved to signal backwards-compatible format issues; a reader should simply ignore any unexpected bits set in this range. Currently only one flag bit is defined, and the rest must be zero:</p>
+</dd>
+<dt class="hdlist1"><strong>Bit 16</strong></dt>
+<dd>
+<p>If 1, OIDs are included in the data; if 0, not. Oid system columns are not supported in IvorySQL anymore, but the format still contains the indicator.</p>
+</dd>
+<dt class="hdlist1"><strong>Header extension area length</strong></dt>
+<dd>
+<p>32-bit integer, length in bytes of remainder of header, not including self. Currently, this is zero, and the first tuple follows immediately. Future changes to the format might allow additional data to be present in the header. A reader should silently skip over any header extension data it does not know what to do with.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>​The header extension area is envisioned to contain a sequence of self-identifying chunks. The flags field is not intended to tell readers what is in the extension area. Specific design of header extension contents is left for a later release.</p>
+</div>
+<div class="paragraph">
+<p>This design allows for both backwards-compatible header additions (add header extension chunks, or set low-order flag bits) and non-backwards-compatible changes (set high-order flag bits to signal such changes, and add supporting data to the extension area if needed).</p>
+</div>
+<div class="dlist">
+<dl>
+<dt class="hdlist1"><strong>Tuples</strong></dt>
+<dd>
+<p>Each tuple begins with a 16-bit integer count of the number of fields in the tuple. (Presently, all tuples in a table will have the same count, but that might not always be true.) Then, repeated for each field in the tuple, there is a 32-bit length word followed by that many bytes of field data. (The length word does not include itself, and can be zero.) As a special case, -1 indicates a NULL field value. No value bytes follow in the NULL case.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>​    There is no alignment padding or any other extra data between fields.</p>
+</div>
+<div class="paragraph">
+<p>Presently, all data values in a binary-format file are assumed to be in binary format (format code one). It is anticipated that a future extension might add a header field that allows per-column format codes to be specified.</p>
+</div>
+<div class="paragraph">
+<p>To determine the appropriate binary format for the actual tuple data you should consult the PostgreSQL source, in particular the <code>*send</code> and <code>*recv</code> functions for each column&#8217;s data type (typically these functions are found in the <code>src/backend/utils/adt/</code> directory of the source distribution).</p>
+</div>
+<div class="paragraph">
+<p>If OIDs are included in the file, the OID field immediately follows the field-count word. It is a normal field except that it&#8217;s not included in the field-count. Note that oid system columns are not supported in current versions of IvorySQL.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="file-trailer"><a class="anchor" href="#file-trailer"></a>8.4.4. File Trailer</h4>
+<div class="paragraph">
+<p>The file trailer consists of a 16-bit integer word containing -1. This is easily distinguished from a tuple&#8217;s field-count word.</p>
+</div>
+<div class="paragraph">
+<p>​A reader should report an error if a field-count word is neither -1 nor the expected number of columns. This provides an extra check against somehow getting out of sync with the data.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="examples"><a class="anchor" href="#examples"></a>8.5. Examples</h3>
+<div class="paragraph">
+<p>The following example copies a table to the client using the vertical bar (<code>|</code>) as the field delimiter:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>COPY country TO STDOUT (DELIMITER '|');</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    To copy data from a file into the <code>country</code> table:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>COPY country TO STDOUT (DELIMITER '|');</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>To copy into a file just the countries whose names start with 'A':</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>COPY (SELECT * FROM country WHERE country_name LIKE 'A%') TO '/usr1/proj/bray/sql/a_list_countries.copy';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    To copy into a compressed file, you can pipe the output through an external compression program:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>COPY country TO PROGRAM 'gzip &gt; /usr1/proj/bray/sql/country_data.gz';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    Here is a sample of data suitable for copying into a table from <code>STDIN</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>AF      AFGHANISTAN
+AL      ALBANIA
+DZ      ALGERIA
+ZM      ZAMBIA
+ZW      ZIMBABWE</pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note that the white space on each line is actually a tab character.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>​    The following is the same data, output in binary format. The data is shown after filtering through the Unix utility <code>od -c</code>. The table has three columns; the first has type <code>char(2)</code>, the second has type <code>text</code>, and the third has type <code>integer</code>. All the rows have a null value in the third column.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>0000000   P   G   C   O   P   Y  \n 377  \r  \n  \0  \0  \0  \0  \0  \0
+0000020  \0  \0  \0  \0 003  \0  \0  \0 002   A   F  \0  \0  \0 013   A
+0000040   F   G   H   A   N   I   S   T   A   N 377 377 377 377  \0 003
+0000060  \0  \0  \0 002   A   L  \0  \0  \0 007   A   L   B   A   N   I
+0000100   A 377 377 377 377  \0 003  \0  \0  \0 002   D   Z  \0  \0  \0
+0000120 007   A   L   G   E   R   I   A 377 377 377 377  \0 003  \0  \0
+0000140  \0 002   Z   M  \0  \0  \0 006   Z   A   M   B   I   A 377 377
+0000160 377 377  \0 003  \0  \0  \0 002   Z   W  \0  \0  \0  \b   Z   I
+0000200   M   B   A   B   W   E 377 377 377 377 377 377</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The remaining details can see <a href="https://www.postgresql.org/docs/15/sql-copy.html">doc</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="performance-tips"><a class="anchor" href="#performance-tips"></a>9. Performance Tips</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Query performance can be affected by a variety of factors. Some of these factors can be controlled by the user, while others are fundamentals of the system&#8217;s lower-level design.</p>
+</div>
+<div class="sect2">
+<h3 id="using-explain"><a class="anchor" href="#using-explain"></a>9.1. Using EXPLAIN</h3>
+<div class="paragraph">
+<p>IvorySQL devises a <strong>query plan</strong> for each query it receives. Choosing the right plan to match the query structure and the properties of the data is absolutely critical for good performance, so the system includes a complex <strong>planner</strong> that tries to choose good plans. You can use the <a href="https://www.postgresql.org/docs/15/sql-explain.html"><code>EXPLAIN</code></a> command to see what query plan the planner creates for any query. Plan-reading is an art that requires some experience to master, but this section attempts to cover the basics.</p>
+</div>
+<div class="paragraph">
+<p>​    The examples use `EXPLAIN&#8217;s default “text” output format, which is compact and convenient for humans to read. If you want to feed `EXPLAIN&#8217;s output to a program for further analysis, you should use one of its machine-readable output formats (XML, JSON, or YAML) instead.</p>
+</div>
+<div class="sect3">
+<h4 id="explain-basics"><a class="anchor" href="#explain-basics"></a>9.1.1. EXPLAIN Basics</h4>
+<div class="paragraph">
+<p>The structure of a query plan is a tree of <strong>plan nodes</strong>. Nodes at the bottom level of the tree are scan nodes: they return raw rows from a table. There are different types of scan nodes for different table access methods: sequential scans, index scans, and bitmap index scans. There are also non-table row sources, such as <code>VALUES</code> clauses and set-returning functions in <code>FROM</code>, which have their own scan node types. If the query requires joining, aggregation, sorting, or other operations on the raw rows, then there will be additional nodes above the scan nodes to perform these operations. Again, there is usually more than one possible way to do these operations, so different node types can appear here too. The output of <code>EXPLAIN</code> has one line for each node in the plan tree, showing the basic node type plus the cost estimates that the planner made for the execution of that plan node. Additional lines might appear, indented from the node&#8217;s summary line, to show additional properties of the node. The very first line (the summary line for the topmost node) has the estimated total execution cost for the plan; it is this number that the planner seeks to minimize.</p>
+</div>
+<div class="paragraph">
+<p>Here is a trivial example, just to show what the output looks like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT * FROM tenk1;
+
+                         QUERY PLAN
+-------------------------------------------------------------
+ Seq Scan on tenk1  (cost=0.00..458.00 rows=10000 width=244)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since this query has no <code>WHERE</code> clause, it must scan all the rows of the table, so the planner has chosen to use a simple sequential scan plan. The numbers that are quoted in parentheses are (left to right):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Estimated start-up cost. This is the time expended before the output phase can begin, e.g., time to do the sorting in a sort node.</p>
+</li>
+<li>
+<p>Estimated total cost. This is stated on the assumption that the plan node is run to completion, i.e., all available rows are retrieved. In practice a node&#8217;s parent node might stop short of reading all available rows (see the <code>LIMIT</code> example below).</p>
+</li>
+<li>
+<p>Estimated number of rows output by this plan node. Again, the node is assumed to be run to completion.</p>
+</li>
+<li>
+<p>Estimated average width of rows output by this plan node (in bytes).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>​    The costs are measured in arbitrary units determined by the planner&#8217;s cost parameters .Traditional practice is to measure the costs in units of disk page fetches; that is, <a href="https://www.postgresql.org/docs/15/runtime-config-query.html#GUC-SEQ-PAGE-COST">seq_page_cost</a> is conventionally set to <code>1.0</code> and the other cost parameters are set relative to that. The examples in this section are run with the default cost parameters.</p>
+</div>
+<div class="paragraph">
+<p>​    It&#8217;s important to understand that the cost of an upper-level node includes the cost of all its child nodes. It&#8217;s also important to realize that the cost only reflects things that the planner cares about. In particular, the cost does not consider the time spent transmitting result rows to the client, which could be an important factor in the real elapsed time; but the planner ignores it because it cannot change it by altering the plan. (Every correct plan will output the same row set, we trust.)</p>
+</div>
+<div class="paragraph">
+<p>The <code>rows</code> value is a little tricky because it is not the number of rows processed or scanned by the plan node, but rather the number emitted by the node. This is often less than the number scanned, as a result of filtering by any <code>WHERE</code>-clause conditions that are being applied at the node. Ideally the top-level rows estimate will approximate the number of rows actually returned, updated, or deleted by the query.</p>
+</div>
+<div class="paragraph">
+<p>Returning to our example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT * FROM tenk1;
+
+                         QUERY PLAN
+-------------------------------------------------------------
+ Seq Scan on tenk1  (cost=0.00..458.00 rows=10000 width=244)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    These numbers are derived very straightforwardly. If you do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT relpages, reltuples FROM pg_class WHERE relname = 'tenk1';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    you will find that <code>tenk1</code> has 358 disk pages and 10000 rows. The estimated cost is computed as (disk pages read * <a href="https://www.postgresql.org/docs/15/runtime-config-query.html#GUC-SEQ-PAGE-COST">seq_page_cost</a>) + (rows scanned * <a href="https://www.postgresql.org/docs/15/runtime-config-query.html#GUC-CPU-TUPLE-COST">cpu_tuple_cost</a>). By default, <code>seq_page_cost</code> is 1.0 and <code>cpu_tuple_cost</code> is 0.01, so the estimated cost is (358 * 1.0) + (10000 * 0.01) = 458.</p>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s modify the query to add a <code>WHERE</code> condition:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 7000;
+
+                         QUERY PLAN
+------------------------------------------------------------
+ Seq Scan on tenk1  (cost=0.00..483.00 rows=7001 width=244)
+   Filter: (unique1 &lt; 7000)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    Notice that the <code>EXPLAIN</code> output shows the <code>WHERE</code> clause being applied as a “filter” condition attached to the Seq Scan plan node. This means that the plan node checks the condition for each row it scans, and outputs only the ones that pass the condition. The estimate of output rows has been reduced because of the <code>WHERE</code> clause. However, the scan will still have to visit all 10000 rows, so the cost hasn&#8217;t decreased; in fact it has gone up a bit (by 10000 * <a href="https://www.postgresql.org/docs/15/runtime-config-query.html#GUC-CPU-OPERATOR-COST">cpu_operator_cost</a>, to be exact) to reflect the extra CPU time spent checking the <code>WHERE</code> condition.</p>
+</div>
+<div class="paragraph">
+<p>The actual number of rows this query would select is 7000, but the <code>rows</code> estimate is only approximate. If you try to duplicate this experiment, you will probably get a slightly different estimate; moreover, it can change after each <code>ANALYZE</code> command, because the statistics produced by <code>ANALYZE</code> are taken from a randomized sample of the table.</p>
+</div>
+<div class="paragraph">
+<p>Now, let&#8217;s make the condition more restrictive:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100;
+
+                                  QUERY PLAN
+-------------------------------------------------------------------​-----------
+ Bitmap Heap Scan on tenk1  (cost=5.07..229.20 rows=101 width=244)
+   Recheck Cond: (unique1 &lt; 100)
+   -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0)
+         Index Cond: (unique1 &lt; 100)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    Here the planner has decided to use a two-step plan: the child plan node visits an index to find the locations of rows matching the index condition, and then the upper plan node actually fetches those rows from the table itself. Fetching rows separately is much more expensive than reading them sequentially, but because not all the pages of the table have to be visited, this is still cheaper than a sequential scan. (The reason for using two plan levels is that the upper plan node sorts the row locations identified by the index into physical order before reading them, to minimize the cost of separate fetches. The “bitmap” mentioned in the node names is the mechanism that does the sorting.)</p>
+</div>
+<div class="paragraph">
+<p>Now let&#8217;s add another condition to the <code>WHERE</code> clause:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND stringu1 = 'xxx';
+
+                                  QUERY PLAN
+-------------------------------------------------------------------​-----------
+ Bitmap Heap Scan on tenk1  (cost=5.04..229.43 rows=1 width=244)
+   Recheck Cond: (unique1 &lt; 100)
+   Filter: (stringu1 = 'xxx'::name)
+   -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0)
+         Index Cond: (unique1 &lt; 100)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    The added condition <code>stringu1 = 'xxx'</code> reduces the output row count estimate, but not the cost because we still have to visit the same set of rows. Notice that the <code>stringu1</code> clause cannot be applied as an index condition, since this index is only on the <code>unique1</code> column. Instead it is applied as a filter on the rows retrieved by the index. Thus the cost has actually gone up slightly to reflect this extra checking.</p>
+</div>
+<div class="paragraph">
+<p>In some cases the planner will prefer a “simple” index scan plan:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 = 42;
+
+                                 QUERY PLAN
+-------------------------------------------------------------------​-----------
+ Index Scan using tenk1_unique1 on tenk1  (cost=0.29..8.30 rows=1 width=244)
+   Index Cond: (unique1 = 42)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    In this type of plan the table rows are fetched in index order, which makes them even more expensive to read, but there are so few that the extra cost of sorting the row locations is not worth it. You&#8217;ll most often see this plan type for queries that fetch just a single row. It&#8217;s also often used for queries that have an <code>ORDER BY</code> condition that matches the index order, because then no extra sorting step is needed to satisfy the <code>ORDER BY</code>. In this example, adding <code>ORDER BY unique1</code> would use the same plan because the index already implicitly provides the requested ordering.</p>
+</div>
+<div class="paragraph">
+<p>The planner may implement an <code>ORDER BY</code> clause in several ways. The above example shows that such an ordering clause may be implemented implicitly. The planner may also add an explicit <code>sort</code> step:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT * FROM tenk1 ORDER BY unique1;
+                            QUERY PLAN
+-------------------------------------------------------------------
+ Sort  (cost=1109.39..1134.39 rows=10000 width=244)
+   Sort Key: unique1
+   -&gt;  Seq Scan on tenk1  (cost=0.00..445.00 rows=10000 width=244)</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>If a part of the plan guarantees an ordering on a prefix of the required sort keys, then the planner may instead decide to use an `incremental sort` step:</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT * FROM tenk1 ORDER BY four, ten LIMIT 100;
+                                              QUERY PLAN
+-------------------------------------------------------------------​-----------------------------------
+ Limit  (cost=521.06..538.05 rows=100 width=244)
+   -&gt;  Incremental Sort  (cost=521.06..2220.95 rows=10000 width=244)
+         Sort Key: four, ten
+         Presorted Key: four
+         -&gt;  Index Scan using index_tenk1_on_four on tenk1  (cost=0.29..1510.08 rows=10000 width=244)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    Compared to regular sorts, sorting incrementally allows returning tuples before the entire result set has been sorted, which particularly enables optimizations with <code>LIMIT</code> queries. It may also reduce memory usage and the likelihood of spilling sorts to disk, but it comes at the cost of the increased overhead of splitting the result set into multiple sorting batches.</p>
+</div>
+<div class="paragraph">
+<p>If there are separate indexes on several of the columns referenced in <code>WHERE</code>, the planner might choose to use an AND or OR combination of the indexes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000;
+
+                                     QUERY PLAN
+-------------------------------------------------------------------​------------------
+ Bitmap Heap Scan on tenk1  (cost=25.08..60.21 rows=10 width=244)
+   Recheck Cond: ((unique1 &lt; 100) AND (unique2 &gt; 9000))
+   -&gt;  BitmapAnd  (cost=25.08..25.08 rows=10 width=0)
+         -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0)
+               Index Cond: (unique1 &lt; 100)
+         -&gt;  Bitmap Index Scan on tenk1_unique2  (cost=0.00..19.78 rows=999 width=0)
+               Index Cond: (unique2 &gt; 9000)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    But this requires visiting both indexes, so it&#8217;s not necessarily a win compared to using just one index and treating the other condition as a filter. If you vary the ranges involved you&#8217;ll see the plan change accordingly.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example showing the effects of <code>LIMIT</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000 LIMIT 2;
+
+                                     QUERY PLAN
+-------------------------------------------------------------------​------------------
+ Limit  (cost=0.29..14.48 rows=2 width=244)
+   -&gt;  Index Scan using tenk1_unique2 on tenk1  (cost=0.29..71.27 rows=10 width=244)
+         Index Cond: (unique2 &gt; 9000)
+         Filter: (unique1 &lt; 100)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    This is the same query as above, but we added a <code>LIMIT</code> so that not all the rows need be retrieved, and the planner changed its mind about what to do. Notice that the total cost and row count of the Index Scan node are shown as if it were run to completion. However, the Limit node is expected to stop after retrieving only a fifth of those rows, so its total cost is only a fifth as much, and that&#8217;s the actual estimated cost of the query. This plan is preferred over adding a Limit node to the previous plan because the Limit could not avoid paying the startup cost of the bitmap scan, so the total cost would be something over 25 units with that approach.</p>
+</div>
+<div class="paragraph">
+<p>Let&#8217;s try joining two tables, using the columns we have been discussing:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT *
+FROM tenk1 t1, tenk2 t2
+WHERE t1.unique1 &lt; 10 AND t1.unique2 = t2.unique2;
+
+                                      QUERY PLAN
+-------------------------------------------------------------------​------------------
+ Nested Loop  (cost=4.65..118.62 rows=10 width=488)
+   -&gt;  Bitmap Heap Scan on tenk1 t1  (cost=4.36..39.47 rows=10 width=244)
+         Recheck Cond: (unique1 &lt; 10)
+         -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..4.36 rows=10 width=0)
+               Index Cond: (unique1 &lt; 10)
+   -&gt;  Index Scan using tenk2_unique2 on tenk2 t2  (cost=0.29..7.91 rows=1 width=244)
+         Index Cond: (unique2 = t1.unique2)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    In this plan, we have a nested-loop join node with two table scans as inputs, or children. The indentation of the node summary lines reflects the plan tree structure. The join&#8217;s first, or “outer”, child is a bitmap scan similar to those we saw before. Its cost and row count are the same as we&#8217;d get from <code>SELECT &#8230;&#8203; WHERE unique1 &lt; 10</code> because we are applying the <code>WHERE</code> clause <code>unique1 &lt; 10</code> at that node. The <code>t1.unique2 = t2.unique2</code> clause is not relevant yet, so it doesn&#8217;t affect the row count of the outer scan. The nested-loop join node will run its second, or “inner” child once for each row obtained from the outer child. Column values from the current outer row can be plugged into the inner scan; here, the <code>t1.unique2</code> value from the outer row is available, so we get a plan and costs similar to what we saw above for a simple <code>SELECT &#8230;&#8203; WHERE t2.unique2 = <strong>`constant</code></strong>` case. (The estimated cost is actually a bit lower than what was seen above, as a result of caching that&#8217;s expected to occur during the repeated index scans on <code>t2</code>.) The costs of the loop node are then set on the basis of the cost of the outer scan, plus one repetition of the inner scan for each outer row (10 * 7.91, here), plus a little CPU time for join processing.</p>
+</div>
+<div class="paragraph">
+<p>In this example the join&#8217;s output row count is the same as the product of the two scans' row counts, but that&#8217;s not true in all cases because there can be additional <code>WHERE</code> clauses that mention both tables and so can only be applied at the join point, not to either input scan. Here&#8217;s an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT *
+FROM tenk1 t1, tenk2 t2
+WHERE t1.unique1 &lt; 10 AND t2.unique2 &lt; 10 AND t1.hundred &lt; t2.hundred;
+
+                                         QUERY PLAN
+-------------------------------------------------------------------​------------------
+ Nested Loop  (cost=4.65..49.46 rows=33 width=488)
+   Join Filter: (t1.hundred &lt; t2.hundred)
+   -&gt;  Bitmap Heap Scan on tenk1 t1  (cost=4.36..39.47 rows=10 width=244)
+         Recheck Cond: (unique1 &lt; 10)
+         -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..4.36 rows=10 width=0)
+               Index Cond: (unique1 &lt; 10)
+   -&gt;  Materialize  (cost=0.29..8.51 rows=10 width=244)
+         -&gt;  Index Scan using tenk2_unique2 on tenk2 t2  (cost=0.29..8.46 rows=10 width=244)
+               Index Cond: (unique2 &lt; 10)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    The condition <code>t1.hundred &lt; t2.hundred</code> can&#8217;t be tested in the <code>tenk2_unique2</code> index, so it&#8217;s applied at the join node. This reduces the estimated output row count of the join node, but does not change either input scan.</p>
+</div>
+<div class="paragraph">
+<p>Notice that here the planner has chosen to “materialize” the inner relation of the join, by putting a Materialize plan node atop it. This means that the <code>t2</code> index scan will be done just once, even though the nested-loop join node needs to read that data ten times, once for each row from the outer relation. The Materialize node saves the data in memory as it&#8217;s read, and then returns the data from memory on each subsequent pass.</p>
+</div>
+<div class="paragraph">
+<p>When dealing with outer joins, you might see join plan nodes with both “Join Filter” and plain “Filter” conditions attached. Join Filter conditions come from the outer join&#8217;s <code>ON</code> clause, so a row that fails the Join Filter condition could still get emitted as a null-extended row. But a plain Filter condition is applied after the outer-join rules and so acts to remove rows unconditionally. In an inner join there is no semantic difference between these types of filters.</p>
+</div>
+<div class="paragraph">
+<p>If we change the query&#8217;s selectivity a bit, we might get a very different join plan:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT *
+FROM tenk1 t1, tenk2 t2
+WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
+
+                                        QUERY PLAN
+-------------------------------------------------------------------​------------------
+ Hash Join  (cost=230.47..713.98 rows=101 width=488)
+   Hash Cond: (t2.unique2 = t1.unique2)
+   -&gt;  Seq Scan on tenk2 t2  (cost=0.00..445.00 rows=10000 width=244)
+   -&gt;  Hash  (cost=229.20..229.20 rows=101 width=244)
+         -&gt;  Bitmap Heap Scan on tenk1 t1  (cost=5.07..229.20 rows=101 width=244)
+               Recheck Cond: (unique1 &lt; 100)
+               -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0)
+                     Index Cond: (unique1 &lt; 100)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here, the planner has chosen to use a hash join, in which rows of one table are entered into an in-memory hash table, after which the other table is scanned and the hash table is probed for matches to each row. Again note how the indentation reflects the plan structure: the bitmap scan on <code>tenk1</code> is the input to the Hash node, which constructs the hash table. That&#8217;s then returned to the Hash Join node, which reads rows from its outer child plan and searches the hash table for each one.</p>
+</div>
+<div class="paragraph">
+<p>Another possible type of join is a merge join, illustrated here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN SELECT *
+FROM tenk1 t1, onek t2
+WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
+
+                                        QUERY PLAN
+-------------------------------------------------------------------​------------------
+ Merge Join  (cost=198.11..268.19 rows=10 width=488)
+   Merge Cond: (t1.unique2 = t2.unique2)
+   -&gt;  Index Scan using tenk1_unique2 on tenk1 t1  (cost=0.29..656.28 rows=101 width=244)
+         Filter: (unique1 &lt; 100)
+   -&gt;  Sort  (cost=197.83..200.33 rows=1000 width=244)
+         Sort Key: t2.unique2
+         -&gt;  Seq Scan on onek t2  (cost=0.00..148.00 rows=1000 width=244)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    Merge join requires its input data to be sorted on the join keys. In this plan the <code>tenk1</code> data is sorted by using an index scan to visit the rows in the correct order, but a sequential scan and sort is preferred for <code>onek</code>, because there are many more rows to be visited in that table. (Sequential-scan-and-sort frequently beats an index scan for sorting many rows, because of the nonsequential disk access required by the index scan.)</p>
+</div>
+<div class="paragraph">
+<p>One way to look at variant plans is to force the planner to disregard whatever strategy it thought was the cheapest, using the enable/disable flags .For example, if we&#8217;re unconvinced that sequential-scan-and-sort is the best way to deal with table <code>onek</code> in the previous example, we could try</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SET enable_sort = off;
+
+EXPLAIN SELECT *
+FROM tenk1 t1, onek t2
+WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
+
+                                        QUERY PLAN
+-------------------------------------------------------------------​-----------------------
+ Merge Join  (cost=0.56..292.65 rows=10 width=488)
+   Merge Cond: (t1.unique2 = t2.unique2)
+   -&gt;  Index Scan using tenk1_unique2 on tenk1 t1  (cost=0.29..656.28 rows=101 width=244)
+         Filter: (unique1 &lt; 100)
+   -&gt;  Index Scan using onek_unique2 on onek t2  (cost=0.28..224.79 rows=1000 width=244)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    which shows that the planner thinks that sorting <code>onek</code> by index-scanning is about 12% more expensive than sequential-scan-and-sort. Of course, the next question is whether it&#8217;s right about that. We can investigate that using <code>EXPLAIN ANALYZE</code>, as discussed below.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="explain-analyze"><a class="anchor" href="#explain-analyze"></a>9.1.2. EXPLAIN ANALYZE</h4>
+<div class="paragraph">
+<p>It is possible to check the accuracy of the planner&#8217;s estimates by using <code>EXPLAIN&#8217;s `ANALYZE</code> option. With this option, <code>EXPLAIN</code> actually executes the query, and then displays the true row counts and true run time accumulated within each plan node, along with the same estimates that a plain <code>EXPLAIN</code> shows. For example, we might get a result like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN ANALYZE SELECT *
+FROM tenk1 t1, tenk2 t2
+WHERE t1.unique1 &lt; 10 AND t1.unique2 = t2.unique2;
+
+                                                           QUERY PLAN
+-------------------------------------------------------------------​--------------------------------------------------------------
+ Nested Loop  (cost=4.65..118.62 rows=10 width=488) (actual time=0.128..0.377 rows=10 loops=1)
+   -&gt;  Bitmap Heap Scan on tenk1 t1  (cost=4.36..39.47 rows=10 width=244) (actual time=0.057..0.121 rows=10 loops=1)
+         Recheck Cond: (unique1 &lt; 10)
+         -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..4.36 rows=10 width=0) (actual time=0.024..0.024 rows=10 loops=1)
+               Index Cond: (unique1 &lt; 10)
+   -&gt;  Index Scan using tenk2_unique2 on tenk2 t2  (cost=0.29..7.91 rows=1 width=244) (actual time=0.021..0.022 rows=1 loops=10)
+         Index Cond: (unique2 = t1.unique2)
+ Planning time: 0.181 ms
+ Execution time: 0.501 ms</pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note that the “actual time” values are in milliseconds of real time, whereas the <code>cost</code> estimates are expressed in arbitrary units; so they are unlikely to match up. The thing that&#8217;s usually most important to look for is whether the estimated row counts are reasonably close to reality. In this example the estimates were all dead-on, but that&#8217;s quite unusual in practice.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>​</p>
+</div>
+<div class="paragraph">
+<p>In some query plans, it is possible for a subplan node to be executed more than once. For example, the inner index scan will be executed once per outer row in the above nested-loop plan. In such cases, the <code>loops</code> value reports the total number of executions of the node, and the actual time and rows values shown are averages per-execution. This is done to make the numbers comparable with the way that the cost estimates are shown. Multiply by the <code>loops</code> value to get the total time actually spent in the node. In the above example, we spent a total of 0.220 milliseconds executing the index scans on <code>tenk2</code>.</p>
+</div>
+<div class="paragraph">
+<p>In some cases <code>EXPLAIN ANALYZE</code> shows additional execution statistics beyond the plan node execution times and row counts. For example, Sort and Hash nodes provide extra information:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN ANALYZE SELECT *
+FROM tenk1 t1, tenk2 t2
+WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2 ORDER BY t1.fivethous;
+
+                                                                 QUERY PLAN
+-------------------------------------------------------------------​-------------------------------------------------------------------​------
+ Sort  (cost=717.34..717.59 rows=101 width=488) (actual time=7.761..7.774 rows=100 loops=1)
+   Sort Key: t1.fivethous
+   Sort Method: quicksort  Memory: 77kB
+   -&gt;  Hash Join  (cost=230.47..713.98 rows=101 width=488) (actual time=0.711..7.427 rows=100 loops=1)
+         Hash Cond: (t2.unique2 = t1.unique2)
+         -&gt;  Seq Scan on tenk2 t2  (cost=0.00..445.00 rows=10000 width=244) (actual time=0.007..2.583 rows=10000 loops=1)
+         -&gt;  Hash  (cost=229.20..229.20 rows=101 width=244) (actual time=0.659..0.659 rows=100 loops=1)
+               Buckets: 1024  Batches: 1  Memory Usage: 28kB
+               -&gt;  Bitmap Heap Scan on tenk1 t1  (cost=5.07..229.20 rows=101 width=244) (actual time=0.080..0.526 rows=100 loops=1)
+                     Recheck Cond: (unique1 &lt; 100)
+                     -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0) (actual time=0.049..0.049 rows=100 loops=1)
+                           Index Cond: (unique1 &lt; 100)
+ Planning time: 0.194 ms
+ Execution time: 8.008 ms</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    The Sort node shows the sort method used (in particular, whether the sort was in-memory or on-disk) and the amount of memory or disk space needed. The Hash node shows the number of hash buckets and batches as well as the peak amount of memory used for the hash table. (If the number of batches exceeds one, there will also be disk space usage involved, but that is not shown.)</p>
+</div>
+<div class="paragraph">
+<p>Another type of extra information is the number of rows removed by a filter condition:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN ANALYZE SELECT * FROM tenk1 WHERE ten &lt; 7;
+
+                                               QUERY PLAN
+-------------------------------------------------------------------​--------------------------------------
+ Seq Scan on tenk1  (cost=0.00..483.00 rows=7000 width=244) (actual time=0.016..5.107 rows=7000 loops=1)
+   Filter: (ten &lt; 7)
+   Rows Removed by Filter: 3000
+ Planning time: 0.083 ms
+ Execution time: 5.905 ms</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These counts can be particularly valuable for filter conditions applied at join nodes. The “Rows Removed” line only appears when at least one scanned row, or potential join pair in the case of a join node, is rejected by the filter condition.</p>
+</div>
+<div class="paragraph">
+<p>A case similar to filter conditions occurs with “lossy” index scans. For example, consider this search for polygons containing a specific point:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN ANALYZE SELECT * FROM polygon_tbl WHERE f1 @&gt; polygon '(0.5,2.0)';
+
+                                              QUERY PLAN
+-------------------------------------------------------------------​-----------------------------------
+ Seq Scan on polygon_tbl  (cost=0.00..1.05 rows=1 width=32) (actual time=0.044..0.044 rows=0 loops=1)
+   Filter: (f1 @&gt; '((0.5,2))'::polygon)
+   Rows Removed by Filter: 4
+ Planning time: 0.040 ms
+ Execution time: 0.083 ms</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>The planner thinks (quite correctly) that this sample table is too small to bother with an index scan, so we have a plain sequential scan in which all the rows got rejected by the filter condition. But if we force an index scan to be used, we see:</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SET enable_seqscan TO off;
+
+EXPLAIN ANALYZE SELECT * FROM polygon_tbl WHERE f1 @&gt; polygon '(0.5,2.0)';
+
+                                                        QUERY PLAN
+-------------------------------------------------------------------​-------------------------------------------------------
+ Index Scan using gpolygonind on polygon_tbl  (cost=0.13..8.15 rows=1 width=32) (actual time=0.062..0.062 rows=0 loops=1)
+   Index Cond: (f1 @&gt; '((0.5,2))'::polygon)
+   Rows Removed by Index Recheck: 1
+ Planning time: 0.034 ms
+ Execution time: 0.144 ms</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    Here we can see that the index returned one candidate row, which was then rejected by a recheck of the index condition. This happens because a GiST index is “lossy” for polygon containment tests: it actually returns the rows with polygons that overlap the target, and then we have to do the exact containment test on those rows.</p>
+</div>
+<div class="paragraph">
+<p><code>EXPLAIN</code> has a <code>BUFFERS</code> option that can be used with <code>ANALYZE</code> to get even more run time statistics:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000;
+
+                                                           QUERY PLAN
+-------------------------------------------------------------------​--------------------------------------------------------------
+ Bitmap Heap Scan on tenk1  (cost=25.08..60.21 rows=10 width=244) (actual time=0.323..0.342 rows=10 loops=1)
+   Recheck Cond: ((unique1 &lt; 100) AND (unique2 &gt; 9000))
+   Buffers: shared hit=15
+   -&gt;  BitmapAnd  (cost=25.08..25.08 rows=10 width=0) (actual time=0.309..0.309 rows=0 loops=1)
+         Buffers: shared hit=7
+         -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0) (actual time=0.043..0.043 rows=100 loops=1)
+               Index Cond: (unique1 &lt; 100)
+               Buffers: shared hit=2
+         -&gt;  Bitmap Index Scan on tenk1_unique2  (cost=0.00..19.78 rows=999 width=0) (actual time=0.227..0.227 rows=999 loops=1)
+               Index Cond: (unique2 &gt; 9000)
+               Buffers: shared hit=5
+ Planning time: 0.088 ms
+ Execution time: 0.423 ms</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    The numbers provided by <code>BUFFERS</code> help to identify which parts of the query are the most I/O-intensive.</p>
+</div>
+<div class="paragraph">
+<p>Keep in mind that because <code>EXPLAIN ANALYZE</code> actually runs the query, any side-effects will happen as usual, even though whatever results the query might output are discarded in favor of printing the <code>EXPLAIN</code> data. If you want to analyze a data-modifying query without changing your tables, you can roll the command back afterwards, for example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>BEGIN;
+
+EXPLAIN ANALYZE UPDATE tenk1 SET hundred = hundred + 1 WHERE unique1 &lt; 100;
+
+                                                           QUERY PLAN
+-------------------------------------------------------------------​-------------------------------------------------------------
+ Update on tenk1  (cost=5.07..229.46 rows=101 width=250) (actual time=14.628..14.628 rows=0 loops=1)
+   -&gt;  Bitmap Heap Scan on tenk1  (cost=5.07..229.46 rows=101 width=250) (actual time=0.101..0.439 rows=100 loops=1)
+         Recheck Cond: (unique1 &lt; 100)
+         -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0) (actual time=0.043..0.043 rows=100 loops=1)
+               Index Cond: (unique1 &lt; 100)
+ Planning time: 0.079 ms
+ Execution time: 14.727 ms
+
+ROLLBACK;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    As seen in this example, when the query is an <code>INSERT</code>, <code>UPDATE</code>, or <code>DELETE</code> command, the actual work of applying the table changes is done by a top-level Insert, Update, or Delete plan node. The plan nodes underneath this node perform the work of locating the old rows and/or computing the new data. So above, we see the same sort of bitmap table scan we&#8217;ve seen already, and its output is fed to an Update node that stores the updated rows. It&#8217;s worth noting that although the data-modifying node can take a considerable amount of run time (here, it&#8217;s consuming the lion&#8217;s share of the time), the planner does not currently add anything to the cost estimates to account for that work. That&#8217;s because the work to be done is the same for every correct query plan, so it doesn&#8217;t affect planning decisions.</p>
+</div>
+<div class="paragraph">
+<p>When an <code>UPDATE</code> or <code>DELETE</code> command affects an inheritance hierarchy, the output might look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN UPDATE parent SET f2 = f2 + 1 WHERE f1 = 101;
+                                    QUERY PLAN
+-------------------------------------------------------------------​----------------
+ Update on parent  (cost=0.00..24.53 rows=4 width=14)
+   Update on parent
+   Update on child1
+   Update on child2
+   Update on child3
+   -&gt;  Seq Scan on parent  (cost=0.00..0.00 rows=1 width=14)
+         Filter: (f1 = 101)
+   -&gt;  Index Scan using child1_f1_key on child1  (cost=0.15..8.17 rows=1 width=14)
+         Index Cond: (f1 = 101)
+   -&gt;  Index Scan using child2_f1_key on child2  (cost=0.15..8.17 rows=1 width=14)
+         Index Cond: (f1 = 101)
+   -&gt;  Index Scan using child3_f1_key on child3  (cost=0.15..8.17 rows=1 width=14)
+         Index Cond: (f1 = 101)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    In this example the Update node needs to consider three child tables as well as the originally-mentioned parent table. So there are four input scanning subplans, one per table. For clarity, the Update node is annotated to show the specific target tables that will be updated, in the same order as the corresponding subplans.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Planning time</code> shown by <code>EXPLAIN ANALYZE</code> is the time it took to generate the query plan from the parsed query and optimize it. It does not include parsing or rewriting.</p>
+</div>
+<div class="paragraph">
+<p>The <code>Execution time</code> shown by <code>EXPLAIN ANALYZE</code> includes executor start-up and shut-down time, as well as the time to run any triggers that are fired, but it does not include parsing, rewriting, or planning time. Time spent executing <code>BEFORE</code> triggers, if any, is included in the time for the related Insert, Update, or Delete node; but time spent executing <code>AFTER</code> triggers is not counted there because <code>AFTER</code> triggers are fired after completion of the whole plan. The total time spent in each trigger (either <code>BEFORE</code> or <code>AFTER</code>) is also shown separately. Note that deferred constraint triggers will not be executed until end of transaction and are thus not considered at all by <code>EXPLAIN ANALYZE</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="caveats"><a class="anchor" href="#caveats"></a>9.1.3. Caveats</h4>
+<div class="paragraph">
+<p>There are two significant ways in which run times measured by <code>EXPLAIN ANALYZE</code> can deviate from normal execution of the same query. First, since no output rows are delivered to the client, network transmission costs and I/O conversion costs are not included. Second, the measurement overhead added by <code>EXPLAIN ANALYZE</code> can be significant, especially on machines with slow <code>gettimeofday()</code> operating-system calls. You can use the <a href="https://www.postgresql.org/docs/15/pgtesttiming.html">pg_test_timing</a> tool to measure the overhead of timing on your system.</p>
+</div>
+<div class="paragraph">
+<p><code>EXPLAIN</code> results should not be extrapolated to situations much different from the one you are actually testing; for example, results on a toy-sized table cannot be assumed to apply to large tables. The planner&#8217;s cost estimates are not linear and so it might choose a different plan for a larger or smaller table. An extreme example is that on a table that only occupies one disk page, you&#8217;ll nearly always get a sequential scan plan whether indexes are available or not. The planner realizes that it&#8217;s going to take one disk page read to process the table in any case, so there&#8217;s no value in expending additional page reads to look at an index. (We saw this happening in the <code>polygon_tbl</code> example above.)</p>
+</div>
+<div class="paragraph">
+<p>There are cases in which the actual and estimated values won&#8217;t match up well, but nothing is really wrong. One such case occurs when plan node execution is stopped short by a <code>LIMIT</code> or similar effect. For example, in the <code>LIMIT</code> query we used before,</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>EXPLAIN ANALYZE SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000 LIMIT 2;
+
+                                                          QUERY PLAN
+-------------------------------------------------------------------​------------------------------------------------------------
+ Limit  (cost=0.29..14.71 rows=2 width=244) (actual time=0.177..0.249 rows=2 loops=1)
+   -&gt;  Index Scan using tenk1_unique2 on tenk1  (cost=0.29..72.42 rows=10 width=244) (actual time=0.174..0.244 rows=2 loops=1)
+         Index Cond: (unique2 &gt; 9000)
+         Filter: (unique1 &lt; 100)
+         Rows Removed by Filter: 287
+ Planning time: 0.096 ms
+ Execution time: 0.336 ms</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    the estimated cost and row count for the Index Scan node are shown as though it were run to completion. But in reality the Limit node stopped requesting rows after it got two, so the actual row count is only 2 and the run time is less than the cost estimate would suggest. This is not an estimation error, only a discrepancy in the way the estimates and true values are displayed.</p>
+</div>
+<div class="paragraph">
+<p>Merge joins also have measurement artifacts that can confuse the unwary. A merge join will stop reading one input if it&#8217;s exhausted the other input and the next key value in the one input is greater than the last key value of the other input; in such a case there can be no more matches and so no need to scan the rest of the first input. This results in not reading all of one child, with results like those mentioned for <code>LIMIT</code>. Also, if the outer (first) child contains rows with duplicate key values, the inner (second) child is backed up and rescanned for the portion of its rows matching that key value. <code>EXPLAIN ANALYZE</code> counts these repeated emissions of the same inner rows as if they were real additional rows. When there are many outer duplicates, the reported actual row count for the inner child plan node can be significantly larger than the number of rows that are actually in the inner relation.</p>
+</div>
+<div class="paragraph">
+<p>BitmapAnd and BitmapOr nodes always report their actual row counts as zero, due to implementation limitations.</p>
+</div>
+<div class="paragraph">
+<p>Normally, <code>EXPLAIN</code> will display every plan node created by the planner. However, there are cases where the executor can determine that certain nodes need not be executed because they cannot produce any rows, based on parameter values that were not available at planning time. (Currently this can only happen for child nodes of an Append or MergeAppend node that is scanning a partitioned table.) When this happens, those plan nodes are omitted from the <code>EXPLAIN</code> output and a <code>Subplans Removed: <strong>`N</code></strong>` annotation appears instead.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="statistics-used-by-the-planner"><a class="anchor" href="#statistics-used-by-the-planner"></a>9.2. Statistics Used by the Planner</h3>
+<div class="sect3">
+<h4 id="single-column-statistics"><a class="anchor" href="#single-column-statistics"></a>9.2.1. Single-Column Statistics</h4>
+<div class="paragraph">
+<p>As we saw in the previous section, the query planner needs to estimate the number of rows retrieved by a query in order to make good choices of query plans. This section provides a quick look at the statistics that the system uses for these estimates.</p>
+</div>
+<div class="paragraph">
+<p>One component of the statistics is the total number of entries in each table and index, as well as the number of disk blocks occupied by each table and index. This information is kept in the table <a href="https://www.postgresql.org/docs/15/catalog-pg-class.html"><code>pg_class</code></a>, in the columns <code>reltuples</code> and <code>relpages</code>. We can look at it with queries similar to this one:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT relname, relkind, reltuples, relpages
+FROM pg_class
+WHERE relname LIKE 'tenk1%';
+
+       relname        | relkind | reltuples | relpages
+----------------------+---------+-----------+----------
+ tenk1                | r       |     10000 |      358
+ tenk1_hundred        | i       |     10000 |       30
+ tenk1_thous_tenthous | i       |     10000 |       30
+ tenk1_unique1        | i       |     10000 |       30
+ tenk1_unique2        | i       |     10000 |       30
+(5 rows)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    Here we can see that <code>tenk1</code> contains 10000 rows, as do its indexes, but the indexes are (unsurprisingly) much smaller than the table.</p>
+</div>
+<div class="paragraph">
+<p>For efficiency reasons, <code>reltuples</code> and <code>relpages</code> are not updated on-the-fly, and so they usually contain somewhat out-of-date values. They are updated by <code>VACUUM</code>, <code>ANALYZE</code>, and a few DDL commands such as <code>CREATE INDEX</code>. A <code>VACUUM</code> or <code>ANALYZE</code> operation that does not scan the entire table (which is commonly the case) will incrementally update the <code>reltuples</code> count on the basis of the part of the table it did scan, resulting in an approximate value. In any case, the planner will scale the values it finds in <code>pg_class</code> to match the current physical table size, thus obtaining a closer approximation.</p>
+</div>
+<div class="paragraph">
+<p>Most queries retrieve only a fraction of the rows in a table, due to <code>WHERE</code> clauses that restrict the rows to be examined. The planner thus needs to make an estimate of the <strong>selectivity</strong> of <code>WHERE</code> clauses, that is, the fraction of rows that match each condition in the <code>WHERE</code> clause. The information used for this task is stored in the <a href="https://www.postgresql.org/docs/15/catalog-pg-statistic.html"><code>pg_statistic</code></a> system catalog. Entries in <code>pg_statistic</code> are updated by the <code>ANALYZE</code> and <code>VACUUM ANALYZE</code> commands, and are always approximate even when freshly updated.</p>
+</div>
+<div class="paragraph">
+<p>Rather than look at <code>pg_statistic</code> directly, it&#8217;s better to look at its view <a href="https://www.postgresql.org/docs/15/view-pg-stats.html"><code>pg_stats</code></a> when examining the statistics manually. <code>pg_stats</code> is designed to be more easily readable. Furthermore, <code>pg_stats</code> is readable by all, whereas <code>pg_statistic</code> is only readable by a superuser. (This prevents unprivileged users from learning something about the contents of other people&#8217;s tables from the statistics. The <code>pg_stats</code> view is restricted to show only rows about tables that the current user can read.) For example, we might do:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT attname, inherited, n_distinct,
+       array_to_string(most_common_vals, E'\n') as most_common_vals
+FROM pg_stats
+WHERE tablename = 'road';
+
+ attname | inherited | n_distinct |          most_common_vals
+---------+-----------+------------+------------------------------------
+ name    | f         |  -0.363388 | I- 580                        Ramp+
+         |           |            | I- 880                        Ramp+
+         |           |            | Sp Railroad                       +
+         |           |            | I- 580                            +
+         |           |            | I- 680                        Ramp
+ name    | t         |  -0.284859 | I- 880                        Ramp+
+         |           |            | I- 580                        Ramp+
+         |           |            | I- 680                        Ramp+
+         |           |            | I- 580                            +
+         |           |            | State Hwy 13                  Ramp
+(2 rows)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that two rows are displayed for the same column, one corresponding to the complete inheritance hierarchy starting at the <code>road</code> table (<code>inherited</code>=<code>t</code>), and another one including only the <code>road</code> table itself (<code>inherited</code>=<code>f</code>).</p>
+</div>
+<div class="paragraph">
+<p>The amount of information stored in <code>pg_statistic</code> by <code>ANALYZE</code>, in particular the maximum number of entries in the <code>most_common_vals</code> and <code>histogram_bounds</code> arrays for each column, can be set on a column-by-column basis using the <code>ALTER TABLE SET STATISTICS</code> command, or globally by setting the <a href="https://www.postgresql.org/docs/15/runtime-config-query.html#GUC-DEFAULT-STATISTICS-TARGET">default_statistics_target</a> configuration variable. The default limit is presently 100 entries. Raising the limit might allow more accurate planner estimates to be made, particularly for columns with irregular data distributions, at the price of consuming more space in <code>pg_statistic</code> and slightly more time to compute the estimates. Conversely, a lower limit might be sufficient for columns with simple data distributions.</p>
+</div>
+<div class="paragraph">
+<p>Further details about the planner&#8217;s use of statistics can be found in <a href="https://www.postgresql.org/docs/15/planner-stats-details.html">doc</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="extended-statistics"><a class="anchor" href="#extended-statistics"></a>9.2.2. Extended Statistics</h4>
+<div class="paragraph">
+<p>It is common to see slow queries running bad execution plans because multiple columns used in the query clauses are correlated. The planner normally assumes that multiple conditions are independent of each other, an assumption that does not hold when column values are correlated. Regular statistics, because of their per-individual-column nature, cannot capture any knowledge about cross-column correlation. However, IvorySQL has the ability to compute <strong>multivariate statistics</strong>, which can capture such information.</p>
+</div>
+<div class="paragraph">
+<p>Because the number of possible column combinations is very large, it&#8217;s impractical to compute multivariate statistics automatically. Instead, <strong>extended statistics objects</strong>, more often called just <strong>statistics objects</strong>, can be created to instruct the server to obtain statistics across interesting sets of columns.</p>
+</div>
+<div class="paragraph">
+<p>Statistics objects are created using the <a href="https://www.postgresql.org/docs/15/sql-createstatistics.html"><code>CREATE STATISTICS</code></a> command. Creation of such an object merely creates a catalog entry expressing interest in the statistics. Actual data collection is performed by <code>ANALYZE</code> (either a manual command, or background auto-analyze). The collected values can be examined in the <a href="https://www.postgresql.org/docs/15/catalog-pg-statistic-ext-data.html"><code>pg_statistic_ext_data</code></a> catalog.</p>
+</div>
+<div class="paragraph">
+<p><code>ANALYZE</code> computes extended statistics based on the same sample of table rows that it takes for computing regular single-column statistics. Since the sample size is increased by increasing the statistics target for the table or any of its columns (as described in the previous section), a larger statistics target will normally result in more accurate extended statistics, as well as more time spent calculating them.</p>
+</div>
+<div class="paragraph">
+<p>The following subsections describe the kinds of extended statistics that are currently supported.</p>
+</div>
+<div class="sect4">
+<h5 id="functional-dependencies"><a class="anchor" href="#functional-dependencies"></a>9.2.2.1. Functional Dependencies</h5>
+<div class="paragraph">
+<p>The simplest kind of extended statistics tracks <strong>functional dependencies</strong>, a concept used in definitions of database normal forms. We say that column <code>b</code> is functionally dependent on column <code>a</code> if knowledge of the value of <code>a</code> is sufficient to determine the value of <code>b</code>, that is there are no two rows having the same value of <code>a</code> but different values of <code>b</code>. In a fully normalized database, functional dependencies should exist only on primary keys and superkeys. However, in practice many data sets are not fully normalized for various reasons; intentional denormalization for performance reasons is a common example. Even in a fully normalized database, there may be partial correlation between some columns, which can be expressed as partial functional dependency.</p>
+</div>
+<div class="paragraph">
+<p>The existence of functional dependencies directly affects the accuracy of estimates in certain queries. If a query contains conditions on both the independent and the dependent column(s), the conditions on the dependent columns do not further reduce the result size; but without knowledge of the functional dependency, the query planner will assume that the conditions are independent, resulting in underestimating the result size.</p>
+</div>
+<div class="paragraph">
+<p>To inform the planner about functional dependencies, <code>ANALYZE</code> can collect measurements of cross-column dependency. Assessing the degree of dependency between all sets of columns would be prohibitively expensive, so data collection is limited to those groups of columns appearing together in a statistics object defined with the <code>dependencies</code> option. It is advisable to create <code>dependencies</code> statistics only for column groups that are strongly correlated, to avoid unnecessary overhead in both <code>ANALYZE</code> and later query planning.</p>
+</div>
+<div class="paragraph">
+<p>Here is an example of collecting functional-dependency statistics:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CREATE STATISTICS stts (dependencies) ON city, zip FROM zipcodes;
+
+ANALYZE zipcodes;
+
+SELECT stxname, stxkeys, stxddependencies
+  FROM pg_statistic_ext join pg_statistic_ext_data on (oid = stxoid)
+  WHERE stxname = 'stts';
+ stxname | stxkeys |             stxddependencies
+---------+---------+------------------------------------------
+ stts    | 1 5     | {"1 =&gt; 5": 1.000000, "5 =&gt; 1": 0.423130}
+(1 row)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    Here it can be seen that column 1 (zip code) fully determines column 5 (city) so the coefficient is 1.0, while city only determines zip code about 42% of the time, meaning that there are many cities (58%) that are represented by more than a single ZIP code.</p>
+</div>
+<div class="paragraph">
+<p>When computing the selectivity for a query involving functionally dependent columns, the planner adjusts the per-condition selectivity estimates using the dependency coefficients so as not to produce an underestimate.</p>
+</div>
+<div class="sect5">
+<h6 id="limitations-of-functional-dependencies"><a class="anchor" href="#limitations-of-functional-dependencies"></a>9.2.2.1.1. Limitations of Functional Dependencies</h6>
+<div class="paragraph">
+<p>Functional dependencies are currently only applied when considering simple equality conditions that compare columns to constant values, and <code>IN</code> clauses with constant values. They are not used to improve estimates for equality conditions comparing two columns or comparing a column to an expression, nor for range clauses, <code>LIKE</code> or any other type of condition.</p>
+</div>
+<div class="paragraph">
+<p>When estimating with functional dependencies, the planner assumes that conditions on the involved columns are compatible and hence redundant. If they are incompatible, the correct estimate would be zero rows, but that possibility is not considered. For example, given a query like</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM zipcodes WHERE city = 'San Francisco' AND zip = '94105';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    the planner will disregard the <code>city</code> clause as not changing the selectivity, which is correct. However, it will make the same assumption about</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM zipcodes WHERE city = 'San Francisco' AND zip = '90210';</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    even though there will really be zero rows satisfying this query. Functional dependency statistics do not provide enough information to conclude that, however.</p>
+</div>
+<div class="paragraph">
+<p>In many practical situations, this assumption is usually satisfied; for example, there might be a GUI in the application that only allows selecting compatible city and ZIP code values to use in a query. But if that&#8217;s not the case, functional dependencies may not be a viable option.</p>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="multivariate-n-distinct-counts"><a class="anchor" href="#multivariate-n-distinct-counts"></a>9.2.2.2. Multivariate N-Distinct Counts</h5>
+<div class="paragraph">
+<p>Single-column statistics store the number of distinct values in each column. Estimates of the number of distinct values when combining more than one column (for example, for <code>GROUP BY a, b</code>) are frequently wrong when the planner only has single-column statistical data, causing it to select bad plans.</p>
+</div>
+<div class="paragraph">
+<p>To improve such estimates, <code>ANALYZE</code> can collect n-distinct statistics for groups of columns. As before, it&#8217;s impractical to do this for every possible column grouping, so data is collected only for those groups of columns appearing together in a statistics object defined with the <code>ndistinct</code> option. Data will be collected for each possible combination of two or more columns from the set of listed columns.</p>
+</div>
+<div class="paragraph">
+<p>Continuing the previous example, the n-distinct counts in a table of ZIP codes might look like the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CREATE STATISTICS stts2 (ndistinct) ON city, state, zip FROM zipcodes;
+
+ANALYZE zipcodes;
+
+SELECT stxkeys AS k, stxdndistinct AS nd
+  FROM pg_statistic_ext join pg_statistic_ext_data on (oid = stxoid)
+  WHERE stxname = 'stts2';
+-[ RECORD 1 ]------------------------------------------------------​--
+k  | 1 2 5
+nd | {"1, 2": 33178, "1, 5": 33178, "2, 5": 27435, "1, 2, 5": 33178}
+(1 row)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    This indicates that there are three combinations of columns that have 33178 distinct values: ZIP code and state; ZIP code and city; and ZIP code, city and state (the fact that they are all equal is expected given that ZIP code alone is unique in this table). On the other hand, the combination of city and state has only 27435 distinct values.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s advisable to create <code>ndistinct</code> statistics objects only on combinations of columns that are actually used for grouping, and for which misestimation of the number of groups is resulting in bad plans. Otherwise, the <code>ANALYZE</code> cycles are just wasted.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="multivariate-mcv-lists"><a class="anchor" href="#multivariate-mcv-lists"></a>9.2.2.3. Multivariate MCV Lists</h5>
+<div class="paragraph">
+<p>Another type of statistic stored for each column are most-common value lists. This allows very accurate estimates for individual columns, but may result in significant misestimates for queries with conditions on multiple columns.</p>
+</div>
+<div class="paragraph">
+<p>To improve such estimates, <code>ANALYZE</code> can collect MCV lists on combinations of columns. Similarly to functional dependencies and n-distinct coefficients, it&#8217;s impractical to do this for every possible column grouping. Even more so in this case, as the MCV list (unlike functional dependencies and n-distinct coefficients) does store the common column values. So data is collected only for those groups of columns appearing together in a statistics object defined with the <code>mcv</code> option.</p>
+</div>
+<div class="paragraph">
+<p>Continuing the previous example, the MCV list for a table of ZIP codes might look like the following (unlike for simpler types of statistics, a function is required for inspection of MCV contents):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>CREATE STATISTICS stts3 (mcv) ON city, state FROM zipcodes;
+
+ANALYZE zipcodes;
+
+SELECT m.* FROM pg_statistic_ext join pg_statistic_ext_data on (oid = stxoid),
+                pg_mcv_list_items(stxdmcv) m WHERE stxname = 'stts3';
+
+ index |         values         | nulls | frequency | base_frequency
+-------+------------------------+-------+-----------+----------------
+     0 | {Washington, DC}       | {f,f} |  0.003467 |        2.7e-05
+     1 | {Apo, AE}              | {f,f} |  0.003067 |        1.9e-05
+     2 | {Houston, TX}          | {f,f} |  0.002167 |       0.000133
+     3 | {El Paso, TX}          | {f,f} |     0.002 |       0.000113
+     4 | {New York, NY}         | {f,f} |  0.001967 |       0.000114
+     5 | {Atlanta, GA}          | {f,f} |  0.001633 |        3.3e-05
+     6 | {Sacramento, CA}       | {f,f} |  0.001433 |        7.8e-05
+     7 | {Miami, FL}            | {f,f} |    0.0014 |          6e-05
+     8 | {Dallas, TX}           | {f,f} |  0.001367 |        8.8e-05
+     9 | {Chicago, IL}          | {f,f} |  0.001333 |        5.1e-05
+   ...
+(99 rows)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    This indicates that the most common combination of city and state is Washington in DC, with actual frequency (in the sample) about 0.35%. The base frequency of the combination (as computed from the simple per-column frequencies) is only 0.0027%, resulting in two orders of magnitude under-estimates.</p>
+</div>
+<div class="paragraph">
+<p>It&#8217;s advisable to create MCV statistics objects only on combinations of columns that are actually used in conditions together, and for which misestimation of the number of groups is resulting in bad plans. Otherwise, the <code>ANALYZE</code> and planning cycles are just wasted.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="controlling-the-planner-with-explicit-join-clauses"><a class="anchor" href="#controlling-the-planner-with-explicit-join-clauses"></a>9.3. Controlling the Planner with Explicit <code>JOIN</code> Clauses</h3>
+<div class="paragraph">
+<p>It is possible to control the query planner to some extent by using the explicit <code>JOIN</code> syntax. To see why this matters, we first need some background.</p>
+</div>
+<div class="paragraph">
+<p>In a simple join query, such as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM a, b, c WHERE a.id = b.id AND b.ref = c.id;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    the planner is free to join the given tables in any order. For example, it could generate a query plan that joins A to B, using the <code>WHERE</code> condition <code>a.id = b.id</code>, and then joins C to this joined table, using the other <code>WHERE</code> condition. Or it could join B to C and then join A to that result. Or it could join A to C and then join them with B — but that would be inefficient, since the full Cartesian product of A and C would have to be formed, there being no applicable condition in the <code>WHERE</code> clause to allow optimization of the join. (All joins in the IvorySQL executor happen between two input tables, so it&#8217;s necessary to build up the result in one or another of these fashions.) The important point is that these different join possibilities give semantically equivalent results but might have hugely different execution costs. Therefore, the planner will explore all of them to try to find the most efficient query plan.</p>
+</div>
+<div class="paragraph">
+<p>When a query only involves two or three tables, there aren&#8217;t many join orders to worry about. But the number of possible join orders grows exponentially as the number of tables expands. Beyond ten or so input tables it&#8217;s no longer practical to do an exhaustive search of all the possibilities, and even for six or seven tables planning might take an annoyingly long time. When there are too many input tables, the IvorySQL planner will switch from exhaustive search to a <strong>genetic</strong> probabilistic search through a limited number of possibilities. (The switch-over threshold is set by the <a href="https://www.postgresql.org/docs/15/runtime-config-query.html#GUC-GEQO-THRESHOLD">geqo_threshold</a> run-time parameter.) The genetic search takes less time, but it won&#8217;t necessarily find the best possible plan.</p>
+</div>
+<div class="paragraph">
+<p>When the query involves outer joins, the planner has less freedom than it does for plain (inner) joins. For example, consider:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM a LEFT JOIN (b JOIN c ON (b.ref = c.id)) ON (a.id = b.id);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    Although this query&#8217;s restrictions are superficially similar to the previous example, the semantics are different because a row must be emitted for each row of A that has no matching row in the join of B and C. Therefore the planner has no choice of join order here: it must join B to C and then join A to that result. Accordingly, this query takes less time to plan than the previous query. In other cases, the planner might be able to determine that more than one join order is safe. For example, given:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM a LEFT JOIN b ON (a.bid = b.id) LEFT JOIN c ON (a.cid = c.id);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>it is valid to join A to either B or C first. Currently, only <code>FULL JOIN</code> completely constrains the join order. Most practical cases involving <code>LEFT JOIN</code> or <code>RIGHT JOIN</code> can be rearranged to some extent.</p>
+</div>
+<div class="paragraph">
+<p>Explicit inner join syntax (<code>INNER JOIN</code>, <code>CROSS JOIN</code>, or unadorned <code>JOIN</code>) is semantically the same as listing the input relations in <code>FROM</code>, so it does not constrain the join order.</p>
+</div>
+<div class="paragraph">
+<p>Even though most kinds of <code>JOIN</code> don&#8217;t completely constrain the join order, it is possible to instruct the IvorySQL query planner to treat all <code>JOIN</code> clauses as constraining the join order anyway. For example, these three queries are logically equivalent:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM a, b, c WHERE a.id = b.id AND b.ref = c.id;
+SELECT * FROM a CROSS JOIN b CROSS JOIN c WHERE a.id = b.id AND b.ref = c.id;
+SELECT * FROM a JOIN (b JOIN c ON (b.ref = c.id)) ON (a.id = b.id);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    But if we tell the planner to honor the <code>JOIN</code> order, the second and third take less time to plan than the first. This effect is not worth worrying about for only three tables, but it can be a lifesaver with many tables.</p>
+</div>
+<div class="paragraph">
+<p>To force the planner to follow the join order laid out by explicit `JOIN`s, set the <a href="https://www.postgresql.org/docs/15/runtime-config-query.html#GUC-JOIN-COLLAPSE-LIMIT">join_collapse_limit</a> run-time parameter to 1. (Other possible values are discussed below.)</p>
+</div>
+<div class="paragraph">
+<p>You do not need to constrain the join order completely in order to cut search time, because it&#8217;s OK to use <code>JOIN</code> operators within items of a plain <code>FROM</code> list. For example, consider:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM a CROSS JOIN b, c, d, e WHERE ...;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    With <code>join_collapse_limit</code> = 1, this forces the planner to join A to B before joining them to other tables, but doesn&#8217;t constrain its choices otherwise. In this example, the number of possible join orders is reduced by a factor of 5.</p>
+</div>
+<div class="paragraph">
+<p>Constraining the planner&#8217;s search in this way is a useful technique both for reducing planning time and for directing the planner to a good query plan. If the planner chooses a bad join order by default, you can force it to choose a better order via <code>JOIN</code> syntax — assuming that you know of a better order, that is. Experimentation is recommended.</p>
+</div>
+<div class="paragraph">
+<p>A closely related issue that affects planning time is collapsing of subqueries into their parent query. For example, consider:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT *
+FROM x, y,
+    (SELECT * FROM a, b, c WHERE something) AS ss
+WHERE somethingelse;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This situation might arise from use of a view that contains a join; the view&#8217;s <code>SELECT</code> rule will be inserted in place of the view reference, yielding a query much like the above. Normally, the planner will try to collapse the subquery into the parent, yielding:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>SELECT * FROM x, y, a, b, c WHERE something AND somethingelse;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​    This usually results in a better plan than planning the subquery separately. (For example, the outer <code>WHERE</code> conditions might be such that joining X to A first eliminates many rows of A, thus avoiding the need to form the full logical output of the subquery.) But at the same time, we have increased the planning time; here, we have a five-way join problem replacing two separate three-way join problems. Because of the exponential growth of the number of possibilities, this makes a big difference. The planner tries to avoid getting stuck in huge join search problems by not collapsing a subquery if more than <code>from_collapse_limit</code> <code>FROM</code> items would result in the parent query. You can trade off planning time against quality of plan by adjusting this run-time parameter up or down.</p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.postgresql.org/docs/15/runtime-config-query.html#GUC-FROM-COLLAPSE-LIMIT">from_collapse_limit</a> and <a href="https://www.postgresql.org/docs/15/runtime-config-query.html#GUC-JOIN-COLLAPSE-LIMIT">join_collapse_limit</a> are similarly named because they do almost the same thing: one controls when the planner will “flatten out” subqueries, and the other controls when it will flatten out explicit joins. Typically you would either set <code>join_collapse_limit</code> equal to <code>from_collapse_limit</code> (so that explicit joins and subqueries act similarly) or set <code>join_collapse_limit</code> to 1 (if you want to control join order with explicit joins). But you might set them differently if you are trying to fine-tune the trade-off between planning time and run time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="populating-a-database"><a class="anchor" href="#populating-a-database"></a>9.4. Populating a Database</h3>
+<div class="paragraph">
+<p>One might need to insert a large amount of data when first populating a database. This section contains some suggestions on how to make this process as efficient as possible.</p>
+</div>
+<div class="sect3">
+<h4 id="disable-autocommit"><a class="anchor" href="#disable-autocommit"></a>9.4.1. Disable Autocommit</h4>
+<div class="paragraph">
+<p>When using multiple <code>INSERT`s, turn off autocommit and just do one commit at the end. (In plain SQL, this means issuing `BEGIN</code> at the start and <code>COMMIT</code> at the end. Some client libraries might do this behind your back, in which case you need to make sure the library does it when you want it done.) If you allow each insertion to be committed separately, IvorySQL is doing a lot of work for each row that is added. An additional benefit of doing all insertions in one transaction is that if the insertion of one row were to fail then the insertion of all rows inserted up to that point would be rolled back, so you won&#8217;t be stuck with partially loaded data.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="use-copy"><a class="anchor" href="#use-copy"></a>9.4.2. Use COPY</h4>
+<div class="paragraph">
+<p>Use <a href="https://www.postgresql.org/docs/15/sql-copy.html"><code>COPY</code></a> to load all the rows in one command, instead of using a series of <code>INSERT</code> commands. The <code>COPY</code> command is optimized for loading large numbers of rows; it is less flexible than <code>INSERT</code>, but incurs significantly less overhead for large data loads. Since <code>COPY</code> is a single command, there is no need to disable autocommit if you use this method to populate a table.</p>
+</div>
+<div class="paragraph">
+<p>If you cannot use <code>COPY</code>, it might help to use <a href="https://www.postgresql.org/docs/15/sql-prepare.html"><code>PREPARE</code></a> to create a prepared <code>INSERT</code> statement, and then use <code>EXECUTE</code> as many times as required. This avoids some of the overhead of repeatedly parsing and planning <code>INSERT</code>. Different interfaces provide this facility in different ways; look for “prepared statements” in the interface documentation.</p>
+</div>
+<div class="paragraph">
+<p>Note that loading a large number of rows using <code>COPY</code> is almost always faster than using <code>INSERT</code>, even if <code>PREPARE</code> is used and multiple insertions are batched into a single transaction.</p>
+</div>
+<div class="paragraph">
+<p><code>COPY</code> is fastest when used within the same transaction as an earlier <code>CREATE TABLE</code> or <code>TRUNCATE</code> command. In such cases no WAL needs to be written, because in case of an error, the files containing the newly loaded data will be removed anyway. However, this consideration only applies when <a href="https://www.postgresql.org/docs/15/runtime-config-wal.html#GUC-WAL-LEVEL">wal_level</a> is <code>minimal</code> as all commands must write WAL otherwise.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-indexes"><a class="anchor" href="#remove-indexes"></a>9.4.3. Remove Indexes</h4>
+<div class="paragraph">
+<p>If you are loading a freshly created table, the fastest method is to create the table, bulk load the table&#8217;s data using <code>COPY</code>, then create any indexes needed for the table. Creating an index on pre-existing data is quicker than updating it incrementally as each row is loaded.</p>
+</div>
+<div class="paragraph">
+<p>If you are adding large amounts of data to an existing table, it might be a win to drop the indexes, load the table, and then recreate the indexes. Of course, the database performance for other users might suffer during the time the indexes are missing. One should also think twice before dropping a unique index, since the error checking afforded by the unique constraint will be lost while the index is missing.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="remove-foreign-key-constraints"><a class="anchor" href="#remove-foreign-key-constraints"></a>9.4.4. Remove Foreign Key Constraints</h4>
+<div class="paragraph">
+<p>Just as with indexes, a foreign key constraint can be checked “in bulk” more efficiently than row-by-row. So it might be useful to drop foreign key constraints, load data, and re-create the constraints. Again, there is a trade-off between data load speed and loss of error checking while the constraint is missing.</p>
+</div>
+<div class="paragraph">
+<p>What&#8217;s more, when you load data into a table with existing foreign key constraints, each new row requires an entry in the server&#8217;s list of pending trigger events (since it is the firing of a trigger that checks the row&#8217;s foreign key constraint). Loading many millions of rows can cause the trigger event queue to overflow available memory, leading to intolerable swapping or even outright failure of the command. Therefore it may be <strong>necessary</strong>, not just desirable, to drop and re-apply foreign keys when loading large amounts of data. If temporarily removing the constraint isn&#8217;t accept.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="increase-maintenance_work_mem"><a class="anchor" href="#increase-maintenance_work_mem"></a>9.4.5. Increase maintenance_work_mem</h4>
+<div class="paragraph">
+<p>Temporarily increasing the <a href="https://www.postgresql.org/docs/15/runtime-config-resource.html#GUC-MAINTENANCE-WORK-MEM">maintenance_work_mem</a> configuration variable when loading large amounts of data can lead to improved performance. This will help to speed up <code>CREATE INDEX</code> commands and <code>ALTER TABLE ADD FOREIGN KEY</code> commands. It won&#8217;t do much for <code>COPY</code> itself, so this advice is only useful when you are using one or both of the above techniques.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="increase-max_wal_size"><a class="anchor" href="#increase-max_wal_size"></a>9.4.6. Increase max_wal_size</h4>
+<div class="paragraph">
+<p>Temporarily increasing the <a href="https://www.postgresql.org/docs/15/runtime-config-wal.html#GUC-MAX-WAL-SIZE">max_wal_size</a> configuration variable can also make large data loads faster. This is because loading a large amount of data into IvorySQL will cause checkpoints to occur more often than the normal checkpoint frequency (specified by the <code>checkpoint_timeout</code> configuration variable). Whenever a checkpoint occurs, all dirty pages must be flushed to disk. By increasing <code>max_wal_size</code> temporarily during bulk data loads, the number of checkpoints that are required can be reduced.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="disable-wal-archival-and-streaming-replication"><a class="anchor" href="#disable-wal-archival-and-streaming-replication"></a>9.4.7. Disable WAL Archival and Streaming Replication</h4>
+<div class="paragraph">
+<p>When loading large amounts of data into an installation that uses WAL archiving or streaming replication, it might be faster to take a new base backup after the load has completed than to process a large amount of incremental WAL data. To prevent incremental WAL logging while loading, disable archiving and streaming replication, by setting <a href="https://www.postgresql.org/docs/15/runtime-config-wal.html#GUC-WAL-LEVEL">wal_level</a> to <code>minimal</code>, <a href="https://www.postgresql.org/docs/15/runtime-config-wal.html#GUC-ARCHIVE-MODE">archive_mode</a> to <code>off</code>, and <a href="https://www.postgresql.org/docs/15/runtime-config-replication.html#GUC-MAX-WAL-SENDERS">max_wal_senders</a> to zero. But note that changing these settings requires a server restart, and makes any base backups taken before unavailable for archive recovery and standby server, which may lead to data loss.</p>
+</div>
+<div class="paragraph">
+<p>Aside from avoiding the time for the archiver or WAL sender to process the WAL data, doing this will actually make certain commands faster, because they do not to write WAL at all if <code>wal_level</code> is <code>minimal</code> and the current subtransaction (or top-level transaction) created or truncated the table or index they change. (They can guarantee crash safety more cheaply by doing an <code>fsync</code> at the end than by writing WAL.)</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="run-analyze-afterwards"><a class="anchor" href="#run-analyze-afterwards"></a>9.4.8. Run ANALYZE Afterwards</h4>
+<div class="paragraph">
+<p>Whenever you have significantly altered the distribution of data within a table, running <a href="https://www.postgresql.org/docs/15/sql-analyze.html"><code>ANALYZE</code></a> is strongly recommended. This includes bulk loading large amounts of data into the table. Running <code>ANALYZE</code> (or <code>VACUUM ANALYZE</code>) ensures that the planner has up-to-date statistics about the table. With no statistics or obsolete statistics, the planner might make poor decisions during query planning, leading to poor performance on any tables with inaccurate or nonexistent statistics. Note that if the autovacuum daemon is enabled, it might run <code>ANALYZE</code> automatically.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="some-notes-about-pg_dump"><a class="anchor" href="#some-notes-about-pg_dump"></a>9.4.9. Some Notes about pg_dump</h4>
+<div class="paragraph">
+<p>Dump scripts generated by pg_dump automatically apply several, but not all, of the above guidelines. To restore a pg_dump dump as quickly as possible, you need to do a few extra things manually. (Note that these points apply while <strong>restoring</strong> a dump, not while <strong>creating</strong> it. The same points apply whether loading a text dump with psql or using pg_restore to load from a pg_dump archive file.)</p>
+</div>
+<div class="paragraph">
+<p>By default, pg_dump uses <code>COPY</code>, and when it is generating a complete schema-and-data dump, it is careful to load data before creating indexes and foreign keys. So in this case several guidelines are handled automatically. What is left for you to do is to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Set appropriate (i.e., larger than normal) values for <code>maintenance_work_mem</code> and <code>max_wal_size</code>.</p>
+</li>
+<li>
+<p>If using WAL archiving or streaming replication, consider disabling them during the restore. To do that, set <code>archive_mode</code> to <code>off</code>, <code>wal_level</code> to <code>minimal</code>, and <code>max_wal_senders</code> to zero before loading the dump. Afterwards, set them back to the right values and take a fresh base backup.</p>
+</li>
+<li>
+<p>Experiment with the parallel dump and restore modes of both pg_dump and pg_restore and find the optimal number of concurrent jobs to use. Dumping and restoring in parallel by means of the <code>-j</code> option should give you a significantly higher performance over the serial mode.</p>
+</li>
+<li>
+<p>Consider whether the whole dump should be restored as a single transaction. To do that, pass the <code>-1</code> or <code>--single-transaction</code> command-line option to psql or pg_restore. When using this mode, even the smallest of errors will rollback the entire restore, possibly discarding many hours of processing. Depending on how interrelated the data is, that might seem preferable to manual cleanup, or not. <code>COPY</code> commands will run fastest if you use a single transaction and have WAL archiving turned off.</p>
+</li>
+<li>
+<p>If multiple CPUs are available in the database server, consider using pg_restore&#8217;s <code>--jobs</code> option. This allows concurrent data loading and index creation.</p>
+</li>
+<li>
+<p>Run <code>ANALYZE</code> afterwards.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="non-durable-settings"><a class="anchor" href="#non-durable-settings"></a>9.5. Non-Durable Settings</h3>
+<div class="paragraph">
+<p>Durability is a database feature that guarantees the recording of committed transactions even if the server crashes or loses power. However, durability adds significant database overhead, so if your site does not require such a guarantee, IvorySQL can be configured to run much faster. The following are configuration changes you can make to improve performance in such cases. Except as noted below, durability is still guaranteed in case of a crash of the database software; only an abrupt operating system crash creates a risk of data loss or corruption when these settings are used.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Place the database cluster&#8217;s data directory in a memory-backed file system (i.e., RAM disk). This eliminates all database disk I/O, but limits data storage to the amount of available memory (and perhaps swap).</p>
+</li>
+<li>
+<p>Turn off <a href="https://www.postgresql.org/docs/15/runtime-config-wal.html#GUC-FSYNC">fsync</a>; there is no need to flush data to disk.</p>
+</li>
+<li>
+<p>Turn off <a href="https://www.postgresql.org/docs/15/runtime-config-wal.html#GUC-SYNCHRONOUS-COMMIT">synchronous_commit</a>; there might be no need to force WAL writes to disk on every commit. This setting does risk transaction loss (though not data corruption) in case of a crash of the <strong>database</strong>.</p>
+</li>
+<li>
+<p>Turn off <a href="https://www.postgresql.org/docs/15/runtime-config-wal.html#GUC-FULL-PAGE-WRITES">full_page_writes</a>; there is no need to guard against partial page writes.</p>
+</li>
+<li>
+<p>Increase <a href="https://www.postgresql.org/docs/15/runtime-config-wal.html#GUC-MAX-WAL-SIZE">max_wal_size</a> and <a href="https://www.postgresql.org/docs/15/runtime-config-wal.html#GUC-CHECKPOINT-TIMEOUT">checkpoint_timeout</a>; this reduces the frequency of checkpoints, but increases the storage requirements of <code>/pg_wal</code>.</p>
+</li>
+<li>
+<p>Create <a href="https://www.postgresql.org/docs/15/sql-createtable.html#SQL-CREATETABLE-UNLOGGED">unlogged tables</a> to avoid WAL writes, though it makes the tables non-crash-safe.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="Developer%20Guide.html">Developer</a></span>
+  <span class="next"><a href="IvorySQL迁移指南-英文版-0.1.html">Migration</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

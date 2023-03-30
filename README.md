@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c412eab9-eae7-4891-b9ed-cfc30e130683/deploy-status)](https://app.netlify.com/sites/delicate-lolly-113d3b/deploys)
+
 # ivory-web
 ivorysql website
 

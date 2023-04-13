@@ -1301,6 +1301,259 @@ tags: [IvorySQL, Welcome, Database, Join Us]
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="网站贡献指南"><a class="anchor" href="#网站贡献指南"></a>8. 网站贡献指南</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><a href="https://docs.ivorysql.org">IvorySQL的文档中心</a> 采用开源工具 <a href="https://antora.org/"><code>Antora</code></a> 进行搭建，同样的，我们的文档中心也是开源的。文档中心由三部分组成，分别是 <a href="https://github.com/IvorySQL/ivorysql_docs">文档文件</a>, <a href="https://github.com/IvorySQL/ivorysql_web">静态网页文件</a> 以及生成网页所用到的 <a href="https://github.com/IvorySQL/ivory-doc-builder">网页模板文件</a> 。</p>
+</div>
+<div class="paragraph">
+<p>我们的文档中心同样欢迎每一位愿意参与到开源工作中的小伙伴的加入，记得遵守我们的行为准则<sup>_</sup>。</p>
+</div>
+<div class="sect2">
+<h3 id="如何贡献-2"><a class="anchor" href="#如何贡献-2"></a>8.1. 如何贡献</h3>
+<div class="paragraph">
+<p>由于我们的文档中心全部托管于Github上，这使得任何用户都可以将我们的文档仓库 <code>fork</code> 到个人仓库中，然后对其进行修改，之后提交PR，由我们的开源团队的人员审核过后就可以将修改更新到我们的文档中心中。</p>
+</div>
+<div class="paragraph">
+<p>为了更加便捷地使您达到纠正文档错误的目的，首先需要您按照想要更新的大小来建立个人仓库，如下：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果您想修改原有的内容或者添加新的页面，仅需要 <code>fork</code> <a href="https://github.com/IvorySQL/ivorysql_docs">文档文件</a> 到个人仓库中。</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/7.png" alt="7">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>如果您想更深度地参与到文档中心的建设工作中来，除了文档文件外，还需要 <code>fork</code> <a href="https://github.com/IvorySQL/ivorysql_web">静态网页文件</a> 和 <a href="https://github.com/IvorySQL/ivory-doc-builder">网页模板文件</a> 到个人仓库中。</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/8.png" alt="8">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/9.png" alt="9">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="修改内容"><a class="anchor" href="#修改内容"></a>8.2. 修改内容</h3>
+<div class="paragraph">
+<p>本小节将会介绍发现网页内容不适宜之后，对网页内容进行修改的流程。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>在有错误内容的网页的右上角，有一个 <code>edit this page</code> 的按钮，点击按钮。如图：</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/10.png" alt="10">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>点击之后，就会跳转到我们存放当前页面源 <code>.adoc</code> 文件的编辑页面，请按照 <code>Asciidoc</code> 格式对内容进行修改。如图：</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/11.png" alt="11">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>编辑完成后，如图：</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/12.png" alt="12">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>确认更新后，如图：</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/13.png" alt="13">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>接下来会由开源团队的相关人员负责审核您提交的内容，审核完成后您所提交的更新就会出现在对应页面上。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="添加页面"><a class="anchor" href="#添加页面"></a>8.3. 添加页面</h3>
+<div class="paragraph">
+<p>本小节会介绍如何在网站上添加新的页面组件，添加新页面涉及的修改主要包括以下几种：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CN/modules/ROOT/pages/vX.X</code> 目录下的 <code>.adoc</code> 文件添加</p>
+</li>
+<li>
+<p><code>CN/modules/ROOT/nav.adoc</code> 的修改，如果修改涉及到图片的修改或者添加，请修改 <code>images</code> 中的图片</p>
+</li>
+<li>
+<p><code>EN/modules/ROOT/pages/vX.X</code> 目录下的 <code>.adoc</code> 文件添加</p>
+</li>
+<li>
+<p><code>EN/modules/ROOT/nav.adoc</code> 的修改，如果修改涉及到图片的修改或者添加，请修改 <code>images</code> 中的图片</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>首先，您需要把您 <code>fork</code> 的仓库，clone到本地</p>
+<div class="literalblock">
+<div class="content">
+<pre>git clone https://github.com/$username$/ivorysql_docs.git</pre>
+</div>
+</div>
+</li>
+<li>
+<p>然后，将要添加的 <code>.adoc</code> 文件放至正确目录下，切记中英文的都应该准备（<strong>中英文文件应该同名</strong>），并且各自放至正确目录下，同时，修改对应的 <code>nav.adoc</code> 文件（修改方式可以参照文件已有内容进行修改）。</p>
+</li>
+<li>
+<p>上述修改完成后，先提交至个人仓库</p>
+<div class="literalblock">
+<div class="content">
+<pre>git add .
+git commit -m "$describe your change$"
+git push</pre>
+</div>
+</div>
+</li>
+<li>
+<p>之后按照如下提交PR即可</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/13.png" alt="13">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="测试"><a class="anchor" href="#测试"></a>8.4. 测试</h3>
+<div class="paragraph">
+<p>如果您不满足于简单的在网页端进行提交或者仅修改网页内容，又或者您想要修改网页ui，本小节内容将会帮助到您。</p>
+</div>
+<div class="paragraph">
+<p>在阅读本小节内容之前，您需要确认您的Github个人仓库是否已经 <code>fork</code> 了网页模板文件仓库和静态网页文件仓库，如果没有请参考<a href="#_如何贡献">[_如何贡献]</a>。</p>
+</div>
+<div class="sect3">
+<h4 id="环境准备"><a class="anchor" href="#环境准备"></a>8.4.1. 环境准备</h4>
+<div class="paragraph">
+<p>为了测试您所做的修改是否修改，您需要准备以下环境</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>Node.js</code> 安装</p>
+</li>
+<li>
+<p><code>Antora</code> 安装</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>环境安装请参考 <a href="https://docs.antora.org/antora/latest/">Antora docs</a>。</p>
+</div>
+<div class="paragraph">
+<p>安装成功后，在终端上显示如下即为成功安装。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/14.png" alt="14">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="网页生成"><a class="anchor" href="#网页生成"></a>8.4.2. 网页生成</h4>
+<div class="paragraph">
+<p>通过阅读之前内容，相信您已经有了充足的准备，包括 <code>fork</code> 我们文档中心相关的三个仓库到个人仓库中，<code>Antora</code> 工具的安装准备等环境的搭建。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>首先，您要知道网页对应的ui的位置，如下图：</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/15.png" alt="15">
+</div>
+</div>
+<div class="paragraph">
+<p>中英文的网页ui模板基本一致，因此修改时应该尽量保证同时修改两个模板，将修改过后的ui再上传至个人Github上，完成了这些，就可以考虑在本地生成您修改过后的网页了。</p>
+</div>
+<div class="paragraph">
+<p>文档中心是由 <code>Antora</code> 进行搭建的，在运行 <code>Antora</code> 之前，记得修改对应 <code>playbook.yml</code> 文件</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/16.png" alt="16">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/17.png" alt="17">
+</div>
+</div>
+<div class="paragraph">
+<p>完成上述流程之后，请在终端运行命令 <code>antora antora-playbook.yml --stacktrace</code>，然后耐心等待，当成功运行结束后，你就可以查看自己生成的网页了。</p>
+</div>
+<div class="paragraph">
+<p>在检查之后，你就可以开始着手上传至我们的 <strong>ivorysql_web</strong> 仓库中，提交PR的流程和之前的流程相同，感谢您对社区的贡献<sup>_</sup>，我们会在审核过后，考虑是否更新网站。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="部署网页"><a class="anchor" href="#部署网页"></a>8.5. 部署网页</h3>
+<div class="paragraph">
+<p>部署网页这部分工作，暂时还是由开源团队的人员负责，我们重视每一次提交和每一个issue，所以请不要担心自己对于社区的贡献被埋没<sup>_</sup></p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tip"><a class="anchor" href="#tip"></a>8.6. Tip</h3>
+<div class="paragraph">
+<p>本章节主要介绍了如何自己主动去更新我们的文档中心，但是我们明确地知道山高路远，时不我待。因此对于没有太多时间的小伙伴来说，可以发邮件到我们的 <strong>ivorysql-docs@ivorysql.org</strong>，我们会有专门的工作人员进行处理您的每一封来信，期待您的邮件。</p>
+</div>
+</div>
+</div>
+</div>
 <nav class="pagination">
   <span class="prev"><a href="9.html">迁移指南</a></span>
   <span class="next"><a href="11.html">工具参考</a></span>

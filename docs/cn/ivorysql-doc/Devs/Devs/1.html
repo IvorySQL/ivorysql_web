@@ -62,9 +62,6 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="4.html">双模式设计</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="5.html">兼容Oracle-sequence</a>
-  </li>
 </ul>
   </li>
 </ul>
@@ -162,14 +159,14 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="设计方案"><a class="anchor" href="#设计方案"></a>2. 设计方案</h2>
+<h2 id="功能"><a class="anchor" href="#功能"></a>2. 功能</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="双端口设计"><a class="anchor" href="#双端口设计"></a>2.1. 双端口设计</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>保持了ivorysql 5432端口兼容原有postgres情况，因此 Ivorysql采用另一个独立的端口登录，默认为1521。从该端口登录，默认采用oracle兼容模式。如果需要从5432端口登录且还要进入兼容模式，则需要通过compatible_mode参数进行设置；</p>
+<p>保持了ivorysql 5432端口兼容原有postgres情况，因此 Ivorysql采用另一个独立的端口登录，默认为1521。从该端口登录，默认采用oracle兼容模式。如果需要从5432端口登录且还要进入兼容模式，则需要通过compatible_mode参数进行设置;</p>
 </li>
 </ul>
 </div>
@@ -179,7 +176,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>为了将oracle语法与postgres语法间的相互干扰降到最低，因此新增parser模块，用于处理oracle相关的语法。</p>
+<p>为了将oracle语法与postgres语法间的相互干扰降到最低，因此新增parser模块，用于处理oracle相关的语法;</p>
 </li>
 </ul>
 </div>
@@ -189,7 +186,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>同样为了减少oracle兼容与postgres语法不同而导致测试用例冲突得情况，因此单独设计了一套oracle专用的测试用例。该套测试用例由postgres原有测试框架拷贝修改而来。</p>
+<p>同样为了减少oracle兼容与postgres语法不同而导致测试用例冲突得情况，因此单独设计了一套oracle专用的测试用例。该套测试用例由postgres原有测试框架拷贝修改而来;</p>
 </li>
 </ul>
 </div>

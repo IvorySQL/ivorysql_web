@@ -62,9 +62,6 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="4.html">双模式设计</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="5.html">兼容Oracle-sequence</a>
-  </li>
 </ul>
   </li>
 </ul>
@@ -150,29 +147,24 @@
 <div class="ulist">
 <ul>
 <li>
-<p>为了将oracle端口、ip与pg的端口ip进行区分。现需要增加对ORAPORT和ORAHOST的处理。</p>
+<p>为了将oracle端口、ip与pg的端口ip进行区分。现需要增加对ORAPORT和ORAHOST的处理;</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="方案"><a class="anchor" href="#方案"></a>2. 方案</h2>
+<h2 id="功能"><a class="anchor" href="#功能"></a>2. 功能</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>新增ivoryhost：需要在连接时新增参数ivoryhost即可指定，其功能类似 host；</p>
+<p>新增ivoryhost：需要在连接时新增参数ivoryhost即可指定，其功能类似 host;</p>
 </li>
 <li>
-<p>新增ivoryport：相较于host，port的功能相对复杂一些。其中涉及到可以在configure阶段配置，连接阶段指定端口,流程图如下：</p>
+<p>新增ivoryport：相较于host，port的功能相对复杂一些。其中涉及到可以在configure阶段配置，连接阶段指定端口;</p>
 </li>
 </ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/p7.png" alt="p7">
-</div>
 </div>
 </div>
 </div>

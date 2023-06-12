@@ -171,18 +171,13 @@
 <div class="sect1">
 <h2 id="test-method"><a class="anchor" href="#test-method"></a>3. Test method:</h2>
 <div class="sectionbody">
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>```
-  ./configure --with-oraport=5555
-  ./initdb ....
-  ./pg_ctl -D ../data start</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>  ./pg_ctl -o “-p 5433 -o 1522” -D ../data
-```</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">   ./configure --with-oraport=5555
+   ./initdb ....
+   ./pg_ctl -D ../data start
+
+   ./pg_ctl -o “-p 5433 -o 1522” -D ../data</code></pre>
 </div>
 </div>
 <div class="paragraph">

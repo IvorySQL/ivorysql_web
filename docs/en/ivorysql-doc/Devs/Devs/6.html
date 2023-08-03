@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dual-mode design :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/Devs/Devs/4.html">
-    <link rel="prev" href="3.html">
-    <link rel="next" href="5.html">
+    <title>Compatible with Oracle Like :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/Devs/Devs/6.html">
+    <link rel="prev" href="5.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -59,13 +58,13 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="3.html">Added Oracle compatibility mode ports and IP</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="4.html">Dual-mode design</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.html">Built-in data types and built-in functions</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="6.html">Compatible with oracle like</a>
   </li>
 </ul>
@@ -132,57 +131,59 @@
     <li><a href="welcome.html">IvorySQL</a></li>
     <li>List of features</li>
     <li>New additions</li>
-    <li><a href="4.html">Dual-mode design</a></li>
+    <li><a href="6.html">Compatible with oracle like</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/Devs/Devs/4.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/Devs/Devs/6.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/developer/EN/modules/ROOT/pages/Devs/4.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/developer/EN/modules/ROOT/pages/Devs/6.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Dual-mode design</h1>
+<h1 class="page">Compatible with Oracle Like</h1>
 <div class="sect1">
 <h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>In order to meet the PG mode and the compatible Oracle mode, IVORYSQL designed two modes: PG and Oracle. And the schema can be specified at initdb time;</p>
+<p>This document is intended to provide people using like fuzzy queries with an in-depth understanding of Oracle-compatible fuzzy query like implementations.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="function"><a class="anchor" href="#function"></a>2. Function</h2>
+<h2 id="function-description"><a class="anchor" href="#function-description"></a>2. Function description</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Initdb -m initialization requires judgment of different modes, among which oracle mode requires the execution of SQL statements postgres_oracle.bki. The default is Oracle compatibility mode, and the process is as follows:</p>
-</li>
-<li>
-<p>Startup: When starting, it determines whether it is an Oracle compatibility mode based on the initialization mode;</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Description:
-database_mode: Used to indicate initialization mode;
-database_mode=DB_PG，PG mode, and cannot be switched;
-database_mode=DB_ORACLE， oracle compatibility mode;</code></pre>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Like fuzzy queries</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">oracle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">oracle&#8217;s string type is varchar2, which supports fuzzy queries using the Like keyword with wildcards for columns of number, date, and string field types</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The basic type of IvorySQL&#8217;s string is text, so like is based on text, and other IvorySQL types can be implicitly converted to text, so that they can be automatically converted without creating opeartor</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -190,21 +191,57 @@ database_mode=DB_ORACLE， oracle compatibility mode;</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Initialize the PG mode:
-./initdb -D ../data -m pg
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">create table t_ora_like (id int ,str1 varchar(8), date1 timestamp with time zone, date2 time with time zone, num int, str2 varchar(8));
+insert into t_ora_like (id ,str1 ,date1 ,date2) values (123456,'test1','2022-09-26 16:39:20','2022-09-26 16:39:20');
+insert into t_ora_like (id ,str1 ,date1 ,date2) values (123457,'test2','2022-09-26 16:40:20','2022-09-26 16:40:20');
+insert into t_ora_like (id ,str1 ,date1 ,date2) values (223456,'test3','2022-09-26 16:41:20','2022-09-26 16:41:20');
+insert into t_ora_like (id ,str1 ,date1 ,date2) values (123458,'test4','2022-09-26 16:42:20','2022-09-26 16:42:20');
 
-Initialize the Oracle compatibility mode:
-./initdb -D ../data -m oracle
+select * from t_ora_like where str1 like 'test%';
+   id   | str1  |               date1               |    date2    | num | str2
+--------+-------+-----------------------------------+-------------+-----+------
+ 123456 | test1 | 2022-09-26 16:39:20.000000 +08:00 | 16:39:20+08 |     |
+ 123457 | test2 | 2022-09-26 16:40:20.000000 +08:00 | 16:40:20+08 |     |
+ 223456 | test3 | 2022-09-26 16:41:20.000000 +08:00 | 16:41:20+08 |     |
+ 123458 | test4 | 2022-09-26 16:42:20.000000 +08:00 | 16:42:20+08 |     |
+(4 rows)
 
-or
-./initdb -D ../data</code></pre>
+select * from t_ora_like where date1 like '2022%';
+   id   | str1  |               date1               |    date2    | num | str2
+--------+-------+-----------------------------------+-------------+-----+------
+ 123456 | test1 | 2022-09-26 16:39:20.000000 +08:00 | 16:39:20+08 |     |
+ 123457 | test2 | 2022-09-26 16:40:20.000000 +08:00 | 16:40:20+08 |     |
+ 223456 | test3 | 2022-09-26 16:41:20.000000 +08:00 | 16:41:20+08 |     |
+ 123458 | test4 | 2022-09-26 16:42:20.000000 +08:00 | 16:42:20+08 |     |
+(4 rows)
+
+select * from t_ora_like where date2 like '16%';
+   id   | str1  |               date1               |    date2    | num | str2
+--------+-------+-----------------------------------+-------------+-----+------
+ 123456 | test1 | 2022-09-26 16:39:20.000000 +08:00 | 16:39:20+08 |     |
+ 123457 | test2 | 2022-09-26 16:40:20.000000 +08:00 | 16:40:20+08 |     |
+ 223456 | test3 | 2022-09-26 16:41:20.000000 +08:00 | 16:41:20+08 |     |
+ 123458 | test4 | 2022-09-26 16:42:20.000000 +08:00 | 16:42:20+08 |     |
+(4 rows)
+
+select * from t_ora_like where id like '123%';
+   id   | str1  |               date1               |    date2    | num | str2
+--------+-------+-----------------------------------+-------------+-----+------
+ 123456 | test1 | 2022-09-26 16:39:20.000000 +08:00 | 16:39:20+08 |     |
+ 123457 | test2 | 2022-09-26 16:40:20.000000 +08:00 | 16:40:20+08 |     |
+ 123458 | test4 | 2022-09-26 16:42:20.000000 +08:00 | 16:42:20+08 |     |
+(3 rows)
+
+select * from t_ora_like where id like null;
+ id | str1 | date1 | date2 | num | str2
+----+------+-------+-------+-----+------
+(0 rows)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="3.html">Added Oracle compatibility mode ports and IP</a></span>
-  <span class="next"><a href="5.html">Built-in data types and built-in functions</a></span>
+  <span class="prev"><a href="5.html">Built-in data types and built-in functions</a></span>
 </nav>
 </article>
   </div>

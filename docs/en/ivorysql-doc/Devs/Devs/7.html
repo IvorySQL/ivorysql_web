@@ -3,10 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Added Oracle compatibility mode ports and IP :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/Devs/Devs/3.html">
-    <link rel="prev" href="2.html">
-    <link rel="next" href="4.html">
+    <title>Compatible with Oracle anonymous block :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/Devs/Devs/7.html">
+    <link rel="prev" href="6.html">
     <meta name="generator" content="Antora 2.3.4">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -56,7 +55,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="2.html">Case conversion</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="3.html">Added Oracle compatibility mode ports and IP</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -68,7 +67,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.html">Compatible with oracle like</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="7.html">Compatible with oracle anonymous block</a>
   </li>
 </ul>
@@ -135,71 +134,86 @@
     <li><a href="welcome.html">IvorySQL</a></li>
     <li>List of features</li>
     <li>New additions</li>
-    <li><a href="3.html">Added Oracle compatibility mode ports and IP</a></li>
+    <li><a href="7.html">Compatible with oracle anonymous block</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/Devs/Devs/3.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/Devs/Devs/7.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/developer/EN/modules/ROOT/pages/Devs/3.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/developer/EN/modules/ROOT/pages/Devs/7.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Added Oracle compatibility mode ports and IP</h1>
+<h1 class="page">Compatible with Oracle anonymous block</h1>
 <div class="sect1">
 <h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>In order to distinguish the Oracle port, IP and PG port IP. THERE IS NOW A NEED TO INCREASE THE PROCESSING OF ORAPORT AND ORAHOST;</p>
+<p>This document is a design document for the PLSQL anonymous block compatible Oracle syntax function, in order to be compatible with Oracle&#8217;s anonymous block statements in IvorySQL.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="function"><a class="anchor" href="#function"></a>2. Function</h2>
+<h2 id="function-description"><a class="anchor" href="#function-description"></a>2. Function description</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>Add ivoryhost: You need to add the parameter ivoryhost when connecting, and its function is similar to host;</p>
-</li>
-<li>
-<p>New ivoryport: Compared to host, the function of port is relatively complex. It involves specifying ports in the configure phase and connection phase;</p>
+<p>Anonymous blocks are PLSQL structures that dynamically create and execute procedural code without the need to persistently store the code as database objects in the system directory. In this implementation, IvorySQL is mainly compatible with the syntax format of PLSQL anonymous blocks, and the parts we mainly deal with include client tool psql, master server and PSQL side support.</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="test-method"><a class="anchor" href="#test-method"></a>3. Test method:</h2>
+<h2 id="test-cases"><a class="anchor" href="#test-cases"></a>3. Test cases</h2>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">   ./configure --with-oraport=5555
-   ./initdb ....
-   ./pg_ctl -D ../data start
-
-   ./pg_ctl -o “-p 5433 -o 1522” -D ../data</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">declare
+i integer := 10;
+begin
+ raise notice '%', i;
+ raise notice '%', main.i;
+end;
+/
+NOTICE:  10
+NOTICE:  10</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>​</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">DECLARE
+  grade CHAR(1);
+BEGIN
+  grade := 'B';
+  CASE grade
+    WHEN 'A' THEN raise notice 'Excellent';
+    WHEN 'B' THEN raise notice 'Very Good';
+  END CASE;
+EXCEPTION
+  WHEN CASE_NOT_FOUND THEN
+    raise notice 'No such grade';
+END;
+/
+NOTICE:  Very Good</code></pre>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="2.html">Case conversion</a></span>
-  <span class="next"><a href="4.html">Dual-mode design</a></span>
+  <span class="prev"><a href="6.html">Compatible with oracle like</a></span>
 </nav>
 </article>
   </div>

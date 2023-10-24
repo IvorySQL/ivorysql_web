@@ -199,10 +199,7 @@
 <p>[<strong>发行日期: 2023年10月xx日</strong>]</p>
 </div>
 <div class="paragraph">
-<p>IvorySQL3.0 基于 PostgreSQL16.0 并包含 IvorySQL 2.3 之后的各种修复和新功能。</p>
-</div>
-<div class="paragraph">
-<p>此版本与 IvorySQL 2.X 兼容，并且不需要为运行 IvorySQL 1.X 的用户进行转储/恢复。</p>
+<p>IvorySQL3.0 基于 PostgreSQL16.0 ，此版本与 IvorySQL 2.X 兼容，并且不需要为运行 IvorySQL 1.X 的用户进行转储/恢复。</p>
 </div>
 <div class="paragraph">
 <p>IvorySQL 3.0 包含来自 PostgreSQL 16.0 的各种修复，包括改进的排序性能和压缩、日志记录和配置增强、更微调的逻辑复制选项等。有关 PostgreSQL 16.0中更详细的更新和错误修复，请参阅官方 <a href="https://www.postgresql.org/docs/release/16.0/">PostgreSQL 16.0 发行说明</a> 。</p>
@@ -215,7 +212,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>make oracle-installcheck fail <a href="https://github.com/IvorySQL/IvorySQL/issues/348">问题细节</a></p>
+<p>暂无</p>
 </li>
 </ul>
 </div>
@@ -224,6 +221,62 @@
 <div class="sect1">
 <h2 id="增强功能"><a class="anchor" href="#增强功能"></a>3. 增强功能</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="ivorysql框架"><a class="anchor" href="#ivorysql框架"></a>3.1. ivorysql框架</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>添加双Parser支持不同的数据库parser <a href="https://github.com/IvorySQL/IvorySQL/pull/210">问题细节</a></p>
+</li>
+<li>
+<p>添加双端口支持不同的数据库端口号  <a href="https://github.com/IvorySQL/IvorySQL/pull/209">问题细节</a></p>
+</li>
+<li>
+<p>添加 initdb -m，支持postgres模式或 oracle模式  <a href="https://github.com/IvorySQL/IvorySQL/pull/213">问题细节</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sql兼容"><a class="anchor" href="#sql兼容"></a>3.2. SQL兼容</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>兼容oracle merge command <a href="https://github.com/IvorySQL/IvorySQL/pull/263">问题细节</a></p>
+</li>
+<li>
+<p>兼容oracle q转义 <a href="https://github.com/IvorySQL/IvorySQL/pull/296">问题细节</a></p>
+</li>
+<li>
+<p>兼容oracle like <a href="https://github.com/IvorySQL/IvorySQL/pull/292">问题细节</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="plsql兼容"><a class="anchor" href="#plsql兼容"></a>3.3. PL/SQL兼容</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>解决PL/SQL 创建函数/存储过程存在问题  <a href="https://github.com/IvorySQL/IvorySQL/pull/492">问题细节</a></p>
+</li>
+<li>
+<p>兼容Oracle匿名块  <a href="https://github.com/IvorySQL/IvorySQL/pull/305">问题细节</a></p>
+</li>
+<li>
+<p>在 SQL parser中创建函数或过程支持嵌套子过程  <a href="https://github.com/IvorySQL/IvorySQL/pull/313">问题细节</a></p>
+</li>
+<li>
+<p>嵌套的子进程和函数 is/as 不需要声明  <a href="https://github.com/IvorySQL/IvorySQL/pull/306">问题细节</a></p>
+</li>
+<li>
+<p>解析时嵌套的子进程 retype从 rettype获取  <a href="https://github.com/IvorySQL/IvorySQL/pull/311">问题细节</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="其它"><a class="anchor" href="#其它"></a>3.4. 其它</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -233,19 +286,7 @@
 <p>支持meson编译 <a href="https://github.com/IvorySQL/IvorySQL/pull/510">问题细节</a></p>
 </li>
 <li>
-<p>解决PL/SQL 创建函数/存储过程存在问题  <a href="https://github.com/IvorySQL/IvorySQL/pull/492">问题细节</a></p>
-</li>
-<li>
 <p>添加兼容的测试用例 <a href="https://github.com/IvorySQL/IvorySQL/pull/481">问题细节</a></p>
-</li>
-<li>
-<p>PL/iSQL不支持%rowtype <a href="https://github.com/IvorySQL/IvorySQL/pull/476">问题细节</a></p>
-</li>
-<li>
-<p>在函数中修改decode的用法 <a href="https://github.com/IvorySQL/IvorySQL/pull/457">问题细节</a></p>
-</li>
-<li>
-<p>返回模式在源字符串中出现的次数  <a href="https://github.com/IvorySQL/IvorySQL/pull/454">问题细节</a></p>
 </li>
 <li>
 <p>添加contrib回归  <a href="https://github.com/IvorySQL/IvorySQL/pull/453">问题细节</a></p>
@@ -266,54 +307,13 @@
 <p>添加Oracle数据类型 Gist索引操作   <a href="https://github.com/IvorySQL/IvorySQL/pull/432">问题细节</a></p>
 </li>
 <li>
-<p>支持ORA_ISOLATION <a href="https://github.com/IvorySQL/IvorySQL/pull/428">问题细节</a></p>
-</li>
-<li>
-<p>支持扩展  <a href="https://github.com/IvorySQL/IvorySQL/pull/346">问题细节</a></p>
-</li>
-<li>
-<p>在 SQL parser中创建函数或过程支持嵌套子过程  <a href="https://github.com/IvorySQL/IvorySQL/pull/313">问题细节</a></p>
-</li>
-<li>
-<p>解析时嵌套的子进程 retype从 rettype获取  <a href="https://github.com/IvorySQL/IvorySQL/pull/311">问题细节</a></p>
-</li>
-<li>
-<p>在嵌套子进程和函数中添加LOOP_P关键字  <a href="https://github.com/IvorySQL/IvorySQL/pull/308">问题细节</a></p>
-</li>
-<li>
-<p>嵌套的子进程和函数 is/as 不需要声明  <a href="https://github.com/IvorySQL/IvorySQL/pull/306">问题细节</a></p>
-</li>
-<li>
-<p>兼容Oracle匿名块  <a href="https://github.com/IvorySQL/IvorySQL/pull/305">问题细节</a></p>
-</li>
-<li>
-<p>兼容oracle q转义 <a href="https://github.com/IvorySQL/IvorySQL/pull/296">问题细节</a></p>
-</li>
-<li>
-<p>兼容oracle like <a href="https://github.com/IvorySQL/IvorySQL/pull/292">问题细节</a></p>
-</li>
-<li>
-<p>兼容oracle merge command <a href="https://github.com/IvorySQL/IvorySQL/pull/263">问题细节</a></p>
-</li>
-<li>
-<p>兼容oracle inner function <a href="https://github.com/IvorySQL/IvorySQL/pull/242">问题细节</a></p>
-</li>
-<li>
 <p>兼容oracle内置数据类型与内置函数  <a href="https://github.com/IvorySQL/IvorySQL/pull/240">问题细节</a></p>
 </li>
 <li>
 <p>添加plisql扩展  <a href="https://github.com/IvorySQL/IvorySQL/pull/215">问题细节</a></p>
 </li>
-<li>
-<p>添加 initdb -m，支持postgres模式或 oracle模式  <a href="https://github.com/IvorySQL/IvorySQL/pull/213">问题细节</a></p>
-</li>
-<li>
-<p>添加双Parser支持不同的数据库parser <a href="https://github.com/IvorySQL/IvorySQL/pull/210">问题细节</a></p>
-</li>
-<li>
-<p>添加双端口支持不同的数据库端口号  <a href="https://github.com/IvorySQL/IvorySQL/pull/209">问题细节</a></p>
-</li>
 </ul>
+</div>
 </div>
 </div>
 </div>
@@ -358,13 +358,12 @@
 <li>
 <p>当自增列类型为numer类型，且指定了精度时，by default on null插入null值时，不是插入的具体序列值，而是插入的null值  <a href="https://github.com/IvorySQL/IvorySQL/issues/386">问题细节</a></p>
 </li>
+<li>
+<p>在函数中修改decode的用法 <a href="https://github.com/IvorySQL/IvorySQL/pull/457">问题细节</a>
+== 源代码</p>
+</li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="源代码"><a class="anchor" href="#源代码"></a>5. 源代码</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>IvorySQL主要包含2个代码仓库，数据库IvorySQL代码仓、IvorySQL网站仓：</p>
 </div>
@@ -381,53 +380,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="贡献人员"><a class="anchor" href="#贡献人员"></a>6. 贡献人员</h2>
+<h2 id="贡献人员"><a class="anchor" href="#贡献人员"></a>5. 贡献人员</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>以下个人作为补丁作者、提交者、审阅者、测试者或问题报告者为本版本做出了贡献。</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Cary Huang</p>
-</li>
-<li>
-<p>Grant Zhou</p>
-</li>
-<li>
-<p>谭洋</p>
-</li>
-<li>
-<p>王杰</p>
-</li>
-<li>
-<p>穆帅楠</p>
-</li>
-<li>
-<p>张洪源</p>
-</li>
-<li>
-<p>王守波</p>
-</li>
-<li>
-<p>任娇</p>
-</li>
-<li>
-<p>肖哲凯</p>
-</li>
-<li>
-<p>金华建</p>
-</li>
-<li>
-<p>王丽</p>
-</li>
-<li>
-<p>Songjin Zhou</p>
-</li>
-<li>
-<p>M.Imran Zaheer</p>
-</li>
-</ul>
 </div>
 </div>
 </div>

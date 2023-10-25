@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ivorysql框架设计 :: IvorySQL文档中心</title>
+    <title>Ivorysql框架设计 :: IvorySQL文档中心</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/beta/beta/14.html">
     <link rel="prev" href="12.html">
     <link rel="next" href="15.html">
@@ -89,7 +89,7 @@
     <span class="nav-text">功能列表</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="14.html">1、ivorysql框架设计</a>
+    <a class="nav-link" href="14.html">1、Ivorysql框架设计</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="15.html">2、GUC框架</a>
@@ -101,19 +101,19 @@
     <a class="nav-link" href="17.html">4、双模式设计</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="18.html">5、兼容oracle like</a>
+    <a class="nav-link" href="18.html">5、兼容Oracle like</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="19.html">6、兼容oracle匿名块</a>
+    <a class="nav-link" href="19.html">6、兼容Oracle匿名块</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="20.html">7、兼容oracle函数与存储过程</a>
+    <a class="nav-link" href="20.html">7、兼容Oracle函数与存储过程</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="21.html">8、内置数据类型与内置函数</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="22.html">9、新增oracle兼容模式的端口与ip</a>
+    <a class="nav-link" href="22.html">9、新增Oracle兼容模式的端口与Ip</a>
   </li>
 </ul>
   </li>
@@ -176,7 +176,7 @@
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
     <li>功能列表</li>
-    <li><a href="14.html">1、ivorysql框架设计</a></li>
+    <li><a href="14.html">1、Ivorysql框架设计</a></li>
   </ul>
 </nav>
   <div class="page-versions">
@@ -193,7 +193,7 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">ivorysql框架设计</h1>
+<h1 class="page">Ivorysql框架设计</h1>
 <div class="sect1">
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
@@ -219,7 +219,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>保持了ivorysql 5432端口兼容原有postgres情况，因此 Ivorysql采用另一个独立的端口登录，默认为1521。从该端口登录，默认采用oracle兼容模式。如果需要从5432端口登录且还要进入兼容模式，则需要通过compatible_mode参数进行设置;</p>
+<p>保持了Ivorysql 5432端口兼容原有postgres情况，因此 Ivorysql采用另一个独立的端口登录，默认为1521。从该端口登录，默认采用oracle兼容模式。如果需要从5432端口登录且还要进入兼容模式，则需要通过compatible_mode参数进行设置;</p>
 </li>
 </ul>
 </div>
@@ -229,7 +229,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>为了将oracle语法与postgres语法间的相互干扰降到最低，因此新增parser模块，用于处理oracle相关的语法;</p>
+<p>为了将Oracle语法与postgres语法间的相互干扰降到最低，因此新增parser模块，用于处理Oracle相关的语法;</p>
 </li>
 </ul>
 </div>
@@ -239,7 +239,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>同样为了减少oracle兼容与postgres语法不同而导致测试用例冲突得情况，因此单独设计了一套oracle专用的测试用例。该套测试用例由postgres原有测试框架拷贝修改而来;</p>
+<p>同样为了减少Oracle兼容与postgres语法不同而导致测试用例冲突得情况，因此单独设计了一套Oracle专用的测试用例。该套测试用例由postgres原有测试框架拷贝修改而来;</p>
 </li>
 </ul>
 </div>

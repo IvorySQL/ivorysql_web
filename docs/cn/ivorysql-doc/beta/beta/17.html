@@ -89,7 +89,7 @@
     <span class="nav-text">功能列表</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="14.html">1、ivorysql框架设计</a>
+    <a class="nav-link" href="14.html">1、Ivorysql框架设计</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="15.html">2、GUC框架</a>
@@ -101,19 +101,19 @@
     <a class="nav-link" href="17.html">4、双模式设计</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="18.html">5、兼容oracle like</a>
+    <a class="nav-link" href="18.html">5、兼容Oracle like</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="19.html">6、兼容oracle匿名块</a>
+    <a class="nav-link" href="19.html">6、兼容Oracle匿名块</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="20.html">7、兼容oracle函数与存储过程</a>
+    <a class="nav-link" href="20.html">7、兼容Oracle函数与存储过程</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="21.html">8、内置数据类型与内置函数</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="22.html">9、新增oracle兼容模式的端口与ip</a>
+    <a class="nav-link" href="22.html">9、新增Oracle兼容模式的端口与Ip</a>
   </li>
 </ul>
   </li>
@@ -200,7 +200,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>为了满足pg模式和兼容oracle模式，ivorysql设计了pg和oracle两种模式。并且可以在initdb时指定模式;</p>
+<p>为了满足PG模式和兼容Oracle模式，Ivorysql设计了pg和oracle两种模式。并且可以在initdb时指定模式;</p>
 </li>
 </ul>
 </div>
@@ -212,7 +212,7 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Initdb -m 初始化，需要判断不同的模式，其中oracle模式下，需要执行postgres_oracle.bki的SQL语句;</p>
+<p>Initdb -m 初始化，需要判断不同的模式，其中Oracle模式下，需要执行postgres_oracle.bki的SQL语句;</p>
 </li>
 <li>
 <p>启动时会根据初始化模式，判断是否为oracle兼容模式。</p>
@@ -223,7 +223,7 @@
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">database_mode：用于表示初始化模式；
 database_mode=DB_PG，PG模式，且不可切换；
-database_mode=DB_ORACLE， oracle兼容模式；</code></pre>
+database_mode=DB_ORACLE，Oracle兼容模式；</code></pre>
 </div>
 </div>
 </div>
@@ -233,7 +233,7 @@ database_mode=DB_ORACLE， oracle兼容模式；</code></pre>
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">初始化pg模式：
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">初始化PG模式：
 ./initdb -D ../data -m pg
 
 初始化oracle兼容模式：
@@ -246,7 +246,7 @@ database_mode=DB_ORACLE， oracle兼容模式；</code></pre>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="16.html">3、大小写转换</a></span>
-  <span class="next"><a href="18.html">5、兼容oracle like</a></span>
+  <span class="next"><a href="18.html">5、兼容Oracle like</a></span>
 </nav>
 </article>
   </div>

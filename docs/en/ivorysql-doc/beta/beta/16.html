@@ -266,8 +266,8 @@
 <h3 id="test-cases"><a class="anchor" href="#test-cases"></a>2.3. Test cases</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SET enable_case_switch = true;
-SET identifier_case_switch = interchange;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SET ivorysql.enable_case_switch = true;
+SET ivorysql.identifier_case_switch = interchange;
 CREATE TABLE "ABC"(c1 int, c2 int);
 SELECT relname FROM pg_class WHERE relname = 'ABC';
 SELECT relname FROM pg_class WHERE relname = 'abc';

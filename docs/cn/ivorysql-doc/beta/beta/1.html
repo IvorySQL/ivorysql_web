@@ -196,7 +196,7 @@
 <h2 id="版本介绍"><a class="anchor" href="#版本介绍"></a>1. 版本介绍</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>IvorySQL3.0 基于 PostgreSQL16.0 ，包含来自 PostgreSQL 16.0 的各种修复。有关 PostgreSQL 16.0中更详细的更新和错误修复，请参阅官方 <a href="https://www.postgresql.org/docs/release/16.0/">PostgreSQL 16.0 发行说明</a> 。</p>
+<p>IvorySQL 3.0 基于 PostgreSQL 16.0 ，包含来自 PostgreSQL 16.0 的各种修复。有关 PostgreSQL 16.0 中更详细的更新和错误修复，请参阅官方 <a href="https://www.postgresql.org/docs/release/16.0/">PostgreSQL 16.0 发行说明</a> 。</p>
 </div>
 </div>
 </div>
@@ -216,17 +216,17 @@
 <h2 id="增强功能"><a class="anchor" href="#增强功能"></a>3. 增强功能</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="ivorysql框架"><a class="anchor" href="#ivorysql框架"></a>3.1. ivorysql框架</h3>
+<h3 id="ivorysql-框架"><a class="anchor" href="#ivorysql-框架"></a>3.1. IvorySQL 框架</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>添加双Parser支持不同的数据库parser <a href="https://github.com/IvorySQL/IvorySQL/pull/210">问题细节</a></p>
+<p>添加双Parser支持不同的数据库parser <a href="https://github.com/IvorySQL/IvorySQL/issues/208">问题细节</a></p>
 </li>
 <li>
-<p>添加双端口支持不同的数据库端口号  <a href="https://github.com/IvorySQL/IvorySQL/pull/209">问题细节</a></p>
+<p>添加双端口支持不同的数据库端口号  <a href="https://github.com/IvorySQL/IvorySQL/issues/200">问题细节</a></p>
 </li>
 <li>
-<p>添加 initdb -m，支持postgres模式或 Oracle模式  <a href="https://github.com/IvorySQL/IvorySQL/pull/213">问题细节</a></p>
+<p>添加 <code>initdb -m</code>，支持postgres模式或 Oracle模式  <a href="https://github.com/IvorySQL/IvorySQL/issues/212">问题细节</a></p>
 </li>
 </ul>
 </div>
@@ -236,13 +236,13 @@
 <div class="ulist">
 <ul>
 <li>
-<p>兼容oracle merge command <a href="https://github.com/IvorySQL/IvorySQL/pull/263">问题细节</a></p>
+<p>兼容oracle merge command <a href="https://github.com/IvorySQL/IvorySQL/issues/262">问题细节</a></p>
 </li>
 <li>
-<p>兼容oracle q转义 <a href="https://github.com/IvorySQL/IvorySQL/pull/296">问题细节</a></p>
+<p>兼容oracle q转义 <a href="https://github.com/IvorySQL/IvorySQL/issues/293">问题细节</a></p>
 </li>
 <li>
-<p>兼容oracle like <a href="https://github.com/IvorySQL/IvorySQL/pull/292">问题细节</a></p>
+<p>兼容oracle like <a href="https://github.com/IvorySQL/IvorySQL/issues/291">问题细节</a></p>
 </li>
 </ul>
 </div>
@@ -252,19 +252,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>解决PL/SQL 创建函数/存储过程存在问题  <a href="https://github.com/IvorySQL/IvorySQL/pull/492">问题细节</a></p>
+<p>解决PL/SQL 创建函数/存储过程存在问题  <a href="https://github.com/IvorySQL/IvorySQL/issues/477">问题细节</a></p>
 </li>
 <li>
-<p>兼容Oracle匿名块  <a href="https://github.com/IvorySQL/IvorySQL/pull/305">问题细节</a></p>
+<p>兼容Oracle匿名块  <a href="https://github.com/IvorySQL/IvorySQL/issues/304">问题细节</a></p>
 </li>
 <li>
-<p>在 SQL parser中创建函数或过程支持嵌套子过程  <a href="https://github.com/IvorySQL/IvorySQL/pull/313">问题细节</a></p>
+<p>在 SQL parser中创建函数或过程支持嵌套子过程  <a href="https://github.com/IvorySQL/IvorySQL/issues/312">问题细节</a></p>
 </li>
 <li>
-<p>嵌套的子进程和函数 is/as 不需要声明  <a href="https://github.com/IvorySQL/IvorySQL/pull/306">问题细节</a></p>
-</li>
-<li>
-<p>解析时嵌套的子进程 retype从 rettype获取  <a href="https://github.com/IvorySQL/IvorySQL/pull/311">问题细节</a></p>
+<p>嵌套的子进程和函数 is/as 不需要声明  <a href="https://github.com/IvorySQL/IvorySQL/issues/303">问题细节</a></p>
 </li>
 </ul>
 </div>
@@ -274,37 +271,34 @@
 <div class="ulist">
 <ul>
 <li>
-<p>在action中增加meson编译  <a href="https://github.com/IvorySQL/IvorySQL/pull/515">问题细节</a></p>
+<p>在action中增加meson编译  <a href="https://github.com/IvorySQL/IvorySQL/issues/512">问题细节</a></p>
 </li>
 <li>
-<p>支持meson编译 <a href="https://github.com/IvorySQL/IvorySQL/pull/510">问题细节</a></p>
+<p>支持meson编译 <a href="https://github.com/IvorySQL/IvorySQL/issues/325">问题细节</a></p>
 </li>
 <li>
-<p>添加兼容的测试用例 <a href="https://github.com/IvorySQL/IvorySQL/pull/481">问题细节</a></p>
+<p>添加兼容的测试用例 <a href="https://github.com/IvorySQL/IvorySQL/issues/479">问题细节</a></p>
 </li>
 <li>
-<p>添加contrib回归  <a href="https://github.com/IvorySQL/IvorySQL/pull/453">问题细节</a></p>
+<p>添加contrib回归  <a href="https://github.com/IvorySQL/IvorySQL/issues/452">问题细节</a></p>
 </li>
 <li>
-<p>支持gin索引  <a href="https://github.com/IvorySQL/IvorySQL/pull/445">问题细节</a></p>
+<p>兼容btree_gist索引 <a href="https://github.com/IvorySQL/IvorySQL/issues/354">问题细节</a></p>
 </li>
 <li>
-<p>兼容btree_gist索引 <a href="https://github.com/IvorySQL/IvorySQL/pull/443">问题细节</a></p>
+<p>兼容btree_gin索引  <a href="https://github.com/IvorySQL/IvorySQL/issues/353">问题细节</a></p>
 </li>
 <li>
-<p>兼容btree_gin索引  <a href="https://github.com/IvorySQL/IvorySQL/pull/438">问题细节</a></p>
+<p>添加Oracle数据类型 GIN索引操作  <a href="https://github.com/IvorySQL/IvorySQL/issues/347">问题细节</a></p>
 </li>
 <li>
-<p>添加Oracle数据类型 GIN索引操作  <a href="https://github.com/IvorySQL/IvorySQL/pull/437">问题细节</a></p>
+<p>添加Oracle数据类型 Gist索引操作   <a href="https://github.com/IvorySQL/IvorySQL/issues/341">问题细节</a></p>
 </li>
 <li>
-<p>添加Oracle数据类型 Gist索引操作   <a href="https://github.com/IvorySQL/IvorySQL/pull/432">问题细节</a></p>
+<p>兼容Oracle内置数据类型与内置函数  <a href="https://github.com/IvorySQL/IvorySQL/issues/239">问题细节</a></p>
 </li>
 <li>
-<p>兼容Oracle内置数据类型与内置函数  <a href="https://github.com/IvorySQL/IvorySQL/pull/240">问题细节</a></p>
-</li>
-<li>
-<p>添加plisql扩展  <a href="https://github.com/IvorySQL/IvorySQL/pull/215">问题细节</a></p>
+<p>添加plisql扩展  <a href="https://github.com/IvorySQL/IvorySQL/issues/211">问题细节</a></p>
 </li>
 </ul>
 </div>
@@ -352,10 +346,14 @@
 <li>
 <p>当自增列类型为numer类型，且指定了精度时，by default on null插入null值时，不是插入的具体序列值，而是插入的null值  <a href="https://github.com/IvorySQL/IvorySQL/issues/386">问题细节</a></p>
 </li>
-<li>
-<p>在函数中修改decode的用法 <a href="https://github.com/IvorySQL/IvorySQL/pull/457">问题细节</a></p>
-</li>
 </ul>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>说明：关于新增功能更多介绍请参考本文档中心功能列表</p>
+</div>
+</blockquote>
 </div>
 </div>
 </div>

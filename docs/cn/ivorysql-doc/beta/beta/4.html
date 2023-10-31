@@ -496,74 +496,137 @@ postgres   27093  0.0  0.0  30096  2752 ?        Ss   11:34   0:00 postgres: ser
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 100%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">列类型描述</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">列类型</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">描述</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datid</code> `oid`这个后端连接到的数据库的OID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oid</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datname</code> `name`这个后端连接到的数据库的名称</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">这个后端连接到的数据库的OID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>datname</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pid</code> `integer`这个后端的进程 ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">这个后端连接到的数据库的名称</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>leader_pid</code> <code>integer`并行组组长的进程ID，如果该进程是并行查询工作者。如果该进程是一个并行组的组长或不参与并行查询，则为`NULL</code>。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>pid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>usesysid</code> `oid`登录到这个后端的用户的 OID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">这个后端的进程 ID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>leader_pid</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>usename</code> `name`登录到这个后端的用户的 OID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">并行组组长的进程ID，如果该进程是并行查询工作者。如果该进程是一个并行组的组长或不参与并行查询，则为`NULL`。</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application_name</code> `text`连接到这个后端的应用的名称</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>usesysid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>oid</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>client_addr</code> `inet`连接到这个后端的客户端的 IP 地址。如果这个字段为空，它表示客户端通过服务器机器上的一个 Unix 套接字连接或者这是一个内部进程，如自动清理。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">登录到这个后端的用户的 OID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>usename</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>client_hostname</code> `text`已连接的客户端的主机名，由`client_addr`的反向 DNS 查找报告。 这个字段将只对 IP 连接非空，并且只有log_hostname被启用时才会非空。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">登录到这个后端的用户的 OID</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>client_port</code> <code>integer`客户端用于与此后端通信的TCP端口号，如果使用Unix套接字，则为</code>-1`。如果该字段为空，它表示这是一个内部服务器进程。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>application_name</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>text</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_start</code> `timestamp with time zone`这个进程被启动的时间。对客户端后端来说，这就是客户端连接到服务器的时间。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">连接到这个后端的应用的名称</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>client_addr</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xact_start</code> `timestamp with time zone`这个进程的当前事务被启动的时间，如果没有活动事务则为空。 如果当前查询是它的第一个事务，这一列等于`query_start`列。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>inet</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">连接到这个后端的客户端的 IP 地址。如果这个字段为空，它表示客户端通过服务器机器上的一个 Unix 套接字连接或者这是一个内部进程，如自动清理。</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>query_start</code> <code>timestamp with time zone`当前活动查询被开始的时间，如果`state`不是`active</code>，则为上一个查询开始的时间</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>client_hostname</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>text</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>state_change</code> `timestamp with time zone``state`上一次被改变的时间</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">已连接的客户端的主机名，由 <code>client_addr</code> 的反向 DNS 查找报告。 这个字段将只对 IP 连接非空，并且只有log_hostname被启用时才会非空。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>client_port</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wait_event_type</code> `text`后端等待的事件类型，如果有的话;否则NULL。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>integer</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">客户端用于与此后端通信的TCP端口号，如果使用Unix套接字，则为`-1`。如果该字段为空，它表示这是一个内部服务器进程。</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wait_event</code> `text`如果后端当前正在等待，则等待事件名称，否则为NULL。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_start</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timestamp with time zone</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>state</code> <code>text`这个后端的当前总体状态。可能的值为：`active</code>: 后端正在执行一个查询。<code>idle</code>: 后端正在等待一个新的客户端命令。<code>idle in transaction</code>: 后端在一个事务中，但是当前没有正在执行一个查询。<code>idle in transaction (aborted)</code>: 这个状态与 <code>idle in transaction`相似，除了在该事务中的一个语句导致了一个错误。`fastpath function call</code>: 后端正在执行一个 fast-path 函数。<code>disabled</code>: 如果在这个后端中track_activities被禁用，则报告这个状态。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">这个进程被启动的时间。对客户端后端来说，这就是客户端连接到服务器的时间。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xact_start</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_xid</code> `xid`这个后端的顶层事务标识符，如果存在。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timestamp with time zone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">这个进程的当前事务被启动的时间，如果没有活动事务则为空。 如果当前查询是它的第一个事务，这一列等于 <code>query_start</code> 列。</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_xmin</code> `xid`当前后端的`xmin`范围。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>query_start</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timestamp with time zone</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>query</code> <code>text`这个后端最近查询的文本。如果`state`为`active</code>，这个字段显示当前正在执行的查询。 在所有其他状态下，它显示上一个被执行的查询。默认情况下，查询文本会被截断至1024个字节，这个值可以通过参数track_activity_query_size更改。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前活动查询被开始的时间，如果 <code>state</code> 不是 <code>active</code>，则为上一个查询开始的时间</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>state_change</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_type</code> <code>text`当前后端的类型。可能的类型为 `autovacuum launcher</code>, <code>autovacuum worker</code>, <code>logical replication launcher</code>, <code>logical replication worker</code>, <code>parallel worker</code>, <code>background writer</code>, <code>client backend</code>, <code>checkpointer</code>, <code>startup</code>, <code>walreceiver</code>, <code>walsender</code> and <code>walwriter</code>. 除此以外，由扩展注册的后台Worker可能有额外的类型。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>timestamp with time zone</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>state</code> 上一次被改变的时间</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wait_event_type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>text</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">后端等待的事件类型，如果有的话;否则NULL。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>wait_event</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>text</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果后端当前正在等待，则等待事件名称，否则为NULL。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>state</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>text</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">这个后端的当前总体状态。可能的值为：<code>active</code>: 后端正在执行一个查询。<code>idle</code>: 后端正在等待一个新的客户端命令。<code>idle in transaction</code>: 后端在一个事务中，但是当前没有正在执行一个查询。<code>idle in transaction (aborted)</code>: 这个状态与 <code>idle in transaction</code> 相似，除了在该事务中的一个语句导致了一个错误。<code>fastpath function call</code>: 后端正在执行一个 fast-path 函数。<code>disabled</code>: 如果在这个后端中track_activities被禁用，则报告这个状态。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_xid</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xid</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">这个后端的顶层事务标识符，如果存在。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_xmin</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>xid</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前后端的 <code>xmin</code> 范围。</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>query</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>text</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">这个后端最近查询的文本。如果 <code>state</code> 为 <code>active</code>，这个字段显示当前正在执行的查询。 在所有其他状态下，它显示上一个被执行的查询。默认情况下，查询文本会被截断至1024个字节，这个值可以通过参数track_activity_query_size更改。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>backend_type</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>text</code></p></td>
 </tr>
 </tbody>
 </table>

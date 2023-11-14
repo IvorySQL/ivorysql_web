@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IvorySQL :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v3.0/v3.0/3.html">
+    <link rel="prev" href="2.html">
+    <link rel="next" href="4.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v3.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="3.html">用户使用手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">管理员指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">运维人员指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="6.html">安装部署</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="7.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="8.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="9.html">迁移指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="11.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="12.html">FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">1、Ivorysql框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="22.html">9、新增Oracle兼容模式的端口与Ip</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v3.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL入门</li>
+    <li><a href="3.html">用户使用手册</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v3.0/v3.0/3.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v3.0/CN/modules/ROOT/pages/v3.0/3.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="用户使用手册"><a class="anchor" href="#用户使用手册"></a>1. 用户使用手册</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="入门指南"><a class="anchor" href="#入门指南"></a>1.1. 入门指南</h3>
+<div class="sect3">
+<h4 id="新用户指南"><a class="anchor" href="#新用户指南"></a>1.1.1. 新用户指南</h4>
+<div class="paragraph">
+<p>如果您刚开始接触IvorySQL，您可以访问我们的 <a href="https://docs.ivorysql.org/cn/ivorysql-doc/beta/beta/1">地址</a>来初步了解IvorySQL的各项特性。您同样可以前往我们的 <a href="https://github.com/IvorySQL/IvorySQL">Github</a>将我们的项目源代码下载到您的终端中。</p>
+</div>
+<div class="paragraph">
+<p>如果您想快速安装IvorySQL并且进行一些数据库体验，您可以参考如下：</p>
+</div>
+<div class="paragraph">
+<p>笔者的OS版本如下</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql ~]$ cat /proc/version
+Linux version 3.10.0-1160.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) ) #1 SMP Mon Oct 19 16:18:59 UTC 2020</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>进入用户目录</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql /]$ cd /home/highgo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>使用git命令下载项目源代码</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql ~]$ git clone https://github.com/IvorySQL/IvorySQL.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>进入下载好的项目目录中</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql ~]$ ls
+IvorySQL
+[highgo@ivorysql ~]$ cd IvorySQL/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>编译</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql IvorySQL]$ ./configure --prefix=/home/highgo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>prefix参数可以帮助您设置项目安装位置，如果您想默认安装，直接执行./configure即可，项目会默认安装至/usr/local/pgsql目录下，其余参数设置可以参考 <a href="http://postgres.cn/docs/14/installation.html">手册</a></p>
+</div>
+<div class="paragraph">
+<p>如果安装过程中，提示您缺少依赖，您可以使用<strong>yum</strong>命令安装对应依赖即可
+以下的依赖是必需的</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">GNU Make(版本3.80以上)
+GCC
+readline、readline-develop
+zlib</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>安装</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql ~]$ ls
+bin  include  IvorySQL  lib  share</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>修改环境变量</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql ~]$ vi .bash_profile
+PATH=/home/highgo/bin:$PATH
+export PATH
+LD_LIBRARY_PATH=/usr/local/pgsql/lib
+export LD_LIBRARY_PATH</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>使得改动生效</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql ~]$ source .bash_profile</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>初始化数据库</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql ~]$ initdb -D data //data是您初始化的数据库名字，可以凭个人喜好设置
+//-D 参数指定数据库文件存放路径
+//-m 参数指定数据库模式，默认为oracle
+//-C 参数设置大小写转换模式，默认为interchange</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>详细参数信息请输入initdb --help</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/p19.png" alt="p19">
+</div>
+</div>
+<div class="paragraph">
+<p><strong>开启数据库服务</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql ~]$ pg_ctl -D data -l logfile start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>连接数据库</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql ~]$ psql -d postgres
+psql (16devel)
+Type "help" for help.
+
+postgres=#
+//出现上面的信息，则说明IvorySQL已经安装成功，您可以输入SQL语句进行体验以及学习。</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="开发者指南"><a class="anchor" href="#开发者指南"></a>1.1.2. 开发者指南</h4>
+<div class="paragraph">
+<p>开发者更关注的问题是：如何最快地下载，安装并接入数据库，关于下载安装请参考第四部分【安装部署】，以下介绍客户端如何接入数据库</p>
+</div>
+<div class="paragraph">
+<p>连接IvorySQL数据库服务的客户端工具和PostgreSQL的一样。</p>
+</div>
+<div class="sect4">
+<h5 id="psql连接"><a class="anchor" href="#psql连接"></a>1.1.2.1. psql连接</h5>
+<div class="paragraph">
+<p>操作系统用户ivorysql会话下连接：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">undefined
+[root@localhost ~]# su - ivorysql
+Last login: Wed Feb 24 10:47:32 CST 2023 on pts/0
+-bash-4.2$ psql
+psql (14.2)
+Type "help" for help.
+
+ivorysql=#</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="dbeaver连接"><a class="anchor" href="#dbeaver连接"></a>1.1.2.2. DBeaver连接</h5>
+<div class="paragraph">
+<p>DBeaver是一个功能比较强大的开源工具，连接配置如下：</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/p1.png" alt="p1">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="瀚高developer连接"><a class="anchor" href="#瀚高developer连接"></a>1.1.2.3. 瀚高developer连接</h5>
+<div class="paragraph">
+<p>瀚高developer是瀚高自主研发的一个工具，除了可以支持瀚高数据库，还支持PostgreSQL以及IvorySQL数据库。连接配置如下：</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/p2.png" alt="p2">
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>如果想使用该工具，请关注公众号加入微信群“IvorySQL中国技术交流群”咨询。</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="快速体验"><a class="anchor" href="#快速体验"></a>1.2. 快速体验</h3>
+<div class="sect3">
+<h4 id="单机模拟部署"><a class="anchor" href="#单机模拟部署"></a>1.2.1. 单机模拟部署</h4>
+<div class="sect4">
+<h5 id="单机安装"><a class="anchor" href="#单机安装"></a>1.2.1.1. 单机安装</h5>
+<div class="paragraph">
+<p>环境：<strong>CentOS 7.X</strong></p>
+</div>
+<div class="paragraph">
+<p>安装包：rpm</p>
+</div>
+<div class="paragraph">
+<p>下载YUM源:在Centos7上使用wget下载</p>
+</div>
+<div class="paragraph">
+<p>wget <a href="https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm" class="bare">https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm</a></p>
+</div>
+<div class="paragraph">
+<p>安装源</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">yum install ivorysql-release-1.0-2.noarch.rpm</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>安装库</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">yum install -y ivorysql2-server</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>初始化单机数据库</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd /usr/local/ivorysql/ivorysql-2/bin
+./initdb -D ../data</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="集群安装一主一备"><a class="anchor" href="#集群安装一主一备"></a>1.2.1.2. 集群安装（一主一备）</h5>
+<div class="paragraph">
+<p>环境：<strong>CentOS 7.X</strong></p>
+</div>
+<div class="paragraph">
+<p>安装包：rpm</p>
+</div>
+<div class="paragraph">
+<p>下载YUM源:在Centos7上使用wget下载</p>
+</div>
+<div class="paragraph">
+<p>wget <a href="https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm" class="bare">https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm</a></p>
+</div>
+<div class="paragraph">
+<p>安装源</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">yum install ivorysql-release-1.0-2.noarch.rpm</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>安装库</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">yum install -y ivorysql2-server</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>主节点</strong></p>
+</div>
+<div class="paragraph">
+<p>初始化主节点</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd /usr/local/ivorysql/ivorysql-2/bin
+./initdb ../data-primary -U postgres</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>启动服务，创建用户</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ALTER USER postgres WITH PASSWORD '123456';
+CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>配置pg_hba.conf</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">host    all             all             0.0.0.0/0            trust
+host    replication     all             0.0.0.0/0            trust</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>重启服务</p>
+</div>
+<div class="paragraph">
+<p><strong>备节点</strong></p>
+</div>
+<div class="paragraph">
+<p>1、 基础备份</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd /usr/local/ivorysql/ivorysql-2/bin
+./pg_basebackup -h 127.0.0.1 -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>2、 修改端口（同一服务器实验，需要先修改postgresql.conf的端口）</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">vi ../data-standby01/postgresql.conf
+
+    port = 5334</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>3、 启动备库</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="部署本地集群"><a class="anchor" href="#部署本地集群"></a>1.2.2. 部署本地集群</h4>
+<div class="paragraph">
+<p><strong>主节点</strong></p>
+</div>
+<div class="paragraph">
+<p>环境：<strong>CentOS 7.X</strong></p>
+</div>
+<div class="paragraph">
+<p>安装包：rpm</p>
+</div>
+<div class="paragraph">
+<p>下载YUM源:在Centos7上使用wget下载</p>
+</div>
+<div class="paragraph">
+<p>wget <a href="https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm" class="bare">https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm</a></p>
+</div>
+<div class="paragraph">
+<p>安装源</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">yum install ivorysql-release-1.0-2.noarch.rpm</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>安装库</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">yum install -y ivorysql2-server</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>初始化主节点</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd /usr/local/ivorysql/ivorysql-2/bin
+./initdb ../data-primary -U postgres</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>启动服务，创建用户</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">./psql -U postgres -d postgres -p 5333
+ALTER USER postgres WITH PASSWORD '123456';
+CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>修改postgres.conf</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">listen_addresses = '*'
+
+port = 5333
+max_connections = 100
+unix_socket_directories = '/tmp'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>配置pg_hba.conf</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shell
+host    all             all             0.0.0.0/0            trust
+host    replication     all             0.0.0.0/0            trust</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>重启服务</p>
+</div>
+<div class="paragraph">
+<p><strong>备节点</strong></p>
+</div>
+<div class="paragraph">
+<p>环境：<strong>CentOS 7.X</strong></p>
+</div>
+<div class="paragraph">
+<p>安装包：rpm</p>
+</div>
+<div class="paragraph">
+<p>下载YUM源:在Centos7上使用wget下载</p>
+</div>
+<div class="paragraph">
+<p>wget <a href="https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm" class="bare">https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm</a></p>
+</div>
+<div class="paragraph">
+<p>安装源</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>yum install ivorysql-release-1.0-2.noarch.rpm</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>安装库</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>yum install -y ivorysql2-server</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>1、 基础备份</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd /usr/local/ivorysql/ivorysql-2/bin
+./pg_basebackup -h 192.168.xx.xx -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>2、 启动备库</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="2.html">关于IvorySQL</a></span>
+  <span class="next"><a href="4.html">管理员指南</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

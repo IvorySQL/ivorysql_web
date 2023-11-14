@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IvorySQL :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v3.0/v3.0/3.html">
+    <link rel="prev" href="2.html">
+    <link rel="next" href="4.html">
+    <meta name="generator" content="Antora 2.3.4">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v3.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="3.html">User manual</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">Administrator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">Operating personnel</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="6.html">Installation Deployment</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="7.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="8.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="9.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="11.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="12.html">FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">1、Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">2、GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">3、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">4、Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">5、Compatible with oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">6、Compatible with oracle anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20.html">7、Compatible with Oracle functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21.html">8、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="22.html">9、Added Oracle compatibility mode ports and IP</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v3.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>Getting Started with IvorySQL</li>
+    <li><a href="3.html">User manual</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/v3.0/v3.0/3.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v3.0/EN/modules/ROOT/pages/v3.0/3.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="user-manual"><a class="anchor" href="#user-manual"></a>1. User manual</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="getting-started-guide"><a class="anchor" href="#getting-started-guide"></a>1.1. getting started guide</h3>
+<div class="sect3">
+<h4 id="beginners"><a class="anchor" href="#beginners"></a>1.1.1. Beginners</h4>
+<div class="paragraph">
+<p>If you are new to IvorySQL, you can click <a href="https://deploy-preview-83&#8212;&#8203;ivorysql.netlify.app/zh-CN/">here</a> to learn about features of IvorySQL in the beginning.Also, you can download our source code through [Github](<a href="https://github.com/IvorySQL/IvorySQL).By" class="bare">https://github.com/IvorySQL/IvorySQL).By</a> the way, don&#8217;t forget to give our IvorySQL community a star.</p>
+</div>
+<div class="paragraph">
+<p>You can refer to the following contents to install IvorySQL quickly.</p>
+</div>
+<div class="paragraph">
+<p>OS version of the demo:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">[highgo@ivorysql ~]$ cat /proc/version
+Linux version 3.10.0-1160.el7.x86_64 (mockbuild@kbuilder.bsys.centos.org) (gcc version 4.8.5 20150623 (Red Hat 4.8.5-44) (GCC) ) #1 SMP Mon Oct 19 16:18:59 UTC 2020</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Enter user directory</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql /]$ cd /home/highgo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Getting the source</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql ~]$ ls
+IvorySQL
+[highgo@ivorysql ~]$ cd IvorySQL/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Configuration</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql IvorySQL]$ ./configure --prefix=/home/highgo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can install IvorySQL where you want to install it. If you want to install IvorySQL by default, execute ./configure directly.Remember to refer to the <a href="http://postgres.cn/docs/14/installation.html">manual</a> for other parameter settings.</p>
+</div>
+<div class="paragraph">
+<p>To compile the IvorySQL from the source code, you have to ensure that prerequisite packages are available on your system. The following software packages are required for building IvorySQL:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>make - GNU make version 3.80 or newer</p>
+</li>
+<li>
+<p>gcc - ISO/ANSI C compiler (at least C99-compliant). Recent versions of GCC are recommended.</p>
+</li>
+<li>
+<p>libreadline - The GNU Readline library is used by default.</p>
+</li>
+<li>
+<p>zlib - zlib compression library is used by default.</p>
+</li>
+<li>
+<p>Flex - (Flex 2.5.31 or later)</p>
+</li>
+<li>
+<p>Bison - (Bison 1.875 or later)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Install</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql IvorySQL]$ make
+[highgo@ivorysql IvorySQL]$ make install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Installation completed</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[highgo@ivorysql ~]$ ls
+bin  include  IvorySQL  lib  share</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Modify environment variables</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[highgo@ivorysql ~]$ vi .bash_profile</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Write and quit</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>PATH=/home/highgo/bin:$PATH
+export PATH
+LD_LIBRARY_PATH=/usr/local/pgsql/lib
+export LD_LIBRARY_PATH</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Source .bash_prifile</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[highgo@ivorysql ~]$ source .bash_profile</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Initialize database</strong></p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[highgo@ivorysql ~]$ initdb -D data // 'data' is the name of your database, you can set it by yourself.
+//-D location for this database cluster
+//-m set database mode, default is oracle
+//-C set case conversion mode, default is interchange</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Please enter detailed parameter information initdb --help
+
+image::p19.png[]
+
+**Start server**
+
+    [highgo@ivorysql ~]$ pg_ctl -D data -l logfile start
+
+**Connection**</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[highgo@ivorysql ~]$ psql -d postgres
+psql (16devel)
+Type "help" for help.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>postgres=#</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Congratulation! You have installed IvorySQL successfully.Please enter SQL statements to experience.Have a nice day.
+
+
+
+==== Developer guide
+
+Developers are more concerned about how to download, install and access the database as quickly as possible. For download and installation, please refer to Part IV [Installation and Deployment]. The following describes how to access the database for clients
+
+The client tool for connecting to the IvorySQL database service is the same as that of PostgreSQL.
+
+===== Psql connection
+
+Operating system user ivorysql session connection：</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>undefined
+[root@localhost ~]# su - ivorysql
+Last login: Wed Feb 24 10:47:32 CST 2023 on pts/0
+-bash-4.2$ psql
+psql (14.2)
+Type "help" for help.</p>
+</div>
+<div class="paragraph">
+<p>ivorysql=#</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>===== DBeaver connection
+
+DBeaver is a powerful open source tool. The connection configuration is as follows:
+
+image::p1.png[]
+
+===== HIGHGO developer connection
+
+HIGHGO developer is a tool independently developed by HIGHGO. In addition to supporting HIGHGO database, it also supports PostgreSQL and IvorySQL databases. The connection configuration is as follows:
+
+image::p2.png[]
+
+&gt; If you want to use this tool, please follow the official account to join the WeChat group "IvorySQL China Technology Exchange Group" for consultation.
+
+
+= Quick experience
+
+== Stand-alone simulation deployment
+
+=== stand-alone installation
+
+environment：**CentOS 7.X**
+
+Installation package：rpm
+
+Download YUM source: Use wget to download on Centos7
+
+wget https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm
+
+
+
+installation source
+
+    yum install ivorysql-release-1.0-2.noarch.rpm
+
+install library
+
+    yum install -y ivorysql2-server
+
+Initialize the database
+
+    cd /usr/local/ivorysql/ivorysql-2/bin
+    ./initdb -D ../data
+
+=== cluster installation
+
+environment：**CentOS 7.X**
+
+Installation package：rpm
+
+Download YUM source: Use wget to download on Centos7
+
+wget https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm
+
+installation source
+
+    yum install ivorysql-release-1.0-2.noarch.rpm
+
+install library
+
+    yum install -y ivorysql2-server
+
+**master node**
+
+Initialize the database
+
+    cd /usr/local/ivorysql/ivorysql-2/bin
+    ./initdb ../data-primary -U postgres
+
+Start the service and create a user
+
+    ALTER USER postgres WITH PASSWORD '123456';
+    CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;
+
+
+configuration: pg_hba.conf</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>shell
+host    all             all             0.0.0.0/0            trust
+host    replication     all             0.0.0.0/0            trust</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>restart service
+
+**standby node**
+
+1、basic backup</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>shell
+cd /usr/local/ivorysql/ivorysql-2/bin
+./pg_basebackup -h 127.0.0.1 -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>2、modify port</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>vi ../data-standby01/postgresql.conf</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>port = 5334</pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>3、Start the standby database
+
+== deploy cluster
+
+**master node**
+
+environment：**CentOS 7.X**
+
+Installation package：rpm
+
+Download YUM source: Use wget to download on Centos7
+
+wget https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm
+
+
+
+installation source</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>yum install ivorysql-release-1.0-2.noarch.rpm</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>install library
+
+    yum install -y ivorysql2-server
+
+Initialize the master node
+
+    cd /usr/local/ivorysql/ivorysql-2/bin
+    ./initdb ../data-primary -U postgres
+
+Start the service and create a user</pre>
+</div>
+</div>
+<div class="paragraph">
+<div class="title">/psql -U postgres -d postgres -p 5333</div>
+<p>ALTER USER postgres WITH PASSWORD '123456';
+CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Revise:postgres.conf</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>listen_addresses = '*'</p>
+</div>
+<div class="paragraph">
+<p>port = 5333
+max_connections = 100
+unix_socket_directories = '/tmp'</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>configuration: pg_hba.conf</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>shell
+host    all             all             0.0.0.0/0            trust
+host    replication     all             0.0.0.0/0            trust</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>restart service
+
+**standby node**
+
+environment：**CentOS 7.X**
+
+Installation package：rpm
+
+Download YUM source: Use wget to download on Centos7
+
+wget https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm
+
+
+
+installation source
+
+    yum install ivorysql-release-1.0-2.noarch.rpm
+
+install library
+
+    yum install -y ivorysql2-server
+
+1、basic backup</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>shell
+cd /usr/local/ivorysql/ivorysql-2/bin
+./pg_basebackup -h 192.168.xx.xx -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>2、Start the standby database</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="2.html">About</a></span>
+  <span class="next"><a href="4.html">Administrator</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

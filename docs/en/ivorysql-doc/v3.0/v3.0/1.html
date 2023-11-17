@@ -193,18 +193,544 @@
 </aside>
 <article class="doc">
 <div class="sect1">
-<h2 id="versions-inroduction"><a class="anchor" href="#versions-inroduction"></a>1. Versions Inroduction</h2>
+<h2 id="version-inroduction"><a class="anchor" href="#version-inroduction"></a>1. Version Inroduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>[<strong>Release date: November 17, 2023</strong>]</p>
 </div>
 <div class="paragraph">
-<p>IvorySQL 3.0 is based on PostgreSQL 16.0 includes various fixes from PostgreSQL 16.0, For more detailed updates and bug fixes in PostgreSQL 16.0, see the official <a href="https://www.postgresql.org/docs/release/16/">PostgreSQL 16.0 Release Notes</a> .</p>
+<p>IvorySQL 3.0 is based on PostgreSQL 16.0 includes various fixes from PostgreSQL 16.0, for more detailed updates and bug fixes in PostgreSQL 16.0, see the official <a href="https://www.postgresql.org/docs/release/16/">PostgreSQL 16.0 Release Notes</a> .</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="known-issues"><a class="anchor" href="#known-issues"></a>2. Known Issues</h2>
+<h2 id="updates-on-version-3-0-vs-2-3"><a class="anchor" href="#updates-on-version-3-0-vs-2-3"></a>2. Updates on Version 3.0 vs 2.3</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL 3.0 represents a significant architectural evolution, marking a departure from the usage patterns of version 2.3. It&#8217;s important to note that some functionalities available in 2.3 are not yet supported in the new version. Here&#8217;s a breakdown of the key feature differences between these two versions:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Functional modules</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">function</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL-2.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL-3.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="14"><p class="tableblock">Built-in data types</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">char</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">varchar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">varchar2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">binary_float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">binary_double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timestamp with time zone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timestamp with local time zone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interval year to month</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interval day to second</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">raw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="44"><p class="tableblock">Built-in functions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">char</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sysdate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">systimestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add_months</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">last_day</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">next_day</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">months_between</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">current_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">current_timestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new_time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tz_offset</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trunc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instrb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">substr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">substrb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trim</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ltrim</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rtrim</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">length</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lengthb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rawtohex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">replace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">regexp_replace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">regexp_substr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">regexp_instr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">regexp_like</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_char</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_timestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_timestamp_tz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_yminterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_dsinterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">numtodsinterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">numtoyminterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localtimestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new_time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">from_tz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sys_extract_utc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sessiontimezone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hextoraw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">uid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USERENV</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock">NLS parameter</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NLS_LENGTH_SEMANTICS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NLS_DATE_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NLS_TIMESTAMP_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NLS_TIMESTAMP_TZ_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Function</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Syntax compatibility is supported, and the OUT parameter is supported</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Procedure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Syntax compatibility is supported, and the OUT parameter is supported</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Anonymous block</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Syntax compatibility is supported, and the OUT parameter is supported</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nested subroutines</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nested stored procedures, functions, and so on are supported</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Merge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The Merge function of PG and the Merge function compatible with Oralce syntax are supported</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">q`</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Compatible escapes are supported</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Keyword processing</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supports the processing of keywords in the database</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock">Object case conversion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All uppercase plus double quotation marks are converted to lowercase</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All lowercase plus double quotation marks are converted to uppercase</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The mixed case plus double quotation marks remain the same</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Without double quotation marks (default), all are lowercase</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In compatibility mode, the default search is sys mode, and then the pg_catalog mode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty strings</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle-compatible conversion of empty strings to NULL is supported</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lexical parser separation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Part of the 3.0 framework</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">package</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Globally unique indexes</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GUC Switch to oracle or pg</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Hierarchical queries</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NANVL</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GREATEST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LEAST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ADD_DAYS_TO_TIMESTAMP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAYS_BETWEEN</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAYS_BETWEEN_TMTZ</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DBTIMEZONE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TO_MULTI_BYTE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TO_SINGLE_BYTE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTERVAL_TO_SECONDS</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HEX_TO_DECIMAL</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TO_BINARY_DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TO_BINARY_FLOAT</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BIN_TO_NUM</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">support</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">not support</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="known-issues"><a class="anchor" href="#known-issues"></a>3. Known Issues</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -216,10 +742,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="enhancements"><a class="anchor" href="#enhancements"></a>3. Enhancements</h2>
+<h2 id="enhancements"><a class="anchor" href="#enhancements"></a>4. Enhancements</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="ivorysql-frame"><a class="anchor" href="#ivorysql-frame"></a>3.1. ivorysql frame</h3>
+<h3 id="ivorysql-frame"><a class="anchor" href="#ivorysql-frame"></a>4.1. ivorysql frame</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -235,7 +761,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="compatible-with-sql"><a class="anchor" href="#compatible-with-sql"></a>3.2. Compatible with SQL</h3>
+<h3 id="compatible-with-sql"><a class="anchor" href="#compatible-with-sql"></a>4.2. Compatible with SQL</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -251,7 +777,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="compatible-with-plsql"><a class="anchor" href="#compatible-with-plsql"></a>3.3. Compatible with PL/SQL</h3>
+<h3 id="compatible-with-plsql"><a class="anchor" href="#compatible-with-plsql"></a>4.3. Compatible with PL/SQL</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -270,7 +796,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="other"><a class="anchor" href="#other"></a>3.4. Other</h3>
+<h3 id="other"><a class="anchor" href="#other"></a>4.4. Other</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -316,7 +842,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="fixed-issue"><a class="anchor" href="#fixed-issue"></a>4. Fixed issue</h2>
+<h2 id="fixed-issue"><a class="anchor" href="#fixed-issue"></a>5. Fixed issue</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -361,7 +887,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="source-code"><a class="anchor" href="#source-code"></a>5. Source Code</h2>
+<h2 id="source-code"><a class="anchor" href="#source-code"></a>6. Source Code</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>IvorySQL contains 2 main code repositories, the database IvorySQL code bin, and the IvorySQL web bin.</p>
@@ -379,13 +905,16 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="contributors"><a class="anchor" href="#contributors"></a>6. Contributors</h2>
+<h2 id="contributors"><a class="anchor" href="#contributors"></a>7. Contributors</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>The following individuals have contributed to this release as patch authors, committers, reviewers, testers, or issue reporters.</p>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>IvorySQL Pro development &amp; testing team</p>
+</li>
 <li>
 <p>Yang Tan</p>
 </li>
@@ -420,13 +949,13 @@
 <p>Zhekai Xiao</p>
 </li>
 <li>
-<p>Huajian JIN</p>
+<p>Huajian Jin</p>
 </li>
 <li>
-<p>LIly Wang</p>
+<p>Lily Wang</p>
 </li>
 <li>
-<p>Jinzhou song</p>
+<p>Jinzhou Song</p>
 </li>
 <li>
 <p>Leo X.M. Zeng</p>
@@ -439,6 +968,15 @@
 </li>
 <li>
 <p>Yunhe Xu</p>
+</li>
+<li>
+<p>Hao Wang</p>
+</li>
+<li>
+<p>Miss Dong</p>
+</li>
+<li>
+<p>Weibo Han</p>
 </li>
 </ul>
 </div>

@@ -204,7 +204,538 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="已知问题"><a class="anchor" href="#已知问题"></a>2. 已知问题</h2>
+<h2 id="版本差异"><a class="anchor" href="#版本差异"></a>2. 版本差异</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL 3.0 版本在架构上发生了很大的变化，其使用方式与 2.3 版本不同。还有一些以前在 2.3 版本中可用的功能尚不受支持，以下是两个版本的功能差异。</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">功能模块</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">功能</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL-2.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL-3.0</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="14"><p class="tableblock">内置数据类型</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">char</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">varchar</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">varchar2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">binary_float</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">binary_double</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timestamp with time zone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">timestamp with local time zone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interval year to month</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">interval day to second</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">raw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">long</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="44"><p class="tableblock">内置函数</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">char</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sysdate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">systimestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">add_months</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">last_day</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">next_day</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">months_between</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">current_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">current_timestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new_time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tz_offset</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trunc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">instrb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">substr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">substrb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trim</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ltrim</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rtrim</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">length</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">lengthb</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rawtohex</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">replace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">regexp_replace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">regexp_substr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">regexp_instr</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">regexp_like</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_number</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_char</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_date</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_timestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_timestamp_tz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_yminterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">to_dsinterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">numtodsinterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">numtoyminterval</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">localtimestamp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">new_time</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">from_tz</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sys_extract_utc</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sessiontimezone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hextoraw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">uid</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">USERENV</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="4"><p class="tableblock">NLS参数</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NLS_LENGTH_SEMANTICS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NLS_DATE_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NLS_TIMESTAMP_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NLS_TIMESTAMP_TZ_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Function（函数）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持语法兼容，并支持OUT参数</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Procedure（存储过程</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持语法兼容，并支持OUT参数</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Anonymous block（匿名块）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持语法兼容，并支持OUT参数</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">嵌套子过程</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持嵌套存储过程、函数等</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Merge</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持PG的Merge功能以及兼容Oralce语法的Merge功能</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">q`</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持兼容的转义符</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">关键字处理</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持数据库中关键字的处理</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" rowspan="5"><p class="tableblock">对象大小写转换</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部大写加双引号转换为小写</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部小写加双引号转换为大写</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全部小写加双引号转换为大写</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">大小写混合加双引号保持不变</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不加双引号(默认)全部转为小写</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search Path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持兼容模式下，默认搜索为sys模式，再搜索pg_catalog模式</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">空串</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持Oracle兼容将空串转为NULL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">词法解析器分离</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.0框架的一部分</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">包</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全局唯一索引</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GUC切换oracle或pg</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">层级查询</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NANVL</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GREATEST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LEAST</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ADD_DAYS_TO_TIMESTAMP</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAYS_BETWEEN</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DAYS_BETWEEN_TMTZ</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DBTIMEZONE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TO_MULTI_BYTE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TO_SINGLE_BYTE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">INTERVAL_TO_SECONDS</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HEX_TO_DECIMAL</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TO_BINARY_DOUBLE</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TO_BINARY_FLOAT</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BIN_TO_NUM</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="已知问题"><a class="anchor" href="#已知问题"></a>3. 已知问题</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -216,10 +747,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="增强功能"><a class="anchor" href="#增强功能"></a>3. 增强功能</h2>
+<h2 id="增强功能"><a class="anchor" href="#增强功能"></a>4. 增强功能</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="ivorysql-框架"><a class="anchor" href="#ivorysql-框架"></a>3.1. IvorySQL 框架</h3>
+<h3 id="ivorysql-框架"><a class="anchor" href="#ivorysql-框架"></a>4.1. IvorySQL 框架</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -235,7 +766,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="sql兼容"><a class="anchor" href="#sql兼容"></a>3.2. SQL兼容</h3>
+<h3 id="sql兼容"><a class="anchor" href="#sql兼容"></a>4.2. SQL兼容</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -251,7 +782,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="plsql兼容"><a class="anchor" href="#plsql兼容"></a>3.3. PL/SQL兼容</h3>
+<h3 id="plsql兼容"><a class="anchor" href="#plsql兼容"></a>4.3. PL/SQL兼容</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -270,7 +801,7 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="其它"><a class="anchor" href="#其它"></a>3.4. 其它</h3>
+<h3 id="其它"><a class="anchor" href="#其它"></a>4.4. 其它</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -309,7 +840,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="问题修复"><a class="anchor" href="#问题修复"></a>4. 问题修复</h2>
+<h2 id="问题修复"><a class="anchor" href="#问题修复"></a>5. 问题修复</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -361,7 +892,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="源代码"><a class="anchor" href="#源代码"></a>5. 源代码</h2>
+<h2 id="源代码"><a class="anchor" href="#源代码"></a>6. 源代码</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>IvorySQL主要包含2个代码仓库，数据库IvorySQL代码仓、IvorySQL网站仓：</p>
@@ -379,13 +910,16 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="贡献人员"><a class="anchor" href="#贡献人员"></a>6. 贡献人员</h2>
+<h2 id="贡献人员"><a class="anchor" href="#贡献人员"></a>7. 贡献人员</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>以下个人作为补丁作者、提交者、审阅者、测试者或问题报告者为本版本做出了贡献。</p>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p>IvorySQL Pro开发及测试团队</p>
+</li>
 <li>
 <p>谭洋</p>
 </li>
@@ -439,6 +973,15 @@
 </li>
 <li>
 <p>Yunhe Xu</p>
+</li>
+<li>
+<p>王皓</p>
+</li>
+<li>
+<p>董小姐</p>
+</li>
+<li>
+<p>韩伟博</p>
 </li>
 </ul>
 </div>

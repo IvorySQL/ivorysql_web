@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v2.1/v2.1/3.html">
     <link rel="prev" href="2.html">
     <link rel="next" href="4.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
   </head>
@@ -96,9 +96,12 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="../../v3.0/v3.0/welcome.html">IvorySQL</a>
+      <a class="title" href="../../v3.1/v3.1/welcome.html">IvorySQL</a>
       <ul class="versions">
         <li class="version is-latest">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
           <a href="../../v3.0/v3.0/welcome.html">v3.0</a>
         </li>
         <li class="version">
@@ -138,7 +141,6 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="../../v3.0/v3.0/welcome.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
@@ -302,11 +304,11 @@ export LD_LIBRARY_PATH</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>    [highgo@ivorysql ~]$ psql -d postgres
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">    [highgo@ivorysql ~]$ psql -d postgres
     psql (16devel)
     Type "help" for help.
 
-    postgres=#</pre>
+    postgres=#</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -328,14 +330,14 @@ export LD_LIBRARY_PATH</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>undefined
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">undefined
 [root@localhost ~]# su - ivorysql
 Last login: Wed Feb 24 10:47:32 CST 2023 on pts/0
 -bash-4.2$ psql
 psql (14.2)
 Type "help" for help.
 
-ivorysql=#</pre>
+ivorysql=#</code></pre>
 </div>
 </div>
 </div>
@@ -472,9 +474,9 @@ CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>shell
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shell
 host    all             all             0.0.0.0/0            trust
-host    replication     all             0.0.0.0/0            trust</pre>
+host    replication     all             0.0.0.0/0            trust</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -488,9 +490,9 @@ host    replication     all             0.0.0.0/0            trust</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>shell
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shell
 cd /usr/local/ivorysql/ivorysql-2/bin
-./pg_basebackup -h 127.0.0.1 -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</pre>
+./pg_basebackup -h 127.0.0.1 -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -498,9 +500,9 @@ cd /usr/local/ivorysql/ivorysql-2/bin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>vi ../data-standby01/postgresql.conf
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">vi ../data-standby01/postgresql.conf
 
-    port = 5334</pre>
+    port = 5334</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -532,7 +534,7 @@ cd /usr/local/ivorysql/ivorysql-2/bin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>yum install ivorysql-release-1.0-2.noarch.rpm</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">yum install ivorysql-release-1.0-2.noarch.rpm</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -557,9 +559,9 @@ cd /usr/local/ivorysql/ivorysql-2/bin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>./psql -U postgres -d postgres -p 5333
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">./psql -U postgres -d postgres -p 5333
 ALTER USER postgres WITH PASSWORD '123456';
-CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</pre>
+CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -567,11 +569,11 @@ CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>listen_addresses = '*'
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">listen_addresses = '*'
 
 port = 5333
 max_connections = 100
-unix_socket_directories = '/tmp'</pre>
+unix_socket_directories = '/tmp'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -579,9 +581,9 @@ unix_socket_directories = '/tmp'</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>shell
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shell
 host    all             all             0.0.0.0/0            trust
-host    replication     all             0.0.0.0/0            trust</pre>
+host    replication     all             0.0.0.0/0            trust</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -623,9 +625,9 @@ host    replication     all             0.0.0.0/0            trust</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>shell
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shell
 cd /usr/local/ivorysql/ivorysql-2/bin
-./pg_basebackup -h 192.168.xx.xx -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</pre>
+./pg_basebackup -h 192.168.xx.xx -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</code></pre>
 </div>
 </div>
 <div class="paragraph">

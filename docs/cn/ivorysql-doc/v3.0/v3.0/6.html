@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v3.0/v3.0/6.html">
     <link rel="prev" href="5.html">
     <link rel="next" href="7.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
   </head>
@@ -129,9 +129,12 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="welcome.html">IvorySQL</a>
+      <a class="title" href="../../v3.1/v3.1/welcome.html">IvorySQL</a>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version is-current">
           <a href="welcome.html">v3.0</a>
         </li>
         <li class="version">
@@ -171,7 +174,6 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="welcome.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
@@ -295,9 +297,9 @@
 <h4 id="查看内存清理缓存"><a class="anchor" href="#查看内存清理缓存"></a>1.2.4. 查看内存，清理缓存</h4>
 <div class="listingblock">
 <div class="content">
-<pre>    free -g
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">    free -g
 
-    echo 3 &gt; /proc/sys/vm/drop_caches</pre>
+    echo 3 &gt; /proc/sys/vm/drop_caches</code></pre>
 </div>
 </div>
 </div>
@@ -314,7 +316,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>git clone https://github.com/IvorySQL/IvorySQL.git</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git clone https://github.com/IvorySQL/IvorySQL.git</code></pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -329,8 +331,8 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>sudo yum install -y bison-devel readline-devel zlib-devel openssl-devel wget
-sudo yum groupinstall -y 'Development Tools'</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">sudo yum install -y bison-devel readline-devel zlib-devel openssl-devel wget
+sudo yum groupinstall -y 'Development Tools'</code></pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -374,8 +376,8 @@ sudo yum groupinstall -y 'Development Tools'</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>make check
-make all-check-world</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">make check
+make all-check-world</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -398,13 +400,13 @@ make all-check-world</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>wget https://github.com/IvorySQL/IvorySQL/releases/tag/Ivorysql_3.0_Beta/ivorysql3-3.0-1.rhel7.x86_64.rpm
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">wget https://github.com/IvorySQL/IvorySQL/releases/tag/Ivorysql_3.0_Beta/ivorysql3-3.0-1.rhel7.x86_64.rpm
 
 wget https://github.com/IvorySQL/IvorySQL/releases/tag/Ivorysql_3.0_Beta/ivorysql3-contrib-3.0-1.rhel7.x86_64.rpm
 
 wget https://github.com/IvorySQL/IvorySQL/releases/tag/Ivorysql_3.0_Beta/ivorysql3-libs-3.0-1.rhel7.x86_64.rpm
 
-wget https://github.com/IvorySQL/IvorySQL/releases/tag/Ivorysql_3.0_Beta/ivorysql3-server-3.0-1.rhel7.x86_64.rpm</pre>
+wget https://github.com/IvorySQL/IvorySQL/releases/tag/Ivorysql_3.0_Beta/ivorysql3-server-3.0-1.rhel7.x86_64.rpm</code></pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -419,12 +421,12 @@ wget https://github.com/IvorySQL/IvorySQL/releases/tag/Ivorysql_3.0_Beta/ivorysq
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>-- 先安装依赖
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">-- 先安装依赖
 yum install -y libicu libxslt python3
 rpm -ivh ivorysql3-libs-3.0-1.rhel7.x86_64.rpm
 rpm -ivh ivorysql3-3.0-1.rhel7.x86_64.rpm
 rpm -ivh ivorysql3-contrib-3.0-1.rhel7.x86_64.rpm --nodeps
-rpm -ivh ivorysql3-server-3.0-1.rhel7.x86_64.rpm</pre>
+rpm -ivh ivorysql3-server-3.0-1.rhel7.x86_64.rpm</code></pre>
 </div>
 </div>
 </div>
@@ -442,9 +444,9 @@ rpm -ivh ivorysql3-server-3.0-1.rhel7.x86_64.rpm</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>/usr/sbin/groupadd ivorysql
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/sbin/groupadd ivorysql
 /usr/sbin/useradd -g ivorysql ivorysql -c "IvorySQL3.0 Server"
-passwd ivorysql</pre>
+passwd ivorysql</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -452,7 +454,7 @@ passwd ivorysql</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>chown -R ivorysql.ivorysql /var/lib/ivorysql/ivorysql-3</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">chown -R ivorysql.ivorysql /var/lib/ivorysql/ivorysql-3</code></pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -467,10 +469,10 @@ passwd ivorysql</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>umask 022
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">umask 022
 export LD_LIBRARY_PATH=/usr/local/ivorysql/ivorysql-3/lib:$LD_LIBRARY_PATH
 export PATH=/usr/local/ivorysql/ivorysql-3/bin:$PATH
-export PGDATA=/var/lib/ivorysql/ivorysql-3/data</pre>
+export PGDATA=/var/lib/ivorysql/ivorysql-3/data</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -489,8 +491,8 @@ export PGDATA=/var/lib/ivorysql/ivorysql-3/data</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>firewall-cmd --zone=public --add-port=1521/tcp --permanent
-firewall-cmd --reload</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">firewall-cmd --zone=public --add-port=1521/tcp --permanent
+firewall-cmd --reload</code></pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -604,7 +606,7 @@ firewall-cmd --reload</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>[Unit]
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[Unit]
 Description=IvorySQL 3.0 database server
 Documentation=https://www.ivorysql.org
 Requires=network.target local-fs.target
@@ -627,7 +629,7 @@ ExecReload=/usr/local/ivorysql/bin/pg_ctl reload -D ${PGDATA}
 TimeoutSec=0
 
 [Install]
-WantedBy=multi-user.target</pre>
+WantedBy=multi-user.target</code></pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -650,11 +652,11 @@ WantedBy=multi-user.target</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>systemctl start ivorysql.service            --启动数据库服务
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">systemctl start ivorysql.service            --启动数据库服务
 systemctl stop ivorysql.service             --停止数据库服务
 systemctl restart ivorysql.service          --重启数据库
 systemctl status ivorysql.service           --查看数据库状态
-systemctl reload ivorysql.service           --可以满足部分数据库配置修改完后生效</pre>
+systemctl reload ivorysql.service           --可以满足部分数据库配置修改完后生效</code></pre>
 </div>
 </div>
 </div>
@@ -795,11 +797,11 @@ systemctl reload ivorysql.service           --可以满足部分数据库配置�
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>ivorysql1.x86_64 0:1.2-1.rhel7 ivorysql1-contrib.x86_64 0:1.2-1.rhel7
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql1.x86_64 0:1.2-1.rhel7 ivorysql1-contrib.x86_64 0:1.2-1.rhel7
 ivorysql1-libs.x86_64 0:1.2-1.rhel7 libicu.x86_64 0:50.2-4.el7_7
 libtirpc.x86_64 0:0.2.4-0.16.el7 libxslt.x86_64 0:1.1.28-6.el7
 python3.x86_64 0:3.6.8-18.el7 python3-libs.x86_64 0:3.6.8-18.el7
-python3-pip.noarch 0:9.0.3-8.el7 python3-setuptools.noarch 0:39.2.0-10.el7</pre>
+python3-pip.noarch 0:9.0.3-8.el7 python3-setuptools.noarch 0:39.2.0-10.el7</code></pre>
 </div>
 </div>
 <div class="paragraph">

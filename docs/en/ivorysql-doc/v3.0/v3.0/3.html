@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v3.0/v3.0/3.html">
     <link rel="prev" href="2.html">
     <link rel="next" href="4.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
   </head>
@@ -129,9 +129,12 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="welcome.html">IvorySQL</a>
+      <a class="title" href="../../v3.1/v3.1/welcome.html">IvorySQL</a>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version is-current">
           <a href="welcome.html">v3.0</a>
         </li>
         <li class="version">
@@ -171,7 +174,6 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="welcome.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
@@ -327,7 +329,7 @@ export LD_LIBRARY_PATH</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Please enter detailed parameter information initdb --help
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Please enter detailed parameter information initdb --help
 
 image::p19.png[]
 
@@ -335,7 +337,7 @@ image::p19.png[]
 
     [highgo@ivorysql ~]$ pg_ctl -D data -l logfile start
 
-**Connection**</pre>
+**Connection**</code></pre>
 </div>
 </div>
 <div class="literalblock">
@@ -352,7 +354,7 @@ Type "help" for help.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Congratulation! You have installed IvorySQL successfully.Please enter SQL statements to experience.Have a nice day.
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Congratulation! You have installed IvorySQL successfully.Please enter SQL statements to experience.Have a nice day.
 
 
 
@@ -364,7 +366,7 @@ The client tool for connecting to the IvorySQL database service is the same as t
 
 ===== Psql connection
 
-Operating system user ivorysql session connection：</pre>
+Operating system user ivorysql session connection：</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -380,7 +382,7 @@ Type "help" for help.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>===== DBeaver connection
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">===== DBeaver connection
 
 DBeaver is a powerful open source tool. The connection configuration is as follows:
 
@@ -455,7 +457,7 @@ Start the service and create a user
     CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;
 
 
-configuration: pg_hba.conf</pre>
+configuration: pg_hba.conf</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -465,11 +467,11 @@ host    replication     all             0.0.0.0/0            trust</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>restart service
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">restart service
 
 **standby node**
 
-1、basic backup</pre>
+1、basic backup</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -479,7 +481,7 @@ cd /usr/local/ivorysql/ivorysql-2/bin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>2、modify port</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">2、modify port</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -492,7 +494,7 @@ cd /usr/local/ivorysql/ivorysql-2/bin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>3、Start the standby database
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">3、Start the standby database
 
 == deploy cluster
 
@@ -508,7 +510,7 @@ wget https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarc
 
 
 
-installation source</pre>
+installation source</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -516,7 +518,7 @@ installation source</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>install library
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">install library
 
     yum install -y ivorysql2-server
 
@@ -525,7 +527,7 @@ Initialize the master node
     cd /usr/local/ivorysql/ivorysql-2/bin
     ./initdb ../data-primary -U postgres
 
-Start the service and create a user</pre>
+Start the service and create a user</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -535,7 +537,7 @@ CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>Revise:postgres.conf</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Revise:postgres.conf</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -548,7 +550,7 @@ unix_socket_directories = '/tmp'</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>configuration: pg_hba.conf</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">configuration: pg_hba.conf</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -558,7 +560,7 @@ host    replication     all             0.0.0.0/0            trust</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>restart service
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">restart service
 
 **standby node**
 
@@ -580,7 +582,7 @@ install library
 
     yum install -y ivorysql2-server
 
-1、basic backup</pre>
+1、basic backup</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -590,7 +592,7 @@ cd /usr/local/ivorysql/ivorysql-2/bin
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>2、Start the standby database</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">2、Start the standby database</code></pre>
 </div>
 </div>
 </div>

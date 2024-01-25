@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v3.0/v3.0/8.html">
     <link rel="prev" href="7.html">
     <link rel="next" href="9.html">
-    <meta name="generator" content="Antora 2.3.4">
+    <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
   </head>
@@ -129,9 +129,12 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="welcome.html">IvorySQL</a>
+      <a class="title" href="../../v3.1/v3.1/welcome.html">IvorySQL</a>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version is-current">
           <a href="welcome.html">v3.0</a>
         </li>
         <li class="version">
@@ -171,7 +174,6 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="welcome.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
@@ -453,7 +455,7 @@ dropuser name</pre>
 <h4 id="use-cases"><a class="anchor" href="#use-cases"></a>4.1.3. Use Cases</h4>
 <div class="listingblock">
 <div class="content">
-<pre>create table test(a varchar2(5));
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">create table test(a varchar2(5));
 CREATE TABLE
 
 SET NLS_LENGTH_SEMANTICS TO CHAR;
@@ -466,7 +468,7 @@ SHOW NLS_LENGTH_SEMANTICS;
 (1 row)
 
 insert into test values ('Hello,Mr.li');
-INSERT 0 1</pre>
+INSERT 0 1</code></pre>
 </div>
 </div>
 </div>
@@ -802,7 +804,7 @@ INSERT 0 1</pre>
 <h3 id="synopsis"><a class="anchor" href="#synopsis"></a>8.1. Synopsis</h3>
 <div class="listingblock">
 <div class="content">
-<pre>COPY table_name [ ( column_name [, ...] ) ]
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">COPY table_name [ ( column_name [, ...] ) ]
     FROM { 'filename' | PROGRAM 'command' | STDIN }
     [ [ WITH ] ( option [, ...] ) ]
     [ WHERE condition ]
@@ -823,7 +825,7 @@ where option can be one of:
     FORCE_QUOTE { ( column_name [, ...] ) | * }
     FORCE_NOT_NULL ( column_name [, ...] )
     FORCE_NULL ( column_name [, ...] )
-    ENCODING 'encoding_name'</pre>
+    ENCODING 'encoding_name'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1093,7 +1095,7 @@ where option can be one of:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>COPY country TO STDOUT (DELIMITER '|');</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">COPY country TO STDOUT (DELIMITER '|');</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1101,7 +1103,7 @@ where option can be one of:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>COPY country TO STDOUT (DELIMITER '|');</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">COPY country TO STDOUT (DELIMITER '|');</code></pre>
 </div>
 </div>
 <div class="literalblock">
@@ -1111,7 +1113,7 @@ where option can be one of:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>COPY (SELECT * FROM country WHERE country_name LIKE 'A%') TO '/usr1/proj/bray/sql/a_list_countries.copy';</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">COPY (SELECT * FROM country WHERE country_name LIKE 'A%') TO '/usr1/proj/bray/sql/a_list_countries.copy';</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1119,7 +1121,7 @@ where option can be one of:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>COPY country TO PROGRAM 'gzip &gt; /usr1/proj/bray/sql/country_data.gz';</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">COPY country TO PROGRAM 'gzip &gt; /usr1/proj/bray/sql/country_data.gz';</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1127,11 +1129,11 @@ where option can be one of:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>AF      AFGHANISTAN
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">AF      AFGHANISTAN
 AL      ALBANIA
 DZ      ALGERIA
 ZM      ZAMBIA
-ZW      ZIMBABWE</pre>
+ZW      ZIMBABWE</code></pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -1146,7 +1148,7 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>0000000   P   G   C   O   P   Y  \n 377  \r  \n  \0  \0  \0  \0  \0  \0
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">0000000   P   G   C   O   P   Y  \n 377  \r  \n  \0  \0  \0  \0  \0  \0
 0000020  \0  \0  \0  \0 003  \0  \0  \0 002   A   F  \0  \0  \0 013   A
 0000040   F   G   H   A   N   I   S   T   A   N 377 377 377 377  \0 003
 0000060  \0  \0  \0 002   A   L  \0  \0  \0 007   A   L   B   A   N   I
@@ -1154,7 +1156,7 @@ ZW      ZIMBABWE</pre>
 0000120 007   A   L   G   E   R   I   A 377 377 377 377  \0 003  \0  \0
 0000140  \0 002   Z   M  \0  \0  \0 006   Z   A   M   B   I   A 377 377
 0000160 377 377  \0 003  \0  \0  \0 002   Z   W  \0  \0  \0  \b   Z   I
-0000200   M   B   A   B   W   E 377 377 377 377 377 377</pre>
+0000200   M   B   A   B   W   E 377 377 377 377 377 377</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1187,11 +1189,11 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT * FROM tenk1;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT * FROM tenk1;
 
                          QUERY PLAN
 -------------------------------------------------------------
- Seq Scan on tenk1  (cost=0.00..458.00 rows=10000 width=244)</pre>
+ Seq Scan on tenk1  (cost=0.00..458.00 rows=10000 width=244)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1227,11 +1229,11 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT * FROM tenk1;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT * FROM tenk1;
 
                          QUERY PLAN
 -------------------------------------------------------------
- Seq Scan on tenk1  (cost=0.00..458.00 rows=10000 width=244)</pre>
+ Seq Scan on tenk1  (cost=0.00..458.00 rows=10000 width=244)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1239,7 +1241,7 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT relpages, reltuples FROM pg_class WHERE relname = 'tenk1';</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT relpages, reltuples FROM pg_class WHERE relname = 'tenk1';</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1250,12 +1252,12 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 7000;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 7000;
 
                          QUERY PLAN
 ------------------------------------------------------------
  Seq Scan on tenk1  (cost=0.00..483.00 rows=7001 width=244)
-   Filter: (unique1 &lt; 7000)</pre>
+   Filter: (unique1 &lt; 7000)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1269,14 +1271,14 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100;
 
                                   QUERY PLAN
 -------------------------------------------------------------------​-----------
  Bitmap Heap Scan on tenk1  (cost=5.07..229.20 rows=101 width=244)
    Recheck Cond: (unique1 &lt; 100)
    -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0)
-         Index Cond: (unique1 &lt; 100)</pre>
+         Index Cond: (unique1 &lt; 100)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1287,7 +1289,7 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND stringu1 = 'xxx';
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND stringu1 = 'xxx';
 
                                   QUERY PLAN
 -------------------------------------------------------------------​-----------
@@ -1295,7 +1297,7 @@ ZW      ZIMBABWE</pre>
    Recheck Cond: (unique1 &lt; 100)
    Filter: (stringu1 = 'xxx'::name)
    -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0)
-         Index Cond: (unique1 &lt; 100)</pre>
+         Index Cond: (unique1 &lt; 100)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1306,12 +1308,12 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 = 42;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT * FROM tenk1 WHERE unique1 = 42;
 
                                  QUERY PLAN
 -------------------------------------------------------------------​-----------
  Index Scan using tenk1_unique1 on tenk1  (cost=0.29..8.30 rows=1 width=244)
-   Index Cond: (unique1 = 42)</pre>
+   Index Cond: (unique1 = 42)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1322,12 +1324,12 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT * FROM tenk1 ORDER BY unique1;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT * FROM tenk1 ORDER BY unique1;
                             QUERY PLAN
 -------------------------------------------------------------------
  Sort  (cost=1109.39..1134.39 rows=10000 width=244)
    Sort Key: unique1
-   -&gt;  Seq Scan on tenk1  (cost=0.00..445.00 rows=10000 width=244)</pre>
+   -&gt;  Seq Scan on tenk1  (cost=0.00..445.00 rows=10000 width=244)</code></pre>
 </div>
 </div>
 <div class="literalblock">
@@ -1337,14 +1339,14 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT * FROM tenk1 ORDER BY four, ten LIMIT 100;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT * FROM tenk1 ORDER BY four, ten LIMIT 100;
                                               QUERY PLAN
 -------------------------------------------------------------------​-----------------------------------
  Limit  (cost=521.06..538.05 rows=100 width=244)
    -&gt;  Incremental Sort  (cost=521.06..2220.95 rows=10000 width=244)
          Sort Key: four, ten
          Presorted Key: four
-         -&gt;  Index Scan using index_tenk1_on_four on tenk1  (cost=0.29..1510.08 rows=10000 width=244)</pre>
+         -&gt;  Index Scan using index_tenk1_on_four on tenk1  (cost=0.29..1510.08 rows=10000 width=244)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1355,7 +1357,7 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000;
 
                                      QUERY PLAN
 -------------------------------------------------------------------​------------------
@@ -1365,7 +1367,7 @@ ZW      ZIMBABWE</pre>
          -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0)
                Index Cond: (unique1 &lt; 100)
          -&gt;  Bitmap Index Scan on tenk1_unique2  (cost=0.00..19.78 rows=999 width=0)
-               Index Cond: (unique2 &gt; 9000)</pre>
+               Index Cond: (unique2 &gt; 9000)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1376,14 +1378,14 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000 LIMIT 2;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000 LIMIT 2;
 
                                      QUERY PLAN
 -------------------------------------------------------------------​------------------
  Limit  (cost=0.29..14.48 rows=2 width=244)
    -&gt;  Index Scan using tenk1_unique2 on tenk1  (cost=0.29..71.27 rows=10 width=244)
          Index Cond: (unique2 &gt; 9000)
-         Filter: (unique1 &lt; 100)</pre>
+         Filter: (unique1 &lt; 100)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1394,7 +1396,7 @@ ZW      ZIMBABWE</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT *
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT *
 FROM tenk1 t1, tenk2 t2
 WHERE t1.unique1 &lt; 10 AND t1.unique2 = t2.unique2;
 
@@ -1406,7 +1408,7 @@ WHERE t1.unique1 &lt; 10 AND t1.unique2 = t2.unique2;
          -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..4.36 rows=10 width=0)
                Index Cond: (unique1 &lt; 10)
    -&gt;  Index Scan using tenk2_unique2 on tenk2 t2  (cost=0.29..7.91 rows=1 width=244)
-         Index Cond: (unique2 = t1.unique2)</pre>
+         Index Cond: (unique2 = t1.unique2)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1417,7 +1419,7 @@ WHERE t1.unique1 &lt; 10 AND t1.unique2 = t2.unique2;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT *
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT *
 FROM tenk1 t1, tenk2 t2
 WHERE t1.unique1 &lt; 10 AND t2.unique2 &lt; 10 AND t1.hundred &lt; t2.hundred;
 
@@ -1431,7 +1433,7 @@ WHERE t1.unique1 &lt; 10 AND t2.unique2 &lt; 10 AND t1.hundred &lt; t2.hundred;
                Index Cond: (unique1 &lt; 10)
    -&gt;  Materialize  (cost=0.29..8.51 rows=10 width=244)
          -&gt;  Index Scan using tenk2_unique2 on tenk2 t2  (cost=0.29..8.46 rows=10 width=244)
-               Index Cond: (unique2 &lt; 10)</pre>
+               Index Cond: (unique2 &lt; 10)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1448,7 +1450,7 @@ WHERE t1.unique1 &lt; 10 AND t2.unique2 &lt; 10 AND t1.hundred &lt; t2.hundred;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT *
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT *
 FROM tenk1 t1, tenk2 t2
 WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
 
@@ -1461,7 +1463,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
          -&gt;  Bitmap Heap Scan on tenk1 t1  (cost=5.07..229.20 rows=101 width=244)
                Recheck Cond: (unique1 &lt; 100)
                -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0)
-                     Index Cond: (unique1 &lt; 100)</pre>
+                     Index Cond: (unique1 &lt; 100)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1472,7 +1474,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN SELECT *
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN SELECT *
 FROM tenk1 t1, onek t2
 WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
 
@@ -1484,7 +1486,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
          Filter: (unique1 &lt; 100)
    -&gt;  Sort  (cost=197.83..200.33 rows=1000 width=244)
          Sort Key: t2.unique2
-         -&gt;  Seq Scan on onek t2  (cost=0.00..148.00 rows=1000 width=244)</pre>
+         -&gt;  Seq Scan on onek t2  (cost=0.00..148.00 rows=1000 width=244)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1495,7 +1497,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SET enable_sort = off;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SET enable_sort = off;
 
 EXPLAIN SELECT *
 FROM tenk1 t1, onek t2
@@ -1507,7 +1509,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
    Merge Cond: (t1.unique2 = t2.unique2)
    -&gt;  Index Scan using tenk1_unique2 on tenk1 t1  (cost=0.29..656.28 rows=101 width=244)
          Filter: (unique1 &lt; 100)
-   -&gt;  Index Scan using onek_unique2 on onek t2  (cost=0.28..224.79 rows=1000 width=244)</pre>
+   -&gt;  Index Scan using onek_unique2 on onek t2  (cost=0.28..224.79 rows=1000 width=244)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1521,7 +1523,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN ANALYZE SELECT *
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN ANALYZE SELECT *
 FROM tenk1 t1, tenk2 t2
 WHERE t1.unique1 &lt; 10 AND t1.unique2 = t2.unique2;
 
@@ -1535,7 +1537,7 @@ WHERE t1.unique1 &lt; 10 AND t1.unique2 = t2.unique2;
    -&gt;  Index Scan using tenk2_unique2 on tenk2 t2  (cost=0.29..7.91 rows=1 width=244) (actual time=0.021..0.022 rows=1 loops=10)
          Index Cond: (unique2 = t1.unique2)
  Planning time: 0.181 ms
- Execution time: 0.501 ms</pre>
+ Execution time: 0.501 ms</code></pre>
 </div>
 </div>
 <div class="quoteblock">
@@ -1556,7 +1558,7 @@ WHERE t1.unique1 &lt; 10 AND t1.unique2 = t2.unique2;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN ANALYZE SELECT *
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN ANALYZE SELECT *
 FROM tenk1 t1, tenk2 t2
 WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2 ORDER BY t1.fivethous;
 
@@ -1575,7 +1577,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2 ORDER BY t1.fivethous;
                      -&gt;  Bitmap Index Scan on tenk1_unique1  (cost=0.00..5.04 rows=101 width=0) (actual time=0.049..0.049 rows=100 loops=1)
                            Index Cond: (unique1 &lt; 100)
  Planning time: 0.194 ms
- Execution time: 8.008 ms</pre>
+ Execution time: 8.008 ms</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1586,7 +1588,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2 ORDER BY t1.fivethous;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN ANALYZE SELECT * FROM tenk1 WHERE ten &lt; 7;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN ANALYZE SELECT * FROM tenk1 WHERE ten &lt; 7;
 
                                                QUERY PLAN
 -------------------------------------------------------------------​--------------------------------------
@@ -1594,7 +1596,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2 ORDER BY t1.fivethous;
    Filter: (ten &lt; 7)
    Rows Removed by Filter: 3000
  Planning time: 0.083 ms
- Execution time: 5.905 ms</pre>
+ Execution time: 5.905 ms</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1605,7 +1607,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2 ORDER BY t1.fivethous;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN ANALYZE SELECT * FROM polygon_tbl WHERE f1 @&gt; polygon '(0.5,2.0)';
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN ANALYZE SELECT * FROM polygon_tbl WHERE f1 @&gt; polygon '(0.5,2.0)';
 
                                               QUERY PLAN
 -------------------------------------------------------------------​-----------------------------------
@@ -1613,7 +1615,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2 ORDER BY t1.fivethous;
    Filter: (f1 @&gt; '((0.5,2))'::polygon)
    Rows Removed by Filter: 4
  Planning time: 0.040 ms
- Execution time: 0.083 ms</pre>
+ Execution time: 0.083 ms</code></pre>
 </div>
 </div>
 <div class="literalblock">
@@ -1623,7 +1625,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2 ORDER BY t1.fivethous;
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SET enable_seqscan TO off;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SET enable_seqscan TO off;
 
 EXPLAIN ANALYZE SELECT * FROM polygon_tbl WHERE f1 @&gt; polygon '(0.5,2.0)';
 
@@ -1633,7 +1635,7 @@ EXPLAIN ANALYZE SELECT * FROM polygon_tbl WHERE f1 @&gt; polygon '(0.5,2.0)';
    Index Cond: (f1 @&gt; '((0.5,2))'::polygon)
    Rows Removed by Index Recheck: 1
  Planning time: 0.034 ms
- Execution time: 0.144 ms</pre>
+ Execution time: 0.144 ms</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1644,7 +1646,7 @@ EXPLAIN ANALYZE SELECT * FROM polygon_tbl WHERE f1 @&gt; polygon '(0.5,2.0)';
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN (ANALYZE, BUFFERS) SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000;
 
                                                            QUERY PLAN
 -------------------------------------------------------------------​--------------------------------------------------------------
@@ -1660,7 +1662,7 @@ EXPLAIN ANALYZE SELECT * FROM polygon_tbl WHERE f1 @&gt; polygon '(0.5,2.0)';
                Index Cond: (unique2 &gt; 9000)
                Buffers: shared hit=5
  Planning time: 0.088 ms
- Execution time: 0.423 ms</pre>
+ Execution time: 0.423 ms</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1671,7 +1673,7 @@ EXPLAIN ANALYZE SELECT * FROM polygon_tbl WHERE f1 @&gt; polygon '(0.5,2.0)';
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>BEGIN;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">BEGIN;
 
 EXPLAIN ANALYZE UPDATE tenk1 SET hundred = hundred + 1 WHERE unique1 &lt; 100;
 
@@ -1685,7 +1687,7 @@ EXPLAIN ANALYZE UPDATE tenk1 SET hundred = hundred + 1 WHERE unique1 &lt; 100;
  Planning time: 0.079 ms
  Execution time: 14.727 ms
 
-ROLLBACK;</pre>
+ROLLBACK;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1696,7 +1698,7 @@ ROLLBACK;</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN UPDATE parent SET f2 = f2 + 1 WHERE f1 = 101;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN UPDATE parent SET f2 = f2 + 1 WHERE f1 = 101;
                                     QUERY PLAN
 -------------------------------------------------------------------​----------------
  Update on parent  (cost=0.00..24.53 rows=4 width=14)
@@ -1711,7 +1713,7 @@ ROLLBACK;</pre>
    -&gt;  Index Scan using child2_f1_key on child2  (cost=0.15..8.17 rows=1 width=14)
          Index Cond: (f1 = 101)
    -&gt;  Index Scan using child3_f1_key on child3  (cost=0.15..8.17 rows=1 width=14)
-         Index Cond: (f1 = 101)</pre>
+         Index Cond: (f1 = 101)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1737,7 +1739,7 @@ ROLLBACK;</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>EXPLAIN ANALYZE SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000 LIMIT 2;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">EXPLAIN ANALYZE SELECT * FROM tenk1 WHERE unique1 &lt; 100 AND unique2 &gt; 9000 LIMIT 2;
 
                                                           QUERY PLAN
 -------------------------------------------------------------------​------------------------------------------------------------
@@ -1747,7 +1749,7 @@ ROLLBACK;</pre>
          Filter: (unique1 &lt; 100)
          Rows Removed by Filter: 287
  Planning time: 0.096 ms
- Execution time: 0.336 ms</pre>
+ Execution time: 0.336 ms</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1776,7 +1778,7 @@ ROLLBACK;</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT relname, relkind, reltuples, relpages
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT relname, relkind, reltuples, relpages
 FROM pg_class
 WHERE relname LIKE 'tenk1%';
 
@@ -1787,7 +1789,7 @@ WHERE relname LIKE 'tenk1%';
  tenk1_thous_tenthous | i       |     10000 |       30
  tenk1_unique1        | i       |     10000 |       30
  tenk1_unique2        | i       |     10000 |       30
-(5 rows)</pre>
+(5 rows)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1804,7 +1806,7 @@ WHERE relname LIKE 'tenk1%';
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT attname, inherited, n_distinct,
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT attname, inherited, n_distinct,
        array_to_string(most_common_vals, E'\n') as most_common_vals
 FROM pg_stats
 WHERE tablename = 'road';
@@ -1821,7 +1823,7 @@ WHERE tablename = 'road';
          |           |            | I- 680                        Ramp+
          |           |            | I- 580                            +
          |           |            | State Hwy 13                  Ramp
-(2 rows)</pre>
+(2 rows)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1867,7 +1869,7 @@ WHERE tablename = 'road';
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>CREATE STATISTICS stts (dependencies) ON city, zip FROM zipcodes;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE STATISTICS stts (dependencies) ON city, zip FROM zipcodes;
 
 ANALYZE zipcodes;
 
@@ -1877,7 +1879,7 @@ SELECT stxname, stxkeys, stxddependencies
  stxname | stxkeys |             stxddependencies
 ---------+---------+------------------------------------------
  stts    | 1 5     | {"1 =&gt; 5": 1.000000, "5 =&gt; 1": 0.423130}
-(1 row)</pre>
+(1 row)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1896,7 +1898,7 @@ SELECT stxname, stxkeys, stxddependencies
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT * FROM zipcodes WHERE city = 'San Francisco' AND zip = '94105';</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT * FROM zipcodes WHERE city = 'San Francisco' AND zip = '94105';</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1904,7 +1906,7 @@ SELECT stxname, stxkeys, stxddependencies
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT * FROM zipcodes WHERE city = 'San Francisco' AND zip = '90210';</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT * FROM zipcodes WHERE city = 'San Francisco' AND zip = '90210';</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1928,7 +1930,7 @@ SELECT stxname, stxkeys, stxddependencies
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>CREATE STATISTICS stts2 (ndistinct) ON city, state, zip FROM zipcodes;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE STATISTICS stts2 (ndistinct) ON city, state, zip FROM zipcodes;
 
 ANALYZE zipcodes;
 
@@ -1938,7 +1940,7 @@ SELECT stxkeys AS k, stxdndistinct AS nd
 -[ RECORD 1 ]------------------------------------------------------​--
 k  | 1 2 5
 nd | {"1, 2": 33178, "1, 5": 33178, "2, 5": 27435, "1, 2, 5": 33178}
-(1 row)</pre>
+(1 row)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1961,7 +1963,7 @@ nd | {"1, 2": 33178, "1, 5": 33178, "2, 5": 27435, "1, 2, 5": 33178}
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>CREATE STATISTICS stts3 (mcv) ON city, state FROM zipcodes;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE STATISTICS stts3 (mcv) ON city, state FROM zipcodes;
 
 ANALYZE zipcodes;
 
@@ -1981,7 +1983,7 @@ SELECT m.* FROM pg_statistic_ext join pg_statistic_ext_data on (oid = stxoid),
      8 | {Dallas, TX}           | {f,f} |  0.001367 |        8.8e-05
      9 | {Chicago, IL}          | {f,f} |  0.001333 |        5.1e-05
    ...
-(99 rows)</pre>
+(99 rows)</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2003,7 +2005,7 @@ SELECT m.* FROM pg_statistic_ext join pg_statistic_ext_data on (oid = stxoid),
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT * FROM a, b, c WHERE a.id = b.id AND b.ref = c.id;</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT * FROM a, b, c WHERE a.id = b.id AND b.ref = c.id;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2017,7 +2019,7 @@ SELECT m.* FROM pg_statistic_ext join pg_statistic_ext_data on (oid = stxoid),
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT * FROM a LEFT JOIN (b JOIN c ON (b.ref = c.id)) ON (a.id = b.id);</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT * FROM a LEFT JOIN (b JOIN c ON (b.ref = c.id)) ON (a.id = b.id);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2025,7 +2027,7 @@ SELECT m.* FROM pg_statistic_ext join pg_statistic_ext_data on (oid = stxoid),
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT * FROM a LEFT JOIN b ON (a.bid = b.id) LEFT JOIN c ON (a.cid = c.id);</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT * FROM a LEFT JOIN b ON (a.bid = b.id) LEFT JOIN c ON (a.cid = c.id);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2039,9 +2041,9 @@ SELECT m.* FROM pg_statistic_ext join pg_statistic_ext_data on (oid = stxoid),
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT * FROM a, b, c WHERE a.id = b.id AND b.ref = c.id;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT * FROM a, b, c WHERE a.id = b.id AND b.ref = c.id;
 SELECT * FROM a CROSS JOIN b CROSS JOIN c WHERE a.id = b.id AND b.ref = c.id;
-SELECT * FROM a JOIN (b JOIN c ON (b.ref = c.id)) ON (a.id = b.id);</pre>
+SELECT * FROM a JOIN (b JOIN c ON (b.ref = c.id)) ON (a.id = b.id);</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2055,7 +2057,7 @@ SELECT * FROM a JOIN (b JOIN c ON (b.ref = c.id)) ON (a.id = b.id);</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT * FROM a CROSS JOIN b, c, d, e WHERE ...;</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT * FROM a CROSS JOIN b, c, d, e WHERE ...;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2069,10 +2071,10 @@ SELECT * FROM a JOIN (b JOIN c ON (b.ref = c.id)) ON (a.id = b.id);</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT *
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT *
 FROM x, y,
     (SELECT * FROM a, b, c WHERE something) AS ss
-WHERE somethingelse;</pre>
+WHERE somethingelse;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2080,7 +2082,7 @@ WHERE somethingelse;</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>SELECT * FROM x, y, a, b, c WHERE something AND somethingelse;</pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT * FROM x, y, a, b, c WHERE something AND somethingelse;</code></pre>
 </div>
 </div>
 <div class="paragraph">

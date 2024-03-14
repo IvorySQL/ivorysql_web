@@ -283,325 +283,385 @@ IvorySQL
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[highgo@ivorysql IvorySQL]$ make
-[highgo@ivorysql IvorySQL]$ make install</code></pre>
+[highgo@ivorysql IvorySQL]$ make install
+
+**Installation completed**
+
+    [highgo@ivorysql ~]$ ls
+    bin  include  IvorySQL  lib  share
+
+**Modify environment variables**
+
+    [highgo@ivorysql ~]$ vi .bash_profile
+
+**Write and quit**
+
+    PATH=/home/highgo/bin:$PATH
+    export PATH
+    LD_LIBRARY_PATH=/usr/local/pgsql/lib
+    export LD_LIBRARY_PATH
+
+**Source .bash_prifile**
+
+    [highgo@ivorysql ~]$ source .bash_profile
+
+**Initialize database**
+
+    [highgo@ivorysql ~]$ initdb -D data // 'data' is the name of your database, you can set it by yourself.
+    //-D location for this database cluster
+    //-m set database mode, default is oracle
+    //-C set case conversion mode, default is interchange</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Installation completed</strong></p>
+<p>Please enter detailed parameter information initdb --help</p>
 </div>
-<div class="literalblock">
+<div class="imageblock">
 <div class="content">
-<pre>[highgo@ivorysql ~]$ ls
-bin  include  IvorySQL  lib  share</pre>
+<img src="../_images/p19.png" alt="p19">
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Modify environment variables</strong></p>
+<p><strong>Start server</strong></p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>[highgo@ivorysql ~]$ vi .bash_profile</pre>
+<pre>[highgo@ivorysql ~]$ pg_ctl -D data -l logfile start</pre>
 </div>
 </div>
 <div class="paragraph">
-<p><strong>Write and quit</strong></p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>PATH=/home/highgo/bin:$PATH
-export PATH
-LD_LIBRARY_PATH=/usr/local/pgsql/lib
-export LD_LIBRARY_PATH</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Source .bash_prifile</strong></p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>[highgo@ivorysql ~]$ source .bash_profile</pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Initialize database</strong></p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>[highgo@ivorysql ~]$ initdb -D data // 'data' is the name of your database, you can set it by yourself.
-//-D location for this database cluster
-//-m set database mode, default is oracle
-//-C set case conversion mode, default is interchange</pre>
-</div>
+<p><strong>Connection</strong></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Please enter detailed parameter information initdb --help
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">    [highgo@ivorysql ~]$ psql -d postgres
+    psql (16devel)
+    Type "help" for help.
 
-image::p19.png[]
-
-**Start server**
-
-    [highgo@ivorysql ~]$ pg_ctl -D data -l logfile start
-
-**Connection**</code></pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>[highgo@ivorysql ~]$ psql -d postgres
-psql (16devel)
-Type "help" for help.</pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>postgres=#</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Congratulation! You have installed IvorySQL successfully.Please enter SQL statements to experience.Have a nice day.
-
-
-
-==== Developer guide
-
-Developers are more concerned about how to download, install and access the database as quickly as possible. For download and installation, please refer to Part IV [Installation and Deployment]. The following describes how to access the database for clients
-
-The client tool for connecting to the IvorySQL database service is the same as that of PostgreSQL.
-
-===== Psql connection
-
-Operating system user ivorysql session connection：</code></pre>
+    postgres=#</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>undefined
+<p>Congratulation! You have installed IvorySQL successfully.Please enter SQL statements to experience.Have a nice day.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="developer-guide"><a class="anchor" href="#developer-guide"></a>1.1.2. Developer guide</h4>
+<div class="paragraph">
+<p>Developers are more concerned about how to download, install and access the database as quickly as possible. For download and installation, please refer to Part IV [Installation and Deployment]. The following describes how to access the database for clients</p>
+</div>
+<div class="paragraph">
+<p>The client tool for connecting to the IvorySQL database service is the same as that of PostgreSQL.</p>
+</div>
+<div class="sect4">
+<h5 id="psql-connection"><a class="anchor" href="#psql-connection"></a>1.1.2.1. Psql connection</h5>
+<div class="paragraph">
+<p>Operating system user ivorysql session connection：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">undefined
 [root@localhost ~]# su - ivorysql
 Last login: Wed Feb 24 10:47:32 CST 2023 on pts/0
 -bash-4.2$ psql
 psql (14.2)
-Type "help" for help.</p>
+Type "help" for help.
+
+ivorysql=#</code></pre>
 </div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="dbeaver-connection"><a class="anchor" href="#dbeaver-connection"></a>1.1.2.2. DBeaver connection</h5>
 <div class="paragraph">
-<p>ivorysql=#</p>
+<p>DBeaver is a powerful open source tool. The connection configuration is as follows:</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">===== DBeaver connection
-
-DBeaver is a powerful open source tool. The connection configuration is as follows:
-
-image::p1.png[]
-
-===== HIGHGO developer connection
-
-HIGHGO developer is a tool independently developed by HIGHGO. In addition to supporting HIGHGO database, it also supports PostgreSQL and IvorySQL databases. The connection configuration is as follows:
-
-image::p2.png[]
-
-&gt; If you want to use this tool, please follow the official account to join the WeChat group "IvorySQL China Technology Exchange Group" for consultation.
-
-
-= Quick experience
-
-== Stand-alone simulation deployment
-
-=== stand-alone installation
-
-environment：**CentOS 7.X**
-
-Installation package：rpm
-
-Download YUM source: Use wget to download on Centos7
-
-wget https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm
-
-
-
-installation source
-
-    yum install ivorysql-release-1.0-2.noarch.rpm
-
-install library
-
-    yum install -y ivorysql2-server
-
-Initialize the database
-
-    cd /usr/local/ivorysql/ivorysql-2/bin
-    ./initdb -D ../data
-
-=== cluster installation
-
-environment：**CentOS 7.X**
-
-Installation package：rpm
-
-Download YUM source: Use wget to download on Centos7
-
-wget https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm
-
-installation source
-
-    yum install ivorysql-release-1.0-2.noarch.rpm
-
-install library
-
-    yum install -y ivorysql2-server
-
-**master node**
-
-Initialize the database
-
-    cd /usr/local/ivorysql/ivorysql-2/bin
-    ./initdb ../data-primary -U postgres
-
-Start the service and create a user
-
-    ALTER USER postgres WITH PASSWORD '123456';
-    CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;
-
-
-configuration: pg_hba.conf</code></pre>
+<img src="../_images/p1.png" alt="p1">
 </div>
 </div>
+</div>
+<div class="sect4">
+<h5 id="highgo-developer-connection"><a class="anchor" href="#highgo-developer-connection"></a>1.1.2.3. HIGHGO developer connection</h5>
 <div class="paragraph">
-<p>shell
-host    all             all             0.0.0.0/0            trust
-host    replication     all             0.0.0.0/0            trust</p>
+<p>HIGHGO developer is a tool independently developed by HIGHGO. In addition to supporting HIGHGO database, it also supports PostgreSQL and IvorySQL databases. The connection configuration is as follows:</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">restart service
-
-**standby node**
-
-1、basic backup</code></pre>
+<img src="../_images/p2.png" alt="p2">
 </div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>If you want to use this tool, please follow the official account to join the WeChat group "IvorySQL China Technology Exchange Group" for consultation.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<h1 id="quick-experience" class="sect0"><a class="anchor" href="#quick-experience"></a>Quick experience</h1>
+<div class="sect1">
+<h2 id="stand-alone-simulation-deployment"><a class="anchor" href="#stand-alone-simulation-deployment"></a>1. Stand-alone simulation deployment</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="stand-alone-installation"><a class="anchor" href="#stand-alone-installation"></a>1.1. stand-alone installation</h3>
+<div class="paragraph">
+<p>environment：<strong>CentOS 7.X</strong></p>
 </div>
 <div class="paragraph">
-<p>shell
-cd /usr/local/ivorysql/ivorysql-2/bin
-./pg_basebackup -h 127.0.0.1 -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">2、modify port</code></pre>
-</div>
+<p>Installation package：rpm</p>
 </div>
 <div class="paragraph">
-<p>vi ../data-standby01/postgresql.conf</p>
+<p>Download YUM source: Use wget to download on Centos7</p>
+</div>
+<div class="paragraph">
+<p>wget <a href="https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm" class="bare">https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm</a></p>
+</div>
+<div class="paragraph">
+<p>installation source</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>port = 5334</pre>
+<pre>yum install ivorysql-release-1.0-2.noarch.rpm</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>install library</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>yum install -y ivorysql2-server</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Initialize the database</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cd /usr/local/ivorysql/ivorysql-2/bin
+./initdb -D ../data</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cluster-installation"><a class="anchor" href="#cluster-installation"></a>1.2. cluster installation</h3>
+<div class="paragraph">
+<p>environment：<strong>CentOS 7.X</strong></p>
+</div>
+<div class="paragraph">
+<p>Installation package：rpm</p>
+</div>
+<div class="paragraph">
+<p>Download YUM source: Use wget to download on Centos7</p>
+</div>
+<div class="paragraph">
+<p>wget <a href="https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm" class="bare">https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm</a></p>
+</div>
+<div class="paragraph">
+<p>installation source</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>yum install ivorysql-release-1.0-2.noarch.rpm</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>install library</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>yum install -y ivorysql2-server</pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>master node</strong></p>
+</div>
+<div class="paragraph">
+<p>Initialize the database</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cd /usr/local/ivorysql/ivorysql-2/bin
+./initdb ../data-primary -U postgres</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start the service and create a user</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>ALTER USER postgres WITH PASSWORD '123456';
+CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>configuration: pg_hba.conf</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">3、Start the standby database
-
-== deploy cluster
-
-**master node**
-
-environment：**CentOS 7.X**
-
-Installation package：rpm
-
-Download YUM source: Use wget to download on Centos7
-
-wget https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm
-
-
-
-installation source</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>yum install ivorysql-release-1.0-2.noarch.rpm</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">install library
-
-    yum install -y ivorysql2-server
-
-Initialize the master node
-
-    cd /usr/local/ivorysql/ivorysql-2/bin
-    ./initdb ../data-primary -U postgres
-
-Start the service and create a user</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<div class="title">/psql -U postgres -d postgres -p 5333</div>
-<p>ALTER USER postgres WITH PASSWORD '123456';
-CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Revise:postgres.conf</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>listen_addresses = '*'</p>
-</div>
-<div class="paragraph">
-<p>port = 5333
-max_connections = 100
-unix_socket_directories = '/tmp'</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">configuration: pg_hba.conf</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>shell
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shell
 host    all             all             0.0.0.0/0            trust
-host    replication     all             0.0.0.0/0            trust</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">restart service
-
-**standby node**
-
-environment：**CentOS 7.X**
-
-Installation package：rpm
-
-Download YUM source: Use wget to download on Centos7
-
-wget https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm
-
-
-
-installation source
-
-    yum install ivorysql-release-1.0-2.noarch.rpm
-
-install library
-
-    yum install -y ivorysql2-server
-
-1、basic backup</code></pre>
+host    replication     all             0.0.0.0/0            trust</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>shell
-cd /usr/local/ivorysql/ivorysql-2/bin
-./pg_basebackup -h 192.168.xx.xx -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</p>
+<p>restart service</p>
+</div>
+<div class="paragraph">
+<p><strong>standby node</strong></p>
+</div>
+<div class="paragraph">
+<p>1、basic backup</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">2、Start the standby database</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shell
+cd /usr/local/ivorysql/ivorysql-2/bin
+./pg_basebackup -h 127.0.0.1 -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>2、modify port</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">vi ../data-standby01/postgresql.conf
+
+    port = 5334</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>3、Start the standby database</p>
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="deploy-cluster"><a class="anchor" href="#deploy-cluster"></a>2. deploy cluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><strong>master node</strong></p>
+</div>
+<div class="paragraph">
+<p>environment：<strong>CentOS 7.X</strong></p>
+</div>
+<div class="paragraph">
+<p>Installation package：rpm</p>
+</div>
+<div class="paragraph">
+<p>Download YUM source: Use wget to download on Centos7</p>
+</div>
+<div class="paragraph">
+<p>wget <a href="https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm" class="bare">https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm</a></p>
+</div>
+<div class="paragraph">
+<p>installation source</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">yum install ivorysql-release-1.0-2.noarch.rpm</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>install library</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>yum install -y ivorysql2-server</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Initialize the master node</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cd /usr/local/ivorysql/ivorysql-2/bin
+./initdb ../data-primary -U postgres</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start the service and create a user</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">./psql -U postgres -d postgres -p 5333
+ALTER USER postgres WITH PASSWORD '123456';
+CREATE ROLE repl WITH PASSWORD '123456' REPLICATION LOGIN;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Revise:postgres.conf</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">listen_addresses = '*'
+
+port = 5333
+max_connections = 100
+unix_socket_directories = '/tmp'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>configuration: pg_hba.conf</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shell
+host    all             all             0.0.0.0/0            trust
+host    replication     all             0.0.0.0/0            trust</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>restart service</p>
+</div>
+<div class="paragraph">
+<p><strong>standby node</strong></p>
+</div>
+<div class="paragraph">
+<p>environment：<strong>CentOS 7.X</strong></p>
+</div>
+<div class="paragraph">
+<p>Installation package：rpm</p>
+</div>
+<div class="paragraph">
+<p>Download YUM source: Use wget to download on Centos7</p>
+</div>
+<div class="paragraph">
+<p>wget <a href="https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm" class="bare">https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-1.0-2.noarch.rpm</a></p>
+</div>
+<div class="paragraph">
+<p>installation source</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>yum install ivorysql-release-1.0-2.noarch.rpm</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>install library</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>yum install -y ivorysql2-server</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>1、basic backup</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shell
+cd /usr/local/ivorysql/ivorysql-2/bin
+./pg_basebackup -h 192.168.xx.xx -p 5333 -U repl -W -Fp -Xs -Pv -R -D ../data-standby01</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>2、Start the standby database</p>
 </div>
 </div>
 </div>

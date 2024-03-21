@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>IvorySQL Community Contribution Guide :: IvorySQL Document Site</title>
+    <title>Migration guide :: IvorySQL Document Site</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v3.1/v3.1/10.html">
     <link rel="prev" href="9.html">
     <link rel="next" href="11.html">
@@ -58,69 +58,78 @@
     <span class="nav-text">Getting Started with IvorySQL</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="3.html">User manual</a>
+    <a class="nav-link" href="3.html">Quick Start</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="4.html">Administrator</a>
+    <a class="nav-link" href="4.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="5.html">Operating personnel</a>
+    <a class="nav-link" href="5.html">Maintenance</a>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="6.html">Installation Deployment</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">Installation</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="7.html">Developer</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">Building Cluster</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="8.html">Operation Management</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">Developer</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="9.html">Migration</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">Operation Management</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="10.html">Community contribution</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="10.html">Migration</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="11.html">Tool Reference</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="12.html">FAQ</a>
+</ul>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <span class="nav-text">List of features</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="14.html">1、Ivorysql frame design</a>
+    <a class="nav-link" href="11.html">1、Ivorysql frame design</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="15.html">2、GUC Framework</a>
+    <a class="nav-link" href="12.html">2、GUC Framework</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="16.html">3、Case conversion</a>
+    <a class="nav-link" href="13.html">3、Case conversion</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="17.html">4、Dual-mode design</a>
+    <a class="nav-link" href="14.html">4、Dual-mode design</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="18.html">5、Compatible with oracle like</a>
+    <a class="nav-link" href="15.html">5、Compatible with oracle like</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="19.html">6、Compatible with oracle anonymous block</a>
+    <a class="nav-link" href="16.html">6、Compatible with oracle anonymous block</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="20.html">7、Compatible with Oracle functions and stored procedures</a>
+    <a class="nav-link" href="17.html">7、Compatible with Oracle functions and stored procedures</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="21.html">8、Built-in data types and built-in functions</a>
+    <a class="nav-link" href="18.html">8、Built-in data types and built-in functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="22.html">9、Added Oracle compatibility mode ports and IP</a>
+    <a class="nav-link" href="19.html">9、Added Oracle compatibility mode ports and IP</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="20.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="21.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="22.html">FAQ</a>
   </li>
 </ul>
   </li>
@@ -183,7 +192,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li><a href="10.html">Community contribution</a></li>
+    <li>IvorySQL Advanced Feature</li>
+    <li><a href="10.html">Migration</a></li>
   </ul>
 </nav>
   <div class="page-versions">
@@ -200,1392 +210,884 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>IvorySQL Community Contribution Guide</strong></h1>
+<h1 class="page">Migration guide</h1>
 <div class="sect1">
-<h2 id="summary"><a class="anchor" href="#summary"></a>1. <strong>Summary</strong></h2>
+<h2 id="migration-overview"><a class="anchor" href="#migration-overview"></a>1. Migration overview</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="illustration"><a class="anchor" href="#illustration"></a>1.1. Illustration</h3>
 <div class="paragraph">
-<p>IvorySQL is maintained by a core development team, which has commit access to the main repository of IvorySQL on GitHub.Meanwhile，we are eager to get contributions from members of the wider IvorySQL community. If you want to see your changes to code or documents added to  IvorySQL and appear in future versions, you need to know the content of this section.</p>
+<p>The so-called database migration is any form of data movement between this database and another database, and the databases at both ends may be PostgreSql, mySQL, oracle, Sql Server, Highgo DB, etc. The migration process is a challenging, complex process that requires a thorough understanding of how databases work and their characteristics. If the application has been deployed to the production environment and is in a normal operating state, a smooth application migration is required after database migration to maintain uninterrupted business operation and no data loss.</p>
 </div>
 <div class="paragraph">
-<p>​IvorySQL community welcomes and appreciates all types of contributions, looking forward to your participation!</p>
+<p>After migration, databases and systems should meet the following requirements:</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="principles-of-conduct"><a class="anchor" href="#principles-of-conduct"></a>1.2. Principles of Conduct</h3>
-<div class="paragraph">
-<p>For each member, contributor and leader, everyone should read our <strong>principles of conduct</strong> . We promise that everyone can participate in community and pay equal attention to everyone, no matter who.</p>
-</div>
-<div class="paragraph">
-<p>We are committed to acting and interacting in a way that contributes to the establishment of an open, enthusiastic, diverse, inclusive and healthy community.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="description-of-community-governance"><a class="anchor" href="#description-of-community-governance"></a>1.3. Description of Community Governance</h3>
-<div class="paragraph">
-<p>Our team is a continuously open team, focusing on a part of the IvorySQL.In our team, there are reviewers, submitters and maintainers, and we have one or more repositories. The decision of the team is made by the maintainer.   The typical promotion path for IvorySQL developers is from user to reviewer, then submitter and maintainer. But getting more roles doesn&#8217;t mean you have any privileges to other community members. Everyone in the IvorySQL community is equal and has the responsibility to cooperate constructively with other contributors to build a friendly community. These roles are natural rewards for your significant contributions to the development of IvorySQL, and provide you with more rights in the development workflow to improve your efficiency. At the same time，this requires you to undertake some additional duty:</p>
-</div>
-<div class="paragraph">
-<p>​Team honor: now you are already one of the team reviewers/submitters/maintainers, it means that you represent the project and your team members. So, please be Mr.Nice Guy to defend the reputation of the team.</p>
-</div>
-<div class="paragraph">
-<p>​Responsibility: submitters/maintainers have the right to merge pull requests, therefore, they take additional responsibility to deal with the consequences of accepting changes to the code base or documents. When a bug occurs, they should fix it. If they can not solve it, they should roll back the project. Also, they need to help the release manager solve any problems found in the test cycle.</p>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The migrated database system should fully host the data of the original database system. Avoid data loss during migration that causes incomplete data to the new database system.</p>
+</li>
+<li>
+<p>The migrated database system should fully adapt to the functions of the original database. Avoid the inability to run or throw errors of the entire business system due to data types, syntax, and functions that are not supported after migration, and there is no alternative.</p>
+</li>
+<li>
+<p>The migrated database should be adapted to the upstream and downstream of the entire business system to ensure the stable and reliable operation of the entire business system.</p>
+</li>
+<li>
+<p>The comprehensive performance of the migrated database cannot be weaker than that of the original database, providing performance guarantee for the entire business system.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="contributors-guide"><a class="anchor" href="#contributors-guide"></a>2. <strong>Contributor&#8217;s Guide</strong></h2>
+<h2 id="migration-toolora2pg"><a class="anchor" href="#migration-toolora2pg"></a>2. Migration tool——Ora2Pg</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Before contributing, we need to know the current version of IvorySQL and the version of the document.At present, we maintain versions after version <strong>1.3</strong>. Our version follows the updata pace of PG. Please update to the latest version before contributing. After that, we need to read the format requirements carefully and be familiar with code format, code comment format, issue format, pull PR title format, document contribution format, and article contribution format. These can help you become a contributor of IvorySQL as soon as possible.</p>
-</div>
-<div class="sect2">
-<h3 id="preparation-before-contribution"><a class="anchor" href="#preparation-before-contribution"></a>2.1. Preparation before Contribution</h3>
-<div class="sect3">
-<h4 id="getting-started"><a class="anchor" href="#getting-started"></a>2.1.1. Getting started</h4>
-<div class="paragraph">
-<p>IvorySQL is developed on GtiHub. Anyone who wishes to contribute to it must have a Github account and be familiar with Git tools and workflow. It is also recommended that you follow the developer&#8217;s mailing list since some of the contributions may generate more detailed discussions there.</p>
+<p>Ora2Pg is a free tool for migrating Oracle databases to an IvorySQL-compatible schema. It connects to your Oracle database, automatically scans and extracts its structure or data, and then generates SQL scripts that can be loaded into an IvorySQL database. Ora2Pg can migrate from a reverse-engineered Oracle database to a large enterprise database, or simply copy some Oracle data into an IvorySQL database. It is very easy to use and does not require any Oracle database knowledge without providing the parameters required to connect to Oracle Database.</p>
 </div>
 <div class="paragraph">
-<p>Once you have your GitHub account, fork this repository so that you can have your private copy to start hacking on and to use as a source of pull requests.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="licensing-of-ivorysql-contributions"><a class="anchor" href="#licensing-of-ivorysql-contributions"></a>2.1.2. Licensing of IvorySQL contributions</h4>
-<div class="paragraph">
-<p>If the contribution you&#8217;re submitting is original work, you can assume that IvorySQL will release it as part of an overall IvorySQL release available to the downstream consumers under <strong>the Apache License, Version 2.0</strong>.</p>
+<p>Ora2Pg consists of a Perl script (ora2pg) and a Perl module (<a href="https://link.zhihu.com/?target=http%3A//ora2pg.pm/">Ora2Pg.pm</a>), the only thing that needs to be done is to modify its configuration file, ora2pg.conf, set the DSN to connect to the Oracle database, and an optional SCHEMA name. ONCE THAT&#8217;S DONE, YOU ONLY NEED TO SET THE EXPORTED TYPE: TABLE (INCLUDING CONSTRAINTS AND INDEXES), VIEW, MVIEW, TABLESPACE, SEQUENCE, INDEXES, TRIGGER, GRANT, FUNCTION, PROCEDURE, PACKAGE, PARTITION, TYPE, INSERT OR COPY, FDW, QUERY, KETTLE, AND SYNONYM.</p>
 </div>
 <div class="paragraph">
-<p>If the contribution you&#8217;re submitting is NOT original work you have to indicate the name of the license and also make sure that it is similar in terms to the Apache License 2.0. Apache Software Foundation maintains a list of these licenses under Category A. In addition to that, you may be required to make proper attributions.</p>
+<p>By default, Ora2Pg exports an SQL file, which can be executed through the IvorySQL client tool psql. When performing data migration, you can set the DSN of the target database in the configuration file to import data directly from Oracle into the IvorySQL database.</p>
 </div>
-<div class="paragraph">
-<p>Finally, keep in mind that it is NEVER a good idea to remove licensing headers from the work that is not your original one. Even if you are using parts of the file that originally had a licensing header at the top you should err on the side of preserving it. As always, if you are not quite sure about the licensing implications of your contributions, feel free to reach out to us on the developer mailing list.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="what-contribution-can-you-make"><a class="anchor" href="#what-contribution-can-you-make"></a>2.2. What Contribution can You Make</h3>
-<div class="sect3">
-<h4 id="code-contribution"><a class="anchor" href="#code-contribution"></a>2.2.1. Code Contribution</h4>
-<div class="paragraph">
-<p>You can upload your modified bugs, new functions and other codes to your personal warehouse, and finally submit PR requests to merge them on the official website: <a href="https://github.com/IvorySQL/IvorySQL" class="bare">https://github.com/IvorySQL/IvorySQL</a>.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="document-contributionhttpswww-ivorysql-orgzh-cndocsintro"><a class="anchor" href="#document-contributionhttpswww-ivorysql-orgzh-cndocsintro"></a>2.2.2. Document Contribution(<a href="https://www.ivorysql.org/zh-CN/docs/intro" class="bare">https://www.ivorysql.org/zh-CN/docs/intro</a>)</h4>
-<div class="paragraph">
-<p>The IvorySQL community provides Chinese and English documents. English documents are saved in &#8230;&#8203; document repository, Chinese documents are saved in i18n document repository. You can contribute to one of them or both.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="test-ivorysql-and-report-bugs"><a class="anchor" href="#test-ivorysql-and-report-bugs"></a>2.2.3. Test IvorySQL and Report Bugs</h4>
-<div class="paragraph">
-<p>GitHub:  <a href="https://github.com/IvorySQL/IvorySQL" class="bare">https://github.com/IvorySQL/IvorySQL</a></p>
-</div>
-<div class="paragraph">
-<p>Gitee:https://gitee.com/IvorySQL/</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="participate-in-the-construction-of-ivorysql-website"><a class="anchor" href="#participate-in-the-construction-of-ivorysql-website"></a>2.2.4. Participate in the Construction of IvorySQL Website</h4>
-<div class="paragraph">
-<p>IvorySQL official website:https://github.com/IvorySQL/Ivory-www</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="answer-questions-on-the-mailing-list"><a class="anchor" href="#answer-questions-on-the-mailing-list"></a>2.2.5. Answer Questions on the Mailing List</h4>
-<div class="paragraph">
-<p>Mailing List website:https://lists.ivorysql.org/</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="contribute-article"><a class="anchor" href="#contribute-article"></a>2.2.6. Contribute Article</h4>
-<div class="paragraph">
-<p>You can submit your article to the blog in the IvorySQL-WWW code warehouse, or send it to the mailbox <a href="mailto:renjiao@highgo.com">renjiao@highgo.com</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="how-to-contribute"><a class="anchor" href="#how-to-contribute"></a>2.3. How to Contribute</h3>
-<div class="sect3">
-<h4 id="coding-guidelines"><a class="anchor" href="#coding-guidelines"></a>2.3.1. Coding Guidelines</h4>
-<div class="paragraph">
-<p>Your chances of getting feedback and seeing your code merged into the project greatly depend on how granular your changes are. If you happen to have a bigger change in mind, we highly recommend engaging on the developer&#8217;s mailing list first and sharing your proposal with us before you spend a lot of time writing code. Even when your proposal gets validated by the community, we still recommend doing the actual work as a series of small, self-contained commits. This makes the reviewer&#8217;s job much easier and increases the timeliness of feedback.</p>
-</div>
-<div class="paragraph">
-<p>When it comes to C and C++ parts of IvorySQL, we try to follow PostgreSQL Coding Conventions. In addition to that:</p>
-</div>
-<div class="paragraph">
-<p>For C and Perl code, please run pgindent if necessary. We recommend using git diff --color when reviewing your changes so that you don&#8217;t have any spurious whitespace issues in the code that you submit.</p>
-</div>
-<div class="paragraph">
-<p>All new functionality that is contributed to IvorySQL should be covered by regression tests that are contributed alongside it. If you are uncertain about how to test or document your work, please raise the question on the ivorysql-hackers mailing list and the developer community will do its best to help you.</p>
-</div>
-<div class="paragraph">
-<p>At the very minimum, you should always be running make installcheck-world to make sure that you&#8217;re not breaking anything.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="changes-applicable-to-upstream-postgresql"><a class="anchor" href="#changes-applicable-to-upstream-postgresql"></a>2.3.2. Changes applicable to upstream PostgreSQL</h4>
-<div class="paragraph">
-<p>If the change you&#8217;re working on touches functionality that is common between PostgreSQL and IvorySQL, you may be asked to forward-port it to PostgreSQL. This is not only so that we keep reducing the delta between the two projects, but also so that any change that is relevant to PostgreSQL can benefit from a much broader review of the upstream PostgreSQL community. In general, it is a good idea to keep both codebases handy so you can be sure whether your changes may need to be forward-ported.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="patch-submission"><a class="anchor" href="#patch-submission"></a>2.3.3. Patch submission</h4>
-<div class="paragraph">
-<p>Once you are ready to share your work with the IvorySQL core team and the rest of the IvorySQL community, you should push all the commits to a branch in your own repository forked from the official IvorySQL and send us a pull request.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="patch-review"><a class="anchor" href="#patch-review"></a>2.3.4. Patch review</h4>
-<div class="paragraph">
-<p>A submitted pull request with passing validation checks is assumed to be available for peer review. Peer review is the process that ensures that contributions to IvorySQL are of high quality and align well with the road map and community expectations. Every member of the IvorySQL community is encouraged to review pull requests and provide feedback. Since you don&#8217;t have to be a core team member to be able to do that, we recommend following a stream of pull reviews to anybody who&#8217;s interested in becoming a long-term contributor to IvorySQL.</p>
-</div>
-<div class="paragraph">
-<p>One outcome of the peer review could be a consensus that you need to modify your pull request in certain ways. GitHub allows you to push additional commits into a branch from which a pull request was sent. Those additional commits will be then visible to all of the reviewers.</p>
-</div>
-<div class="paragraph">
-<p>A peer review converges when it receives at least one +1 and no -1s votes from the participants. At that point, you should expect one of the core team members to pull your changes into the project.</p>
-</div>
-<div class="paragraph">
-<p>At any time during the patch review, you may experience delays based on the availability of reviewers and core team members. Please be patient. That being said, don&#8217;t get discouraged either. If you&#8217;re not getting expected feedback for a few days add a comment asking for updates on the pull request itself or send an email to the mailing list.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="direct-commits-to-the-repository"><a class="anchor" href="#direct-commits-to-the-repository"></a>2.3.5. Direct commits to the repository</h4>
-<div class="paragraph">
-<p>On occasion, you will see core team members committing directly to the repository without going through the pull request workflow. This is reserved for small changes only and the rule of thumb we use is this: if the change touches any functionality that may result in a test failure, then it has to go through a pull request workflow. If, on the other hand, the change is in the non-functional part of the codebase (such as fixing a typo inside of a comment block)  core team members can decide to just commit to the repository directly.</p>
-</div>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Object</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether ora2pg is supported</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">trigger</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes，In some cases, you need to modify the script manually</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sequence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">function</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">procedure</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes，In some cases, you need to modify the script manually</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes，In some cases, you need to modify the script manually</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">materialized view</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">yes，In some cases, you need to modify the script manually</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="submit-issue"><a class="anchor" href="#submit-issue"></a>3. <strong>Submit Issue</strong></h2>
+<h2 id="migrate-oracle-database-to-ivorysql"><a class="anchor" href="#migrate-oracle-database-to-ivorysql"></a>3. Migrate Oracle Database to IvorySQL</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="first-get-into-new-issue-page"><a class="anchor" href="#first-get-into-new-issue-page"></a>3.1. First: Get into New issue page:</h3>
-<div class="paragraph">
-<p>1 Enter IvorySQL official website:https://github.com/IvorySQL/IvorySQL</p>
+<h3 id="environment-preparation"><a class="anchor" href="#environment-preparation"></a>3.1. Environment preparation</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">linux</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL Version</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Centos 7.X</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11.2.0.3.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1</p></td>
+</tr>
+</tbody>
+</table>
 </div>
-<div class="paragraph">
-<p>2 Click New issue</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/p3.png" alt="p3">
-</div>
-</div>
+<div class="sect2">
+<h3 id="environment-dependent-installation"><a class="anchor" href="#environment-dependent-installation"></a>3.2. Environment-dependent installation</h3>
 <div class="sect3">
-<h4 id="secondselect-the-issue-type"><a class="anchor" href="#secondselect-the-issue-type"></a>3.1.1. Second:Select the issue type</h4>
-<div class="paragraph">
-<p><strong>1 bug report</strong></p>
-</div>
+<h4 id="install-perl"><a class="anchor" href="#install-perl"></a>3.2.1. Install Perl</h4>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Title:</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">## Bug Report
-Describe the bug
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@localhost /]# yum install -y perl perl-ExtUtils-CBuilder perl-ExtUtils-MakeMaker
+[root@localhost /]# perl -v
 
 
-\### IvorySQL Version
-The version of IvorySQL you are using
-
-\### OS Version (uname -a)
-Operating system version(uname -a)
-
-\### Configuration options  ( config.status --config )
+This is perl 5, version 16, subversion 3 (v5.16.3) built for x86_64-linux-thread-multi
+(with 44 registered patches, see perl -V for more detail)
 
 
-\### Current Behavior
+Copyright 1987-2012, Larry Wall
 
 
-\### Expected behavior/code
+Perl may be copied only under the terms of either the Artistic License or the
+GNU General Public License, which may be found in the Perl 5 source kit.
 
 
-\### Step to reproduce
-
-
-\### Additional context that can be helpful for identifying the problem</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>2 Enhancement</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Title:</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">## Enhancement
-Describe the functions that you expect to be strengthened</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>3 Feature Request</strong></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Title:</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">## Feature Request
-Describe the feature that you expect to be real</code></pre>
+Complete documentation for Perl, including FAQ lists, should be found on
+this system using "man perl" or "perldoc perl".  If you have access to the
+Internet, point your browser at http://www.perl.org/, the Perl Home Page.</code></pre>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="third-submit"><a class="anchor" href="#third-submit"></a>3.1.2. Third: Submit</h4>
+<h4 id="install-the-dbi-module"><a class="anchor" href="#install-the-dbi-module"></a>3.2.2. Install the DBI module</h4>
 <div class="paragraph">
-<p>Click submit new issue button. WELL DONE!</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="contribute-code"><a class="anchor" href="#contribute-code"></a>4. <strong>Contribute Code</strong></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="first-fork-ivorysql-org-warehouse"><a class="anchor" href="#first-fork-ivorysql-org-warehouse"></a>4.1. First: Fork <a href="https://ivorysql.org/">ivorysql.org</a>  warehouse</h3>
-<div class="paragraph">
-<p>1 Open the ivorysql warehouse: <a href="https://github.com/IvorySQL/IvorySQL" class="bare">https://github.com/IvorySQL/IvorySQL</a></p>
+<p>DBI，Database Independent Interface，is the interface of the Perl language to connect to the database</p>
 </div>
 <div class="paragraph">
-<p>2 Click the fork button in the upper right corner, Wait for the fork to finish</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="second-clone-the-warehouse-to-local"><a class="anchor" href="#second-clone-the-warehouse-to-local"></a>4.2. Second: Clone the warehouse to local</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd $working_dir #  $working_dir can be replaced by the directory where you want to place repo. For example, `cd ~/Documents/GitHub`
-
-git clone git@github.com:$user/IvorySQL.git # `$user` can be replaced by your GitHub ID.</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="third-create-a-new-branch"><a class="anchor" href="#third-create-a-new-branch"></a>4.3. Third: Create a new Branch</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd $working_dir/IvorySQL
-
-git checkout -b new-branch-name</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="fourth-edit-document-or-modify-code"><a class="anchor" href="#fourth-edit-document-or-modify-code"></a>4.4. Fourth: Edit Document or Modify Code</h3>
-<div class="paragraph">
-<p>You can modify the code in new-branch-name.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="fifth-generate-commit"><a class="anchor" href="#fifth-generate-commit"></a>4.5. Fifth: Generate commit</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Git add &lt;file&gt;
-
-Git commit -m “commit-message”</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="sixth-push-the-modification-to-the-remote-end"><a class="anchor" href="#sixth-push-the-modification-to-the-remote-end"></a>4.6. Sixth: Push the modification to the remote end</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Git push -u origin new-branch-name</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="seventh-create-a-pull-request"><a class="anchor" href="#seventh-create-a-pull-request"></a>4.7. Seventh: Create a Pull Request</h3>
-<div class="paragraph">
-<p>1 Open your warehouse: <a href="https://github.com/$user/docs-cn">https://github.com/$user/IvorySQL</a> ($user is your GitHub ID) .</p>
-</div>
-<div class="paragraph">
-<p>2 Click Compare &amp; pull request button and create a PR.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="submit-pr"><a class="anchor" href="#submit-pr"></a>5. <strong>Submit PR</strong></h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A PR submission should contain only one function or one bug. Prohibit submitting multiple functions at one time.</p>
-</div>
-<div class="sect2">
-<h3 id="firstcreate-a-pull-request"><a class="anchor" href="#firstcreate-a-pull-request"></a>5.1. First:Create a Pull Request</h3>
-<div class="paragraph">
-<p>1 Open your warehouse: <a href="https://github.com/$user/docs-cn">https://github.com/$user/IvorySQL</a> ($user is your GitHub ID) 。</p>
-</div>
-<div class="paragraph">
-<p>2 Click Compare &amp; pull request button.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="secondfill-in-pr-information"><a class="anchor" href="#secondfill-in-pr-information"></a>5.2. Second:Fill in PR information</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Fix test
-Describe the function</code></pre>
-</div>
+<p>Download address: <a href="https://link.zhihu.com/?target=https%3A//cpan.metacpan.org/authors/id/T/TI/TIMB/DBI-1.643.tar.gz">https://cpan.metacpan.org/authors/id/T/TI/TIMB/DBI-1.643.tar.gz</a></p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">leave a comment
-Give a detailed description of the submission function</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">[root@localhost oracle2postgresql]# tar zxvf DBI-1.643.tar.gz
+[root@localhost oracle2postgresql]# cd DBI-1.643/
+[root@localhost DBI-1.643]# perl Makefile.PL
+[root@localhost DBI-1.643]# make
+[root@localhost DBI-1.643]# make install</code></pre>
 </div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="thirdsubmit-pr"><a class="anchor" href="#thirdsubmit-pr"></a>5.3. Third:Submit PR</h3>
-<div class="paragraph">
-<p>Click Create pull request button. WELL DONE!</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="edit-documents"><a class="anchor" href="#edit-documents"></a>6. <strong>Edit Documents</strong></h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="preparation"><a class="anchor" href="#preparation"></a>6.1. Preparation</h3>
-<div class="paragraph">
-<p>(1) Download Markdown or Typora document editor.</p>
-</div>
-<div class="paragraph">
-<p>(2) Check whether the source warehouse has updates. If there are updates, please update and synchronize to your own warehouse first. Refer to the following steps to update to the latest version:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git remote
-
-git fetch upstream
-
-git merge upstream/main
-
-git push</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>(3) Familiar with format <a href="#_pecification">[_pecification]</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="where-to-contribute"><a class="anchor" href="#where-to-contribute"></a>6.2. Where to Contribute</h3>
-<div class="paragraph">
-<p>The IvorySQL community provides Chinese and English documents. English documents are saved in IvorySQL document repository, Chinese documents are saved in i18n document repository. You can contribute to one of them or both.</p>
-</div>
-<div class="paragraph">
-<p>You can start from any of following to help improve the IvorySQL documents on the IvorySQL website:</p>
-</div>
-<div class="paragraph">
-<p>​       (1)  Prepare complete documents.</p>
-</div>
-<div class="paragraph">
-<p>​       (2)  Fix incorrect spelling and formatting (Punctuation, space, indentation, code block, etc) .</p>
-</div>
-<div class="paragraph">
-<p>​       (3)  Improper or outdated instructions corrected or updated.</p>
-</div>
-<div class="paragraph">
-<p>​       (4)  Add missing content (sentences, paragraphs, or new documents) .</p>
-</div>
-<div class="paragraph">
-<p>​       (5)  Translate document from English to Chinese, or from Chinese to English.</p>
-</div>
-<div class="paragraph">
-<p>​       (6)  Submit, reply and resolve document issues or document-i18n issues.</p>
-</div>
-<div class="paragraph">
-<p>​       (7)  (Advanced)  View pull requests created by others.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="specification"><a class="anchor" href="#specification"></a>6.3. Specification</h3>
-<div class="paragraph">
-<p>The IvorySQL document is written in 'markdown'. To ensure the quality and consistency of the format, certain Markdown rules should be followed when modifying and updating the document.</p>
-</div>
-<div class="paragraph">
-<p><strong>Markdown Specification</strong></p>
-</div>
-<div class="paragraph">
-<p>​    1 Titles are used incrementally from the first level, and skipping is prohibited. For example: The third level title cannot be used directly under the first level title; The fourth level title cannot be used directly under the second level title.</p>
-</div>
-<div class="paragraph">
-<p>​    2 The title must use the ATX style uniformly. Indicate the title level by adding # before the title.</p>
-</div>
-<div class="paragraph">
-<p>​    3 The leading symbol # of the title must be followed by a blank space.</p>
-</div>
-<div class="paragraph">
-<p>​    4 The leading symbol "#" of the title can only be followed by one blank space and then the title content. There can be no more than one space.</p>
-</div>
-<div class="paragraph">
-<p>​    5 The title must appear at the beginning of a line, there must be no space before the # sign of the title.</p>
-</div>
-<div class="paragraph">
-<p>​    6 Only Chinese and English question marks, back quotes, Chinese and English single and double quotes and other symbols can appear at the end of the title. Other symbols such as colon, comma, period and exclamation point cannot be used at the end of the title.</p>
-</div>
-<div class="paragraph">
-<p>​    7 One line must be empty above the title.</p>
-</div>
-<div class="paragraph">
-<p>​    8 The same title cannot appear continuously in the document. If the first level title is # TiDB architecture, the next level title cannot be # # TiDB architecture. If it is not a continuous title, the title content can be repeated.</p>
-</div>
-<div class="paragraph">
-<p>​    9 Only one first level title in document.</p>
-</div>
-<div class="paragraph">
-<p>​    10 In general, except for TOC.md files, which can be indented by two spaces, other .md files must be indented by four spaces by default foe each level of indentation.</p>
-</div>
-<div class="paragraph">
-<p>​    11 Tab is not allowed in documents(including code blocks) . If indentation is required, spaces must be uniformly used instead.</p>
-</div>
-<div class="paragraph">
-<p>​    12 Continuous blank lines are prohibited.</p>
-</div>
-<div class="paragraph">
-<p>​    13 Multiple spaces are not allowed after the block reference symbol &gt; . Only one space can be used, followed by the reference content.</p>
-</div>
-<div class="paragraph">
-<p>​    14 When using a ordered list, it must start from 1 and increase in order.</p>
-</div>
-<div class="paragraph">
-<p>​    15 When using a list, the identifier (+, -, * or number)  of each list item can only be left blank, followed by the list content.</p>
-</div>
-<div class="paragraph">
-<p>​    16 The list (includeing ordered and unordered lists)  must be empty before and after each line.</p>
-</div>
-<div class="paragraph">
-<p>​    17 There must be one blank line before and after the code block.</p>
-</div>
-<div class="paragraph">
-<p>​    18 Exposed URLs are prohibited in documents. If you want users to click and open the URL directly, wrap the URL with a pair of angle brackets (&lt;URL&gt;) . If the exposed URL must be used due to special circumstances, and the user does not need to open it by clicking, a pair of back quatation marks (<code>URL</code>)  will be used to wrap the URL.</p>
-</div>
-<div class="paragraph">
-<p>​    19 When using bold, italic and other emphasis effects, redundant spaces are prohibited in the emphasis identifier, such as <code><strong> text </strong></code>.</p>
-</div>
-<div class="paragraph">
-<p>​    20 No extra space is allowed in the code block wrapped by a single backquote, such as ` text `.</p>
-</div>
-<div class="paragraph">
-<p>​    21 No extra spaces are allowed on both sides of the link text, such as [  Link  ](<a href="https://www.example.com/" class="bare">https://www.example.com/</a>)</p>
-</div>
-<div class="paragraph">
-<p>​    22 The link must have a link path. [Empty link]()  and [empty link](#)  are not allowed.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="example"><a class="anchor" href="#example"></a>6.4. Example</h3>
-<div class="paragraph">
-<p>1 Titles are used incrementally from the first level, and skipping is prohibited.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Heading 1
-### Heading 3
-
-We skipped out a 2nd level heading in this document</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>2 The title must use the ATX style uniformly. Indicate the title level by adding # before the title.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-## Another Heading 2
-### Another Heading 3</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>3 The leading symbol # of the title must be followed by a blank space. Multiple spaces after # are prohibited, and spaces before # are prohibited.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Heading 1
-## Heading 2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Heading 1
-## Heading 2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>4 Only Chinese and English question marks, back quotes, Chinese and English single and double quotes and other symbols can appear at the end of the title.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># This is a heading.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># This is a heading</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>5 One line must be empty above the title.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Heading 1
-Some text
-Some more text## Heading 2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Heading 1
-Some text
-Some more text
-
-## Heading 2</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>6 he same title cannot appear continuously in the document. If the first level title is # TiDB architecture, the next level title cannot be ## TiDB architecture. If it is not a continuous title, the title content can be repeated.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Some text
-
-## Some text</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Some text
-
-## Some more text</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>7 Only one first level title in document.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Top level heading
-
-# Another top-level heading</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Title
-
-## Heading
-
-## Another heading</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>8 In general, except for TOC.md files, which can be indented by two spaces, other .md files must be indented by four spaces by default foe each level of indentation.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* List item
-  * Nested list item indented by 3 spaces</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* List item
-    * Nested list item indented by 4 spaces</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>9 Tab is not allowed in documents(including code blocks) . If indentation is required, spaces must be uniformly used instead.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Some text
-	* hard tab character used to indent the list item</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Some text
-  * Spaces used to indent the list item instead</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>10 Continuous blank lines are prohibited.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Some text here
-
-
-Some more text here</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Some text here
-
-Some more text here</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>11 Multiple spaces are not allowed after the block reference symbol &gt; . Only one space can be used, followed by the reference content.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">&gt;  This is a blockquote with bad indentation&gt;  there should only be one.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">&gt; This is a blockquote with correct&gt; indentation.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>12 When using a ordered list, it must start from 1 and increase in order.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">1. Do this.
-1. Do that.
-1. Done.</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">0. Do this.
-1. Do that.
-2. Done.</code></pre>
-</div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Correct Example:</pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">1. Do this.
-2. Do that.
-3. Done.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>13 When using a list, the identifier (+, -, * or number)  of each list item can only be left blank, followed by the list content.</p>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">* Foo
-* Bar
-* Baz
-
-1. Foo
-  * Bar
-1. Baz</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>14 The list (includeing ordered and unordered lists)  must be empty before and after each line.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Some text* Some* List
-
-1. Some2. List
-
-Some text</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Some text
-
-* Some
-* List
-
-1. Some
-2. List
-
-Some text</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>15 There must be one blank line before and after the code block.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Some text
-​```
-Code block
-​```
-​```
-Another code block
-​```
-Some more text</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Some text
-
-​```
-Code block
-​```
-
-​```
-Another code block
-​```
-
-Some more text</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>16 Exposed URLs are prohibited in documents. If you want users to click and open the URL directly, wrap the URL with a pair of angle brackets (&lt;URL&gt;) . If the exposed URL must be used due to special circumstances, and the user does not need to open it by clicking, a pair of back quatation marks (<code>URL</code>)  will be used to wrap the URL.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">For more information, see https://www.example.com/.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">For more information, see &lt;https://www.example.com/&gt;.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>17 When using bold, italic and other emphasis effects, redundant spaces are prohibited in the emphasis identifier, such as <code><strong> text </strong></code>.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Here is some ** bold ** text.
-
-Here is some * italic * text.
-
-Here is some more __ bold __ text.
-
-Here is some more _ italic _ text.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Here is some **bold** text.
-
-Here is some *italic* text.
-
-Here is some more __bold__ text.
-
-Here is some more _italic_ text.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>18 No extra space is allowed in the code block wrapped by a single backquote, such as ` text `.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">some text
- some text</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">some text</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>19 No extra spaces are allowed on both sides of the link text, such as [  Link  ](<a href="https://www.example.com/" class="bare">https://www.example.com/</a>) .
-Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[ a link ](https://www.example.com/)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[a link](https://www.example.com/)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>20 The link must have a link path. [Empty link]()  and [empty link](#)  are not allowed.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[an empty link]()
-
-[an empty fragment](#)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[a valid link](https://example.com/)
-
-[a valid fragment](#fragment)</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>21 Code blocks in the document are wrapped with three backquote, and the use of indented four-space code blocks is prohibited.</p>
-</div>
-<div class="paragraph">
-<p>Incorrect Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Some text.
-
-  # Indented code
-
-More text.</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Correct Example:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">​```ruby
-# Fenced code
-​```
-
-More text.</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="environmental-preparation"><a class="anchor" href="#environmental-preparation"></a>6.5. Environmental preparation</h3>
-<div class="paragraph">
-<p>In order to test your modifications, you need to prepare the following environment.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>Node.js</code> install</p>
-</li>
-<li>
-<p><code>Antora</code> install</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Please refer to <a href="https://docs.antora.org/antora/latest/">Antora docs</a>。</p>
-</div>
-<div class="paragraph">
-<p>After installation, the following display on the terminal indicates successful installation.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/14.png" alt="14">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="generate-web-pages"><a class="anchor" href="#generate-web-pages"></a>6.6. Generate web pages</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>Firstly, you need to know the location of the corresponding UI for the webpage, as shown in the following figure:</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/15.png" alt="15">
-</div>
-</div>
-<div class="paragraph">
-<p>The UI templates for both Chinese and English web pages are basically the same, so when making modifications, it is best to ensure that both templates are modified at the same time. After uploading the modified UI to your personal Github, you can consider generating your modified web page locally.</p>
-</div>
-<div class="paragraph">
-<p>IvorySQL Document Site is built by <code>Antora</code>. Before running <code>Antora</code>, remember to modify the corresponding <code>playbook.yml</code> file.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/16.png" alt="16">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/17.png" alt="17">
-</div>
-</div>
-<div class="paragraph">
-<p>After completing the above process, please run the command <code>antora antora-playbook.yml --stacktrace</code> on the terminal, and then patiently wait. After the successful operation is completed, you can view the webpage you have generated.</p>
-</div>
-<div class="paragraph">
-<p>You can start uploading to our <strong>ivorysql_web</strong>, the process of submitting PR is the same as before. Thank you for your contribution to the community <sup>_</sup>. We will consider whether to update the website after the review.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="submit-blog"><a class="anchor" href="#submit-blog"></a>7. Submit Blog</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="preparation-2"><a class="anchor" href="#preparation-2"></a>7.1. Preparation</h3>
-<div class="paragraph">
-<p>1 Download <a href="https://markdown.com.cn/tools.html#%E7%BC%96%E8%BE%91%E5%99%A8">Markdown</a>  or <a href="https://typoraio.cn/">Typora</a> .</p>
-</div>
-<div class="paragraph">
-<p>2 Check whether the source warehouse (<a href="https://github.com/IvorySQL/Ivory-www" class="bare">https://github.com/IvorySQL/Ivory-www</a>)  has updates. If there are updates, please update and synchronize to your own warehouse first. Refer to the following steps to update to the latest version:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Download source code
-git clone https://github.com/IvorySQL/Ivory-www.git
-# Synchronize updates warehouse
-git pull</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>3 Familiar with format (<a href="#_specification_2">[_specification_2]</a>)</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="where-to-congtribute"><a class="anchor" href="#where-to-congtribute"></a>7.2. Where to Congtribute</h3>
-<div class="paragraph">
-<p>The IvorySQL community provides Chinese and English documents. English documents are saved in IvorySQL document repository, Chinese documents are saved in i18n document repository. You can contribute to one of them or both.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="how-to-contribute-2"><a class="anchor" href="#how-to-contribute-2"></a>7.3. How to Contribute</h3>
-<div class="paragraph">
-<p>Let&#8217;s take a quick look at the information about the maintenance of the IvorySQL blog before contributing. It is helpful for you to submit blog and to be a contributor.</p>
-</div>
-<div class="paragraph">
-<p>(1) Clone code to local warehouse</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/IvorySQL/Ivory-www.git</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>(2) Create a branch</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git checkout -b &lt;branch-name&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>(3) Create a directory of your own articles in the blog directory, and please name your own directory according to the ([Specification](#7.4 Specification) ) .</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Make English blog directory and files
-cd Ivory-www/blog
-mkdir &lt;YEAR-MONTH-DAY-title&gt;
-cd &lt;YEAR-MONTH-DAY-title&gt;
-touch index.md
-# Make Chinese blog directory and files
-cd Ivory-www/i18n/zh-CN/docusaurus-plugin-content-blog
-mkdir &lt;YEAR-MONTH-DAY-title&gt;
-cd &lt;YEAR-MONTH-DAY-title&gt;
-touch index.md</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>(4) Write the blog to publish in index.md, put the required pictures in the blog in the same directory as index.md.</p>
-</div>
-<div class="paragraph">
-<p>(5) Submit Blog</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git add &lt;file-path&gt;
-git commit -m "&lt;message&gt;"
-git push origin &lt;branch-name&gt;:&lt;branch-name&gt;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="specification-2"><a class="anchor" href="#specification-2"></a>7.4. Specification</h3>
-<div class="sect3">
-<h4 id="submit-specifications"><a class="anchor" href="#submit-specifications"></a>7.4.1. Submit specifications</h4>
-<div class="paragraph">
-<p>(1) Format of folder naming: <strong>year-month-day-foldername</strong></p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>Example: 2022-1-28-ivorysql-arrived</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>(2) File property is <strong>index.md</strong></p>
-</div>
-<div class="paragraph">
-<p>(3) Picture property is <strong>.png</strong>, and put the pictures to be uploaded into the folder to be submitted in advance.</p>
-</div>
-<div class="paragraph">
-<p><strong>Notice:</strong>The name of every picture is unique and cannot be repeated.</p>
-</div>
-<div class="paragraph">
-<p>Example: po-one.png</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="write-blog"><a class="anchor" href="#write-blog"></a>7.4.2. Write blog</h4>
+<h4 id="install-dbd-oracle"><a class="anchor" href="#install-dbd-oracle"></a>3.2.3. Install DBD-Oracle</h4>
 <div class="paragraph">
-<p>Blogs are written in markdown or Typora, you can understand the design of blog by reading <a href="https://docusaurus.io/zh-CN/docs/blog">Blog | Docusaurus</a>.</p>
+<p>Download address：https://sourceforge.net/projects/ora2pg/</p>
 </div>
 <div class="paragraph">
-<p>(1) The header of blog includes the following information:</p>
+<p>Set environment variables; Load environment variables; Because ORACLE must be defined_ HOME environment variable; This example configures environment variables under the ivorysql user</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-vim hljs" data-lang="vim">---
-slug: IvorySQL
-title: Welcome to IvorySQL community
-authors: [official]
-authorTwitter: IvorySql
-tags: [IvorySQL, Welcome, Database, Join Us]
----</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">export LD_LIBRARY_PATH=/usr/lib/oracle/18.3/client64/lib:$LD_LIBRARY_PATH
+export ORACLE_HOME=/usr/lib/oracle/18.3/client64
+# tar -zxvf DBD-Oracle-1.76.tar.gz # source /home/postgres/.bashrc
+# cd DBD-Oracle-1.76
+# perl Makefile.PL
+# make
+# make install</code></pre>
 </div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="install-dbd-pg-optional"><a class="anchor" href="#install-dbd-pg-optional"></a>3.2.4. Install DBD-PG (optional)</h4>
+<div class="paragraph">
+<p>Download address：https://metacpan.org/release/DBD-Pg/</p>
 </div>
 <div class="paragraph">
-<p><strong>Prompt:</strong>You can copy the above template to your file and edit it.</p>
+<p>Set environment variables：</p>
 </div>
-<div class="paragraph">
-<p><strong>Notice:</strong>1) Add one space after slug, title, authors, tags.</p>
-</div>
-<div class="paragraph">
-<p>2) The name of every slug is unique, the Chinese and English versions of the same blog can be the same.</p>
-</div>
-<div class="paragraph">
-<p>(2) Text format</p>
-</div>
-<div class="paragraph">
-<p>The text paragraph title is <strong>h2</strong>/"<strong>Second level title</strong>";</p>
-</div>
-<div class="paragraph">
-<p>The body uses the default font size.</p>
-</div>
-<div class="paragraph">
-<p>(3) Naming format of inserted pictures</p>
-</div>
-<div class="paragraph">
-<p>[Hello](Hello-banner.png)</p>
-</div>
-<div class="paragraph">
-<p>(4) Naming format of inserted hyperlink</p>
-</div>
-<div class="paragraph">
-<p>[name](link)</p>
-</div>
-<div class="paragraph">
-<p><a href="https://github.com/IvorySQL/">Github page</a> Download source code and published packages.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="website-contribution-guide"><a class="anchor" href="#website-contribution-guide"></a>8. Website Contribution Guide</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p><a href="https://docs.ivorysql.org">IvorySQL Document Site</a> uses <a href="https://antora.org/"><code>Antora</code></a> to build. Also, IvorySQL Document Site is open source. It consists of three parts, such as <a href="https://github.com/IvorySQL/ivorysql_docs"><code>ivorysql_docs</code></a>, <a href="https://github.com/IvorySQL/ivorysql_web"><code>ivorysql_web</code></a> and <a href="https://github.com/IvorySQL/ivory-doc-builder"><code>ivory-doc-builder</code></a>.</p>
-</div>
-<div class="paragraph">
-<p>Welcome everyone who is willing to participate in open source work to join us, and remember to follow our code of conduct <sup>_</sup>.</p>
-</div>
-<div class="sect2">
-<h3 id="how-to-contribute-3"><a class="anchor" href="#how-to-contribute-3"></a>8.1. How to Contribute</h3>
-<div class="paragraph">
-<p>Due to the fact that IvorySQL Document Site is all hosted on Github, this allows any users to <code>fork</code> our document repository into their personal repository, make modifications to it, and then submit a PR. After being reviewed by our open source team, the modifications can be updated to our Document Site.</p>
-</div>
-<div class="paragraph">
-<p>In order to achieve the goat of correcting document errors more conveniently, you first need to establish a personal warehouse according to the size you want to update. As follows:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>If you want to modify the existing content or add a new page, you only need to <code>fork</code> <a href="https://github.com/IvorySQL/ivorysql_docs">ivorysql_docs</a> to your personal repository.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="../_images/7.png" alt="7">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">export POSTGRES_HOME=/opt/ivorysql/2.1
+# tar -zxvf DBD-Pg-3.80.tar.gz
+# source /home/ivorysql/.bashrc
+# cd DBD-Pg-3.8.0
+# perl Makefile.PL
+# make
+# make install</code></pre>
 </div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>If you want to participate more deeply in the construction of IvorySQL Document Site, in addition to the <code>ivorysql_docs</code>, you also need to <code>fork</code> <a href="https://github.com/IvorySQL/ivorysql_web">ivorysql_web</a> and <a href="https://github.com/IvorySQL/ivory-doc-builder">ivory-doc-builder</a> to your personal repository.</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/8.png" alt="8">
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/9.png" alt="9">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="modify-content"><a class="anchor" href="#modify-content"></a>8.2. Modify Content</h3>
+<h3 id="install-ora2pg"><a class="anchor" href="#install-ora2pg"></a>3.3. Install Ora2pg</h3>
 <div class="paragraph">
-<p>This section will introduce the process of modifying webpage content after discovering that it is inappropriate.</p>
+<p>Download address：https://sourceforge.net/projects/ora2pg/</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>In the upper right corner of a webpage with incorrect content, there is a button called <code>edit this page</code>, click on the button. As shown in the figure:</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="../_images/10.png" alt="10">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@Test01 ~]# tar -xjf  ora2pg-20.0.tar.bz2
+[root@Test01 ~]# cd ora2pg-xx/
+[root@Test01 ~]# perl Makefile.PL  PREFIX=&lt;your_install_dir&gt;
+[root@Test01 ora2pg-18.2]# make &amp;&amp; make install</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>After clicking, it will redirect to the editing page where we store the current page source <code>.adoc</code> file. Please modify the content in the <code>Asciidoc</code> format. As shown in the figure:</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Installed in/usr/local/bin/directory by default
+Check the software environment:</p>
 </div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="../_images/11.png" alt="11">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@Test01 ~]# vi check.pl
+#!/usr/bin/perl
+use strict;
+use ExtUtils::Installed;
+my $inst= ExtUtils::Installed-&gt;new();
+my @modules = $inst-&gt;modules();
+foreach(@modules)
+{
+        my $ver = $inst-&gt;version($_) || "???";
+        printf("%-12s --  %s\n", $_, $ver);
+
+}
+exit;
+[root@test01 bin]# perl check.pl
+DBD::Oracle  --  1.76
+DBD::Pg      --  3.8.0
+DBI          --  1.642
+Ora2Pg       --  20.0
+Perl         --  5.16.3</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>After editing is completed. As shown in the figure:</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>Set environment variables</p>
 </div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="../_images/12.png" alt="12">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">export PERL5LIB=&lt;your_install_dir&gt;
+#export PERL5LIB=/usr/local/bin/</code></pre>
 </div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>After confirming the update. As shown in the figure:</p>
-</li>
-</ul>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/13.png" alt="13">
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Next, the relevant person of the open source team will be responsible for reviewing the content you submitted. After the review is completed, the updates you submitted will appear on the corresponding page.</p>
-</li>
-</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="add-page"><a class="anchor" href="#add-page"></a>8.3. Add Page</h3>
+<h3 id="source-side-preparation"><a class="anchor" href="#source-side-preparation"></a>3.4. Source side preparation</h3>
 <div class="paragraph">
-<p>This section will introduce how to add new page components to a website, and the modifications involved in adding new pages mainly include the following:</p>
+<p>Update oracle statistics to improve performance</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Add the <code>.adoc</code> file in the <code>CN/modules/ROOT/pages/vX.X</code>.</p>
-</li>
-<li>
-<p>Modify the <code>CN/modules/ROOT/nav.adoc</code>. If the modification involves modifying or adding images, please modify the images in <code>images</code>.</p>
-</li>
-<li>
-<p>Add the <code>.adoc</code> file in the <code>EN/modules/ROOT/pages/vX.X</code>.</p>
-</li>
-<li>
-<p>Modify the <code>EN/modules/ROOT/nav.adoc</code>. If the modification involves modifying or adding images, please modify the images in <code>images</code>.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">BEGIN
+DBMS_STATS.GATHER_SCHEMA_STATS('SH');
+DBMS_STATS.GATHER_SCHEMA_STATS('SCOTT');
+DBMS_STATS.GATHER_SCHEMA_STATS('HR');
+DBMS_STATS.GATHER_DATABASE_STATS ;
+DBMS_STATS.GATHER_DICTIONARY_STATS;
+END;/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Query the source end object pair type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SYS@PROD1&gt;set pagesize 200
+SYS@PROD1&gt;select distinct OBJECT_TYPE from  dba_objects where OWNER in ('SH','SCOTT','HR') ;
+OBJECT_TYPE
+-------------------
+INDEX PARTITION
+TABLE PARTITION
+SEQUENCE
+PROCEDURE
+LOB                                X
+TRIGGER
+DIMENSION                          X
+MATERIALIZED VIEW
+TABLE
+INDEX
+VIEW
+11 rows selected.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ora2pg-export-table-structure"><a class="anchor" href="#ora2pg-export-table-structure"></a>3.5. Ora2pg export table structure</h3>
+<div class="paragraph">
+<p>Configure ora2pg.conf</p>
+</div>
+<div class="paragraph">
+<p>By default, Ora2Pg will find the/etc/ora2pg/ora2pg.conf configuration file. If the file exists, you only need to execute:/usr/local/bin/ora2pg</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cat /etc/ora2pg/ora2pg.conf.dist  | grep -v ^# |grep -v ^$ &gt;ora2pg.conf
+vi ora2pg.conf
+[root@test01 ora2pg]# cat ora2pg.conf
+ORACLE_HOME     /usr/lib/oracle/18.3/client64
+ORACLE_DSN      dbi:Oracle:host=10.85.10.6 ;sid=PROD1;port=1521
+ORACLE_USER     system
+ORACLE_PWD      oracle
+SCHEMA          SH
+EXPORT_SCHEMA  1
+SKIP  fkeys ukeys checks
+TYPE            TABLE,VIEW,GRANT,SEQUENCE,TABLESPACE,PROCEDURE,TRIGGER,FUNCTION,PACKAGE,PARTITION,TYPE,MVIEW,QUERY,DBLINK,SYNONYM,DIRECTORY,TEST,TEST_VIEW
+NLS_LANG    AMERICAN_AMERICA.UTF8
+OUTPUT     sh.sql</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Firstly, you need to download the warehouse that you <code>fork</code> from <code>IvorySQL</code> to your personal computer.</p>
-<div class="literalblock">
-<div class="content">
-<pre>git clone https://github.com/$username$/ivorysql_docs.git</pre>
-</div>
-</div>
+<p>Only one type of export can be executed at the same time, so the TYPE instruction must be unique. If you have more than one, only the last one will be found in the file. But I can export multiple types at the same time.</p>
 </li>
 <li>
-<p>Then, place the <code>.adoc</code> file to be added in the correct directory, remembering that both Chinese and English files should be prepared (<strong>Chinese and English files should have the same name</strong>), and each file should be placed in the correct directory. At the same time, modify the corresponding <code>nav.adoc</code> file (the modification method can refer to the existing content of the file).</p>
+<p>Please note that you can link multiple exports by providing a comma-separated list of export types to the TYPE directive, but in this case, you cannot use COPY or INSERT with other export types.</p>
 </li>
 <li>
-<p>After the above modifications are completed, submit them to the personal warehouse first.</p>
-<div class="literalblock">
-<div class="content">
-<pre>git add .
-git commit -m "$describe your change$"
-git push</pre>
-</div>
-</div>
+<p>Some export types cannot or should not be directly loaded into the IvorySQL database, and still require little manual editing. This is the case for GRANT, TABLESPACE, TRIGGER, FUNCTION, PROCEDURE, TYPE, QUERY and PACKAGE export types, especially if you have PLSQL code or Oracle specific SQL.</p>
 </li>
 <li>
-<p>Afterwards, submit the PR as follows</p>
+<p>For TABLESPACE, you must ensure that the file path exists on the system. For SYNONYM, you can ensure that the owner and schema of the object correspond to the new PostgreSQL database design.</p>
+</li>
+<li>
+<p>It is recommended to export the table structure one type at a time to avoid other errors affecting each other.</p>
 </li>
 </ol>
 </div>
-</li>
-</ul>
+</blockquote>
 </div>
-<div class="imageblock">
+<div class="sect3">
+<h4 id="test-connection"><a class="anchor" href="#test-connection"></a>3.5.1. <strong>Test connection</strong></h4>
+<div class="paragraph">
+<p>After setting the Oracle database DSN, you can execute ora2pg to check whether it is valid：</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<img src="../_images/13.png" alt="13">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@test01 ora2pg]#  ora2pg -t SHOW_VERSION -c config/ora2pg.conf
+
+WARNING: target IvorySQL version must be set in PG_VERSION configuration directive. Using default: 11
+
+Oracle Database 11g Enterprise Edition Release 11.2.0.3.0</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="migration-cost-assessment"><a class="anchor" href="#migration-cost-assessment"></a>3.5.2. Migration cost assessment</h4>
+<div class="paragraph">
+<p>It is not easy to estimate the cost of the migration process from Oracle to PostgreSQL. In order to obtain a good evaluation of the migration cost, Ora2Pg will check all database objects, all functions and stored procedures to detect whether there are still some objects and PL/SQL code that cannot be automatically converted by Ora2Pg.
+Ora2Pg has a content analysis mode, which checks the Oracle database to generate a text report about the content contained in the Oracle database and the content that cannot be exported.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@test01 ora2pg]# ora2pg -t SHOW_REPORT --estimate_cost  -c ora2pg.conf
+WARNING: target IvorySQL version must be set in PG_VERSION configuration directive. Using default: 11
+[========================&gt;] 11/11 tables (100.0%) end of scanning.
+[========================&gt;] 11/11 objects types (100.0%) end of objects auditing.
+-------------------------------------------------------------------------------
+Ora2Pg v20.0 - Database Migration Report
+-------------------------------------------------------------------------------
+Version Oracle Database 11g Enterprise Edition Release 11.2.0.3.0
+Schema  SH
+Size    287.25 MB
+-------------------------------------------------------------------------------
+Object  Number  Invalid Estimated cost  Comments        Details
+-------------------------------------------------------------------------------
+DATABASE LINK   0       0       0       Database links will be exported as SQL/MED IvorySQL's Foreign Data Wrapper (FDW) extensions using oracle_fdw.
+DIMENSION       5       0       0
+GLOBAL TEMPORARY TABLE  0       0       0       Global temporary table are not supported by PostgreSQL and will not be exported. You will have to rewrite some application code to match the PostgreSQL temporary table behavior.
+INDEX   20      0       3.4     14 index(es) are concerned by the export, others are automatically generated and will do so on PostgreSQL. Bitmap will be exported as btree_gin index(es) and hash index(es) will be exported as b-tree index(es) if any. Domain index are exported as b-tree but commented to be edited to mainly use FTS. Cluster, bitmap join and IOT indexes will not be exported at all. Reverse indexes are not exported too, you may use a trigram-based index (see pg_trgm) or a reverse() function based index and search. Use 'varchar_pattern_ops', 'text_pattern_ops' or 'bpchar_pattern_ops' operators in your indexes to improve search with the LIKE operator respectively into varchar, text or char columns.      11 bitmap index(es). 1 domain index(es). 2 b-tree index(es).
+
+INDEX PARTITION 196     0       0       Only local indexes partition are exported, they are build on the column used for the partitioning.
+
+JOB     0       0       0       Job are not exported. You may set external cron job with them.
+
+MATERIALIZED VIEW       2       0       6       All materialized view will be exported as snapshot materialized views, they are only updated when fully refreshed.
+
+SYNONYM 0       0       0       SYNONYMs will be exported as views. SYNONYMs do not exists with PostgreSQL but a common workaround is to use views or set the PostgreSQL search_path in your session to access object outside the current schema.
+
+TABLE   11      0       1.1     1 external table(s) will be exported as standard table. See EXTERNAL_TO_FDW configuration directive to export as file_fdw foreign tables or use COPY in your code if you just want to load data from external files.     Total number of rows: 1063384. Top 10 of tables sorted by number of rows:. sales has 918843 rows. costs has 82112 rows. customers has 55500 rows. supplementary_demographics has 4500 rows. times has 1826 rows. promotions has 503 rows. products has 72 rows. countries has 23 rows. channels has 5 rows. sales_transactions_ext has 0 rows. Top 10 of largest tables:.
+
+TABLE PARTITION 56      0       5.6     Partitions are exported using table inheritance and check constraint. Hash and Key partitions are not supported by PostgreSQL and will not be exported.  56 RANGE partitions..
+
+VIEW    1       0       1       Views are fully supported but can use specific functions.
+
+-------------------------------------------------------------------------------
+
+Total   291     0       17.10   17.10 cost migration units means approximatively 1 man-day(s). The migration unit was set to 5 minute(s)
+------------------------------------------------------------------------------
+Migration level : A-1
+-------------------------------------------------------------------------------
+Migration levels:
+
+    A - Migration that might be run automatically
+
+    B - Migration with code rewrite and a human-days cost up to 5 days
+
+    C - Migration with code rewrite and a human-days cost above 5 days
+
+Technical levels:
+
+    1 = trivial: no stored functions and no triggers
+
+    2 = easy: no stored functions but with triggers, no manual rewriting
+
+    3 = simple: stored functions and/or triggers, no manual rewriting
+
+    4 = manual: no stored functions but with triggers or views with code rewriting
+
+    5 = difficult: stored functions and/or triggers with code rewriting
+
+-------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="export-sh-table-structure"><a class="anchor" href="#export-sh-table-structure"></a>3.5.3. <strong>Export SH table structure</strong></h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@test01 ora2pg]#  ora2pg  -c ora2pg.conf
+WARNING: target IvorySQL version must be set in PG_VERSION configuration directive. Using default: 11
+[========================&gt;] 11/11 tables (100.0%) end of scanning.
+
+[========================&gt;] 12/12 tables (100.0%) end of table export.
+
+[========================&gt;] 1/1 views (100.0%) end of output.
+
+[========================&gt;] 0/0 sequences (100.0%) end of output.
+
+[========================&gt;] 0/0 procedures (100.0%) end of procedures export.
+
+[========================&gt;] 0/0 triggers (100.0%) end of output.
+
+[========================&gt;] 0/0 functions (100.0%) end of functions export.
+
+[========================&gt;] 0/0 packages (100.0%) end of output.
+
+[========================&gt;] 56/56 partitions (100.0%) end of output.
+
+[========================&gt;] 0/0 types (100.0%) end of output.
+
+[========================&gt;] 2/2 materialized views (100.0%) end of output.
+[========================&gt;] 0/0 dblink (100.0%) end of output.
+
+[========================&gt;] 0/0 synonyms (100.0%) end of output.
+
+[========================&gt;] 2/2 directory (100.0%) end of output.
+
+Fixing function calls in output files....</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="export-sh-user-data"><a class="anchor" href="#export-sh-user-data"></a>3.5.4. <strong>Export SH user data</strong></h4>
+<div class="paragraph">
+<p>Configure the type of ora2pg.conf as COPY or INSERT</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@test01 ora2pg]# cp ora2pg.conf sh_data.conf
+
+[root@test01 ora2pg]# vi sh_data.conf
+
+ORACLE_HOME     /usr/lib/oracle/18.3/client64
+
+ORACLE_DSN      dbi:Oracle:host=10.85.10.6 ;sid=PROD1;port=1521
+
+ORACLE_USER     system
+
+ORACLE_PWD      oracle
+
+SCHEMA          SH
+
+EXPORT_SCHEMA  1
+
+DISABLE_UNLOGGED  1
+
+SKIP  fkeys ukeys checks
+
+TYPE           COPY
+
+NLS_LANG    AMERICAN_AMERICA.UTF8
+
+OUTPUT     sh_data.sql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Export Data</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@test01 ora2pg]# ora2pg  -c sh_data.conf
+
+WARNING: target PostgreSQL version must be set in PG_VERSION configuration directive. Using default: 11
+
+[========================&gt;] 11/11 tables (100.0%) end of scanning.
+
+[========================&gt;] 5/5 rows (100.0%) Table CHANNELS (5 recs/sec)
+
+[&gt;                        ]       5/1063384 total rows (0.0%) - (0 sec., avg: 5 recs/sec).
+
+[&gt;                        ]     0/82112 rows (0.0%) Table COSTS_1995 (0 recs/sec)
+
+[&gt;                        ]       5/1063384 total rows (0.0%) - (0 sec., avg: 5 recs/sec).
+
+[&gt;                        ]     0/82112 rows (0.0%) Table COSTS_H1_1997 (0 recs/sec)
+
+[&gt;                        ]       5/1063384 total rows (0.0%) - (0 sec., avg: 5 recs/sec).
+
+[&gt;                        ]     0/82112 rows (0.0%) Table COSTS_1996 (0 recs/sec)
+
+[&gt;                        ]       5/1063384 total rows (0.0%) - (0 sec., avg: 5 recs/sec).
+
+……………………………………………………………
+
+[========================&gt;] 4500/4500 rows (100.0%) Table SUPPLEMENTARY_DEMOGRAPHICS (4500 recs/sec)
+
+[=======================&gt; ] 1061558/1063384 total rows (99.8%) - (45 sec., avg: 23590 recs/sec).
+
+[========================&gt;] 1826/1826 rows (100.0%) Table TIMES (1826 recs/sec)
+
+[========================&gt;] 1063384/1063384 total rows (100.0%) - (45 sec., avg: 23630 recs/sec).
+
+[========================&gt;] 1063384/1063384 rows (100.0%) on total estimated data (45 sec., avg: 23630 recs/sec)
+
+Fixing function calls in output files...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To view the exported file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@test01 ora2pg]# ls -lrt *.sql
+
+-rw-r--r-- 1 root root 15716 Jul  2 21:21 TABLE_sh.sql
+
+-rw-r--r-- 1 root root   858 Jul  2 21:21 VIEW_sh.sql
+
+-rw-r--r-- 1 root root  2026 Jul  2 21:21 TABLESPACE_sh.sql
+
+-rw-r--r-- 1 root root   345 Jul  2 21:21 SEQUENCE_sh.sql
+
+-rw-r--r-- 1 root root  2382 Jul  2 21:21 GRANT_sh.sql
+
+-rw-r--r-- 1 root root   344 Jul  2 21:21 TRIGGER_sh.sql
+
+-rw-r--r-- 1 root root   346 Jul  2 21:21 PROCEDURE_sh.sql
+
+-rw-r--r-- 1 root root   344 Jul  2 21:21 PACKAGE_sh.sql
+
+-rw-r--r-- 1 root root   345 Jul  2 21:21 FUNCTION_sh.sql
+
+-rw-r--r-- 1 root root  6771 Jul  2 21:21 PARTITION_sh.sql
+
+-rw-r--r-- 1 root root   341 Jul  2 21:21 TYPE_sh.sql
+
+-rw-r--r-- 1 root root   342 Jul  2 21:21 QUERY_sh.sql
+
+-rw-r--r-- 1 root root   950 Jul  2 21:21 MVIEW_sh.sql
+
+-rw-r--r-- 1 root root   344 Jul  2 21:21 SYNONYM_sh.sql
+
+-rw-r--r-- 1 root root   926 Jul  2 21:21 DIRECTORY_sh.sql
+
+-rw-r--r-- 1 root root   343 Jul  2 21:21 DBLINK_sh.sql
+
+-rw-r--r-- 1 root root 55281235 Jul  2 17:11 sh_data.sql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Export HR and SCOTT user data in the same way.</p>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="test"><a class="anchor" href="#test"></a>8.4. Test</h3>
+<h3 id="create-orcl-library-in-ivorysql-environment"><a class="anchor" href="#create-orcl-library-in-ivorysql-environment"></a>3.6. Create orcl library in IvorySQL environment</h3>
 <div class="paragraph">
-<p>If you are not satisfied with simply submitting on the webpage or only modifying the webpage content, or if you want to modify the webpage UI, this section will help you.</p>
+<p>Create ORCL database</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@test01 ~]# su - ivorysql
+
+Last login: Tue Jul  2 20:04:30 CST 2019 on pts/3
+
+[postgres@test01 ~]$ createdb orcl
+
+[postgres@test01 ~]$ psql
+
+psql (11.2)
+
+Type "help" for help.
+
+
+
+ivorysql=# \l
+
+                                 List of databases
+
+   Name    |  Owner   | Encoding |  Collate   |   Ctype    |   Access privileges
+
+-----------+----------+----------+------------+------------+-----------------------
+
+ orcl      | postgres | UTF8     | en_US.utf8 | en_US.utf8 |
+
+ pgdb      | postgres | UTF8     | en_US.utf8 | en_US.utf8 |
+
+ postgres  | postgres | UTF8     | en_US.utf8 | en_US.utf8 |
+
+ template0 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+
+           |          |          |            |            | postgres=CTc/postgres
+
+ template1 | postgres | UTF8     | en_US.utf8 | en_US.utf8 | =c/postgres          +
+
+           |          |          |            |            | postgres=CTc/postgres
+
+(5 rows)
+
+ivorysql=#</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>Before reading this section, you need to confirm whether your Github personal repository has <code>forked</code> <a href="https://github.com/IvorySQL/ivorysql_docs">ivorysql_docs</a>, <a href="https://github.com/IvorySQL/ivorysql_web">ivorysql_web</a> and <a href="https://github.com/IvorySQL/ivory-doc-builder">ivory-doc-builder</a>.</p>
+<p>Create SH, HR, SCOTT users:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[postgres@test01 ~]$ psql orcl
+
+psql (11.2)
+
+Type "help" for help.
+
+orcl=#
+
+orcl=# create user sh with password 'sh';
+
+CREATE ROLE</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="migration-portal"><a class="anchor" href="#migration-portal"></a>4. Migration Portal</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="import-table-structure"><a class="anchor" href="#import-table-structure"></a>4.1. Import table structure</h3>
+<div class="paragraph">
+<p>Because of the materialized view, in TABLE_ The sh.sql contains the index of the materialized view, which will fail to create. You need to first create a table, then create a materialized view, and finally create an index.
+Cancel the materialized view index and create it separately later:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE INDEX fw_psc_s_mv_chan_bix ON fweek_pscat_sales_mv (channel_id);
+
+CREATE INDEX fw_psc_s_mv_promo_bix ON fweek_pscat_sales_mv (promo_id);
+
+CREATE INDEX fw_psc_s_mv_subcat_bix ON fweek_pscat_sales_mv (prod_subcategory);
+
+CREATE INDEX fw_psc_s_mv_wd_bix ON fweek_pscat_sales_mv (week_ending_day);
+
+CREATE TEXT SEARCH CONFIGURATION en (COPY = pg_catalog.english);
+ALTER TEXT SEARCH CONFIGURATION en ALTER MAPPING FOR hword, hword_part, word WITH unaccent, english_stem;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">psql orcl  -f  tab.sql.sql
+
+ALTER TABLE PARTITION sh.sales OWNER TO sh;
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+COMMENT
+ALTER TABLE
+ALTER TABLE
+ALTER TABLE
+………………………………</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="deploy-web-pages"><a class="anchor" href="#deploy-web-pages"></a>8.5. Deploy web pages</h3>
-<div class="paragraph">
-<p>The deployment of web pages is currently the responsibility of the open-source team. We value every submission and issue, so please do not worry about your contribution to the community being buried.</p>
+<h3 id="authorize-objects"><a class="anchor" href="#authorize-objects"></a>4.2. Authorize objects</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cat psql orcl  -f  GRANT_sh.sql
+CREATE USER SH WITH PASSWORD 'change_my_secret' LOGIN;
+ALTER TABLE sh.fweek_pscat_sales_mv OWNER TO sh;
+GRANT ALL ON  sh.fweek_pscat_sales_mv TO sh;</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="tip"><a class="anchor" href="#tip"></a>8.6. Tip</h3>
+<h3 id="import-materialized-view-structure"><a class="anchor" href="#import-materialized-view-structure"></a>4.3. Import materialized view structure</h3>
 <div class="paragraph">
-<p>If you don&#8217;t have much time, you can send an email to <strong>ivorysql-docs@ivorysql.org</strong>. We will have dedicated staff to handle every your letter, and we looking forward to hearing from you.</p>
+<p>Materialized views require relevant query permissions, so import permissions. Please keep up with users here</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"> [ivorysql@test01 ora2pg]$  psql orcl sh -f  MVIEW_sh.sql
+SELECT 0
+SELECT 0
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX
+CREATE INDEX</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="import-view"><a class="anchor" href="#import-view"></a>4.4. Import View</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[ivorysql@test01 ora2pg]$  psql orcl  -f  VIEW_sh.sql
+SET
+SET
+SET
+CREATE VIEW</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="import-partition-table"><a class="anchor" href="#import-partition-table"></a>4.5. Import partition table</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[ivorysql@test01 ora2pg]$  psql orcl  -f  PARTITION_sh.sql
+SET
+SET
+SET
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+…………………………</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="import-data"><a class="anchor" href="#import-data"></a>4.6. Import data</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[ivorysql@test01 ora2pg]$  psql orcl   -f   sh_data.sql
+SET
+COPY 0
+SET
+COPY 0
+SET
+COPY 0
+SET
+COPY 0
+SET
+COPY 0
+SET
+COPY 0
+SET
+COPY 0
+SET
+COPY 4500
+SET
+COPY 1826
+COMMIT</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="data-validation"><a class="anchor" href="#data-validation"></a>5. Data validation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Source database and target side extract part of objects for comparison：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SYS@PROD1&gt;select count(*) from sh.products;
+  COUNT(*)
+----------
+        72
+
+orcl=#  select count(*) from sh.products;
+ count
+-------
+    72
+(1 row)
+---------------------------------------------------------------------------
+
+SYS@PROD1&gt;select count(*) from sh.channels;
+
+  COUNT(*)
+
+----------
+
+         5
+
+orcl=#   select count(*) from sh.channels;
+ count
+-------
+
+     5
+
+(1 row)
+
+--------------------------------------------------------------------------
+
+SYS@PROD1&gt;select count(*) from sh.customers ;
+
+  COUNT(*)
+----------
+
+     55500
+orcl=# select count(*) from sh.customers ;
+ count
+-------
+ 55500
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="generate-migration-template"><a class="anchor" href="#generate-migration-template"></a>6. Generate migration template</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When using, there are two options&#8201;&#8212;&#8201;project_ Base and&#8201;&#8212;&#8201;init_ Project indicates to ora2pg that he must create a project template, which contains the work tree, configuration files and scripts for exporting all objects from the Oracle database. Generate a generic configuration file. 1. Create script export_ Schema.sh to automatically perform all exports. 2. Create script import_ All.sh to automatically perform all imports. example：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">mkdir -p  /ora2pg/migration
+
+[root@test01 ora2pg-20.0]# ora2pg --project_base /ora2pg/migration/ --init_project test_project
+Creating project test_project.
+/ora2pg/migration//test_project/
+        schema/
+                dblinks/
+                directories/
+                functions/
+                grants/
+                mviews/
+                packages/
+                partitions/
+                procedures/
+                sequences/
+                synonyms/
+                tables/
+                tablespaces/
+                triggers/
+                types/
+                views/
+        sources/
+                functions/
+                mviews/
+                packages/
+                partitions/
+                procedures/
+                triggers/
+                types/
+                views/
+        data/
+        config/
+        reports/
+Generating generic configuration file
+Creating script export_schema.sh to automate all exports.
+Creating script import_all.sh to automate all imports.</code></pre>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="9.html">Migration</a></span>
-  <span class="next"><a href="11.html">Tool Reference</a></span>
+  <span class="prev"><a href="9.html">Operation Management</a></span>
+  <span class="next"><a href="11.html">1、Ivorysql frame design</a></span>
 </nav>
 </article>
   </div>

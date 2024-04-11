@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>安装指南 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v3.2/v3.2/6.html">
+    <link rel="prev" href="5.html">
+    <link rel="next" href="7.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v3.2">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="6.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">PostGIS</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">1、框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="22.html">9、新增Oracle兼容模式的端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="26.html">10、XML函数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="23.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="24.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="25.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v3.2</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL高级</li>
+    <li><a href="6.html">安装指南</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v3.2/v3.2/6.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v3.2/CN/modules/ROOT/pages/v3.2/6.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page"><strong>安装指南</strong></h1>
+<div class="sect1">
+<h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL安装方式包括以下4种：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#yum源安装">yum源安装</a></p>
+</li>
+<li>
+<p><a href="#docker安装">docker安装</a></p>
+</li>
+<li>
+<p><a href="#rpm安装">rpm安装</a></p>
+</li>
+<li>
+<p><a href="#源码安装">源码安装</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>本章将详细介绍各个方式的安装、运行及卸载过程，想要更快获得IvorySQL，请参阅<a href="3.html#快速开始" class="xref page">快速开始</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="yum源安装"><a class="anchor" href="#yum源安装"></a>2. yum源安装</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>执行yum命令</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo yum install -y https://yum.highgo.ca/dists/ivorysql-rpms/repo/ivorysql-release-3.0-1.noarch.rpm
+
+$ sudo yum install -y ivorysql3 ivorysql3-server ivorysql3-contrib ivorysql3-test</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>安装完毕将创建yum源配置文件/etc/yum.repos.d/ivorysql.repo。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>查看安装结果</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">yum search ivorysql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>查看结果说明如下：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">序号</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">包名</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">描述</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql3.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL客户端程序和库文件</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql3-contrib.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">随IvorySQL发布的已贡献的源代码和二进制文件</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ivorysql3-devel.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL开发头文件和库</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ivorysql3-docs.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL的额外文档</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql3-libs.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">所有IvorySQL客户端所需的共享库</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ivorysql3-llvmjit.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">对IvorySQL的即时编译支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ivorysql3-plperl.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">用于IvorySQL的过程语言Perl</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ivorysql3-plpython3.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">用于IvorySQL的过程语言Python3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ivorysql3-pltcl.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">用于IvorySQL的过程语言Tcl</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql3-server.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">创建和运行IvorySQL服务器所需的程序</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ivorysql3-test.x86_64</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">随IvorySQL发布的测试套件</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql-release.noarch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">瀚高基础软件股份有限公司的Yum源配置RPM包</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="docker安装"><a class="anchor" href="#docker安装"></a>3. docker安装</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>从Docker Hub上获取IvorySQL镜像</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/ivorysql:3.2-ubi8</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>运行IvorySQL</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/ivorysql:3.2-ubi8</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>-e参数说明</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">参数名</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">是否必填</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">描述</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IVORYSQL_USER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">否</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">数据库用户，默认 ivorysql</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IVORYSQL_PASSWORD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">是</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">数据库用户密码</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IVORYSQL_DB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">否</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">数据库名称，默认 ivorysql</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POSTGRES_HOST_AUTH_METHOD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">否</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">修改主机身份验证方式，参考值：md5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POSTGRES_INITDB_ARGS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">否</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">为initdb是添加额外参数，参考值："--data-checksums"</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PGDATA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">否</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">将数据目录定义到其他路径文件夹下（例如子目录），默认 /var/lib/ivorysql/data</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">POSTGRES_INITDB_WALDIR</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">否</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">定义IvorySQL transaction文件夹路径，默认在数据目录（PGDATA）的子目录中。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>不推荐将POSTGRES_HOST_AUTH_METHOD参数填写为trust，这样将会使IVORYSQL_PASSWORD设置失效。</p>
+</li>
+<li>
+<p>如果POSTGRES_HOST_AUTH_METHOD参数设置为scram-sha-256，同时需将POSTGRES_INITDB_ARGS设置为&#8212;&#8203;auth-host=scram-sha-256，才会使数据库正确进行初始化。</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="rpm安装"><a class="anchor" href="#rpm安装"></a>4. rpm安装</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>安装依赖</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo yum install -y libicu libxslt python3
+$ sudo yum --disablerepo=* localinstall *.rpm</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>获取rpm包</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_3.2/ivorysql3-libs-3.2-1.rhel7.x86_64.rpm
+
+$ sudo wget
+https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_3.2/ivorysql3-2-1.rhel7.x86_64.rpm
+
+$ sudo wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_3.2/ivorysql3-contrib-3.2-1.rhel7.x86_64.rpm
+
+$ sudo wget
+https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_3.2/ivorysql3-server-3.2-1.rhel7.x86_64.rpm</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>安装rpm包</p>
+<div class="paragraph">
+<p>各rpm包之间有依赖关系，请按照以下顺序安装rpm包：</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo rpm -ivh ivorysql3-libs-3.2-1.rhel7.x86_64.rpm
+$ sudo rpm -ivh ivorysql3-3.2-1.rhel7.x86_64.rpm
+$ sudo rpm -ivh ivorysql3-server-3.2-1.rhel7.x86_64.rpm --nodeps
+$ sudo rpm -ivh ivorysql3-contrib-3.2-1.rhel7.x86_64.rpm</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>数据库将被安装在/usr/local/ivorysql路径下。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="源码安装"><a class="anchor" href="#源码安装"></a>5. 源码安装</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>安装依赖</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo yum install -y bison-devel readline-devel zlib-devel openssl-devel
+$ sudo yum groupinstall -y 'Development Tools'</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>获取IvorySQL源代码</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ git clone https://github.com/IvorySQL/IvorySQL.git</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>配置</p>
+<div class="paragraph">
+<p>进入IvorySQL目录，执行以下命令进行配置，请使用&#8212;&#8203;prefix指定安装目录：</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ./configure --prefix=/usr/local/ivorysql/ivorysql-3</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>编译</p>
+<div class="paragraph">
+<p>执行以下命令进行编译：</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ make</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>安装</p>
+<div class="paragraph">
+<p>执行以下命令安装，数据库将被安装在上述由&#8212;&#8203;prefix指定的路径下：</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo make install</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>编译完毕，安装之前可先执行make check或make all-check-world测试刚刚编译的结果</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="启动数据库"><a class="anchor" href="#启动数据库"></a>6. 启动数据库</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>参考<a href="#yum源安装">yum源安装</a>, <a href="#rpm安装">rpm安装</a>, <a href="#源码安装">源码安装</a>的用户，需要手动启动数据库</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>赋权</p>
+<div class="paragraph">
+<p>执行以下命令为安装用户赋权，示例用户为ivorysql，安装目录为/usr/local/ivorysql：</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo chown -R ivorysql:ivorysql /usr/local/ivorysql</code></pre>
+</div>
+</div>
+<div id="配置环境变量" class="ulist">
+<ul>
+<li>
+<p>配置环境变量</p>
+<div class="paragraph">
+<p>将以下配置写入~/.bash_profile文件并使用source命令该文件使环境变量生效：</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/usr/local/ivorysql/ivorysql-3/bin:$PATH
+export PATH
+LD_LIBRARY_PATH=/usr/local/ivorysql/ivorysql-3/lib
+export LD_LIBRARY_PATH
+PGDATA=/usr/local/ivorysql/ivorysql-3/data
+export PGDATA</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ source ~/.bash_profile</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>数据库初始化</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ initdb -D /usr/local/ivorysql/ivorysql-3/data</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  其中-D参数用来指定数据库的数据目录。更多参数使用方法，请使用initdb --help命令获取。</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>启动数据库服务</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /usr/local/ivorysql/ivorysql-3/data -l ivory.log start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>其中-D参数用来指定数据库的数据目录，如果<a href="#配置环境变量">[配置环境变量]</a> 配置了PGDATA，则该参数可以省略。-l参数用来指定日志目录。更多参数使用方法，请使用pg_ctl --help命令获取。</p>
+</div>
+<div class="paragraph">
+<p>查看确认数据库启动成功：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ps -ef | grep postgres
+ivorysql  3214     1  0 20:35 ?        00:00:00 /usr/local/ivorysql/ivorysql-3/bin/postgres -D /usr/local/ivorysql/ivorysql-3/data
+ivorysql  3215  3214  0 20:35 ?        00:00:00 postgres: checkpointer
+ivorysql  3216  3214  0 20:35 ?        00:00:00 postgres: background writer
+ivorysql  3218  3214  0 20:35 ?        00:00:00 postgres: walwriter
+ivorysql  3219  3214  0 20:35 ?        00:00:00 postgres: autovacuum launcher
+ivorysql  3220  3214  0 20:35 ?        00:00:00 postgres: logical replication launcher
+ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="数据库连接"><a class="anchor" href="#数据库连接"></a>7. 数据库连接</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>psql连接数据库：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d &lt;database&gt;
+psql (16.2)
+Type "help" for help.
+
+ivorysql=#</code></pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  其中-d参数用来指定想要连接到的数据库名称。IvorySQL默认使用ivorysql数据库，但较低版本的IvorySQL首次使用时需用户先连接postgres数据库，然后自己创建ivorysql数据库。较高版本的IvorySQL则已为用户创建好ivorysql数据库，可以直接连接。
+
+  更多参数使用方法，请使用psql --help命令获取。</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Docker运行IvorySQL时，需要添加额外参数，参考：psql -d ivorysql -U ivorysql -h 127.0.0.1 -p 5434
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="卸载ivorysql"><a class="anchor" href="#卸载ivorysql"></a>8. 卸载IvorySQL</h2>
+<div class="sectionbody">
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>使用任何一种方法卸载前请先停止数据库服务并做好数据备份。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="yum安装的卸载"><a class="anchor" href="#yum安装的卸载"></a>8.1. yum安装的卸载</h3>
+<div class="paragraph">
+<p>执行以下命令依次卸载：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo yum remove -y ivorysql3 ivorysql3-server ivorysql3-contrib ivorysql3-test
+$ sudo rpm -e ivorysql-release-3.0-1.noarch</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="docker安装的卸载"><a class="anchor" href="#docker安装的卸载"></a>8.2. docker安装的卸载</h3>
+<div class="paragraph">
+<p>执行以下命令，使IvorySQL容器停止运行，并删除IvorySQL容器和镜像：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker stop ivorysql
+$ docker rm ivorysql
+$ docker rmi ivorysql/ivorysql:3.2-ubi8</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rpm安装的卸载"><a class="anchor" href="#rpm安装的卸载"></a>8.3. rpm安装的卸载</h3>
+<div class="paragraph">
+<p>执行以下命令查询已安装的rpm包，依次卸载并清理文件夹：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ rpm -qa | grep ivorysql
+$ sudo rpm -e ivorysql3-contrib-3.2-1.rhel7.x86_64 --nodeps
+$ sudo rpm -e ivorysql3-server-3.2-1.rhel7.x86_64
+$ sudo rpm -e ivorysql3-3.2-1.rhel7.x86_64
+$ sudo rpm -e ivorysql3-libs-3.2-1.rhel7.x86_64
+$ sudo rm -rf /usr/local/ivorysql</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="源码安装的卸载"><a class="anchor" href="#源码安装的卸载"></a>8.4. 源码安装的卸载</h3>
+<div class="paragraph">
+<p>执行以下命令卸载数据库并清理文件夹：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">sudo make uninstall
+make clean
+sudo rm -rf /usr/local/ivorysql</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="5.html">日常维护</a></span>
+  <span class="next"><a href="7.html">集群搭建</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

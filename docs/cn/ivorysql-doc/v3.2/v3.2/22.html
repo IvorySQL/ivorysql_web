@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>新增Oracle兼容模式的端口与Ip :: IvorySQL文档中心</title>
+    <title>新增Oracle兼容模式的端口与IP :: IvorySQL文档中心</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v3.2/v3.2/22.html">
     <link rel="prev" href="21.html">
     <link rel="next" href="26.html">
@@ -95,6 +95,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="11.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">pgvector</a>
   </li>
 </ul>
   </li>
@@ -225,14 +228,14 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">新增Oracle兼容模式的端口与Ip</h1>
+<h1 class="page">新增Oracle兼容模式的端口与IP</h1>
 <div class="sect1">
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>为了将Oracle端口、Ip与PG的端口Ip进行区分。现需要增加对ORAPORT和ORAHOST的处理;</p>
+<p>为了将Oracle端口、IP与PG的端口IP进行区分。现需要增加对ORAPORT和ORAHOST的处理;</p>
 </li>
 </ul>
 </div>
@@ -264,9 +267,6 @@
 
    ./pg_ctl -o "-p 5433 -o 1522" -D ../data</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>​</p>
 </div>
 </div>
 </div>

@@ -363,11 +363,6 @@ SELECT existsnode(XMLType('&lt;a&gt;&lt;b&gt;d&lt;/b&gt;&lt;/a&gt;'), '/a') from
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#xmlisvalid">xmlisvalid</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">该函数用于检查XML格式是否正确</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">13</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="#xmlelement">xmlelement</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">该函数用于生成XML格式的数据结构</p></td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -575,25 +570,6 @@ xmlisvalid
 ------------
 t
 (1 row)</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="xmlelement"><a class="anchor" href="#xmlelement"></a>4.14. xmlelement</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# create table xmltest(id int, data XMLType);
-CREATE TABLE
-ivorysql=# insert into xmltest values(1,'&lt;value&gt;one&lt;/value&gt;');
-INSERT 0 1
-ivorysql=# insert into xmltest values(2,'&lt;value&gt;two&lt;/value&gt;');
-INSERT 0 1
-ivorysql=# SELECT XMLELEMENT("Employee"), XMLELEMENT("Id", x.id), XMLELEMENT("Data", x.data) AS "Result" FROM xmltest x;
-xmlelement  | xmlelement |   Result
-------------+------------+-------------
-&lt;Employee/&gt; | &lt;Id&gt;1&lt;/Id&gt; | &lt;Data&gt;&amp;lt;value&amp;gt;one&amp;lt;/value&amp;gt;&lt;/Data&gt;
-&lt;Employee/&gt; | &lt;Id&gt;2&lt;/Id&gt; | &lt;Data&gt;&amp;lt;value&amp;gt;two&amp;lt;/value&amp;gt;&lt;/Data&gt;
-(2 rows)</code></pre>
 </div>
 </div>
 </div>

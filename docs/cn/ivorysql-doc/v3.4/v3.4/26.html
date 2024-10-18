@@ -242,7 +242,7 @@
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>在Oralce中，常会出现带有XML函数的SQL代码，IvorySQL在PostgreSQL的基础上，实现与Oracle XML函数的高度兼容，确保了从Oracle迁移到IvorySQL后的数据格式和结构的一致性。这种兼容性意味着用户无需对现有的XML处理逻辑进行大规模修改，从而保证了数据的完整性和准确性。此外，IvorySQL的这种跨平台的兼容特性，也降低了因格式差异带来的额外用户维护和升级成本，使得数据处理和管理更加高效、可靠和灵活。</p>
+<p>在Oracle中，常会出现带有XML函数的SQL代码，IvorySQL在PostgreSQL的基础上，实现与Oracle XML函数的高度兼容，确保了从Oracle迁移到IvorySQL后的数据格式和结构的一致性。这种兼容性意味着用户无需对现有的XML处理逻辑进行大规模修改，从而保证了数据的完整性和准确性。此外，IvorySQL的这种跨平台的兼容特性，也降低了因格式差异带来的额外用户维护和升级成本，使得数据处理和管理更加高效、可靠和灵活。</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -459,7 +459,7 @@ INSERT 0 1</code></pre>
 <h3 id="appendchildxml"><a class="anchor" href="#appendchildxml"></a>4.6. appendchildxml</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# ELECT appendchildxml(XMLType('&lt;test&gt;&lt;value&gt;&lt;/value&gt;&lt;value&gt;&lt;/value&gt;&lt;/test&gt;'),  '/test/value', XMLTYPE('&lt;name&gt;newnode&lt;/name&gt;')) from dual;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# SELECT appendchildxml(XMLType('&lt;test&gt;&lt;value&gt;&lt;/value&gt;&lt;value&gt;&lt;/value&gt;&lt;/test&gt;'),  '/test/value', XMLTYPE('&lt;name&gt;newnode&lt;/name&gt;')) from dual;
       appendchildxml
 --------------------------
  &lt;test&gt;                  +

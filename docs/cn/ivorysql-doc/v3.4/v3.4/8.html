@@ -3136,7 +3136,7 @@ SELECT concat_lower_or_upper(a =&gt; 'Hello', uppercase =&gt; true, b =&gt; 'Wor
 <div class="sect3">
 <h4 id="ivorysql-compatible_mode-enum"><a class="anchor" href="#ivorysql-compatible_mode-enum"></a>7.1.1. <code>ivorysql.compatible_mode (enum)</code></h4>
 <div class="paragraph">
-<p>此参数控制数据库服务器的行为。 默认值为 <code>pg</code>，表示它是原生安装，服务器将作为原生 PG 安装。 如果它设置为“oracle”，那么查询的输出和系统行为整体会发生变化，因为它会更像 Oracle。</p>
+<p>此参数控制数据库服务器的行为。 如果它设置为`pg`，表示它是原生安装，服务器将作为原生 PG 安装。 如果它设置为“oracle”，那么查询的输出和系统行为整体会发生变化，因为它会更像 Oracle。</p>
 </div>
 <div class="paragraph">
 <p>当设置为 <code>oracle</code> 时，此参数会隐式地将同样名字的Schema添加到 <code>search_path</code>。 以便可以定位 Oracle 兼容对象。</p>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>新增Oracle兼容模式的端口与Ip :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.8/v1.8/22.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v1.8">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">用户使用手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">管理员指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">运维人员指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="6.html">安装部署</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#v1.8/7.adoc">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#v1.8/8.adoc">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="#v1.8/9.adoc">FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">1、Ivorysql框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">3、适配插件</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="#v1.8/13.adoc">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">5、新增Oracle兼容模式的端口与Ip</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v1.8</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../v3.4/v3.4/welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../v3.4/v3.4/welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li><a href="22.html">新增Oracle兼容模式的端口与Ip</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v1.8/v1.8/22.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v1.8/CN/modules/ROOT/pages/v1.8/22.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">新增Oracle兼容模式的端口与Ip</h1>
+<div class="sect1">
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>为了将Oracle端口、Ip与PG的端口Ip进行区分。现需要增加对ORAPORT和ORAHOST的处理;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能"><a class="anchor" href="#功能"></a>2. 功能</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>新增ivoryhost：需要在连接时新增参数ivoryhost即可指定，其功能类似 host;</p>
+</li>
+<li>
+<p>新增ivoryport：相较于host，port的功能相对复杂一些。其中涉及到可以在configure阶段配置，连接阶段指定端口;</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例：</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">   ./configure --with-oraport=5555
+   ./initdb ....
+   ./pg_ctl -D ../data start
+
+   ./pg_ctl -o “-p 5433 -o 1522” -D ../data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>​</p>
+</div>
+</div>
+</div>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

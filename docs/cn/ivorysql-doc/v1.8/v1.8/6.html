@@ -213,7 +213,7 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">RPM包下载地址</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CentOS 7、CentOS 8</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CentOS 7</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/IvorySQL/releases" class="bare">https://github.com/IvorySQL/IvorySQL/releases</a></p></td>
 </tr>
 </tbody>
@@ -343,9 +343,13 @@ sudo yum groupinstall -y 'Development Tools'</code></pre>
 <p>3.自行编译安装：前面通过获取的源码在文件夹IvorySQL里，接下来我们就进入这个文件夹进行操作。</p>
 </div>
 <div class="paragraph">
-<p>3.1 配置：Root用户执行以下命令进行配置：
-    git checkout tags/Ivory_REL_1_8
-    ./configure --prefix=/usr/local/ivorysql/ivorysql-1.8</p>
+<p>3.1 配置：Root用户执行以下命令进行配置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git checkout tags/Ivory_REL_1_8
+./configure --prefix=/usr/local/ivorysql/ivorysql-1.8</code></pre>
+</div>
 </div>
 <div class="quoteblock">
 <blockquote>

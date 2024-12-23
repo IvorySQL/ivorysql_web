@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IvorySQL :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v4.0/v4.0/2.html">
+    <link rel="prev" href="1.html">
+    <link rel="next" href="3.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v4.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">Release</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">Building Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">1、Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">2、GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">3、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">4、Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">5、Compatible with Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">6、Compatible with Oracle anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20.html">7、Compatible with Oracle functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21.html">8、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="22.html">9、Added Oracle compatibility mode ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="26.html">10、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="27.html">11、Compatible with Oracle sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="28.html">12、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="29.html">13、Invisible Columns</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="23.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="24.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="25.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v4.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">v4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.8/v1.8/welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li><a href="2.html">About</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/v4.0/v4.0/2.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v4.0/EN/modules/ROOT/pages/v4.0/2.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="introduction-to-ivorysql"><a class="anchor" href="#introduction-to-ivorysql"></a>1. Introduction to IvorySQL</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="overview"><a class="anchor" href="#overview"></a>1.1. Overview</h3>
+<div class="paragraph">
+<p>IvorySQL is an advanced, full-featured, Oracle open source compatible PostgreSQL with a firm commitment to always remain 100% compatible and a direct replacement for the latest PostgreSQL. IvorySQL adds a GUC parameter called 'ivorysql.compatible_mode' to control the compatibility mode of IvorySQL, which has two values: 'oracle' and 'pg'.When initializing the data directory, specify the compatibility mode of the data directory by specifying the '-m' parameter, and '-m pg' then the data directory is PostgreSQL mode.In this mode, the 'ivorysql.compatible_mode' parameter will be invalidated, and the '-m oracle' or if the '-m' parameter is not specified, the data directory will be compatible with Oracle mode.In this mode, the initial value of the 'ivorysql.compatible_mode' parameter is 'oracle' and does not support some PostgreSQL syntax, and the database can support 100% of PostgreSQL syntax and functions by 'set ivorysql.compatible_mode to pg'.</p>
+</div>
+<div class="paragraph">
+<p>One of the highlights of IvorySQL is the PL/iSQL procedural language, which supports Oracle&#8217;s PL/SQL syntax. At the same time, IvorySQL implements Oracle-compatible functions by adding plug-ins <strong>ivorysql_ora</strong> bound to the kernel, and the functions currently implemented include built-in functions, data types, system views, merges, and the addition of GUC parameters, and will continue to implement new compatible functions in the form of plug-ins bound to the kernel in the future.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="product-goals-and-scope"><a class="anchor" href="#product-goals-and-scope"></a>1.2. Product Goals and Scope</h3>
+<div class="paragraph">
+<p>We are committed to the principles of the <a href="https://opensource.com/open-source-way">open source approach</a> and we strongly believe in building a healthy and inclusive community. We insist that good ideas can come from anywhere. Only by including different perspectives can we make the best decisions. While the first release of IvorySQL focuses on Oracle-compatible features, the future roadmap and feature set will be defined by the community in an open source manner.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="core-features"><a class="anchor" href="#core-features"></a>1.3. Core Features</h3>
+<div class="paragraph">
+<p>IvorySQL is developed based on PostgreSQL database and is compatible with Oracle database for strong compatibility. Suitable for PostgreSQL database and Oracle database scenarios.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="competitive-advantages"><a class="anchor" href="#competitive-advantages"></a>1.4. Competitive Advantages</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Core Open Source</strong>: IvorySQL&#8217;s core code including compatible features are all open under the open source protocol, with no vendor restrictions. It is also used in Hankook database company instances and has an active developer community.</p>
+</li>
+<li>
+<p><strong>Oracle compatible</strong>: Oracle databases can be migrated to IvorySQL.</p>
+</li>
+<li>
+<p><strong>Customizable</strong>: Simply download the code and customize it the way you want.</p>
+</li>
+<li>
+<p><strong>Easy to use</strong>: For system administrators, IvorySQL dramatically reduces the cost of administration and maintenance. For developers, IvorySQL provides a simple interface, a minimalist solution, and seamless integration with third-party tools. For data analysis professionals, IvorySQL provides easy access to data.</p>
+</li>
+<li>
+<p><strong>Hemco Support</strong>: Powered by the leading PostgreSQL database provider, Hemco.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="technical-ecology"><a class="anchor" href="#technical-ecology"></a>1.5. Technical Ecology</h3>
+<div class="paragraph">
+<p>IvorySQL is based on PostgreSQL, with complete SQL, rock-solid reliability and a huge ecosystem.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="core-application-scenarios"><a class="anchor" href="#core-application-scenarios"></a>1.6. Core Application Scenarios</h3>
+<div class="paragraph">
+<p>Ivory database&#8217;s main application scenarios.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enterprise database</p>
+<div class="literalblock">
+<div class="content">
+<pre>For example, ERP, transaction system, financial system involves funds, customers and other information, data cannot be lost and business logic is complex. Choosing IvorySQL as the underlying data storage can help you provide high availability under the premise of data consistency, and you can implement complex business logic with simple programming.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Applications with LBS</p>
+<div class="literalblock">
+<div class="content">
+<pre>Large-scale games, O2O and other applications need to support world map, nearby businesses, distance between two points and other capabilities. PostGIS adds support for geographic objects, allowing you to run location queries in SQL without complex coding, helping you to rationalize your logic more easily, implement LBS more conveniently, and improve user stickiness.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Data Warehousing and Big Data</p>
+<div class="literalblock">
+<div class="content">
+<pre>With more data types and powerful computing power, IvorySQL makes it easier for you to build a database warehouse or big data analytics platform to enhance your business operations.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Website or App Building</p>
+<div class="literalblock">
+<div class="content">
+<pre>IvorySQL's good performance and powerful features can effectively improve website performance and reduce development difficulty.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Database Migration</p>
+<div class="literalblock">
+<div class="content">
+<pre>If you need to migrate Oracle database to PostgreSQL database, you can directly use IvorySQL database for migration.</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="main-basic-features"><a class="anchor" href="#main-basic-features"></a>2. Main, Basic Features</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL is a powerful open source object-relational database management system (ORDBMS). Used to store data securely, support best practices, and allow them to be retrieved when requests are processed. In addition, it is also compatible with Oracle&#8217;s syntax, which is suitable for scenarios where Oracle is used.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="compatibility-with-oracle"><a class="anchor" href="#compatibility-with-oracle"></a>3. Compatibility with Oracle</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/14">1. Ivorysql frame design</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/15">2. GUC Framework</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/16">3. Case conversion</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/17">4. Dual-mode design</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/18">5. Compatible with Oracle like</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/19">6. Compatible with Oracle anonymous block</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/20">7. Compatible with Oracle functions and stored procedures</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/21">8. Built-in data types and built-in functions</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/22">9. Added Oracle compatibility mode ports and IP</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/26">10. XML Function</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/27">11. Compatible with Oracle sequence</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/28">12. Package</a></p>
+</li>
+<li>
+<p><a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.0/v4.0/29">13. Invisible Columns</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="1.html">Release</a></span>
+  <span class="next"><a href="3.html">Quick Start</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

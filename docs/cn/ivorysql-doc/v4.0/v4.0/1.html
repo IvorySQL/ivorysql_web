@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IvorySQL :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v4.0/v4.0/1.html">
+    <link rel="prev" href="welcome.html">
+    <link rel="next" href="2.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v4.0">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">1、框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="22.html">9、新增Oracle兼容模式的端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="26.html">10、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="27.html">11、兼容Oracle sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="28.html">12、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="29.html">13、不可见列</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="23.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="24.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="25.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v4.0</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">v4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.8/v1.8/welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li><a href="1.html">发行说明</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v4.0/v4.0/1.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v4.0/CN/modules/ROOT/pages/v4.0/1.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="版本概览"><a class="anchor" href="#版本概览"></a>1. 版本概览</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>[<strong>发行日期：2024年12月23日</strong>]</p>
+</div>
+<div class="paragraph">
+<p>IvorySQL 4.0基于PostgreSQL 17.0，并修复了多个问题。更多信息请参考 <a href="https://docs.ivorysql.org/">文档网站</a> 。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="增强功能及问题修复"><a class="anchor" href="#增强功能及问题修复"></a>2. 增强功能及问题修复</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>PostgreSQL 17.0</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>新的 VACUUM 内存管理系统，可减少内存消耗并提升整体 VACUUM 性能。</p>
+</li>
+<li>
+<p>新增 SQL/JSON 功能，包括构造函数、标识函数以及 JSON_TABLE() 函数，可将 JSON 数据转换为表格表示。</p>
+</li>
+<li>
+<p>各种查询性能改进，包括基于流式 I/O 的顺序读取、在高并发下的写入吞吐量，以及在 B-tree 索引中对多个值的搜索优化。</p>
+</li>
+<li>
+<p>增强逻辑复制功能。</p>
+</li>
+<li>
+<p>新的客户端连接选项 sslnegotiation=direct，通过直接 TLS 握手避免额外的往返协商。</p>
+</li>
+<li>
+<p>pg_basebackup 现在支持增量备份。</p>
+</li>
+<li>
+<p>COPY 增加了新选项 ON_ERROR ignore，允许在出现错误时继续执行复制操作。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>更多细节, 请参阅 <a href="https://www.postgresql.org/docs/release/17.0/">PostgreSQL发布说明</a>.</p>
+</div>
+</li>
+<li>
+<p>IvorySQL 4.0</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Oracle 不可见列的兼容: <a href="https://github.com/IvorySQL/IvorySQL/issues/608">#608</a></p>
+<div class="paragraph">
+<p>在 Oracle 模式下新增对不可见列的支持，并在 psql 的扩展描述命令（\d+）中显示不可见列的信息。
+对表的常规访问将不会显示不可见列。不可见列必须通过其列名显式引用，查询和其他操作才能访问这些列。</p>
+</div>
+</li>
+<li>
+<p>Oracle 包兼容性: <a href="https://github.com/IvorySQL/IvorySQL/issues/589">#589</a></p>
+<div class="paragraph">
+<p>支持 PL/SQL 包管理功能，包括创建、修改和描述包及包体。
+增强了 PostgreSQL 交互式终端（psql），新增 \k 命令，用于与包相关的操作。
+此外，通过新的 ACL 函数实现了高级权限管理，并引入了包缓存机制以提升性能。</p>
+</div>
+</li>
+<li>
+<p>函数 pg_get_functiondef 支持多个 OID 和函数名: <a href="https://github.com/IvorySQL/IvorySQL/issues/696">#696</a></p>
+<div class="paragraph">
+<p>增强函数 pg_get_functiondef() 以支持在参数列表中传入多个函数 OID。现在，它还可以导出具有相同名称但不同参数的函数定义。</p>
+</div>
+</li>
+<li>
+<p>将 'ivorysql' 添加为默认数据库: <a href="https://github.com/IvorySQL/IvorySQL/issues/575">#575</a></p>
+</li>
+<li>
+<p>提供Ubuntu安装包: <a href="https://github.com/IvorySQL/IvorySQL/issues/703">#703</a></p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="源代码"><a class="anchor" href="#源代码"></a>3. 源代码</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL主要包含2个代码仓库:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>IvorySQL数据库源码: <a href="https://github.com/IvorySQL/IvorySQL" class="bare">https://github.com/IvorySQL/IvorySQL</a></p>
+</li>
+<li>
+<p>IvorySQL官方网站: <a href="https://github.com/IvorySQL/Ivory-www" class="bare">https://github.com/IvorySQL/Ivory-www</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="贡献人员"><a class="anchor" href="#贡献人员"></a>4. 贡献人员</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下个人（按姓氏排序）作为补丁作者、提交者、审查者、测试者或问题报告者为此版本做出了贡献。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Cary Huang</p>
+</li>
+<li>
+<p>Grant Zhou</p>
+</li>
+<li>
+<p>Imran Zaheer</p>
+</li>
+<li>
+<p>jerome-peng</p>
+</li>
+<li>
+<p>冯若航</p>
+</li>
+<li>
+<p>付贝</p>
+</li>
+<li>
+<p>高雪玉</p>
+</li>
+<li>
+<p>矫顺田</p>
+</li>
+<li>
+<p>梁翔宇</p>
+</li>
+<li>
+<p>吕新杰</p>
+</li>
+<li>
+<p>牛世继</p>
+</li>
+<li>
+<p>任娇</p>
+</li>
+<li>
+<p>王丽</p>
+</li>
+<li>
+<p>王守波</p>
+</li>
+<li>
+<p>文一</p>
+</li>
+<li>
+<p>许振伟</p>
+</li>
+<li>
+<p>严少安</p>
+</li>
+<li>
+<p>赵法威</p>
+</li>
+<li>
+<p>周家杰</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="welcome.html">欢迎</a></span>
+  <span class="next"><a href="2.html">关于IvorySQL</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

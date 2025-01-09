@@ -265,10 +265,10 @@
 <h2 id="function-descriptions"><a class="anchor" href="#function-descriptions"></a>2. Function descriptions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The invisible columns allowing users to conceal specific columns during operations like SELECT *. You can use invisible column to make changes to a table without disrupting applications that use the table.Any generic access of a table does not show the invisible columns in the table.Invisible columns must be explicitly referenced by column names in order to be accessed in queries and other operations.</p>
+<p>Invisible columns allow users to conceal specific columns during operations like SELECT *. You can use invisible column to make changes to a table without disrupting applications that use the table.  Any generic access of a table does not show the invisible columns in the table. Invisible columns must be explicitly referenced by column names in order to be accessed in queries and other operations.</p>
 </div>
 <div class="paragraph">
-<p>Support for invisible columns in psql extended describe (\d+) is added,in oracle mode only.</p>
+<p>Support for invisible columns in psql extended describe (\d+) is added, in oracle mode only.</p>
 </div>
 </div>
 </div>
@@ -287,7 +287,7 @@ CREATE TABLE</code></pre>
 <div class="sect2">
 <h3 id="insert-values-into-invisible-columns"><a class="anchor" href="#insert-values-into-invisible-columns"></a>3.2. Insert values into invisible columns</h3>
 <div class="paragraph">
-<p>You can insert a value into an invisible column only if you explicitly specify the invisible column in the column list for the INSERT statement. Omitting the column list in the INSERT statement is not allowed if you insert values into a table with invisible columns. Errors will be reported.</p>
+<p>You can insert a value into an invisible column only if you explicitly specify the invisible column in the column list for the INSERT statement. Omitting the column list in the INSERT statement is not allowed. Errors will be reported.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -344,10 +344,10 @@ Access method: heap</code></pre>
 <div class="ulist">
 <ul>
 <li>
-<p>Modify column is not supported currently.Will be enhanced in later version;</p>
+<p>Modify column is not supported currently. Will be enhanced in later version;</p>
 </li>
 <li>
-<p>In Oracle, there are special considerations for invisible columns and column ordering. When a table contains one or more invisible columns, the invisible columns are not included in the column order for the table.We have not yet addressed this part.</p>
+<p>In Oracle, there are special considerations for invisible columns and column ordering. When a table contains one or more invisible columns, the invisible columns are not included in the column order for the table. We have not yet addressed this part.</p>
 </li>
 </ul>
 </div>

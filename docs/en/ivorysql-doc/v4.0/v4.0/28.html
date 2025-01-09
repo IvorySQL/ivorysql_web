@@ -254,10 +254,10 @@
 <h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>IvorySQL provides compatibility for Oracle custom packages.A package is an encapsulated collection of related program objects stored together in the database. Program objects are procedures, functions, variables, constants, cursors, and exceptions.</p>
+<p>IvorySQL provides compatibility for Oracle packages.  A package is an encapsulated collection of related program objects stored together in the database. Program objects are procedures, functions, variables, constants, cursors, and exceptions.</p>
 </div>
 <div class="paragraph">
-<p>This document aims to provide a comprehensive understanding of the process of implementing custom packages for the users.</p>
+<p>This document aims to provide a comprehensive understanding of the process of implementing custom packages.</p>
 </div>
 </div>
 </div>
@@ -265,7 +265,7 @@
 <h2 id="function-descriptions"><a class="anchor" href="#function-descriptions"></a>2. Function descriptions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>IvorySQL provides compatibility for Oracle custom packages,including creation,alteration,and description of packages and package bodies,adds support for package-related commands in the PostgreSQL interactive terminal (psql) with the new \dk command.</p>
+<p>IvorySQL provides compatibility for Oracle custom packages, including creation, alteration, and deletion of packages and package bodies.  We also add support for package-related commands in the PostgreSQL interactive terminal (psql) with the new \dk command.</p>
 </div>
 <div class="sect2">
 <h3 id="create-the-specification-of-a-package"><a class="anchor" href="#create-the-specification-of-a-package"></a>2.1. Create the specification of a package</h3>
@@ -279,7 +279,7 @@
 <div class="sect2">
 <h3 id="create-package-body"><a class="anchor" href="#create-package-body"></a>2.2. Create package body</h3>
 <div class="paragraph">
-<p>The CREATE OR REPLACE PACKAGE BODY statement is used to create or replace a package body.To create a package body requires the same privileges as creating the specification of a package, and it is required that the package body and package specification be in the same schema, with the package specification already existing. This statement defines the objects declared in the package specification.</p>
+<p>The CREATE OR REPLACE PACKAGE BODY statement is used to create or replace a package body. To create a package body requires the same privileges as creating the specification of a package, and it is required that the package body and package specification be in the same schema, with the package specification already existing. This statement defines the objects declared in the package specification.</p>
 </div>
 <div class="paragraph">
 <p>When the package specification contains cursors or subprograms, a package body must be present to define them. Otherwise, the package body is optional.</p>
@@ -294,7 +294,7 @@
 <div class="sect2">
 <h3 id="drop-package-and-package-body"><a class="anchor" href="#drop-package-and-package-body"></a>2.4. Drop package and package body</h3>
 <div class="paragraph">
-<p>The DROP PACKAGE statement deletes a stored package in the database. This statement will remove both the package body and the package specification.The DROP PACKAGE BODY statement only deletes the package body.</p>
+<p>The DROP PACKAGE statement deletes a package in the database. This statement will remove both the package body and the package specification.The DROP PACKAGE BODY statement only deletes the package body.</p>
 </div>
 <div class="paragraph">
 <p>It is not possible to delete a single object within the package using this statement. The privileges required:the package must be in the user&#8217;s schema, or the user must have the DROP ANY PROCEDURE system privilege.</p>

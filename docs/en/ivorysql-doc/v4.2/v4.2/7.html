@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Building an IvorySQL cluster :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v4.2/v4.2/7.html">
+    <link rel="prev" href="6.html">
+    <link rel="next" href="8.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v4.2">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">Installation</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="7.html">Building Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">1、Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">2、GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">3、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">4、Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">5、Compatible with Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">6、Compatible with Oracle anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20.html">7、Compatible with Oracle functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21.html">8、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="22.html">9、Added Oracle compatibility mode ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="26.html">10、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="27.html">11、Compatible with Oracle sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="28.html">12、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="29.html">13、Invisible Columns</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="23.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="24.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="25.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v4.2</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">v4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.0/v4.0/welcome.html">v4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.8/v1.8/welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Advanced Feature</li>
+    <li><a href="7.html">Building Cluster</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/v4.2/v4.2/7.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v4.2/EN/modules/ROOT/pages/v4.2/7.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page"><strong>Building an IvorySQL cluster</strong></h1>
+<div class="sect1">
+<h2 id="primary-node"><a class="anchor" href="#primary-node"></a>1. Primary node</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="installing-and-start-database"><a class="anchor" href="#installing-and-start-database"></a>1.1. Installing and start database</h3>
+<div class="paragraph">
+<p>For quick database installation by yum, please refer to <a href="3.html#quick-installation" class="xref page">Quick installation</a>。</p>
+</div>
+<div class="paragraph">
+<p>For more installation options, please refer to <a href="6.html#Installation" class="xref page">Installation</a>。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The master node database needs to be installed and <strong>started</strong>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stopping-firewall"><a class="anchor" href="#stopping-firewall"></a>1.2. Stopping firewall</h3>
+<div class="paragraph">
+<p>Stop firewall for all the nodes in the cluster to ensure the communication:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo systemctl stop firewalld</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-environment-variables"><a class="anchor" href="#setting-environment-variables"></a>1.3. Setting environment variables</h3>
+<div class="paragraph">
+<p>To create the streaming replication, we need configure the postgresql.conf and pg_hba.conf files on the primary node.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>postgresql.conf</p>
+<div class="paragraph">
+<p>Append the following contents to the end of postgresql.conf:</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">listen_addresses = '*'
+max_connections = 100
+wal_level = replica
+max_wal_senders = 5
+hot_standby = on</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>pg_hba.conf</p>
+<div class="paragraph">
+<p>Append the following contents to the end of pg_hba.conf:</p>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">host all all 0.0.0.0/0 trust
+host replication all 0.0.0.0/0 trust</code></pre>
+</div>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+The configuration of pg_hba in the example is only for demo purposes and testing. This configuration will result in invalidation of the database password. Please configure according to the actual environment.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="restarting-ivorysql-sevice"><a class="anchor" href="#restarting-ivorysql-sevice"></a>1.4. Restarting IvorySQL sevice</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl restart</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="standby-node"><a class="anchor" href="#standby-node"></a>2. Standby node</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="installing-database"><a class="anchor" href="#installing-database"></a>2.1. Installing database</h3>
+<div class="paragraph">
+<p>For quick database installation by yum, please refer to <a href="3.html#quick-installation" class="xref page">Quick installation</a>。</p>
+</div>
+<div class="paragraph">
+<p>For more installation options, please refer to <a href="6.html#Installation" class="xref page">Installation</a>。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The standby node database only needs to be installed and <strong>not started</strong>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="stopping-firewall-2"><a class="anchor" href="#stopping-firewall-2"></a>2.2. Stopping firewall</h3>
+<div class="paragraph">
+<p>Stop firewall for all the nodes in the cluster to ensure the communication:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo systemctl stop firewalld</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="building-streaming-replication"><a class="anchor" href="#building-streaming-replication"></a>2.3. Building streaming replication</h3>
+<div class="paragraph">
+<p>Run below command on the standby node to take base backups of the primary, that is, to build a streaming replication:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo pg_basebackup -F p -P -X fetch -R -h &lt;primary_ip&gt; -p &lt;primary_port&gt; -U ivorysql -D /usr/local/ivorysql/ivorysql-4/data</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Specifies the host name of the machine on which the server is running;</p>
+</li>
+<li>
+<p>Specifies the TCP port or local Unix domain socket file extension on which the server is listening for connections. Defaults is 5432;</p>
+</li>
+<li>
+<p>User name to connect as;</p>
+</li>
+<li>
+<p>Directory to write the output to. pg_basebackup will create the directory and any parent directories if necessary. The directory may already exist, but it is an error if the directory already exists and is not empty.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For more options, refer to pg_basebackup --help.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="setting-environment-variables-2"><a class="anchor" href="#setting-environment-variables-2"></a>2.4. Setting environment variables</h3>
+<div class="paragraph">
+<p>Add below contents in ~/.bash_profile file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/usr/local/ivorysql/ivorysql-4/bin:$PATH
+export PATH
+LD_LIBRARY_PATH=/usr/local/ivorysql/ivorysql-4/lib
+export LD_LIBRARY_PATH
+PGDATA=/usr/local/ivorysql/ivorysql-4/data
+export PGDATA</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Source to make it effective:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ source ~/.bash_profile</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="starting-ivorysql-sevice"><a class="anchor" href="#starting-ivorysql-sevice"></a>2.5. Starting IvorySQL sevice</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo pg_ctl -D /usr/local/ivorysql/ivorysql-4/data start</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="experience-the-ivorysql-cluster"><a class="anchor" href="#experience-the-ivorysql-cluster"></a>3. Experience the IvorySQL cluster</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="checking-cluster-status"><a class="anchor" href="#checking-cluster-status"></a>3.1. Checking cluster status</h3>
+<div class="paragraph">
+<p>Run below command on the primary node, you will see walsender:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ps -ef |grep postgres
+...
+ivorysql 11176  8067  0 21:54 ?        00:00:00 postgres: walsender ivorysql 192.168.31.102(53416) streaming 0/7000060...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>while it is walreceiver on standby:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ps -ef | grep postgres
+...
+ivorysql  6567  6139  0 21:54 ?        00:00:00 postgres: walreceiver streaming 0/7000060
+...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>On the primary node, connect to IvorySQL and show the status:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d ivorysql
+psql (17.2)
+Type "help" for help.
+
+ivorysql=# select * from pg_stat_replication;
+  pid  | usesysid | usename  | application_name |  client_addr   | client_hostname | client_port |         backend_start         | backend_
+xmin |   state   | sent_lsn  | write_lsn | flush_lsn | replay_lsn | write_lag | flush_lag | replay_lag | sync_priority | sync_state |
+    reply_time
+-------+----------+----------+------------------+----------------+-----------------+-------------+-------------------------------+---------
+-----+-----------+-----------+-----------+-----------+------------+-----------+-----------+------------+---------------+------------+------
+-------------------------
+ 11176 |       10 | ivorysql | walreceiver      | 192.168.31.102 |                 |       53416 | 2024-12-18 21:54:52.041847-05 |
+     | streaming | 0/7000148 | 0/7000148 | 0/7000148 | 0/7000148  |           |           |            |             0 | async      | 2024-
+12-18 22:52:07.325111-05
+(1 row)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Here 192.168.31.102 is the ip address of the standby node, and async means the data synchronization method is asynchronous.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-the-cluster"><a class="anchor" href="#using-the-cluster"></a>3.2. Using the cluster</h3>
+<div class="paragraph">
+<p>All writing operations are performed on the primary node, while reading can be on both primary and standby. The data on primary is synchronized to standby through streaming replication. The writing result can be queried on all the nodes in the cluster.</p>
+</div>
+<div class="paragraph">
+<p>Below is an example. Create a new database test on primary and query:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d ivorysql
+psql (17.2)
+Type "help" for help.
+
+ivorysql=# create database test;
+CREATE DATABASE
+ivorysql=# \l
+                                                       List of databases
+   Name    |  Owner   | Encoding | Locale Provider |   Collate   |    Ctype    | ICU Locale | ICU Rules |   Access privileges
+-----------+----------+----------+-----------------+-------------+-------------+------------+-----------+-----------------------
+ ivorysql  | ivorysql | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           |
+ template0 | ivorysql | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/ivorysql          +
+           |          |          |                 |             |             |            |           | ivorysql=CTc/ivorysql
+ template1 | ivorysql | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/ivorysql          +
+           |          |          |                 |             |             |            |           | ivorysql=CTc/ivorysql
+ test      | ivorysql | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           |
+(4 rows)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Query on the standby node:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d ivorysql
+psql (17.2)
+Type "help" for help.
+
+ivorysql=# \l
+                                                       List of databases
+   Name    |  Owner   | Encoding | Locale Provider |   Collate   |    Ctype    | ICU Locale | ICU Rules |   Access privileges
+-----------+----------+----------+-----------------+-------------+-------------+------------+-----------+-----------------------
+ ivorysql  | ivorysql | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           |
+ template0 | ivorysql | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/ivorysql          +
+           |          |          |                 |             |             |            |           | ivorysql=CTc/ivorysql
+ template1 | ivorysql | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           | =c/ivorysql          +
+           |          |          |                 |             |             |            |           | ivorysql=CTc/ivorysql
+ test      | ivorysql | UTF8     | libc            | en_US.UTF-8 | en_US.UTF-8 |            |           |
+(4 rows)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="6.html">Installation</a></span>
+  <span class="next"><a href="8.html">Developer</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

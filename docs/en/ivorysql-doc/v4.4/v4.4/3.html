@@ -123,15 +123,6 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
-    <span class="nav-text">Procedural Language</span>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <span class="nav-text">Extension</span>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <span class="nav-text">Compatibility Features</span>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -378,7 +369,7 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y ivorysql4 ivorysql4-server ivorysql4-contrib ivorysql4-test</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y IvorySQL-4.4</code></pre>
 </div>
 </div>
 <div id="setting-environment-variables" class="ulist">
@@ -393,11 +384,11 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/usr/local/ivorysql/ivorysql-4/bin:$PATH
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/opt/IvorySQL-4.4/bin:$PATH
 export PATH
-LD_LIBRARY_PATH=/usr/local/ivorysql/ivorysql-4/lib
+LD_LIBRARY_PATH=/opt/IvorySQL-4.4/lib
 export LD_LIBRARY_PATH
-PGDATA=/usr/local/ivorysql/ivorysql-4/data
+PGDATA=/opt/IvorySQL-4.4/data
 export PGDATA</code></pre>
 </div>
 </div>
@@ -415,7 +406,7 @@ export PGDATA</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ initdb -D /usr/local/ivorysql/ivorysql-4/data</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ initdb -D /opt/IvorySQL-4.4/data</code></pre>
 </div>
 </div>
 <div class="literalblock">
@@ -434,7 +425,7 @@ export PGDATA</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /usr/local/ivorysql/ivorysql-4/data -l ivory.log start</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /opt/IvorySQL-4.4/data -l ivory.log start</code></pre>
 </div>
 </div>
 <div class="literalblock">
@@ -453,7 +444,7 @@ export PGDATA</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ps -ef | grep postgres
-ivorysql  3214     1  0 20:35 ?        00:00:00 /usr/local/ivorysql/ivorysql-4/bin/postgres -D /usr/local/ivorysql/ivorysql-4/data
+ivorysql  3214     1  0 20:35 ?        00:00:00 /opt/IvorySQL-4.4/bin/postgres -D /opt/IvorySQL-4.4/data
 ivorysql  3215  3214  0 20:35 ?        00:00:00 postgres: checkpointer
 ivorysql  3216  3214  0 20:35 ?        00:00:00 postgres: background writer
 ivorysql  3218  3214  0 20:35 ?        00:00:00 postgres: walwriter
@@ -474,7 +465,7 @@ ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/ivorysql:4.2-ubi8</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/ivorysql:4.4-ubi8</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -486,7 +477,7 @@ ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/ivorysql:4.2-ubi8</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/ivorysql:4.4-ubi8</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -500,7 +491,7 @@ ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker ps | grep ivorysql
 CONTAINER ID   IMAGE               COMMAND                   CREATED          STATUS          PORTS                              NAMES
-6faa2d0ed705   ivorysql:4.2-ubi8   "docker-entrypoint.s…"   50 seconds ago   Up 49 seconds   5866/tcp, 0.0.0.0:5434-&gt;5432/tcp   ivorysql</code></pre>
+6faa2d0ed705   ivorysql:4.4-ubi8   "docker-entrypoint.s…"   50 seconds ago   Up 49 seconds   5866/tcp, 0.0.0.0:5434-&gt;5432/tcp   ivorysql</code></pre>
 </div>
 </div>
 </div>
@@ -515,7 +506,7 @@ CONTAINER ID   IMAGE               COMMAND                   CREATED          ST
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d &lt;database&gt;
-psql (17.2)
+psql (17.4)
 Type "help" for help.
 
 ivorysql=#</code></pre>

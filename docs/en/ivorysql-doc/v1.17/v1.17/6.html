@@ -205,10 +205,10 @@
 <article class="doc">
 <h1 class="page"><strong>Installation Deployment</strong></h1>
 <div class="sect1">
-<h2 id="installation-overview"><a class="anchor" href="#installation-overview"></a>1. Installation overview</h2>
+<h2 id="centos-installation-overview"><a class="anchor" href="#centos-installation-overview"></a>1. CentOS Installation overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This article introduces the installation process and precautions of Ivorysql on Linux platform. This article mainly demonstrates rpm package installation steps, and source code installation steps of the database under the Centos 7 environment.</p>
+<p>This article introduces the installation process and precautions of IvorySQL on Linux platform. This article mainly demonstrates rpm package installation steps, and source code installation steps of the database under the Centos 7 environment.</p>
 </div>
 <div class="sect2">
 <h3 id="software-and-hardware-requirements"><a class="anchor" href="#software-and-hardware-requirements"></a>1.1. Software and hardware requirements</h3>
@@ -363,7 +363,7 @@ sudo yum groupinstall -y 'Development Tools'</code></pre>
 <div class="quoteblock">
 <blockquote>
 <div class="paragraph">
-<p>Note: Because&#8201;&#8212;&#8201;prefix is not provided, it is installed in/usr/local/pgsql by default, so you need to specify the path</p>
+<p>Note: If the <code>--prefix</code> option is not provided, the default installation path will be <code>/usr/local/ivorysql</code>.</p>
 </div>
 </blockquote>
 </div>
@@ -447,7 +447,7 @@ passwd ivorysql</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>2.Environment variable: switch to user ivorysql, modify the file "/home/ivorysql/. bash_profile", and configure the environment variable：</p>
+<p>2.Environment variable: switch to user ivorysql, modify the file "/home/ivorysql/.bash_profile", and configure the environment variable：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -603,7 +603,6 @@ OOMScoreAdjust=-1000
 ExecStart=/opt/IvorySQL-1.17/bin/pg_ctl start -D ${PGDATA}
 ExecStop=/opt/IvorySQL-1.17/bin/pg_ctl stop -D ${PGDATA}
 ExecReload=/opt/IvorySQL-1.17/bin/pg_ctl reload -D ${PGDATA}
-A}
 
 TimeoutSec=0
 
@@ -648,7 +647,7 @@ systemctl reload ivorysql.service</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">systemctl stop ivorysql-1.service</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">systemctl stop ivorysql.service</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -668,6 +667,473 @@ make clean</code></pre>
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">systemctl disable ivorysql.servicemake                  --disable Service
 mv /usr/lib/systemd/system/ivorysql.service /tmp/       --the service file can be moved                                                             to/tmp or deleted
 rm -fr /opt/IvorySQL-1.17                             --remove residual installation                                                             directory</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: There are also user ivorysql and corresponding environment variables, which can be cleaned according to the situation. Please make sure to make a backup before processing. There are also installed dependent packages, which can be uninstalled according to the situation.</p>
+</div>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ubuntu-installation-overview"><a class="anchor" href="#ubuntu-installation-overview"></a>2. Ubuntu Installation overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This article introduces the installation process and precautions of IvorySQL on Linux platform. This article mainly demonstrates rpm package installation steps, and source code installation steps of the database under the Ubuntu 2404 environment.</p>
+</div>
+<div class="sect2">
+<h3 id="software-and-hardware-requirements-2"><a class="anchor" href="#software-and-hardware-requirements-2"></a>2.1. Software and hardware requirements</h3>
+<div class="sect3">
+<h4 id="introduction-to-software-resources-2"><a class="anchor" href="#introduction-to-software-resources-2"></a>2.1.1. Introduction to software resources</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">operating system</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Yum source download address</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ubuntu 2404</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/IvorySQL/releases" class="bare">https://github.com/IvorySQL/IvorySQL/releases</a></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="hardware-resource-preparation-2"><a class="anchor" href="#hardware-resource-preparation-2"></a>2.1.2. Hardware resource preparation</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration parameters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Minimum configuration</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Recommended configuration</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>CPU</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 cores</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16 cores</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Memory</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4GB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">64GB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Storage</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">800MB，mechanical hard disk</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Above 5GB，SSD or NvMe</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Network</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gigabit lan</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 Gigabit network</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="environment-and-configuration-check-2"><a class="anchor" href="#environment-and-configuration-check-2"></a>2.2. Environment and configuration check</h3>
+<div class="paragraph">
+<p>Before deploying the IvorySQL database, you need to check the system environment and configuration</p>
+</div>
+<div class="sect3">
+<h4 id="view-resources-2"><a class="anchor" href="#view-resources-2"></a>2.2.1. View resources</h4>
+<div class="paragraph">
+<p>The IvorySQL database supports CentOS 7. X, operating systems. For details, refer to <a href="#_software_and_hardware_requirements">[_software_and_hardware_requirements]</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="view-the-operating-system-2"><a class="anchor" href="#view-the-operating-system-2"></a>2.2.2. View the operating system</h4>
+<div class="paragraph">
+<p>Run the following command to view the operating system information：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cat /etc/os-release</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="view-kernel-parameters-2"><a class="anchor" href="#view-kernel-parameters-2"></a>2.2.3. View kernel parameters</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">uname -r</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="get-installation-package-2"><a class="anchor" href="#get-installation-package-2"></a>2.3. Get installation package</h3>
+<div class="paragraph">
+<p>You can install the IvorySql database or DEB package through the source code.</p>
+</div>
+<div class="sect3">
+<h4 id="use-source-code-to-build-ivorysql-database-2"><a class="anchor" href="#use-source-code-to-build-ivorysql-database-2"></a>2.3.1. Use source code to build IvorySQL database</h4>
+<div class="paragraph">
+<p>1.Get the source code: Run the following command to clone the source code of the IvorySQL database to your build machine:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git clone https://github.com/IvorySQL/IvorySQL.git</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: To clone code, you need to install and configure Git first. For details, refer to <a href="https://git-scm.com/doc">Git doc</a>.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>2.Install dependent packages: To compile IvorySQL from source code, you must ensure that prerequisite packages are available on the system. Execute the following command to install related packages：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">sudo yum install -y bison-devel readline-devel zlib-devel openssl-devel wget
+sudo apt install -y gcc make flex bison</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>3.Self-compilation and installation: The source code obtained previously is in the folder IvorySQL. Next, we will enter this folder for operation.</p>
+</div>
+<div class="paragraph">
+<p>Configuration: Root users execute the following commands to configure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git checkout tags/Ivory_REL_1_17
+./configure --prefix=/usr/local/ivorysql/ivorysql-1.17</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: If the <code>--prefix</code> option is not provided, the default installation path will be <code>/usr/local/ivorysql</code>.</p>
+</div>
+</blockquote>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: We should remember the specified directory, because the system cannot find out where the compiled and installed programs are. More configure parameters can be viewed through "./configure&#8201;&#8212;&#8201;help". You can also view the PostgreSQL manual</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Compile and install: After the configuration is completed, execute make to compile:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">make</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Perform a regression test before installing the newly compiled service (the following commands can be used):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">make check
+make all-check-world</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Installation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">make install</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="install-the-ivorysql-database-using-the-deb-package"><a class="anchor" href="#install-the-ivorysql-database-using-the-deb-package"></a>2.3.2. Install the IvorySQL database using the DEB package</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Run the following command to download the IvorySQL installation package.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_1.17/IvorySQL-1.17-fde5539-20250326.amd64.deb</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: The installation package in the example may not be the latest version. It is recommended that you download the latest installation package.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>2.Run the following command to install IvorySQL.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">sudo apt install ./IvorySQL-1.17-fde5539-20250326.amd64.deb</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="initialize-database-service-2"><a class="anchor" href="#initialize-database-service-2"></a>2.4. Initialize database service</h3>
+<div class="sect3">
+<h4 id="initialize-database-2"><a class="anchor" href="#initialize-database-2"></a>2.4.1. Initialize database</h4>
+<div class="paragraph">
+<p>1.Create an operating system user: under the user root session, create a new user ivorysql:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/sbin/groupadd ivorysql
+/usr/sbin/useradd -m -g ivorysql -s /bin/bash  -c "IvorySQL1.17" ivorysql
+usermod -a -G sudo ivorysql
+passwd ivorysql
+
+mkdir /home/ivorysql
+chown -R ivorysql:ivorysql /home/ivorysql
+chmod 755 /home/ivorysql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>2.Environment variable: switch to user ivorysql, modify the file "/home/ivorysql/.bashrc", and configure the environment variable：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">umask 022
+export LD_LIBRARY_PATH=/opt/IvorySQL-1.17/lib:$LD_LIBRARY_PATH
+export PATH=/opt/IvorySQL-1.17/bin:/usr/local/ivorysql/ivorysql-1.17/bin:$PATH #depend on your install path
+export PGDATA=/home/ivorysql/data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Make the environment variable effective in the current ivorysql user session:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">source .bashrc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can also log in again or open a new user ivorysql session.</p>
+</div>
+<div class="paragraph">
+<p>3.Set the firewall: If the firewall is enabled, port 1521 needs to be opened:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">firewall-cmd --zone=public --add-port=1521/tcp --permanent
+firewall-cmd --reload</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: The default port is 1521. If the port is not opened, the external client will fail to connect via port.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>4.Initialization: Under user ivorysql, simply execute initdb to complete initialization:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">initdb -D $PGDATA</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: The initdb operation is the same as PostgreSQL. It can be initialized according to the habits of PG.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>5.Start database: use pg_ Ctl starts the database service:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">pg_ctl -D $PGDATA -l logfile start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>View the status and start successfully:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">pg_ctl -D $PGDATA status
+pg_ctl: server is running (PID: 2273)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configure-service-2"><a class="anchor" href="#configure-service-2"></a>2.5. Configure service</h3>
+<div class="paragraph">
+<p>1.Client authentication: modify /home/ivorysql/data/pg_hba.conf, add the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">host    all             all             0.0.0.0/0               trust</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: This is trust, which means that you can log in without password.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Modify listening address:</p>
+</div>
+<div class="paragraph">
+<p>modify /home/ivorysql/data/postgresql.conf, add the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">listen_addresses = '*'</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: The default is listening at 127.0.0.1. The service cannot be connected outside the host.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Execute the following command to load the configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">pg_ctl reload</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>2.Basic parameters</p>
+</div>
+<div class="paragraph">
+<p>Connect to the database through psql:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">psql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>3.Guard service</p>
+</div>
+<div class="paragraph">
+<p>Create a service file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">sudo vi /etc/systemd/system/ivorysql.service</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The editing contents are as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[Unit]
+Description=IvorySQL 1.17 database server
+Documentation=https://www.ivorysql.org
+Requires=network.target local-fs.target
+After=network.target local-fs.target
+
+[Service]
+Type=forking
+
+User=ivorysql
+Group=ivorysql
+
+Environment=PGDATA=/home/ivorysql/data
+
+OOMScoreAdjust=-1000
+
+ExecStart=/usr/local/ivorysql/ivorysql-1.17/bin/pg_ctl start -D ${PGDATA}
+ExecStop=/usr/local/ivorysql/ivorysql-1.17/bin/pg_ctl stop -D ${PGDATA}
+ExecReload=/usr/local/ivorysql/ivorysql-1.17/bin/pg_ctl reload -D ${PGDATA}
+
+TimeoutSec=0
+
+[Install]
+WantedBy=multi-user.target</code></pre>
+</div>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="paragraph">
+<p>Note: There are many ways to write a service. Be careful when using it in a production environment. Please repeat the test several times.</p>
+</div>
+</blockquote>
+</div>
+<div class="paragraph">
+<p>Stop pg_ The database service started by ctl enables the systemd service and starts:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">systemctl enable --now ivorysql.service</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>IvorSQL database service operation command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">systemctl start ivorysql.service
+systemctl stop ivorysql.service
+systemctl restart ivorysql.service
+systemctl status ivorysql.service
+systemctl reload ivorysql.service</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="uninstall-the-ivorysql-database-2"><a class="anchor" href="#uninstall-the-ivorysql-database-2"></a>2.6. Uninstall the IvorySQL database</h3>
+<div class="sect3">
+<h4 id="compile-uninstall-2"><a class="anchor" href="#compile-uninstall-2"></a>2.6.1. Compile Uninstall</h4>
+<div class="paragraph">
+<p>1.Backup data: we can protect the directory. It is better to stop the database service and make a backup.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">systemctl stop ivorysql.service</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>2.Compile and uninstall: switch the root session to the source directory and execute the following commands respectively:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">make uninstall
+make clean</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>3.Delete residual directories and files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">systemctl disable ivorysql.service                      --disable Service
+mv /usr/lib/systemd/system/ivorysql.service /tmp/       --the service file can be moved                                                             to/tmp or deleted
+rm -fr /usr/local/ivorysql/ivorysql-1.17                --remove residual installation                                                             directory</code></pre>
 </div>
 </div>
 <div class="quoteblock">

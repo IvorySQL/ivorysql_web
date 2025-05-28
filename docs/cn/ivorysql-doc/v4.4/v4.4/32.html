@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IvorySQL社区贡献指南 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v4.4/v4.4/32.html">
+    <link rel="prev" href="29.html">
+    <link rel="next" href="24.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v4.4">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="31.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="30.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">1、框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="22.html">9、新增Oracle兼容模式的端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="26.html">10、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="27.html">11、兼容Oracle sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="28.html">12、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="29.html">13、不可见列</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="32.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="24.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="25.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v4.4</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">v4.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.2/v4.2/welcome.html">v4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.0/v4.0/welcome.html">v4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.8/v1.8/welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li><a href="32.html">社区贡献指南</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v4.4/v4.4/32.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v4.4/CN/modules/ROOT/pages/v4.4/32.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page"><strong>IvorySQL社区贡献指南</strong></h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL由一个核心开发团队维护，该团队拥有对GitHub上的IvorySQL主存储库的提交权限。同时，我们非常渴望从更广泛的IvorySQL社区中的成员那里获得贡献。如果您希望看到您的代码或文档更改被添加到IvorySQL并出现在将来的版本中，本节的内容介绍是您需要知道的。</p>
+</div>
+<div class="paragraph">
+<p>​IvorySQL社区欢迎并赞赏所有类型的贡献，期待您的加入！</p>
+</div>
+<div class="paragraph">
+<p>在参与社区贡献前，请先阅读并遵守 <a href="https://github.com/IvorySQL/IvorySQL/blob/master/CODE_OF_CONDUCT_CN.md">IvorySQL社区行为准则</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="注册github账号"><a class="anchor" href="#注册github账号"></a>1. 注册Github账号</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL源码托管在github: <a href="https://github.com/IvorySQL" class="bare">https://github.com/IvorySQL</a>。</p>
+</div>
+<div class="paragraph">
+<p>请参考<a href="https://docs.github.com/en/get-started/start-your-journey" class="bare">https://docs.github.com/en/get-started/start-your-journey</a>注册您的github账号，并熟悉Git工具和工作流。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="签署cla"><a class="anchor" href="#签署cla"></a>2. 签署CLA</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在提交代码或文档贡献之前，个人或企业贡献者需要签署贡献者许可协议(CLA)。签署CLA是IvorySQL社区接受贡献的必要条件，以确保您的贡献被合法分发。请根据下列链接下载CLA进行签署并将签署后的CLA发送至 <a href="mailto:cla@ivorysql.org">cla@ivorysql.org</a>。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.ivorysql.org/zh-CN/assets/files/individual_cla-a81f001209eb5ce0f8ea7c3be4cc69b5.pdf">个人贡献者</a></p>
+</li>
+<li>
+<p><a href="https://www.ivorysql.org/zh-CN/assets/files/corporate_cla-76e89b6f17b0bc102cbc1105d438a917.pdf">企业贡献者</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>未签署CLA的Pull Request将无法进入评审阶段。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="找到您感兴趣的项目"><a class="anchor" href="#找到您感兴趣的项目"></a>3. 找到您感兴趣的项目</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>您可以从如下列表中找到感兴趣的项目及其代码仓库</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">代码仓库</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">描述</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/IvorySQL">IvorySQL</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责社区IvorySQL数据库的开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/Ivory-www">Ivory-www</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责社区的官网开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivory-operator">ivory-operator</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责IvorySQL云原生数据库及周边工具开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/docker_library">docker_library</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责IvorySQL多架构的镜像构建开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivory-cloud">ivory-cloud</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责IvorySQL云服务平台及周边生态开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivorysql_docs">Ivorysql_docs</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责社区的文档中心开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivory-doc-builder">ivory-doc-builder</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责Ivorysql_docs的编译</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivorysql_web">Ivorysql_web</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责社区的文档中心网站维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivorysql-wasm">Ivorysql_wasm</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责IvorySQL在线易用体验网站的开发和维护</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="开始您的贡献"><a class="anchor" href="#开始您的贡献"></a>4. 开始您的贡献</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="提交issue"><a class="anchor" href="#提交issue"></a>4.1. 提交Issue</h3>
+<div class="paragraph">
+<p>如果您准备向社区上报 Bug 或者提交需求，请在 IvorySQL 社区对应的仓库上提交 Issue，并参考Issue <a href="33.html" class="xref page">提交指南</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="给自己分配issue"><a class="anchor" href="#给自己分配issue"></a>4.2. 给自己分配Issue</h3>
+<div class="paragraph">
+<p>您可以将自己创建的Issue或者愿意处理的Issue分配给自己。 只需要在评论框内输入/assign，机器人就会将问题分配给您。 每个 Issue 下面可能已经有参与者的交流和讨论，如果您感兴趣，也可以在评论框中发表自己的意见参与 Issue 讨论。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="提交pull-request"><a class="anchor" href="#提交pull-request"></a>4.3. 提交Pull Request</h3>
+<div class="paragraph">
+<p>对于提交一个PR应该保持一个功能，或者一个bug提交一次。禁止多个功能一次提交。</p>
+</div>
+<div class="sect3">
+<h4 id="第1步创建一个pull-request"><a class="anchor" href="#第1步创建一个pull-request"></a>4.3.1. 第1步：创建一个Pull Request</h4>
+<div class="paragraph">
+<p>1、打开你 Fork 的仓库： <a href="https://github.com/$user/$repo_addr" class="bare">https://github.com/$user/$repo_addr</a> （将 $user 替换为你的 GitHub ID）。</p>
+</div>
+<div class="paragraph">
+<p>​2、点击 Compare &amp; pull request 按钮</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="第2步填写pr信息"><a class="anchor" href="#第2步填写pr信息"></a>4.3.2. 第2步：填写PR信息</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Fix test
+功能描述</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">leave a comment
+对该提交功能进行比较详细的描述</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="第3步提交pr"><a class="anchor" href="#第3步提交pr"></a>4.3.3. 第3步：提交PR</h4>
+<div class="paragraph">
+<p>点击Create pull request 按钮即可提交。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="致谢"><a class="anchor" href="#致谢"></a>5. 致谢</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>我们欢迎所有人参与 IvorySQL 社区贡献，我们的目标是发展一个由贡献者组成的活跃、健康的社区。</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="29.html">13、不可见列</a></span>
+  <span class="next"><a href="24.html">工具参考</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

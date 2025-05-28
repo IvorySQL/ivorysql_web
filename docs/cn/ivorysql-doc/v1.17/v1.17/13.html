@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>双模式设计 :: IvorySQL文档中心</title>
+    <title>引用标识符的大小写转换设计 :: IvorySQL文档中心</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.17/v1.17/13.html">
     <link rel="prev" href="12.html">
     <link rel="next" href="14.html">
@@ -58,48 +58,84 @@
     <span class="nav-text">IvorySQL入门</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="3.html">用户使用手册</a>
+    <a class="nav-link" href="3.html">快速开始</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="4.html">管理员指南</a>
+    <a class="nav-link" href="4.html">日常监控</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="5.html">运维人员指南</a>
+    <a class="nav-link" href="5.html">日常维护</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="6.html">安装部署</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="7.html">社区贡献指南</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="8.html">工具参考</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="9.html">FAQ</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">功能列表</span>
+    <span class="nav-text">IvorySQL高级</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="10.html">1、Ivorysql框架设计</a>
+    <a class="nav-link" href="6.html">安装指南</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="11.html">2、GUC框架</a>
+    <a class="nav-link" href="7.html">开发者指南</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="12.html">3、适配插件</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="13.html">4、双模式设计</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="14.html">5、新增Oracle兼容模式的端口与Ip</a>
+    <a class="nav-link" href="8.html">运维管理指南</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">1、Ivorysql框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="13.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">9、新增Oracle兼容模式的端口与IP</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="20.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="21.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="22.html">FAQ</a>
   </li>
 </ul>
   </li>
@@ -186,8 +222,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li>功能列表</li>
-    <li><a href="13.html">4、双模式设计</a></li>
+    <li>Oracle兼容功能列表</li>
+    <li><a href="13.html">3、大小写转换</a></li>
   </ul>
 </nav>
   <div class="page-versions">
@@ -204,14 +240,14 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">双模式设计</h1>
+<h1 class="page">引用标识符的大小写转换设计</h1>
 <div class="sect1">
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>为了满足PG模式和兼容Oracle模式，Ivorysql设计了pg和oracle两种模式。并且可以在initdb时指定模式;</p>
+<p>为了满足PG和Oracle的引用标识符大小写兼容，ivorysql设计了三种引用标识符的大小写转换模式。通过guc参数“identifier_case_switch”选择转换模式;</p>
 </li>
 </ul>
 </div>
@@ -220,44 +256,339 @@
 <div class="sect1">
 <h2 id="功能"><a class="anchor" href="#功能"></a>2. 功能</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="大小写转换的三种模式默认为interchange"><a class="anchor" href="#大小写转换的三种模式默认为interchange"></a>2.1. 大小写转换的三种模式（默认为interchange）</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Initdb -m 初始化，需要判断不同的模式，其中Oracle模式下，需要执行postgres_oracle.bki的SQL语句;</p>
+<p>如果 guc参数“identifier_case_switch”值为“normal”</p>
+<div class="literalblock">
+<div class="content">
+<pre>1). 保持双引号所引用的标识符中的字母大小写不变。</pre>
+</div>
+</div>
 </li>
 <li>
-<p>启动时会根据初始化模式，判断是否为oracle兼容模式。</p>
+<p>如果 guc参数“identifier_case_switch”值为“interchange”：</p>
+<div class="literalblock">
+<div class="content">
+<pre>1). 如果双引号所引用的标识符中的字母全部为大写，则将大写转换为小写。</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>2). 如果双引号所引用的标识符中的字母全部为小写，则将小写转换为大写。</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>3). 如果用双引号引起来的标识符中的字母是大小写混合的，则保持标识符不变。</pre>
+</div>
+</div>
+</li>
+<li>
+<p>如果 guc参数“identifier_case_switch”值为“lowercase”</p>
+<div class="literalblock">
+<div class="content">
+<pre>1). 如果双引号所引用的标识符中的字母全部为大写，则将大写转换为小写。</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>2). 如果用双引号引起来的标识符中的字母是大小写混合的，则保持标识符不变。</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="初始化数据库集簇时"><a class="anchor" href="#初始化数据库集簇时"></a>2.2. 初始化数据库集簇时</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>在initdb程序中加入 -C选项设置大小写转换模式，-C对应的值为：</p>
+<div class="literalblock">
+<div class="content">
+<pre>"normal"   ------ "0"同义</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>"interchange" ------ "1"同义</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>"lowercase"  ------ "2"同义</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>在初始化数据库集簇的过程中，将大小写转换模式保存到data目录的global/pg_control文件中。</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="经典用例"><a class="anchor" href="#经典用例"></a>2.3. 经典用例</h3>
+<div class="paragraph">
+<p><strong>normal</strong></p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">database_mode：用于表示初始化模式；
-database_mode=DB_PG，PG模式，且不可切换；
-database_mode=DB_ORACLE，Oracle兼容模式；</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">初始化PG模式：
-./initdb -D ../data -m pg
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# SET ivorysql.compatible_mode to oracle;
+SET
 
-初始化oracle兼容模式：
-./initdb -D ../data -m oracle
-或
-./initdb -D ../data</code></pre>
+ivorysql=# SET ivorysql.enable_case_switch = true;
+SET
+
+ivorysql=# SET ivorysql.identifier_case_switch = normal;
+SET
+
+ivorysql=# CREATE TABLE "NORMAL_1"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "Normal_2"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "normal_3"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# select * from "NORMAL_1";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "Normal_1";
+ERROR:  relation "Normal_1" does not exist
+LINE 1: select * from "Normal_1";
+
+ivorysql=# select * from "normal_1";
+ERROR:  relation "normal" does not exist
+LINE 1: select * from "normal";
+
+ivorysql=# select * from NORMAL_1;
+ERROR:  relation "normal_1" does not exist
+LINE 1: select * from NORMAL_1;
+
+ivorysql=# select * from "Normal_2";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "NORMAL_2";
+ERROR:  relation "NORMAL_2" does not exist
+LINE 1: select * from "NORMAL_2";
+
+ivorysql=# select * from "normal_2";
+ERROR:  relation "normal_2" does not exist
+LINE 1: select * from "normal_2";
+
+ivorysql=# select * from Normal_2;
+ERROR:  relation "normal_2" does not exist
+LINE 1: select * from Normal_2;
+
+ivorysql=# select * from "normal_3";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "NORMAL_3";
+ERROR:  relation "NORMAL_3" does not exist
+LINE 1: select * from "NORMAL_3";
+
+ivorysql=# select * from "Normal_3";
+ERROR:  relation "Normal_3" does not exist
+LINE 1: select * from "Normal_3";
+
+ivorysql=# drop table "NORMAL_1";
+DROP TABLE
+ivorysql=# drop table "Normal_2";
+DROP TABLE
+ivorysql=# drop table "normal_3";
+DROP TABLE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>interchange</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# SET ivorysql.compatible_mode to oracle;
+SET
+
+ivorysql=# SET ivorysql.enable_case_switch = true;
+SET
+
+ivorysql=# SET ivorysql.identifier_case_switch = interchange;
+SET
+
+ivorysql=# CREATE TABLE "INTER_CHANGE_1"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "Inter_Change_2"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "inter_change_3"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# select * from "INTER_CHANGE_1";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "Inter_Change_1";
+ERROR:  relation "Inter_Change_1" does not exist
+LINE 1: select * from "Inter_Change_1";
+
+ivorysql=# select * from "inter_change_1";
+ERROR:  relation "INTER_CHANGE_1" does not exist
+LINE 1: select * from "inter_change_1";
+
+ivorysql=# select * from INTER_CHANGE_1;
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "Inter_Change_2";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "INTER_CHANGE_2";
+ERROR:  relation "inter_change_2" does not exist
+LINE 1: select * from "INTER_CHANGE_2";
+
+ivorysql=# select * from "inter_change_2";
+ERROR:  relation "INTER_CHANGE_2" does not exist
+LINE 1: select * from "inter_change_2";
+
+ivorysql=# select * from Inter_Change_2;
+ERROR:  relation "inter_change_2" does not exist
+LINE 1: select * from Inter_Change_2;
+
+ivorysql=# select * from "inter_change_3";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "INTER_CHANGE_3";
+ERROR:  relation "inter_change_3" does not exist
+LINE 1: select * from "INTER_CHANGE_3";
+
+ivorysql=# select * from "Inter_Change_3";
+ERROR:  relation "Inter_Change_3" does not exist
+LINE 1: select * from "Inter_Change_3";
+
+ivorysql=# select * from inter_change_3;
+ERROR:  relation "inter_change_3" does not exist
+LINE 1: select * from "INTER_CHANGE_3";
+
+ivorysql=# drop table "INTER_CHANGE_1";
+DROP TABLE
+ivorysql=# drop table "Inter_Change_2";
+DROP TABLE
+ivorysql=# drop table "inter_change_3";
+DROP TABLE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>lowercase</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# SET ivorysql.compatible_mode to oracle;
+SET
+
+ivorysql=# SET ivorysql.enable_case_switch = true;
+SET
+
+ivorysql=# SET ivorysql.identifier_case_switch = lowercase;
+SET
+
+ivorysql=# CREATE TABLE "LOWER_CASE_1"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "Lower_Case_2"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "lower_case_3"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# select * from "LOWER_CASE_1";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "Lower_Case_1";
+ERROR:  relation "Lower_Case_1" does not exist
+LINE 1: select * from "Lower_Case_1";
+
+ivorysql=# select * from "lower_case_1";
+ c1 | c2
+----+----
+(0 行记录)
+
+
+ivorysql=# select * from LOWER_CASE_1;
+ c1 | c2
+----+----
+(0 行记录)
+
+
+ivorysql=# select * from "Lower_Case_2";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "LOWER_CASE_2";
+ERROR:  relation "lower_case_2" does not exist
+LINE 1: select * from "LOWER_CASE_2";
+
+ivorysql=# select * from "lower_case_2";
+ERROR:  relation "lower_case_2" does not exist
+LINE 1: select * from "lower_case_2";
+
+ivorysql=# select * from Lower_Case_2;
+ERROR:  relation "lower_case_2" does not exist
+LINE 1: select * from Lower_Case_2;
+
+ivorysql=# select * from "lower_case_3";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "LOWER_CASE_3";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "Lower_Case_3";
+ERROR:  relation "Lower_Case_3" does not exist
+LINE 1: select * from "Lower_Case_3";
+
+ivorysql=# select * from LOWER_CASE_3;
+ c1 | c2
+----+----
+(0 行记录)
+
+ivorysql=# drop table "NORMAL_1";
+DROP TABLE
+ivorysql=# drop table "Normal_2";
+DROP TABLE
+ivorysql=# drop table "normal_3";
+DROP TABLE</code></pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="12.html">3、适配插件</a></span>
-  <span class="next"><a href="14.html">5、新增Oracle兼容模式的端口与Ip</a></span>
+  <span class="prev"><a href="12.html">2、GUC框架</a></span>
+  <span class="next"><a href="14.html">4、双模式设计</a></span>
 </nav>
 </article>
   </div>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dual-mode design :: IvorySQL Document Site</title>
+    <title>Reference identifier case conversion design :: IvorySQL Document Site</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.17/v1.17/13.html">
     <link rel="prev" href="12.html">
     <link rel="next" href="14.html">
@@ -58,48 +58,84 @@
     <span class="nav-text">Getting Started with IvorySQL</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="3.html">User manual</a>
+    <a class="nav-link" href="3.html">Quick Start</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="4.html">Administrator</a>
+    <a class="nav-link" href="4.html">Monitoring</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="5.html">Operating personnel</a>
+    <a class="nav-link" href="5.html">Maintenance</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="6.html">Installation Deployment</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="7.html">Community contribution</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="8.html">Tool Reference</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="9.html">FAQ</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">List of features</span>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="10.html">1、Ivorysql frame design</a>
+    <a class="nav-link" href="6.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="11.html">2、GUC Framework</a>
+    <a class="nav-link" href="7.html">Developer</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="12.html">3、Plugin adaptation</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="13.html">4、Dual-mode design</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="14.html">5、Added Oracle compatibility mode ports and IP</a>
+    <a class="nav-link" href="8.html">Operation Management</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">1、Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">2、GUC Framework</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="13.html">3、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">4、Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">5、Compatible with Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">6、Compatible with Oracle anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">7、Compatible with Oracle functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">8、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">9、Added Oracle compatibility mode ports and IP</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="20.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="21.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="22.html">FAQ</a>
   </li>
 </ul>
   </li>
@@ -186,8 +222,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li>List of features</li>
-    <li><a href="13.html">4、Dual-mode design</a></li>
+    <li>List of Oracle compatible features</li>
+    <li><a href="13.html">3、Case conversion</a></li>
   </ul>
 </nav>
   <div class="page-versions">
@@ -204,14 +240,14 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Dual-mode design</h1>
+<h1 class="page">Reference identifier case conversion design</h1>
 <div class="sect1">
 <h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>In order to meet the PG mode and the compatible Oracle mode, IVORYSQL designed two modes: PG and Oracle. And the schema can be specified at initdb time;</p>
+<p>In order to meet the case compatibility of PG and Oracle&#8217;s reference identifiers, ivorysql has designed three case conversion modes for reference identifiers. Select the conversion mode via the GUC parameter "identifier_case_switch";</p>
 </li>
 </ul>
 </div>
@@ -220,46 +256,337 @@
 <div class="sect1">
 <h2 id="function"><a class="anchor" href="#function"></a>2. Function</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="three-modes-of-case-conversion-interchange-by-default"><a class="anchor" href="#three-modes-of-case-conversion-interchange-by-default"></a>2.1. Three modes of case conversion (interchange by default)</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>Initdb -m initialization requires judgment of different modes, among which oracle mode requires the execution of SQL statements postgres_oracle.bki. The default is Oracle compatibility mode, and the process is as follows:</p>
+<p>If the value of the guc parameter "identifier_case_switch" is "normal":</p>
+<div class="literalblock">
+<div class="content">
+<pre>1). The letters in the identifier referenced by the double quotation mark are left unchanged.</pre>
+</div>
+</div>
 </li>
 <li>
-<p>Startup: When starting, it determines whether it is an Oracle compatibility mode based on the initialization mode;</p>
+<p>If the value of the guc parameter "identifier_case_switch" is "interchange":</p>
+<div class="literalblock">
+<div class="content">
+<pre>1). If the letters in the identifier referenced by the double quotation mark are all uppercase, uppercase is converted to lowercase.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>2). If the letters in the identifier referenced by the double quotation mark are all lowercase, lowercase is converted to uppercase.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>3). If the letters in the identifier enclosed in double quotation marks are mixed-case, the identifier is left unchanged.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>If the value of the guc parameter "identifier_case_switch" is "lowercase":</p>
+<div class="literalblock">
+<div class="content">
+<pre>1). If the letters in the identifier referenced by the double quotation mark are all uppercase, uppercase is converted to lowercase.</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>2). If the letters in the identifier enclosed in double quotation marks are mixed-case, the identifier is left unchanged.</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
+</div>
+<div class="sect2">
+<h3 id="when-the-database-cluster-is-initialized"><a class="anchor" href="#when-the-database-cluster-is-initialized"></a>2.2. When the database cluster is initialized</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Add the -C option to the initdb program to set the case conversion mode, and the corresponding value of -C is:</p>
+<div class="literalblock">
+<div class="content">
+<pre>"normal"   ------ "0"synonymy</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>"interchange" ------ "1"synonymy</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>"lowercase"  ------ "2"synonymy</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>During initialization of the database cluster, the case conversion pattern is saved to the global/pg_control file in the data directory;</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-cases"><a class="anchor" href="#use-cases"></a>2.3. Use Cases</h3>
+<div class="paragraph">
+<p><strong>normal</strong></p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Description:
-database_mode: Used to indicate initialization mode;
-database_mode=DB_PG，PG mode, and cannot be switched;
-database_mode=DB_ORACLE， oracle compatibility mode;</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# SET ivorysql.compatible_mode to oracle;
+SET
+
+ivorysql=# SET ivorysql.enable_case_switch = true;
+SET
+
+ivorysql=# SET ivorysql.identifier_case_switch = normal;
+SET
+
+ivorysql=# CREATE TABLE "NORMAL_1"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "Normal_2"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "normal_3"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# select * from "NORMAL_1";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "Normal_1";
+ERROR:  relation "Normal_1" does not exist
+LINE 1: select * from "Normal_1";
+
+ivorysql=# select * from "normal_1";
+ERROR:  relation "normal" does not exist
+LINE 1: select * from "normal";
+
+ivorysql=# select * from NORMAL_1;
+ERROR:  relation "normal_1" does not exist
+LINE 1: select * from NORMAL_1;
+
+ivorysql=# select * from "Normal_2";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "NORMAL_2";
+ERROR:  relation "NORMAL_2" does not exist
+LINE 1: select * from "NORMAL_2";
+
+ivorysql=# select * from "normal_2";
+ERROR:  relation "normal_2" does not exist
+LINE 1: select * from "normal_2";
+
+ivorysql=# select * from Normal_2;
+ERROR:  relation "normal_2" does not exist
+LINE 1: select * from Normal_2;
+
+ivorysql=# select * from "normal_3";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "NORMAL_3";
+ERROR:  relation "NORMAL_3" does not exist
+LINE 1: select * from "NORMAL_3";
+
+ivorysql=# select * from "Normal_3";
+ERROR:  relation "Normal_3" does not exist
+LINE 1: select * from "Normal_3";
+
+ivorysql=# drop table "NORMAL_1";
+DROP TABLE
+ivorysql=# drop table "Normal_2";
+DROP TABLE
+ivorysql=# drop table "normal_3";
+DROP TABLE</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p><strong>interchange</strong></p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="test-cases"><a class="anchor" href="#test-cases"></a>3. Test cases</h2>
-<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Initialize the PG mode:
-./initdb -D ../data -m pg
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# SET ivorysql.compatible_mode to oracle;
+SET
 
-Initialize the Oracle compatibility mode:
-./initdb -D ../data -m oracle
+ivorysql=# SET ivorysql.enable_case_switch = true;
+SET
 
-or
-./initdb -D ../data</code></pre>
+ivorysql=# SET ivorysql.identifier_case_switch = interchange;
+SET
+
+ivorysql=# CREATE TABLE "INTER_CHANGE_1"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "Inter_Change_2"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "inter_change_3"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# select * from "INTER_CHANGE_1";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "Inter_Change_1";
+ERROR:  relation "Inter_Change_1" does not exist
+LINE 1: select * from "Inter_Change_1";
+
+ivorysql=# select * from "inter_change_1";
+ERROR:  relation "INTER_CHANGE_1" does not exist
+LINE 1: select * from "inter_change_1";
+
+ivorysql=# select * from INTER_CHANGE_1;
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "Inter_Change_2";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "INTER_CHANGE_2";
+ERROR:  relation "inter_change_2" does not exist
+LINE 1: select * from "INTER_CHANGE_2";
+
+ivorysql=# select * from "inter_change_2";
+ERROR:  relation "INTER_CHANGE_2" does not exist
+LINE 1: select * from "inter_change_2";
+
+ivorysql=# select * from Inter_Change_2;
+ERROR:  relation "inter_change_2" does not exist
+LINE 1: select * from Inter_Change_2;
+
+ivorysql=# select * from "inter_change_3";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "INTER_CHANGE_3";
+ERROR:  relation "inter_change_3" does not exist
+LINE 1: select * from "INTER_CHANGE_3";
+
+ivorysql=# select * from "Inter_Change_3";
+ERROR:  relation "Inter_Change_3" does not exist
+LINE 1: select * from "Inter_Change_3";
+
+ivorysql=# select * from inter_change_3;
+ERROR:  relation "inter_change_3" does not exist
+LINE 1: select * from "INTER_CHANGE_3";
+
+ivorysql=# drop table "INTER_CHANGE_1";
+DROP TABLE
+ivorysql=# drop table "Inter_Change_2";
+DROP TABLE
+ivorysql=# drop table "inter_change_3";
+DROP TABLE</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>lowercase</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# SET ivorysql.compatible_mode to oracle;
+SET
+
+ivorysql=# SET ivorysql.enable_case_switch = true;
+SET
+
+ivorysql=# SET ivorysql.identifier_case_switch = lowercase;
+SET
+
+ivorysql=# CREATE TABLE "LOWER_CASE_1"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "Lower_Case_2"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# CREATE TABLE "lower_case_3"(c1 int, c2 int);
+CREATE TABLE
+
+ivorysql=# select * from "LOWER_CASE_1";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "Lower_Case_1";
+ERROR:  relation "Lower_Case_1" does not exist
+LINE 1: select * from "Lower_Case_1";
+
+ivorysql=# select * from "lower_case_1";
+ c1 | c2
+----+----
+(0 rows)
+
+
+ivorysql=# select * from LOWER_CASE_1;
+ c1 | c2
+----+----
+(0 rows)
+
+
+ivorysql=# select * from "Lower_Case_2";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "LOWER_CASE_2";
+ERROR:  relation "lower_case_2" does not exist
+LINE 1: select * from "LOWER_CASE_2";
+
+ivorysql=# select * from "lower_case_2";
+ERROR:  relation "lower_case_2" does not exist
+LINE 1: select * from "lower_case_2";
+
+ivorysql=# select * from Lower_Case_2;
+ERROR:  relation "lower_case_2" does not exist
+LINE 1: select * from Lower_Case_2;
+
+ivorysql=# select * from "lower_case_3";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "LOWER_CASE_3";
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# select * from "Lower_Case_3";
+ERROR:  relation "Lower_Case_3" does not exist
+LINE 1: select * from "Lower_Case_3";
+
+ivorysql=# select * from LOWER_CASE_3;
+ c1 | c2
+----+----
+(0 rows)
+
+ivorysql=# drop table "NORMAL_1";
+DROP TABLE
+ivorysql=# drop table "Normal_2";
+DROP TABLE
+ivorysql=# drop table "normal_3";
+DROP TABLE</code></pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="12.html">3、Plugin adaptation</a></span>
-  <span class="next"><a href="14.html">5、Added Oracle compatibility mode ports and IP</a></span>
+  <span class="prev"><a href="12.html">2、GUC Framework</a></span>
+  <span class="next"><a href="14.html">4、Dual-mode design</a></span>
 </nav>
 </article>
   </div>

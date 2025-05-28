@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>IvorySQL :: IvorySQL文档中心</title>
+    <title>Ivorysql框架设计 :: IvorySQL文档中心</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.17/v1.17/11.html">
     <link rel="prev" href="10.html">
     <link rel="next" href="12.html">
@@ -58,48 +58,84 @@
     <span class="nav-text">IvorySQL入门</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="3.html">用户使用手册</a>
+    <a class="nav-link" href="3.html">快速开始</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="4.html">管理员指南</a>
+    <a class="nav-link" href="4.html">日常监控</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="5.html">运维人员指南</a>
+    <a class="nav-link" href="5.html">日常维护</a>
   </li>
 </ul>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="6.html">安装部署</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="7.html">社区贡献指南</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="8.html">工具参考</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="9.html">FAQ</a>
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">功能列表</span>
+    <span class="nav-text">IvorySQL高级</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="10.html">1、Ivorysql框架设计</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="11.html">2、GUC框架</a>
+    <a class="nav-link" href="6.html">安装指南</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="12.html">3、适配插件</a>
+    <a class="nav-link" href="7.html">开发者指南</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="13.html">4、双模式设计</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="14.html">5、新增Oracle兼容模式的端口与Ip</a>
+    <a class="nav-link" href="8.html">运维管理指南</a>
   </li>
 </ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="11.html">1、Ivorysql框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="13.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">9、新增Oracle兼容模式的端口与IP</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="20.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="21.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="22.html">FAQ</a>
   </li>
 </ul>
   </li>
@@ -186,8 +222,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li>功能列表</li>
-    <li><a href="11.html">2、GUC框架</a></li>
+    <li>Oracle兼容功能列表</li>
+    <li><a href="11.html">1、Ivorysql框架设计</a></li>
   </ul>
 </nav>
   <div class="page-versions">
@@ -204,85 +240,62 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
+<h1 class="page">Ivorysql框架设计</h1>
 <div class="sect1">
-<h2 id="新增guc变量"><a class="anchor" href="#新增guc变量"></a>1. 新增GUC变量</h2>
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>为了兼容Oracle，需要在原有的GUC变量基础之上增加一些用于控制数据库执行结果的变量，以达到和Oracle行为一致的目的。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>为了对原有的postgres改动最小的前提下，实现对oracle兼容。我们需要实现双parser、双端口、模式PLPGSQL实现PL\iSQL的框架。实现流程图如下：</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>为了以后更好的添加兼容的guc参数，以及为了更少的改动pg内核源码，我们需要设计一个框架将guc添加到一个统一的地方。</p>
+<div class="imageblock">
+<div class="content">
+<img src="../_images/p18.png" alt="p18">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能"><a class="anchor" href="#功能"></a>2. 功能</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="双端口设计"><a class="anchor" href="#双端口设计"></a>2.1. 双端口设计</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>保持了Ivorysql 5432端口兼容原有postgres情况，因此 Ivorysql采用另一个独立的端口登录，默认为1521。从该端口登录，默认采用oracle兼容模式。如果需要从5432端口登录且还要进入兼容模式，则需要通过compatible_mode参数进行设置;</p>
+</li>
+</ul>
+</div>
 </div>
 <div class="sect2">
-<h3 id="实现"><a class="anchor" href="#实现"></a>1.1. 实现</h3>
-<div class="paragraph">
-<p>添加兼容版本的guc参数时，我们需统一在 <strong>ivy_guc.c</strong> 文件中添加。其中 <code>Ivy_ConfigureNamesBool</code>、<code>Ivy_ConfigureNamesInt</code>、<code>Ivy_ConfigureNamesString</code>、<code>Ivy_ConfigureNamesReal</code> 和 <code>Ivy_ConfigureNamesEnum</code> 分别表示5种不同类型的guc参数，添加guc参数时，将guc的值添加到对应数组中即可。</p>
+<h3 id="parser模块设计"><a class="anchor" href="#parser模块设计"></a>2.2. parser模块设计</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>为了将Oracle语法与postgres语法间的相互干扰降到最低，因此新增parser模块，用于处理Oracle相关的语法;</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="新增变量目前"><a class="anchor" href="#新增变量目前"></a>1.2. 新增变量（目前）</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 66.6667%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">变量名</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">描述</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">ivorysql.compatible_mode</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">表示当前兼容哪种数据库（pg/oracle），可以通过show命令查看，set命令更改该变量，reset命令重置为连接时的数据库模式，reset all会影响该变量</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">ivorysql.database_mode</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">表示当前数据库的模式（pg/oracle），可以通过show命令查看，set/reset/reset all命令不影响该变量</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">ivorysql.datetime_ignore_nls_mask</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">表示日期格式是否会受NLS参数影响，默认为0，可以通过set命令设置，reset 命令重置，reset all命令会重置该变量</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">ivorysql.enable_emptystring_to_NULL</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">取值为（on/off）,该变量为on时，会将插入的空字符串转成NULL值存储</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">ivorysql.listen_address</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">表示兼容模式监听的地址，在初始化数据库时，从ivorysql.conf文件中读取该配置，在配置文件中修改该值，需要重启数据库生效，可以通过show命令查看</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">ivorysql.port</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">表示兼容模式下连接的端口号，在初始化数据库时，从ivorysql.conf文件中读取该配置，在配置文件中修改该值，需要重启数据库生效，可以通过show命令查看</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">nls_date_format</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">表示默认的日期格式，可以通过show命令查看，默认为‘YYYY-MM-DD’，可以通过set命令设置，可以通过reset命令重置回默认值，reset all 命令会重置该变量</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">nls_length_semantic</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">兼容Oracle的同名参数，控制一个字符所占内存的大小</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">nls_timestamp_format</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">兼容Oracle的同名参数，控制带时间的日期格式</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">nls_timestamp_tz_format</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">兼容Oracle的同名参数，控制带时区的日期格式</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock">shared_preload_libraries</p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock">在初始话数据库时，从ivorysql.conf文件中读取，可以通过show命令查看，在配置文件中修改该值，重启数据库生效。</p></td>
-</tr>
-</tbody>
-</table>
+<h3 id="新增plisql过程语言"><a class="anchor" href="#新增plisql过程语言"></a>2.3. 新增PL\iSQL过程语言</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>同样为了减少Oracle兼容与postgres语法不同而导致测试用例冲突得情况，因此单独设计了一套Oracle专用的测试用例。该套测试用例由postgres原有测试框架拷贝修改而来;</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="10.html">1、Ivorysql框架设计</a></span>
-  <span class="next"><a href="12.html">3、适配插件</a></span>
+  <span class="prev"><a href="10.html">pgvector</a></span>
+  <span class="next"><a href="12.html">2、GUC框架</a></span>
 </nav>
 </article>
   </div>

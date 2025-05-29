@@ -3173,44 +3173,20 @@ SELECT concat_lower_or_upper(a =&gt; 'Hello', uppercase =&gt; true, b =&gt; 'Wor
 <div class="sect1">
 <h2 id="oracle兼容功能"><a class="anchor" href="#oracle兼容功能"></a>7. Oracle兼容功能</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="配置参数"><a class="anchor" href="#配置参数"></a>7.1. 配置参数</h3>
 <div class="paragraph">
-<p>参数设置采用与原生 PostgreSQL 相同的方法。 所有参数名称都不区分大小写。每个参数都采用以下五种类型之一的值：布尔值、字符串、整数、浮点数或枚举 (enum)。</p>
-</div>
-<div class="sect3">
-<h4 id="ivorysql-compatible_mode-enum"><a class="anchor" href="#ivorysql-compatible_mode-enum"></a>7.1.1. <code>ivorysql.compatible_mode (enum)</code></h4>
-<div class="paragraph">
-<p>此参数控制数据库服务器的行为。 如果它设置为`pg`，表示它是原生安装，服务器将作为原生 PG 安装。 如果它设置为“oracle”，那么查询的输出和系统行为整体会发生变化，因为它会更像 Oracle。</p>
-</div>
-<div class="paragraph">
-<p>当设置为 <code>oracle</code> 时，此参数会隐式地将同样名字的Schema添加到 <code>search_path</code>。 以便可以定位 Oracle 兼容对象。</p>
-</div>
-<div class="paragraph">
-<p>该参数可以通过 <code>postgresql.conf</code> 配置文件设置，对整个数据库生效。 或者可以通过客户端使用 <code>set</code> 命令在会话上进行设置。</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="nls_length_semantics-enum"><a class="anchor" href="#nls_length_semantics-enum"></a>7.1.2. <code>nls_length_semantics (enum)</code></h4>
-<div class="paragraph">
-<p>此参数控制如何根据长度语义创建 <code>CHAR</code> 和 <code>VARCHAR2</code> 列。 默认设置为 <code>NONE</code>，这不会产生任何影响。 <code>BYTE</code> 可以设置为以字节长度语义存储数据。 <code>CHAR</code> 使用字符长度语义。</p>
-</div>
-<div class="paragraph">
-<p><strong>标识：</strong></p>
+<p><strong>详见：</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://www.ivorysql.org/zh-CN/docs/tags/compatibility-parameters">Compatibility Parameters</a></p>
+<p>[GUC变量](<a href="https://docs.ivorysql.org/cn/ivorysql-doc/v4.4/v4.4/15" class="bare">https://docs.ivorysql.org/cn/ivorysql-doc/v4.4/v4.4/15</a>)</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
 <div class="sect2">
-<h3 id="更改表"><a class="anchor" href="#更改表"></a>7.2. 更改表</h3>
+<h3 id="更改表"><a class="anchor" href="#更改表"></a>7.1. 更改表</h3>
 <div class="sect3">
-<h4 id="语法"><a class="anchor" href="#语法"></a>7.2.1. 语法</h4>
+<h4 id="语法"><a class="anchor" href="#语法"></a>7.1.1. 语法</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">ALTER TABLE [ IF EXISTS ] [ ONLY ] name [ * ]
@@ -3233,7 +3209,7 @@ alter_using:
 </div>
 </div>
 <div class="sect3">
-<h4 id="参数-11"><a class="anchor" href="#参数-11"></a>7.2.2. <strong>参数</strong></h4>
+<h4 id="参数-11"><a class="anchor" href="#参数-11"></a>7.1.2. <strong>参数</strong></h4>
 <div class="paragraph">
 <p><code>name</code> 表名.</p>
 </div>
@@ -3260,7 +3236,7 @@ alter_using:
 </div>
 </div>
 <div class="sect3">
-<h4 id="示例-7"><a class="anchor" href="#示例-7"></a>7.2.3. 示例</h4>
+<h4 id="示例-7"><a class="anchor" href="#示例-7"></a>7.1.3. 示例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">ADD:
@@ -3317,9 +3293,9 @@ alter table tb_test3 drop column(id);
 </div>
 </div>
 <div class="sect2">
-<h3 id="删除表"><a class="anchor" href="#删除表"></a>7.3. 删除表</h3>
+<h3 id="删除表"><a class="anchor" href="#删除表"></a>7.2. 删除表</h3>
 <div class="sect3">
-<h4 id="语法-2"><a class="anchor" href="#语法-2"></a>7.3.1. 语法</h4>
+<h4 id="语法-2"><a class="anchor" href="#语法-2"></a>7.2.1. 语法</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">[ WITH [ RECURSIVE ] with_query [, ...] ]
@@ -3331,7 +3307,7 @@ DELETE [ FROM ] [ ONLY ] table_name [ * ] [ [ AS ] alias ]
 </div>
 </div>
 <div class="sect3">
-<h4 id="参数-12"><a class="anchor" href="#参数-12"></a>7.3.2. 参数</h4>
+<h4 id="参数-12"><a class="anchor" href="#参数-12"></a>7.2.2. 参数</h4>
 <div class="paragraph">
 <p><code>table_name</code> 表名.</p>
 </div>
@@ -3355,7 +3331,7 @@ DELETE [ FROM ] [ ONLY ] table_name [ * ] [ [ AS ] alias ]
 </div>
 </div>
 <div class="sect3">
-<h4 id="使用"><a class="anchor" href="#使用"></a>7.3.3. 使用</h4>
+<h4 id="使用"><a class="anchor" href="#使用"></a>7.2.3. 使用</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">create table tb_test4(id int, flg char(10));
@@ -3376,9 +3352,9 @@ table tb_test4;
 </div>
 </div>
 <div class="sect2">
-<h3 id="更新表"><a class="anchor" href="#更新表"></a>7.4. 更新表</h3>
+<h3 id="更新表"><a class="anchor" href="#更新表"></a>7.3. 更新表</h3>
 <div class="sect3">
-<h4 id="语法-3"><a class="anchor" href="#语法-3"></a>7.4.1. 语法</h4>
+<h4 id="语法-3"><a class="anchor" href="#语法-3"></a>7.3.1. 语法</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">[ WITH [ RECURSIVE ] with_query [, ...] ]
@@ -3394,7 +3370,7 @@ UPDATE [ ONLY ] table_name [ * ] [ [ AS ] alias ]
 </div>
 </div>
 <div class="sect3">
-<h4 id="参数-13"><a class="anchor" href="#参数-13"></a>7.4.2. <strong>参数</strong></h4>
+<h4 id="参数-13"><a class="anchor" href="#参数-13"></a>7.3.2. <strong>参数</strong></h4>
 <div class="paragraph">
 <p><code>table_name</code> 表名.</p>
 </div>
@@ -3427,7 +3403,7 @@ UPDATE [ ONLY ] table_name [ * ] [ [ AS ] alias ]
 </div>
 </div>
 <div class="sect3">
-<h4 id="示例-8"><a class="anchor" href="#示例-8"></a>7.4.3. 示例</h4>
+<h4 id="示例-8"><a class="anchor" href="#示例-8"></a>7.3.3. 示例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">create table tb_test5(id int, flg char(10));
@@ -3448,9 +3424,9 @@ Id  |    flg
 </div>
 </div>
 <div class="sect2">
-<h3 id="group-by"><a class="anchor" href="#group-by"></a>7.5. GROUP BY</h3>
+<h3 id="group-by"><a class="anchor" href="#group-by"></a>7.4. GROUP BY</h3>
 <div class="sect3">
-<h4 id="示例-9"><a class="anchor" href="#示例-9"></a>7.5.1. 示例</h4>
+<h4 id="示例-9"><a class="anchor" href="#示例-9"></a>7.4.1. 示例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">set compatible_mode to oracle;
@@ -3466,9 +3442,9 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect2">
-<h3 id="union"><a class="anchor" href="#union"></a>7.6. UNION</h3>
+<h3 id="union"><a class="anchor" href="#union"></a>7.5. UNION</h3>
 <div class="sect3">
-<h4 id="示例-10"><a class="anchor" href="#示例-10"></a>7.6.1. 示例</h4>
+<h4 id="示例-10"><a class="anchor" href="#示例-10"></a>7.5.1. 示例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select null union select null union select 1.2;
@@ -3482,9 +3458,9 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect2">
-<h3 id="minus-operator"><a class="anchor" href="#minus-operator"></a>7.7. Minus Operator</h3>
+<h3 id="minus-operator"><a class="anchor" href="#minus-operator"></a>7.6. Minus Operator</h3>
 <div class="sect3">
-<h4 id="语法-4"><a class="anchor" href="#语法-4"></a>7.7.1. 语法</h4>
+<h4 id="语法-4"><a class="anchor" href="#语法-4"></a>7.6.1. 语法</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select_statement MINUS [ ALL | DISTINCT ] select_statement;</code></pre>
@@ -3492,7 +3468,7 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect3">
-<h4 id="参数-14"><a class="anchor" href="#参数-14"></a>7.7.2. <strong>参数</strong></h4>
+<h4 id="参数-14"><a class="anchor" href="#参数-14"></a>7.6.2. <strong>参数</strong></h4>
 <div class="paragraph">
 <p><code>select_statement</code> 任何没有ORDER BY、LIMIT、 FOR NO KEY UPDATE、FOR UPDATE、 FOR SHARE和FOR KEY SHARE子句的 SELECT语句.</p>
 </div>
@@ -3504,7 +3480,7 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect3">
-<h4 id="示例-11"><a class="anchor" href="#示例-11"></a>7.7.3. 示例</h4>
+<h4 id="示例-11"><a class="anchor" href="#示例-11"></a>7.6.3. 示例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select * from generate_series(1, 3) g(i) MINUS select * from generate_series(1, 3) g(i) where i = 1;
@@ -3518,15 +3494,15 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect2">
-<h3 id="转义字符"><a class="anchor" href="#转义字符"></a>7.8. 转义字符</h3>
+<h3 id="转义字符"><a class="anchor" href="#转义字符"></a>7.7. 转义字符</h3>
 <div class="sect3">
-<h4 id="概述"><a class="anchor" href="#概述"></a>7.8.1. 概述</h4>
+<h4 id="概述"><a class="anchor" href="#概述"></a>7.7.1. 概述</h4>
 <div class="paragraph">
 <p>使用 q\' 转义特殊字符。q\' 转义字符通常在! [] {} () \&lt;&gt; 和其他转义字符之后使用, 您也可以使用 \, 也可以使用字母, 数字, \=, +, -, *, \&amp;, \$, \%, #, 等, 不允许使用空格。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="示例-12"><a class="anchor" href="#示例-12"></a>7.8.2. 示例</h4>
+<h4 id="示例-12"><a class="anchor" href="#示例-12"></a>7.7.2. 示例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select q''' is goog '';
@@ -3539,9 +3515,9 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect2">
-<h3 id="序列"><a class="anchor" href="#序列"></a>7.9. 序列</h3>
+<h3 id="序列"><a class="anchor" href="#序列"></a>7.8. 序列</h3>
 <div class="sect3">
-<h4 id="语法-5"><a class="anchor" href="#语法-5"></a>7.9.1. 语法</h4>
+<h4 id="语法-5"><a class="anchor" href="#语法-5"></a>7.8.1. 语法</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">SELECT [ database {schema} | schema ] sequence {nextval | currval};</code></pre>
@@ -3549,13 +3525,13 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect3">
-<h4 id="参数-15"><a class="anchor" href="#参数-15"></a>7.9.2. <strong>参数</strong></h4>
+<h4 id="参数-15"><a class="anchor" href="#参数-15"></a>7.8.2. <strong>参数</strong></h4>
 <div class="paragraph">
 <p><code>sequence</code> 序列名.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="示例-13"><a class="anchor" href="#示例-13"></a>7.9.3. 示例</h4>
+<h4 id="示例-13"><a class="anchor" href="#示例-13"></a>7.8.3. 示例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">create sequence sq;
@@ -3576,11 +3552,11 @@ select sq.currval;
 </div>
 </div>
 <div class="sect2">
-<h3 id="兼容时间和日期函数"><a class="anchor" href="#兼容时间和日期函数"></a>7.10. 兼容时间和日期函数</h3>
+<h3 id="兼容时间和日期函数"><a class="anchor" href="#兼容时间和日期函数"></a>7.9. 兼容时间和日期函数</h3>
 <div class="sect3">
-<h4 id="from_tz"><a class="anchor" href="#from_tz"></a>7.10.1. from_tz</h4>
+<h4 id="from_tz"><a class="anchor" href="#from_tz"></a>7.9.1. from_tz</h4>
 <div class="sect4">
-<h5 id="目的"><a class="anchor" href="#目的"></a>7.10.1.1. 目的</h5>
+<h5 id="目的"><a class="anchor" href="#目的"></a>7.9.1.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">将给定的不带时区的时间戳转换为指定的带时区的时间戳，如果指定时区或者时间戳为NULL，则返回NULL。</code></pre>
@@ -3588,7 +3564,7 @@ select sq.currval;
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数描述"><a class="anchor" href="#参数描述"></a>7.10.1.2. 参数描述</h5>
+<h5 id="参数描述"><a class="anchor" href="#参数描述"></a>7.9.1.2. 参数描述</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3611,7 +3587,7 @@ select sq.currval;
 </table>
 </div>
 <div class="sect4">
-<h5 id="例子-5"><a class="anchor" href="#例子-5"></a>7.10.1.3. 例子</h5>
+<h5 id="例子-5"><a class="anchor" href="#例子-5"></a>7.9.1.3. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select from_tz('2021-11-08 09:12:39','Asia/Shanghai') from dual;
@@ -3641,9 +3617,9 @@ select from_tz('2021-11-08 09:12:31',NULL) from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="systimestamp"><a class="anchor" href="#systimestamp"></a>7.10.2. systimestamp</h4>
+<h4 id="systimestamp"><a class="anchor" href="#systimestamp"></a>7.9.2. systimestamp</h4>
 <div class="sect4">
-<h5 id="目的-2"><a class="anchor" href="#目的-2"></a>7.10.2.1. 目的</h5>
+<h5 id="目的-2"><a class="anchor" href="#目的-2"></a>7.9.2.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">获取当前数据库系统的时间戳。</code></pre>
@@ -3651,7 +3627,7 @@ select from_tz('2021-11-08 09:12:31',NULL) from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="例子-6"><a class="anchor" href="#例子-6"></a>7.10.2.2. 例子</h5>
+<h5 id="例子-6"><a class="anchor" href="#例子-6"></a>7.9.2.2. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select systimestamp();
@@ -3669,9 +3645,9 @@ select systimestamp;
 </div>
 </div>
 <div class="sect3">
-<h4 id="sys_extract_utc"><a class="anchor" href="#sys_extract_utc"></a>7.10.3. sys_extract_utc</h4>
+<h4 id="sys_extract_utc"><a class="anchor" href="#sys_extract_utc"></a>7.9.3. sys_extract_utc</h4>
 <div class="sect4">
-<h5 id="目的-3"><a class="anchor" href="#目的-3"></a>7.10.3.1. 目的</h5>
+<h5 id="目的-3"><a class="anchor" href="#目的-3"></a>7.9.3.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">将给定的带时区的时间戳转换为不带时区的UTC时间。</code></pre>
@@ -3679,7 +3655,7 @@ select systimestamp;
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数描述-2"><a class="anchor" href="#参数描述-2"></a>7.10.3.2. 参数描述</h5>
+<h5 id="参数描述-2"><a class="anchor" href="#参数描述-2"></a>7.9.3.2. 参数描述</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3698,7 +3674,7 @@ select systimestamp;
 </table>
 </div>
 <div class="sect4">
-<h5 id="例子-7"><a class="anchor" href="#例子-7"></a>7.10.3.3. 例子</h5>
+<h5 id="例子-7"><a class="anchor" href="#例子-7"></a>7.9.3.3. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select sys_extract_utc('2018-03-28 11:30:00.00 +09:00'::timestamptz) from dual;
@@ -3717,9 +3693,9 @@ select sys_extract_utc(NULL) from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="sessiontimezone"><a class="anchor" href="#sessiontimezone"></a>7.10.4. sessiontimezone</h4>
+<h4 id="sessiontimezone"><a class="anchor" href="#sessiontimezone"></a>7.9.4. sessiontimezone</h4>
 <div class="sect4">
-<h5 id="目的-4"><a class="anchor" href="#目的-4"></a>7.10.4.1. 目的</h5>
+<h5 id="目的-4"><a class="anchor" href="#目的-4"></a>7.9.4.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">获取当前会话的时区。</code></pre>
@@ -3727,7 +3703,7 @@ select sys_extract_utc(NULL) from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="例子-8"><a class="anchor" href="#例子-8"></a>7.10.4.2. 例子</h5>
+<h5 id="例子-8"><a class="anchor" href="#例子-8"></a>7.9.4.2. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select sessiontimezone() from dual;
@@ -3748,9 +3724,9 @@ set timezone to UTC;
 </div>
 </div>
 <div class="sect3">
-<h4 id="next_day"><a class="anchor" href="#next_day"></a>7.10.5. next_day</h4>
+<h4 id="next_day"><a class="anchor" href="#next_day"></a>7.9.5. next_day</h4>
 <div class="sect4">
-<h5 id="目的-5"><a class="anchor" href="#目的-5"></a>7.10.5.1. 目的</h5>
+<h5 id="目的-5"><a class="anchor" href="#目的-5"></a>7.9.5.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">next_day 返回由格式名相同的第一个工作日的日期，该日期晚于当前日期。 无论日期的数据类型如何，返回类型始终为 DATE。 返回值具有与参数日期相同的小时、分钟和秒部分。</code></pre>
@@ -3758,7 +3734,7 @@ set timezone to UTC;
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数描述-3"><a class="anchor" href="#参数描述-3"></a>7.10.5.2. 参数描述</h5>
+<h5 id="参数描述-3"><a class="anchor" href="#参数描述-3"></a>7.9.5.2. 参数描述</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3781,7 +3757,7 @@ set timezone to UTC;
 </table>
 </div>
 <div class="sect4">
-<h5 id="例子-9"><a class="anchor" href="#例子-9"></a>7.10.5.3. 例子</h5>
+<h5 id="例子-9"><a class="anchor" href="#例子-9"></a>7.9.5.3. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select next_day(to_timestamp('2020-02-29 14:40:50', 'YYYY-MM-DD HH24:MI:SS'), 'Tuesday') from dual;
@@ -3806,9 +3782,9 @@ select next_day(oracle.date '2020-09-15 12:13:29', 6) from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="last_day"><a class="anchor" href="#last_day"></a>7.10.6. last_day</h4>
+<h4 id="last_day"><a class="anchor" href="#last_day"></a>7.9.6. last_day</h4>
 <div class="sect4">
-<h5 id="目的-6"><a class="anchor" href="#目的-6"></a>7.10.6.1. 目的</h5>
+<h5 id="目的-6"><a class="anchor" href="#目的-6"></a>7.9.6.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">last_day返回档期日期所在月份的最后一天。</code></pre>
@@ -3816,7 +3792,7 @@ select next_day(oracle.date '2020-09-15 12:13:29', 6) from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数描述-4"><a class="anchor" href="#参数描述-4"></a>7.10.6.2. 参数描述</h5>
+<h5 id="参数描述-4"><a class="anchor" href="#参数描述-4"></a>7.9.6.2. 参数描述</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3835,7 +3811,7 @@ select next_day(oracle.date '2020-09-15 12:13:29', 6) from dual;
 </table>
 </div>
 <div class="sect4">
-<h5 id="例子-10"><a class="anchor" href="#例子-10"></a>7.10.6.3. 例子</h5>
+<h5 id="例子-10"><a class="anchor" href="#例子-10"></a>7.9.6.3. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select last_day(timestamp '2020-05-17 13:27:19') from dual;
@@ -3860,9 +3836,9 @@ select last_day('-0004-2-1 13:27:19'::oracle.date) from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="add_months"><a class="anchor" href="#add_months"></a>7.10.7. add_months</h4>
+<h4 id="add_months"><a class="anchor" href="#add_months"></a>7.9.7. add_months</h4>
 <div class="sect4">
-<h5 id="目的-7"><a class="anchor" href="#目的-7"></a>7.10.7.1. 目的</h5>
+<h5 id="目的-7"><a class="anchor" href="#目的-7"></a>7.9.7.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">add_months 返回日期加上整数月份。 date 参数可以是日期时间值或任何可以隐式转换为 DATE 的值。 整数参数可以是整数或任何可以隐式转换为整数的值。</code></pre>
@@ -3870,7 +3846,7 @@ select last_day('-0004-2-1 13:27:19'::oracle.date) from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数描述-5"><a class="anchor" href="#参数描述-5"></a>7.10.7.2. 参数描述</h5>
+<h5 id="参数描述-5"><a class="anchor" href="#参数描述-5"></a>7.9.7.2. 参数描述</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3893,7 +3869,7 @@ select last_day('-0004-2-1 13:27:19'::oracle.date) from dual;
 </table>
 </div>
 <div class="sect4">
-<h5 id="例子-11"><a class="anchor" href="#例子-11"></a>7.10.7.3. 例子</h5>
+<h5 id="例子-11"><a class="anchor" href="#例子-11"></a>7.9.7.3. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select add_months(date '2020-02-15',7) from dual;
@@ -3912,9 +3888,9 @@ select add_months(timestamp '2018-12-15 19:12:09',12) from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="sysdate"><a class="anchor" href="#sysdate"></a>7.10.8. sysdate</h4>
+<h4 id="sysdate"><a class="anchor" href="#sysdate"></a>7.9.8. sysdate</h4>
 <div class="sect4">
-<h5 id="目的-8"><a class="anchor" href="#目的-8"></a>7.10.8.1. 目的</h5>
+<h5 id="目的-8"><a class="anchor" href="#目的-8"></a>7.9.8.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">sysdate 返回数据库服务器的操作系统时间。</code></pre>
@@ -3922,7 +3898,7 @@ select add_months(timestamp '2018-12-15 19:12:09',12) from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="例子-12"><a class="anchor" href="#例子-12"></a>7.10.8.2. 例子</h5>
+<h5 id="例子-12"><a class="anchor" href="#例子-12"></a>7.9.8.2. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select sysdate;
@@ -3941,9 +3917,9 @@ select sysdate();
 </div>
 </div>
 <div class="sect3">
-<h4 id="new_time"><a class="anchor" href="#new_time"></a>7.10.9. new_time</h4>
+<h4 id="new_time"><a class="anchor" href="#new_time"></a>7.9.9. new_time</h4>
 <div class="sect4">
-<h5 id="目的-9"><a class="anchor" href="#目的-9"></a>7.10.9.1. 目的</h5>
+<h5 id="目的-9"><a class="anchor" href="#目的-9"></a>7.9.9.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">转换第一个时区的时间到第二个时区的时间. 时区包括了 "ast", "adt", "bst", "bdt", "cst", "cdt", "est", "edt", "gmt", "hst", "hdt", "mst", "mdt", "nst", "pst", "pdt", "yst", "ydt".</code></pre>
@@ -3951,7 +3927,7 @@ select sysdate();
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数描述-6"><a class="anchor" href="#参数描述-6"></a>7.10.9.2. 参数描述</h5>
+<h5 id="参数描述-6"><a class="anchor" href="#参数描述-6"></a>7.9.9.2. 参数描述</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3978,7 +3954,7 @@ select sysdate();
 </table>
 </div>
 <div class="sect4">
-<h5 id="例子-13"><a class="anchor" href="#例子-13"></a>7.10.9.3. 例子</h5>
+<h5 id="例子-13"><a class="anchor" href="#例子-13"></a>7.9.9.3. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select new_time(timestamp '2020-12-12 17:45:18', 'AST', 'ADT') from dual;
@@ -4003,9 +3979,9 @@ select new_time(timestamp '2020-12-12 17:45:18', 'CST', 'CDT') from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="trunc"><a class="anchor" href="#trunc"></a>7.10.10. trunc</h4>
+<h4 id="trunc"><a class="anchor" href="#trunc"></a>7.9.10. trunc</h4>
 <div class="sect4">
-<h5 id="目的-10"><a class="anchor" href="#目的-10"></a>7.10.10.1. 目的</h5>
+<h5 id="目的-10"><a class="anchor" href="#目的-10"></a>7.9.10.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">trunc函数返回一个日期, 按照指定格式被截断, fmt包括 "Y", "YY", "YYY", "YYYY","YEAR", "SYYYY", "SYEAR", "I", "IY", "IYY", "IYYY", "Q", "WW", "Iw", "W", "DAY", "DY", "D", "MONTH", "MONn", "MM", "RM", "CC", "SCC", "DDD", "DD", "J", "HH", "HH12", "HH24", "MI".</code></pre>
@@ -4013,7 +3989,7 @@ select new_time(timestamp '2020-12-12 17:45:18', 'CST', 'CDT') from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数描述-7"><a class="anchor" href="#参数描述-7"></a>7.10.10.2. 参数描述</h5>
+<h5 id="参数描述-7"><a class="anchor" href="#参数描述-7"></a>7.9.10.2. 参数描述</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -4036,7 +4012,7 @@ select new_time(timestamp '2020-12-12 17:45:18', 'CST', 'CDT') from dual;
 </table>
 </div>
 <div class="sect4">
-<h5 id="例子-14"><a class="anchor" href="#例子-14"></a>7.10.10.3. 例子</h5>
+<h5 id="例子-14"><a class="anchor" href="#例子-14"></a>7.9.10.3. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select trunc(timestamp '2020-07-28 19:16:12', 'Q');
@@ -4055,9 +4031,9 @@ select trunc(timestamptz '2020-09-27 18:30:21 + 08', 'MONTH');
 </div>
 </div>
 <div class="sect3">
-<h4 id="round"><a class="anchor" href="#round"></a>7.10.11. round</h4>
+<h4 id="round"><a class="anchor" href="#round"></a>7.9.11. round</h4>
 <div class="sect4">
-<h5 id="目的-11"><a class="anchor" href="#目的-11"></a>7.10.11.1. 目的</h5>
+<h5 id="目的-11"><a class="anchor" href="#目的-11"></a>7.9.11.1. 目的</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">round函数返回一个日期,按照指定的格式四舍五入, fmt 包括了 "Y", "YY", "YYY", "YYYY","YEAR", "SYYYY", "SYEAR", "I", "IY", "IYY", "IYYY", "Q", "WW", "Iw", "W", "DAY", "DY", "D", "MONTH", "MONn", "MM", "RM", "CC", "SCC", "DDD", "DD", "J", "HH", "HH12", "HH24", "MI".</code></pre>
@@ -4065,7 +4041,7 @@ select trunc(timestamptz '2020-09-27 18:30:21 + 08', 'MONTH');
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数描述-8"><a class="anchor" href="#参数描述-8"></a>7.10.11.2. 参数描述</h5>
+<h5 id="参数描述-8"><a class="anchor" href="#参数描述-8"></a>7.9.11.2. 参数描述</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -4088,7 +4064,7 @@ select trunc(timestamptz '2020-09-27 18:30:21 + 08', 'MONTH');
 </table>
 </div>
 <div class="sect4">
-<h5 id="例子-15"><a class="anchor" href="#例子-15"></a>7.10.11.3. 例子</h5>
+<h5 id="例子-15"><a class="anchor" href="#例子-15"></a>7.9.11.3. 例子</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select round(timestamp '2050-06-12 16:40:55', 'IYYY');
@@ -4102,17 +4078,17 @@ select trunc(timestamptz '2020-09-27 18:30:21 + 08', 'MONTH');
 </div>
 </div>
 <div class="sect2">
-<h3 id="兼容转换和比较以及与null相关的函数"><a class="anchor" href="#兼容转换和比较以及与null相关的函数"></a>7.11. 兼容转换和比较以及与NULL相关的函数</h3>
+<h3 id="兼容转换和比较以及与null相关的函数"><a class="anchor" href="#兼容转换和比较以及与null相关的函数"></a>7.10. 兼容转换和比较以及与NULL相关的函数</h3>
 <div class="sect3">
-<h4 id="to_char"><a class="anchor" href="#to_char"></a>7.11.1. TO_CHAR</h4>
+<h4 id="to_char"><a class="anchor" href="#to_char"></a>7.10.1. TO_CHAR</h4>
 <div class="sect4">
-<h5 id="目的-12"><a class="anchor" href="#目的-12"></a>7.11.1.1. 目的</h5>
+<h5 id="目的-12"><a class="anchor" href="#目的-12"></a>7.10.1.1. 目的</h5>
 <div class="paragraph">
 <p>TO_CHAR（str,[fmt]） 根据给定的格式将输入参数转换为 TEXT 数据类型的值。 如果省略 fmt，则数据将转换为系统默认格式的 TEXT 值。 如果 str 为 null，则该函数返回 null。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数-16"><a class="anchor" href="#参数-16"></a>7.11.1.2. <strong>参数</strong></h5>
+<h5 id="参数-16"><a class="anchor" href="#参数-16"></a>7.10.1.2. <strong>参数</strong></h5>
 <div class="paragraph">
 <p><code>str</code> 输入参数 （任意类型）。</p>
 </div>
@@ -4121,7 +4097,7 @@ select trunc(timestamptz '2020-09-27 18:30:21 + 08', 'MONTH');
 </div>
 </div>
 <div class="sect4">
-<h5 id="示例-14"><a class="anchor" href="#示例-14"></a>7.11.1.3. 示例</h5>
+<h5 id="示例-14"><a class="anchor" href="#示例-14"></a>7.10.1.3. 示例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_char('3 2:20:05');
@@ -4152,15 +4128,15 @@ select to_char(123,'xx');
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_number"><a class="anchor" href="#to_number"></a>7.11.2. TO_NUMBER</h4>
+<h4 id="to_number"><a class="anchor" href="#to_number"></a>7.10.2. TO_NUMBER</h4>
 <div class="sect4">
-<h5 id="目的-13"><a class="anchor" href="#目的-13"></a>7.11.2.1. 目的</h5>
+<h5 id="目的-13"><a class="anchor" href="#目的-13"></a>7.10.2.1. 目的</h5>
 <div class="paragraph">
 <p>TO_NUMBER(str,[fmt1]) 根据给定的格式将输入参数 str 转换为 NUMREIC 数据类型的值。 如果省略 fmt1，则数据将转换为系统默认格式的 NUMERIC 值。 如果 str 是 NUMERIC，则该函数返回 str。如果 str 计算结果为 null，则该函数返回 null。 如果它不能转换为 NUMERIC 数据类型，则该函数返回错误。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数-17"><a class="anchor" href="#参数-17"></a>7.11.2.2. <strong>参数</strong></h5>
+<h5 id="参数-17"><a class="anchor" href="#参数-17"></a>7.10.2.2. <strong>参数</strong></h5>
 <div class="paragraph">
 <p><code>str</code> 输入参数包括以下数据类型（double precision，numeric，text，integer等，但必须隐式转换为numeric）。</p>
 </div>
@@ -4169,7 +4145,7 @@ select to_char(123,'xx');
 </div>
 </div>
 <div class="sect4">
-<h5 id="示例-15"><a class="anchor" href="#示例-15"></a>7.11.2.3. 示例</h5>
+<h5 id="示例-15"><a class="anchor" href="#示例-15"></a>7.10.2.3. 示例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_number(1210.73::numeric, 9999.99::numeric);
@@ -4194,15 +4170,15 @@ select to_number('123'::text);
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_date"><a class="anchor" href="#to_date"></a>7.11.3. TO_DATE</h4>
+<h4 id="to_date"><a class="anchor" href="#to_date"></a>7.10.3. TO_DATE</h4>
 <div class="sect4">
-<h5 id="目的-14"><a class="anchor" href="#目的-14"></a>7.11.3.1. 目的</h5>
+<h5 id="目的-14"><a class="anchor" href="#目的-14"></a>7.10.3.1. 目的</h5>
 <div class="paragraph">
 <p>TO_DATE(str,[fmt]) 根据给定的格式将输入参数 str 转换为日期数据类型的值。 如果省略 fmt，则数据将转换为系统默认格式的日期值。 如果 str 为 null，则该函数返回 null。 如果 fmt 是 J，对于 Julian，则 char 必须是整数。 如果无法转换为 DATE，则该函数返回错误。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数-18"><a class="anchor" href="#参数-18"></a>7.11.3.2. <strong>参数</strong></h5>
+<h5 id="参数-18"><a class="anchor" href="#参数-18"></a>7.10.3.2. <strong>参数</strong></h5>
 <div class="paragraph">
 <p><code>str</code> 输入参数（integer，text，可以隐式转换为上述类型，符合日期格式的字符串）。</p>
 </div>
@@ -4211,7 +4187,7 @@ select to_number('123'::text);
 </div>
 </div>
 <div class="sect4">
-<h5 id="示例-16"><a class="anchor" href="#示例-16"></a>7.11.3.3. 示例</h5>
+<h5 id="示例-16"><a class="anchor" href="#示例-16"></a>7.10.3.3. 示例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_date('50-11-28 ','RR-MM-dd ');
@@ -4272,15 +4248,15 @@ select to_date('-4712-07-23 14:31:23', 'syyyy-mm-dd hh24:mi:ss');
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_timestamp"><a class="anchor" href="#to_timestamp"></a>7.11.4. TO_TIMESTAMP</h4>
+<h4 id="to_timestamp"><a class="anchor" href="#to_timestamp"></a>7.10.4. TO_TIMESTAMP</h4>
 <div class="sect4">
-<h5 id="目的-15"><a class="anchor" href="#目的-15"></a>7.11.4.1. 目的</h5>
+<h5 id="目的-15"><a class="anchor" href="#目的-15"></a>7.10.4.1. 目的</h5>
 <div class="paragraph">
 <p>TO_TIMESTAMP(str,[fmt]) 根据给定的格式将输入参数 str 转换为不带时区的时间戳。 如果省略 fmt，则数据将转换为系统默认格式中不带时区值的时间戳。 如果 str 为 null，则该函数返回 null。 如果无法转换为不带时区的时间戳，则该函数返回错误。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数-19"><a class="anchor" href="#参数-19"></a>7.11.4.2. <strong>参数</strong></h5>
+<h5 id="参数-19"><a class="anchor" href="#参数-19"></a>7.10.4.2. <strong>参数</strong></h5>
 <div class="paragraph">
 <p><code>str</code> 输入参数（double precision,text，可以隐式转换为上述类型）。</p>
 </div>
@@ -4289,7 +4265,7 @@ select to_date('-4712-07-23 14:31:23', 'syyyy-mm-dd hh24:mi:ss');
 </div>
 </div>
 <div class="sect4">
-<h5 id="示例-17"><a class="anchor" href="#示例-17"></a>7.11.4.3. 示例</h5>
+<h5 id="示例-17"><a class="anchor" href="#示例-17"></a>7.10.4.3. 示例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_timestamp(1212121212.55::numeric);
@@ -4314,21 +4290,21 @@ select to_timestamp(NULL,NULL);
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_yminterval"><a class="anchor" href="#to_yminterval"></a>7.11.5. TO_YMINTERVAL</h4>
+<h4 id="to_yminterval"><a class="anchor" href="#to_yminterval"></a>7.10.5. TO_YMINTERVAL</h4>
 <div class="sect4">
-<h5 id="目的-16"><a class="anchor" href="#目的-16"></a>7.11.5.1. 目的</h5>
+<h5 id="目的-16"><a class="anchor" href="#目的-16"></a>7.10.5.1. 目的</h5>
 <div class="paragraph">
 <p>TO_YMINTERVAL(str) 将输入参数 str 时间间隔转换为年到月范围内的时间间隔。 只处理年月，其他部分省略。 如果输入参数为NULL，函数返回NULL，如果输入参数格式错误，函数返回错误。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数-20"><a class="anchor" href="#参数-20"></a>7.11.5.2. <strong>参数</strong></h5>
+<h5 id="参数-20"><a class="anchor" href="#参数-20"></a>7.10.5.2. <strong>参数</strong></h5>
 <div class="paragraph">
 <p><code>str</code> 输入参数（text，可以隐式转换为文本类型，必须是时间间隔格式。 兼容 SQL 标准的 SQL 间隔格式， ISO 持续时间格式与 ISO 8601:2004 标准兼容）。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="示例-18"><a class="anchor" href="#示例-18"></a>7.11.5.3. 示例</h5>
+<h5 id="示例-18"><a class="anchor" href="#示例-18"></a>7.10.5.3. 示例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_yminterval('P1Y-2M2D');
@@ -4365,21 +4341,21 @@ select to_yminterval('-01-02');
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_dsinterval"><a class="anchor" href="#to_dsinterval"></a>7.11.6. TO_DSINTERVAL</h4>
+<h4 id="to_dsinterval"><a class="anchor" href="#to_dsinterval"></a>7.10.6. TO_DSINTERVAL</h4>
 <div class="sect4">
-<h5 id="目的-17"><a class="anchor" href="#目的-17"></a>7.11.6.1. 目的</h5>
+<h5 id="目的-17"><a class="anchor" href="#目的-17"></a>7.10.6.1. 目的</h5>
 <div class="paragraph">
 <p>TO_DSINTERVAL(str) 将输入参数 str 的时间间隔转换为天到秒范围内的时间间隔。 输入参数包括：日、时、分、秒和微秒。 如果输入参数为NULL，函数返回NULL，如果输入参数包含年月或格式错误，函数返回错误。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数-21"><a class="anchor" href="#参数-21"></a>7.11.6.2. <strong>参数</strong></h5>
+<h5 id="参数-21"><a class="anchor" href="#参数-21"></a>7.10.6.2. <strong>参数</strong></h5>
 <div class="paragraph">
 <p><code>str</code> 输入参数（text，可以隐式转换为文本类型，必须是时间间隔格式。 兼容 SQL 标准的 SQL 间隔格式， ISO 持续时间格式与 ISO 8601:2004 标准兼容）。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="示例-19"><a class="anchor" href="#示例-19"></a>7.11.6.3. 示例</h5>
+<h5 id="示例-19"><a class="anchor" href="#示例-19"></a>7.10.6.3. 示例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_dsinterval('100 00 :02 :00');
@@ -4422,15 +4398,15 @@ select to_dsinterval('-P100DT20S');
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_timestamp_tz"><a class="anchor" href="#to_timestamp_tz"></a>7.11.7. TO_TIMESTAMP_TZ</h4>
+<h4 id="to_timestamp_tz"><a class="anchor" href="#to_timestamp_tz"></a>7.10.7. TO_TIMESTAMP_TZ</h4>
 <div class="sect4">
-<h5 id="目的-18"><a class="anchor" href="#目的-18"></a>7.11.7.1. 目的</h5>
+<h5 id="目的-18"><a class="anchor" href="#目的-18"></a>7.10.7.1. 目的</h5>
 <div class="paragraph">
 <p>TO_TIMESTAMP_TZ(str,[fmt]) 根据给定的格式将输入参数 str 转换为带时区的时间戳。 如果省略 fmt，则数据将转换为具有系统默认格式带时区值的时间戳。 如果 str 为 null，则该函数返回 null。 如果无法转换为带时区的时间戳，则该函数返回错误。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数-22"><a class="anchor" href="#参数-22"></a>7.11.7.2. <strong>参数</strong></h5>
+<h5 id="参数-22"><a class="anchor" href="#参数-22"></a>7.10.7.2. <strong>参数</strong></h5>
 <div class="paragraph">
 <p><code>str</code> 输入参数（text，可以隐式转换为文本类型）。</p>
 </div>
@@ -4439,7 +4415,7 @@ select to_dsinterval('-P100DT20S');
 </div>
 </div>
 <div class="sect4">
-<h5 id="示例-20"><a class="anchor" href="#示例-20"></a>7.11.7.3. 示例</h5>
+<h5 id="示例-20"><a class="anchor" href="#示例-20"></a>7.10.7.3. 示例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_timestamp_tz('2019','yyyy');
@@ -4476,15 +4452,15 @@ select to_timestamp_tz(NULL);
 </div>
 </div>
 <div class="sect3">
-<h4 id="greatest"><a class="anchor" href="#greatest"></a>7.11.8. GREATEST</h4>
+<h4 id="greatest"><a class="anchor" href="#greatest"></a>7.10.8. GREATEST</h4>
 <div class="sect4">
-<h5 id="目的-19"><a class="anchor" href="#目的-19"></a>7.11.8.1. 目的</h5>
+<h5 id="目的-19"><a class="anchor" href="#目的-19"></a>7.10.8.1. 目的</h5>
 <div class="paragraph">
 <p>GREATEST(expr1,expr2,&#8230;&#8203;) 获取一个或多个表达式的输入列表中的最大值。 如果任何 expr 的计算结果为 NULL，则该函数返回 NULL。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数-23"><a class="anchor" href="#参数-23"></a>7.11.8.2. <strong>参数</strong></h5>
+<h5 id="参数-23"><a class="anchor" href="#参数-23"></a>7.10.8.2. <strong>参数</strong></h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">expr1` 输入参数（任意类型）。
@@ -4494,7 +4470,7 @@ select to_timestamp_tz(NULL);
 </div>
 </div>
 <div class="sect4">
-<h5 id="示例-21"><a class="anchor" href="#示例-21"></a>7.11.8.3. 示例</h5>
+<h5 id="示例-21"><a class="anchor" href="#示例-21"></a>7.10.8.3. 示例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select greatest('a','b','A','B');
@@ -4543,15 +4519,15 @@ SELECT greatest('A', 6, 7, 5000, 'E', 'F','G') A;
 </div>
 </div>
 <div class="sect3">
-<h4 id="least"><a class="anchor" href="#least"></a>7.11.9. LEAST</h4>
+<h4 id="least"><a class="anchor" href="#least"></a>7.10.9. LEAST</h4>
 <div class="sect4">
-<h5 id="目的-20"><a class="anchor" href="#目的-20"></a>7.11.9.1. 目的</h5>
+<h5 id="目的-20"><a class="anchor" href="#目的-20"></a>7.10.9.1. 目的</h5>
 <div class="paragraph">
 <p>LEAST(expr1,expr2,&#8230;&#8203;) 获取一个或多个表达式的输入列表中的最小值。 如果任何 expr 的计算结果为 NULL，则该函数返回 NULL。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="参数-24"><a class="anchor" href="#参数-24"></a>7.11.9.2. <strong>参数</strong></h5>
+<h5 id="参数-24"><a class="anchor" href="#参数-24"></a>7.10.9.2. <strong>参数</strong></h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">expr1` 输入参数（任意类型）。
@@ -4561,7 +4537,7 @@ SELECT greatest('A', 6, 7, 5000, 'E', 'F','G') A;
 </div>
 </div>
 <div class="sect4">
-<h5 id="示例-22"><a class="anchor" href="#示例-22"></a>7.11.9.3. 示例</h5>
+<h5 id="示例-22"><a class="anchor" href="#示例-22"></a>7.10.9.3. 示例</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">SELECT least(1,' 2', '3' );
@@ -4615,7 +4591,7 @@ SELECT least('HARRY', 'HARRIOT', NULL);
 </div>
 </div>
 <div class="sect4">
-<h5 id="fmt日期时间格式的模板模式"><a class="anchor" href="#fmt日期时间格式的模板模式"></a>7.11.9.4. <strong>fmt（日期/时间格式的模板模式）</strong></h5>
+<h5 id="fmt日期时间格式的模板模式"><a class="anchor" href="#fmt日期时间格式的模板模式"></a>7.10.9.4. <strong>fmt（日期/时间格式的模板模式）</strong></h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -4830,7 +4806,7 @@ SELECT least('HARRY', 'HARRIOT', NULL);
 </table>
 </div>
 <div class="sect4">
-<h5 id="fmt1数字格式的模板模式"><a class="anchor" href="#fmt1数字格式的模板模式"></a>7.11.9.5. <strong>fmt1（数字格式的模板模式）</strong></h5>
+<h5 id="fmt1数字格式的模板模式"><a class="anchor" href="#fmt1数字格式的模板模式"></a>7.10.9.5. <strong>fmt1（数字格式的模板模式）</strong></h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -4911,22 +4887,22 @@ SELECT least('HARRY', 'HARRIOT', NULL);
 </div>
 </div>
 <div class="sect2">
-<h3 id="nls_length_semantics参数"><a class="anchor" href="#nls_length_semantics参数"></a>7.12. NLS_LENGTH_SEMANTICS参数</h3>
+<h3 id="nls_length_semantics参数"><a class="anchor" href="#nls_length_semantics参数"></a>7.11. NLS_LENGTH_SEMANTICS参数</h3>
 <div class="sect3">
-<h4 id="概述-2"><a class="anchor" href="#概述-2"></a>7.12.1. 概述</h4>
+<h4 id="概述-2"><a class="anchor" href="#概述-2"></a>7.11.1. 概述</h4>
 <div class="paragraph">
 <p>NLS_LENGTH_SEMANTICS 使您能够使用字节或字符长度语义创建 CHAR 和 VARCHAR2 列。 现有列不受影响。 在这种情况下，默认语义是 BYTE。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="语法-6"><a class="anchor" href="#语法-6"></a>7.12.2. 语法</h4>
+<h4 id="语法-6"><a class="anchor" href="#语法-6"></a>7.11.2. 语法</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">SET NLS_LENGTH_SEMANTICS TO [NONE | BYTE | CHAR];</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="取值范围说明"><a class="anchor" href="#取值范围说明"></a>7.12.2.1. <strong>取值范围说明</strong></h5>
+<h5 id="取值范围说明"><a class="anchor" href="#取值范围说明"></a>7.11.2.1. <strong>取值范围说明</strong></h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">BYTE:数据以字节长度来存储。
@@ -4937,9 +4913,9 @@ NONE:数据使用原生PostgreSQL存储方式。</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="用例"><a class="anchor" href="#用例"></a>7.12.3. 用例</h4>
+<h4 id="用例"><a class="anchor" href="#用例"></a>7.11.3. 用例</h4>
 <div class="sect4">
-<h5 id="测试char"><a class="anchor" href="#测试char"></a>7.12.3.1. --测试“CHAR”</h5>
+<h5 id="测试char"><a class="anchor" href="#测试char"></a>7.11.3.1. --测试“CHAR”</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">create table test(a varchar2(5));
@@ -4960,7 +4936,7 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="测试byte"><a class="anchor" href="#测试byte"></a>7.12.3.2. --测试“BYTE”</h5>
+<h5 id="测试byte"><a class="anchor" href="#测试byte"></a>7.11.3.2. --测试“BYTE”</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">SET NLS_LENGTH_SEMANTICS TO BYTE;
@@ -4982,15 +4958,15 @@ ERROR:  value too long for type varchar2(5 byte)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="varchar2size类型"><a class="anchor" href="#varchar2size类型"></a>7.13. VARCHAR2(size)类型</h3>
+<h3 id="varchar2size类型"><a class="anchor" href="#varchar2size类型"></a>7.12. VARCHAR2(size)类型</h3>
 <div class="sect3">
-<h4 id="概述-3"><a class="anchor" href="#概述-3"></a>7.13.1. 概述</h4>
+<h4 id="概述-3"><a class="anchor" href="#概述-3"></a>7.12.1. 概述</h4>
 <div class="paragraph">
 <p>具有最大长度大小字节或字符的可变长度字符串。 您必须为 VARCHAR2 指定大小。 最小大小为 1 个字节或 1 个字符。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="语法-7"><a class="anchor" href="#语法-7"></a>7.13.2. 语法</h4>
+<h4 id="语法-7"><a class="anchor" href="#语法-7"></a>7.12.2. 语法</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">VARCHAR2(size)</code></pre>
@@ -4998,7 +4974,7 @@ ERROR:  value too long for type varchar2(5 byte)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="用例-2"><a class="anchor" href="#用例-2"></a>7.13.3. 用例</h4>
+<h4 id="用例-2"><a class="anchor" href="#用例-2"></a>7.12.3. 用例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">create table test(a varchar2(5));
@@ -5020,12 +4996,12 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="plisql"><a class="anchor" href="#plisql"></a>7.14. PL/iSQL</h3>
+<h3 id="plisql"><a class="anchor" href="#plisql"></a>7.13. PL/iSQL</h3>
 <div class="paragraph">
 <p>PL/iSQL 是 IvorySQL 的过程语言，用于为 IvorySQL 编写自定义函数、过程和包。 PL/iSQL 派生自 PostgreSQL 的 PL/pgsql，并增加了一些功能，但在语法上 PL/iSQL 更接近 Oracle 的 PL/SQL。 本文档描述了 PL/iSQL 程序的基本结构和构造。</p>
 </div>
 <div class="sect3">
-<h4 id="plisql-程序的结构"><a class="anchor" href="#plisql-程序的结构"></a>7.14.1. PL/iSQL 程序的结构</h4>
+<h4 id="plisql-程序的结构"><a class="anchor" href="#plisql-程序的结构"></a>7.13.1. PL/iSQL 程序的结构</h4>
 <div class="paragraph">
 <p>iSQL 是一种程序化的块结构语言，支持四种不同的 程序类型，即 <strong>PACKAGES</strong>、<strong>PROCEDURES</strong>、<strong>FUNCTIONS</strong> 和 <strong>TRIGGERS</strong>。 iSQL 对每种类型的受支持程序使用相同的块结构。 一个块最多由三个部分组成：声明部分，可执行文件，和异常部分。 而声明和异常部分是可选的。</p>
 </div>
@@ -5108,7 +5084,7 @@ END;
 </div>
 </div>
 <div class="sect3">
-<h4 id="psql-对-plisql-程序的支持"><a class="anchor" href="#psql-对-plisql-程序的支持"></a>7.14.2. <strong>psql</strong> 对 PL/iSQL 程序的支持</h4>
+<h4 id="psql-对-plisql-程序的支持"><a class="anchor" href="#psql-对-plisql-程序的支持"></a>7.13.2. <strong>psql</strong> 对 PL/iSQL 程序的支持</h4>
 <div class="paragraph">
 <p>要从 psql 客户端创建 PL/iSQL 程序，您可以使用类似于 PL/pgSQL 的<strong>$$</strong>语法</p>
 </div>
@@ -5133,9 +5109,9 @@ END;
 </div>
 </div>
 <div class="sect3">
-<h4 id="plisql-程序语法"><a class="anchor" href="#plisql-程序语法"></a>7.14.3. PL/iSQL 程序语法</h4>
+<h4 id="plisql-程序语法"><a class="anchor" href="#plisql-程序语法"></a>7.13.3. PL/iSQL 程序语法</h4>
 <div class="sect4">
-<h5 id="procedures"><a class="anchor" href="#procedures"></a>7.14.3.1. PROCEDURES</h5>
+<h5 id="procedures"><a class="anchor" href="#procedures"></a>7.13.3.1. PROCEDURES</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE [OR REPLACE] PROCEDURE procedure_name [(parameter_list)]
@@ -5150,7 +5126,7 @@ END;
 </div>
 </div>
 <div class="sect4">
-<h5 id="functions"><a class="anchor" href="#functions"></a>7.14.3.2. FUNCTIONS</h5>
+<h5 id="functions"><a class="anchor" href="#functions"></a>7.13.3.2. FUNCTIONS</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE [OR REPLACE] FUNCTION function_name ([parameter_list])
@@ -5166,9 +5142,9 @@ END;
 </div>
 </div>
 <div class="sect4">
-<h5 id="packages"><a class="anchor" href="#packages"></a>7.14.3.3. PACKAGES</h5>
+<h5 id="packages"><a class="anchor" href="#packages"></a>7.13.3.3. PACKAGES</h5>
 <div class="sect5">
-<h6 id="package-header"><a class="anchor" href="#package-header"></a>7.14.3.3.1. PACKAGE HEADER</h6>
+<h6 id="package-header"><a class="anchor" href="#package-header"></a>7.13.3.3.1. PACKAGE HEADER</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE [ OR REPLACE ] PACKAGE [schema.] *package_name* [invoker_rights_clause] [IS | AS]
@@ -5229,7 +5205,7 @@ parameter_declaration:
 </div>
 </div>
 <div class="sect5">
-<h6 id="package-body"><a class="anchor" href="#package-body"></a>7.14.3.3.2. PACKAGE BODY</h6>
+<h6 id="package-body"><a class="anchor" href="#package-body"></a>7.13.3.3.2. PACKAGE BODY</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE [ OR REPLACE ] PACKAGE BODY [schema.] package_name [IS | AS]
@@ -5283,9 +5259,9 @@ statement:
 </div>
 </div>
 <div class="sect2">
-<h3 id="层级查询"><a class="anchor" href="#层级查询"></a>7.15. 层级查询</h3>
+<h3 id="层级查询"><a class="anchor" href="#层级查询"></a>7.14. 层级查询</h3>
 <div class="sect3">
-<h4 id="语法-8"><a class="anchor" href="#语法-8"></a>7.15.1. 语法</h4>
+<h4 id="语法-8"><a class="anchor" href="#语法-8"></a>7.14.1. 语法</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined"> {
@@ -5308,7 +5284,7 @@ statement:
 </div>
 </div>
 <div class="sect3">
-<h4 id="附加列"><a class="anchor" href="#附加列"></a>7.15.2. <strong>附加列</strong></h4>
+<h4 id="附加列"><a class="anchor" href="#附加列"></a>7.14.2. <strong>附加列</strong></h4>
 <div class="paragraph">
 <p><strong>LEVEL</strong> 返回层次结构中当前行的级别，从根节点的 1 开始，之后每级别递增 1。</p>
 </div>
@@ -5320,7 +5296,7 @@ statement:
 </div>
 </div>
 <div class="sect3">
-<h4 id="限制"><a class="anchor" href="#限制"></a>7.15.3. <strong>限制</strong></h4>
+<h4 id="限制"><a class="anchor" href="#限制"></a>7.14.3. <strong>限制</strong></h4>
 <div class="paragraph">
 <p>目前此功能有以下限制：</p>
 </div>

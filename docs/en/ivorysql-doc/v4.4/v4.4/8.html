@@ -3316,25 +3316,20 @@ SELECT concat_lower_or_upper(a =&gt; 'Hello', uppercase =&gt; true, b =&gt; 'Wor
 <div class="sect1">
 <h2 id="oracle-compatible-features"><a class="anchor" href="#oracle-compatible-features"></a>7. Oracle Compatible Features</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="configuration-parameters"><a class="anchor" href="#configuration-parameters"></a>7.1. Configuration parameters</h3>
 <div class="paragraph">
-<p>Parameters are set in the same way as in native IvorySQL. All parameter names are case-insensitive. Each parameter takes a value of one of the following five types: boolean, string, integer, floating point, or enum.</p>
+<p><strong>Refer to:</strong></p>
 </div>
-<div class="sect3">
-<h4 id="ivorysql-compatible_mode-enum"><a class="anchor" href="#ivorysql-compatible_mode-enum"></a>7.1.1. <code>ivorysql.compatible_mode (enum)</code></h4>
-<div class="paragraph">
-<p>This parameter controls the behavior of the database server. If it is set to <code>pg</code>, which means it is a native installation and the server will be installed as a native PG. If it is set to <code>oracle</code>, then the query output and overall system behavior will change, as it will be more Oracle-like.</p>
-</div>
-<div class="paragraph">
-<p>When set to <code>oracle</code>, this parameter will implicitly add a Schema with the same name to <code>search_path</code>. so that Oracle-compatible objects can be located.</p>
-</div>
-</div>
+<div class="ulist">
+<ul>
+<li>
+<p>[GUC Variables](<a href="https://docs.ivorysql.org/en/ivorysql-doc/v4.4/v4.4/15" class="bare">https://docs.ivorysql.org/en/ivorysql-doc/v4.4/v4.4/15</a>)</p>
+</li>
+</ul>
 </div>
 <div class="sect2">
-<h3 id="changing-tables"><a class="anchor" href="#changing-tables"></a>7.2. Changing tables</h3>
+<h3 id="changing-tables"><a class="anchor" href="#changing-tables"></a>7.1. Changing tables</h3>
 <div class="sect3">
-<h4 id="syntax"><a class="anchor" href="#syntax"></a>7.2.1. syntax</h4>
+<h4 id="syntax"><a class="anchor" href="#syntax"></a>7.1.1. syntax</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">ALTER TABLE [ IF EXISTS ] [ ONLY ] name [ * ]
@@ -3357,7 +3352,7 @@ alter_using:
 </div>
 </div>
 <div class="sect3">
-<h4 id="parameters-11"><a class="anchor" href="#parameters-11"></a>7.2.2. <strong>parameters</strong></h4>
+<h4 id="parameters-11"><a class="anchor" href="#parameters-11"></a>7.1.2. <strong>parameters</strong></h4>
 <div class="paragraph">
 <p><code>name</code> Table name.
 <code>cloumn_name</code> Column name.
@@ -3370,7 +3365,7 @@ alter_using:
 </div>
 </div>
 <div class="sect3">
-<h4 id="example"><a class="anchor" href="#example"></a>7.2.3. Example</h4>
+<h4 id="example"><a class="anchor" href="#example"></a>7.1.3. Example</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">ADD:
@@ -3427,9 +3422,9 @@ alter table tb_test3 drop column(id);
 </div>
 </div>
 <div class="sect2">
-<h3 id="delete-table"><a class="anchor" href="#delete-table"></a>7.3. Delete table</h3>
+<h3 id="delete-table"><a class="anchor" href="#delete-table"></a>7.2. Delete table</h3>
 <div class="sect3">
-<h4 id="syntax-2"><a class="anchor" href="#syntax-2"></a>7.3.1. Syntax</h4>
+<h4 id="syntax-2"><a class="anchor" href="#syntax-2"></a>7.2.1. Syntax</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">[ WITH [ RECURSIVE ] with_query [, ...] ]
@@ -3441,7 +3436,7 @@ DELETE [ FROM ] [ ONLY ] table_name [ * ] [ [ AS ] alias ]
 </div>
 </div>
 <div class="sect3">
-<h4 id="parameters-12"><a class="anchor" href="#parameters-12"></a>7.3.2. Parameters</h4>
+<h4 id="parameters-12"><a class="anchor" href="#parameters-12"></a>7.2.2. Parameters</h4>
 <div class="paragraph">
 <p><code>table_name</code> The name of the table.
 <code>alias</code> The table alias.
@@ -3453,7 +3448,7 @@ DELETE [ FROM ] [ ONLY ] table_name [ * ] [ [ AS ] alias ]
 </div>
 </div>
 <div class="sect3">
-<h4 id="uses"><a class="anchor" href="#uses"></a>7.3.3. uses</h4>
+<h4 id="uses"><a class="anchor" href="#uses"></a>7.2.3. uses</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">create table tb_test4(id int, flg char(10));
@@ -3474,9 +3469,9 @@ table tb_test4;
 </div>
 </div>
 <div class="sect2">
-<h3 id="update-table"><a class="anchor" href="#update-table"></a>7.4. Update table</h3>
+<h3 id="update-table"><a class="anchor" href="#update-table"></a>7.3. Update table</h3>
 <div class="sect3">
-<h4 id="syntax-3"><a class="anchor" href="#syntax-3"></a>7.4.1. Syntax</h4>
+<h4 id="syntax-3"><a class="anchor" href="#syntax-3"></a>7.3.1. Syntax</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">[ WITH [ RECURSIVE ] with_query [, ...] ]
@@ -3492,7 +3487,7 @@ UPDATE [ ONLY ] table_name [ * ] [ [ AS ] alias ]
 </div>
 </div>
 <div class="sect3">
-<h4 id="parameters-13"><a class="anchor" href="#parameters-13"></a>7.4.2. <strong>parameters</strong></h4>
+<h4 id="parameters-13"><a class="anchor" href="#parameters-13"></a>7.3.2. <strong>parameters</strong></h4>
 <div class="paragraph">
 <p><code>table_name</code> Table name.
 <code>alias</code> Table alias.
@@ -3507,7 +3502,7 @@ UPDATE [ ONLY ] table_name [ * ] [ [ AS ] alias ]
 </div>
 </div>
 <div class="sect3">
-<h4 id="example-2"><a class="anchor" href="#example-2"></a>7.4.3. Example</h4>
+<h4 id="example-2"><a class="anchor" href="#example-2"></a>7.3.3. Example</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">create table tb_test5(id int, flg char(10));
@@ -3528,9 +3523,9 @@ Id  |    flg
 </div>
 </div>
 <div class="sect2">
-<h3 id="group-by"><a class="anchor" href="#group-by"></a>7.5. GROUP BY</h3>
+<h3 id="group-by"><a class="anchor" href="#group-by"></a>7.4. GROUP BY</h3>
 <div class="sect3">
-<h4 id="example-3"><a class="anchor" href="#example-3"></a>7.5.1. Example</h4>
+<h4 id="example-3"><a class="anchor" href="#example-3"></a>7.4.1. Example</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">set ivorysql.compatible_mode to oracle;
@@ -3546,9 +3541,9 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect2">
-<h3 id="union"><a class="anchor" href="#union"></a>7.6. UNION</h3>
+<h3 id="union"><a class="anchor" href="#union"></a>7.5. UNION</h3>
 <div class="sect3">
-<h4 id="example-4"><a class="anchor" href="#example-4"></a>7.6.1. Example</h4>
+<h4 id="example-4"><a class="anchor" href="#example-4"></a>7.5.1. Example</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select null union select null union select 1.2;
@@ -3562,9 +3557,9 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect2">
-<h3 id="minus-operator"><a class="anchor" href="#minus-operator"></a>7.7. Minus Operator</h3>
+<h3 id="minus-operator"><a class="anchor" href="#minus-operator"></a>7.6. Minus Operator</h3>
 <div class="sect3">
-<h4 id="syntax-4"><a class="anchor" href="#syntax-4"></a>7.7.1. Syntax</h4>
+<h4 id="syntax-4"><a class="anchor" href="#syntax-4"></a>7.6.1. Syntax</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select_statement MINUS [ ALL | DISTINCT ] select_statement;</code></pre>
@@ -3572,7 +3567,7 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect3">
-<h4 id="parameters-14"><a class="anchor" href="#parameters-14"></a>7.7.2. Parameters</h4>
+<h4 id="parameters-14"><a class="anchor" href="#parameters-14"></a>7.6.2. Parameters</h4>
 <div class="paragraph">
 <p><code>select_statement</code> Any SELECT statement without the ORDER BY, LIMIT, FOR NO KEY UPDATE, FOR UPDATE, FOR SHARE, and FOR KEY SHARE clauses.
 <code>ALL keyword</code> contains duplicate row results.
@@ -3580,7 +3575,7 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect3">
-<h4 id="example-5"><a class="anchor" href="#example-5"></a>7.7.3. Example</h4>
+<h4 id="example-5"><a class="anchor" href="#example-5"></a>7.6.3. Example</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select * from generate_series(1, 3) g(i) MINUS select * from generate_series(1, 3) g(i) where i = 1;
@@ -3594,15 +3589,15 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect2">
-<h3 id="escape-characters"><a class="anchor" href="#escape-characters"></a>7.8. Escape characters</h3>
+<h3 id="escape-characters"><a class="anchor" href="#escape-characters"></a>7.7. Escape characters</h3>
 <div class="sect3">
-<h4 id="overview-2"><a class="anchor" href="#overview-2"></a>7.8.1. Overview</h4>
+<h4 id="overview-2"><a class="anchor" href="#overview-2"></a>7.7.1. Overview</h4>
 <div class="paragraph">
 <p>Use q\' to escape special characters. q\' escaped characters are usually used after ! [] {} () \&lt;&gt; and other escaping characters, you can also use \, letters, numbers, \=, +, -, *, \&amp;, \$, \%, #, etc., no spaces are allowed.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="example-of"><a class="anchor" href="#example-of"></a>7.8.2. Example of</h4>
+<h4 id="example-of"><a class="anchor" href="#example-of"></a>7.7.2. Example of</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select q''' is goog '';
@@ -3615,9 +3610,9 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect2">
-<h3 id="sequence"><a class="anchor" href="#sequence"></a>7.9. Sequence</h3>
+<h3 id="sequence"><a class="anchor" href="#sequence"></a>7.8. Sequence</h3>
 <div class="sect3">
-<h4 id="syntax-5"><a class="anchor" href="#syntax-5"></a>7.9.1. Syntax</h4>
+<h4 id="syntax-5"><a class="anchor" href="#syntax-5"></a>7.8.1. Syntax</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">SELECT [ database {schema} | schema ] sequence {nextval | currval};</code></pre>
@@ -3625,13 +3620,13 @@ ERROR:  column "students.student_name" must appear in the GROUP BY clause or be 
 </div>
 </div>
 <div class="sect3">
-<h4 id="parameters-15"><a class="anchor" href="#parameters-15"></a>7.9.2. Parameters</h4>
+<h4 id="parameters-15"><a class="anchor" href="#parameters-15"></a>7.8.2. Parameters</h4>
 <div class="paragraph">
 <p>`sequence`Sequence Name.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="example-6"><a class="anchor" href="#example-6"></a>7.9.3. Example</h4>
+<h4 id="example-6"><a class="anchor" href="#example-6"></a>7.8.3. Example</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">create sequence sq;
@@ -3652,11 +3647,11 @@ select sq.currval;
 </div>
 </div>
 <div class="sect2">
-<h3 id="compatible-with-time-and-date-functions"><a class="anchor" href="#compatible-with-time-and-date-functions"></a>7.10. Compatible with time and date functions</h3>
+<h3 id="compatible-with-time-and-date-functions"><a class="anchor" href="#compatible-with-time-and-date-functions"></a>7.9. Compatible with time and date functions</h3>
 <div class="sect3">
-<h4 id="from_tz"><a class="anchor" href="#from_tz"></a>7.10.1. from_tz</h4>
+<h4 id="from_tz"><a class="anchor" href="#from_tz"></a>7.9.1. from_tz</h4>
 <div class="sect4">
-<h5 id="purpose"><a class="anchor" href="#purpose"></a>7.10.1.1. Purpose</h5>
+<h5 id="purpose"><a class="anchor" href="#purpose"></a>7.9.1.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">Convert the given timestamp without time zone to the specified timestamp with time zone, or return NULL if the specified time zone or timestamp is NULL.</code></pre>
@@ -3664,7 +3659,7 @@ select sq.currval;
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-16"><a class="anchor" href="#parameters-16"></a>7.10.1.2. Parameters</h5>
+<h5 id="parameters-16"><a class="anchor" href="#parameters-16"></a>7.9.1.2. Parameters</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3687,7 +3682,7 @@ select sq.currval;
 </table>
 </div>
 <div class="sect4">
-<h5 id="example-7"><a class="anchor" href="#example-7"></a>7.10.1.3. Example</h5>
+<h5 id="example-7"><a class="anchor" href="#example-7"></a>7.9.1.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select from_tz('2021-11-08 09:12:39','Asia/Shanghai') from dual;
@@ -3717,9 +3712,9 @@ select from_tz('2021-11-08 09:12:31',NULL) from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="systimestamp"><a class="anchor" href="#systimestamp"></a>7.10.2. systimestamp</h4>
+<h4 id="systimestamp"><a class="anchor" href="#systimestamp"></a>7.9.2. systimestamp</h4>
 <div class="sect4">
-<h5 id="purpose-2"><a class="anchor" href="#purpose-2"></a>7.10.2.1. Purpose</h5>
+<h5 id="purpose-2"><a class="anchor" href="#purpose-2"></a>7.9.2.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">Get the timestamp of the current database system.</code></pre>
@@ -3727,7 +3722,7 @@ select from_tz('2021-11-08 09:12:31',NULL) from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-8"><a class="anchor" href="#example-8"></a>7.10.2.2. Example</h5>
+<h5 id="example-8"><a class="anchor" href="#example-8"></a>7.9.2.2. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select oracle.systimestamp();
@@ -3745,9 +3740,9 @@ select systimestamp;
 </div>
 </div>
 <div class="sect3">
-<h4 id="sys_extract_utc"><a class="anchor" href="#sys_extract_utc"></a>7.10.3. sys_extract_utc</h4>
+<h4 id="sys_extract_utc"><a class="anchor" href="#sys_extract_utc"></a>7.9.3. sys_extract_utc</h4>
 <div class="sect4">
-<h5 id="purpose-3"><a class="anchor" href="#purpose-3"></a>7.10.3.1. Purpose</h5>
+<h5 id="purpose-3"><a class="anchor" href="#purpose-3"></a>7.9.3.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">Converts the given timestamp with time zone to UTC time without time zone.</code></pre>
@@ -3755,7 +3750,7 @@ select systimestamp;
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-description"><a class="anchor" href="#parameters-description"></a>7.10.3.2. Parameters Description</h5>
+<h5 id="parameters-description"><a class="anchor" href="#parameters-description"></a>7.9.3.2. Parameters Description</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3774,7 +3769,7 @@ select systimestamp;
 </table>
 </div>
 <div class="sect4">
-<h5 id="example-9"><a class="anchor" href="#example-9"></a>7.10.3.3. Example</h5>
+<h5 id="example-9"><a class="anchor" href="#example-9"></a>7.9.3.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select sys_extract_utc('2018-03-28 11:30:00.00 +09:00'::timestamptz) from dual;
@@ -3793,9 +3788,9 @@ select oracle.sys_extract_utc(NULL) from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="sessiontimezone"><a class="anchor" href="#sessiontimezone"></a>7.10.4. sessiontimezone</h4>
+<h4 id="sessiontimezone"><a class="anchor" href="#sessiontimezone"></a>7.9.4. sessiontimezone</h4>
 <div class="sect4">
-<h5 id="purpose-4"><a class="anchor" href="#purpose-4"></a>7.10.4.1. Purpose</h5>
+<h5 id="purpose-4"><a class="anchor" href="#purpose-4"></a>7.9.4.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">Gets the time zone of the current session.</code></pre>
@@ -3803,7 +3798,7 @@ select oracle.sys_extract_utc(NULL) from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-10"><a class="anchor" href="#example-10"></a>7.10.4.2. Example</h5>
+<h5 id="example-10"><a class="anchor" href="#example-10"></a>7.9.4.2. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select sessiontimezone() from dual;
@@ -3824,9 +3819,9 @@ set timezone to UTC;
 </div>
 </div>
 <div class="sect3">
-<h4 id="next_day"><a class="anchor" href="#next_day"></a>7.10.5. next_day</h4>
+<h4 id="next_day"><a class="anchor" href="#next_day"></a>7.9.5. next_day</h4>
 <div class="sect4">
-<h5 id="purpose-5"><a class="anchor" href="#purpose-5"></a>7.10.5.1. Purpose</h5>
+<h5 id="purpose-5"><a class="anchor" href="#purpose-5"></a>7.9.5.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">next_day returns the date of the first weekday with the same format name, which is later than the current date. The return type is always DATE, regardless of the date's data type. The return value has the same hour, minute, and second parts as the Parameters date.</code></pre>
@@ -3834,7 +3829,7 @@ set timezone to UTC;
 </div>
 </div>
 <div class="sect4">
-<h5 id="parametersdescription"><a class="anchor" href="#parametersdescription"></a>7.10.5.2. ParametersDescription</h5>
+<h5 id="parametersdescription"><a class="anchor" href="#parametersdescription"></a>7.9.5.2. ParametersDescription</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3857,7 +3852,7 @@ set timezone to UTC;
 </table>
 </div>
 <div class="sect4">
-<h5 id="example-11"><a class="anchor" href="#example-11"></a>7.10.5.3. Example</h5>
+<h5 id="example-11"><a class="anchor" href="#example-11"></a>7.9.5.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select next_day(to_timestamp('2020-02-29 14:40:50', 'YYYY-MM-DD HH24:MI:SS'), 'Tuesday') from dual;
@@ -3882,9 +3877,9 @@ select next_day(oracle.date '2020-09-15 12:13:29', 6) from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="last_day"><a class="anchor" href="#last_day"></a>7.10.6. last_day</h4>
+<h4 id="last_day"><a class="anchor" href="#last_day"></a>7.9.6. last_day</h4>
 <div class="sect4">
-<h5 id="purpose-6"><a class="anchor" href="#purpose-6"></a>7.10.6.1. Purpose</h5>
+<h5 id="purpose-6"><a class="anchor" href="#purpose-6"></a>7.9.6.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">last_day returns the last day of the month in which the slot date falls.</code></pre>
@@ -3892,7 +3887,7 @@ select next_day(oracle.date '2020-09-15 12:13:29', 6) from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="parametersdescription-2"><a class="anchor" href="#parametersdescription-2"></a>7.10.6.2. ParametersDescription</h5>
+<h5 id="parametersdescription-2"><a class="anchor" href="#parametersdescription-2"></a>7.9.6.2. ParametersDescription</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3911,7 +3906,7 @@ select next_day(oracle.date '2020-09-15 12:13:29', 6) from dual;
 </table>
 </div>
 <div class="sect4">
-<h5 id="example-12"><a class="anchor" href="#example-12"></a>7.10.6.3. Example</h5>
+<h5 id="example-12"><a class="anchor" href="#example-12"></a>7.9.6.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select last_day(timestamp '2020-05-17 13:27:19') from dual;
@@ -3936,9 +3931,9 @@ select last_day('-0004-2-1 13:27:19'::oracle.date) from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="add_months"><a class="anchor" href="#add_months"></a>7.10.7. add_months</h4>
+<h4 id="add_months"><a class="anchor" href="#add_months"></a>7.9.7. add_months</h4>
 <div class="sect4">
-<h5 id="purpose-7"><a class="anchor" href="#purpose-7"></a>7.10.7.1. Purpose</h5>
+<h5 id="purpose-7"><a class="anchor" href="#purpose-7"></a>7.9.7.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">add_months returns the date plus an integer month. date Parameters can be date-time values or any value that can be implicitly converted to DATE. integer Parameters can be an integer or any value that can be implicitly converted to an integer.</code></pre>
@@ -3946,7 +3941,7 @@ select last_day('-0004-2-1 13:27:19'::oracle.date) from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="parametersdescription-3"><a class="anchor" href="#parametersdescription-3"></a>7.10.7.2. ParametersDescription</h5>
+<h5 id="parametersdescription-3"><a class="anchor" href="#parametersdescription-3"></a>7.9.7.2. ParametersDescription</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -3969,7 +3964,7 @@ select last_day('-0004-2-1 13:27:19'::oracle.date) from dual;
 </table>
 </div>
 <div class="sect4">
-<h5 id="example-13"><a class="anchor" href="#example-13"></a>7.10.7.3. Example</h5>
+<h5 id="example-13"><a class="anchor" href="#example-13"></a>7.9.7.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select add_months(date '2020-02-15',7) from dual;
@@ -3988,9 +3983,9 @@ select add_months(timestamp '2018-12-15 19:12:09',12) from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="sysdate"><a class="anchor" href="#sysdate"></a>7.10.8. sysdate</h4>
+<h4 id="sysdate"><a class="anchor" href="#sysdate"></a>7.9.8. sysdate</h4>
 <div class="sect4">
-<h5 id="purpose-8"><a class="anchor" href="#purpose-8"></a>7.10.8.1. Purpose</h5>
+<h5 id="purpose-8"><a class="anchor" href="#purpose-8"></a>7.9.8.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">sysdate returns the operating system time of the database server.</code></pre>
@@ -3998,7 +3993,7 @@ select add_months(timestamp '2018-12-15 19:12:09',12) from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-14"><a class="anchor" href="#example-14"></a>7.10.8.2. Example</h5>
+<h5 id="example-14"><a class="anchor" href="#example-14"></a>7.9.8.2. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select sysdate;
@@ -4017,9 +4012,9 @@ select sysdate();
 </div>
 </div>
 <div class="sect3">
-<h4 id="new_time"><a class="anchor" href="#new_time"></a>7.10.9. new_time</h4>
+<h4 id="new_time"><a class="anchor" href="#new_time"></a>7.9.9. new_time</h4>
 <div class="sect4">
-<h5 id="purpose-9"><a class="anchor" href="#purpose-9"></a>7.10.9.1. Purpose</h5>
+<h5 id="purpose-9"><a class="anchor" href="#purpose-9"></a>7.9.9.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">Convert the time of the first time zone to the time of the second time zone. The time zones include "ast", "adt", "bst", "bdt", "cst", "cdt", "est", "edt", "gmt", "hst", "hdt", "mst", "mdt", "nst", "pst", "pdt", "yst", "ydt".</code></pre>
@@ -4027,7 +4022,7 @@ select sysdate();
 </div>
 </div>
 <div class="sect4">
-<h5 id="parametersdescription-4"><a class="anchor" href="#parametersdescription-4"></a>7.10.9.2. ParametersDescription</h5>
+<h5 id="parametersdescription-4"><a class="anchor" href="#parametersdescription-4"></a>7.9.9.2. ParametersDescription</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -4054,7 +4049,7 @@ select sysdate();
 </table>
 </div>
 <div class="sect4">
-<h5 id="example-15"><a class="anchor" href="#example-15"></a>7.10.9.3. Example</h5>
+<h5 id="example-15"><a class="anchor" href="#example-15"></a>7.9.9.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select new_time(timestamp '2020-12-12 17:45:18', 'AST', 'ADT') from dual;
@@ -4079,9 +4074,9 @@ select new_time(timestamp '2020-12-12 17:45:18', 'CST', 'CDT') from dual;
 </div>
 </div>
 <div class="sect3">
-<h4 id="trunc"><a class="anchor" href="#trunc"></a>7.10.10. trunc</h4>
+<h4 id="trunc"><a class="anchor" href="#trunc"></a>7.9.10. trunc</h4>
 <div class="sect4">
-<h5 id="purpose-10"><a class="anchor" href="#purpose-10"></a>7.10.10.1. Purpose</h5>
+<h5 id="purpose-10"><a class="anchor" href="#purpose-10"></a>7.9.10.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">The trunc function returns a date, truncated in the specified format. fmt includes "Y", "YY", "YYYY", "YYYY", "YEAR", "SYYYY", "SYEAR", "I", "IY", "IYY", "IYYY", "Q", "WW", "Iw", "W", "DAY", "DY", "D", " MONTH", "MONn", "MM", "RM", "CC", "SCC", "DDD", "DD", "J", "HH", "HH12", "HH24", "MI".</code></pre>
@@ -4089,7 +4084,7 @@ select new_time(timestamp '2020-12-12 17:45:18', 'CST', 'CDT') from dual;
 </div>
 </div>
 <div class="sect4">
-<h5 id="parametersdescription-5"><a class="anchor" href="#parametersdescription-5"></a>7.10.10.2. ParametersDescription</h5>
+<h5 id="parametersdescription-5"><a class="anchor" href="#parametersdescription-5"></a>7.9.10.2. ParametersDescription</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -4112,7 +4107,7 @@ select new_time(timestamp '2020-12-12 17:45:18', 'CST', 'CDT') from dual;
 </table>
 </div>
 <div class="sect4">
-<h5 id="example-16"><a class="anchor" href="#example-16"></a>7.10.10.3. Example</h5>
+<h5 id="example-16"><a class="anchor" href="#example-16"></a>7.9.10.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select trunc(timestamp '2020-07-28 19:16:12', 'Q');
@@ -4131,9 +4126,9 @@ select trunc(timestamptz '2020-09-27 18:30:21 + 08', 'MONTH');
 </div>
 </div>
 <div class="sect3">
-<h4 id="round"><a class="anchor" href="#round"></a>7.10.11. round</h4>
+<h4 id="round"><a class="anchor" href="#round"></a>7.9.11. round</h4>
 <div class="sect4">
-<h5 id="purpose-11"><a class="anchor" href="#purpose-11"></a>7.10.11.1. Purpose</h5>
+<h5 id="purpose-11"><a class="anchor" href="#purpose-11"></a>7.9.11.1. Purpose</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">The round function returns a date, rounded to the specified format. fmt includes "Y", "YY", "YYYY", "YYYY", "YEAR", "SYYYY", "SYEAR", "I", "IY", "IYY", "IYYY", "Q", "WW", "Iw", "W", "DAY", "DY", "D ", "MONTH", "MONn", "MM", "RM", "CC", "SCC", "DDD", "DD", "J", "HH", "HH12", "HH24", "MI".</code></pre>
@@ -4141,7 +4136,7 @@ select trunc(timestamptz '2020-09-27 18:30:21 + 08', 'MONTH');
 </div>
 </div>
 <div class="sect4">
-<h5 id="parametersdescription-6"><a class="anchor" href="#parametersdescription-6"></a>7.10.11.2. ParametersDescription</h5>
+<h5 id="parametersdescription-6"><a class="anchor" href="#parametersdescription-6"></a>7.9.11.2. ParametersDescription</h5>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 50%;">
@@ -4164,7 +4159,7 @@ select trunc(timestamptz '2020-09-27 18:30:21 + 08', 'MONTH');
 </table>
 </div>
 <div class="sect4">
-<h5 id="example-17"><a class="anchor" href="#example-17"></a>7.10.11.3. Example</h5>
+<h5 id="example-17"><a class="anchor" href="#example-17"></a>7.9.11.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">select round(timestamp '2050-06-12 16:40:55', 'IYYY');
@@ -4178,24 +4173,24 @@ select trunc(timestamptz '2020-09-27 18:30:21 + 08', 'MONTH');
 </div>
 </div>
 <div class="sect2">
-<h3 id="compatible-conversion-and-comparison-and-null-related-functions"><a class="anchor" href="#compatible-conversion-and-comparison-and-null-related-functions"></a>7.11. Compatible conversion and comparison and NULL-related functions</h3>
+<h3 id="compatible-conversion-and-comparison-and-null-related-functions"><a class="anchor" href="#compatible-conversion-and-comparison-and-null-related-functions"></a>7.10. Compatible conversion and comparison and NULL-related functions</h3>
 <div class="sect3">
-<h4 id="to_char"><a class="anchor" href="#to_char"></a>7.11.1. TO_CHAR</h4>
+<h4 id="to_char"><a class="anchor" href="#to_char"></a>7.10.1. TO_CHAR</h4>
 <div class="sect4">
-<h5 id="purpose-12"><a class="anchor" href="#purpose-12"></a>7.11.1.1. Purpose</h5>
+<h5 id="purpose-12"><a class="anchor" href="#purpose-12"></a>7.10.1.1. Purpose</h5>
 <div class="paragraph">
 <p>TO_CHAR (str,[fmt]) Converts the input Parameters to a TEXT data type value according to the given format. If fmt is omitted, the data will be converted to a TEXT value in the system default format. If str is null, the function returns null.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-17"><a class="anchor" href="#parameters-17"></a>7.11.1.2. <strong>Parameters</strong></h5>
+<h5 id="parameters-17"><a class="anchor" href="#parameters-17"></a>7.10.1.2. <strong>Parameters</strong></h5>
 <div class="paragraph">
 <p><code>str</code> Input Parameters (any type).
 <code>fmt</code> Input format Parameters, see format fmt for details.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-18"><a class="anchor" href="#example-18"></a>7.11.1.3. Example</h5>
+<h5 id="example-18"><a class="anchor" href="#example-18"></a>7.10.1.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_char('3 2:20:05' );
@@ -4226,22 +4221,22 @@ select to_char(123,'xx');
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_number"><a class="anchor" href="#to_number"></a>7.11.2. TO_NUMBER</h4>
+<h4 id="to_number"><a class="anchor" href="#to_number"></a>7.10.2. TO_NUMBER</h4>
 <div class="sect4">
-<h5 id="purpose-13"><a class="anchor" href="#purpose-13"></a>7.11.2.1. Purpose</h5>
+<h5 id="purpose-13"><a class="anchor" href="#purpose-13"></a>7.10.2.1. Purpose</h5>
 <div class="paragraph">
 <p>TO_NUMBER(str,[fmt1]) Converts the input Parameters str to a value of the NUMREIC data type according to the given format. If fmt1 is omitted, the data will be converted to a NUMERIC value in the system default format. If str is NUMERIC, the function returns str. If str calculates to null, the function returns null. If it cannot be converted to the NUMERIC data type, the function returns an error.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-18"><a class="anchor" href="#parameters-18"></a>7.11.2.2. <strong>Parameters</strong></h5>
+<h5 id="parameters-18"><a class="anchor" href="#parameters-18"></a>7.10.2.2. <strong>Parameters</strong></h5>
 <div class="paragraph">
 <p><code>str</code> input Parameters include the following data types (double precision, numeric, text, integer, etc., but must be implicitly converted to numeric).
 <code>fmt1</code> Input format Parameters, see format fmt1 for details.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-19"><a class="anchor" href="#example-19"></a>7.11.2.3. Example</h5>
+<h5 id="example-19"><a class="anchor" href="#example-19"></a>7.10.2.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_number(1210.73::numeric, 9999.99::numeric);
@@ -4266,22 +4261,22 @@ select to_number('123'::text);
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_date"><a class="anchor" href="#to_date"></a>7.11.3. TO_DATE</h4>
+<h4 id="to_date"><a class="anchor" href="#to_date"></a>7.10.3. TO_DATE</h4>
 <div class="sect4">
-<h5 id="purpose-14"><a class="anchor" href="#purpose-14"></a>7.11.3.1. Purpose</h5>
+<h5 id="purpose-14"><a class="anchor" href="#purpose-14"></a>7.10.3.1. Purpose</h5>
 <div class="paragraph">
 <p>TO_DATE(str,[fmt]) Converts the input Parameters str to a date data type value according to the given format. If fmt is omitted, the data will be converted to a date value in the system default format. If str is null, the function returns null. If fmt is J, for Julian, then char must be an integer. The function returns an error if it cannot be converted to DATE.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-19"><a class="anchor" href="#parameters-19"></a>7.11.3.2. <strong>Parameters</strong></h5>
+<h5 id="parameters-19"><a class="anchor" href="#parameters-19"></a>7.10.3.2. <strong>Parameters</strong></h5>
 <div class="paragraph">
 <p><code>str</code> input Parameters (integer, text, can be implicitly converted to the above type, string that matches the date format).
 <code>fmt</code> input format Parameters, see format fmt for details.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-20"><a class="anchor" href="#example-20"></a>7.11.3.3. Example</h5>
+<h5 id="example-20"><a class="anchor" href="#example-20"></a>7.10.3.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_date('50-11-28 ','RR-MM-dd ');
@@ -4342,22 +4337,22 @@ select to_date('-4712-07-23 14:31:23', 'syyyy-mm-dd hh24:mi:ss');
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_timestamp"><a class="anchor" href="#to_timestamp"></a>7.11.4. TO_TIMESTAMP</h4>
+<h4 id="to_timestamp"><a class="anchor" href="#to_timestamp"></a>7.10.4. TO_TIMESTAMP</h4>
 <div class="sect4">
-<h5 id="purpose-15"><a class="anchor" href="#purpose-15"></a>7.11.4.1. Purpose</h5>
+<h5 id="purpose-15"><a class="anchor" href="#purpose-15"></a>7.10.4.1. Purpose</h5>
 <div class="paragraph">
 <p>TO_TIMESTAMP(str,[fmt]) Converts the input Parameters str to a timestamp without a time zone according to the given format. If fmt is omitted, the data is converted to a timestamp with no time zone value in the system default format. If str is null, the function returns null. If it cannot be converted to a timestamp without a time zone, the function returns an error.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-20"><a class="anchor" href="#parameters-20"></a>7.11.4.2. <strong>Parameters</strong></h5>
+<h5 id="parameters-20"><a class="anchor" href="#parameters-20"></a>7.10.4.2. <strong>Parameters</strong></h5>
 <div class="paragraph">
 <p><code>str</code> input Parameters (double precision,text, which can be implicitly converted to the above type).
 <code>fmt</code> Input format Parameters, see format fmt for details.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-21"><a class="anchor" href="#example-21"></a>7.11.4.3. Example</h5>
+<h5 id="example-21"><a class="anchor" href="#example-21"></a>7.10.4.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_timestamp(1212121212.55::numeric);
@@ -4382,21 +4377,21 @@ select to_timestamp(NULL,NULL);
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_yminterval"><a class="anchor" href="#to_yminterval"></a>7.11.5. TO_YMINTERVAL</h4>
+<h4 id="to_yminterval"><a class="anchor" href="#to_yminterval"></a>7.10.5. TO_YMINTERVAL</h4>
 <div class="sect4">
-<h5 id="purpose-16"><a class="anchor" href="#purpose-16"></a>7.11.5.1. Purpose</h5>
+<h5 id="purpose-16"><a class="anchor" href="#purpose-16"></a>7.10.5.1. Purpose</h5>
 <div class="paragraph">
 <p>TO_YMINTERVAL(str) Converts the input Parameters str time interval to a time interval in the year-to-month range. Only the year and month are processed, other parts are omitted. If the input Parameters is NULL, the function returns NULL, and if the input Parameters is in the wrong format, the function returns an error.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-21"><a class="anchor" href="#parameters-21"></a>7.11.5.2. <strong>Parameters</strong></h5>
+<h5 id="parameters-21"><a class="anchor" href="#parameters-21"></a>7.10.5.2. <strong>Parameters</strong></h5>
 <div class="paragraph">
 <p><code>str</code> Input Parameters (text, can be implicitly converted to text type, must be in time interval format. (SQL interval format compatible with SQL standard, ISO duration format compatible with ISO 8601:2004 standard).</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-22"><a class="anchor" href="#example-22"></a>7.11.5.3. Example</h5>
+<h5 id="example-22"><a class="anchor" href="#example-22"></a>7.10.5.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_yminterval('P1Y-2M2D');
@@ -4433,21 +4428,21 @@ select to_yminterval('-01-02');
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_dsinterval"><a class="anchor" href="#to_dsinterval"></a>7.11.6. TO_DSINTERVAL</h4>
+<h4 id="to_dsinterval"><a class="anchor" href="#to_dsinterval"></a>7.10.6. TO_DSINTERVAL</h4>
 <div class="sect4">
-<h5 id="purpose-17"><a class="anchor" href="#purpose-17"></a>7.11.6.1. Purpose</h5>
+<h5 id="purpose-17"><a class="anchor" href="#purpose-17"></a>7.10.6.1. Purpose</h5>
 <div class="paragraph">
 <p>TO_DSINTERVAL(str) converts the time interval of the input Parameters str to a time interval in the range of days to seconds. Input Parameters include: day, hour, minute, second and microsecond. If the input Parameters is NULL, the function returns NULL, and if the input Parameters contains the year and month or is in the wrong format, the function returns an error.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-22"><a class="anchor" href="#parameters-22"></a>7.11.6.2. <strong>Parameters</strong></h5>
+<h5 id="parameters-22"><a class="anchor" href="#parameters-22"></a>7.10.6.2. <strong>Parameters</strong></h5>
 <div class="paragraph">
 <p><code>str</code> Input Parameters (text, can be implicitly converted to text type, must be in time interval format. (SQL interval format compatible with SQL standard, ISO duration format compatible with ISO 8601:2004 standard).</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-23"><a class="anchor" href="#example-23"></a>7.11.6.3. Example</h5>
+<h5 id="example-23"><a class="anchor" href="#example-23"></a>7.10.6.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_dsinterval('100 00 :02 :00');
@@ -4490,22 +4485,22 @@ select to_dsinterval('-P100DT20S');
 </div>
 </div>
 <div class="sect3">
-<h4 id="to_timestamp_tz"><a class="anchor" href="#to_timestamp_tz"></a>7.11.7. TO_TIMESTAMP_TZ</h4>
+<h4 id="to_timestamp_tz"><a class="anchor" href="#to_timestamp_tz"></a>7.10.7. TO_TIMESTAMP_TZ</h4>
 <div class="sect4">
-<h5 id="purpose-18"><a class="anchor" href="#purpose-18"></a>7.11.7.1. Purpose</h5>
+<h5 id="purpose-18"><a class="anchor" href="#purpose-18"></a>7.10.7.1. Purpose</h5>
 <div class="paragraph">
 <p>TO_TIMESTAMP_TZ(str,[fmt]) Converts the input Parameters str to a timestamp with a time zone according to the given format. If fmt is omitted, the data will be converted to a timestamp with a time zone value in the system default format. If str is null, the function returns null. If it cannot be converted to a timestamp with a time zone, the function returns an error.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-23"><a class="anchor" href="#parameters-23"></a>7.11.7.2. <strong>Parameters</strong></h5>
+<h5 id="parameters-23"><a class="anchor" href="#parameters-23"></a>7.10.7.2. <strong>Parameters</strong></h5>
 <div class="paragraph">
 <p><code>str</code> input Parameters (text, which can be implicitly converted to a text type).
 <code>fmt</code> Enter format Parameters, see format fmt for details.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-24"><a class="anchor" href="#example-24"></a>7.11.7.3. Example</h5>
+<h5 id="example-24"><a class="anchor" href="#example-24"></a>7.10.7.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select to_timestamp_tz('2019','yyyy');
@@ -4542,15 +4537,15 @@ select to_timestamp_tz(NULL);
 </div>
 </div>
 <div class="sect3">
-<h4 id="greatest"><a class="anchor" href="#greatest"></a>7.11.8. GREATEST</h4>
+<h4 id="greatest"><a class="anchor" href="#greatest"></a>7.10.8. GREATEST</h4>
 <div class="sect4">
-<h5 id="purpose-19"><a class="anchor" href="#purpose-19"></a>7.11.8.1. Purpose</h5>
+<h5 id="purpose-19"><a class="anchor" href="#purpose-19"></a>7.10.8.1. Purpose</h5>
 <div class="paragraph">
 <p>GREATEST(expr1,expr2,&#8230;&#8203;) Gets the maximum value in the input list of one or more expressions. If the result of any expr calculation is NULL, the function returns NULL.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-24"><a class="anchor" href="#parameters-24"></a>7.11.8.2. <strong>Parameters</strong></h5>
+<h5 id="parameters-24"><a class="anchor" href="#parameters-24"></a>7.10.8.2. <strong>Parameters</strong></h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">expr1` Enter Parameters (of any type).
@@ -4560,7 +4555,7 @@ select to_timestamp_tz(NULL);
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-25"><a class="anchor" href="#example-25"></a>7.11.8.3. Example</h5>
+<h5 id="example-25"><a class="anchor" href="#example-25"></a>7.10.8.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">select greatest('a','b','A','B');
@@ -4609,15 +4604,15 @@ SELECT greatest('A', 6, 7, 5000, 'E', 'F','G') A;
 </div>
 </div>
 <div class="sect3">
-<h4 id="least"><a class="anchor" href="#least"></a>7.11.9. LEAST</h4>
+<h4 id="least"><a class="anchor" href="#least"></a>7.10.9. LEAST</h4>
 <div class="sect4">
-<h5 id="purpose-20"><a class="anchor" href="#purpose-20"></a>7.11.9.1. Purpose</h5>
+<h5 id="purpose-20"><a class="anchor" href="#purpose-20"></a>7.10.9.1. Purpose</h5>
 <div class="paragraph">
 <p>LEAST(expr1,expr2,&#8230;&#8203;) Gets the smallest value in the input list of one or more expressions. If the result of any expr calculation is NULL, the function returns NULL.</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="parameters-25"><a class="anchor" href="#parameters-25"></a>7.11.9.2. <strong>Parameters</strong></h5>
+<h5 id="parameters-25"><a class="anchor" href="#parameters-25"></a>7.10.9.2. <strong>Parameters</strong></h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">expr1` Enter Parameters (of any type).
@@ -4627,7 +4622,7 @@ SELECT greatest('A', 6, 7, 5000, 'E', 'F','G') A;
 </div>
 </div>
 <div class="sect4">
-<h5 id="example-26"><a class="anchor" href="#example-26"></a>7.11.9.3. Example</h5>
+<h5 id="example-26"><a class="anchor" href="#example-26"></a>7.10.9.3. Example</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">SELECT least(1,' 2', '3' );
@@ -4683,22 +4678,22 @@ SELECT least('HARRY', 'HARRIOT', NULL);
 </div>
 </div>
 <div class="sect2">
-<h3 id="nls_length_semanticsparameters"><a class="anchor" href="#nls_length_semanticsparameters"></a>7.12. NLS_LENGTH_SEMANTICSParameters</h3>
+<h3 id="nls_length_semanticsparameters"><a class="anchor" href="#nls_length_semanticsparameters"></a>7.11. NLS_LENGTH_SEMANTICSParameters</h3>
 <div class="sect3">
-<h4 id="overview-3"><a class="anchor" href="#overview-3"></a>7.12.1. Overview</h4>
+<h4 id="overview-3"><a class="anchor" href="#overview-3"></a>7.11.1. Overview</h4>
 <div class="paragraph">
 <p>NLS_LENGTH_SEMANTICS enables you to create CHAR and VARCHAR2 columns using byte or character length semantics. Existing columns are not affected. In this case, the default semantics is BYTE.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="syntax-6"><a class="anchor" href="#syntax-6"></a>7.12.2. Syntax</h4>
+<h4 id="syntax-6"><a class="anchor" href="#syntax-6"></a>7.11.2. Syntax</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">SET NLS_LENGTH_SEMANTICS TO [NONE | BYTE | CHAR];</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="note-on-the-range-of-values"><a class="anchor" href="#note-on-the-range-of-values"></a>7.12.2.1. <strong>Note on the range of values</strong></h5>
+<h5 id="note-on-the-range-of-values"><a class="anchor" href="#note-on-the-range-of-values"></a>7.11.2.1. <strong>Note on the range of values</strong></h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">BYTE: The data is stored in byte length.
@@ -4709,9 +4704,9 @@ NONE:Data is stored using native IvorySQL storage.</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="example-27"><a class="anchor" href="#example-27"></a>7.12.3. Example</h4>
+<h4 id="example-27"><a class="anchor" href="#example-27"></a>7.11.3. Example</h4>
 <div class="sect4">
-<h5 id="test-char"><a class="anchor" href="#test-char"></a>7.12.3.1. --Test “CHAR”</h5>
+<h5 id="test-char"><a class="anchor" href="#test-char"></a>7.11.3.1. --Test “CHAR”</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">create table test(a varchar2(5));
@@ -4732,7 +4727,7 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect4">
-<h5 id="test-byte"><a class="anchor" href="#test-byte"></a>7.12.3.2. --Test “BYTE”</h5>
+<h5 id="test-byte"><a class="anchor" href="#test-byte"></a>7.11.3.2. --Test “BYTE”</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">SET NLS_LENGTH_SEMANTICS TO BYTE;
@@ -4754,15 +4749,15 @@ ERROR:  value too long for type varchar2(5 byte)</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="varchar2size"><a class="anchor" href="#varchar2size"></a>7.13. VARCHAR2(size)</h3>
+<h3 id="varchar2size"><a class="anchor" href="#varchar2size"></a>7.12. VARCHAR2(size)</h3>
 <div class="sect3">
-<h4 id="overview-4"><a class="anchor" href="#overview-4"></a>7.13.1. Overview</h4>
+<h4 id="overview-4"><a class="anchor" href="#overview-4"></a>7.12.1. Overview</h4>
 <div class="paragraph">
 <p>Variable length strings with maximum length bytes or characters. You must specify the size for VARCHAR2. The minimum size is 1 byte or 1 character.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="syntax-7"><a class="anchor" href="#syntax-7"></a>7.13.2. Syntax</h4>
+<h4 id="syntax-7"><a class="anchor" href="#syntax-7"></a>7.12.2. Syntax</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">VARCHAR2(size)</code></pre>
@@ -4770,7 +4765,7 @@ ERROR:  value too long for type varchar2(5 byte)</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="example-28"><a class="anchor" href="#example-28"></a>7.13.3. Example</h4>
+<h4 id="example-28"><a class="anchor" href="#example-28"></a>7.12.3. Example</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined">create table test(a varchar2(5));
@@ -4792,12 +4787,12 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="plisql"><a class="anchor" href="#plisql"></a>7.14. PL/iSQL</h3>
+<h3 id="plisql"><a class="anchor" href="#plisql"></a>7.13. PL/iSQL</h3>
 <div class="paragraph">
 <p>PL/iSQL is IvorySQL&#8217;s procedural language for writing custom functions, procedures and packages for IvorySQL. PL/iSQL is derived from IvorySQL&#8217;s PL/pgsql with some added features, but syntactically PL/iSQL is closer to Oracle&#8217;s PL/SQL. This document Describes the basic structure and construction of PL/iSQL programs.</p>
 </div>
 <div class="sect3">
-<h4 id="structure-of-plisql-programs"><a class="anchor" href="#structure-of-plisql-programs"></a>7.14.1. Structure of PL/iSQL Programs</h4>
+<h4 id="structure-of-plisql-programs"><a class="anchor" href="#structure-of-plisql-programs"></a>7.13.1. Structure of PL/iSQL Programs</h4>
 <div class="paragraph">
 <p>iSQL is a procedural block structure language that supports four different program types, <strong>PACKAGES</strong>, <strong>PROCEDURES</strong>, <strong>FUNCTIONS</strong>, and <strong>TRIGGERS</strong>. iSQL supports four different program types, <strong>PACKAGES</strong>, <strong>PROCEDURES</strong>, <strong>FUNCTIONS</strong>, and <strong>TRIGGERS</strong>. iSQL uses the same block structure for each type of supported program. A block consists of up to three parts: a declaration part, an executable, and an exception part. The declaration and exception sections are optional.</p>
 </div>
@@ -4880,7 +4875,7 @@ END;
 </div>
 </div>
 <div class="sect3">
-<h4 id="psql-support-for-plisql-programs"><a class="anchor" href="#psql-support-for-plisql-programs"></a>7.14.2. <strong>psql</strong> support for PL/iSQL programs</h4>
+<h4 id="psql-support-for-plisql-programs"><a class="anchor" href="#psql-support-for-plisql-programs"></a>7.13.2. <strong>psql</strong> support for PL/iSQL programs</h4>
 <div class="paragraph">
 <p>To create a PL/iSQL program from a psql client, you can use a syntax similar to PL/pgSQL&#8217;s <strong>$$</strong></p>
 </div>
@@ -4905,9 +4900,9 @@ END;
 </div>
 </div>
 <div class="sect3">
-<h4 id="plisql-program-syntax"><a class="anchor" href="#plisql-program-syntax"></a>7.14.3. PL/iSQL Program Syntax</h4>
+<h4 id="plisql-program-syntax"><a class="anchor" href="#plisql-program-syntax"></a>7.13.3. PL/iSQL Program Syntax</h4>
 <div class="sect4">
-<h5 id="procedures"><a class="anchor" href="#procedures"></a>7.14.3.1. PROCEDURES</h5>
+<h5 id="procedures"><a class="anchor" href="#procedures"></a>7.13.3.1. PROCEDURES</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE [OR REPLACE] PROCEDURE procedure_name [(parameter_list)]
@@ -4922,7 +4917,7 @@ END;
 </div>
 </div>
 <div class="sect4">
-<h5 id="functions"><a class="anchor" href="#functions"></a>7.14.3.2. FUNCTIONS</h5>
+<h5 id="functions"><a class="anchor" href="#functions"></a>7.13.3.2. FUNCTIONS</h5>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE [OR REPLACE] FUNCTION function_name ([parameter_list])
@@ -4938,9 +4933,9 @@ END;
 </div>
 </div>
 <div class="sect4">
-<h5 id="packages"><a class="anchor" href="#packages"></a>7.14.3.3. PACKAGES</h5>
+<h5 id="packages"><a class="anchor" href="#packages"></a>7.13.3.3. PACKAGES</h5>
 <div class="sect5">
-<h6 id="package-header"><a class="anchor" href="#package-header"></a>7.14.3.3.1. PACKAGE HEADER</h6>
+<h6 id="package-header"><a class="anchor" href="#package-header"></a>7.13.3.3.1. PACKAGE HEADER</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE [ OR REPLACE ] PACKAGE [schema.] *package_name* [invoker_rights_clause] [IS | AS]
@@ -5001,7 +4996,7 @@ parameter_declaration:
 </div>
 </div>
 <div class="sect5">
-<h6 id="package-body"><a class="anchor" href="#package-body"></a>7.14.3.3.2. PACKAGE BODY</h6>
+<h6 id="package-body"><a class="anchor" href="#package-body"></a>7.13.3.3.2. PACKAGE BODY</h6>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-SQL hljs" data-lang="SQL">CREATE [ OR REPLACE ] PACKAGE BODY [schema.] package_name [IS | AS]
@@ -5055,9 +5050,9 @@ statement:
 </div>
 </div>
 <div class="sect2">
-<h3 id="hierarchy-search"><a class="anchor" href="#hierarchy-search"></a>7.15. Hierarchy Search</h3>
+<h3 id="hierarchy-search"><a class="anchor" href="#hierarchy-search"></a>7.14. Hierarchy Search</h3>
 <div class="sect3">
-<h4 id="syntax-8"><a class="anchor" href="#syntax-8"></a>7.15.1. Syntax</h4>
+<h4 id="syntax-8"><a class="anchor" href="#syntax-8"></a>7.14.1. Syntax</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-undefined hljs" data-lang="undefined"> {
@@ -5084,7 +5079,7 @@ statement:
 </div>
 </div>
 <div class="sect3">
-<h4 id="additional-column"><a class="anchor" href="#additional-column"></a>7.15.2. <strong>ADDITIONAL COLUMN</strong></h4>
+<h4 id="additional-column"><a class="anchor" href="#additional-column"></a>7.14.2. <strong>ADDITIONAL COLUMN</strong></h4>
 <div class="paragraph">
 <p><strong>LEVEL</strong> Returns the level of the current row in the hierarchy, starting at 1 at the root node and incrementing by 1 at each level thereafter.</p>
 </div>
@@ -5096,7 +5091,7 @@ statement:
 </div>
 </div>
 <div class="sect3">
-<h4 id="limitations"><a class="anchor" href="#limitations"></a>7.15.3. <strong>Limitations</strong></h4>
+<h4 id="limitations"><a class="anchor" href="#limitations"></a>7.14.3. <strong>Limitations</strong></h4>
 <div class="paragraph">
 <p>This function currently has the following limitations.</p>
 </div>

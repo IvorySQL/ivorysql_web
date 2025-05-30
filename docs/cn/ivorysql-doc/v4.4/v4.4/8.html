@@ -490,6 +490,13 @@
     product_no integer,
     name text,
     price numeric
+);
+
+CREATE TABLE new_products (
+    product_no int ,
+    name varchar(255),
+    price DECIMAL(10, 2),
+    release_date DATE
 );</code></pre>
 </div>
 </div>
@@ -545,7 +552,12 @@ INSERT INTO products DEFAULT VALUES;</code></pre>
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">INSERT INTO products (product_no, name, price) VALUES
     (1, 'Cheese', 9.99),
     (2, 'Bread', 1.99),
-    (3, 'Milk', 2.99);</code></pre>
+    (3, 'Milk', 2.99);
+
+INSERT INTO new_products (product_no, name, price, release_date) VALUES
+    (1, 'A', 100.00, '2025-05-29'),
+    (2, 'B', 150.50, '2024-11-20'),
+    (3, 'C', 200.75, '2025-05-29');</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -555,7 +567,7 @@ INSERT INTO products DEFAULT VALUES;</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">INSERT INTO products (product_no, name, price)
   SELECT product_no, name, price FROM new_products
-    WHERE release_date = 'today';</code></pre>
+    WHERE release_date = '2025-05-29';</code></pre>
 </div>
 </div>
 <div class="paragraph">

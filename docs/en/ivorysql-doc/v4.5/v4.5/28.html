@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Package :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v4.5/v4.5/28.html">
+    <link rel="prev" href="27.html">
+    <link rel="next" href="29.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v4.5">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">Building Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="31.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="30.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">1、Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">2、GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">3、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">4、Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">5、Compatible with Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">6、Compatible with Oracle anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20.html">7、Compatible with Oracle functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21.html">8、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="22.html">9、Added Oracle compatibility mode ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="26.html">10、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="27.html">11、Compatible with Oracle sequence</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="28.html">12、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="29.html">13、Invisible Columns</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="23.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="24.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="25.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v4.5</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">v4.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.4/v4.4/welcome.html">v4.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.2/v4.2/welcome.html">v4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.0/v4.0/welcome.html">v4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.8/v1.8/welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>List of Oracle compatible features</li>
+    <li><a href="28.html">12、Package</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/v4.5/v4.5/28.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v4.5/EN/modules/ROOT/pages/v4.5/28.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Package</h1>
+<div class="sect1">
+<h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL provides compatibility for Oracle packages.  A package is an encapsulated collection of related program objects stored together in the database. Program objects are procedures, functions, variables, constants, cursors, and exceptions.</p>
+</div>
+<div class="paragraph">
+<p>This document aims to provide a comprehensive understanding of the process of implementing custom packages.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="function-descriptions"><a class="anchor" href="#function-descriptions"></a>2. Function descriptions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL provides compatibility for Oracle custom packages, including creation, alteration, and deletion of packages and package bodies.  We also add support for package-related commands in the PostgreSQL interactive terminal (psql) with the new \dk command.</p>
+</div>
+<div class="sect2">
+<h3 id="create-the-specification-of-a-package"><a class="anchor" href="#create-the-specification-of-a-package"></a>2.1. Create the specification of a package</h3>
+<div class="paragraph">
+<p>The CREATE OR REPLACE PACKAGE statement is used to create or replace the specification of a package. A package is a collection of related stored procedures, functions, and other program objects, stored as a single unit in the database. The package specification declares these objects, and the package body defines them.</p>
+</div>
+<div class="paragraph">
+<p>To create or replace the specification of a package in your own schema, you must have the CREATE PROCEDURE system privilege. If you are creating or replacing a package in another user&#8217;s schema, you need the CREATE ANY PROCEDURE system privilege.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-package-body"><a class="anchor" href="#create-package-body"></a>2.2. Create package body</h3>
+<div class="paragraph">
+<p>The CREATE OR REPLACE PACKAGE BODY statement is used to create or replace a package body. To create a package body requires the same privileges as creating the specification of a package, and it is required that the package body and package specification be in the same schema, with the package specification already existing. This statement defines the objects declared in the package specification.</p>
+</div>
+<div class="paragraph">
+<p>When the package specification contains cursors or subprograms, a package body must be present to define them. Otherwise, the package body is optional.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="alter-package"><a class="anchor" href="#alter-package"></a>2.3. Alter package</h3>
+<div class="paragraph">
+<p>The ALTER PACKAGE statement is used to modify the properties of a package.The privileges required to execute the ALTER PACKAGE statement are: you must be the owner of the package or have the ALTER ANY PROCEDURE privilege to modify packages owned by other users.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="drop-package-and-package-body"><a class="anchor" href="#drop-package-and-package-body"></a>2.4. Drop package and package body</h3>
+<div class="paragraph">
+<p>The DROP PACKAGE statement deletes a package in the database. This statement will remove both the package body and the package specification.The DROP PACKAGE BODY statement only deletes the package body.</p>
+</div>
+<div class="paragraph">
+<p>It is not possible to delete a single object within the package using this statement. The privileges required:the package must be in the user&#8217;s schema, or the user must have the DROP ANY PROCEDURE system privilege.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="discard-package"><a class="anchor" href="#discard-package"></a>2.5. DISCARD PACKAGE</h3>
+<div class="paragraph">
+<p>The DISCARD PACKAGE functionality is implemented for compatibility with PostgreSQL&#8217;s DISCARD feature.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-dk-in-psql-for-package-and-package-body-information"><a class="anchor" href="#use-dk-in-psql-for-package-and-package-body-information"></a>2.6. Use \dk[+] in psql for package and package body information</h3>
+<div class="paragraph">
+<p>In psql, \dk[+] is used to view the definition information of packages and package bodies.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Command</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Descriptions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\dk[+]</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">List the package information currently visible.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\dk[+] xxx</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">List the package specification and package body content of the xxx package.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="test-cases"><a class="anchor" href="#test-cases"></a>3. Test cases</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="create-the-specification-of-a-package-2"><a class="anchor" href="#create-the-specification-of-a-package-2"></a>3.1. Create the specification of a package</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# create or replace package pkg is
+ivorysql-#   var1 integer;
+ivorysql-#   var2 integer;
+ivorysql-#   function test_f(id integer) return integer;
+ivorysql-#   procedure test_p(id integer);
+ivorysql-# end;
+ivorysql-# /
+CREATE PACKAGE</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-package-body-2"><a class="anchor" href="#create-package-body-2"></a>3.2. Create package body</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# create or replace package body pkg is
+ivorysql-#   var3 integer;
+ivorysql-#   function test_f(id integer) return integer is
+ivorysql-#   begin
+ivorysql-#     dbms_output.put_line('pkg test_f');
+ivorysql-#     return id;
+ivorysql-#   end;
+ivorysql-#   procedure test_p(id integer) is
+ivorysql-#   begin
+ivorysql-#     dbms_output.put_line('pkg proc');
+ivorysql-#   end;
+ivorysql-#   --privite function
+ivorysql-#   function test_piv1(id integer) return integer is
+ivorysql-#   begin
+ivorysql-#      return id;
+ivorysql-#   end;
+ivorysql-#   --privite procedure
+ivorysql-#   procedure test_piv2(id integer) is
+ivorysql-#   begin
+ivorysql-#     dbms_output.put_line('privite proc');
+ivorysql-#   end;
+ivorysql-# begin
+ivorysql-#    var1 := 1;
+ivorysql-#    var2 := 2;
+ivorysql-#    var3 := 4;
+ivorysql-# end;
+ivorysql-# /
+CREATE PACKAGE BODY</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="alter-package-2"><a class="anchor" href="#alter-package-2"></a>3.3. Alter package</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# alter package pkg noneditionable;
+ALTER PACKAGE</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="drop-package-and-package-body-2"><a class="anchor" href="#drop-package-and-package-body-2"></a>3.4. Drop package and package body</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# Drop package pkg;
+DROP PACKAGE
+
+ivorysql=# Drop package body pkg;
+DROP PACKAGE BODY</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="discard-package-2"><a class="anchor" href="#discard-package-2"></a>3.5. DISCARD PACKAGE</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# discard package;
+DISCARD PACKAGES</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="use-dk-in-psql-for-package-and-package-body-information-2"><a class="anchor" href="#use-dk-in-psql-for-package-and-package-body-information-2"></a>3.6. Use \dk[+] in psql for package and package body information</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# \dk
+       List of packages
+ Schema |   Name   |  Owner
+--------+----------+----------
+ public | pkg      | ivorysql
+ public | test_pkg | ivorysql
+(2 rows)
+
+ivorysql=# \dk pkg
+     List of packages
+ Schema | Name |  Owner
+--------+------+----------
+ public | pkg  | ivorysql
+(1 row)
+
+ivorysql=# \dk pkg1
+Did not find any package named "pkg1".
+
+ivorysql=# \dk+
+                                                                                   List of packages
+ Schema |   Name   |  Owner   | Security | Editionable | Use Collation |                 Specification                 |                         Package Body
+
+--------+----------+----------+----------+-------------+---------------+-----------------------------------------------+-----------------------------------------------------
+---------
+ public | pkg      | ivorysql | definer  | Editionable | default       | var1 integer;                                +|
+        |          |          |          |             |               | var2 integer;                                +|
+        |          |          |          |             |               | function test_f(id integer) return integer;  +|
+        |          |          |          |             |               | procedure test_p(id integer);                +|
+        |          |          |          |             |               | end                                           |
+ public | test_pkg | ivorysql | definer  | Editionable | default       | var1 integer;                                +| FUNCTION test_f(id integer) RETURN integer IS
+        +
+        |          |          |          |             |               |   FUNCTION test_f(id integer) RETURN integer;+|   BEGIN
+        +
+        |          |          |          |             |               | end                                           |     dbms_output.put_line('invoke function test_pkg.t
+est_f');+
+        |          |          |          |             |               |                                               | RETURN 23;
+        +
+        |          |          |          |             |               |                                               |   end;
+        +
+        |          |          |          |             |               |                                               | BEGIN
+        +
+        |          |          |          |             |               |                                               |   var1 := 23;
+        +
+        |          |          |          |             |               |                                               | end
+(2 rows)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="27.html">11、Compatible with Oracle sequence</a></span>
+  <span class="next"><a href="29.html">13、Invisible Columns</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Invisible Columns :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v4.5/v4.5/29.html">
+    <link rel="prev" href="28.html">
+    <link rel="next" href="23.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v4.5">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">Building Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="31.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="30.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">1、Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">2、GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">3、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">4、Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">5、Compatible with Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">6、Compatible with Oracle anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20.html">7、Compatible with Oracle functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21.html">8、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="22.html">9、Added Oracle compatibility mode ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="26.html">10、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="27.html">11、Compatible with Oracle sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="28.html">12、Package</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="29.html">13、Invisible Columns</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="23.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="24.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="25.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v4.5</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">v4.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.4/v4.4/welcome.html">v4.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.2/v4.2/welcome.html">v4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.0/v4.0/welcome.html">v4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.8/v1.8/welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="welcome.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>List of Oracle compatible features</li>
+    <li><a href="29.html">13、Invisible Columns</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/v4.5/v4.5/29.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v4.5/EN/modules/ROOT/pages/v4.5/29.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Invisible Columns</h1>
+<div class="sect1">
+<h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The introduction of this feature is to accommodate Oracle&#8217;s invisible column functionality, making database design simpler and enhancing the flexibility of data management. Users will have better control over the visibility of columns.</p>
+</div>
+<div class="paragraph">
+<p>Invisible columns are also useful during application migration. Making new columns invisible means that they will not be visible to any existing application, but they can still be referenced by any new applications, thus simplifying the online migration of applications.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="function-descriptions"><a class="anchor" href="#function-descriptions"></a>2. Function descriptions</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Invisible columns allow users to conceal specific columns during operations like SELECT *. You can use invisible column to make changes to a table without disrupting applications that use the table.  Any generic access of a table does not show the invisible columns in the table. Invisible columns must be explicitly referenced by column names in order to be accessed in queries and other operations.</p>
+</div>
+<div class="paragraph">
+<p>Support for invisible columns in psql extended describe (\d+) is added, in oracle mode only.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="test-cases"><a class="anchor" href="#test-cases"></a>3. Test cases</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="create-a-table-with-invisible-columns"><a class="anchor" href="#create-a-table-with-invisible-columns"></a>3.1. Create a table with invisible columns</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# CREATE TABLE mytable (a INT, b INT INVISIBLE, c INT);
+CREATE TABLE</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="insert-values-into-invisible-columns"><a class="anchor" href="#insert-values-into-invisible-columns"></a>3.2. Insert values into invisible columns</h3>
+<div class="paragraph">
+<p>You can insert a value into an invisible column only if you explicitly specify the invisible column in the column list for the INSERT statement. Omitting the column list in the INSERT statement is not allowed. Errors will be reported.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# INSERT INTO mytable (a, b, c) VALUES (1,2,3);
+INSERT 0 1
+
+ivorysql=# INSERT INTO mytable VALUES (4,5,6);
+ERROR:  INSERT has more expressions than target columns
+LINE 1: INSERT INTO mytable  VALUES (4,5,6);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="display-output-for-invisible-columns"><a class="anchor" href="#display-output-for-invisible-columns"></a>3.3. Display output for invisible columns</h3>
+<div class="paragraph">
+<p>You can use a SELECT statement to display output for an invisible column only if you explicitly specify the invisible column in the column list.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# select * from mytable;
+ a | c
+---+---
+ 1 | 3
+(1 row)
+
+ivorysql=# select a,b,c from mytable;
+ a | b | c
+---+---+---
+ 1 | 2 | 3
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-for-invisible-columns-in-psql-extended-describe-d-in-oracle-mode"><a class="anchor" href="#support-for-invisible-columns-in-psql-extended-describe-d-in-oracle-mode"></a>3.4. Support for invisible columns in psql extended describe (\d+) in Oracle mode</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# \d+ mytable
+                                                   Table "public.mytable"
+ Column |      Type       | Collation | Nullable | Default | Invisible | Storage | Compression | Stats target | Description
+--------+-----------------+-----------+----------+---------+-----------+---------+-------------+--------------+-------------
+ a      | pg_catalog.int4 |           |          |         |           | plain   |             |              |
+ b      | pg_catalog.int4 |           |          |         | invisible | plain   |             |              |
+ c      | pg_catalog.int4 |           |          |         |           | plain   |             |              |
+Access method: heap</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="limitations"><a class="anchor" href="#limitations"></a>4. Limitations</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Modify column is not supported currently. Will be enhanced in later version;</p>
+</li>
+<li>
+<p>In Oracle, there are special considerations for invisible columns and column ordering. When a table contains one or more invisible columns, the invisible columns are not included in the column order for the table. We have not yet addressed this part.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="28.html">12、Package</a></span>
+  <span class="next"><a href="23.html">Community contribution</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

@@ -191,9 +191,12 @@
   </div>
   <ul class="components">
     <li class="component is-current">
-      <a class="title" href="welcome.html">IvorySQL</a>
+      <a class="title" href="../../master/welcome.html">IvorySQL</a>
       <ul class="versions">
-        <li class="version is-current is-latest">
+        <li class="version is-latest">
+          <a href="../../master/welcome.html">master</a>
+        </li>
+        <li class="version is-current">
           <a href="welcome.html">v4.5</a>
         </li>
         <li class="version">
@@ -263,7 +266,6 @@
 <main class="article">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="welcome.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
@@ -343,7 +345,7 @@
 <div class="sect2">
 <h3 id="通过pg_dumpall升级数据"><a class="anchor" href="#通过pg_dumpall升级数据"></a>1.2. 通过pg_dumpall升级数据</h3>
 <div class="paragraph">
-<p>传统的跨版本升级方法利用pg_dump/pg_dumpall逻辑备份到处数据库，然后在新版本中通过pg_restore进行还原。导出旧版本数据库时推荐使用新版本的pg_dump/pg_dumpall工具，可以利用最新的并行导出和还原功能，同时可以减少数据库膨胀问题。</p>
+<p>传统的跨版本升级方法利用pg_dump/pg_dumpall逻辑备份导出数据库，然后在新版本中通过pg_restore进行还原。导出旧版本数据库时推荐使用新版本的pg_dump/pg_dumpall工具，可以利用最新的并行导出和还原功能，同时可以减少数据库膨胀问题。</p>
 </div>
 <div class="paragraph">
 <p>​逻辑备份与还原非常简单但速度比较慢，停机时间取决于数据库的大小，因此适合中小型数据库的升级。</p>

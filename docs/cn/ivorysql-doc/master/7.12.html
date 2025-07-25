@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>包 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.12.html">
+    <link rel="prev" href="7.11.html">
+    <link rel="next" href="7.13.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.1.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.2.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.3.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.1.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.2.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.3.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.4.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.5.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.1.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.2.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.1.1.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.2.1.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.1.html">1、框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.2.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.3.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.4.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.5.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.6.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.7.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.8.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.9.html">9、新增Oracle兼容模式的端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.10.html">10、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.11.html">11、兼容Oracle sequence</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="7.12.html">12、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.13.html">13、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.14.html">14、RowID</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="8.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="9.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../v4.5/v4.5/welcome.html">v4.5</a>
+        </li>
+        <li class="version">
+          <a href="../v4.4/v4.4/welcome.html">v4.4</a>
+        </li>
+        <li class="version">
+          <a href="../v4.2/v4.2/welcome.html">v4.2</a>
+        </li>
+        <li class="version">
+          <a href="../v4.0/v4.0/welcome.html">v4.0</a>
+        </li>
+        <li class="version">
+          <a href="../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+        <li class="version">
+          <a href="../v1.8/v1.8/welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>Oracle兼容功能列表</li>
+    <li><a href="7.12.html">12、包</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/7.12.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/7.12.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">包</h1>
+<div class="sect1">
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL提供了兼容Oracle自定义包的功能。包（package）是一个封装的相关程序对象集合，这些对象存储在数据库中。程序对象包括过程、函数、变量、常量、游标和异常。</p>
+</div>
+<div class="paragraph">
+<p>本文档旨在为使用人员提供一个深入了解自定义包实现的过程。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL提供了兼容Oracle自定义包的功能，包括包和包体的创建、修改和描述，在PostgreSQL交互终端（psql）中增加了与包相关的命令，新增了 \dk 命令。</p>
+</div>
+<div class="sect2">
+<h3 id="创建包规范"><a class="anchor" href="#创建包规范"></a>2.1. 创建包规范</h3>
+<div class="paragraph">
+<p>使用CREATE OR REPLACE PACKAGE语句创建或替换一个包的规范。包是相关的存储过程、函数、和其他程序对象的集合，在数据库中作为一个单元存储。包规范声明这些对象，在包体中定义这些对象。</p>
+</div>
+<div class="paragraph">
+<p>在自己的模式下创建或替换一个包规范，必须有CREATE PROCEDURE系统权限，如果在其他用户的模式下创建或替换一个包，则需要有CREATE ANY PROCEDURE系统权限。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="创建包体"><a class="anchor" href="#创建包体"></a>2.2. 创建包体</h3>
+<div class="paragraph">
+<p>使用CREATE OR REPLACE PACKAGE BODY语句创建或替换一个包体。创建包体需要有与创建包规范一样的权限，要求包体与包规范在同一个模式下，且包规范必须存在，该语句定义包规范中声明的对象。</p>
+</div>
+<div class="paragraph">
+<p>当包规范中有cursor或子过程时，那么必须拥有一个包体去定义它，否则包体是可选的。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="更新包"><a class="anchor" href="#更新包"></a>2.3. 更新包</h3>
+<div class="paragraph">
+<p>使用ALTER PACKAGE语句来改变包的属性。执行ALTER PACKAGE语句的权限要求：必须是包的所有者，或者具有ALTER ANY PROCEDURE权限才能修改其他用户的包。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="删除包和包体"><a class="anchor" href="#删除包和包体"></a>2.4. 删除包和包体</h3>
+<div class="paragraph">
+<p>DROP PACKAGE语句删除数据库中的一个存储包。这个语句会同时删除包体和包规范。DROP PACKAGE BODY则只删除包体。</p>
+</div>
+<div class="paragraph">
+<p>不能使用此语句删除包中的一个单独对象。权限要求：包必须在用户模式下，或用户有DROP ANY PROCEDURE系统权限。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="丢弃包"><a class="anchor" href="#丢弃包"></a>2.5. 丢弃包</h3>
+<div class="paragraph">
+<p>DISCARD PACKAGE功能是为了兼容PostgreSQL的DISCARD功能而做的。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="在psql中使用-dk-查看包与包体定义"><a class="anchor" href="#在psql中使用-dk-查看包与包体定义"></a>2.6. 在psql中使用 \dk[+] 查看包与包体定义</h3>
+<div class="paragraph">
+<p>psql中支持 \dk[+] 命令查看包与包体的定义信息。</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">命令</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">描述</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\dk[+]</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">列出当前能看到的包信息</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">\dk[+] xxx</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">列出xxx包的包规范和包体内容</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="创建包规范-2"><a class="anchor" href="#创建包规范-2"></a>3.1. 创建包规范</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# create or replace package pkg is
+ivorysql-#   var1 integer;
+ivorysql-#   var2 integer;
+ivorysql-#   function test_f(id integer) return integer;
+ivorysql-#   procedure test_p(id integer);
+ivorysql-# end;
+ivorysql-# /
+CREATE PACKAGE</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="创建包体-2"><a class="anchor" href="#创建包体-2"></a>3.2. 创建包体</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# create or replace package body pkg is
+ivorysql-#   var3 integer;
+ivorysql-#   function test_f(id integer) return integer is
+ivorysql-#   begin
+ivorysql-#     dbms_output.put_line('pkg test_f');
+ivorysql-#     return id;
+ivorysql-#   end;
+ivorysql-#   procedure test_p(id integer) is
+ivorysql-#   begin
+ivorysql-#     dbms_output.put_line('pkg proc');
+ivorysql-#   end;
+ivorysql-#   --privite function
+ivorysql-#   function test_piv1(id integer) return integer is
+ivorysql-#   begin
+ivorysql-#      return id;
+ivorysql-#   end;
+ivorysql-#   --privite procedure
+ivorysql-#   procedure test_piv2(id integer) is
+ivorysql-#   begin
+ivorysql-#     dbms_output.put_line('privite proc');
+ivorysql-#   end;
+ivorysql-# begin
+ivorysql-#    var1 := 1;
+ivorysql-#    var2 := 2;
+ivorysql-#    var3 := 4;
+ivorysql-# end;
+ivorysql-# /
+CREATE PACKAGE BODY</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="更新包-2"><a class="anchor" href="#更新包-2"></a>3.3. 更新包</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# alter package pkg noneditionable;
+ALTER PACKAGE</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="删除包和包体-2"><a class="anchor" href="#删除包和包体-2"></a>3.4. 删除包和包体</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# Drop package pkg;
+DROP PACKAGE
+
+ivorysql=# Drop package body pkg;
+DROP PACKAGE BODY</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="丢弃包-2"><a class="anchor" href="#丢弃包-2"></a>3.5. 丢弃包</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# discard package;
+DISCARD PACKAGES</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="在psql中使用-dk-查看包与包体定义-2"><a class="anchor" href="#在psql中使用-dk-查看包与包体定义-2"></a>3.6. 在psql中使用 \dk[+] 查看包与包体定义</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# \dk
+       List of packages
+ Schema |   Name   |  Owner
+--------+----------+----------
+ public | pkg      | ivorysql
+ public | test_pkg | ivorysql
+(2 rows)
+
+ivorysql=# \dk pkg
+     List of packages
+ Schema | Name |  Owner
+--------+------+----------
+ public | pkg  | ivorysql
+(1 row)
+
+ivorysql=# \dk pkg1
+Did not find any package named "pkg1".
+
+ivorysql=# \dk+
+                                                                                   List of packages
+ Schema |   Name   |  Owner   | Security | Editionable | Use Collation |                 Specification                 |                         Package Body
+
+--------+----------+----------+----------+-------------+---------------+-----------------------------------------------+-----------------------------------------------------
+---------
+ public | pkg      | ivorysql | definer  | Editionable | default       | var1 integer;                                +|
+        |          |          |          |             |               | var2 integer;                                +|
+        |          |          |          |             |               | function test_f(id integer) return integer;  +|
+        |          |          |          |             |               | procedure test_p(id integer);                +|
+        |          |          |          |             |               | end                                           |
+ public | test_pkg | ivorysql | definer  | Editionable | default       | var1 integer;                                +| FUNCTION test_f(id integer) RETURN integer IS
+        +
+        |          |          |          |             |               |   FUNCTION test_f(id integer) RETURN integer;+|   BEGIN
+        +
+        |          |          |          |             |               | end                                           |     dbms_output.put_line('invoke function test_pkg.t
+est_f');+
+        |          |          |          |             |               |                                               | RETURN 23;
+        +
+        |          |          |          |             |               |                                               |   end;
+        +
+        |          |          |          |             |               |                                               | BEGIN
+        +
+        |          |          |          |             |               |                                               |   var1 := 23;
+        +
+        |          |          |          |             |               |                                               | end
+(2 rows)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="7.11.html">11、兼容Oracle sequence</a></span>
+  <span class="next"><a href="7.13.html">13、不可见列</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

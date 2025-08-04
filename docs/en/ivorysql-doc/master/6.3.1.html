@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>PostGIS :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/5.1.html">
-    <link rel="prev" href="4.5.html">
-    <link rel="next" href="5.2.html">
+    <title>Functional Overview :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.1.html">
+    <link rel="prev" href="6.2.1.html">
+    <link rel="next" href="7.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -93,7 +93,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">IvorySQL Ecosystem</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="5.1.html">PostGIS</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -127,7 +127,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Compatibility Features</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="6.3.1.html">like</a>
   </li>
 </ul>
@@ -281,239 +281,104 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li>IvorySQL Ecosystem</li>
-    <li><a href="5.1.html">PostGIS</a></li>
+    <li>IvorySQL Architecture Design</li>
+    <li>Compatibility Features</li>
+    <li><a href="6.3.1.html">like</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/5.1.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/6.3.1.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/5.1.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/6.3.1.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">PostGIS</h1>
-<div class="sect1">
-<h2 id="overview"><a class="anchor" href="#overview"></a>1. Overview</h2>
+<h1 class="page"><strong>Functional Overview</strong></h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>IvorySQL is fully compatible with PostgreSQL, allowing for seamless integration with PostGIS.</p>
+<p>The LIKE syntax in Oracle and IvorySQL is identical. Their difference lies in the expression types: Oracle supports using the LIKE keyword with wildcards for fuzzy queries on columns of numeric, date, and string types. Native PostgreSQL only supports string types, not date or numeric types. IvorySQL achieves Oracle-compatible LIKE operator functionality by extending data type support and operator overloading.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="installation"><a class="anchor" href="#installation"></a>2. Installation</h2>
+<h2 id="implementation-principle"><a class="anchor" href="#implementation-principle"></a>1. Implementation Principle</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Users can select the installation method for PostGIS that best suits their development environment from the <a href="https://postgis.net/documentation/getting_started/#installing-postgis">PostGIS installation page</a>.</p>
+<p>In PostgreSQL, the fundamental string type is text, so LIKE is text-based. Other PostgreSQL types implicitly convert to text, enabling automatic conversion without creating operators. In IvorySQL, the Oracle-compatible string type is varchar2. Therefore, a LIKE operator for varchar2 is created, and other Oracle types also utilize the LIKE operator by implicitly converting to varchar2 without requiring additional operator creation.</p>
+</div>
+<div class="paragraph">
+<p>In the previous implementation of Oracle-compatible data types, IvorySQL established implicit conversions from certain data types (such as integer, float8, float4) to varchar2, but not directly to text.</p>
+</div>
+<div class="paragraph">
+<p>To achieve LIKE operator compatibility for these types, there are two approaches:</p>
+</div>
+<div class="paragraph">
+<p>1、Add a separate LIKE operator for each individual type.</p>
+</div>
+<div class="paragraph">
+<p>2、Implement a base LIKE operator for varchar2.</p>
+</div>
+<div class="paragraph">
+<p>In the second approach, since IvorySQL already supports implicit conversions from float8, integer, number, etc., to varchar2, these data types can share the same operator. Thus, only a single LIKE operator for varchar2 needs to be created.</p>
 </div>
 <div class="sect2">
-<h3 id="source-code-installation"><a class="anchor" href="#source-code-installation"></a>2.1. Source Code Installation</h3>
+<h3 id="type-conversion"><a class="anchor" href="#type-conversion"></a>1.1. Type Conversion</h3>
 <div class="paragraph">
-<p>Apart from the installation methods provided by the PostGIS community, the IvorySQL community also offers a source code installation method, with CentOS Stream 9 (x86_64) as the environment for source code installation.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Please make sure that IvorySQL version 3.0 or newer is installed in the environment.
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Install dependencies</p>
-</li>
-</ul>
+<p>You can use the following SQL statement to check existing implicit type conversions.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">dnf install -y gcc gcc-c++ libtiff libtiff-devel.x86_64 libcurl-devel.x86_64 libtool libxml2-devel redhat-rpm-config clang llvm geos311 automake protobuf-c-devel</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">-- Check existing implicit conversion paths (where 9503 is the OID of varchar2)
+SELECT t1.typname AS source_type, t2.typname AS target_type
+FROM pg_cast C
+JOIN pg_type t1 ON C.castsource = t1.OID
+JOIN pg_type t2 ON C.casttarget = t2.OID
+WHERE C.casttarget = 9503;</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Install SQLITE</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://www.sqlite.org/2022/sqlite-autoconf-3400000.tar.gz
-$ tar -xvf sqlite-autoconf-3400000.tar.gz
-$ cd sqlite-autoconf-3400000
-$ sed -n '1i\#define SQLITE_ENABLE_COLUMN_METADATA 1' sqlite3.c
-$ ./configure --prefix=/usr/local/sqlite
-$ make &amp;&amp; make install
-$ rm usr/bin/sqlite3 &amp;&amp; ln -s /usr/local/sqlite/bin/sqlite3 /usr/bin/sqlite3
-$ sqlite3 -version
-$ export PKG_CONFIG_PATH=/usr/local/sqlite/lib/pkgconfig:$PKG_CONFIG_PATH</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Install PROJ</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://download.osgeo.org/proj/proj-8.2.1.tar.gz
-$ tar -xvf proj-8.2.1.tar.gz
-$ cd proj-8.2.1
-$ ./configure --prefix=/usr/local/proj-8.2.1
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Install GDAL</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://github.com/OSGeo/gdal/releases/download/v3.4.3/gdal-3.4.3.tar.gz
-$ tar -xvf gdal-3.4.3.tar.gz
-$ cd gdal-3.4.3
-$ sh autogen.sh
-$ ./configure --prefix=/usr/local/gdal-3.4.3 --with-proj=/usr/local/proj-8.2.1
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Install GEOS</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://download.osgeo.org/geos/geos-3.9.2.tar.bz2
-$ tar -xvf geos-3.9.2.tar.bz2
-$ cd geos-3.9.2
-$ ./configure --prefix=/usr/local/geos-3.9.2
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Install Protobuf</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://plug-neomirror.rcac.purdue.edu/adelie/source/archive/protobuf-3.20.1/protobuf-3.20.1.tar.gz
-$ tar -xvf protobuf-3.20.1.tar.gz
-$ cd protobuf-3.20.1
-$ sh autogen.sh
-$ ./configure --prefix=/usr/local/protobuf-3.20.1
-$ make &amp;&amp; make install
-$ export PROTOBUF_HOME=/usr/local/protobuf-3.20.1
-$ export PATH=$PROTOBUF_HOME/bin:$PATH
-$ export PKG_CONFIG_PATH=$PROTOBUF_HOME/lib/pkgconfig:$PKG_CONFIG_PATH</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Install Protobuf-c</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget --no-check-certificate https://sources.buildroot.net/protobuf-c/protobuf-c-1.4.1.tar.gz
-$ tar -xvf protobuf-c-1.4.1.tar.gz
-$ cd protobuf-c-1.4.1
-$ ./configure --prefix=/usr/local/protobuf-c-1.4.1
-$ make &amp;&amp; make install
-$ export PROTOBUFC_HOME=/usr/local/protobuf-c-1.4.1
-$ export PATH=$PROTOBUF_HOME/bin:$PROTOBUFC_HOME/bin:$PATH
-$ export PKG_CONFIG_PATH=$PROTOBUFC_HOME/lib:$PKG_CONFIG_PATH</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Install PostGIS</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://download.osgeo.org/postgis/source/postgis-3.4.0.tar.gz
-$ tar -xvf postgis-3.4.0.tar.gz
-$ cd postgis-3.4.0
-$ sh autogen.sh
-$ ./configure  --with-geosconfig=/usr/local/geos-3.9.2/bin/geos-config --with-projdir=/usr/local/proj-8.2.1 --with-gdalconfig=/usr/local/gdal-3.4.3/bin/gdal-config --with-protobufdir=/usr/local/protobuf-c-1.4.1 --with-pgconfig=/usr/local/ivorysql/ivorysql-4/bin/pg_config
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If configure reports PGXS error, please change --with-pgconfig parameter value and confirm the parameter value based on the installation path of IvorySQL in the environment.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="create-the-extension-and-verify-the-postgis-version"><a class="anchor" href="#create-the-extension-and-verify-the-postgis-version"></a>3. Create the extension and verify the PostGIS version.</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>Connect to the database with psql and execute the following command:</p>
+<p>After reviewing, it can be observed that all the types requiring compatibility have implicit conversions defined in this table. Therefore, these types can be directly converted to the text type for fuzzy query operations.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="core-function-implementation"><a class="anchor" href="#core-function-implementation"></a>1.2. Core Function Implementation</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# CREATE extension postgis;
-CREATE EXTENSION
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE OR REPLACE FUNCTION sys.varchar2like(varchar2, varchar2)
+RETURNS bool AS $$
+SELECT $1::text LIKE $2::text;
+$$ LANGUAGE SQL IMMUTABLE STRICT;
 
-ivorysql=# SELECT * FROM pg_available_extensions WHERE name = 'postgis';
-  name   | default_version | installed_version |                          comment
----------+-----------------+-------------------+------------------------------------------------------------
- postgis | 3.4.0           | 3.4.0             | PostGIS geometry and geography spatial types and functions
-(1 row)</code></pre>
+CREATE OPERATOR ~~ (
+  PROCEDURE = sys.varchar2like,
+  LEFTARG   = varchar2,
+  RIGHTARG  = varchar2
+);</code></pre>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="using"><a class="anchor" href="#using"></a>4. Using</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>To learn more about using PostGIS, please consult the official <a href="https://postgis.net/docs/manual-3.4">documentation for PostGIS 3.4</a>.</p>
+<p>The first code segment defines a function named sys.varchar2like, which accepts two parameters of type varchar2. By converting them to PostgreSQL&#8217;s native text type, it performs standard LIKE pattern matching and ultimately returns a boolean value indicating whether the match is successful.</p>
+</div>
+<div class="paragraph">
+<p>The second code segment creates an operator named ~~, which uses the previously defined varchar2like function as its implementation. It specifies that both the left and right operands of this operator must be of type varchar2.</p>
+</div>
+<div class="paragraph">
+<p>This establishes an Oracle-compatible LIKE operator in IvorySQL. When users employ the ~~ operator, it essentially invokes PostgreSQL&#8217;s native LIKE functionality after type conversion, thereby achieving semantic compatibility with Oracle&#8217;s LIKE behavior.</p>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="4.5.html">Migration</a></span>
-  <span class="next"><a href="5.2.html">pgvector</a></span>
+  <span class="prev"><a href="6.2.1.html">initdb Process</a></span>
+  <span class="next"><a href="7.1.html">1、Ivorysql frame design</a></span>
 </nav>
 </article>
   </div>

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Compatible with Oracle anonymous block :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.6.html">
-    <link rel="prev" href="7.5.html">
-    <link rel="next" href="7.7.html">
+    <title>Functional Overview :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.2.html">
+    <link rel="prev" href="6.3.3.html">
+    <link rel="next" href="7.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -133,7 +133,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.3.3.html">RowID</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="6.3.2.html">OUT Parameter</a>
   </li>
 </ul>
@@ -159,7 +159,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="7.5.html">5、Compatible with Oracle like</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="7.6.html">6、Compatible with Oracle anonymous block</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -290,86 +290,161 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li>List of Oracle compatible features</li>
-    <li><a href="7.6.html">6、Compatible with Oracle anonymous block</a></li>
+    <li>IvorySQL Architecture Design</li>
+    <li>Compatibility Features</li>
+    <li><a href="6.3.2.html">OUT Parameter</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/7.6.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/6.3.2.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/7.6.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/6.3.2.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Compatible with Oracle anonymous block</h1>
-<div class="sect1">
-<h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
+<h1 class="page"><strong>Functional Overview</strong></h1>
+<div id="preamble">
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>This document is a design document for the PLSQL anonymous block compatible Oracle syntax function, in order to be compatible with Oracle&#8217;s anonymous block statements in IvorySQL.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>IvorySQL provides Oracle-compatible OUT parameter functionality, including functions and procedures with OUT parameters, support for OUT parameters in anonymous blocks, and libpq support for OUT parameters.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="function-description"><a class="anchor" href="#function-description"></a>2. Function description</h2>
+<h2 id="implementation-principles"><a class="anchor" href="#implementation-principles"></a>1. Implementation Principles</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Anonymous blocks are PLSQL structures that dynamically create and execute procedural code without the need to persistently store the code as database objects in the system directory. In this implementation, IvorySQL is mainly compatible with the syntax format of PLSQL anonymous blocks, and the parts we mainly deal with include client tool psql, master server and PSQL side support.</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="functions-with-out-parameters"><a class="anchor" href="#functions-with-out-parameters"></a>1.1. Functions with OUT Parameters</h3>
+<div class="paragraph">
+<p>For PL/pgSQL functions, when creating a function, the system table pg_proc stores the total number of parameters (including OUT parameters) and their corresponding data types.</p>
+</div>
+<div class="paragraph">
+<p>In the interpret_function_parameter_list() function, which processes function parameters, it checks the parameter mode. If the mode is IN OUT, the parameter cannot have a default value.</p>
+</div>
+<div class="paragraph">
+<p>In the make_return_stmt function, the error handling for detecting OUT parameters has been removed.</p>
+</div>
+<div class="paragraph">
+<p>By modifying the FuncnameGetCandidates function, function lookup now matches all parameters, including OUT parameters.</p>
+</div>
+<div class="paragraph">
+<p>During function compilation, a row variable is constructed to hold OUT parameter variables and the return value variable. The compiled function&#8217;s return type (function&#8594;fn_rettype) is modified to RECORDOID.</p>
+</div>
+<div class="paragraph">
+<p>During function execution, the ExecInitFunc function calls the new ExecInitFuncOutParams function to construct OUT parameter computation nodes. The plisql_out_param function separates the function return value and OUT parameter values from the tuple and assigns values to the OUT parameters externally.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="support-for-out-parameters-in-anonymous-blocks"><a class="anchor" href="#support-for-out-parameters-in-anonymous-blocks"></a>1.2. Support for OUT Parameters in Anonymous Blocks</h3>
+<div class="paragraph">
+<p>To support binding variables in the form of colon placeholders, the ora_scan.l file was modified to add syntax that returns ORAPARAM when a colon placeholder is encountered. In the ora_gram.y file, handling for ORAPARAM was added to the c_expr and plassign_target assignment syntax, constructing an OraParamRef node.</p>
 </div>
-<div class="sect1">
-<h2 id="test-cases"><a class="anchor" href="#test-cases"></a>3. Test cases</h2>
-<div class="sectionbody">
+<div class="paragraph">
+<p>New DO + USING syntax was added:</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">declare
-i integer := 10;
-begin
- raise notice '%', i;
-end;
-/
-NOTICE:  10</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">	DO [ LANGUAGE lang_name ] code [USING IN | OUT | IN OUT, ...]</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>The ora_gram.y file was modified to support the DO+USING syntax. The DoStmt structure now includes a paramsmode field to store a list of binding variable modes and other information for anonymous blocks.</p>
+</div>
+<div class="paragraph">
+<p>Modifications to the PBE (Parse, Bind, Execute) process include:
+In the exec_parse_message function, the parameter mode is identified based on the parameter type OID passed from the application interface. In the exec_bind_message function, for anonymous blocks with DO+USING, the parameter modes following USING are identified, and parameter information is passed to the executor.</p>
+</div>
+<div class="paragraph">
+<p>Execution of anonymous blocks with OUT parameters:
+1. In the PortalStart function, for anonymous block statements, the CreateTupleDescFromParams function is called to construct parameter description information.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>A new value, PROKIND_ANONYMOUS_BLOCK, was added to the PLiSQL_function member fn_prokind to indicate an anonymous block.</p>
+</li>
+<li>
+<p>In the plisql_exec_function function, anonymous blocks with OUT parameters are evaluated. The plisql_anonymous_return_out_parameter function is called to construct a PLiSQL_row type variable for OUT parameters, and the evaluated row type variable is used as the return value of the anonymous block function.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="calling-functions-with-out-parameters-in-libpq"><a class="anchor" href="#calling-functions-with-out-parameters-in-libpq"></a>1.3. Calling Functions with OUT Parameters in libpq</h3>
+<div class="paragraph">
+<p>The libpq interface was modified to support binding by position and by parameter name, involving changes to the SQL layer, PL/pgSQL layer, and libpq interface layer.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>SQL Layer: A system function get_parameter_description was implemented on the server side. This function returns the relationship between variable names and their positions based on the SQL statement. It is used in libpq interface functions.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The first row of the result shows the SQL type in the name column, followed by rows displaying placeholder names and position information.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">DECLARE
-  grade CHAR(1);
-BEGIN
-  grade := 'B';
-  CASE grade
-    WHEN 'A' THEN raise notice 'Excellent';
-    WHEN 'B' THEN raise notice 'Very Good';
-  END CASE;
-EXCEPTION
-  WHEN CASE_NOT_FOUND THEN
-    raise notice 'No such grade';
-END;
-/
-NOTICE:  Very Good</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# select * from get_parameter_description('insert into t values(:x, :y);');
+ name  | position
+-------+----------
+ false |        0
+ :x    |        1
+ :y    |        2
+(3 rows)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Support for anonymous block statements is not yet implemented.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>PL/pgSQL Layer: The PL/pgSQL block adjusts the internal identification of parameters based on their position or name.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The execution function retrieves parameter values and type information from the binding handle.</p>
+</div>
+<div class="paragraph">
+<p>For OUT parameters, a special handling of return column names is applied. If a parameter is an OUT parameter, its column name is formatted as _column_xxx, where xxx is the position of the OUT parameter. This allows assigning values to OUT parameters from the result set based on the binding position and return position.</p>
+</div>
+<div class="paragraph">
+<p>At the PLiSQL execution layer, parameter names are converted to internal identifiers (e.g., $number) based on their position. When returning to the client, description information is sent to libpq, ensuring that the returned column names are constructed from parameter names. The libpq side assigns values to OUT parameters based on these column names.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>libpq Interface Layer: Provides functions for preparing, binding, and executing statements, similar to the corresponding OCI functions.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The general calling process is as follows:
+Use IvyHandleAlloc to allocate statement and error handles.
+Call IvyStmtPrepare to prepare the statement.
+Call IvyBindByPos or IvyBindByName to bind parameters.
+Call IvyStmtExecute to execute, which can be repeated.
+Call IvyFreeHandle to release the statement and error handles.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, a series of interface functions have been implemented, including Ivyconnectdb, Ivystatus, Ivyexec, IvyresultStatus, IvyCreatePreparedStatement, IvybindOutParameterByPos, IvyexecPreparedStatement, IvyexecPreparedStatement2, Ivynfields, Ivyntuples, and Ivyclear.</p>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="7.5.html">5、Compatible with Oracle like</a></span>
-  <span class="next"><a href="7.7.html">7、Compatible with Oracle functions and stored procedures</a></span>
+  <span class="prev"><a href="6.3.3.html">RowID</a></span>
+  <span class="next"><a href="7.1.html">1、Ivorysql frame design</a></span>
 </nav>
 </article>
   </div>

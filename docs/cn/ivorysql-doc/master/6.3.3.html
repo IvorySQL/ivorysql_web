@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Ivorysql框架设计 :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.1.html">
-    <link rel="prev" href="6.3.2.html">
-    <link rel="next" href="7.2.html">
+    <title>RowID :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.3.html">
+    <link rel="prev" href="6.3.1.html">
+    <link rel="next" href="6.3.2.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -130,7 +130,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.3.1.html">like</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="6.3.3.html">RowID</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -144,7 +144,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Oracle兼容功能列表</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="7.1.html">1、框架设计</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -290,80 +290,140 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li>Oracle兼容功能列表</li>
-    <li><a href="7.1.html">1、框架设计</a></li>
+    <li>IvorySQL架构设计</li>
+    <li>兼容特性</li>
+    <li><a href="6.3.3.html">RowID</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/7.1.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/6.3.3.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/7.1.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/6.3.3.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Ivorysql框架设计</h1>
+<h1 class="page">RowID</h1>
 <div class="sect1">
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>在对原有的PostgreSQL改动最小的前提下，实现对Oracle兼容。我们需要实现双parser、双端口、模式PL/PGSQL实现PL/iSQL的框架。实现流程图如下：</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>IvorySQL提供了兼容Oracle RowID的功能。RowID是一种伪列，在创建表时由数据库自动生成，对于数据库中的每一行，RowID 伪列返回该行的地址。</p>
 </div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/p18.png" alt="p18">
+<div class="paragraph">
+<p>RowID 应当具备以下特性：</p>
 </div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. 逻辑的标识每一行，且值唯一</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2. 可以通过ROWID快速查询和修改表的其他列，自身不能被插入和修改</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3. 用户可以控制是否开启此功能</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="功能"><a class="anchor" href="#功能"></a>2. 功能</h2>
+<h2 id="实现说明"><a class="anchor" href="#实现说明"></a>2. 实现说明</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="双端口设计"><a class="anchor" href="#双端口设计"></a>2.1. 双端口设计</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>保持了Ivorysql 5432端口兼容原有postgres情况，因此 Ivorysql采用另一个独立的端口登录，默认为1521。从该端口登录，默认采用Oracle兼容模式。如果需要从5432端口登录且还要进入兼容模式，则需要通过<code>SET ivorysql.compatible_mode=oracle</code>进行设置。</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>在IvorySQL中系统列 ctid 字段代表了数据行在表中的物理位置，也就是行标识（tuple identifier），由一对数值组成（块编号和行索引），可以通过ctid快速的查找表中的数据行，这样和Oracle的RowID行为很相似，但是ctid值有可能会改变（例如当update/ vacuum full时），因此ctid不适合作为一个长期的行标识。</p>
+</div>
+<div class="paragraph">
+<p>我们选择了表的oid加一个序列值组成的复合类型来做为RowID值，其中的序列是系统列。如果RowID功能被开启，则在建表的同时创建一个名为table-id_rowid_seq 的序列。同时在heap_form_tuple构造函数中，为 HeapTupleHeaderData 的长度增加8个字节，并标识td&#8594;t_infomask = HEAP_HASROWID 位来表示rowid的存在。</p>
+</div>
+<div class="paragraph">
+<p>在开启了ROWID的GUC参数或建表时带上 WITH ROWID 选项，或对普通表执行 ALTER TABLE … SET WITH ROWID 时会通过增加序列创建命令来创建一个序列。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/*
+		 * Build a CREATE SEQUENCE command to create the sequence object,
+		 * and add it to the list of things to be done before this CREATE/ALTER TABLE
+		 */
+		seqstmt = makeNode(CreateSeqStmt);
+		seqstmt-&gt;with_rowid = true;
+		seqstmt-&gt;sequence = makeRangeVar(snamespace, sname, -1);
+		seqstmt-&gt;options = lcons(makeDefElem("as",
+							 (Node *) makeTypeNameFromOid(INT8OID, -1),
+							 -1),
+						 seqstmt-&gt;options);
+		seqstmt-&gt;options = lcons(makeDefElem("nocache",
+							 NULL,
+							 -1),
+						 seqstmt-&gt;options);</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="parser模块设计"><a class="anchor" href="#parser模块设计"></a>2.2. parser模块设计</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>为了将Oracle语法与PostgreSQL语法间的相互干扰降到最低，因此新增parser模块，用于处理Oracle相关的语法。</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>同时为了快速通过RowID伪列查询到一行数据，默认会在表的RowID列上创建一个UNIQUE索引，以提供快速查询功能。</p>
+</div>
+<div class="paragraph">
+<p>RowID列做为系统属性列其实现是通过在 heap.c 中新增一个系统列来实现的。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/*
+ * Compatible Oracle ROWID pseudo column.
+ */
+static const FormData_pg_attribute a7 = {
+	.attname = {"rowid"},
+	.atttypid = ROWIDOID,
+	.attlen = -1,
+	.attnum = RowIdAttributeNumber,
+	.attcacheoff = -1,
+	.atttypmod = -1,
+	.attbyval = false,
+	.attalign = TYPALIGN_SHORT,
+	.attstorage = TYPSTORAGE_PLAIN,
+	.attnotnull = true,
+	.attislocal = true,
+};</code></pre>
 </div>
 </div>
-<div class="sect2">
-<h3 id="新增plisql过程语言"><a class="anchor" href="#新增plisql过程语言"></a>2.3. 新增PL/iSQL过程语言</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>新增PL/iSQL过程语言兼容Oracle的PL/SQL过程语言。</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>在pg_class系统表中增加一个 bool 类型的字段 relhasrowid，用于标识建表时的 WITH ROWID选项，如果建表时带了WITH ROWID选项，则 relhasrowid为 t，否则为f。
+用户在执行 ALTER table … SET WITH ROWID/ WITHOUT ROWID 命令时，也会修改这个值。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">       /* T if we generate ROWIDs for rows of rel */
+	bool		relhasrowid BKI_DEFAULT(f);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在RowID的存储方面，如果启用了RowID 伪列功能，则在插入表之前 heap_form_tuple函数会根据参数TupleDesc 中tdhasrowid 是否为true 在 HeapTupleHeaderData 中增加8个字节来存储序列值。
+在heap_prepare_insert 函数中获取序列的nextval值，存在HeapTupleHeader 相应的位置。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">       if (relation-&gt;rd_rel-&gt;relhasrowid)
+	{
+		//  Get the sequence next value
+		seqnum = nextval_internal(relation-&gt;rd_rowdSeqid, true);
+		//  Set the HeapTupleHeader
+		HeapTupleSetRowId(tup, seqnum);
+	}</code></pre>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="6.3.2.html">OUT 参数</a></span>
-  <span class="next"><a href="7.2.html">2、GUC框架</a></span>
+  <span class="prev"><a href="6.3.1.html">like</a></span>
+  <span class="next"><a href="6.3.2.html">OUT 参数</a></span>
 </nav>
 </article>
   </div>

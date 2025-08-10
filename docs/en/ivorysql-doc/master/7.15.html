@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Compatible with Oracle anonymous block :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.6.html">
-    <link rel="prev" href="7.5.html">
-    <link rel="next" href="7.7.html">
+    <title>out parameter :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.15.html">
+    <link rel="prev" href="7.14.html">
+    <link rel="next" href="8.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -159,7 +159,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="7.5.html">5、Compatible with Oracle like</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="7.6.html">6、Compatible with Oracle anonymous block</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -186,7 +186,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="7.14.html">14、RowID Column</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="7.15.html">15、OUT Parameter</a>
   </li>
 </ul>
@@ -291,85 +291,236 @@
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
     <li>List of Oracle compatible features</li>
-    <li><a href="7.6.html">6、Compatible with Oracle anonymous block</a></li>
+    <li><a href="7.15.html">15、OUT Parameter</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/7.6.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/7.15.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/7.6.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/7.15.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Compatible with Oracle anonymous block</h1>
+<h1 class="page">out parameter</h1>
 <div class="sect1">
 <h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>This document is a design document for the PLSQL anonymous block compatible Oracle syntax function, in order to be compatible with Oracle&#8217;s anonymous block statements in IvorySQL.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>IvorySQL provides Oracle-compatible OUT parameter functionality, including functions and procedures with OUT parameters, support for OUT parameters in anonymous blocks, and libpq support for OUT parameters.</p>
+</div>
+<div class="paragraph">
+<p>This document aims to introduce the functionality of OUT parameters to users.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="function-description"><a class="anchor" href="#function-description"></a>2. Function description</h2>
+<h2 id="function-descriptions"><a class="anchor" href="#function-descriptions"></a>2. Function descriptions</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Anonymous blocks are PLSQL structures that dynamically create and execute procedural code without the need to persistently store the code as database objects in the system directory. In this implementation, IvorySQL is mainly compatible with the syntax format of PLSQL anonymous blocks, and the parts we mainly deal with include client tool psql, master server and PSQL side support.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>IvorySQL provides Oracle-compatible OUT parameter functionality, including the following features.</p>
+</div>
+<div class="sect2">
+<h3 id="functions-with-out-parameters"><a class="anchor" href="#functions-with-out-parameters"></a>2.1. functions with OUT parameters</h3>
+<div class="paragraph">
+<p>Syntax：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE [ OR REPLACE ] FUNCTION
+    name ( [ [ argmode ] [ argname ] argtype [ { DEFAULT | = } default_expr ] [, ...] ] )
+    [ RETURNS rettype
+      | RETURNS TABLE ( column_name column_type [, ...] ) ]
+  { LANGUAGE lang_name
+    | TRANSFORM { FOR TYPE type_name } [, ... ]
+    | WINDOW
+    | { IMMUTABLE | STABLE | VOLATILE }
+    | [ NOT ] LEAKPROOF
+    | { CALLED ON NULL INPUT | RETURNS NULL ON NULL INPUT | STRICT }
+    | { [ EXTERNAL ] SECURITY INVOKER | [ EXTERNAL ] SECURITY DEFINER }
+    | PARALLEL { UNSAFE | RESTRICTED | SAFE }
+    | COST execution_cost
+    | ROWS result_rows
+    | SUPPORT support_function
+    | SET configuration_parameter { TO value | = value | FROM CURRENT }
+    | AS 'definition'
+    | AS 'obj_file', 'link_symbol'
+    | sql_body
+  } ...</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The argmode can be IN, OUT, INOUT (IN OUT), or VARIADIC. If not specified, the default is IN. The argmode can also be written after the argname.</p>
+</div>
+<div class="paragraph">
+<p>Unlike native PostgreSQL, Oracle-compatible OUT parameters are not associated with the return value data type. Neither IN OUT nor OUT modes can have default values. If there are OUT parameters and the function&#8217;s return type is not void, the function body must include a RETURN statement.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-for-out-parameters-in-anonymous-blocks"><a class="anchor" href="#support-for-out-parameters-in-anonymous-blocks"></a>2.2. support for OUT parameters in anonymous blocks</h3>
+<div class="paragraph">
+<p>Supports binding variables in the form of colon placeholders, such as :1, :name.</p>
+</div>
+<div class="paragraph">
+<p>Added new DO+USING syntax： DO [ LANGUAGE lang_name ] code [USING IN | OUT | IN OUT, &#8230;&#8203;]</p>
+</div>
+<div class="paragraph">
+<p>Supports binding variables in libpq by position and by parameter name, providing the system function get_parameter_description, which returns the relationship between variable names and their positions based on the SQL statement.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="calling-functions-with-out-parameters-in-libpq"><a class="anchor" href="#calling-functions-with-out-parameters-in-libpq"></a>2.3. calling functions with OUT parameters in libpq</h3>
+<div class="paragraph">
+<p>The libpq interface provides functions for preparing, binding, and executing statements, which are similar to the corresponding OCI functions.
+The usage process is as follows:</p>
+</div>
+<div class="paragraph">
+<p>Use IvyHandleAlloc to allocate statement and error handles.
+Call IvyStmtPrepare to prepare the statement.
+Call IvyBindByPos or IvyBindByName to bind parameters.
+Call IvyStmtExecute to execute, which can be repeated.
+Call IvyFreeHandle to release the statement and error handles.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, a series of interface functions have been implemented, including Ivyconnectdb, Ivystatus, Ivyexec, IvyresultStatus, IvyCreatePreparedStatement, IvybindOutParameterByPos, IvyexecPreparedStatement, IvyexecPreparedStatement2, Ivynfields, Ivyntuples, and Ivyclear.</p>
+</div>
+<div class="paragraph">
+<p>Example programs can be found in the src/interfaces/libpq/ivytest directory of the source code.</p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="test-cases"><a class="anchor" href="#test-cases"></a>3. Test cases</h2>
+<h2 id="test-examples"><a class="anchor" href="#test-examples"></a>3. test examples</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">declare
-i integer := 10;
-begin
- raise notice '%', i;
-end;
-/
-NOTICE:  10</code></pre>
-</div>
+<div class="sect2">
+<h3 id="functions-with-out-parameters-2"><a class="anchor" href="#functions-with-out-parameters-2"></a>3.1. functions with OUT parameters</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>OUT parameters are not associated with the return value data type</p>
+</li>
+</ol>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">DECLARE
-  grade CHAR(1);
-BEGIN
-  grade := 'B';
-  CASE grade
-    WHEN 'A' THEN raise notice 'Excellent';
-    WHEN 'B' THEN raise notice 'Very Good';
-  END CASE;
-EXCEPTION
-  WHEN CASE_NOT_FOUND THEN
-    raise notice 'No such grade';
-END;
-/
-NOTICE:  Very Good</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# create or replace function test_return_out(id integer,price out integer,name out varchar) return varchar
+ivorysql-# as
+ivorysql-# begin
+ivorysql-#   price := 20000;
+ivorysql-#   name := 'test a char out';
+ivorysql-#   return 'welcome to QingDao';
+ivorysql-# end;
+ivorysql-# /
+CREATE FUNCTION</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Neither IN OUT nor OUT modes can have default values</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# create or replace function test_return_inout(id integer,price in out integer default 100,name out varchar) return varchar
+ivorysql-# as
+ivorysql-# begin
+ivorysql-#   price := 20000 + price;
+ivorysql-#   name := 'this is a test';
+ivorysql-# return 'welcome to QingDao';
+ivorysql-# end;
+ivorysql-# /
+ERROR:  IN OUT formal parameters may have no default expressions</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>If there are OUT parameters and the function&#8217;s return type is not void, the function body must include a RETURN statement.</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">--if function's return type is non-void, the function body must has RETURN statement
+--if there is no RETURN statement, the function can be created, but when it is called,
+--an error is raised
+ivorysql=# create or replace function f2(id integer,price out integer) return varchar
+ivorysql-# as
+ivorysql-# begin
+ivorysql-#   price := 2;
+ivorysql-# end;
+ivorysql-# /
+CREATE FUNCTION
+ivorysql=# declare
+ivorysql-#   a varchar(20);
+ivorysql-#   b int;
+ivorysql-# begin
+ivorysql-#   a := f2(1, b);
+ivorysql-# end;
+ivorysql-# /
+ERROR:  Function returned without value
+CONTEXT:  PL/iSQL function f2(pg_catalog.int4,pg_catalog.int4) line 0 at RETURN
+PL/iSQL function inline_code_block line 5 at assignment</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-out-parameters-in-anonymous-block"><a class="anchor" href="#support-out-parameters-in-anonymous-block"></a>3.2. support OUT parameters in anonymous block</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Supports binding variables in the form of colon placeholders and new DO+USING syntax</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# do $$
+ivorysql$# declare
+ivorysql$#   a int;
+ivorysql$# begin
+ivorysql$#   :x := 1;
+ivorysql$#   :y := 2;
+ivorysql$# end; $$ using out, out;
+ $1 | $2
+----+----
+  1 |  2
+(1 row)</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>system function get_parameter_descr()</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# select * from get_parameter_description('insert into t values(:x,:y)');
+ name  | position
+-------+----------
+ false |        0
+ :x    |        1
+ :y    |        2
+(3 rows)</code></pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="7.5.html">5、Compatible with Oracle like</a></span>
-  <span class="next"><a href="7.7.html">7、Compatible with Oracle functions and stored procedures</a></span>
+  <span class="prev"><a href="7.14.html">14、RowID Column</a></span>
+  <span class="next"><a href="8.html">Community contribution</a></span>
 </nav>
 </article>
   </div>

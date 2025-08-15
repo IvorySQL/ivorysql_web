@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Functional Overview :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.1.html">
-    <link rel="prev" href="6.2.1.html">
-    <link rel="next" href="6.3.3.html">
+    <title>Server-Side Support for the GB18030 Character Set :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.4.html">
+    <link rel="prev" href="6.3.2.html">
+    <link rel="next" href="7.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -127,7 +127,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Compatibility Features</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.3.1.html">like</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -138,7 +138,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="6.4.html">GB18030 Character Set</a>
   </li>
 </ul>
@@ -294,103 +294,189 @@
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
     <li>IvorySQL Architecture Design</li>
-    <li>Compatibility Features</li>
-    <li><a href="6.3.1.html">like</a></li>
+    <li><a href="6.4.html">GB18030 Character Set</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/6.3.1.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/6.4.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/6.3.1.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/6.4.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>Functional Overview</strong></h1>
-<div id="preamble">
+<h1 class="page">Server-Side Support for the GB18030 Character Set</h1>
+<div class="sect1">
+<h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The LIKE syntax in Oracle and IvorySQL is identical. Their difference lies in the expression types: Oracle supports using the LIKE keyword with wildcards for fuzzy queries on columns of numeric, date, and string types. Native PostgreSQL only supports string types, not date or numeric types. IvorySQL achieves Oracle-compatible LIKE operator functionality by extending data type support and operator overloading.</p>
+<p>PostgreSQL provides comprehensive server-side support for the GB18030 character set. GB18030 is a Chinese national standard designed to include all Chinese characters and various minority scripts, aiming for alignment with Unicode. Proper configuration and use of the GB18030 character set within PostgreSQL are essential for processing and storing Chinese data that must comply with this standard.</p>
 </div>
+<div class="paragraph">
+<p>Server-side GB18030 support should provide the following features:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. Support for GB18030 as a server encoding: initdb -E GB18030 is available, and SHOW server_encoding displays GB18030.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2. Provide bidirectional conversion between GB18030 and UTF8.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3. Support for multibyte character boundary determination.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation-principle"><a class="anchor" href="#implementation-principle"></a>1. Implementation Principle</h2>
+<h2 id="implementation-details"><a class="anchor" href="#implementation-details"></a>2. Implementation Details</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>In PostgreSQL, the fundamental string type is text, so LIKE is text-based. Other PostgreSQL types implicitly convert to text, enabling automatic conversion without creating operators. In IvorySQL, the Oracle-compatible string type is varchar2. Therefore, a LIKE operator for varchar2 is created, and other Oracle types also utilize the LIKE operator by implicitly converting to varchar2 without requiring additional operator creation.</p>
-</div>
-<div class="paragraph">
-<p>In the previous implementation of Oracle-compatible data types, IvorySQL established implicit conversions from certain data types (such as integer, float8, float4) to varchar2, but not directly to text.</p>
-</div>
-<div class="paragraph">
-<p>To achieve LIKE operator compatibility for these types, there are two approaches:</p>
-</div>
-<div class="paragraph">
-<p>1、Add a separate LIKE operator for each individual type.</p>
-</div>
-<div class="paragraph">
-<p>2、Implement a base LIKE operator for varchar2.</p>
-</div>
-<div class="paragraph">
-<p>In the second approach, since IvorySQL already supports implicit conversions from float8, integer, number, etc., to varchar2, these data types can share the same operator. Thus, only a single LIKE operator for varchar2 needs to be created.</p>
-</div>
 <div class="sect2">
-<h3 id="type-conversion"><a class="anchor" href="#type-conversion"></a>1.1. Type Conversion</h3>
+<h3 id="specifying-gb18030-or-gb18030_2022-with-the-e-option-during-initdb"><a class="anchor" href="#specifying-gb18030-or-gb18030_2022-with-the-e-option-during-initdb"></a>2.1. Specifying GB18030 or GB18030_2022 with the -E Option during initdb</h3>
 <div class="paragraph">
-<p>You can use the following SQL statement to check existing implicit type conversions.</p>
+<p>PostgreSQL has historically supported the GB18030-2000 standard as a client-side encoding. Support for conversion between the GB18030_2022 character set and UTF-8 is provided via an extension.</p>
+</div>
+<div class="paragraph">
+<p>To enable GB18030 as a server encoding, modifications are made to pg_enc, and new low-level functions are added to the PostgreSQL encoding framework for invocation by the core system.</p>
+</div>
+<div class="paragraph">
+<p>A global variable, is_load_gb18030_2022, is introduced with a default value of true. When the -E option is used during initdb, the get_encoding_id function checks the specified encoding name. If the name is gb18030_2022, it is internally mapped to the gb18030 encoding ID, and the is_load_gb18030_2022 flag is set to true. If the -E option is GB18030, the flag is set to false.</p>
+</div>
+<div class="paragraph">
+<p>At the appropriate stage in the startup process, the system checks this flag to determine if the extension should be loaded. If required, the load_gb18030_2022 function is executed, and the gb18030_2022 extension is added to the shared_preload_libraries parameter in ivorysql.conf.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">-- Check existing implicit conversion paths (where 9503 is the OID of varchar2)
-SELECT t1.typname AS source_type, t2.typname AS target_type
-FROM pg_cast C
-JOIN pg_type t1 ON C.castsource = t1.OID
-JOIN pg_type t2 ON C.casttarget = t2.OID
-WHERE C.casttarget = 9503;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After reviewing, it can be observed that all the types requiring compatibility have implicit conversions defined in this table. Therefore, these types can be directly converted to the text type for fuzzy query operations.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="core-function-implementation"><a class="anchor" href="#core-function-implementation"></a>1.2. Core Function Implementation</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE OR REPLACE FUNCTION sys.varchar2like(varchar2, varchar2)
-RETURNS bool AS $$
-SELECT $1::text LIKE $2::text;
-$$ LANGUAGE SQL IMMUTABLE STRICT;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">if (encoding_name &amp;&amp; *encoding_name)
+{
+    encoding_name_modify = pg_strdup(encoding_name);
+    if(pg_strcasecmp(encoding_name,"gb18030_2022") == 0)
+    {
+        encoding_name_modify = pg_strdup("gb18030");
+        is_load_gb18030_2022 =  true;
+    }
+    else if(pg_strcasecmp(encoding_name,"gb18030") == 0)
+    is_load_gb18030_2022 = false;
 
-CREATE OPERATOR ~~ (
-  PROCEDURE = sys.varchar2like,
-  LEFTARG   = varchar2,
-  RIGHTARG  = varchar2
-);</code></pre>
+    if ((enc = pg_valid_server_encoding((const char *)encoding_name_modify)) &gt;= 0)
+        return enc;
+}</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="multibyte-character-handling"><a class="anchor" href="#multibyte-character-handling"></a>2.2. Multibyte Character Handling</h3>
+<div class="paragraph">
+<p>Function pointers for GB18030 are added in wchar.c:</p>
 </div>
 <div class="paragraph">
-<p>The first code segment defines a function named sys.varchar2like, which accepts two parameters of type varchar2. By converting them to PostgreSQL&#8217;s native text type, it performs standard LIKE pattern matching and ultimately returns a boolean value indicating whether the match is successful.</p>
+<p>pg_gb180302wchar_with_len(const unsigned char *from, pg_wchar *to, int len) gb18030 &#8594; wchar</p>
 </div>
 <div class="paragraph">
-<p>The second code segment creates an operator named ~~, which uses the previously defined varchar2like function as its implementation. It specifies that both the left and right operands of this operator must be of type varchar2.</p>
+<p>pg_wchar2gb18030_with_len(const pg_wchar *from, unsigned char *to, int len) wchar &#8594; gb18030</p>
 </div>
 <div class="paragraph">
-<p>This establishes an Oracle-compatible LIKE operator in IvorySQL. When users employ the ~~ operator, it essentially invokes PostgreSQL&#8217;s native LIKE functionality after type conversion, thereby achieving semantic compatibility with Oracle&#8217;s LIKE behavior.</p>
+<p>pg_gb18030_mblen(const unsigned char *s)：Returns 1/2/4.</p>
+</div>
+<div class="paragraph">
+<p>pg_gb18030_dsplen(const unsigned char *s)：Calculates the display width of a character. ASCII characters have a width of 1, while others are also treated as having a width of 1 .</p>
+</div>
+<div class="paragraph">
+<p>pg_gb18030_verifier(const unsigned char *s, int len)：Verifies that a byte sequence is a valid GB18030 character, rejecting illegal sequences.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="client-server-interaction"><a class="anchor" href="#client-server-interaction"></a>2.3. Client-Server Interaction</h3>
+<div class="paragraph">
+<p>Receiving Data</p>
+</div>
+<div class="paragraph">
+<p>When a client using UTF-8 encoding connects to the server, the server, upon receiving data, invokes its internal utf8_to_gb18030 function. This converts the data to the GB18030 format, which is then validated and stored.</p>
+</div>
+<div class="paragraph">
+<p>Sending Data</p>
+</div>
+<div class="paragraph">
+<p>When the same client executes a SELECT query, the server reads the native GB18030 data from disk or memory. It then calls the gb18030_to_utf8 function to convert the data to UTF-8 format before sending it to the client via the network protocol.</p>
+</div>
+<div class="paragraph">
+<p>A new data file, GB18030-2022.xml, is introduced. This file is parsed by a Perl script to generate mapping files that provide the logic for the gb18030_to_utf8() and utf8_to_gb18030() conversion functions. The implementation prioritizes a table-driven approach, falling back to algorithmic mapping for ranges not covered by the tables.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">static inline uint32
+unicode_to_utf8word(uint32 c)
+{
+	uint32		word;
+
+	if (c &lt;= 0x7F)
+	{
+		word = c;
+	}
+	else if (c &lt;= 0x7FF)
+	{
+		word = (0xC0 | ((c &gt;&gt; 6) &amp; 0x1F)) &lt;&lt; 8;
+		word |= 0x80 | (c &amp; 0x3F);
+	}
+	else if (c &lt;= 0xFFFF)
+	{
+		word = (0xE0 | ((c &gt;&gt; 12) &amp; 0x0F)) &lt;&lt; 16;
+		word |= (0x80 | ((c &gt;&gt; 6) &amp; 0x3F)) &lt;&lt; 8;
+		word |= 0x80 | (c &amp; 0x3F);
+	}
+	else
+	{
+		word = (0xF0 | ((c &gt;&gt; 18) &amp; 0x07)) &lt;&lt; 24;
+		word |= (0x80 | ((c &gt;&gt; 12) &amp; 0x3F)) &lt;&lt; 16;
+		word |= (0x80 | ((c &gt;&gt; 6) &amp; 0x3F)) &lt;&lt; 8;
+		word |= 0x80 | (c &amp; 0x3F);
+	}
+
+	return word;
+}
+
+static uint32
+conv_18030_2022_to_utf8(uint32 code)
+{
+#define conv18030(minunicode, mincode, maxcode) \
+	if (code &gt;= mincode &amp;&amp; code &lt;= maxcode) \
+		return unicode_to_utf8word(gb_linear(code) - gb_linear(mincode) + minunicode)
+
+	conv18030(0x0452, 0x8130D330, 0x8136A531);
+	conv18030(0x2643, 0x8137A839, 0x8138FD38);
+	conv18030(0x361B, 0x8230A633, 0x8230F237);
+	conv18030(0x3CE1, 0x8231D438, 0x8232AF32);
+	conv18030(0x4160, 0x8232C937, 0x8232F837);
+	conv18030(0x44D7, 0x8233A339, 0x8233C931);
+	conv18030(0x478E, 0x8233E838, 0x82349638);
+	conv18030(0x49B8, 0x8234A131, 0x8234E733);
+	conv18030(0x9FA6, 0x82358F33, 0x8336C738);
+	conv18030(0xE865, 0x8336D030, 0x84308534);
+	conv18030(0xFA2A, 0x84309C38, 0x84318537);
+	conv18030(0xFFE6, 0x8431A234, 0x8431A439);
+	conv18030(0x10000, 0x90308130, 0xE3329A35);
+	/* No mapping exists */
+	return 0;
+}</code></pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="6.2.1.html">initdb Process</a></span>
-  <span class="next"><a href="6.3.3.html">RowID</a></span>
+  <span class="prev"><a href="6.3.2.html">OUT Parameter</a></span>
+  <span class="next"><a href="7.1.html">1、Ivorysql frame design</a></span>
 </nav>
 </article>
   </div>

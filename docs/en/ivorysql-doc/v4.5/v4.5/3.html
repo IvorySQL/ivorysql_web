@@ -347,13 +347,10 @@
 <div class="sect1">
 <h2 id="quick-installation"><a class="anchor" href="#quick-installation"></a>2. Quick installation</h2>
 <div class="sectionbody">
-<div class="literalblock">
-<div class="content">
-<pre>  The operating system used for the quick start is CentOS Stream 9.</pre>
+<div class="paragraph">
+<p>The operating system used for the quick start is CentOS Stream 9.
+=== yum installation</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="yum-installation"><a class="anchor" href="#yum-installation"></a>2.1. yum installation</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -386,7 +383,7 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y IvorySQL-4.5</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y ivorysql4-4.5</code></pre>
 </div>
 </div>
 <div id="setting-environment-variables" class="ulist">
@@ -401,9 +398,9 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/opt/IvorySQL-4.5/bin:$PATH
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/usr/ivory-4/bin:$PATH
 export PATH
-PGDATA=/opt/IvorySQL-4.5/data
+PGDATA=/usr/ivory-4/data
 export PGDATA</code></pre>
 </div>
 </div>
@@ -421,15 +418,14 @@ export PGDATA</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ initdb -D /opt/IvorySQL-4.5/data</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ initdb -D /usr/ivory-4/data</code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>  The -D option specifies the directory where the database cluster should be stored. This is the only information required by initdb, but you can avoid writing it by setting the PGDATA environment variable, which can be convenient since the database server can find the database directory later by the same variable.
-
-  For more options, refer to initdb --help.</pre>
+<div class="paragraph">
+<p>The -D option specifies the directory where the database cluster should be stored. This is the only information required by initdb, but you can avoid writing it by setting the PGDATA environment variable, which can be convenient since the database server can find the database directory later by the same variable.</p>
 </div>
+<div class="paragraph">
+<p>For more options, refer to initdb --help.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -440,18 +436,14 @@ export PGDATA</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /opt/IvorySQL-4.5/data -l ivory.log start</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /usr/ivory-4/data -l ivory.log start</code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>The -D option specifies the file system location of the database configuration files. If this option is omitted, the environment variable PGDATA in &lt;&lt;setting-environment-variables&gt;&gt; is used. -l option appends the server log output to filename. If the file does not exist, it is created.</pre>
+<div class="paragraph">
+<p>The -D option specifies the file system location of the database configuration files. If this option is omitted, the environment variable PGDATA in <a href="#setting-environment-variables">[setting-environment-variables]</a> is used. -l option appends the server log output to filename. If the file does not exist, it is created.</p>
 </div>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>For more options, refer to pg_ctl --help.</pre>
-</div>
+<div class="paragraph">
+<p>For more options, refer to pg_ctl --help.</p>
 </div>
 <div class="paragraph">
 <p>Confirm it’s successfully started:</p>
@@ -459,7 +451,7 @@ export PGDATA</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ps -ef | grep postgres
-ivorysql  3214     1  0 20:35 ?        00:00:00 /opt/IvorySQL-4.5/bin/postgres -D /opt/IvorySQL-4.5/data
+ivorysql  3214     1  0 20:35 ?        00:00:00 /usr/ivory-4/bin/postgres -D /usr/ivory-4/data
 ivorysql  3215  3214  0 20:35 ?        00:00:00 postgres: checkpointer
 ivorysql  3216  3214  0 20:35 ?        00:00:00 postgres: background writer
 ivorysql  3218  3214  0 20:35 ?        00:00:00 postgres: walwriter
@@ -468,9 +460,8 @@ ivorysql  3220  3214  0 20:35 ?        00:00:00 postgres: logical replication la
 ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code></pre>
 </div>
 </div>
-</div>
 <div class="sect2">
-<h3 id="running-ivorysql-in-docker"><a class="anchor" href="#running-ivorysql-in-docker"></a>2.2. Running IvorySQL in docker</h3>
+<h3 id="running-ivorysql-in-docker"><a class="anchor" href="#running-ivorysql-in-docker"></a>2.1. Running IvorySQL in docker</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -527,12 +518,11 @@ Type "help" for help.
 ivorysql=#</code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>  The -d option specifies the name of the database to connect to. ivorysql is the default database of IvorySQL. However,IvorySQL of lower versions need the users themselves to connect to postgres database at the first connection and then create the ivorysql database.The latest IvorySQL can do all these for users.
-
-  For more options, refer to psql --help.</pre>
+<div class="paragraph">
+<p>The -d option specifies the name of the database to connect to. ivorysql is the default database of IvorySQL. However,IvorySQL of lower versions need the users themselves to connect to postgres database at the first connection and then create the ivorysql database.The latest IvorySQL can do all these for users.</p>
 </div>
+<div class="paragraph">
+<p>For more options, refer to psql --help.</p>
 </div>
 <div class="admonitionblock tip">
 <table>

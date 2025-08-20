@@ -347,13 +347,10 @@
 <div class="sect1">
 <h2 id="快速安装"><a class="anchor" href="#快速安装"></a>2. 快速安装</h2>
 <div class="sectionbody">
-<div class="literalblock">
-<div class="content">
-<pre>  快速开始示例所使用的操作系统为CentOS Stream 9。</pre>
+<div class="paragraph">
+<p>快速开始示例所使用的操作系统为CentOS Stream 9。
+=== 从yum源安装IvorySQL数据库</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="从yum源安装ivorysql数据库"><a class="anchor" href="#从yum源安装ivorysql数据库"></a>2.1. 从yum源安装IvorySQL数据库</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -386,20 +383,18 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y IvorySQL-4.5</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y ivorysql4-4.5</code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>  正确安装后，数据库将被安装在/opt/IvorySQL-4.5/路径下的IvorySQL-version(如:IvorySQL-4.5)文件夹内</pre>
-</div>
+<div class="paragraph">
+<p>正确安装后，数据库将被安装在/usr/ivory-4/文件夹内</p>
 </div>
 <div class="paragraph">
 <p>执行以下命令为ivorysql用户赋权：</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo chown -R ivorysql:ivorysql /opt/IvorySQL-4.5</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo chown -R ivorysql:ivorysql /usr/ivory-4</code></pre>
 </div>
 </div>
 <div id="配置环境变量" class="ulist">
@@ -414,9 +409,9 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/opt/IvorySQL-4.5/bin:$PATH
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/usr/ivory-4/bin:$PATH
 export PATH
-PGDATA=/opt/IvorySQL-4.5/data
+PGDATA=/usr/ivory-4/data
 export PGDATA</code></pre>
 </div>
 </div>
@@ -434,13 +429,11 @@ export PGDATA</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ initdb -D /opt/IvorySQL-4.5/data</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ initdb -D /usr/ivory-4/data</code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>  其中-D参数用来指定数据库的数据目录。更多参数使用方法，请使用initdb --help命令获取。</pre>
-</div>
+<div class="paragraph">
+<p>其中-D参数用来指定数据库的数据目录。更多参数使用方法，请使用initdb --help命令获取。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -451,7 +444,7 @@ export PGDATA</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /opt/IvorySQL-4.5/data -l ivory.log start</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /usr/ivory-4/data -l ivory.log start</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -463,7 +456,7 @@ export PGDATA</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ps -ef | grep postgres
-ivorysql  3214     1  0 20:35 ?        00:00:00 /opt/IvorySQL-4.5/bin/postgres -D /opt/IvorySQL-4.5/data
+ivorysql  3214     1  0 20:35 ?        00:00:00 /usr/ivory-4/bin/postgres -D /usr/ivory-4/data
 ivorysql  3215  3214  0 20:35 ?        00:00:00 postgres: checkpointer
 ivorysql  3216  3214  0 20:35 ?        00:00:00 postgres: background writer
 ivorysql  3218  3214  0 20:35 ?        00:00:00 postgres: walwriter
@@ -472,9 +465,8 @@ ivorysql  3220  3214  0 20:35 ?        00:00:00 postgres: logical replication la
 ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code></pre>
 </div>
 </div>
-</div>
 <div class="sect2">
-<h3 id="docker方式运行"><a class="anchor" href="#docker方式运行"></a>2.2. docker方式运行</h3>
+<h3 id="docker方式运行"><a class="anchor" href="#docker方式运行"></a>2.1. docker方式运行</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -531,12 +523,11 @@ Type "help" for help.
 ivorysql=#</code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>  其中-d参数用来指定想要连接到的数据库名称。IvorySQL默认使用ivorysql数据库，但较低版本的IvorySQL首次使用时需用户先连接postgres数据库，然后自己创建ivorysql数据库。较高版本的IvorySQL则已为用户创建好ivorysql数据库，可以直接连接。
-
-  更多参数使用方法，请使用psql --help命令获取。</pre>
+<div class="paragraph">
+<p>其中-d参数用来指定想要连接到的数据库名称。IvorySQL默认使用ivorysql数据库，但较低版本的IvorySQL首次使用时需用户先连接postgres数据库，然后自己创建ivorysql数据库。较高版本的IvorySQL则已为用户创建好ivorysql数据库，可以直接连接。</p>
 </div>
+<div class="paragraph">
+<p>更多参数使用方法，请使用psql --help命令获取。</p>
 </div>
 <div class="admonitionblock tip">
 <table>

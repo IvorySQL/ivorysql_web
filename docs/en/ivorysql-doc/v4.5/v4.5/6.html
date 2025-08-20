@@ -342,98 +342,9 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y IvorySQL-4.5</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y ivorysql4-4.5</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Checking installation results</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">dnf search IvorySQL</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Details:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">id</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Package name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL client programs and lib files</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-contrib.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Contributed source code and binary files released with IvorySQL</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-devel.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL development header files and libraries</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-docs.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Additional docs for IvorySQL</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-libs.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Shared libraries required by all IvorySQL clients</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-llvmjit.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Instant compilation support for IvorySQL</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-plperl.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Perl, a procedural language for IvorySQL</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-plpython3.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Python3, a procedural language for IvorySQL</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-pltcl.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tcl, a procedural language for IvorySQL</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-server.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The programs required to create and run an IvorySQL server</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ivorysql4-test.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Test suite released with IvorySQL</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql-release.noarch</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Yum Source Configuration RPM Package of HighGo</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
@@ -581,7 +492,7 @@ gpgcheck=0</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>IvorySQL then will be installed in the /opt/IvorySQL-4.5/ directory.</p>
+<p>IvorySQL then will be installed in the /usr/ivory-4/ directory.</p>
 </div>
 </div>
 </div>
@@ -627,7 +538,7 @@ $ git checkout -b IVORY_REL_4_STABLE origin/IVORY_REL_4_STABLE</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ./configure --prefix=/usr/local/ivorysql/ivorysql-4</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ./configure --prefix=/usr/ivory-4</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -716,7 +627,7 @@ $ git checkout -b IVORY_REL_4_STABLE origin/IVORY_REL_4_STABLE</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>IvorySQL will then be installed in the /opt/IvorySQL-4.5/ directory.</p>
+<p>IvorySQL will then be installed in the /usr/ivory-4/ directory.</p>
 </div>
 </div>
 </div>
@@ -734,11 +645,11 @@ $ git checkout -b IVORY_REL_4_STABLE origin/IVORY_REL_4_STABLE</code></pre>
 </ul>
 </div>
 <div class="paragraph">
-<p>Execute the following command to grant permissions to the installation user. The example user is ivorysql, and the installation directory is /opt/IvorySQL-4.5/:</p>
+<p>Execute the following command to grant permissions to the installation user. The example user is ivorysql, and the installation directory is //usr/ivory-4/:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo chown -R ivorysql:ivorysql /opt/IvorySQL-4.5/</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo chown -R ivorysql:ivorysql /usr/ivory-4/</code></pre>
 </div>
 </div>
 <div id="setting-environment-variables" class="ulist">
@@ -753,9 +664,9 @@ $ git checkout -b IVORY_REL_4_STABLE origin/IVORY_REL_4_STABLE</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/opt/IvorySQL-4.5/bin:$PATH
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/usr/ivory-4/bin:$PATH
 export PATH
-PGDATA=/opt/IvorySQL-4.5/data
+PGDATA=/usr/ivory-4/data
 export PGDATA</code></pre>
 </div>
 </div>
@@ -773,8 +684,8 @@ export PGDATA</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ mkdir /opt/IvorySQL-4.5/data
-$ initdb -D /opt/IvorySQL-4.5/data</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ mkdir /usr/ivory-4/data
+$ initdb -D /usr/ivory-4/data</code></pre>
 </div>
 </div>
 <div class="literalblock">
@@ -793,7 +704,7 @@ $ initdb -D /opt/IvorySQL-4.5/data</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /opt/IvorySQL-4.5/data -l ivory.log start</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /usr/ivory-4/data -l ivory.log start</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -808,7 +719,7 @@ $ initdb -D /opt/IvorySQL-4.5/data</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ps -ef | grep postgres
-ivorysql  130427       1  0 02:45 ?        00:00:00 /opt/IvorySQL-4.5/bin/postgres -D /opt/IvorySQL-4.5/data
+ivorysql  130427       1  0 02:45 ?        00:00:00 /usr/ivory-4/bin/postgres -D /usr/ivory-4/data
 ivorysql  130428  130427  0 02:45 ?        00:00:00 postgres: checkpointer
 ivorysql  130429  130427  0 02:45 ?        00:00:00 postgres: background writer
 ivorysql  130431  130427  0 02:45 ?        00:00:00 postgres: walwriter
@@ -879,8 +790,7 @@ When running IvorySQL in Docker, additional parameters need to be added, like: p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf remove -y IvorySQL-4.5
-$ sudo rpm -e ivorysql-release-4.2-1.noarch</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf remove -y ivorysql4-4.5</code></pre>
 </div>
 </div>
 </div>

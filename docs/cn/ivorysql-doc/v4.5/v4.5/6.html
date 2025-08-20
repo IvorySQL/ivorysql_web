@@ -345,95 +345,6 @@ gpgcheck=0</code></pre>
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y IvorySQL-4.5</code></pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>查看安装结果</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">dnf search IvorySQL</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>查看结果说明如下：</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">序号</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">包名</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">描述</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL客户端程序和库文件</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-contrib.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">随IvorySQL发布的已贡献的源代码和二进制文件</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-devel.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL开发头文件和库</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-docs.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL的额外文档</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-libs.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">所有IvorySQL客户端所需的共享库</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-llvmjit.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">对IvorySQL的即时编译支持</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-plperl.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">用于IvorySQL的过程语言Perl</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-plpython3.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">用于IvorySQL的过程语言Python3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-pltcl.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">用于IvorySQL的过程语言Tcl</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-server.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">创建和运行IvorySQL服务器所需的程序</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql4-test.x86_64</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">随IvorySQL发布的测试套件</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql-release.noarch</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">瀚高基础软件股份有限公司的Yum源配置RPM包</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
@@ -581,7 +492,7 @@ gpgcheck=0</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>数据库将被安装在/opt/IvorySQL-4.5/路径下。</p>
+<p>数据库将被安装在/usr/ivory-4/路径下。</p>
 </div>
 </div>
 </div>
@@ -627,7 +538,7 @@ $ git checkout -b IVORY_REL_4_STABLE origin/IVORY_REL_4_STABLE</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ./configure --prefix=/usr/local/ivorysql/ivorysql-4</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ./configure --prefix=/usr/ivory-4/</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -716,7 +627,7 @@ $ git checkout -b IVORY_REL_4_STABLE origin/IVORY_REL_4_STABLE</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>数据库将被安装在/opt/IvorySQL-4.5/路径下。</p>
+<p>数据库将被安装在/usr/ivory-4/路径下。</p>
 </div>
 </div>
 </div>
@@ -731,14 +642,14 @@ $ git checkout -b IVORY_REL_4_STABLE origin/IVORY_REL_4_STABLE</code></pre>
 <li>
 <p>赋权</p>
 <div class="paragraph">
-<p>执行以下命令为安装用户赋权，示例用户为ivorysql，安装目录为/opt/IvorySQL-4.5/：</p>
+<p>执行以下命令为安装用户赋权，示例用户为ivorysql，安装目录为/usr/ivory-4/：</p>
 </div>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo chown -R ivorysql:ivorysql /opt/IvorySQL-4.5/</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo chown -R ivorysql:ivorysql /usr/ivory-4/</code></pre>
 </div>
 </div>
 <div id="配置环境变量" class="ulist">
@@ -753,9 +664,9 @@ $ git checkout -b IVORY_REL_4_STABLE origin/IVORY_REL_4_STABLE</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/opt/IvorySQL-4.5/bin:$PATH
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PATH=/usr/ivory-4/bin:$PATH
 export PATH
-PGDATA=/opt/IvorySQL-4.5/data
+PGDATA=/usr/ivory-4/data
 export PGDATA</code></pre>
 </div>
 </div>
@@ -773,14 +684,12 @@ export PGDATA</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ mkdir /opt/IvorySQL-4.5/data
-$ initdb -D /opt/IvorySQL-4.5/data</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ mkdir /usr/ivory-4/data
+$ initdb -D /usr/ivory-4/data</code></pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>  其中-D参数用来指定数据库的数据目录。更多参数使用方法，请使用initdb --help命令获取。</pre>
-</div>
+<div class="paragraph">
+<p>其中-D参数用来指定数据库的数据目录。更多参数使用方法，请使用initdb --help命令获取。</p>
 </div>
 <div class="ulist">
 <ul>
@@ -791,7 +700,7 @@ $ initdb -D /opt/IvorySQL-4.5/data</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /opt/IvorySQL-4.5/data -l ivory.log start</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ pg_ctl -D /usr/ivory-4/data -l ivory.log start</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -803,7 +712,7 @@ $ initdb -D /opt/IvorySQL-4.5/data</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ ps -ef | grep postgres
-ivorysql  130427       1  0 02:45 ?        00:00:00 /opt/IvorySQL-4.5/bin/postgres -D /opt/IvorySQL-4.5/data
+ivorysql  130427       1  0 02:45 ?        00:00:00 /usr/ivory-4/bin/postgres -D /usr/ivory-4/data
 ivorysql  130428  130427  0 02:45 ?        00:00:00 postgres: checkpointer
 ivorysql  130429  130427  0 02:45 ?        00:00:00 postgres: background writer
 ivorysql  130431  130427  0 02:45 ?        00:00:00 postgres: walwriter
@@ -874,8 +783,7 @@ Docker运行IvorySQL时，需要添加额外参数，参考：psql -d ivorysql -
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf remove -y IvorySQL-4.5
-$ sudo rpm -e ivorysql-release-4.2-1.noarch</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf remove -y ivorysql4-4.5</code></pre>
 </div>
 </div>
 </div>
@@ -900,7 +808,7 @@ $ docker rmi ivorysql/ivorysql:4.5-ubi8</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo yum remove --disablerepo=* ivorysql4\*
-$ sudo rm -rf /opt/IvorySQL-4.5</code></pre>
+$ sudo rm -rf /usr/ivory-4/</code></pre>
 </div>
 </div>
 </div>
@@ -913,7 +821,7 @@ $ sudo rm -rf /opt/IvorySQL-4.5</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo make uninstall
 $ make clean
-$ sudo rm -rf /opt/IvorySQL-4.5</code></pre>
+$ sudo rm -rf /usr/ivory-4/</code></pre>
 </div>
 </div>
 </div>
@@ -925,7 +833,7 @@ $ sudo rm -rf /opt/IvorySQL-4.5</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dpkg -P IvorySQL-4.5
-$ sudo rm -rf /opt/IvorySQL-4.5</code></pre>
+$ sudo rm -rf /usr/ivory-4/</code></pre>
 </div>
 </div>
 </div>

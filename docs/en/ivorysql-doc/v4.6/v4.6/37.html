@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Deploying single-node containers and high-availability clusters on k8s :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v4.6/v4.6/37.html">
+    <link rel="prev" href="7.html">
+    <link rel="next" href="38.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v4.6">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">Building Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="37.html">K8S</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="38.html">Docker Swarm &amp; Docker Compose</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="34.html">PGroonga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="35.html">pgddl (DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="36.html">pgRouting</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="31.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="30.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">1、Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">2、GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">3、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">4、Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">5、Compatible with Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">6、Compatible with Oracle anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="20.html">7、Compatible with Oracle functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="21.html">8、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="22.html">9、Added Oracle compatibility mode ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="26.html">10、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="27.html">11、Compatible with Oracle sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="28.html">12、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="29.html">13、Invisible Columns</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="23.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="24.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="25.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v4.6</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../master/welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../master/welcome.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.5/v4.5/welcome.html">v4.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.4/v4.4/welcome.html">v4.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.2/v4.2/welcome.html">v4.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.0/v4.0/welcome.html">v4.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.8/v1.8/welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Advanced Feature</li>
+    <li>Containerization</li>
+    <li><a href="37.html">K8S</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/v4.6/v4.6/37.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v4.6/EN/modules/ROOT/pages/v4.6/37.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Deploying single-node containers and high-availability clusters on k8s</h1>
+<div class="sect1">
+<h2 id="single-node-container"><a class="anchor" href="#single-node-container"></a>1. Single-node container</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On the master node of the k8s cluster, create a namespace named ivorysql.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master ~]# kubectl create ns ivorysql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Download the latest docker_library code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master ~]# git clone https://github.com/IvorySQL/docker_library.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enter the single-node directory</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master ~]# cd docker_library/k8s-cluster/single
+[root@k8s-master single]# vim statefulset.yaml #Modify the PVC information and database password in the StatefulSet according to your personal environment.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use statefulset.yaml to create a single-node pod.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master single]# kubectl apply -f statefulset.yaml
+service/ivorysql-svc created
+statefulset.apps/ivorysql created</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait for the single-node pod to be successfully created.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master single]# kubectl get all -n ivorysql
+NAME             READY   STATUS              RESTARTS   AGE
+pod/ivorysql-0   0/1     ContainerCreating   0          47s
+
+NAME                   TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)                         AGE
+service/ivorysql-svc   NodePort   10.108.178.236   &lt;none&gt;        5432:32106/TCP,1521:31887/TCP   47s
+
+NAME                        READY   AGE
+statefulset.apps/ivorysql   0/1     47s
+[root@k8s-master single]# kubectl get all -n ivorysql
+NAME             READY   STATUS    RESTARTS   AGE
+pod/ivorysql-0   1/1     Running   0          2m39s
+
+NAME                   TYPE       CLUSTER-IP       EXTERNAL-IP   PORT(S)                         AGE
+service/ivorysql-svc   NodePort   10.108.178.236   &lt;none&gt;        5432:32106/TCP,1521:31887/TCP   2m39s
+
+NAME                        READY   AGE
+statefulset.apps/ivorysql   1/1     2m39s</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Connect to IvorySQL&#8217;s PostgreSQL Port Using psql</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master single]# psql -U ivorysql -p 32106 -h 127.0.0.1 -d ivorysql
+Password for user ivorysql:
+
+ivorysql=# select version();
+                                                        version
+------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 17.6 (IvorySQL 4.6) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-28), 64-bit
+(1 row)
+
+ivorysql=# show ivorysql.compatible_mode;
+ ivorysql.compatible_mode
+--------------------------
+ pg
+(1 row)
+
+ivorysql=# exit</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Connecting to IvorySQL&#8217;s Oracle-Compatible Port Using psqlConnecting to IvorySQL&#8217;s Oracle-Compatible Port Using psql</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master single]# psql -U ivorysql -p 31887 -h 127.0.0.1 -d ivorysql
+Password for user ivorysql:
+
+ivorysql=# select version();
+                                                        version
+------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 17.6 (IvorySQL 4.6) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-28), 64-bit
+(1 row)
+
+ivorysql=# show ivorysql.compatible_mode;
+ ivorysql.compatible_mode
+--------------------------
+ oracle
+(1 row)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Uninstall Single-node container</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master single]# kubectl delete-f statefulset.yaml</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="high-availability-cluster"><a class="anchor" href="#high-availability-cluster"></a>2. High Availability Cluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Access the master node of the k8s cluster and create a namespace named ivorysql.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master ~]# kubectl create ns ivorysql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Download the latest docker_library code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master ~]# git clone https://github.com/IvorySQL/docker_library.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Enter the high-availability cluster directory.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master ~]# cd docker_library/k8s-cluster/ha-cluster/helm_charts
+[root@k8s-master single]# vim values.yaml #Adjust the PVC settings, cluster size, and other configurations in values.yaml according to your environment. For the database password, check templates/secret.yaml and modify it as needed.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Deploy the high-availability cluster using <a href="https://helm.sh/docs/intro/install/">Helm</a> commands.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master helm_charts]# helm install ivorysql-ha-cluster -n ivorysql .
+NAME: ivorysql-ha-cluster
+LAST DEPLOYED: Wed Sep 10 09:45:36 2025
+NAMESPACE: ivorysql
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+[root@k8s-master helm_charts]# kubectl get all -n ivorysql
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/ivorysql-patroni-hac-0   1/1     Running   0          42s
+pod/ivorysql-patroni-hac-1   0/1     Running   0          18s
+
+NAME                                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                         AGE
+service/ivorysql-patroni-hac          NodePort    10.96.119.203    &lt;none&gt;        5432:32391/TCP,1521:32477/TCP   42s
+service/ivorysql-patroni-hac-config   ClusterIP   None             &lt;none&gt;        &lt;none&gt;                          42s
+service/ivorysql-patroni-hac-pods     ClusterIP   None             &lt;none&gt;        &lt;none&gt;                          42s
+service/ivorysql-patroni-hac-repl     NodePort    10.100.122.0     &lt;none&gt;        5432:30111/TCP,1521:32654/TCP   42s
+
+NAME                                    READY   AGE
+statefulset.apps/ivorysql-patroni-hac   1/3     42s</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Wait until all pods are running successfully, indicating the cluster deployment is complete.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master helm_charts]# kubectl get all -n ivorysql
+NAME                         READY   STATUS    RESTARTS   AGE
+pod/ivorysql-patroni-hac-0   1/1     Running   0          88s
+pod/ivorysql-patroni-hac-1   1/1     Running   0          64s
+pod/ivorysql-patroni-hac-2   1/1     Running   0          41s
+
+NAME                                  TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)                         AGE
+service/ivorysql-patroni-hac          NodePort    10.96.119.203    &lt;none&gt;        5432:32391/TCP,1521:32477/TCP   88s
+service/ivorysql-patroni-hac-config   ClusterIP   None             &lt;none&gt;        &lt;none&gt;                          88s
+service/ivorysql-patroni-hac-pods     ClusterIP   None             &lt;none&gt;        &lt;none&gt;                          88s
+service/ivorysql-patroni-hac-repl     NodePort    10.100.122.0     &lt;none&gt;        5432:30111/TCP,1521:32654/TCP   88s
+NAME                                    READY   AGE
+statefulset.apps/ivorysql-patroni-hac   3/3     88s</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Connect to the PostgreSQL and Oracle ports of the cluster&#8217;s primary node using psql.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master helm_charts]# psql -U ivorysql -p 32391 -h 127.0.0.1 -d ivorysql
+Password for user ivorysql:
+
+ivorysql=# show ivorysql.compatible_mode;
+ ivorysql.compatible_mode
+--------------------------
+ pg
+(1 row)
+
+ivorysql=# SELECT pg_is_in_recovery();
+ pg_is_in_recovery
+-------------------
+ f
+(1 row)
+
+ivorysql=# exit
+[root@k8s-master helm_charts]# psql -U ivorysql -p 32477 -h 127.0.0.1 -d ivorysql
+Password for user ivorysql:
+
+ivorysql=# show ivorysql.compatible_mode;
+ ivorysql.compatible_mode
+--------------------------
+ oracle
+(1 row)
+
+ivorysql=# SELECT pg_is_in_recovery();
+ pg_is_in_recovery
+-------------------
+ f
+(1 row)
+
+ivorysql=#</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Use psql to connect to the PostgreSQL and Oracle ports of the cluster&#8217;s standby node.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master helm_charts]# psql -U ivorysql -p 30111 -h 127.0.0.1 -d ivorysql
+Password for user ivorysql:
+
+ivorysql=# show ivorysql.compatible_mode;
+ ivorysql.compatible_mode
+--------------------------
+ pg
+(1 row)
+
+ivorysql=# SELECT pg_is_in_recovery();
+ pg_is_in_recovery
+-------------------
+ t
+(1 row)
+
+ivorysql=# exit
+
+[root@k8s-master helm_charts]# psql -U ivorysql -p 32654 -h 127.0.0.1 -d ivorysql
+Password for user ivorysql:
+
+ivorysql=#  show ivorysql.compatible_mode;
+ ivorysql.compatible_mode
+--------------------------
+ oracle
+(1 row)
+
+ivorysql=# SELECT pg_is_in_recovery();
+ pg_is_in_recovery
+-------------------
+ t
+(1 row)
+
+ivorysql=#</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Uninstall high-availability cluster</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master helm_charts]# helm uninstall ivorysql-ha-cluster -n ivorysql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Remove PVC</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@k8s-master helm_charts]# kubectl delete pvc ivyhac-config-ivorysql-patroni-hac-0 -n ivorysql
+[root@k8s-master helm_charts]# kubectl delete pvc ivyhac-config-ivorysql-patroni-hac-1 -n ivorysql
+[root@k8s-master helm_charts]# kubectl delete pvc ivyhac-config-ivorysql-patroni-hac-2 -n ivorysql
+[root@k8s-master helm_charts]# kubectl delete pvc pgdata-ivorysql-patroni-hac-0 -n ivorysql
+[root@k8s-master helm_charts]# kubectl delete pvc pgdata-ivorysql-patroni-hac-1 -n ivorysql
+[root@k8s-master helm_charts]# kubectl delete pvc pgdata-ivorysql-patroni-hac-2 -n ivorysql</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="7.html">Building Cluster</a></span>
+  <span class="next"><a href="38.html">Docker Swarm &amp; Docker Compose</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

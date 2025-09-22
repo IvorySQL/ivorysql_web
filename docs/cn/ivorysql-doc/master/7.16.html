@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>兼容Oracle匿名块 :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.6.html">
-    <link rel="prev" href="7.5.html">
-    <link rel="next" href="7.7.html">
+    <title>%ROWTYPE、%TYPE :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.16.html">
+    <link rel="prev" href="7.15.html">
+    <link rel="next" href="8.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -169,7 +169,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="7.5.html">5、兼容Oracle like</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="7.6.html">6、兼容Oracle匿名块</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -199,7 +199,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="7.15.html">15、OUT 参数</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="7.16.html">16、%TYPE、%ROWTYPE</a>
   </li>
 </ul>
@@ -331,85 +331,256 @@
     <li><a href="welcome.html">文档中心</a></li>
     <li>IvorySQL</li>
     <li>Oracle兼容功能列表</li>
-    <li><a href="7.6.html">6、兼容Oracle匿名块</a></li>
+    <li><a href="7.16.html">16、%TYPE、%ROWTYPE</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/7.6.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/7.16.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/7.6.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/7.16.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">兼容Oracle匿名块</h1>
+<h1 class="page">%ROWTYPE、%TYPE</h1>
 <div class="sect1">
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>本文档是PLSQL匿名块（anonymous block）兼容Oracle语法功能的设计文档，目的是可以在IvorySQL中兼容Oracle的匿名块语句。</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>IvorySQL提供了兼容Oracle的plsql数据类型功能，包括%TYPE、%ROWTYPE。</p>
+</div>
+<div class="paragraph">
+<p>本文档旨在为使用人员介绍%TYPE、%ROWTYPE的功能。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>匿名块是能够动态地创建和执行过程代码的PLSQL结构，而不需要以持久化的方式将代码作为数据库对象储存在系统目录中。本次实现中IvorySQL主要兼容的是PLSQL匿名块的语法格式，我们主要处理的部分包括客户端工具psql、主服务器和PSQL端支持。</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>IvorySQL提供了兼容Oracle的%TYPE、%ROWTYPE功能，包括如下内容。</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
-<div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">declare
-i integer := 10;
-begin
- raise notice '%', i;
-end;
-/
-NOTICE:  10</code></pre>
-</div>
+<div class="sect2">
+<h3 id="引用发生改变type或rowtype声明的变量也相应改变"><a class="anchor" href="#引用发生改变type或rowtype声明的变量也相应改变"></a>2.1. 引用发生改变，%TYPE或%ROWTYPE声明的变量也相应改变。</h3>
+<div class="paragraph">
+<p>创建表以及函数。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">DECLARE
-  grade CHAR(1);
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE TABLE t1(id int, name varchar(20));
+
+--function's parameter datatype is tablename.columnname%TYPE
+CREATE OR REPLACE FUNCTION fun1(v t1.id%TYPE) RETURN varchar AS
 BEGIN
-  grade := 'B';
-  CASE grade
-    WHEN 'A' THEN raise notice 'Excellent';
-    WHEN 'B' THEN raise notice 'Very Good';
-  END CASE;
-EXCEPTION
-  WHEN CASE_NOT_FOUND THEN
-    raise notice 'No such grade';
+  RETURN v;
+END;
+/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>函数状态是valid，并且执行函数能够成功。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT prostatus FROM pg_proc WHERE proname like 'fun1'; --v
+ prostatus
+-----------
+ v
+(1 row)
+
+SELECT fun1(1) FROM dual;
+ fun1
+------
+ 1
+(1 row)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>修改引用的先前定义的声明，函数状态变为invalid，但是函数能够执行成功。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ALTER TABLE t1 ALTER COLUMN id TYPE varchar(20);
+
+SELECT prostatus FROM pg_proc WHERE proname like 'fun1'; --n
+ prostatus
+-----------
+ n
+(1 row)
+
+--after changing the column id type from int to varchar, call the function again
+SELECT fun1('a') FROM dual;  --successfully
+ fun1
+------
+ a
+(1 row)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>重新编译函数，状态重新变成valid。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ALTER FUNCTION fun1 COMPILE;
+SELECT prostatus FROM pg_proc WHERE proname like 'fun1'; --v
+ prostatus
+-----------
+ v
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="type声明的变量继承引用变量的约束"><a class="anchor" href="#type声明的变量继承引用变量的约束"></a>2.2. %TYPE声明的变量继承引用变量的约束</h3>
+<div class="paragraph">
+<p>示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">--the following testcase will fail
+DECLARE
+  name     VARCHAR(25) NOT NULL := 'Niu';
+  surname  name%TYPE ;
+BEGIN
+  raise notice 'name=%' ,name;
+  raise notice 'surname=%' ,surname;
 END;
 /
-NOTICE:  Very Good</code></pre>
+
+ERROR:  variable "surname" must have a default value, since it's declared NOT NULL
+LINE 3:   surname  name%TYPE ;
+          ^</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="表名rowtype或视图名rowtype作为函数或存储过程的参数类型和函数返回值类型"><a class="anchor" href="#表名rowtype或视图名rowtype作为函数或存储过程的参数类型和函数返回值类型"></a>2.3. 表名%ROWTYPE或视图名%ROWTYPE作为函数或存储过程的参数类型和函数返回值类型</h3>
+<div class="paragraph">
+<p>示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE TABLE employees(first_name varchar(20) not null,
+last_name varchar(20) not null,
+phone_number varchar(50));
+
+INSERT INTO employees VALUES ('Steven','Niu','1-650-555-1234');
+
+CREATE OR REPLACE PROCEDURE p0(v employees%ROWTYPE) AS
+BEGIN
+  raise notice 'v.first_name = %, v.last_name = %, v.phone_number = %',
+    v.first_name, v.last_name, v.phone_number;
+END;
+/
+
+DECLARE
+  a employees%ROWTYPE;
+BEGIN
+  select * into a from employees ;
+  raise notice 'a=%', a;
+  call p0(a);
+END;
+/
+
+NOTICE:  a=(Steven,Niu,1-650-555-1234)
+NOTICE:  v.first_name = Steven, v.last_name = Niu, v.phone_number = 1-650-555-1234
+
+\df p0
+                        List of functions
+ Schema | Name | Result data type |  Argument data types   | Type
+--------+------+------------------+------------------------+------
+ public | p0   |                  | IN v employees%ROWTYPE | proc
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="insert语句增强"><a class="anchor" href="#insert语句增强"></a>2.4. INSERT语句增强</h3>
+<div class="paragraph">
+<p>INSERT语句增强支持把一个%ROWTYPE声明的变量插入表中。</p>
+</div>
+<div class="paragraph">
+<p>语法为：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">INSERT INTO table_name VALUES row_variable ;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE TABLE t1(id int, name varchar(20));
+
+DECLARE
+  v1 t1%ROWTYPE;
+BEGIN
+  FOR i IN 1 .. 5 LOOP
+    v1.id := i;
+	v1.name := 'a' || i;
+    INSERT INTO t1 VALUES v1;
+  END LOOP;
+END;
+/
+
+
+SELECT * FROM t1;
+ id | name
+----+------
+  1 | a1
+  2 | a2
+  3 | a3
+  4 | a4
+  5 | a5
+(5 rows)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="update语句增强"><a class="anchor" href="#update语句增强"></a>2.5. UPDATE语句增强</h3>
+<div class="paragraph">
+<p>示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE TABLE t1(id int, name varchar(20));
+
+DELETE FROM t1;
+
+DECLARE
+  v1 t1%ROWTYPE;
+  v2 t1%ROWTYPE;
+BEGIN
+  v1.id := 11;
+  v1.name := 'abc';
+  INSERT INTO t1 VALUES v1;
+  v2.id := 22;
+  v2.name := 'new';
+  UPDATE t1 SET ROW = v2;
+END;
+/
+
+SELECT * FROM t1;
+ id | name
+----+------
+ 22 | new
+(1 row)</code></pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="7.5.html">5、兼容Oracle like</a></span>
-  <span class="next"><a href="7.7.html">7、兼容Oracle函数与存储过程</a></span>
+  <span class="prev"><a href="7.15.html">15、OUT 参数</a></span>
+  <span class="next"><a href="8.1.html">社区贡献指南</a></span>
 </nav>
 </article>
   </div>

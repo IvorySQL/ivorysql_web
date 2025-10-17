@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Functional Overview :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.5.html">
+    <link rel="prev" href="6.3.4.html">
+    <link rel="next" href="6.4.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.1.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.2.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.3.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.1.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.2.html">Building Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.3.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.4.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.5.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.1.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.2.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.1.1.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.2.1.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.1.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.3.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.2.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.4.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="6.3.5.html">NLS Parameters</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.4.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.1.html">1、Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.2.html">2、GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.3.html">3、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.4.html">4、Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.5.html">5、Compatible with Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.6.html">6、Compatible with Oracle anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.7.html">7、Compatible with Oracle functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.8.html">8、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.9.html">9、Added Oracle compatibility mode ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.10.html">10、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.11.html">11、Compatible with Oracle sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.12.html">12、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.13.html">13、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.14.html">14、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.15.html">15、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.16.html">16、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.17.html">17、NLS Parameters</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="8.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="9.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../v4.5/v4.5/welcome.html">v4.5</a>
+        </li>
+        <li class="version">
+          <a href="../v4.4/v4.4/welcome.html">v4.4</a>
+        </li>
+        <li class="version">
+          <a href="../v4.2/v4.2/welcome.html">v4.2</a>
+        </li>
+        <li class="version">
+          <a href="../v4.0/v4.0/welcome.html">v4.0</a>
+        </li>
+        <li class="version">
+          <a href="../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+        <li class="version">
+          <a href="../v1.8/v1.8/welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Architecture Design</li>
+    <li>Compatibility Features</li>
+    <li><a href="6.3.5.html">NLS Parameters</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/6.3.5.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/6.3.5.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page"><strong>Functional Overview</strong></h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL provides Oracle-compatible NLS (National Language Support) parameter functionality, including the following parameters:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 30%;">
+<col style="width: 70%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parameter Name</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Description</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ivorysql.datetime_ignore_nls_mask</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indicates whether the date format ignores the influence of NLS parameters. Default is 0.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nls_length_semantics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle-compatible parameter that specifies whether the size unit for CHAR, VARCHAR, and VARCHAR2 type modifiers is bytes or characters.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nls_date_format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specifies the default date format, which can be viewed using the SHOW command. Default is 'YYYY-MM-DD'.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nls_timestamp_format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle-compatible parameter that controls the format of timestamps.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nls_timestamp_tz_format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle-compatible parameter that controls the format of timestamps with time zones.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nls_territory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle-compatible parameter that specifies the default region for the database.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nls_iso_currency</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle-compatible parameter that assigns a unique currency symbol to a specified country or region.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nls_currency</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle-compatible parameter that specifies the symbol for the local currency, corresponding to the placeholder L in numeric string formats.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation-principles"><a class="anchor" href="#implementation-principles"></a>1. Implementation Principles</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="parameter-nls_length_semantics"><a class="anchor" href="#parameter-nls_length_semantics"></a>1.1. Parameter <code>nls_length_semantics</code></h3>
+<div class="paragraph">
+<p>In IvorySQL, data types have an attribute modifier called typmod, which provides additional information about the type. For example, in <code>VARCHAR(n)</code>, n is the type modifier. When creating or modifying table columns, you can specify the length type, such as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">	ivorysql=# create table t1(name varchar2(2 byte));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For columns of type <code>CHAR</code>, <code>VARCHAR</code>, or <code>VARCHAR2</code>, if the length type is not explicitly specified, IvorySQL uses the value of the <code>nls_length_semantics</code> parameter to determine the length type. The possible values are <code>BYTE</code> and <code>CHAR</code>, with <code>BYTE</code> being the default.</p>
+</div>
+<div class="paragraph">
+<p>Note that the <code>nls_length_semantics</code> parameter only affects newly created columns and has no impact on existing columns.</p>
+</div>
+<div class="paragraph">
+<p>In the syntax parsing file ora_gram.y, the following code converts the original <code>CHAR</code>, <code>VARCHAR</code>, or <code>VARCHAR2</code> types to oracharchar or oracharbyte based on <code>nls_length_semantics</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">CharacterWithLength:  character '(' Iconst ')'
+				{
+					if (ORA_PARSER == compatible_db)
+					{
+						if (strcmp($1, "bpchar"))
+						{
+							if (nls_length_semantics == NLS_LENGTH_CHAR)
+								$1 = "oravarcharchar";
+							else
+								$1 = "oravarcharbyte";
+						}
+						else
+						{
+							if (nls_length_semantics == NLS_LENGTH_CHAR)
+								$1 = "oracharchar";
+							else
+								$1 = "oracharbyte";
+						}
+
+						$$ = OracleSystemTypeName($1);
+						$$-&gt;typmods = list_make1(makeIntConst($3, @3));
+						$$-&gt;location = @1;
+					}
+					else
+					{
+						...
+					}
+				}
+		;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The input/output functions for the oracharchar and oracharbyte data types in IvorySQL include:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">oravarcharchartypmodout()
+oravarcharbytetypmodout()
+oracharbytetypmodout()
+oracharchartypmodout()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These functions call the C-language function <code>anychar_typmodout()</code>, which adjusts the output to include <code>BYTE</code> or <code>CHAR</code> based on the value of <code>nls_length_semantics</code>.</p>
+</div>
+<div class="paragraph">
+<p>Another role of <code>nls_length_semantics</code> is to limit column lengths in tables. If the original <code>VARCHAR</code> type is converted to <code>oracharchar</code>, the function <code>oravarcharchar()</code> is called, and <code>pg_mbcharcliplen()</code> calculates the character length instead of the byte length.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">Datum
+oravarcharchar(PG_FUNCTION_ARGS)
+{
+	VarChar    *source = PG_GETARG_VARCHAR_PP(0);
+	int32		typmod = PG_GETARG_INT32(1);
+	bool		isExplicit = PG_GETARG_BOOL(2);
+	int32		len,
+				maxlen;
+	size_t		maxmblen;
+	char	   *s_data;
+
+	len = VARSIZE_ANY_EXHDR(source);
+	s_data = VARDATA_ANY(source);
+	maxlen = typmod - VARHDRSZ;
+
+	/* No work if typmod is invalid or supplied data fits it already */
+	if (maxlen &lt; 0 || len &lt;= maxlen)
+		PG_RETURN_VARCHAR_P(source);
+
+	maxmblen = pg_mbcharcliplen(s_data, len, maxlen);
+
+	...
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="guc-parameter-datetime_ignore_nls_mask"><a class="anchor" href="#guc-parameter-datetime_ignore_nls_mask"></a>1.2. GUC Parameter <code>datetime_ignore_nls_mask</code></h3>
+<div class="paragraph">
+<p>This parameter is defined as an int value, where the lower four bits indicate whether to ignore NLS parameter influence on the corresponding date-time formats. The mask definitions are:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">#define ORADATE_MASK			0x01
+#define ORATIMESTAMP_MASK		0x02
+#define ORATIMESTAMPTZ_MASK		0x04
+#define ORATIMESTAMPLTZ_MASK	0x08</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the source code, this GUC parameter is used in the following functions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">oradate_in()
+oratimestamp_in()
+oratimestampltz_in()
+oratimestamptz_in()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the corresponding mask is set, the native PostgreSQL processing function is called; otherwise, the compatibility code is invoked, and NLS formats are ignored.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="guc-parameters-nls_date_formatnls_timestamp_formatnls_timestamp_tz_format"><a class="anchor" href="#guc-parameters-nls_date_formatnls_timestamp_formatnls_timestamp_tz_format"></a>1.3. GUC Parameters <code>nls_date_format</code>/<code>nls_timestamp_format</code>/<code>nls_timestamp_tz_format</code></h3>
+<div class="paragraph">
+<p>These three GUC parameters serve as format strings in the function <code>ora_do_to_timestamp()</code> for checking and parsing input strings. Their default values are:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">char	   *nls_date_format = "YYYY-MM-DD";
+char	   *nls_timestamp_format = "YYYY-MM-DD HH24:MI:SS.FF6";
+char	   *nls_timestamp_tz_format = "YYYY-MM-DD HH24:MI:SS.FF6 TZH:TZM";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Setting these values to "pg" disables NLS-specific behavior, reverting to PostgreSQL&#8217;s default behavior.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="guc-parameters-nls_currencynls_iso_currencynls_territory"><a class="anchor" href="#guc-parameters-nls_currencynls_iso_currencynls_territory"></a>1.4. GUC Parameters <code>nls_currency</code>/<code>nls_iso_currency</code>/<code>nls_territory</code></h3>
+<div class="paragraph">
+<p>Currently, <code>nls_territory</code> and <code>nls_iso_currency</code> support the values CHINA and AMERICA.</p>
+</div>
+<div class="paragraph">
+<p>The default values are:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">char	   *nls_territory = "AMERICA";
+char	   *nls_currency = "$";
+char	   *nls_iso_currency = "AMERICA";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These parameters will be used in the Oracle-compatible function <code>to_number()</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The <code>to_number()</code> function has not yet been implemented.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="6.3.4.html">%Type &amp; %Rowtype</a></span>
+  <span class="next"><a href="6.4.html">GB18030 Character Set</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Compatible with Oracle functions and stored procedures :: IvorySQL Document Site</title>
+    <title>PL/iSQL function and stored procedure :: IvorySQL Document Site</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.7.html">
     <link rel="prev" href="7.6.html">
     <link rel="next" href="7.8.html">
@@ -141,6 +141,9 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.3.5.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.6.html">Function and stored procedure</a>
   </li>
 </ul>
   </li>
@@ -326,163 +329,629 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Compatible with Oracle functions and stored procedures</h1>
+<h1 class="page">PL/iSQL function and stored procedure</h1>
 <div class="sect1">
-<h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
+<h2 id="purpose"><a class="anchor" href="#purpose"></a>1. Purpose</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>This document is intended to be compatible with the syntax of Oracle PLSQL functions and stored procedures, which we call PLISQL in IvorySQL.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>PostgreSQL supports functions and stored procedures, but there are syntax differences between PostgreSQL and Oracle. To enable Oracle&#8217;s PL/SQL statements to run on IvorySQL—i.e., to achieve "syntax compatibility"—IvorySQL adopts the following solution: If an Oracle clause has a counterpart clause with the same function in IvorySQL, it is directly mapped to the corresponding IvorySQL clause; otherwise, only the syntax of the Oracle clause is implemented, while its function is not.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="function-description"><a class="anchor" href="#function-description"></a>2. Function description</h2>
+<h2 id="compatibility-support"><a class="anchor" href="#compatibility-support"></a>2. Compatibility support</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">FUNCTION</caption>
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE FUNCTION SYNTAX SUPPORTS EDITIONABLE/NONEDITIONABLE</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE FUNCTION syntax supports the RETURN, IS keywords, and does not specify language</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE FUNCTION syntax functions have no arguments, and the function name does not follow ()</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of CREATE FUNCTION parameters is 32767</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION in END; End with / in psql</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION syntax variable declaration is not preceded by the DECLARE keyword</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION SYNTAX SUPPORTS THE OUT PARAMETER NOCOPY</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION syntax supports sharing_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION syntax supports invoker_rights_clause, and the default permission is changed to DR (DEFINER)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION syntax supports ACCESSIBLE BY</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION SYNTAX SUPPORTS DEFAULT COLLATION</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION syntax supports result_cache_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION syntax supports aggregate_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION syntax supports pipelined_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE FUNCTION syntax supports sql_macro_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ALTER FUNCTION syntax</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Functions and stored procedure-related views</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Stored procedures</caption>
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE PROCEDURE SYNTAX SUPPORTS EDITIONABLE/NONEDITIONABLE</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE PROCEDURE syntax function has no arguments, no () after the function name</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The maximum number of CREATE PROCEDURE parameters is 32767</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE PROCEDURE in END; End with / in psql</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE PROCEDURE syntax supports sharing_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE PROCEDURE SYNTAX SUPPORTS DEFAULT COLLATION</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE PROCEDURE syntax supports invoker_rights_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">THE CREATE PROCEDURE syntax supports ACCESSIBLE BY</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ALTER PROCEDURE syntax</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stored procedures have no parameters, and invocation support is not carried out with ()</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Stored procedure calls support EXEC</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">When calling a stored procedure in PL/SQL, you can omit CALL and use the stored procedure name directly</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Both annotation methods are supported&#8201;&#8212;&#8201;and /**/</p></td>
-</tr>
-</tbody>
-</table>
+<div class="paragraph">
+<p>The specific Oracle compatibility support includes the following aspects:</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="test-cases"><a class="anchor" href="#test-cases"></a>3. Test cases</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="editionablenoneditionable-is-supported-in-create-function-syntax"><a class="anchor" href="#editionablenoneditionable-is-supported-in-create-function-syntax"></a>2.1. EDITIONABLE/NONEDITIONABLE is supported in CREATE FUNCTION syntax</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">declare
-i integer := 10;
-begin
- raise notice '%', i;
- raise notice '%', main.i;
-end;
-/
-NOTICE:  10
-NOTICE:  10</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">DECLARE
-  grade CHAR(1);
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace EDITIONABLE FUNCTION ora_func RETURN integer AS
 BEGIN
-  grade := 'B';
-  CASE grade
-    WHEN 'A' THEN raise notice 'Excellent';
-    WHEN 'B' THEN raise notice 'Very Good';
-  END CASE;
-EXCEPTION
-  WHEN CASE_NOT_FOUND THEN
-    raise notice 'No such grade';
+    RETURN 1;
 END;
 /
-NOTICE:  Very Good</code></pre>
+
+CREATE or replace NONEDITIONABLE FUNCTION ora_func RETURN integer IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="keyword-return-and-is-are-supported-in-create-function-syntax"><a class="anchor" href="#keyword-return-and-is-are-supported-in-create-function-syntax"></a>2.2. Keyword 'RETURN' and 'IS' are supported in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace EDITIONABLE FUNCTION ora_func RETURN integer IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="in-the-create-function-syntax-a-function-can-have-no-parameters-and-no-parentheses-after-the-function-name"><a class="anchor" href="#in-the-create-function-syntax-a-function-can-have-no-parameters-and-no-parentheses-after-the-function-name"></a>2.3. In the CREATE FUNCTION syntax, a function can have no parameters, and no parentheses () after the function name</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = METADATA
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="increase-the-number-of-parameters-in-create-function-syntax-the-max-value-can-be-specified-by-configure-command"><a class="anchor" href="#increase-the-number-of-parameters-in-create-function-syntax-the-max-value-can-be-specified-by-configure-command"></a>2.4. Increase the number of parameters in CREATE FUNCTION syntax, the max value can be specified by configure command</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">configure --help
+	--with-max-funarg=MAXFUNARG</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="psql-uses-slash-as-terminator-of-statement-in-create-function-syntax"><a class="anchor" href="#psql-uses-slash-as-terminator-of-statement-in-create-function-syntax"></a>2.5. Psql uses slash (/) as terminator of statement in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace EDITIONABLE FUNCTION ora_func RETURN integer IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="no-declare-keyword-before-variable-in-create-function-syntax"><a class="anchor" href="#no-declare-keyword-before-variable-in-create-function-syntax"></a>2.6. No DECLARE keyword before variable in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE
+FUNCTION ora_func (num1 IN int, num2 IN int)
+RETURN int
+AS
+ num3 int :=10;
+ num4 int :=10;
+ num5 int;
+BEGIN
+ num3 := num1 + num2;
+ num4 := num1 * num2;
+ num5 := num3 * num4;
+RETURN num5;
+END;
+/
+CREATE FUNCTION
+
+select ora_func(5,9)from dual;
+ ora_func
+----------
+      630
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-nocopy-for-out-parameter-in-create-function-syntax"><a class="anchor" href="#support-nocopy-for-out-parameter-in-create-function-syntax"></a>2.7. Support NOCOPY for OUT parameter in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE FUNCTION test_nocopy(a IN int, b OUT NOCOPY int, c IN OUT NOCOPY int)
+RETURN int
+IS
+BEGIN
+   b := a;
+   c := a;
+   return 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-sharing-clause-in-create-function-syntax"><a class="anchor" href="#support-sharing-clause-in-create-function-syntax"></a>2.8. Support sharing clause in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = METADATA
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-invoker_rights-authid-in-create-function-syntaxand-change-default-permission-to-be-drdefiner"><a class="anchor" href="#support-invoker_rights-authid-in-create-function-syntaxand-change-default-permission-to-be-drdefiner"></a>2.9. Support invoker_rights (AUTHID) in CREATE FUNCTION syntax，and change default permission to be DR（DEFINER）</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID CURRENT_USER
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-accessible-by-in-create-function-syntax"><a class="anchor" href="#support-accessible-by-in-create-function-syntax"></a>2.10. Support ACCESSIBLE BY in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER ACCESSIBLE BY ( B )
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER ACCESSIBLE BY ( A.B )
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER ACCESSIBLE BY ( FUNCTION A.B )
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D, PACKAGE E,
+TRIGGER F, TYPE G )
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-default-collation-in-create-function-syntax"><a class="anchor" href="#support-default-collation-in-create-function-syntax"></a>2.11. Support DEFAULT COLLATION in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-deterministic-clause-in-create-function-syntax"><a class="anchor" href="#support-deterministic-clause-in-create-function-syntax"></a>2.12. Support deterministic clause in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-parallel_enable-clause-in-create-function-syntax"><a class="anchor" href="#support-parallel_enable-clause-in-create-function-syntax"></a>2.13. Support parallel_enable clause in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-result_cache-clause-in-create-function-syntax"><a class="anchor" href="#support-result_cache-clause-in-create-function-syntax"></a>2.14. Support result_cache clause in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ()
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ( data_source1, data_source2)
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-aggregate-clause-in-create-function-syntax"><a class="anchor" href="#support-aggregate-clause-in-create-function-syntax"></a>2.15. Support aggregate clause in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ( data_source1, data_source2)
+AGGREGATE USING pg_catalog.int4
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ( data_source1, data_source2)
+AGGREGATE USING int
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-pipelined-clause-in-create-function-syntax"><a class="anchor" href="#support-pipelined-clause-in-create-function-syntax"></a>2.16. Support pipelined clause in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ( data_source1, data_source2)
+AGGREGATE USING int
+PIPELINED
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-sql_macro-clause-in-create-function-syntax"><a class="anchor" href="#support-sql_macro-clause-in-create-function-syntax"></a>2.17. Support sql_macro clause in CREATE FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ( data_source1, data_source2)
+AGGREGATE USING int
+PIPELINED TABLE POLYMORPHIC USING pg_catalog.int4
+SQL_MACRO
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compatibility-with-alter-function-syntax"><a class="anchor" href="#compatibility-with-alter-function-syntax"></a>2.18. Compatibility with ALTER FUNCTION syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">alter function public.test_func noneditionable;
+alter function test_func compile;
+alter function test_func compile debug;
+alter function test_func compile debug sd = mv;
+alter function test_func compile debug reuse settings;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-editionablenoneditionable-in-create-procedure-syntax"><a class="anchor" href="#support-editionablenoneditionable-in-create-procedure-syntax"></a>2.19. Support EDITIONABLE/NONEDITIONABLE in CREATE PROCEDURE syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE EDITIONABLE PROCEDURE ora_procedure
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+
+CREATE OR REPLACE NONEDITIONABLE PROCEDURE ora_procedure
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="in-the-create-procedure-syntax-a-procedure-can-have-no-parameters-and-no-parentheses-after-the-procedure-name"><a class="anchor" href="#in-the-create-procedure-syntax-a-procedure-can-have-no-parameters-and-no-parentheses-after-the-procedure-name"></a>2.20. In the CREATE PROCEDURE syntax, a procedure can have no parameters, and no parentheses () after the procedure name</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE EDITIONABLE PROCEDURE ora_procedure
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="psql-uses-slash-as-terminator-of-statement-in-create-procedure-syntax"><a class="anchor" href="#psql-uses-slash-as-terminator-of-statement-in-create-procedure-syntax"></a>2.21. Psql uses slash (/) as terminator of statement in CREATE PROCEDURE syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE EDITIONABLE PROCEDURE ora_procedure
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-sharing-clause-in-create-procedure-syntax"><a class="anchor" href="#support-sharing-clause-in-create-procedure-syntax"></a>2.22. Support sharing clause in CREATE PROCEDURE syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = NONE
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-default-collation-clause-in-create-procedure-syntax"><a class="anchor" href="#support-default-collation-clause-in-create-procedure-syntax"></a>2.23. Support DEFAULT COLLATION clause in CREATE PROCEDURE syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-invoker_rights-clause-authid-in-create-procedure-syntax"><a class="anchor" href="#support-invoker_rights-clause-authid-in-create-procedure-syntax"></a>2.24. Support invoker_rights clause (AUTHID) in CREATE PROCEDURE syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID DEFINER
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-accessible-by-clause-in-create-procedure-syntax"><a class="anchor" href="#support-accessible-by-clause-in-create-procedure-syntax"></a>2.25. Support ACCESSIBLE BY clause in CREATE PROCEDURE syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+ACCESSIBLE BY ( B )
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+ACCESSIBLE BY ( A.B )
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+ACCESSIBLE BY ( FUNCTION A.B )
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D, PACKAGE E, TRIGGER F, TYPE G )
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compatibility-with-alter-procedure-syntax"><a class="anchor" href="#compatibility-with-alter-procedure-syntax"></a>2.26. Compatibility with ALTER PROCEDURE syntax</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">alter procedure test_proc editionable;
+alter procedure public.test_proc noneditionable;
+alter procedure test_proc compile;
+alter procedure test_proc compile debug;
+alter procedure test_proc compile debug sd = mv;
+alter procedure test_proc compile debug reuse settings;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="function-and-procedure-can-have-no-parameter"><a class="anchor" href="#function-and-procedure-can-have-no-parameter"></a>2.27. Function and procedure can have no parameter</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">create or replace function f_noparentheses
+return int is
+begin
+return 11;
+end;
+/
+select f_noparentheses from dual;
+
+create or replace procedure protest
+as
+begin
+raise notice 'protest';
+end;
+/
+CALL protest();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="views-related-with-function-and-stored-procedure"><a class="anchor" href="#views-related-with-function-and-stored-procedure"></a>2.28. Views related with function and stored procedure</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">They can be found in file contrib/ivorysql_ora/src/sysview/sysview--1.0.sql.
+Including DBA_PROCEDURES, ALL_PROCEDURES, USER_PROCEDURES, DBA_SOURCE, ALL_SOURCE, USER_SOURCE, DBA_ARGUMENTS, ALL_ARGUMENTS, USER_ARGUMENTS etc.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="support-and"><a class="anchor" href="#support-and"></a>2.29. Support (--) and (/* */)</h3>
+
+</div>
+<div class="sect2">
+<h3 id="pg_dump-adds-one-slash-at-the-end-of-definition-of-functionprocedure-when-backup-sql-file"><a class="anchor" href="#pg_dump-adds-one-slash-at-the-end-of-definition-of-functionprocedure-when-backup-sql-file"></a>2.30. pg_dump adds one slash (/) at the end of definition of function/procedure when backup SQL file</h3>
+
 </div>
 </div>
 </div>

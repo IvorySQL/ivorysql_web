@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>兼容Oracle函数与存储过程 :: IvorySQL文档中心</title>
+    <title>PL/iSQL函数与存储过程 :: IvorySQL文档中心</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.7.html">
     <link rel="prev" href="7.6.html">
     <link rel="next" href="7.8.html">
@@ -145,6 +145,9 @@
   </li>
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="6.3.5.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.6.html">函数与存储过程</a>
   </li>
 </ul>
   </li>
@@ -354,174 +357,629 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">兼容Oracle函数与存储过程</h1>
+<h1 class="page">PL/iSQL函数与存储过程</h1>
 <div class="sect1">
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>本文档意在兼容Oracle PLSQL函数和存储过程的语法，在IvorySQL中我们称其为PLISQL语言。</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>PostgreSQL支持函数(FUNCTION)和存储过程(PROCEDURE)，但是在语法上和Oracle有差异，为了让Oracle的PLSQL语句可以在IvorySQL上执行，也就是“语法兼容”，IvorySQL采取这样的解决方案：如果Oracle的子句在IvorySQL中存在相同功能的子句，则直接映射为对应的IvorySQL子句，否则只实现其语法，不实现其功能。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
+<h2 id="兼容支持"><a class="anchor" href="#兼容支持"></a>2. 兼容支持</h2>
 <div class="sectionbody">
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">函数（FUNCTION）</caption>
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持EDITIONABLE/NONEDITIONABLE</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持RETURN, IS关键字，不指定language</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法函数没有参数，函数名后面不带()</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION参数个数最多是32767</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法中END; 在psql中以/结束</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法变量声明前面没有DECLARE关键字</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持OUT 参数NOCOPY功能</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持sharing_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持invoker_rights_clause，默认权限改成DR（DEFINER）</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持ACCESSIBLE BY</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持DEFAULT COLLATION</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持result_cache_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持aggregate_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持pipelined_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE FUNCTION语法支持sql_macro_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ALTER FUNCTION语法</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">函数和存储过程相关的视图</p></td>
-</tr>
-</tbody>
-</table>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">存储过程（PROCEDURE)</caption>
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE PROCEDURE语法支持EDITIONABLE/NONEDITIONABLE</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE PROCEDURE语法函数没有参数，函数名后面不带()</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE PROCEDURE参数个数最多是32767</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE PROCEDURE语法中END; 在psql中以/结束</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE PROCEDURE语法支持sharing_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE PROCEDURE语法支持DEFAULT COLLATION</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE PROCEDURE语法支持invoker_rights_clause</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CREATE PROCEDURE语法支持ACCESSIBLE BY</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ALTER PROCEDURE语法</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">存储过程没有参数，调用支持不带（）</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">存储过程调用支持EXEC</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">在PL/SQL 中调用存储过程，可以省略CALL，直接使用存储过程名字</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">支持&#8212;&#8203;和/**/两种注释方法</p></td>
-</tr>
-</tbody>
-</table>
+<div class="paragraph">
+<p>具体的Oracle兼容支持包括以下几个方面：</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="create-function-语法支持-editionablenoneditionable"><a class="anchor" href="#create-function-语法支持-editionablenoneditionable"></a>2.1. CREATE FUNCTION 语法支持 EDITIONABLE/NONEDITIONABLE</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer AS
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace EDITIONABLE FUNCTION ora_func RETURN integer AS
 BEGIN
     RETURN 1;
 END;
 /
 
-CREATE OR REPLACE FUNCTION test_nocopy(a IN int, b OUT NOCOPY int, c IN OUT NOCOPY int)
-RETURN record
-IS
+CREATE or replace NONEDITIONABLE FUNCTION ora_func RETURN integer IS
 BEGIN
-   b := a;
-   c := a;
+    RETURN 1;
 END;
 /</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-returnis-关键字无需指定语言"><a class="anchor" href="#create-function-语法支持-returnis-关键字无需指定语言"></a>2.2. CREATE FUNCTION 语法支持 RETURN/IS 关键字，无需指定语言</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE PROCEDURE ora_procedure()
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace EDITIONABLE FUNCTION ora_func RETURN integer IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法函数没有参数函数名后面不带"><a class="anchor" href="#create-function-语法函数没有参数函数名后面不带"></a>2.3. CREATE FUNCTION 语法函数没有参数，函数名后面不带()</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = METADATA
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-参数个数增加最大值可在configure时指定"><a class="anchor" href="#create-function-参数个数增加最大值可在configure时指定"></a>2.4. CREATE FUNCTION 参数个数增加，最大值可在configure时指定</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">configure --help
+	--with-max-funarg=MAXFUNARG</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法中-end-在psql中以结束"><a class="anchor" href="#create-function-语法中-end-在psql中以结束"></a>2.5. CREATE FUNCTION 语法中 END; 在psql中以/结束</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace EDITIONABLE FUNCTION ora_func RETURN integer IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法变量声明前面没有-declare-关键字"><a class="anchor" href="#create-function-语法变量声明前面没有-declare-关键字"></a>2.6. CREATE FUNCTION 语法变量声明前面没有 DECLARE 关键字</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE
+FUNCTION ora_func (num1 IN int, num2 IN int)
+RETURN int
 AS
-	p integer := 20;
+ num3 int :=10;
+ num4 int :=10;
+ num5 int;
+BEGIN
+ num3 := num1 + num2;
+ num4 := num1 * num2;
+ num5 := num3 * num4;
+RETURN num5;
+END;
+/
+CREATE FUNCTION
+
+select ora_func(5,9)from dual;
+ ora_func
+----------
+      630
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-out-参数-nocopy-功能"><a class="anchor" href="#create-function-语法支持-out-参数-nocopy-功能"></a>2.7. CREATE FUNCTION 语法支持 OUT 参数 NOCOPY 功能</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE FUNCTION test_nocopy(a IN int, b OUT NOCOPY int, c IN OUT NOCOPY int)
+RETURN int
+IS
+BEGIN
+   b := a;
+   c := a;
+   return 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-sharing-子句"><a class="anchor" href="#create-function-语法支持-sharing-子句"></a>2.8. CREATE FUNCTION 语法支持 sharing 子句</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = METADATA
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-invoker_rights-authid-子句默认权限改成-drdefiner"><a class="anchor" href="#create-function-语法支持-invoker_rights-authid-子句默认权限改成-drdefiner"></a>2.9. CREATE FUNCTION 语法支持 invoker_rights (AUTHID) 子句，默认权限改成 DR（DEFINER）</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID CURRENT_USER
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-accessible-by"><a class="anchor" href="#create-function-语法支持-accessible-by"></a>2.10. CREATE FUNCTION 语法支持 ACCESSIBLE BY</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER ACCESSIBLE BY ( B )
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER ACCESSIBLE BY ( A.B )
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER ACCESSIBLE BY ( FUNCTION A.B )
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D, PACKAGE E,
+TRIGGER F, TYPE G )
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-default-collation"><a class="anchor" href="#create-function-语法支持-default-collation"></a>2.11. CREATE FUNCTION 语法支持 DEFAULT COLLATION</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-deterministic-子句功能与-ivorysql-的-immutable-相同"><a class="anchor" href="#create-function-语法支持-deterministic-子句功能与-ivorysql-的-immutable-相同"></a>2.12. CREATE FUNCTION 语法支持 deterministic 子句，功能与 IvorySQL 的 IMMUTABLE 相同</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-parallel_enable-子句功能与-ivorysql-的-parallel-safe-相同"><a class="anchor" href="#create-function-语法支持-parallel_enable-子句功能与-ivorysql-的-parallel-safe-相同"></a>2.13. CREATE FUNCTION 语法支持 parallel_enable 子句，功能与 IvorySQL 的 PARALLEL SAFE 相同</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-result_cache-子句"><a class="anchor" href="#create-function-语法支持-result_cache-子句"></a>2.14. CREATE FUNCTION 语法支持 result_cache 子句</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ()
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ( data_source1, data_source2)
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-aggregate-子句"><a class="anchor" href="#create-function-语法支持-aggregate-子句"></a>2.15. CREATE FUNCTION 语法支持 aggregate 子句</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ( data_source1, data_source2)
+AGGREGATE USING pg_catalog.int4
+IS
+BEGIN
+    RETURN 1;
+END;
+/
+CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ( data_source1, data_source2)
+AGGREGATE USING int
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-pipelined-子句"><a class="anchor" href="#create-function-语法支持-pipelined-子句"></a>2.16. CREATE FUNCTION 语法支持 pipelined 子句</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ( data_source1, data_source2)
+AGGREGATE USING int
+PIPELINED
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-function-语法支持-sql_macro-子句"><a class="anchor" href="#create-function-语法支持-sql_macro-子句"></a>2.17. CREATE FUNCTION 语法支持 sql_macro 子句</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE or replace FUNCTION ora_func RETURN integer
+SHARING = NONE AUTHID DEFINER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+DEFAULT COLLATION USING_NLS_COMP
+DETERMINISTIC
+PARALLEL_ENABLE ( PARTITION A BY RANGE ( B, C ) CLUSTER A BY ( E,F ) )
+RESULT_CACHE RELIES_ON ( data_source1, data_source2)
+AGGREGATE USING int
+PIPELINED TABLE POLYMORPHIC USING pg_catalog.int4
+SQL_MACRO
+IS
+BEGIN
+    RETURN 1;
+END;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="alter-function-语法兼容"><a class="anchor" href="#alter-function-语法兼容"></a>2.18. ALTER FUNCTION 语法兼容</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">alter function public.test_func noneditionable;
+alter function test_func compile;
+alter function test_func compile debug;
+alter function test_func compile debug sd = mv;
+alter function test_func compile debug reuse settings;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-procedure-语法支持-editionable-noneditionable"><a class="anchor" href="#create-procedure-语法支持-editionable-noneditionable"></a>2.19. CREATE PROCEDURE 语法支持 EDITIONABLE / NONEDITIONABLE</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE EDITIONABLE PROCEDURE ora_procedure
+IS
+        p integer := 20;
 begin
-	raise notice '%', p;
+        raise notice '%', p;
 end;
 /
-call ora_procedure();
 
+CREATE OR REPLACE NONEDITIONABLE PROCEDURE ora_procedure
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-procedure-语法函数没有参数函数名后面不带"><a class="anchor" href="#create-procedure-语法函数没有参数函数名后面不带"></a>2.20. CREATE PROCEDURE 语法函数没有参数，函数名后面不带()</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE EDITIONABLE PROCEDURE ora_procedure
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-procedure-语法中-end-在psql中以-结束"><a class="anchor" href="#create-procedure-语法中-end-在psql中以-结束"></a>2.21. CREATE PROCEDURE 语法中 END; 在psql中以 / 结束</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE PROCEDURE ora_procedure
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-procedure-语法支持-sharing-子句"><a class="anchor" href="#create-procedure-语法支持-sharing-子句"></a>2.22. CREATE PROCEDURE 语法支持 sharing 子句</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = NONE
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-procedure-语法支持-default-collation-子句"><a class="anchor" href="#create-procedure-语法支持-default-collation-子句"></a>2.23. CREATE PROCEDURE 语法支持 DEFAULT COLLATION 子句</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-procedure-语法支持-invoker_rights-authid-子句"><a class="anchor" href="#create-procedure-语法支持-invoker_rights-authid-子句"></a>2.24. CREATE PROCEDURE 语法支持 invoker_rights (AUTHID) 子句</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID DEFINER
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-procedure-语法支持-accessible-by-子句"><a class="anchor" href="#create-procedure-语法支持-accessible-by-子句"></a>2.25. CREATE PROCEDURE 语法支持 ACCESSIBLE BY 子句</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+ACCESSIBLE BY ( B )
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+ACCESSIBLE BY ( A.B )
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
 CREATE OR REPLACE PROCEDURE ora_procedure
 SHARING = METADATA
 DEFAULT COLLATION USING_NLS_COMP
 AUTHID CURRENT_USER
 ACCESSIBLE BY ( FUNCTION A.B )
 IS
-	p integer := 20;
+        p integer := 20;
 begin
-	raise notice '%', p;
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D )
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
+end;
+/
+CREATE OR REPLACE PROCEDURE ora_procedure
+SHARING = METADATA
+DEFAULT COLLATION USING_NLS_COMP
+AUTHID CURRENT_USER
+ACCESSIBLE BY ( FUNCTION A.B, PROCEDURE C.D, PACKAGE E, TRIGGER F, TYPE G )
+IS
+        p integer := 20;
+begin
+        raise notice '%', p;
 end;
 /</code></pre>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="alter-procedure-语法兼容"><a class="anchor" href="#alter-procedure-语法兼容"></a>2.26. ALTER PROCEDURE 语法兼容</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">alter procedure test_proc editionable;
+alter procedure public.test_proc noneditionable;
+alter procedure test_proc compile;
+alter procedure test_proc compile debug;
+alter procedure test_proc compile debug sd = mv;
+alter procedure test_proc compile debug reuse settings;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="存储过程和函数没有参数select调用支持不带"><a class="anchor" href="#存储过程和函数没有参数select调用支持不带"></a>2.27. 存储过程和函数没有参数，SELECT调用支持不带 ()</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">create or replace function f_noparentheses
+return int is
+begin
+return 11;
+end;
+/
+select f_noparentheses from dual;
+
+create or replace procedure protest
+as
+begin
+raise notice 'protest';
+end;
+/
+CALL protest();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="函数和存储过程相关的视图"><a class="anchor" href="#函数和存储过程相关的视图"></a>2.28. 函数和存储过程相关的视图</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">相关视图位于文件 contrib/ivorysql_ora/src/sysview/sysview--1.0.sql 中，包括DBA_PROCEDURES，ALL_PROCEDURES，USER_PROCEDURES，DBA_SOURCE，ALL_SOURCE，USER_SOURCE，DBA_ARGUMENTS，ALL_ARGUMENTS，USER_ARGUMENTS等。</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="支持和两种注释方法"><a class="anchor" href="#支持和两种注释方法"></a>2.29. 支持&#8212;&#8203;和/**/两种注释方法</h3>
+
+</div>
+<div class="sect2">
+<h3 id="pg_dump备份sql脚本文件的备份格式时在函数的定义最后增加一个斜线"><a class="anchor" href="#pg_dump备份sql脚本文件的备份格式时在函数的定义最后增加一个斜线"></a>2.30. pg_dump备份SQL脚本文件的备份格式时，在函数的定义最后增加一个斜线 /</h3>
+
 </div>
 </div>
 </div>

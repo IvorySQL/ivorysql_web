@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>PostGIS :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/5.1.html">
-    <link rel="prev" href="4.5.html">
-    <link rel="next" href="5.2.html">
+    <title>Force View :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.18.html">
+    <link rel="prev" href="7.17.html">
+    <link rel="next" href="7.19.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -97,7 +97,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">IvorySQL生态</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.1.html">PostGIS</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -217,7 +217,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="7.17.html">17、NLS 参数</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="7.18.html">18、Force View</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -351,239 +351,116 @@
   <ul>
     <li><a href="welcome.html">文档中心</a></li>
     <li>IvorySQL</li>
-    <li>IvorySQL生态</li>
-    <li><a href="5.1.html">PostGIS</a></li>
+    <li>Oracle兼容功能列表</li>
+    <li><a href="7.18.html">18、Force View</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/5.1.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/7.18.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/5.1.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/7.18.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">PostGIS</h1>
+<h1 class="page">Force View</h1>
 <div class="sect1">
-<h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>IvorySQL原生100%兼容PostgreSQL,因此，PostGIS可以完美适配IvorySQL。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>本文档解释 IvorySQL 中 Force View 的用途，帮助用户在依赖对象尚未就绪时仍可创建强制视图占位并保持与 Oracle 行为一致。</p>
+</li>
+<li>
+<p>Force View 可支持在依赖表尚未准备好的情况下进行视图迁移，在依赖满足后通过自动或显式编译快速恢复为普通视图。</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="安装"><a class="anchor" href="#安装"></a>2. 安装</h2>
+<h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>根据开发环境，用户可从 <a href="https://postgis.net/documentation/getting_started/#installing-postgis">PostGIS安装</a> 页面选择适合自己的方式进行安装PostGIS安装。</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CREATE [OR REPLACE] FORCE VIEW</code>：即使查询引用了不存在的表或函数，也会创建视图占位对象并保存原始 SQL，提示“View created with compilation errors”。</p>
+</li>
+<li>
+<p>自动编译：访问 Force View 时会尝试重新编译；成功后变为普通视图，失败则报错 <code>view "&lt;schema&gt;.&lt;name&gt;" has errors</code>。</p>
+</li>
+<li>
+<p>依赖失效回退：当普通视图因依赖对象被删除或结构变更而失效时，系统会自动将其转化为 Force View，保留最后一次有效定义以便后续恢复。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="创建缺失依赖的-force-view"><a class="anchor" href="#创建缺失依赖的-force-view"></a>3.1. 创建缺失依赖的 Force View</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 引用不存在的基础表，验证可成功创建占位
+CREATE FORCE VIEW fv_customer AS
+SELECT c_id, c_name FROM missing_customer;
+-- 期望输出：WARNING: View created with compilation errors</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="源码安装"><a class="anchor" href="#源码安装"></a>2.1. 源码安装</h3>
-<div class="paragraph">
-<p>除PostGIS社区提供的安装方式以外，IvorySQL社区也提供了源码安装方式，源码安装环境为 CentOS Stream 9(x86_64)。</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-请确保环境中已安装了<strong>IvorySQL3.0及以上版本</strong>
-</td>
-</tr>
-</table>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装依赖</p>
-</li>
-</ul>
-</div>
+<h3 id="自动编译并恢复为普通视图"><a class="anchor" href="#自动编译并恢复为普通视图"></a>3.2. 自动编译并恢复为普通视图</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">dnf install -y gcc gcc-c++ libtiff libtiff-devel.x86_64 libcurl-devel.x86_64 libtool libxml2-devel redhat-rpm-config clang llvm geos311 automake protobuf-c-devel</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装SQLITE</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://www.sqlite.org/2022/sqlite-autoconf-3400000.tar.gz
-$ tar -xvf sqlite-autoconf-3400000.tar.gz
-$ cd sqlite-autoconf-3400000
-$ sed -n '1i\#define SQLITE_ENABLE_COLUMN_METADATA 1' sqlite3.c
-$ ./configure --prefix=/usr/local/sqlite
-$ make &amp;&amp; make install
-$ rm usr/bin/sqlite3 &amp;&amp; ln -s /usr/local/sqlite/bin/sqlite3 /usr/bin/sqlite3
-$ sqlite3 -version
-$ export PKG_CONFIG_PATH=/usr/local/sqlite/lib/pkgconfig:$PKG_CONFIG_PATH</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装PROJ</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://download.osgeo.org/proj/proj-8.2.1.tar.gz
-$ tar -xvf proj-8.2.1.tar.gz
-$ cd proj-8.2.1
-$ ./configure --prefix=/usr/local/proj-8.2.1
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装 GDAL</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://github.com/OSGeo/gdal/releases/download/v3.4.3/gdal-3.4.3.tar.gz
-$ tar -xvf gdal-3.4.3.tar.gz
-$ cd gdal-3.4.3
-$ sh autogen.sh
-$ ./configure --prefix=/usr/local/gdal-3.4.3 --with-proj=/usr/local/proj-8.2.1
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装 GEOS</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://download.osgeo.org/geos/geos-3.9.2.tar.bz2
-$ tar -xvf geos-3.9.2.tar.bz2
-$ cd geos-3.9.2
-$ ./configure --prefix=/usr/local/geos-3.9.2
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装 Protobuf</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://plug-neomirror.rcac.purdue.edu/adelie/source/archive/protobuf-3.20.1/protobuf-3.20.1.tar.gz
-$ tar -xvf protobuf-3.20.1.tar.gz
-$ cd protobuf-3.20.1
-$ sh autogen.sh
-$ ./configure  --prefix=/usr/local/protobuf-3.20.1
-$ make &amp;&amp; make install
-$ export PROTOBUF_HOME=/usr/local/protobuf-3.20.1
-$ export PATH=$PROTOBUF_HOME/bin:$PATH
-$ export PKG_CONFIG_PATH=$PROTOBUF_HOME/lib/pkgconfig:$PKG_CONFIG_PATH</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装 Protobuf-c</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget --no-check-certificate https://sources.buildroot.net/protobuf-c/protobuf-c-1.4.1.tar.gz
-$ tar -xvf protobuf-c-1.4.1.tar.gz
-$ cd protobuf-c-1.4.1
-$ ./configure --prefix=/usr/local/protobuf-c-1.4.1
-$ make &amp;&amp; make install
-$ export PROTOBUFC_HOME=/usr/local/protobuf-c-1.4.1
-$ export PATH=$PROTOBUF_HOME/bin:$PROTOBUFC_HOME/bin:$PATH
-$ export PKG_CONFIG_PATH=$PROTOBUFC_HOME/lib:$PKG_CONFIG_PATH</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装 PostGIS</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://download.osgeo.org/postgis/source/postgis-3.4.0.tar.gz
-$ tar -xvf postgis-3.4.0.tar.gz
-$ cd postgis-3.4.0
-$ sh autogen.sh
-$ ./configure  --with-geosconfig=/usr/local/geos-3.9.2/bin/geos-config --with-projdir=/usr/local/proj-8.2.1 --with-gdalconfig=/usr/local/gdal-3.4.3/bin/gdal-config --with-protobufdir=/usr/local/protobuf-c-1.4.1 --with-pgconfig=/usr/local/ivorysql/ivorysql-4/bin/pg_config
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-如出现PGXS报错, 请根据环境中IvorySQL安装路径, 修改&#8212;&#8203;with-pgconfig的参数值。
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="创建extension并确认postgis版本"><a class="anchor" href="#创建extension并确认postgis版本"></a>3. 创建Extension并确认PostGIS版本</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>psql 连接到数据库，执行如下命令：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# CREATE extension postgis;
-CREATE EXTENSION
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 先补齐依赖对象
+CREATE TABLE missing_customer(
+  c_id   int primary key,
+  c_name text
+);
+INSERT INTO missing_customer VALUES (1, 'Alice');
 
-ivorysql=# SELECT * FROM pg_available_extensions WHERE name = 'postgis';
-  name   | default_version | installed_version |                          comment
----------+-----------------+-------------------+------------------------------------------------------------
- postgis | 3.4.0           | 3.4.0             | PostGIS geometry and geography spatial types and functions
-(1 row)</code></pre>
+-- 访问 Force View 时自动尝试编译
+SELECT * FROM fv_customer;
+-- 成功时视图转换为普通视图并返回数据</code></pre>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="显式编译与失败回退"><a class="anchor" href="#显式编译与失败回退"></a>3.3. 显式编译与失败回退</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 再次让视图失效：重建定义为 Force View
+CREATE OR REPLACE FORCE VIEW fv_customer AS
+SELECT c_id, upper(c_name) AS c_name FROM missing_customer_v2;
+
+-- 显式编译：依赖仍缺少，保持 Force View 状态并输出 WARNING
+ALTER VIEW fv_customer COMPILE;
+-- 期望输出：WARNING: View altered with compilation errors
+
+-- 补齐依赖后再次编译
+CREATE TABLE missing_customer_v2(
+  c_id   int,
+  c_name text
+);
+ALTER VIEW fv_customer COMPILE;
+-- 期望输出：ALTER VIEW 成功，视图恢复为普通视图</code></pre>
 </div>
-<div class="sect1">
-<h2 id="使用"><a class="anchor" href="#使用"></a>4. 使用</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>关于PostGIS的使用，请参阅 <a href="https://postgis.net/docs/manual-3.4">PostGIS3.4官方文档</a></p>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="4.5.html">迁移指南</a></span>
-  <span class="next"><a href="5.2.html">pgvector</a></span>
+  <span class="prev"><a href="7.17.html">17、NLS 参数</a></span>
+  <span class="next"><a href="7.19.html">19、嵌套子函数</a></span>
 </nav>
 </article>
   </div>

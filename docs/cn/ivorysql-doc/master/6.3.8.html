@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>PostGIS :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/5.1.html">
-    <link rel="prev" href="4.5.html">
-    <link rel="next" href="5.2.html">
+    <title>Force View :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.8.html">
+    <link rel="prev" href="6.3.7.html">
+    <link rel="next" href="6.4.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -97,7 +97,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">IvorySQL生态</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.1.html">PostGIS</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -152,7 +152,7 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="6.3.7.html">嵌套子函数</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item is-current-page" data-depth="4">
     <a class="nav-link" href="6.3.8.html">Force View</a>
   </li>
 </ul>
@@ -351,239 +351,294 @@
   <ul>
     <li><a href="welcome.html">文档中心</a></li>
     <li>IvorySQL</li>
-    <li>IvorySQL生态</li>
-    <li><a href="5.1.html">PostGIS</a></li>
+    <li>IvorySQL架构设计</li>
+    <li>兼容特性</li>
+    <li><a href="6.3.8.html">Force View</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/5.1.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/6.3.8.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/5.1.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/6.3.8.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">PostGIS</h1>
+<h1 class="page">Force View</h1>
 <div class="sect1">
-<h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Force View 提供 Oracle 兼容的 <code>CREATE [OR REPLACE] FORCE VIEW</code> 与 <code>ALTER VIEW &#8230;&#8203; COMPILE</code> 行为，允许开发者先落地视图占位，再在依赖补齐后恢复正常执行。</p>
+</li>
+<li>
+<p>系统将原始 SQL 及标识符大小写模式写入专属目录项，依赖恢复时可自动或手动编译为普通视图，且保持 Oracle 风格的告警与错误提示。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="实现说明"><a class="anchor" href="#实现说明"></a>2. 实现说明</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>IvorySQL原生100%兼容PostgreSQL,因此，PostGIS可以完美适配IvorySQL。</p>
+<p>PG在删除基表时，如果有视图依赖于此基表，则不允许删除，需要使用cascade 关键字全部删除；Oracle删除基表时，允许直接删除基表，而保留force view并将force view 转为无效状态，且创建普通视图后，也可以删除此视图的基表，但把视图转为无效状态。</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="安装"><a class="anchor" href="#安装"></a>2. 安装</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>根据开发环境，用户可从 <a href="https://postgis.net/documentation/getting_started/#installing-postgis">PostGIS安装</a> 页面选择适合自己的方式进行安装PostGIS安装。</p>
+<p>为了支持新的语法，需要增加对应的语法规则。且FORCE VIEW的状态在多个session之间是共享的，新增一张系统表用来存储FORCE VIEW的相关信息。</p>
 </div>
 <div class="sect2">
-<h3 id="源码安装"><a class="anchor" href="#源码安装"></a>2.1. 源码安装</h3>
-<div class="paragraph">
-<p>除PostGIS社区提供的安装方式以外，IvorySQL社区也提供了源码安装方式，源码安装环境为 CentOS Stream 9(x86_64)。</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-请确保环境中已安装了<strong>IvorySQL3.0及以上版本</strong>
-</td>
-</tr>
-</table>
-</div>
+<h3 id="语法与解析入口"><a class="anchor" href="#语法与解析入口"></a>2.1. 语法与解析入口</h3>
+<div class="sect3">
+<h4 id="force-view-语法支持"><a class="anchor" href="#force-view-语法支持"></a>2.1.1. Force View 语法支持</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>安装依赖</p>
+<p><code>src/backend/oracle_parser/ora_gram.y</code> 注册 Force View 关键字。</p>
+</li>
+<li>
+<p>语法阶段为 <code>ViewStmt&#8594;force</code> 赋值，并在 <code>AlterTableStmt</code> 阶段生成 <code>AT_ForceViewCompile</code> 选项。</p>
+</li>
+<li>
+<p>解析阶段保留 <code>ViewStmt&#8594;stmt_literal</code>，后续占位时需要复用原始文本。</p>
 </li>
 </ul>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">dnf install -y gcc gcc-c++ libtiff libtiff-devel.x86_64 libcurl-devel.x86_64 libtool libxml2-devel redhat-rpm-config clang llvm geos311 automake protobuf-c-devel</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装SQLITE</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://www.sqlite.org/2022/sqlite-autoconf-3400000.tar.gz
-$ tar -xvf sqlite-autoconf-3400000.tar.gz
-$ cd sqlite-autoconf-3400000
-$ sed -n '1i\#define SQLITE_ENABLE_COLUMN_METADATA 1' sqlite3.c
-$ ./configure --prefix=/usr/local/sqlite
-$ make &amp;&amp; make install
-$ rm usr/bin/sqlite3 &amp;&amp; ln -s /usr/local/sqlite/bin/sqlite3 /usr/bin/sqlite3
-$ sqlite3 -version
-$ export PKG_CONFIG_PATH=/usr/local/sqlite/lib/pkgconfig:$PKG_CONFIG_PATH</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装PROJ</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://download.osgeo.org/proj/proj-8.2.1.tar.gz
-$ tar -xvf proj-8.2.1.tar.gz
-$ cd proj-8.2.1
-$ ./configure --prefix=/usr/local/proj-8.2.1
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装 GDAL</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://github.com/OSGeo/gdal/releases/download/v3.4.3/gdal-3.4.3.tar.gz
-$ tar -xvf gdal-3.4.3.tar.gz
-$ cd gdal-3.4.3
-$ sh autogen.sh
-$ ./configure --prefix=/usr/local/gdal-3.4.3 --with-proj=/usr/local/proj-8.2.1
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装 GEOS</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://download.osgeo.org/geos/geos-3.9.2.tar.bz2
-$ tar -xvf geos-3.9.2.tar.bz2
-$ cd geos-3.9.2
-$ ./configure --prefix=/usr/local/geos-3.9.2
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装 Protobuf</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://plug-neomirror.rcac.purdue.edu/adelie/source/archive/protobuf-3.20.1/protobuf-3.20.1.tar.gz
-$ tar -xvf protobuf-3.20.1.tar.gz
-$ cd protobuf-3.20.1
-$ sh autogen.sh
-$ ./configure  --prefix=/usr/local/protobuf-3.20.1
-$ make &amp;&amp; make install
-$ export PROTOBUF_HOME=/usr/local/protobuf-3.20.1
-$ export PATH=$PROTOBUF_HOME/bin:$PATH
-$ export PKG_CONFIG_PATH=$PROTOBUF_HOME/lib/pkgconfig:$PKG_CONFIG_PATH</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装 Protobuf-c</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget --no-check-certificate https://sources.buildroot.net/protobuf-c/protobuf-c-1.4.1.tar.gz
-$ tar -xvf protobuf-c-1.4.1.tar.gz
-$ cd protobuf-c-1.4.1
-$ ./configure --prefix=/usr/local/protobuf-c-1.4.1
-$ make &amp;&amp; make install
-$ export PROTOBUFC_HOME=/usr/local/protobuf-c-1.4.1
-$ export PATH=$PROTOBUF_HOME/bin:$PROTOBUFC_HOME/bin:$PATH
-$ export PKG_CONFIG_PATH=$PROTOBUFC_HOME/lib:$PKG_CONFIG_PATH</code></pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>安装 PostGIS</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ wget https://download.osgeo.org/postgis/source/postgis-3.4.0.tar.gz
-$ tar -xvf postgis-3.4.0.tar.gz
-$ cd postgis-3.4.0
-$ sh autogen.sh
-$ ./configure  --with-geosconfig=/usr/local/geos-3.9.2/bin/geos-config --with-projdir=/usr/local/proj-8.2.1 --with-gdalconfig=/usr/local/gdal-3.4.3/bin/gdal-config --with-protobufdir=/usr/local/protobuf-c-1.4.1 --with-pgconfig=/usr/local/ivorysql/ivorysql-4/bin/pg_config
-$ make &amp;&amp; make install</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-如出现PGXS报错, 请根据环境中IvorySQL安装路径, 修改&#8212;&#8203;with-pgconfig的参数值。
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="创建extension并确认postgis版本"><a class="anchor" href="#创建extension并确认postgis版本"></a>3. 创建Extension并确认PostGIS版本</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>psql 连接到数据库，执行如下命令：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# CREATE extension postgis;
-CREATE EXTENSION
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/* Insert or update the pg_force_view catalog as needed */
+if (need_store)
+{
+	......
 
-ivorysql=# SELECT * FROM pg_available_extensions WHERE name = 'postgis';
-  name   | default_version | installed_version |                          comment
----------+-----------------+-------------------+------------------------------------------------------------
- postgis | 3.4.0           | 3.4.0             | PostGIS geometry and geography spatial types and functions
-(1 row)</code></pre>
+	StoreForceViewQuery(address.objectId, stmt-&gt;replace, ident_case, stmt-&gt;stmt_literal ? stmt-&gt;stmt_literal : queryString);
+}</code></pre>
 </div>
 </div>
 </div>
+<div class="sect3">
+<h4 id="ast-字段扩展"><a class="anchor" href="#ast-字段扩展"></a>2.1.2. AST 字段扩展</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>src/include/nodes/parsenodes.h</code> 为 <code>ViewStmt</code> 增加 <code>bool force</code>、<code>char *stmt_literal</code> 字段。</p>
+</li>
+<li>
+<p><code>AT_ForceViewCompile</code> 在 <code>parsenodes.h</code> 与 <code>tablecmds.c</code> 成对定义，确保 <code>ALTER VIEW &#8230;&#8203; COMPILE</code> 进入 AlterTable 流程。</p>
+</li>
+<li>
+<p><code>parse_analyze</code> 仍按普通路径执行，Force 模式只在解析报错后介入。</p>
+</li>
+</ul>
 </div>
-<div class="sect1">
-<h2 id="使用"><a class="anchor" href="#使用"></a>4. 使用</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>关于PostGIS的使用，请参阅 <a href="https://postgis.net/docs/manual-3.4">PostGIS3.4官方文档</a></p>
+</div>
+<div class="sect3">
+<h4 id="解析入口"><a class="anchor" href="#解析入口"></a>2.1.3. 解析入口</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DefineView()</code>（<code>src/backend/commands/view.c</code>）统一处理普通与 Force 视图。</p>
+</li>
+<li>
+<p>代码在 <code>PG_TRY/PG_CATCH</code> 包裹下先尝试普通解析，捕获语义错误后根据 <code>stmt&#8594;force</code> 决定是否进入Force View 流程。</p>
+</li>
+<li>
+<p>成功解析继续调用 <code>StoreViewQuery()</code> 写入 <code>_RETURN</code> 规则，失败则进入 Force View 分支，保证视图对象仍然存在。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="force-view-元数据"><a class="anchor" href="#force-view-元数据"></a>2.2. Force View 元数据</h3>
+<div class="sect3">
+<h4 id="pg_force_view-目录"><a class="anchor" href="#pg_force_view-目录"></a>2.2.1. <code>pg_force_view</code> 目录</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>src/include/catalog/pg_force_view.h</code> 定义目录表，字段包含视图 OID (<code>fvoid</code>)、标识符大小写模式 (<code>ident_case</code>)、原始 SQL 文本 (<code>source</code>)。</p>
+</li>
+<li>
+<p>唯一索引 <code>pg_force_view_fvoid_index</code> 搭配 syscache <code>FORCEVIEWOID</code>（<code>src/include/catalog/syscache_info.h</code>）实现按视图 OID 查找。</p>
+</li>
+<li>
+<p>目录表开启 TOAST，长 SQL 文本不会被截断，可覆盖复杂迁移脚本。</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CATALOG(pg_force_view,9120,ForceViewRelationId)
+{
+    /* oid of force view */
+	Oid			fvoid;
+
+    /* see IDENT_CASE__xxx constants below */
+	char		ident_case;
+
+#ifdef CATALOG_VARLEN			/* variable-length fields start here */
+
+    /* sql definition */
+	text		source;
+#endif
+} FormData_pg_force_view;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="视图状态"><a class="anchor" href="#视图状态"></a>2.2.2. 视图状态</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bool rel_is_force_view(Oid relid)</code> 位于 <code>src/backend/commands/view.c</code>，通过判断 <code>_RETURN</code> 规则是否存在确认视图是否处于 Force 状态。</p>
+</li>
+<li>
+<p>Force View 仍登记为 <code>relkind = RELKIND_VIEW</code>，避免额外兼容分支。</p>
+</li>
+<li>
+<p><code>pg_class.relhasrules</code> 在占位状态设置为 <code>false</code>，配合作为判断依据。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="创建与替换流程"><a class="anchor" href="#创建与替换流程"></a>2.3. 创建与替换流程</h3>
+<div class="sect3">
+<h4 id="普通-view"><a class="anchor" href="#普通-view"></a>2.3.1. 普通 view</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DefineView()</code> 在解析成功后调用 <code>DefineVirtualRelation()</code> 写入 <code>pg_class</code>、<code>pg_attribute</code> 等结构。</p>
+</li>
+<li>
+<p><code>StoreViewQuery()</code> 生成 <code>_RETURN</code> 规则并维护依赖关系。</p>
+</li>
+<li>
+<p>该路径不会触及 <code>pg_force_view</code>，视图完成后立即可用。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="force-view"><a class="anchor" href="#force-view"></a>2.3.2. Force view</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CreateForceVirtualPlaceholder()</code>（<code>src/backend/commands/view.c</code>）负责生成或复用占位视图：</p>
+</li>
+<li>
+<p>若视图不存在，调用 <code>DefineVirtualRelation()</code> 建立基础对象，但不写入 <code>_RETURN</code> 规则。</p>
+</li>
+<li>
+<p>若已有 Force View，复用当前记录，更新列定义或清理旧元数据。</p>
+</li>
+<li>
+<p>若已有普通视图且声明了 <code>OR REPLACE</code>，调用 <code>make_view_invalid()</code> 失效原视图，再写入新的占位定义。</p>
+</li>
+<li>
+<p><code>StoreForceViewQuery()</code> 将 <code>stmt_literal</code> 与当前 <code>ivorysql.identifier_case_switch</code> 持久化到 <code>pg_force_view</code>，以便后续恢复大小写语义。</p>
+</li>
+<li>
+<p>视图占位完成后向客户端返回 <code>WARNING: View created with compilation errors</code>，提示仍处于不可用状态。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="依赖失效与回退"><a class="anchor" href="#依赖失效与回退"></a>2.4. 依赖失效与回退</h3>
+<div class="sect3">
+<h4 id="主动失效逻辑"><a class="anchor" href="#主动失效逻辑"></a>2.4.1. 主动失效逻辑</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>make_view_invalid()</code> 在依赖对象被 DROP/ALTER 等操作影响时调用。</p>
+</li>
+<li>
+<p>函数删除 <code>_RETURN</code> 规则、清理 <code>pg_depend</code> 依赖、重置 <code>pg_class.relhasrules</code> 并清空 <code>pg_attribute</code> 列信息。</p>
+</li>
+<li>
+<p>同步生成 <code>CREATE FORCE VIEW &#8230;&#8203; AS &lt;pg_get_viewdef&gt;</code> 文本写入 <code>pg_force_view</code>，<code>ident_case</code> 设置为 <code>IDENT_CASE_UNDEFINE</code> 表示该文本由系统构造。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="失效后的可见行为"><a class="anchor" href="#失效后的可见行为"></a>2.4.2. 失效后的可见行为</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>视图仍然存在并可在元数据中枚举，但实际访问会触发 Force 判定。</p>
+</li>
+<li>
+<p><code>_RETURN</code> 缺失导致执行器在打开视图时调用 <code>compile_force_view()</code>，若编译仍失败则抛出 <code>view "&lt;schema&gt;.&lt;name&gt;" has errors</code>。</p>
+</li>
+<li>
+<p>用户可通过 <code>ALTER VIEW &#8230;&#8203; COMPILE</code> 或再次 <code>CREATE OR REPLACE FORCE VIEW</code> 来恢复。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="自动与主动编译"><a class="anchor" href="#自动与主动编译"></a>2.5. 自动与主动编译</h3>
+<div class="sect3">
+<h4 id="自动编译触发点"><a class="anchor" href="#自动编译触发点"></a>2.5.1. 自动编译触发点</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>parse_relation.c</code> 的 <code>addRangeTableEntry()</code> 和 <code>parse_clause.c</code> 的目标关系打开逻辑在判定 Force View 后调用 <code>compile_force_view()</code>。</p>
+</li>
+<li>
+<p>该函数重新执行 <code>raw_parser</code> 与 <code>parse_analyze</code>，成功则再安装 <code>_RETURN</code> 规则，失败直接终止当前语句。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="主动编译"><a class="anchor" href="#主动编译"></a>2.5.2. 主动编译</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AT_ForceViewCompile</code> 在 <code>tablecmds.c</code> Phase 2 阶段执行，先申请 <code>AccessExclusiveLock</code> 再调用 <code>compile_force_view()</code>。</p>
+</li>
+<li>
+<p>成功编译返回常规 <code>ALTER VIEW</code> 完成信息；失败打印 <code>WARNING: View altered with compilation errors</code>，视图仍保持占位。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="列校验与元数据更新"><a class="anchor" href="#列校验与元数据更新"></a>2.5.3. 列校验与元数据更新</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>compile_force_view()</code> 读取 <code>pg_force_view.source</code> 并构造 <code>ViewStmt</code>，随后调用 <code>compile_force_view_internal()</code>。</p>
+</li>
+<li>
+<p>函数通过 <code>checkViewColumns()</code> 比对旧列，允许新增列但禁止类型不兼容的替换；新增列由 <code>AT_AddColumnToView()</code> 完成。</p>
+</li>
+<li>
+<p><code>_RETURN</code> 规则由 <code>StoreViewQuery()</code> 重新生成，最后 <code>DeleteForceView()</code> 删除目录项，视图恢复为普通状态。</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="4.5.html">迁移指南</a></span>
-  <span class="next"><a href="5.2.html">pgvector</a></span>
+  <span class="prev"><a href="6.3.7.html">嵌套子函数</a></span>
+  <span class="next"><a href="6.4.html">国标GB18030</a></span>
 </nav>
 </article>
   </div>

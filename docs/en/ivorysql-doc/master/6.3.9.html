@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dual Parser Framework for Oracle Compatibility :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.1.1.html">
-    <link rel="prev" href="5.2.html">
-    <link rel="next" href="6.2.1.html">
+    <title>Quoted Identifier Case Conversion :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.9.html">
+    <link rel="prev" href="6.3.8.html">
+    <link rel="next" href="#master/6.4.adoc">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -109,7 +109,7 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Query Processing</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.1.1.html">Dual Parser</a>
   </li>
 </ul>
@@ -151,7 +151,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.3.8.html">Force View</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="6.3.9.html">Case Conversion</a>
   </li>
 </ul>
@@ -342,134 +342,84 @@
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
     <li>IvorySQL Architecture Design</li>
-    <li>Query Processing</li>
-    <li><a href="6.1.1.html">Dual Parser</a></li>
+    <li>Compatibility Features</li>
+    <li><a href="6.3.9.html">Case Conversion</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/6.1.1.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/6.3.9.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/6.1.1.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/6.3.9.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page"><strong>Dual Parser Framework for Oracle Compatibility</strong></h1>
-<div id="preamble">
+<h1 class="page">Quoted Identifier Case Conversion</h1>
+<div class="sect1">
+<h2 id="purpose"><a class="anchor" href="#purpose"></a>1. Purpose</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The dual parser framework is divided into two main parts: the SQL side and the server-side programming language.</p>
+<p>To meet Oracle&#8217;s quoted identifier case compatibility requirements, IvorySQL has designed three case conversion modes for quoted identifiers.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="lexical-and-syntax-separation-on-the-sql-side"><a class="anchor" href="#lexical-and-syntax-separation-on-the-sql-side"></a>1. Lexical and Syntax Separation on the SQL Side</h2>
+<h2 id="implementation-details"><a class="anchor" href="#implementation-details"></a>2. Implementation Details</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The basic approach is to introduce a new set of Oracle-compatible syntax and lexical rules. When Oracle compatibility is enabled, the parser follows Oracle-style syntax analysis to generate the corresponding syntax tree.</p>
+<p>If the parameter <code>-C</code> is appended during database initialization, with values of <code>normal/interchange/lowercase</code>, the <code>Intidb.c&#8594;main()</code> function in the code will process this parameter and set the global variable <code>caseswitchmode</code> according to the parameter value. Then the <code>initdb</code> command will start a <code>postgres</code> process in <code>-boot</code> mode to set up the <code>template1</code> template database, while passing the parameter <code>-C ivorysql.identifier_case_switch=caseswitchmode</code> to the new process.</p>
 </div>
 <div class="paragraph">
-<p>Implementation Details:
-Under src/backend/, create a new directory named oracle_parser.
-Copy scan.l and gram.y from src/backend/parser/ to the oracle_parser directory, renaming them to ora_gram.y and ora_scan.l.
-Add Oracle-style syntax and lexical analysis code to these files.
-Copy keywords.c to the oracle_parser directory to store Oracle-specific keywords.
-Compile the oracle_parser directory into a dynamic library named libparser_oracle.so.
-When Oracle compatibility is enabled, the ivorysql.conf file is appended to the end of the postgresql.conf file.
-Add liboracle_parser to the shared_preload_libraries parameter in ivorysql.conf to ensure the dynamic library is loaded automatically when the database starts.</p>
+<p>This newly started backend process will write the <code>identifier_case_switch</code> information to the <code>pg_control</code> file through the following code:</p>
 </div>
-<div class="paragraph">
-<p>A new function pointer ora_raw_parser is introduced. When the libparser_oracle.so library is loaded, the _PG_init() function assigns the address of oracle_raw_parser() to ora_raw_parser. The _PG_fini() function resets ora_raw_parser to NULL when the compatibility mode is switched.</p>
-</div>
-<div class="paragraph">
-<p>Each backend process calls the BackendInitialize() function, which sets port&#8594;connmode based on the port number the backend process is connected to. If the port is an Oracle-compatible port, connmode is set to 'o'; otherwise, it is set to 'p'.</p>
-</div>
-<div class="paragraph">
-<p>After this, PostgresMain() calls InitIvorysql(). If port&#8594;connmode is 'o', the function SetConfigOption("ivorysql.compatible_mode", "oracle", PGC_USERSET, PGC_S_OVERRIDE) is called. Since this parameter has an assign_hook, executing assign_hook() within SetConfigOption() is equivalent to calling assign_compatible_mode(), which sets sql_raw_parser = ora_raw_parser.</p>
-</div>
-<div class="paragraph">
-<p>During SQL statement analysis, the function pg_parse_query()&#8594;raw_parser() calls either standard_parser() or ora_raw_parser() through the function pointer sql_raw_parser.</p>
-</div>
-<div class="paragraph">
-<p>The diagram below illustrates what happens during SQL statement analysis.</p>
-</div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="../_images/p21.jpg" alt="p21">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">BootstrapModeMain() -&gt; BootStrapXLOG();
+	/* save database compatible level value */
+	ControlFile-&gt;dbmode = bootstrap_database_mode;
+	ControlFile-&gt;casemode = identifier_case_switch;
+
+	/* some additional ControlFile fields are set in WriteControlFile() */
+	WriteControlFile();</code></pre>
 </div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="lexical-and-syntax-separation-for-server-side-programming-language"><a class="anchor" href="#lexical-and-syntax-separation-for-server-side-programming-language"></a>2. Lexical and Syntax Separation for Server-Side Programming Language</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A new language, pliSQL, is added to the system table pg_language.</p>
 </div>
 <div class="paragraph">
-<p>Implementation Details:
-Copy the plpgsql directory from the PostgreSQL source code and rename it to plisql.
-Rename all files in the plisql directory to start with plisql.
-Since plpgsql is a language, the registration functions for plpgsql (e.g., plpgsql_validator, plpgsql_call_handler, plpgsql_inline_handler) are renamed to start with plisql.
-All other functions in the directory are also renamed to start with plisql.</p>
+<p>When a user starts the database using the <code>pg_ctl</code> command, the <code>postmaster</code> process will read the contents of the <code>pg_control</code> file. The code call path is:</p>
 </div>
-<div class="paragraph">
-<p>The plisql directory is built as a plugin. If the database mode is Oracle during initdb, this plugin is created. The plugin registers the pliSQL language in the database system tables.</p>
-</div>
-<div class="paragraph">
-<p>The pliSQL side does not have its own lexical rules; it relies on the lexical rules of the SQL side. Therefore, for pliSQL, Oracle-compatible lexical rules are enforced. The main modification is in the plisql_scanner_init function, which calls ora_scanner_init(). The internal_yylex() function in the plisql directory calls ora_core_yylex.</p>
-</div>
-<div class="paragraph">
-<p>The syntax rules for pliSQL are defined in plisql/src/pl_gram.y, where the syntax rules for Oracle-compatible PL/SQL blocks are implemented.</p>
-</div>
-<div class="paragraph">
-<p>When creating a function on the SQL side, if no language is specified:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>In Oracle compatibility mode, the default language is plisql.</p>
-</li>
-<li>
-<p>In PostgreSQL compatibility mode, the default language is plpgsql.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>In oracle_parser, ora_gram.y defaults to plisql, while in the PostgreSQL parser, gram.y defaults to plpgsql.</p>
-</div>
-<div class="paragraph">
-<p>For anonymous blocks, if no language is specified:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>In Oracle compatibility mode, the default language is plisql.</p>
-</li>
-<li>
-<p>In PostgreSQL compatibility mode, the default language is plpgsql.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The ExecuteDoStmt function also determines the default language based on the compatibility mode.</p>
-</div>
-<div class="imageblock">
+<div class="listingblock">
 <div class="content">
-<img src="../_images/p22.jpg" alt="p22">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PostmasterMain()--&gt;SetCaseGucOption()--&gt;GetCaseSwitchModeFromControl()</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>After reading the parameter value, the <code>SetConfigOption()</code> function is called to assign the value.</p>
+</div>
+<div class="paragraph">
+<p>When each new backend process starts, since it is forked from the <code>postmaster</code> process, it automatically has the same <code>ivorysql.identifier_case_switch</code> parameter value. First, it processes the <code>startup</code> packet, and if it contains <code>database</code> or <code>user</code> parameters, the parameter values are processed accordingly based on <code>identifier_case_switch</code>.</p>
+</div>
+<div class="paragraph">
+<p>The source code is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">BackendMain()-&gt;BackendInitialize()--&gt;ProcessStartupPacket()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Additionally, when processing user SQL statements, if they contain identifiers, the same processing is performed. The code is distributed in:
+SplitIdentifierString(), quoteOneName() and SplitGUCList() functions.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="5.2.html">pgvector</a></span>
-  <span class="next"><a href="6.2.1.html">initdb Process</a></span>
+  <span class="prev"><a href="6.3.8.html">Force View</a></span>
+  <span class="next"><a href="#master/6.4.adoc">GB18030 Character Set</a></span>
 </nav>
 </article>
   </div>

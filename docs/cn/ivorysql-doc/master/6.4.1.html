@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>功能概述 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.4.1.html">
+    <link rel="prev" href="6.3.8.html">
+    <link rel="next" href="6.4.2.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.1.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.2.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.3.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.1.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.2.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.3.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.4.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.5.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.1.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.2.html">pgvector</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.1.1.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.2.1.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.1.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.3.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.2.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.4.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.5.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.6.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.7.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.8.html">Force View</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="6.4.1.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.2.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.5.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.1.html">1、框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.2.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.3.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.4.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.5.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.6.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.7.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.8.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.9.html">9、新增Oracle兼容模式的端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.10.html">10、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.11.html">11、兼容Oracle sequence</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.12.html">12、包</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.13.html">13、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.14.html">14、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.15.html">15、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.16.html">16、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.17.html">17、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.18.html">18、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.19.html">19、嵌套子函数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL贡献指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="8.1.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="8.2.html">asciidoc语法快速参考</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="100.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="110.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../v4.5/v4.5/welcome.html">v4.5</a>
+        </li>
+        <li class="version">
+          <a href="../v4.4/v4.4/welcome.html">v4.4</a>
+        </li>
+        <li class="version">
+          <a href="../v4.2/v4.2/welcome.html">v4.2</a>
+        </li>
+        <li class="version">
+          <a href="../v4.0/v4.0/welcome.html">v4.0</a>
+        </li>
+        <li class="version">
+          <a href="../v3.4/v3.4/welcome.html">v3.4</a>
+        </li>
+        <li class="version">
+          <a href="../v3.3/v3.3/welcome.html">v3.3</a>
+        </li>
+        <li class="version">
+          <a href="../v3.2/v3.2/welcome.html">v3.2</a>
+        </li>
+        <li class="version">
+          <a href="../v3.1/v3.1/welcome.html">v3.1</a>
+        </li>
+        <li class="version">
+          <a href="../v3.0/v3.0/welcome.html">v3.0</a>
+        </li>
+        <li class="version">
+          <a href="../v2.3/v2.3/welcome.html">v2.3</a>
+        </li>
+        <li class="version">
+          <a href="../v2.2/v2.2/welcome.html">v2.2</a>
+        </li>
+        <li class="version">
+          <a href="../v2.1/v2.1/welcome.html">v2.1</a>
+        </li>
+        <li class="version">
+          <a href="../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+        <li class="version">
+          <a href="../v1.8/v1.8/welcome.html">v1.8</a>
+        </li>
+        <li class="version">
+          <a href="../v1.5/v1.5/welcome.html">v1.5</a>
+        </li>
+        <li class="version">
+          <a href="../v1.4/v1.4/welcome.html">v1.4</a>
+        </li>
+        <li class="version">
+          <a href="../v1.3/v1.3/welcome.html">v1.3</a>
+        </li>
+        <li class="version">
+          <a href="../v1.2/v1.2/welcome.html">v1.2</a>
+        </li>
+        <li class="version">
+          <a href="../v1.1/v1.1/welcome.html">v1.1</a>
+        </li>
+        <li class="version">
+          <a href="../v1.0/v1.0/welcome.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">文档中心</a></li>
+    <li>IvorySQL</li>
+    <li>IvorySQL架构设计</li>
+    <li>内置函数</li>
+    <li><a href="6.4.1.html">sys_context</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/6.4.1.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/6.4.1.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page"><strong>功能概述</strong></h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL提供兼容Oracle内置函数`SYS_CONTEXT('namespace', 'parameter' [, length ])`,
+返回当前时刻与给定上下文关联参数的值，可以在SQL和PLSQL语言中使用。</p>
+</div>
+<div class="paragraph">
+<p>提供以下命名空间：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>USERENV​ - 用于描述当前会话。</p>
+</li>
+<li>
+<p>SYS_SESSION_ROLES​ - 指示某个特定角色在当前会话中是否已启用。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="实现原理"><a class="anchor" href="#实现原理"></a>1. 实现原理</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>SYS_CONTEXT的实现原理是通过动态查询系统表与postgres的内置函数，确保结果的实时性，
+使用 SECURITY INVOKER 确保函数以调用者的权限执行，避免权限提升问题。
+该方法的实现逻辑如下：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE OR REPLACE FUNCTION sys.sys_context(a varchar2, b varchar2)
+RETURNS varchar2 AS $$
+DECLARE
+	res varchar2;
+BEGIN
+	IF upper(a) = 'USERENV' THEN
+	  CASE upper(b)
+		  WHEN 'CURRENT_SCHEMA' THEN
+			SELECT current_schema() INTO res;
+		  WHEN 'LANG' THEN
+			SELECT sys.get_lang() INTO res;
+		  ...
+		  ELSE
+			RAISE EXCEPTION 'invalid USERENV parameter: %', b;
+	  END CASE;
+	ELSIF upper(a) = 'SYS_SESSION_ROLES' THEN
+		CASE upper(b)
+			WHEN 'LOGIN' THEN
+				SELECT CASE WHEN rolcanlogin = 't' THEN 'TRUE' ELSE 'FALSE' END INTO res FROM pg_roles WHERE oid = current_user::regrole::oid;
+...
+			ELSE
+				RAISE EXCEPTION 'invalid SYS_SESSION_ROLES parameter: %', b;
+		END CASE;
+	ELSE
+	  SELECT current_setting(a||'.'||b, true) INTO res;
+	END IF;
+	RETURN res;
+END;
+$$ LANGUAGE plisql SECURITY INVOKER;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="命名空间userenv支持的参数"><a class="anchor" href="#命名空间userenv支持的参数"></a>2. 命名空间USERENV支持的参数</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>参数名称</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>返回值</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CURRENT_SCHEMA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前活动默认模式的名称。在会话期间，可以通过 ALTER SESSION SET CURRENT_SCHEMA 语句更改该值。该值也可能在会话期间发生变化，以反映任何活动定义者权限对象的所有者。如果直接在视图定义的正文中使用，那么将返回在执行使用视图的游标时使用的默认模式。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CURRENT_SCHEMAID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前活动的默认模式的标识符。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SESSION_USER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前session的用户
+会话用户（登录用户）的名称。在数据库会话期间，随着 Real Application Security 会话的附加或分离，该名称可能会发生变化。对于企业用户，返回模式。对于其他用户，返回数据库用户名。如果数据库会话当前附加了 Real Application Security 会话，则返回用户 XS$NULL。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SESSION_USERID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前session的用户ID。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PROXY_USER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">代表 SESSION_USER 打开当前会话的数据库用户名称。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PROXY_USERID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">代表 SESSION_USER 打开当前会话的数据库用户的标识符。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CURRENT_USER</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前会话中执行操作的用户。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CURRENT_USERID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前会话中执行操作的用户标识符。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CURRENT_EDITION_NAME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前版本的名字。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLIENT_PROGRAM_NAME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">客户端程序的名称。</p></td>
+</tr>
+</tbody>
+</table>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>参数名称</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>返回值</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IP_ADDRESS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">客户端的IP地址。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">HOST</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">客户端主机的名称。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ISDBA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果当前用户是数据库管理员，则返回TRUE。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LANG</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">语言的缩写名称，比现有的 “LANGUAGE ”参数更简短。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LANGUAGE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前会话的使用的语言和地区，以及数据库字符集，格式为：language_territory.characterset。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NLS_DATE_FORMAT</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前session的日期格式。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PLATFORM_SLASH</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">在用户的平台上用作文件路径分隔符的斜线字符（Unix或Linux是’/’，Windows是’\’）。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DB_NAME</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前连接的CDB的名称。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前会话的系统标识符。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SESSIONID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">审计会话标识符。不能在分布式 SQL 语句中使用此属性。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CLIENT_INFO</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">返回最多 64 字节的用户会话信息，应用程序可使用 DBMS_APPLICATION_INFO 包存储这些信息。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ENTRYID</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前审计条目编号。审计条目编号序列在细粒度审计记录和常规审计记录之间共享。不能在分布式 SQL 语句中使用此属性。只有通过标准或细粒度审计的审计处理程序才能看到正确的审计条目标识符。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">TERMINAL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">当前会话客户端的操作系统标识符。在分布式 SQL 语句中，该属性返回本地会话的标识符。在分布式环境中，仅支持远程 SELECT 语句，不支持远程 INSERT、UPDATE 或 DELETE 操作。(此参数的返回长度可能因操作系统而异)。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="命名空间sys_session_roles支持的参数"><a class="anchor" href="#命名空间sys_session_roles支持的参数"></a>3. 命名空间SYS_SESSION_ROLES支持的参数</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>参数名称</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>返回值</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DBA</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果当前用户是数据库管理员，则返回TRUE。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">LOGIN</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果当前用户是登录角色，则返回TRUE。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CREATEROLE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果当前session的用户具有创建角色的权限，则返回TRUE。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CREATEDB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果当前session的用户具有创建数据库的权限，则返回TRUE。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="6.3.8.html">Force View</a></span>
+  <span class="next"><a href="6.4.2.html">userenv</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

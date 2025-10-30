@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>pgvector :: IvorySQL Document Site</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/5.2.html">
-    <link rel="prev" href="5.1.html">
-    <link rel="next" href="6.1.1.html">
+    <link rel="prev" href="5.0.html">
+    <link rel="next" href="5.3.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -94,10 +94,22 @@
     <span class="nav-text">IvorySQL Ecosystem</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="5.1.html">PostGIS</a>
+    <a class="nav-link" href="5.0.html">Overview</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="5.2.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.3.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.4.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.5.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.6.html">plpgsql_check</a>
   </li>
 </ul>
   </li>
@@ -402,7 +414,7 @@
 </td>
 <td class="content">
 <div class="paragraph">
-<p>The IvorySQL 4.5(above version) has been installed in the environment, and the installation path is /usr/local/ivorysql/ivorysql-4</p>
+<p>The IvorySQL 5(above version) has been installed in the environment, and the installation path is /usr/local/ivorysql/ivorysql-5</p>
 </div>
 </td>
 </tr>
@@ -414,61 +426,49 @@
 <ul>
 <li>
 <p>Setting PG_CONFIG</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">export PG_CONFIG=/usr/local/ivorysql/ivorysql-4/bin/pg_config</code></pre>
+<pre>export PG_CONFIG=/usr/local/ivorysql/ivorysql-5/bin/pg_config</pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>Pull pg_vector source code</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git clone --branch v0.6.2 https://github.com/pgvector/pgvector.git</code></pre>
+<pre>git clone --branch v0.8.1 https://github.com/pgvector/pgvector.git</pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>Install pgvector</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd pgvector
+<pre>cd pgvector
 
 sudo --preserve-env=PG_CONFIG make
-sudo --preserve-env=PG_CONFIG make install</code></pre>
+sudo --preserve-env=PG_CONFIG make install</pre>
 </div>
 </div>
-<div class="ulist">
-<ul>
+</li>
 <li>
 <p>Create pgvector extension</p>
-</li>
-</ul>
-</div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[ivorysql@localhost ivorysql-4]$ psql
-psql (17.5)
+<pre>[ivorysql@localhost ivorysql-4]$ psql
+psql (18.0)
 Type "help" for help.
 
 ivorysql=# create extension vector;
-CREATE EXTENSION</code></pre>
+CREATE EXTENSION</pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Now, pgvector is installed completely.
 For more usage cases, please refer to <a href="https://github.com/pgvector/pgvector?tab=readme-ov-file#getting-started">pgvector document</a></p>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -493,9 +493,9 @@ We suggest users to test using port 1521, using the command: psql -p 1521.
 </div>
 <div class="sect2">
 <h3 id="data-type"><a class="anchor" href="#data-type"></a>4.1. Data Type</h3>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# CREATE TABLE items5 (id bigserial PRIMARY KEY, name varchar2(20), num number(20), embedding bit(3));
+<pre>ivorysql=# CREATE TABLE items5 (id bigserial PRIMARY KEY, name varchar2(20), num number(20), embedding bit(3));
 CREATE TABLE
 ivorysql=# INSERT INTO items5 (name, num, embedding) VALUES ('1st oracle data',0, '000'), ('2nd oracle data', 111, '111');
 INSERT 0 2
@@ -503,30 +503,30 @@ ivorysql=# SELECT * FROM items5 ORDER BY bit_count(embedding # '101') LIMIT 5;
  id |      name       | num | embedding
 ----+-----------------+-----+-----------
   2 | 2nd oracle data | 111 | 111
-  1 | 1st oracle data | 0   | 000</code></pre>
+  1 | 1st oracle data | 0   | 000</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="anonymous-block"><a class="anchor" href="#anonymous-block"></a>4.2. Anonymous Block</h3>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# declare
+<pre>ivorysql=# declare
 i vector(3) := '[1,2,3]';
 begin
 raise notice '%', i;
 end;
 ivorysql-# /
 NOTICE:  [1,2,3]
-DO</code></pre>
+DO</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="procedure"><a class="anchor" href="#procedure"></a>4.3. PROCEDURE</h3>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# CREATE OR REPLACE PROCEDURE ora_procedure()
+<pre>ivorysql=# CREATE OR REPLACE PROCEDURE ora_procedure()
 AS
 p vector(3) := '[4,5,6]';
 begin
@@ -536,14 +536,14 @@ end;
 CREATE PROCEDURE
 ivorysql=# call ora_procedure();
 NOTICE:  [4,5,6]
-CALL</code></pre>
+CALL</pre>
 </div>
 </div>
 <div class="sect3">
 <h4 id="function"><a class="anchor" href="#function"></a>4.3.1. FUNCTION</h4>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# CREATE OR REPLACE FUNCTION AddVector(a vector(3), b vector(3))
+<pre>ivorysql=# CREATE OR REPLACE FUNCTION AddVector(a vector(3), b vector(3))
 RETURN vector(3)
 IS
 BEGIN
@@ -555,7 +555,7 @@ ivorysql=# SELECT AddVector('[1,2,3]','[4,5,6]') FROM DUAL;
  addvector
 ----------------
  [5,7,9]
-(1 row)</code></pre>
+(1 row)</pre>
 </div>
 </div>
 </div>
@@ -563,8 +563,8 @@ ivorysql=# SELECT AddVector('[1,2,3]','[4,5,6]') FROM DUAL;
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="5.1.html">PostGIS</a></span>
-  <span class="next"><a href="6.1.1.html">Dual Parser</a></span>
+  <span class="prev"><a href="5.0.html">Overview</a></span>
+  <span class="next"><a href="5.3.html">pgddl(DDL Extractor)</a></span>
 </nav>
 </article>
   </div>

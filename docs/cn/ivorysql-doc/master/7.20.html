@@ -6,7 +6,7 @@
     <title>sys_guid() 函数 :: IvorySQL文档中心</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.20.html">
     <link rel="prev" href="7.19.html">
-    <link rel="next" href="8.1.html">
+    <link rel="next" href="7.21.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -173,10 +173,10 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="6.3.10.html">sys_guid 函数</a>
   </li>
-</ul>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.11.html">空字符串转null</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#master/6.4.adoc">国标GB18030</a>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
     <button class="nav-item-toggle"></button>
@@ -258,6 +258,9 @@
   </li>
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="7.20.html">20、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.21.html">21、空字符串转null</a>
   </li>
 </ul>
   </li>
@@ -419,7 +422,7 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">highgo=# select sys_guid() from dual;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# select sys_guid() from dual;
               sys_guid
 ------------------------------------
  \x3ed9426c8a093442a38bea09a74f44a1
@@ -454,7 +457,7 @@ student_name varchar2(100) not null
 </div>
 <nav class="pagination">
   <span class="prev"><a href="7.19.html">19、嵌套子函数</a></span>
-  <span class="next"><a href="8.1.html">社区贡献指南</a></span>
+  <span class="next"><a href="7.21.html">21、空字符串转null</a></span>
 </nav>
 </article>
   </div>

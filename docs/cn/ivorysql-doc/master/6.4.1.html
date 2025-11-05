@@ -115,6 +115,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.6.html">plpgsql_check</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.7.html">pgroonga</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -413,7 +416,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>IvorySQL提供兼容Oracle内置函数`SYS_CONTEXT('namespace', 'parameter' [, length ])`,
+<p>IvorySQL提供兼容Oracle内置函数 <code><code>SYS_CONTEXT('namespace', 'parameter' [, length ])</code></code> ,
 返回当前时刻与给定上下文关联参数的值，可以在SQL和PLSQL语言中使用。</p>
 </div>
 <div class="paragraph">
@@ -435,8 +438,8 @@
 <h2 id="实现原理"><a class="anchor" href="#实现原理"></a>1. 实现原理</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>SYS_CONTEXT的实现原理是通过动态查询系统表与postgres的内置函数，确保结果的实时性，
-使用 SECURITY INVOKER 确保函数以调用者的权限执行，避免权限提升问题。
+<p><code>SYS_CONTEXT</code> 的实现原理是通过动态查询系统表与postgres的内置函数，确保结果的实时性，
+使用 <code>SECURITY INVOKER</code> 确保函数以调用者的权限执行，避免权限提升问题。
 该方法的实现逻辑如下：</p>
 </div>
 <div class="listingblock">

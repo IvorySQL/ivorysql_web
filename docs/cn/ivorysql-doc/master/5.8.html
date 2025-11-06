@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>新增Oracle兼容模式的端口与IP :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.9.html">
-    <link rel="prev" href="7.8.html">
-    <link rel="next" href="7.10.html">
+    <title>PgAudit :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/5.8.html">
+    <link rel="prev" href="5.7.html">
+    <link rel="next" href="5.9.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -118,7 +118,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.7.html">pgroonga</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="5.8.html">pgaudit</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -232,7 +232,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="7.8.html">8、内置数据类型与内置函数</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="7.9.html">9、新增Oracle兼容模式的端口与IP</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -399,69 +399,182 @@
   <ul>
     <li><a href="welcome.html">文档中心</a></li>
     <li>IvorySQL</li>
-    <li>Oracle兼容功能列表</li>
-    <li><a href="7.9.html">9、新增Oracle兼容模式的端口与IP</a></li>
+    <li>IvorySQL生态</li>
+    <li><a href="5.8.html">pgaudit</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/7.9.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/5.8.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/7.9.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/5.8.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">新增Oracle兼容模式的端口与IP</h1>
+<h1 class="page">PgAudit</h1>
 <div class="sect1">
-<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>PgAudit 是一个审计扩展，可以为 DDL、DML、DCL 等关键操作生成可追溯的日志记录。通过审计日志，数据库管理员能够满足合规要求、及时发现异常行为，并在出现问题时快速定位责任主体与影响范围。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能特点"><a class="anchor" href="#功能特点"></a>2. 功能特点</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
 <li>
-<p>为了将Oracle端口、IP与PG的端口IP进行区分。现需要增加对ORAPORT和ORAHOST的处理;</p>
+<p><strong>全面审计能力</strong>：记录 <code>SELECT</code>、<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>、DDL 命令以及权限变更等操作，帮助构建完整的操作轨迹。</p>
+</li>
+<li>
+<p><strong>灵活的审计维度</strong>：支持全局审计、角色审计与对象审计，可按用户、角色、模式或具体操作类型进行精细化配置。</p>
+</li>
+<li>
+<p><strong>平滑集成</strong>：复用 PostgreSQL 标准日志子系统，可与 <code>syslog</code>、<code>logrotate</code> 等工具联动，兼容现有日志采集与分析方案。</p>
+</li>
+<li>
+<p><strong>合规支撑</strong>：提供结构化审计日志，便于生成符合金融、政企等行业规范的审计报告。</p>
+</li>
+<li>
+<p><strong>安全增强</strong>：通过记录和分析数据库活动，及时发现未授权访问、异常 DML 或潜在数据泄露风险。</p>
+</li>
+<li>
+<p><strong>运维优化</strong>：辅助回放操作行为、定位性能瓶颈，支撑 SQL 优化与问题排查。</p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="功能"><a class="anchor" href="#功能"></a>2. 功能</h2>
+<h2 id="安装部署"><a class="anchor" href="#安装部署"></a>3. 安装部署</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="环境准备"><a class="anchor" href="#环境准备"></a>3.1. 环境准备</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>新增ivoryhost：需要在连接时新增参数ivoryhost即可指定，其功能类似 host;</p>
+<p>已安装的 IvorySQL 数据库。</p>
 </li>
 <li>
-<p>新增ivoryport：相较于host，port的功能相对复杂一些。其中涉及到可以在configure阶段配置，连接阶段指定端口;</p>
+<p>编译工具链：<code>gcc</code>、<code>make</code>、<code>tar</code> 等。</p>
+</li>
+<li>
+<p>数据库管理员权限，用于修改 <code>ivorysql.conf</code> 并重启数据库实例。</p>
 </li>
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="编译安装-pgaudit"><a class="anchor" href="#编译安装-pgaudit"></a>3.2. 编译安装 PgAudit</h3>
+<div class="paragraph">
+<p>以 PgAudit 18.0 为例：</p>
 </div>
-<div class="sect1">
-<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例：</h2>
-<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">   ./configure --with-oraport=5555
-   ./initdb ....
-   ./pg_ctl -D ../data start
-
-   ./pg_ctl -o "-p 5433 -o 1522" -D ../data</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">wget https://github.com/pgaudit/pgaudit/archive/refs/tags/18.0.tar.gz
+tar -xf 18.0.tar.gz
+cd pgaudit-18.0
+make install USE_PGXS=1 PG_CONFIG=$PGHOME/bin/pg_config</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>上述命令依赖环境变量 <code>PGHOME</code> 指向安装好的 IvorySQL 主目录。安装成功后，<code>pgaudit.so</code> 会被放置到 IvorySQL 的扩展目录中。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="注册扩展前的基础配置"><a class="anchor" href="#注册扩展前的基础配置"></a>3.3. 注册扩展前的基础配置</h3>
+<div class="paragraph">
+<p>修改 <code>ivorysql.conf</code>，启用插件并设置常用参数：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shared_preload_libraries = 'pgaudit'   # 需实例重启生效
+pgaudit.log = 'read, write, ddl'       # 审计范围示例，可按需调整</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>重启数据库实例，使共享库配置生效。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="创建扩展并验证"><a class="anchor" href="#创建扩展并验证"></a>3.4. 创建扩展并验证</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION IF NOT EXISTS pgaudit;
+SELECT name,
+       default_version,
+       installed_version,
+       comment
+  FROM pg_available_extensions
+ WHERE name = 'pgaudit';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>若返回的 <code>installed_version</code> 与期望版本一致，说明扩展安装成功。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用"><a class="anchor" href="#使用"></a>4. 使用</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>执行如下sql示例：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE audit_demo(id serial PRIMARY KEY, info text);
+INSERT INTO audit_demo(info) VALUES ('pgaudit test');
+SELECT * FROM audit_demo;
+UPDATE audit_demo SET info = 'pgaudit update' WHERE id = 1;
+DELETE FROM audit_demo WHERE id = 1;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在数据库服务器上查看审计日志：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">tail -f $PGDATA/log/*.log | grep 'AUDIT:'</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,CREATE SEQUENCE,SEQUENCE,public.audit_demo_id_seq,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
+2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,CREATE TABLE,TABLE,public.audit_demo,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
+2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,CREATE INDEX,INDEX,public.audit_demo_pkey,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
+2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,ALTER SEQUENCE,SEQUENCE,public.audit_demo_id_seq,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
+2025-10-31 15:56:32.117 CST [11451] LOG:  AUDIT: SESSION,2,1,WRITE,INSERT,,,INSERT INTO audit_demo(info) VALUES ('pgaudit test'),&lt;not logged&gt;
+2025-10-31 15:56:32.121 CST [11451] LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,SELECT * FROM audit_demo,&lt;not logged&gt;
+2025-10-31 15:56:32.122 CST [11451] LOG:  AUDIT: SESSION,4,1,WRITE,UPDATE,,,UPDATE audit_demo SET info = 'pgaudit update' WHERE id = 1,&lt;not logged&gt;
+2025-10-31 15:56:32.127 CST [11451] LOG:  AUDIT: SESSION,5,1,WRITE,DELETE,,,DELETE FROM audit_demo WHERE id = 1,&lt;not logged&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>若想记录参数的值，打开`pgaudit.log_parameter = 'on'`，效果如下：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">ivorysql=# SHOW pgaudit.log_parameter;
+pgaudit.log_parameter
+-----------------------
+on
+(1 row)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="7.8.html">8、内置数据类型与内置函数</a></span>
-  <span class="next"><a href="7.10.html">10、XML函数</a></span>
+  <span class="prev"><a href="5.7.html">pgroonga</a></span>
+  <span class="next"><a href="5.9.html">pgrouting</a></span>
 </nav>
 </article>
   </div>

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quoted Identifier Case Conversion :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.9.html">
-    <link rel="prev" href="6.3.8.html">
-    <link rel="next" href="6.3.10.html">
+    <title>PgAudit :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/5.8.html">
+    <link rel="prev" href="5.7.html">
+    <link rel="next" href="5.9.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -114,7 +114,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="5.7.html">pgroonga</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="5.8.html">pgaudit</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -172,7 +172,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.3.8.html">Force View</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.3.9.html">Case Conversion</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -371,85 +371,187 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li>IvorySQL Architecture Design</li>
-    <li>Compatibility Features</li>
-    <li><a href="6.3.9.html">Case Conversion</a></li>
+    <li>IvorySQL Ecosystem</li>
+    <li><a href="5.8.html">pgaudit</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/6.3.9.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/5.8.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/6.3.9.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/5.8.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Quoted Identifier Case Conversion</h1>
+<h1 class="page">PgAudit</h1>
 <div class="sect1">
-<h2 id="purpose"><a class="anchor" href="#purpose"></a>1. Purpose</h2>
+<h2 id="overview"><a class="anchor" href="#overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To meet Oracle&#8217;s quoted identifier case compatibility requirements, IvorySQL has designed three case conversion modes for quoted identifiers.</p>
+<p>PgAudit is an auditing extension for IvorySQL that produces traceable log records for critical operations such as DDL, DML, and DCL. With the audit trail, database administrators can meet compliance requirements, quickly detect abnormal behavior, and identify accountability and impact scope when incidents occur.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation-details"><a class="anchor" href="#implementation-details"></a>2. Implementation Details</h2>
+<h2 id="key-features"><a class="anchor" href="#key-features"></a>2. Key Features</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Comprehensive auditing</strong>: Captures <code>SELECT</code>, <code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, DDL commands, privilege changes, and more to build a complete activity timeline.</p>
+</li>
+<li>
+<p><strong>Flexible scope control</strong>: Supports global, role-based, and object-level auditing, allowing fine-grained configuration by user, role, schema, or operation type.</p>
+</li>
+<li>
+<p><strong>Seamless integration</strong>: Reuses PostgreSQL&#8217;s standard logging subsystem and works with tools like <code>syslog</code> and <code>logrotate</code>, aligning with existing log ingestion and analysis pipelines.</p>
+</li>
+<li>
+<p><strong>Compliance ready</strong>: Generates structured audit logs suitable for meeting regulatory requirements in finance, government, and other regulated industries.</p>
+</li>
+<li>
+<p><strong>Security enhancement</strong>: Records and inspects database activity to surface unauthorized access, anomalous DML, or potential data leakage risks in time.</p>
+</li>
+<li>
+<p><strong>Operations insight</strong>: Helps replay operational actions, locate performance bottlenecks, and support SQL tuning and incident troubleshooting.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installation-and-deployment"><a class="anchor" href="#installation-and-deployment"></a>3. Installation and Deployment</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prerequisites"><a class="anchor" href="#prerequisites"></a>3.1. Prerequisites</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>A IvorySQL installation (recommended version aligned with the targeted PgAudit release).</p>
+</li>
+<li>
+<p>Build toolchain: <code>gcc</code>, <code>make</code>, <code>tar</code>, etc.</p>
+</li>
+<li>
+<p>Database superuser privileges to modify <code>ivorysql.conf</code> and restart the instance.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="compile-and-install-pgaudit"><a class="anchor" href="#compile-and-install-pgaudit"></a>3.2. Compile and Install PgAudit</h3>
+<div class="paragraph">
+<p>Taking PgAudit 18.0 as an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">wget https://github.com/pgaudit/pgaudit/archive/refs/tags/18.0.tar.gz
+tar -xf 18.0.tar.gz
+cd pgaudit-18.0
+make install USE_PGXS=1 PG_CONFIG=$PGHOME/bin/pg_config</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The commands above expect the environment variable <code>PGHOME</code> to point to the installed IvorySQL home directory. After installation, <code>pgaudit.so</code> will be placed in IvorySQL&#8217;s extension directory.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="baseline-configuration-before-registering-the-extension"><a class="anchor" href="#baseline-configuration-before-registering-the-extension"></a>3.3. Baseline Configuration Before Registering the Extension</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Modify <code>ivorysql.conf</code> to load the plugin and configure common parameters:
+----
+shared_preload_libraries = 'pgaudit'   # Requires an instance restart
+pgaudit.log = 'read, write, ddl'       # Sample audit scope; adjust as needed
+----</p>
+</li>
+<li>
+<p>Restart or reload the database instance so the shared library configuration takes effect.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-the-extension-and-verify"><a class="anchor" href="#create-the-extension-and-verify"></a>3.4. Create the Extension and Verify</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION IF NOT EXISTS pgaudit;
+SELECT name,
+       default_version,
+       installed_version,
+       comment
+  FROM pg_available_extensions
+ WHERE name = 'pgaudit';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the returned <code>installed_version</code> matches the expected release, the extension has been installed successfully.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>4. Usage</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>If the parameter <code>-C</code> is appended during database initialization, with values of <code>normal/interchange/lowercase</code>, the <code>Intidb.c&#8594;main()</code> function in the code will process this parameter and set the global variable <code>caseswitchmode</code> according to the parameter value. Then the <code>initdb</code> command will start a <code>postgres</code> process in <code>-boot</code> mode to set up the <code>template1</code> template database, while passing the parameter <code>-C ivorysql.identifier_case_switch=caseswitchmode</code> to the new process.</p>
+<p>Execute the following SQL sample:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[source,sql]
+----
+CREATE TABLE audit_demo(id serial PRIMARY KEY, info text);
+INSERT INTO audit_demo(info) VALUES ('pgaudit test');
+SELECT * FROM audit_demo;
+UPDATE audit_demo SET info = 'pgaudit update' WHERE id = 1;
+DELETE FROM audit_demo WHERE id = 1;
+----</pre>
+</div>
 </div>
 <div class="paragraph">
-<p>This newly started backend process will write the <code>identifier_case_switch</code> information to the <code>pg_control</code> file through the following code:</p>
+<p>Check the audit logs on the database server:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">BootstrapModeMain() -&gt; BootStrapXLOG();
-	/* save database compatible level value */
-	ControlFile-&gt;dbmode = bootstrap_database_mode;
-	ControlFile-&gt;casemode = identifier_case_switch;
-
-	/* some additional ControlFile fields are set in WriteControlFile() */
-	WriteControlFile();</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">tail -f $PGDATA/log/*.log | grep 'AUDIT:'</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>When a user starts the database using the <code>pg_ctl</code> command, the <code>postmaster</code> process will read the contents of the <code>pg_control</code> file. The code call path is:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PostmasterMain()--&gt;SetCaseGucOption()--&gt;GetCaseSwitchModeFromControl()</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,CREATE SEQUENCE,SEQUENCE,public.audit_demo_id_seq,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
+2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,CREATE TABLE,TABLE,public.audit_demo,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
+2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,CREATE INDEX,INDEX,public.audit_demo_pkey,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
+2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,ALTER SEQUENCE,SEQUENCE,public.audit_demo_id_seq,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
+2025-10-31 15:56:32.117 CST [11451] LOG:  AUDIT: SESSION,2,1,WRITE,INSERT,,,INSERT INTO audit_demo(info) VALUES ('pgaudit test'),&lt;not logged&gt;
+2025-10-31 15:56:32.121 CST [11451] LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,SELECT * FROM audit_demo,&lt;not logged&gt;
+2025-10-31 15:56:32.122 CST [11451] LOG:  AUDIT: SESSION,4,1,WRITE,UPDATE,,,UPDATE audit_demo SET info = 'pgaudit update' WHERE id = 1,&lt;not logged&gt;
+2025-10-31 15:56:32.127 CST [11451] LOG:  AUDIT: SESSION,5,1,WRITE,DELETE,,,DELETE FROM audit_demo WHERE id = 1,&lt;not logged&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>After reading the parameter value, the <code>SetConfigOption()</code> function is called to assign the value.</p>
-</div>
-<div class="paragraph">
-<p>When each new backend process starts, since it is forked from the <code>postmaster</code> process, it automatically has the same <code>ivorysql.identifier_case_switch</code> parameter value. First, it processes the <code>startup</code> packet, and if it contains <code>database</code> or <code>user</code> parameters, the parameter values are processed accordingly based on <code>identifier_case_switch</code>.</p>
-</div>
-<div class="paragraph">
-<p>The source code is:</p>
+<p>To record parameter values as well, enable <code>pgaudit.log_parameter = 'on'</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">BackendMain()-&gt;BackendInitialize()--&gt;ProcessStartupPacket()</code></pre>
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">ivorysql=# SHOW pgaudit.log_parameter;
+pgaudit.log_parameter
+-----------------------
+on
+(1 row)</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Additionally, when processing user SQL statements, if they contain identifiers, the same processing is performed. The code is distributed in:
-SplitIdentifierString(), quoteOneName() and SplitGUCList() functions.</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="6.3.8.html">Force View</a></span>
-  <span class="next"><a href="6.3.10.html">sys_guid Function</a></span>
+  <span class="prev"><a href="5.7.html">pgroonga</a></span>
+  <span class="next"><a href="5.9.html">pgrouting</a></span>
 </nav>
 </article>
   </div>

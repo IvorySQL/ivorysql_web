@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>新增Oracle兼容模式的端口与IP :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.9.html">
-    <link rel="prev" href="7.8.html">
-    <link rel="next" href="7.10.html">
+    <title>pgRouting :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/5.9.html">
+    <link rel="prev" href="5.8.html">
+    <link rel="next" href="6.1.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -121,7 +121,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.8.html">pgaudit</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="5.9.html">pgrouting</a>
   </li>
 </ul>
@@ -232,7 +232,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="7.8.html">8、内置数据类型与内置函数</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="7.9.html">9、新增Oracle兼容模式的端口与IP</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -399,69 +399,126 @@
   <ul>
     <li><a href="welcome.html">文档中心</a></li>
     <li>IvorySQL</li>
-    <li>Oracle兼容功能列表</li>
-    <li><a href="7.9.html">9、新增Oracle兼容模式的端口与IP</a></li>
+    <li>IvorySQL生态</li>
+    <li><a href="5.9.html">pgrouting</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/7.9.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/5.9.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/7.9.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/5.9.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">新增Oracle兼容模式的端口与IP</h1>
+<h1 class="page">pgRouting</h1>
 <div class="sect1">
-<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>pgRouting 是一个基于 PostgreSQL/PostGIS 数据库构建的开源地理空间路由扩展库。它为数据库赋予了强大的网络分析功能，使其能够处理复杂的路径规划与图论计算问题，例如计算两点之间的最短路径、执行旅行推销员（TSP）分析或计算服务区范围等。它将路由算法直接嵌入到数据库中，从而避免了在应用层进行复杂的数据传输与计算。</p>
+</div>
+<div class="paragraph">
+<p>该扩展的核心优势在于能够利用 PostgreSQL 强大的数据管理能力和 PostGIS 丰富的空间函数，直接在数据库内部对空间网络数据执行高效计算。这不仅简化了应用程序的开发流程，还通过减少数据移动大幅提升了大规模网络分析的性能。</p>
+</div>
+<div class="paragraph">
+<p>pgRouting 广泛应用于物流配送、交通导航、网络分析、城市规划及供应链管理等多个领域。其开源特性吸引了全球开发者持续的贡献与完善，使其成为空间数据库领域进行路径分析和网络求解的首选工具之一。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="安装"><a class="anchor" href="#安装"></a>2. 安装</h2>
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+环境中已经安装了IvorySQL5.0及以上版本，安装路径为/usr/local/ivorysql/ivorysql-5
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="源码安装"><a class="anchor" href="#源码安装"></a>2.1. 源码安装</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>为了将Oracle端口、IP与PG的端口IP进行区分。现需要增加对ORAPORT和ORAHOST的处理;</p>
+<p>安装依赖</p>
 </li>
 </ul>
 </div>
+<div class="paragraph">
+<p>对perl有依赖，perl一般在装IvorySQL时已经装上了，这里不用再装。
+CMake版本要求 &gt;= 3.12, Boost版本 &gt;= 1.56</p>
 </div>
-</div>
-<div class="sect1">
-<h2 id="功能"><a class="anchor" href="#功能"></a>2. 功能</h2>
-<div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>新增ivoryhost：需要在连接时新增参数ivoryhost即可指定，其功能类似 host;</p>
-</li>
-<li>
-<p>新增ivoryport：相较于host，port的功能相对复杂一些。其中涉及到可以在configure阶段配置，连接阶段指定端口;</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例：</h2>
-<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">   ./configure --with-oraport=5555
-   ./initdb ....
-   ./pg_ctl -D ../data start
-
-   ./pg_ctl -o "-p 5433 -o 1522" -D ../data</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">#安装依赖
+sudo apt install cmake libboost-all-dev</code></pre>
 </div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>编译安装</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">wget https://github.com/pgRouting/pgrouting/releases/download/v3.8.0/pgrouting-3.8.0.tar.gz
+tar xvf pgrouting-3.8.0.tar.gz
+cd pgrouting-3.8.0
+mkdir build
+cd build
+cmake .. -DPOSTGRESQL_PG_CONFIG=/path/to/pg_config  # eg: /usr/local/ivorysql/ivorysql-5/bin/pg_config
+make
+sudo make install</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="创建extension并确认ddlx版本"><a class="anchor" href="#创建extension并确认ddlx版本"></a>3. 创建Extension并确认ddlx版本</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>psql 连接到数据库，执行如下命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# CREATE extension pgrouting;
+CREATE EXTENSION
+
+ivorysql=# SELECT * FROM pg_available_extensions WHERE name = 'pgrouting';
+   name    | default_version | installed_version |       comment
+-----------+-----------------+-------------------+---------------------
+ pgrouting | 3.8.0           |                   | pgRouting Extension
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用"><a class="anchor" href="#使用"></a>4. 使用</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>关于pgRouting的使用，请参阅 <a href="https://docs.pgrouting.org/">pgRouting官方文档</a></p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="7.8.html">8、内置数据类型与内置函数</a></span>
-  <span class="next"><a href="7.10.html">10、XML函数</a></span>
+  <span class="prev"><a href="5.8.html">pgaudit</a></span>
+  <span class="next"><a href="6.1.1.html">双parser</a></span>
 </nav>
 </article>
   </div>

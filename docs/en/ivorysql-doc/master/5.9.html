@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Quoted Identifier Case Conversion :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.9.html">
-    <link rel="prev" href="6.3.8.html">
-    <link rel="next" href="6.3.10.html">
+    <title>pgRouting :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/5.9.html">
+    <link rel="prev" href="5.8.html">
+    <link rel="next" href="6.1.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -117,7 +117,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="5.8.html">pgaudit</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="5.9.html">pgrouting</a>
   </li>
 </ul>
@@ -172,7 +172,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.3.8.html">Force View</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.3.9.html">Case Conversion</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -371,85 +371,126 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li>IvorySQL Architecture Design</li>
-    <li>Compatibility Features</li>
-    <li><a href="6.3.9.html">Case Conversion</a></li>
+    <li>IvorySQL Ecosystem</li>
+    <li><a href="5.9.html">pgrouting</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/6.3.9.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/5.9.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/6.3.9.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/5.9.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Quoted Identifier Case Conversion</h1>
+<h1 class="page">pgRouting</h1>
 <div class="sect1">
-<h2 id="purpose"><a class="anchor" href="#purpose"></a>1. Purpose</h2>
+<h2 id="overview"><a class="anchor" href="#overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>To meet Oracle&#8217;s quoted identifier case compatibility requirements, IvorySQL has designed three case conversion modes for quoted identifiers.</p>
+<p>pgRouting is an open-source geospatial routing extension library built on PostgreSQL/PostGIS databases. It endows databases with powerful network analysis capabilities, enabling them to handle complex path planning and graph theory computation problems, such as calculating the shortest path between two points, performing Traveling Salesman Problem (TSP) analysis, or computing service area coverage. It embeds routing algorithms directly into the database, thereby avoiding complex data transfer and computation at the application layer.</p>
+</div>
+<div class="paragraph">
+<p>The core advantage of this extension lies in its ability to leverage PostgreSQL&#8217;s powerful data management capabilities and PostGIS&#8217;s rich spatial functions to perform efficient computation on spatial network data directly within the database. This not only simplifies application development processes but also significantly improves the performance of large-scale network analysis by reducing data movement.</p>
+</div>
+<div class="paragraph">
+<p>pgRouting is widely used in logistics and distribution, traffic navigation, network analysis, urban planning, and supply chain management, among other fields. Its open-source nature has attracted continuous contributions and improvements from developers worldwide, making it one of the preferred tools for path analysis and network solving in the spatial database domain.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="implementation-details"><a class="anchor" href="#implementation-details"></a>2. Implementation Details</h2>
+<h2 id="installation"><a class="anchor" href="#installation"></a>2. Installation</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>If the parameter <code>-C</code> is appended during database initialization, with values of <code>normal/interchange/lowercase</code>, the <code>Intidb.c&#8594;main()</code> function in the code will process this parameter and set the global variable <code>caseswitchmode</code> according to the parameter value. Then the <code>initdb</code> command will start a <code>postgres</code> process in <code>-boot</code> mode to set up the <code>template1</code> template database, while passing the parameter <code>-C ivorysql.identifier_case_switch=caseswitchmode</code> to the new process.</p>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+IvorySQL 5.0 or higher version is already installed in the environment, with the installation path at /usr/local/ivorysql/ivorysql-5
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="source-installation"><a class="anchor" href="#source-installation"></a>2.1. Source Installation</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Install dependencies</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>This newly started backend process will write the <code>identifier_case_switch</code> information to the <code>pg_control</code> file through the following code:</p>
+<p>It depends on perl, which is generally already installed when installing IvorySQL, so no need to install it here.
+CMake version requirement &gt;= 3.12, Boost version &gt;= 1.56</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">BootstrapModeMain() -&gt; BootStrapXLOG();
-	/* save database compatible level value */
-	ControlFile-&gt;dbmode = bootstrap_database_mode;
-	ControlFile-&gt;casemode = identifier_case_switch;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Install dependencies
+sudo apt install cmake libboost-all-dev</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Compile and install</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">wget https://github.com/pgRouting/pgrouting/releases/download/v3.8.0/pgrouting-3.8.0.tar.gz
+tar xvf pgrouting-3.8.0.tar.gz
+cd pgrouting-3.8.0
+mkdir build
+cd build
+cmake .. -DPOSTGRESQL_PG_CONFIG=/path/to/pg_config  # eg: /usr/local/ivorysql/ivorysql-5/bin/pg_config
+make
+sudo make install</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create-extension-and-confirm-pgrouting-version"><a class="anchor" href="#create-extension-and-confirm-pgrouting-version"></a>3. Create Extension and Confirm pgRouting Version</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Connect to the database with psql and execute the following commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ivorysql=# CREATE extension pgrouting;
+CREATE EXTENSION
 
-	/* some additional ControlFile fields are set in WriteControlFile() */
-	WriteControlFile();</code></pre>
+ivorysql=# SELECT * FROM pg_available_extensions WHERE name = 'pgrouting';
+   name    | default_version | installed_version |       comment
+-----------+-----------------+-------------------+---------------------
+ pgrouting | 3.8.0           |                   | pgRouting Extension
+(1 row)</code></pre>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>4. Usage</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>When a user starts the database using the <code>pg_ctl</code> command, the <code>postmaster</code> process will read the contents of the <code>pg_control</code> file. The code call path is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">PostmasterMain()--&gt;SetCaseGucOption()--&gt;GetCaseSwitchModeFromControl()</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After reading the parameter value, the <code>SetConfigOption()</code> function is called to assign the value.</p>
-</div>
-<div class="paragraph">
-<p>When each new backend process starts, since it is forked from the <code>postmaster</code> process, it automatically has the same <code>ivorysql.identifier_case_switch</code> parameter value. First, it processes the <code>startup</code> packet, and if it contains <code>database</code> or <code>user</code> parameters, the parameter values are processed accordingly based on <code>identifier_case_switch</code>.</p>
-</div>
-<div class="paragraph">
-<p>The source code is:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">BackendMain()-&gt;BackendInitialize()--&gt;ProcessStartupPacket()</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Additionally, when processing user SQL statements, if they contain identifiers, the same processing is performed. The code is distributed in:
-SplitIdentifierString(), quoteOneName() and SplitGUCList() functions.</p>
+<p>For pgRouting usage, please refer to the <a href="https://docs.pgrouting.org/">pgRouting Official Documentation</a></p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="6.3.8.html">Force View</a></span>
-  <span class="next"><a href="6.3.10.html">sys_guid Function</a></span>
+  <span class="prev"><a href="5.8.html">pgaudit</a></span>
+  <span class="next"><a href="6.1.1.html">Dual Parser</a></span>
 </nav>
 </article>
   </div>

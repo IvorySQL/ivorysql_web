@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Added Oracle compatibility mode ports and IP :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.9.html">
-    <link rel="prev" href="7.8.html">
-    <link rel="next" href="7.10.html">
+    <title>CALL INTO :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.12.html">
+    <link rel="prev" href="6.3.11.html">
+    <link rel="next" href="6.4.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -184,7 +184,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.3.11.html">Empty String to NULL</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="6.3.12.html">CALL INTO</a>
   </li>
 </ul>
@@ -234,7 +234,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="7.8.html">8、Built-in data types and built-in functions</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="7.9.html">9、Added Oracle compatibility mode ports and IP</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -380,69 +380,292 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li>List of Oracle compatible features</li>
-    <li><a href="7.9.html">9、Added Oracle compatibility mode ports and IP</a></li>
+    <li>IvorySQL Architecture Design</li>
+    <li>Compatibility Features</li>
+    <li><a href="6.3.12.html">CALL INTO</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/7.9.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/6.3.12.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/7.9.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/6.3.12.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Added Oracle compatibility mode ports and IP</h1>
+<h1 class="page">CALL INTO</h1>
 <div class="sect1">
-<h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
+<h2 id="purpose"><a class="anchor" href="#purpose"></a>1. Purpose</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Currently, PostgreSQL&#8217;s CALL statement has the following limitations:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>In order to distinguish the Oracle port, IP and PG port IP. THERE IS NOW A NEED TO INCREASE THE PROCESSING OF ORAPORT AND ORAHOST;</p>
+<p>Does not support the INTO clause;</p>
+</li>
+<li>
+<p>Cannot call functions that return values;</p>
+</li>
+<li>
+<p>Cannot assign results to client-side variables (i.e., Oracle&#8217;s binding variables / host variables).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To enhance compatibility with Oracle, IvorySQL has implemented support for the CALL func(&#8230;&#8203;) INTO :var; syntax, allowing users to receive function return values through binding variables (e.g., :x). This behavior (including precision checks and error handling) aligns with Oracle&#8217;s standards.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="overall-design-approach"><a class="anchor" href="#overall-design-approach"></a>2. Overall Design Approach</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Since PostgreSQL/IvorySQL inherently does not support direct assignment to client-side variables at the SQL level, this solution adopts a "client-side rewriting + server-side collaboration" approach:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When the CALL statement includes binding variables (e.g., :x):</p>
+<div class="literalblock">
+<div class="content">
+<pre>The client rewrites it into a special anonymous PL block (DO $$ ... $$);
+Sends it using the extended query protocol to transmit parameter type and precision information;
+The server executes this anonymous block and returns the result to the client;
+The client then writes the result to the corresponding binding variable.</pre>
+</div>
+</div>
+</li>
+<li>
+<p>When the CALL statement does not contain binding variables:</p>
+<div class="literalblock">
+<div class="content">
+<pre>The behavior remains fully consistent with native PostgreSQL, using the simple query protocol without any rewriting.</pre>
+</div>
+</div>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="function"><a class="anchor" href="#function"></a>2. Function</h2>
+<h2 id="implementation-details"><a class="anchor" href="#implementation-details"></a>3. Implementation Details</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>Add ivoryhost: You need to add the parameter ivoryhost when connecting, and its function is similar to host;</p>
-</li>
-<li>
-<p>New ivoryport: Compared to host, the function of port is relatively complex. It involves specifying ports in the configure phase and connection phase;</p>
-</li>
-</ul>
+<div class="sect2">
+<h3 id="psql"><a class="anchor" href="#psql"></a>3.1. psql</h3>
+<div class="paragraph">
+<p>To ensure compatibility with the CALL [INTO] statement in the interface, it must be converted into an anonymous PL/iSQL block, leveraging the support for OUT parameters in anonymous blocks to achieve functional equivalence.</p>
 </div>
+<div class="paragraph">
+<p>This requires the get_parameter_description function to correctly identify CALL statements and, when encountering CALL INTO, return the rewritten PL statement.</p>
 </div>
+<div class="paragraph">
+<p>Correspondingly, the get_hostvariables routine needs to store this information (such as whether it is a CALL statement, whether it includes INTO, the rewritten statement, etc.) in the HostVariable structure. The definition of HostVariable is as follows:</p>
 </div>
-<div class="sect1">
-<h2 id="test-method"><a class="anchor" href="#test-method"></a>3. Test method:</h2>
-<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">   ./configure --with-oraport=5555
-   ./initdb ....
-   ./pg_ctl -D ../data start
-
-   ./pg_ctl -o "-p 5433 -o 1522" -D ../data</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">typedef struct HostVariable
+{
+	HostVariableEntry *hostvars;
+	int		length;
+	bool	isdostmt;
+	bool	iscallstmt;	// Whether it is from a CALL statement
+	char	*convertcall; 	// Rewritten statement
+} HostVariable;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="server-side"><a class="anchor" href="#server-side"></a>3.2. Server-side</h3>
+<div class="paragraph">
+<p>On the server side, modifications are required in the syntax parser section. Add CALL INTO grammar rules in ora_gram.y, and generate rewritten PL statements in the action section, such as "x := add(1,2);".</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CallStmt:	CALL func_application
+				{
+					CallStmt *n = makeNode(CallStmt);
+					n-&gt;funccall = castNode(FuncCall, $2);
+					$$ = (Node *)n;
+				}
+			| CALL func_application INTO ORAPARAM
+				{
+					CallStmt *n = makeNode(CallStmt);
+					OraParamRef *hostvar = makeNode(OraParamRef);
+					char	*callstr = NULL;
+					n-&gt;funccall = castNode(FuncCall, $2);
+					hostvar-&gt;number = 0;
+					hostvar-&gt;location = @4;
+					hostvar-&gt;name = $4;
+					n-&gt;hostvariable = hostvar;
+					callstr = pnstrdup(pg_yyget_extra(yyscanner)-&gt;core_yy_extra.scanbuf + @2, @3 - @2);
+					n-&gt;callinto = psprintf("%s := %s;", $4, callstr);
+					pfree(callstr);
+					$$ = (Node *)n;
+				}
+		;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The CallStmt structure needs to store the INTO clause and the converted PL statement.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">typedef struct CallStmt
+{
+  NodeTag   type;
+  FuncCall  *funccall;    /* from the parser */
+  FuncExpr  *funcexpr;    /* transformed call, with only input args */
+  List    *outargs;    /* transformed output-argument expressions */
+  OraParamRef *hostvariable; /* only used for get_parameter_description() */
+  char    *callinto;    /* rewrite CALL INTO to a PL assign stmt */
+} CallStmt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To distinguish between regular DO statements and anonymous blocks converted from CALL statements, a new keyword GENERATED FROM CALL is added to the syntax.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">opt_do_from_where:
+			GENERATED FROM CALL			{ $$ = true; }
+			| /*EMPTY*/					{ $$ = false; }
+		;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The generated DoStmt node will set do_from_call = true for executor identification.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">typedef struct DoStmt
+{
+  NodeTag   type;
+  List    *args;      /* List of DefElem nodes */
+  List    *paramsmode;  /* List of parameters mode */
+  List    *paramslen;   /* List of length for parameter datatypes */
+  bool    do_from_call;  /* True if DoStmt is come from CallStmt */
+} DoStmt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the IVY interface, placeholder information is obtained through a Set-Returning Function (SRF) called get_parameter_description. This function needs to identify the type of input statement and return the rewritten PL/iSQL assignment statement when encountering CALL INTO statements.</p>
+</div>
+<div class="paragraph">
+<p>To achieve this, IvorySQL has extended the return structure (TupleDesc) of this function: a new hint field has been added specifically to return the rewritten PL code for CALL INTO statements; for other types of statements, this field remains NULL.</p>
+</div>
+<div class="paragraph">
+<p>Additionally, the first field of the first tuple in the original function result set previously used only true/false to distinguish whether the statement was an anonymous block. To more accurately identify statement types (especially CALL statements), it has now been modified to return the corresponding parse tree&#8217;s CommandTag.</p>
+</div>
+<div class="paragraph">
+<p>All these metadata details are ultimately encapsulated into a user context structure to enable efficient passing and reuse across multiple invocations of the SRF function.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{
+    OraParamExtralData *extral;
+    const char     *cmdtag;
+    char        *callintoexpr;
+} outparam_fctx;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="interface-layer"><a class="anchor" href="#interface-layer"></a>3.3. Interface layer</h3>
+<div class="paragraph">
+<p>The IVY-prefixed interfaces involved in CALL include:</p>
+</div>
+<div class="paragraph">
+<p>IvyStmtExecute</p>
+</div>
+<div class="paragraph">
+<p>IvyStmtExecute2</p>
+</div>
+<div class="paragraph">
+<p>IvyexecPreparedStatement</p>
+</div>
+<div class="paragraph">
+<p>IvyexecPreparedStatement2</p>
+</div>
+<div class="paragraph">
+<p>In the aforementioned interfaces, user-provided CALL [INTO] statements are rewritten into a "special" anonymous block statement. To clearly identify such anonymous blocks converted from CALL statements, a dedicated type has been added to the statement type definitions of the interface.</p>
+</div>
+<div class="paragraph">
+<p>The purpose of this type is to correctly recognize such statements in IvyHandleDostmt and generate execution statements in the form of:DO ... USING …&#8201;&#8212;&#8201;GENERATED FROM CALL</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">typedef enum IvyStmtType
+{
+	IVY_STMT_UNKNOW,
+	IVY_STMT_DO,
+	IVY_STMT_DOFROMCALL, /* new statementt ype */
+	IVY_STMT_DOHANDLED,
+	IVY_STMT_OTHERS
+} IvyStmtType;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>When rewriting CALL statements, if encountering a CALL INTO statement that invokes a function, the interface needs to internally adjust the order of bound variables. This adjustment is completely transparent to users: when binding parameters, users only need to follow the order in which the variables appear in the CALL statement—that is, the variable in the INTO clause is positioned last in the original statement.</p>
+</div>
+<div class="paragraph">
+<p>However, in the rewritten special anonymous block, this INTO variable will appear as the left-hand side (i.e., the first parameter) of an assignment expression. Therefore, the interface must internally adjust the binding order correctly to ensure the execution logic matches the user&#8217;s expectations.</p>
+</div>
+<div class="paragraph">
+<p>All interface routines involved in this logic must implement this handling. The relevant routines are as follows:</p>
+</div>
+<div class="paragraph">
+<p>Ivyreplacenamebindtoposition</p>
+</div>
+<div class="paragraph">
+<p>Ivyreplacenamebindtoposition2</p>
+</div>
+<div class="paragraph">
+<p>Ivyreplacenamebindtoposition3</p>
+</div>
+<div class="paragraph">
+<p>In interfaces such as IvyexecPreparedStatement and IvyexecPreparedStatement2, users must explicitly provide paramvalues, paramlengths, paramformats, and parammode for each parameter. For CALL statements, the order of elements in these parameter arrays must be adjusted according to the rewritten anonymous block structure to ensure binding consistency with the execution logic.</p>
+</div>
+<div class="paragraph">
+<p>Among them, IvyexecPreparedStatement2 is more specialized: it requires users to additionally provide an output binding list of type IvyBindOutInfo*. This list is not only used to bind OUT parameters but is also utilized by IvyAssignPLISQLOutParameter to identify the data type of each OUT parameter when retrieving PL/iSQL procedure results. Therefore, when processing CALL statements, the interface first reorders the user-provided IvyBindOutInfo* list (moving the INTO-bound output variable to the first position) and then writes it into the IvyPreparedStatement statement handle for subsequent assignment.</p>
+</div>
+<div class="paragraph">
+<p>Regarding precision handling for output parameters: When there is a mismatch between the precision of an output binding variable in a CALL statement and the actual returned value, the system may either raise an error or automatically truncate—the specific behavior depends on whether the data type of the binding variable exactly matches the parameter type declared in the procedure/function.</p>
+</div>
+<div class="paragraph">
+<p>In the PL/iSQL inline handler, the precise data type of each OUT parameter can be obtained through ParamListInfo during the binding phase. If the currently executed anonymous block is a special DoStmt converted from a CALL statement, the system performs the following checks during assignment:</p>
+</div>
+<div class="paragraph">
+<p>If the type recorded in ParamListInfo exactly matches the formal parameter type of the function/stored procedure, a forced type conversion is applied for assignment.
+Otherwise, an implicit type conversion is used for assignment.
+This mechanism is designed to be compatible with Oracle&#8217;s behavior, ensuring safe and reasonable assignment even when types do not fully match.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">-- Original CALL statement:
+CALL my_func(:in1, :in2) INTO :out;
+-- Rewritten as:
+do $$BEGIN
+  :out := my_func(:in1, :in2);
+END$$ using
+  out INOUT, in1 INOUT, in2 INOUT
+  paramslength -1,-1,-1
+GENERATED FROM CALL;</code></pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="7.8.html">8、Built-in data types and built-in functions</a></span>
-  <span class="next"><a href="7.10.html">10、XML Function</a></span>
+  <span class="prev"><a href="6.3.11.html">Empty String to NULL</a></span>
+  <span class="next"><a href="6.4.1.html">sys_context</a></span>
 </nav>
 </article>
   </div>

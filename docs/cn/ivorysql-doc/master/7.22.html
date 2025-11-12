@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>GB18030 字符集服务端支持 :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.5.html">
-    <link rel="prev" href="6.4.2.html">
-    <link rel="next" href="7.1.html">
+    <title>兼容Oracle的CALL INTO :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/7.22.html">
+    <link rel="prev" href="7.21.html">
+    <link rel="next" href="8.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -205,7 +205,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.5.html">国标GB18030</a>
   </li>
 </ul>
@@ -277,7 +277,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="7.21.html">21、空字符串转null</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="7.22.html">22、CALL INTO</a>
   </li>
 </ul>
@@ -408,184 +408,262 @@
   <ul>
     <li><a href="welcome.html">文档中心</a></li>
     <li>IvorySQL</li>
-    <li>IvorySQL架构设计</li>
-    <li><a href="6.5.html">国标GB18030</a></li>
+    <li>Oracle兼容功能列表</li>
+    <li><a href="7.22.html">22、CALL INTO</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/6.5.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/7.22.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/6.5.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/7.22.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">GB18030 字符集服务端支持</h1>
+<h1 class="page">兼容Oracle的CALL INTO</h1>
 <div class="sect1">
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>PostgreSQL 服务端提供了对 GB18030 字符集的全面支持。GB18030是中国国家标准，旨在包含所有汉字和多种少数民族文字，实现与Unicode的统一。在PostgreSQL中正确配置和使用GB18030字符集，对于处理和存储需要符合此标准的中文数据至关重要。</p>
+<div class="ulist">
+<ul>
+<li>
+<p>IvorySQL中的CALL语句支持调用单独的函数存储过程，也可以是在包或对象类型中的函数和存储过程。CALL调用函数增加INTO子句语法，插入的目标是一个host variable。</p>
+</li>
+</ul>
 </div>
-<div class="paragraph">
-<p>服务端 GB18030 支持应当具备以下特性：</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1. 支持 GB18030 作为服务端编码：initdb -E GB18030 可用，SHOW server_encoding 显示为 GB18030。</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2. 提供 GB18030 &lt;&#8594; UTF8 的双向转换。</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3. 支持多字节边界判定。</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="实现说明"><a class="anchor" href="#实现说明"></a>2. 实现说明</h2>
+<h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>CALL支持调用单独的或定义在包中函数和存储过程。</p>
+</li>
+<li>
+<p>CALL调用函数时，增加INTO子句语法，插入的目标是一个host variable。</p>
+</li>
+<li>
+<p>CALL调用无参或全取默认值的函数/存储过程不能省略空括号。</p>
+</li>
+<li>
+<p>CALL在调用函数和存储过程时的参数或INTO子句中支持引用绑定变量。</p>
+</li>
+<li>
+<p>CALL语句中OUT参数对应的绑定变量支持对精度和数据类型的验证。</p>
+</li>
+<li>
+<p>输出绑定变量不允许被重复绑定。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="initdb时通过-e指定gb18030或gb18030_2022"><a class="anchor" href="#initdb时通过-e指定gb18030或gb18030_2022"></a>2.1. initdb时通过-E指定GB18030或GB18030_2022</h3>
-<div class="paragraph">
-<p>PostgreSQL已支持GB18030-2000版本作为客户端编码，通过扩展的方式支持GB18030_2022字符集与UTF的转换。</p>
-</div>
-<div class="paragraph">
-<p>修改pg_enc来实现可指定GB18030作为服务端编码，PostgreSQL编码框架中增加底层函数以供pg内核调用。</p>
-</div>
-<div class="paragraph">
-<p>设置一个全局变量is_load_gb18030_2022,默认为true,当用户指定-E选项时,在get_encoding_id中判断其设置的是否为gb18030_2022,如果是,将其字符串转为gb18030,然后将is_load_gb18030_2022 设为true,如果-E 选项为Gb18030,将其设为false。</p>
-</div>
-<div class="paragraph">
-<p>在适当位置判断是否要加载插件,如果是,执行load_gb18030_2022,并将ivorysql.conf中的shared_preload_library添加gb18030_2022。</p>
-</div>
+<h3 id="call-into调用函数并插入host-variable"><a class="anchor" href="#call-into调用函数并插入host-variable"></a>3.1. call into调用函数，并插入host variable</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">if (encoding_name &amp;&amp; *encoding_name)
-{
-    encoding_name_modify = pg_strdup(encoding_name);
-    if(pg_strcasecmp(encoding_name,"gb18030_2022") == 0)
-    {
-        encoding_name_modify = pg_strdup("gb18030");
-        is_load_gb18030_2022 =  true;
-    }
-    else if(pg_strcasecmp(encoding_name,"gb18030") == 0)
-    is_load_gb18030_2022 = false;
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建函数
+ivorysql=# create or replace function f_defs(a number default 1314)
+ivorysql-# return number
+ivorysql-# is
+ivorysql-# begin
+ivorysql-# raise notice '%', a;
+ivorysql-# return a;
+ivorysql-# end;
+ivorysql-# /
+CREATE FUNCTION
+-- 声明绑定变量
+ivorysql=# variable x number
+-- 调用函数并获取返回值
+ivorysql=# call f_defs() into :x;
+NOTICE: 1314
 
-    if ((enc = pg_valid_server_encoding((const char *)encoding_name_modify)) &gt;= 0)
-        return enc;
-}</code></pre>
+Call completed.
+
+ivorysql=# print x
+  X
+------
+ 1314</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="多字节处理"><a class="anchor" href="#多字节处理"></a>2.2. 多字节处理</h3>
-<div class="paragraph">
-<p>wchar.c，增加 GB18030 的函数指针：</p>
+<h3 id="call调用包中的存储过程"><a class="anchor" href="#call调用包中的存储过程"></a>3.2. call调用包中的存储过程</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ivorysql=# create table tb1(c1 int);
+CREATE TABLE
+-- 创建包规范
+ivorysql=# create or replace package pkg is
+ivorysql-# var1 integer;
+ivorysql-# procedure test_p ;
+ivorysql-# end;
+ivorysql-# /
+CREATE PACKAGE
+-- 创建包体
+ivorysql=# create or replace package body pkg is
+ivorysql-# procedure test_p is
+ivorysql-# begin
+ivorysql-# insert into tb1 values(1);
+ivorysql-# end;
+ivorysql-# begin
+ivorysql-# var1 := 2;
+ivorysql-# end;
+ivorysql-# /
+CREATE PACKAGE BODY
+-- 调用包中的过程
+ivorysql=# call pkg.test_p();
+CALL
+ivorysql=# select * from tb1;
+ c1
+-----
+  1
+(1 row)</code></pre>
 </div>
-<div class="paragraph">
-<p>pg_gb180302wchar_with_len(const unsigned char *from, pg_wchar *to, int len) gb18030 &#8594; wchar</p>
-</div>
-<div class="paragraph">
-<p>pg_wchar2gb18030_with_len(const pg_wchar *from, unsigned char *to, int len) wchar &#8594; gb18030</p>
-</div>
-<div class="paragraph">
-<p>pg_gb18030_mblen(const unsigned char *s)：返回 1/2/4。</p>
-</div>
-<div class="paragraph">
-<p>pg_gb18030_dsplen(const unsigned char *s)：ASCII 显示宽度 1；其它按 1 处理（与UTF8一致）。</p>
-</div>
-<div class="paragraph">
-<p>pg_gb18030_verifier(const unsigned char *s, int len)：校验字节范围，拒绝非法序列。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="与客户端的交互"><a class="anchor" href="#与客户端的交互"></a>2.3. 与客户端的交互</h3>
-<div class="paragraph">
-<p>接收数据: 如果一个使用 UTF-8 编码的客户端连接上来，服务端在接收到数据后，会调用其内部的 utf8_to_gb18030 函数，将数据转换为 GB18030 格式，然后才进行验证和存储。</p>
-</div>
-<div class="paragraph">
-<p>发送数据: 当该客户端执行 SELECT 查询时，服务端会从磁盘/内存中读取原生的 GB18030 数据，然后调用 gb18030_to_utf8 函数将其转换为 UTF-8 格式，最后再通过网络协议发送给客户端。</p>
-</div>
-<div class="paragraph">
-<p>新增GB18030-2022.xml数据文件，通过perl脚本解析为map文件，提供 gb18030_to_utf8() 与 utf8_to_gb18030()，优先表驱动，覆盖不到的区间通过算法映射。</p>
-</div>
+<h3 id="无参和默认参数调用"><a class="anchor" href="#无参和默认参数调用"></a>3.3. 无参和默认参数调用</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">static inline uint32
-unicode_to_utf8word(uint32 c)
-{
-	uint32		word;
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建带默认参数函数
+ivorysql=# CREATE OR REPLACE FUNCTION default_arg_func(p_num NUMBER DEFAULT 100) RETURN NUMBER AS
+ivorysql-# BEGIN
+ivorysql-#   RETURN p_num + 5;
+ivorysql-# END;
+ivorysql-# /
+CREATE FUNCTION
+-- 正确调用默认参数函数（必须带括号）
+ivorysql=# VARIABLE default_result NUMBER;
+ivorysql=# CALL default_arg_func() INTO :default_result; -- 使用默认值100
 
-	if (c &lt;= 0x7F)
-	{
-		word = c;
-	}
-	else if (c &lt;= 0x7FF)
-	{
-		word = (0xC0 | ((c &gt;&gt; 6) &amp; 0x1F)) &lt;&lt; 8;
-		word |= 0x80 | (c &amp; 0x3F);
-	}
-	else if (c &lt;= 0xFFFF)
-	{
-		word = (0xE0 | ((c &gt;&gt; 12) &amp; 0x0F)) &lt;&lt; 16;
-		word |= (0x80 | ((c &gt;&gt; 6) &amp; 0x3F)) &lt;&lt; 8;
-		word |= 0x80 | (c &amp; 0x3F);
-	}
-	else
-	{
-		word = (0xF0 | ((c &gt;&gt; 18) &amp; 0x07)) &lt;&lt; 24;
-		word |= (0x80 | ((c &gt;&gt; 12) &amp; 0x3F)) &lt;&lt; 16;
-		word |= (0x80 | ((c &gt;&gt; 6) &amp; 0x3F)) &lt;&lt; 8;
-		word |= 0x80 | (c &amp; 0x3F);
-	}
+Call completed.
 
-	return word;
-}
+ivorysql=# PRINT default_result;
+ DEFAULT_RESULT
+----------------
+ 105
 
-static uint32
-conv_18030_2022_to_utf8(uint32 code)
-{
-#define conv18030(minunicode, mincode, maxcode) \
-	if (code &gt;= mincode &amp;&amp; code &lt;= maxcode) \
-		return unicode_to_utf8word(gb_linear(code) - gb_linear(mincode) + minunicode)
+-- 带参数调用
+ivorysql=# CALL default_arg_func(200) INTO :default_result;
 
-	conv18030(0x0452, 0x8130D330, 0x8136A531);
-	conv18030(0x2643, 0x8137A839, 0x8138FD38);
-	conv18030(0x361B, 0x8230A633, 0x8230F237);
-	conv18030(0x3CE1, 0x8231D438, 0x8232AF32);
-	conv18030(0x4160, 0x8232C937, 0x8232F837);
-	conv18030(0x44D7, 0x8233A339, 0x8233C931);
-	conv18030(0x478E, 0x8233E838, 0x82349638);
-	conv18030(0x49B8, 0x8234A131, 0x8234E733);
-	conv18030(0x9FA6, 0x82358F33, 0x8336C738);
-	conv18030(0xE865, 0x8336D030, 0x84308534);
-	conv18030(0xFA2A, 0x84309C38, 0x84318537);
-	conv18030(0xFFE6, 0x8431A234, 0x8431A439);
-	conv18030(0x10000, 0x90308130, 0xE3329A35);
-	/* No mapping exists */
-	return 0;
-}</code></pre>
+Call completed.
+
+ivorysql=# PRINT default_result;
+ DEFAULT_RESULT
+----------------
+ 205</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="在参数或into子句中引用绑定变量"><a class="anchor" href="#在参数或into子句中引用绑定变量"></a>3.4. 在参数或INTO子句中引用绑定变量</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 设置输入绑定变量
+ivorysql=# VARIABLE input_num NUMBER = 7;
+-- 使用绑定变量作为参数调用函数
+ivorysql=# VARIABLE func_result NUMBER;
+ivorysql=# CALL stand_alone_func(:input_num) INTO :func_result;
+
+Call completed.
+
+ivorysql=# PRINT func_result;
+ FUNC_RESULT
+-------------
+ 14</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="call语句中out参数支持精度和数据类型验证"><a class="anchor" href="#call语句中out参数支持精度和数据类型验证"></a>3.5. CALL语句中OUT参数支持精度和数据类型验证</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建带OUT参数的过程
+ivorysql=# CREATE OR REPLACE PROCEDURE out_param_proc(
+ivorysql(#   p_in IN VARCHAR2,
+ivorysql(#   p_out OUT VARCHAR2,
+ivorysql(#   p_num_out OUT NUMBER
+ivorysql(# ) AS
+ivorysql-# BEGIN
+ivorysql-#   p_out := p_in || ' processed';
+ivorysql-#   p_num_out := LENGTH(p_in);
+ivorysql-# END;
+ivorysql-# /
+CREATE PROCEDURE
+-- 测试OUT参数类型匹配
+ivorysql=# VARIABLE out_var VARCHAR2(50);
+ivorysql=# VARIABLE num_var NUMBER;
+ivorysql=# CALL out_param_proc('Test input', :out_var, :num_var);
+
+Call completed.
+
+ivorysql=# PRINT out_var;
+       OUT_VAR
+----------------------
+ Test input processed
+
+ivorysql=# PRINT num_var;
+ NUM_VAR
+---------
+ 10
+
+-- 测试OUT参数精度不足（会截断）
+ivorysql=# VARIABLE short_out VARCHAR2(5);
+ivorysql=# CALL out_param_proc('Long input string', :short_out, :num_var);
+
+Call completed.
+
+ivorysql=# PRINT short_out;
+ SHORT_OUT
+-----------
+ Long
+
+-- 测试类型不匹配（会报错）
+ivorysql=# VARIABLE wrong_type NUMBER;
+ivorysql=# CALL out_param_proc('Test', :wrong_type, :num_var);
+ERROR:  invalid input syntax for type numeric: "Test processed"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="输出绑定变量不允许重复绑定"><a class="anchor" href="#输出绑定变量不允许重复绑定"></a>3.6. 输出绑定变量不允许重复绑定</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 准备绑定变量
+ivorysql=# VARIABLE dup_var VARCHAR2(100);
+-- 尝试重复绑定（会报错）
+ivorysql=# CALL out_param_func('Test', :dup_var) INTO :dup_var;
+ERROR:  output parameter cannot be a duplicate bind
+-- 正确做法：使用不同的绑定变量
+ivorysql=# VARIABLE out1 VARCHAR2(100);
+ivorysql=# CALL out_param_proc('Correct usage', :out1, :num_var);
+
+Call completed.
+
+ivorysql=# PRINT out1;
+          OUT1
+-------------------------
+ Correct usage processed</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="6.4.2.html">userenv</a></span>
-  <span class="next"><a href="7.1.html">1、框架设计</a></span>
+  <span class="prev"><a href="7.21.html">21、空字符串转null</a></span>
+  <span class="next"><a href="8.1.html">社区贡献指南</a></span>
 </nav>
 </article>
   </div>

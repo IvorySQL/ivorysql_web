@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>GB18030 字符集服务端支持 :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.5.html">
-    <link rel="prev" href="6.4.2.html">
-    <link rel="next" href="7.1.html">
+    <title>CALL INTO :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/6.3.12.html">
+    <link rel="prev" href="6.3.11.html">
+    <link rel="next" href="6.4.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -188,7 +188,7 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="6.3.11.html">空字符串转null</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item is-current-page" data-depth="4">
     <a class="nav-link" href="6.3.12.html">CALL INTO</a>
   </li>
 </ul>
@@ -205,7 +205,7 @@
   </li>
 </ul>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.5.html">国标GB18030</a>
   </li>
 </ul>
@@ -409,183 +409,275 @@
     <li><a href="welcome.html">文档中心</a></li>
     <li>IvorySQL</li>
     <li>IvorySQL架构设计</li>
-    <li><a href="6.5.html">国标GB18030</a></li>
+    <li>兼容特性</li>
+    <li><a href="6.3.12.html">CALL INTO</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/6.5.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/6.3.12.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/6.5.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/6.3.12.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">GB18030 字符集服务端支持</h1>
+<h1 class="page">CALL INTO</h1>
 <div class="sect1">
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>PostgreSQL 服务端提供了对 GB18030 字符集的全面支持。GB18030是中国国家标准，旨在包含所有汉字和多种少数民族文字，实现与Unicode的统一。在PostgreSQL中正确配置和使用GB18030字符集，对于处理和存储需要符合此标准的中文数据至关重要。</p>
+<p>当前，PostgreSQL数据库的CALL语句存在以下限制：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>不支持INTO子句；</p>
+</li>
+<li>
+<p>无法调用有返回值的函数；</p>
+</li>
+<li>
+<p>无法将结果赋值给客户端变量（即 Oracle 中的绑定变量 / host variables）。</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>服务端 GB18030 支持应当具备以下特性：</p>
+<p>为提升对 Oracle 的兼容性，IvorySQL 实现了对 CALL func(&#8230;&#8203;) INTO :var; 语法的支持，允许用户通过绑定变量（如 :x）接收函数返回值，并在行为（如精度检查、错误处理）上与 Oracle 保持一致。</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1. 支持 GB18030 作为服务端编码：initdb -E GB18030 可用，SHOW server_encoding 显示为 GB18030。</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2. 提供 GB18030 &lt;&#8594; UTF8 的双向转换。</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3. 支持多字节边界判定。</p></td>
-</tr>
-</tbody>
-</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="实现说明"><a class="anchor" href="#实现说明"></a>2. 实现说明</h2>
+<h2 id="整体设计思路"><a class="anchor" href="#整体设计思路"></a>2. 整体设计思路</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>由于 PostgreSQL/IvorySQL 本身不支持 SQL 层直接向客户端变量赋值，因此本方案采用 “客户端重写 + 服务端协同” 的方式实现：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>当 CALL 语句包含绑定变量（如 :x）时：</p>
+<div class="literalblock">
+<div class="content">
+<pre>客户端将其重写为一个特殊的匿名 PL 块（DO $$ ... $$）；
+使用扩展查询协议发送，以便传递参数类型和精度信息；
+服务端执行该匿名块，并将结果返回给客户端；
+客户端再将结果写入对应的绑定变量。</pre>
+</div>
+</div>
+</li>
+<li>
+<p>当 CALL 语句不含绑定变量时：</p>
+<div class="literalblock">
+<div class="content">
+<pre>行为与原生 PostgreSQL 完全一致，使用简单查询协议，不做任何重写。</pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="实现原理"><a class="anchor" href="#实现原理"></a>3. 实现原理</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="initdb时通过-e指定gb18030或gb18030_2022"><a class="anchor" href="#initdb时通过-e指定gb18030或gb18030_2022"></a>2.1. initdb时通过-E指定GB18030或GB18030_2022</h3>
+<h3 id="交互式终端"><a class="anchor" href="#交互式终端"></a>3.1. 交互式终端</h3>
 <div class="paragraph">
-<p>PostgreSQL已支持GB18030-2000版本作为客户端编码，通过扩展的方式支持GB18030_2022字符集与UTF的转换。</p>
-</div>
-<div class="paragraph">
-<p>修改pg_enc来实现可指定GB18030作为服务端编码，PostgreSQL编码框架中增加底层函数以供pg内核调用。</p>
-</div>
-<div class="paragraph">
-<p>设置一个全局变量is_load_gb18030_2022,默认为true,当用户指定-E选项时,在get_encoding_id中判断其设置的是否为gb18030_2022,如果是,将其字符串转为gb18030,然后将is_load_gb18030_2022 设为true,如果-E 选项为Gb18030,将其设为false。</p>
-</div>
-<div class="paragraph">
-<p>在适当位置判断是否要加载插件,如果是,执行load_gb18030_2022,并将ivorysql.conf中的shared_preload_library添加gb18030_2022。</p>
+<p>为了在接口中兼容CALL [INTO]语句，需将其转换为匿名PL/iSQL块，并借助匿名块对OUT参数的支持来实现功能等价。这就要求get_parameter_description函数能够正确识别CALL语句，并在遇到CALL INTO时，返回重写后的PL语句。
+相应地，get_hostvariables例程需要将这些信息（如是否为 CALL 语句、是否包含INTO、重写后的语句等）保存到HostVariable结构中。HostVariable的定义如下：</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">if (encoding_name &amp;&amp; *encoding_name)
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">typedef struct HostVariable
 {
-    encoding_name_modify = pg_strdup(encoding_name);
-    if(pg_strcasecmp(encoding_name,"gb18030_2022") == 0)
-    {
-        encoding_name_modify = pg_strdup("gb18030");
-        is_load_gb18030_2022 =  true;
-    }
-    else if(pg_strcasecmp(encoding_name,"gb18030") == 0)
-    is_load_gb18030_2022 = false;
-
-    if ((enc = pg_valid_server_encoding((const char *)encoding_name_modify)) &gt;= 0)
-        return enc;
-}</code></pre>
+	HostVariableEntry *hostvars;
+	int		length;
+	bool	isdostmt;
+	bool	iscallstmt;	// 是否来自 CALL 语句
+	char	*convertcall; 	// 重写后的语句
+} HostVariable;</code></pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="多字节处理"><a class="anchor" href="#多字节处理"></a>2.2. 多字节处理</h3>
+<h3 id="服务端"><a class="anchor" href="#服务端"></a>3.2. 服务端</h3>
 <div class="paragraph">
-<p>wchar.c，增加 GB18030 的函数指针：</p>
-</div>
-<div class="paragraph">
-<p>pg_gb180302wchar_with_len(const unsigned char *from, pg_wchar *to, int len) gb18030 &#8594; wchar</p>
-</div>
-<div class="paragraph">
-<p>pg_wchar2gb18030_with_len(const pg_wchar *from, unsigned char *to, int len) wchar &#8594; gb18030</p>
-</div>
-<div class="paragraph">
-<p>pg_gb18030_mblen(const unsigned char *s)：返回 1/2/4。</p>
-</div>
-<div class="paragraph">
-<p>pg_gb18030_dsplen(const unsigned char *s)：ASCII 显示宽度 1；其它按 1 处理（与UTF8一致）。</p>
-</div>
-<div class="paragraph">
-<p>pg_gb18030_verifier(const unsigned char *s, int len)：校验字节范围，拒绝非法序列。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="与客户端的交互"><a class="anchor" href="#与客户端的交互"></a>2.3. 与客户端的交互</h3>
-<div class="paragraph">
-<p>接收数据: 如果一个使用 UTF-8 编码的客户端连接上来，服务端在接收到数据后，会调用其内部的 utf8_to_gb18030 函数，将数据转换为 GB18030 格式，然后才进行验证和存储。</p>
-</div>
-<div class="paragraph">
-<p>发送数据: 当该客户端执行 SELECT 查询时，服务端会从磁盘/内存中读取原生的 GB18030 数据，然后调用 gb18030_to_utf8 函数将其转换为 UTF-8 格式，最后再通过网络协议发送给客户端。</p>
-</div>
-<div class="paragraph">
-<p>新增GB18030-2022.xml数据文件，通过perl脚本解析为map文件，提供 gb18030_to_utf8() 与 utf8_to_gb18030()，优先表驱动，覆盖不到的区间通过算法映射。</p>
+<p>在服务端需要修改语法解析器部分，在ora_gram.y中添加CALL INTO语法规则，并在action部分生成重写后的PL语句，如“x := add(1,2);”</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">static inline uint32
-unicode_to_utf8word(uint32 c)
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CallStmt:	CALL func_application
+				{
+					CallStmt *n = makeNode(CallStmt);
+					n-&gt;funccall = castNode(FuncCall, $2);
+					$$ = (Node *)n;
+				}
+			| CALL func_application INTO ORAPARAM
+				{
+					CallStmt *n = makeNode(CallStmt);
+					OraParamRef *hostvar = makeNode(OraParamRef);
+					char	*callstr = NULL;
+					n-&gt;funccall = castNode(FuncCall, $2);
+					hostvar-&gt;number = 0;
+					hostvar-&gt;location = @4;
+					hostvar-&gt;name = $4;
+					n-&gt;hostvariable = hostvar;
+					callstr = pnstrdup(pg_yyget_extra(yyscanner)-&gt;core_yy_extra.scanbuf + @2, @3 - @2);
+					n-&gt;callinto = psprintf("%s := %s;", $4, callstr);
+					pfree(callstr);
+					$$ = (Node *)n;
+				}
+		;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>CallStmt结构需要保存INTO子句和转换后的PL语句</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">typedef struct CallStmt
 {
-	uint32		word;
-
-	if (c &lt;= 0x7F)
-	{
-		word = c;
-	}
-	else if (c &lt;= 0x7FF)
-	{
-		word = (0xC0 | ((c &gt;&gt; 6) &amp; 0x1F)) &lt;&lt; 8;
-		word |= 0x80 | (c &amp; 0x3F);
-	}
-	else if (c &lt;= 0xFFFF)
-	{
-		word = (0xE0 | ((c &gt;&gt; 12) &amp; 0x0F)) &lt;&lt; 16;
-		word |= (0x80 | ((c &gt;&gt; 6) &amp; 0x3F)) &lt;&lt; 8;
-		word |= 0x80 | (c &amp; 0x3F);
-	}
-	else
-	{
-		word = (0xF0 | ((c &gt;&gt; 18) &amp; 0x07)) &lt;&lt; 24;
-		word |= (0x80 | ((c &gt;&gt; 12) &amp; 0x3F)) &lt;&lt; 16;
-		word |= (0x80 | ((c &gt;&gt; 6) &amp; 0x3F)) &lt;&lt; 8;
-		word |= 0x80 | (c &amp; 0x3F);
-	}
-
-	return word;
-}
-
-static uint32
-conv_18030_2022_to_utf8(uint32 code)
+  NodeTag   type;
+  FuncCall  *funccall;    /* from the parser */
+  FuncExpr  *funcexpr;    /* transformed call, with only input args */
+  List    *outargs;    /* transformed output-argument expressions */
+  OraParamRef *hostvariable; /* only used for get_parameter_description() */
+  char    *callinto;    /* rewrite CALL INTO to a PL assign stmt */
+} CallStmt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>为区分普通 DO 语句和由 CALL 转换而来的匿名块，语法中新增GENERATED FROM CALL关键字：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">opt_do_from_where:
+			GENERATED FROM CALL			{ $$ = true; }
+			| /*EMPTY*/					{ $$ = false; }
+		;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>生成的 DoStmt 节点将设置 do_from_call = true，供执行器识别。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">typedef struct DoStmt
 {
-#define conv18030(minunicode, mincode, maxcode) \
-	if (code &gt;= mincode &amp;&amp; code &lt;= maxcode) \
-		return unicode_to_utf8word(gb_linear(code) - gb_linear(mincode) + minunicode)
-
-	conv18030(0x0452, 0x8130D330, 0x8136A531);
-	conv18030(0x2643, 0x8137A839, 0x8138FD38);
-	conv18030(0x361B, 0x8230A633, 0x8230F237);
-	conv18030(0x3CE1, 0x8231D438, 0x8232AF32);
-	conv18030(0x4160, 0x8232C937, 0x8232F837);
-	conv18030(0x44D7, 0x8233A339, 0x8233C931);
-	conv18030(0x478E, 0x8233E838, 0x82349638);
-	conv18030(0x49B8, 0x8234A131, 0x8234E733);
-	conv18030(0x9FA6, 0x82358F33, 0x8336C738);
-	conv18030(0xE865, 0x8336D030, 0x84308534);
-	conv18030(0xFA2A, 0x84309C38, 0x84318537);
-	conv18030(0xFFE6, 0x8431A234, 0x8431A439);
-	conv18030(0x10000, 0x90308130, 0xE3329A35);
-	/* No mapping exists */
-	return 0;
-}</code></pre>
+  NodeTag   type;
+  List    *args;      /* List of DefElem nodes */
+  List    *paramsmode;  /* List of parameters mode */
+  List    *paramslen;   /* List of length for parameter datatypes */
+  bool    do_from_call;  /* True if DoStmt is come from CallStmt */
+} DoStmt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在IVY接口中，占位符信息是通过一个名为get_parameter_description的集合返回函数（SRF）获取的。该函数需要能够识别输入语句的类型，并在遇到CALL INTO语句时，返回重写后的PL/iSQL赋值语句。
+为此，IvorySQL对该函数的返回结构（TupleDesc）进行了扩展：新增了一个hint 字段，专门用于返回CALL INTO语句重写后的PL代码；对于其他类型的语句，该字段保持为NULL。
+此外，原函数结果集的第一条元组的第一个字段原本仅用true/false来区分语句是否为匿名块。为了更准确地识别语句类型（尤其是CALL语句），现已将其修改为返回对应解析树的 CommandTag。
+所有这些元数据信息最终会被封装到一个用户上下文结构中，以便在 SRF 函数的多次调用之间高效传递和复用。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{
+    OraParamExtralData *extral;
+    const char     *cmdtag;
+    char        *callintoexpr;
+} outparam_fctx;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>接口层
+CALL涉及的ivy前缀的接口包括：</p>
+</div>
+<div class="paragraph">
+<p>IvyStmtExecute</p>
+</div>
+<div class="paragraph">
+<p>IvyStmtExecute2</p>
+</div>
+<div class="paragraph">
+<p>IvyexecPreparedStatement</p>
+</div>
+<div class="paragraph">
+<p>IvyexecPreparedStatement2</p>
+</div>
+<div class="paragraph">
+<p>在上述接口中，用户传入的CALL [INTO]语句会被重写为一种“特殊”的匿名块语句。为了明确标识这类由CALL转换而来的匿名块，在接口的语句类型定义中新增了一种专用类型。该类型的作用是在IvyHandleDostmt中正确识别此类语句，并生成形如 DO ... USING …&#8201;&#8212;&#8201;GENERATED FROM CALL 的执行语句。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">typedef enum IvyStmtType
+{
+	IVY_STMT_UNKNOW,
+	IVY_STMT_DO,
+	IVY_STMT_DOFROMCALL, /* new statementt ype */
+	IVY_STMT_DOHANDLED,
+	IVY_STMT_OTHERS
+} IvyStmtType;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在重写 CALL 语句时，如果遇到调用函数的 CALL INTO 语句，接口需要对绑定变量的顺序进行内部调整。这一调整对用户是完全透明的：用户在绑定参数时，只需按照 CALL 语句中出现的顺序操作即可——即 INTO 子句中的变量在原语句中位于最后。</p>
+</div>
+<div class="paragraph">
+<p>然而，在重写生成的特殊匿名块中，该 INTO 变量会作为赋值表达式的左值（即第一个参数）出现。因此，接口必须在内部将绑定顺序正确调整，确保执行逻辑与用户预期一致。</p>
+</div>
+<div class="paragraph">
+<p>所有涉及此逻辑的接口例程都需要实现这一处理，相关例程如下：</p>
+</div>
+<div class="paragraph">
+<p>Ivyreplacenamebindtoposition</p>
+</div>
+<div class="paragraph">
+<p>Ivyreplacenamebindtoposition2</p>
+</div>
+<div class="paragraph">
+<p>Ivyreplacenamebindtoposition3</p>
+</div>
+<div class="paragraph">
+<p>在IvyexecPreparedStatement 和 IvyexecPreparedStatement2 这类接口中，用户需要显式提供每个参数的 paramvalues、paramlengths、paramformats 和 parammode。对于 CALL 语句，这些参数数组中的元素顺序必须根据重写后的匿名块结构进行位置调整，以确保绑定与执行逻辑一致。</p>
+</div>
+<div class="paragraph">
+<p>其中，IvyexecPreparedStatement2 更为特殊：它要求用户额外提供一个 IvyBindOutInfo* 类型的输出绑定列表。该列表不仅用于绑定 OUT 参数，还被 IvyAssignPLISQLOutParameter 在获取 PL/iSQL 过程返回结果时用来识别每个 OUT 参数的数据类型。因此，在处理 CALL语句时，接口会先对用户传入的 IvyBindOutInfo*列表进行位置重排（将INTO对应的输出变量移至首位），再将其写入IvyPreparedStatement语句句柄中，供后续赋值使用。</p>
+</div>
+<div class="paragraph">
+<p>关于输出参数的精度处理：当CALL语句中的输出绑定变量与实际返回值的精度不匹配时，系统可能报错，也可能自动截断——具体行为取决于绑定变量的数据类型是否与过程/函数声明的参数类型完全一致。
+在PL/iSQL inline handler中，每个OUT参数的精确数据类型均可通过ParamListInfo在绑定阶段获取。如果当前执行的匿名块是由CALL语句转换而来的特殊DoStmt，那么在执行赋值时，系统会进行如下判断：</p>
+</div>
+<div class="paragraph">
+<p>若ParamListInfo中记录的类型与函数/存储过程形参的类型完全相同，则采用强制类型转换赋值；
+否则，采用隐式类型转换赋值。</p>
+</div>
+<div class="paragraph">
+<p>这一机制旨在兼容Oracle的行为，确保在类型不完全匹配时仍能安全、合理地完成赋值。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">-- 原始 CALL语句：
+CALL my_func(:in1, :in2) INTO :out;
+-- 重写为：
+do $$BEGIN
+  :out := my_func(:in1, :in2);
+END$$ using
+  out INOUT, in1 INOUT, in2 INOUT
+  paramslength -1,-1,-1
+GENERATED FROM CALL;</code></pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="6.4.2.html">userenv</a></span>
-  <span class="next"><a href="7.1.html">1、框架设计</a></span>
+  <span class="prev"><a href="6.3.11.html">空字符串转null</a></span>
+  <span class="next"><a href="6.4.1.html">sys_context</a></span>
 </nav>
 </article>
   </div>

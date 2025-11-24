@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>IvorySQL :: IvorySQL Document Site</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/5.0.html">
-    <link rel="prev" href="4.5.html">
+    <link rel="prev" href="os_arch_adp.html">
     <link rel="next" href="5.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -93,38 +93,50 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">IvorySQL Ecosystem</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cpu_arch_adp.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="os_arch_adp.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="5.0.html">Overview</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.1.html">postgis</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.2.html">pgvector</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.3.html">pgddl(DDL Extractor)</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.4.html">pg_cron</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.5.html">pgsql-http</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.6.html">plpgsql_check</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.7.html">pgroonga</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.8.html">pgaudit</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.9.html">pgrouting</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="5.10.html">system_stats</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -384,6 +396,7 @@
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
     <li>IvorySQL Ecosystem</li>
+    <li>Eco Component Adaption</li>
     <li><a href="5.0.html">Overview</a></li>
   </ul>
 </nav>
@@ -464,6 +477,24 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides full-text search functionality for non-English languages, meeting the needs of high-performance applications</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Full-text search capabilities for languages like Chinese, Japanese, and Korean</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="5.8.html" class="xref page">pgaudit</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides fine-grained auditing, recording database operation logs to support security auditing and compliance checks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database security auditing, compliance checks, audit report generation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="5.9.html" class="xref page">pgrouting</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.8.0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides routing computation for geospatial data, supporting multiple algorithms and data formats</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Geospatial analysis, route planning, logistics optimization</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="5.10.html" class="xref page">system_stats</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provide functions for accessing system-level statistics.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">system monitor</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -473,7 +504,7 @@
 <p>We will continue to expand and enrich the IvorySQL plugin ecosystem. Community developers are welcome to submit new plugin adaptation suggestions or code contributions. For more detailed usage methods and the latest compatible versions of each plugin, please refer to the corresponding documentation chapters for each plugin.</p>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="4.5.html">Migration</a></span>
+  <span class="prev"><a href="os_arch_adp.html">Operating System Adaption</a></span>
   <span class="next"><a href="5.1.html">postgis</a></span>
 </nav>
 </article>

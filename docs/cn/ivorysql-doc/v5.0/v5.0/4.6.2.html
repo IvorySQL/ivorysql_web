@@ -714,7 +714,8 @@ Annotations:       my-annotation: value1</pre>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-使用默认 <code>ClusterIP</code> 类型时禁止设置 <code>nodePort</code>；该值必须在合法范围内且未被占用。此处提供的注解与标签优先级最高。若通过外部暴露 Service 并依赖 TLS 验证，需使用 IVYO 的 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">自定义 TLS</a> 功能。
+使用默认 <code>ClusterIP</code> 类型时禁止设置 <code>nodePort</code>；该值必须在合法范围内且未被占用。此处提供的注解与标签优先级最高。若通过外部暴露 Service 并依赖 TLS 验证，需使用 IVYO 的
+<a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">自定义 TLS</a> 功能。
 </td>
 </tr>
 </table>
@@ -2317,7 +2318,8 @@ spec:
 <div class="sect4">
 <h5 id="流式备用集群"><a class="anchor" href="#流式备用集群"></a>9.6.1.2. 流式备用集群</h5>
 <div class="paragraph">
-<p>流式备用集群依赖于通过网络到主集群的经过身份验证的连接。主集群应可通过网络访问并允许 TLS 身份验证（默认启用 TLS）。在以下清单中，我们将 <code>standby.enabled</code> 设置为 <code>true</code>，并提供了指向主集群的 <code>host</code> 和 <code>port</code>。我们还定义了 <code>customTLSSecret</code> 和 <code>customReplicationTLSSecret</code> 以提供允许备用集群向主集群进行身份验证的证书。对于这种类型的备用集群，您必须使用 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">自定义 TLS</a>：</p>
+<p>流式备用集群依赖于通过网络到主集群的经过身份验证的连接。主集群应可通过网络访问并允许 TLS 身份验证（默认启用 TLS）。在以下清单中，我们将 <code>standby.enabled</code> 设置为 <code>true</code>，并提供了指向主集群的 <code>host</code> 和 <code>port</code>。我们还定义了 <code>customTLSSecret</code> 和 <code>customReplicationTLSSecret</code> 以提供允许备用集群向主集群进行身份验证的证书。对于这种类型的备用集群，您必须使用
+<a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">自定义 TLS</a>：</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -2896,7 +2898,8 @@ spec:
 <div class="sect2">
 <h3 id="tls"><a class="anchor" href="#tls"></a>11.3. TLS</h3>
 <div class="paragraph">
-<p>IVYO 通过 TLS 部署每个集群和组件。这包括 PgBouncer 连接池。如果您使用自己的 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">自定义 TLS 设置</a>，则需要在 <code>spec.proxy.pgBouncer.customTLSSecret</code> 中为 PgBouncer 提供 Secret 引用。</p>
+<p>IVYO 通过 TLS 部署每个集群和组件。这包括 PgBouncer 连接池。如果您使用自己的
+<a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">自定义 TLS 设置</a>，则需要在 <code>spec.proxy.pgBouncer.customTLSSecret</code> 中为 PgBouncer 提供 Secret 引用。</p>
 </div>
 <div class="paragraph">
 <p>PgBouncer 的 TLS 证书应具有与 PgBouncer Service 名称匹配的通用名称 (CN)。这是集群的名称，后缀为 <code>-pgbouncer</code>。例如，对于我们的 <code>hippo</code> 集群，这将是 <code>hippo-pgbouncer</code>。对于 <code>keycloakdb</code> 示例，它将是 <code>keycloakdb-pgBouncer</code>。</p>
@@ -3241,7 +3244,8 @@ cronjob.batch/hippo-repo1-full   @daily     True      0</code></pre>
 </td>
 <td class="content">
 <div class="paragraph">
-<p>更改 IvorySQL 证书颁发机构时，请确保同时更新 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls"><code>customReplicationTLSSecret</code></a>。</p>
+<p>更改 IvorySQL 证书颁发机构时，请确保同时更新
+<a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls"><code>customReplicationTLSSecret</code></a>。</p>
 </div>
 </td>
 </tr>

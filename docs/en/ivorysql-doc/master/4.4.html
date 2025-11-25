@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Operation and maintenance management guide :: IvorySQL Document Site</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/4.4.html">
-    <link rel="prev" href="4.3.html">
-    <link rel="next" href="4.5.html">
+    <link rel="prev" href="4.6.3.html">
+    <link rel="next" href="4.7.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -76,16 +76,46 @@
     <a class="nav-link" href="4.1.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="4.2.html">Building Cluster</a>
+    <a class="nav-link" href="4.2.html">Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.5.html">Migration</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="4.3.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.1.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.2.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.4.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.3.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="4.4.html">Operation Management</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="4.5.html">Migration</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.7.1.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.7.2.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -158,6 +188,15 @@
     <span class="nav-text">Compatibility Framework</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.1.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.2.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.4.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="6.2.1.html">initdb Process</a>
   </li>
 </ul>
@@ -226,70 +265,61 @@
     <span class="nav-text">List of Oracle compatible features</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.1.html">1、Ivorysql frame design</a>
+    <a class="nav-link" href="7.3.html">1、Case conversion</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.2.html">2、GUC Framework</a>
+    <a class="nav-link" href="7.5.html">2、LIKE operator</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.3.html">3、Case conversion</a>
+    <a class="nav-link" href="7.6.html">3、anonymous block</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.4.html">4、Dual-mode design</a>
+    <a class="nav-link" href="7.7.html">4、functions and stored procedures</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.5.html">5、Compatible with Oracle like</a>
+    <a class="nav-link" href="7.8.html">5、Built-in data types and built-in functions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.6.html">6、Compatible with Oracle anonymous block</a>
+    <a class="nav-link" href="7.9.html">6、ports and IP</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.7.html">7、Compatible with Oracle functions and stored procedures</a>
+    <a class="nav-link" href="7.10.html">7、XML Function</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.8.html">8、Built-in data types and built-in functions</a>
+    <a class="nav-link" href="7.11.html">8、sequence</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.9.html">9、Added Oracle compatibility mode ports and IP</a>
+    <a class="nav-link" href="7.12.html">9、Package</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.10.html">10、XML Function</a>
+    <a class="nav-link" href="7.13.html">10、Invisible Columns</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.11.html">11、Compatible with Oracle sequence</a>
+    <a class="nav-link" href="7.14.html">11、RowID Column</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.12.html">12、Package</a>
+    <a class="nav-link" href="7.15.html">12、OUT Parameter</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.13.html">13、Invisible Columns</a>
+    <a class="nav-link" href="7.16.html">13、%Type &amp; %Rowtype</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.14.html">14、RowID Column</a>
+    <a class="nav-link" href="7.17.html">14、NLS Parameters</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.15.html">15、OUT Parameter</a>
+    <a class="nav-link" href="7.18.html">15、Force View</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.16.html">16、%Type &amp; %Rowtype</a>
+    <a class="nav-link" href="7.19.html">16、Nested Subfunctions</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.17.html">17、NLS Parameters</a>
+    <a class="nav-link" href="7.20.html">17、sys_guid Function</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.18.html">18、Force View</a>
+    <a class="nav-link" href="7.21.html">18、Empty String to NULL</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.19.html">19、Nested Subfunctions</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.20.html">20、sys_guid Function</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.21.html">21、Empty String to NULL</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="7.22.html">22、CALL INTO</a>
+    <a class="nav-link" href="7.22.html">19、CALL INTO</a>
   </li>
 </ul>
   </li>
@@ -323,64 +353,7 @@
           <a href="../v4.6/v4.6/welcome.html">v4.6</a>
         </li>
         <li class="version">
-          <a href="../v4.5/v4.5/welcome.html">v4.5</a>
-        </li>
-        <li class="version">
-          <a href="../v4.4/v4.4/welcome.html">v4.4</a>
-        </li>
-        <li class="version">
-          <a href="../v4.2/v4.2/welcome.html">v4.2</a>
-        </li>
-        <li class="version">
-          <a href="../v4.0/v4.0/welcome.html">v4.0</a>
-        </li>
-        <li class="version">
-          <a href="../v3.4/v3.4/welcome.html">v3.4</a>
-        </li>
-        <li class="version">
-          <a href="../v3.3/v3.3/welcome.html">v3.3</a>
-        </li>
-        <li class="version">
-          <a href="../v3.2/v3.2/welcome.html">v3.2</a>
-        </li>
-        <li class="version">
-          <a href="../v3.1/v3.1/welcome.html">v3.1</a>
-        </li>
-        <li class="version">
-          <a href="../v3.0/v3.0/welcome.html">v3.0</a>
-        </li>
-        <li class="version">
-          <a href="../v2.3/v2.3/welcome.html">v2.3</a>
-        </li>
-        <li class="version">
-          <a href="../v2.2/v2.2/welcome.html">v2.2</a>
-        </li>
-        <li class="version">
-          <a href="../v2.1/v2.1/welcome.html">v2.1</a>
-        </li>
-        <li class="version">
           <a href="../v1.17/v1.17/welcome.html">v1.17</a>
-        </li>
-        <li class="version">
-          <a href="../v1.8/v1.8/welcome.html">v1.8</a>
-        </li>
-        <li class="version">
-          <a href="../v1.5/v1.5/welcome.html">v1.5</a>
-        </li>
-        <li class="version">
-          <a href="../v1.4/v1.4/welcome.html">v1.4</a>
-        </li>
-        <li class="version">
-          <a href="../v1.3/v1.3/welcome.html">v1.3</a>
-        </li>
-        <li class="version">
-          <a href="../v1.2/v1.2/welcome.html">v1.2</a>
-        </li>
-        <li class="version">
-          <a href="../v1.1/v1.1/welcome.html">v1.1</a>
-        </li>
-        <li class="version">
-          <a href="../v1.0/v1.0/welcome.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -540,7 +513,7 @@
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>/usr/local/pqsql/bin/psql -d postgres -f outputfile</pre>
+<pre>/usr/local/pgsql/bin/psql -d postgres -f outputfile</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -558,7 +531,117 @@
 <div class="sect2">
 <h3 id="upgrade-with-the-pg_upgrade-utility"><a class="anchor" href="#upgrade-with-the-pg_upgrade-utility"></a>1.3. Upgrade with the pg_upgrade utility</h3>
 <div class="paragraph">
-<p>The pg_upgrade utility supports in-place upgrades of IvorySQL across versions. The upgrade can be performed in minutes, especially when using the --link mode. It requires similar steps as pg_dumpall above, such as starting/stopping the server and running initdb.pg_upgrade <a href="https://www.postgresql.org/docs/current/pgupgrade.html">doc</a> outlines the steps required.</p>
+<p>The pg_upgrade tool is a built-in cross-version upgrade utility in PostgreSQL that enables in-place database upgrades without requiring export and import operations. Since IvorySQL is derived from PostgreSQL, it can also use the pg_upgrade tool for major version upgrades. Below is a brief introduction on how to use pg_upgrade to upgrade IvorySQL to the latest 5.0 version on the CentOS8 platform.</p>
+</div>
+<div class="paragraph">
+<p>pg_upgrade provides a pre-upgrade compatibility check (using the -c or --check option), which can identify issues such as plugin or data type incompatibilities. If the --link option is specified, the new version service can directly use the existing database files without copying, typically completing the upgrade in just a few minutes.</p>
+</div>
+<div class="paragraph">
+<p>Commonly used parameters include:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>-b bindir, --old-bindir=bindir: The directory of the old IvorySQL executable files;</p>
+</li>
+<li>
+<p>-B bindir, --new-bindir=bindir: The directory of the new IvorySQL executable files;</p>
+</li>
+<li>
+<p>-d configdir, --old-datadir=configdir: The data directory of the old version;</p>
+</li>
+<li>
+<p>-D configdir, --new-datadir=configdir: The data directory of the new version;</p>
+</li>
+<li>
+<p>-c, --check: Only check upgrade compatibility without modifying any data;</p>
+</li>
+<li>
+<p>-k, --link: Upgrade using hard link method;</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Upgrade preparation:</p>
+</div>
+<div class="paragraph">
+<p>First, stop the old version of the IvorySQL 4.6 database:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/ivory-4/bin/pg_ctl -D ./data stop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then install the new version of the IvorySQL 5.0 database:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">dnf install -y ivorysql5-5.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Initialize the new IvorySQL 5.0 data directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/ivory-5/bin/initdb -D ./data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Check version compatibility:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/ivory-5/bin/pg_upgrade --old-datadir=/home/ivorysql/test/4.6/data --new-datadir=/home/ivorysql/test/5.0/data --old-bindir=/usr/ivory-4/bin/ --new-bindir=/usr/ivory-5/bin/ --check</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The appearance of "Clusters are compatible" at the end indicates that there are no compatibility issues between the two versions of data, and the upgrade can proceed.</p>
+</div>
+<div class="paragraph">
+<p>Official upgrade:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/ivory-5/bin/pg_upgrade --old-datadir=/home/ivorysql/test/4.6/data --new-datadir=/home/ivorysql/test/5.0/data --old-bindir=/usr/ivory-4/bin/ --new-bindir=/usr/ivory-5/bin/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Seeing "Upgrade Complete" indicates that the upgrade has been successfully completed.</p>
+</div>
+<div class="paragraph">
+<p>Update statistics:</p>
+</div>
+<div class="paragraph">
+<p>pg_upgrade creates new system tables and reuses old data for the upgrade. However, statistics are not migrated during the upgrade process. Therefore, before enabling the new version, you should first recollect statistics to avoid incorrect query plans caused by missing statistics.</p>
+</div>
+<div class="paragraph">
+<p>Start the new version of the database.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/ivory-5/bin/pg_ctl -D ./data -l logfile start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Manually run the vacuum command</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">vacuum --all --analyze-in-stage -h 127.0.0.1 -p 1521</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Cleanup after upgrade</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">rm -rf /home/ivorysql/test/4.6/data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>pg_upgrade <a href="https://www.postgresql.org/docs/current/pgupgrade.html">Document</a>outlines the steps required above.</p>
 </div>
 </div>
 <div class="sect2">
@@ -576,7 +659,7 @@
 <h2 id="managing-ivorysql-versions"><a class="anchor" href="#managing-ivorysql-versions"></a>2. Managing IvorySQL Versions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>IvorySQL is based on PostgreSQL and is updated at the same frequency as PostgreSQL, with one major release per year and one minor release per quarter. IvorySQL 4.5 is based on PostgreSQL 17.5, and all versions of IvorySQL are backward compatible.The relevant version features can be viewed by looking at <a href="https://www.ivorysql.org/en/releases-page/">Official Website</a>。</p>
+<p>IvorySQL is based on PostgreSQL and is updated at the same frequency as PostgreSQL, with one major release per year and one minor release per quarter. IvorySQL 5.0 is based on PostgreSQL 18.0, and all versions of IvorySQL are backward compatible.The relevant version features can be viewed by looking at <a href="https://www.ivorysql.org/en/releases-page/">Official Website</a>。</p>
 </div>
 </div>
 </div>
@@ -1783,7 +1866,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2 ORDER BY t1.fivethous;
 
                                                                  QUERY PLAN
 -------------------------------------------------------------------​-------------------------------------------------------------------​------
- Sort  (cost=717.34..717.59 rows=101 width=488) (actual time=7.761..7.774 rows=100 loops=1)
+ Sort  (cost=717.34..718.09 rows=101 width=488) (actual time=7.761..7.774 rows=100 loops=1)
    Sort Key: t1.fivethous
    Sort Method: quicksort  Memory: 77kB
    -&gt;  Hash Join  (cost=230.47..713.98 rows=101 width=488) (actual time=0.711..7.427 rows=100 loops=1)
@@ -2445,8 +2528,8 @@ WHERE somethingelse;</code></pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="4.3.html">Developer</a></span>
-  <span class="next"><a href="4.5.html">Migration</a></span>
+  <span class="prev"><a href="4.6.3.html">Docker Swarm &amp; Docker Compose deployment</a></span>
+  <span class="next"><a href="4.7.1.html">IvorySQL Cloud Installation</a></span>
 </nav>
 </article>
   </div>

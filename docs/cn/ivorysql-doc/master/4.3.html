@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>开发者指南 :: IvorySQL文档中心</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/4.3.html">
-    <link rel="prev" href="4.2.html">
-    <link rel="next" href="4.4.html">
+    <link rel="prev" href="4.5.html">
+    <link rel="next" href="4.6.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -82,14 +82,44 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="4.2.html">集群搭建</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.5.html">迁移指南</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="4.3.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.1.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.2.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.4.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.3.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="4.4.html">运维管理指南</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="4.5.html">迁移指南</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.1.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.2.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -162,6 +192,15 @@
     <span class="nav-text">兼容框架</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.1.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.2.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.4.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="6.2.1.html">initdb过程</a>
   </li>
 </ul>
@@ -230,70 +269,61 @@
     <span class="nav-text">Oracle兼容功能列表</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.1.html">1、框架设计</a>
+    <a class="nav-link" href="7.3.html">1、大小写转换</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.2.html">2、GUC框架</a>
+    <a class="nav-link" href="7.5.html">2、LIKE操作符</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.3.html">3、大小写转换</a>
+    <a class="nav-link" href="7.6.html">3、匿名块</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.4.html">4、双模式设计</a>
+    <a class="nav-link" href="7.7.html">4、函数与存储过程</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.5.html">5、兼容Oracle like</a>
+    <a class="nav-link" href="7.8.html">5、内置数据类型与内置函数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.6.html">6、兼容Oracle匿名块</a>
+    <a class="nav-link" href="7.9.html">6、端口与IP</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.7.html">7、兼容Oracle函数与存储过程</a>
+    <a class="nav-link" href="7.10.html">7、XML函数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.8.html">8、内置数据类型与内置函数</a>
+    <a class="nav-link" href="7.11.html">8、sequence</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.9.html">9、新增Oracle兼容模式的端口与IP</a>
+    <a class="nav-link" href="7.12.html">9、包</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.10.html">10、XML函数</a>
+    <a class="nav-link" href="7.13.html">10、不可见列</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.11.html">11、兼容Oracle sequence</a>
+    <a class="nav-link" href="7.14.html">11、RowID</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.12.html">12、包</a>
+    <a class="nav-link" href="7.15.html">12、OUT 参数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.13.html">13、不可见列</a>
+    <a class="nav-link" href="7.16.html">13、%TYPE、%ROWTYPE</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.14.html">14、RowID</a>
+    <a class="nav-link" href="7.17.html">14、NLS 参数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.15.html">15、OUT 参数</a>
+    <a class="nav-link" href="7.18.html">15、Force View</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.16.html">16、%TYPE、%ROWTYPE</a>
+    <a class="nav-link" href="7.19.html">16、嵌套子函数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.17.html">17、NLS 参数</a>
+    <a class="nav-link" href="7.20.html">17、sys_guid 函数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.18.html">18、Force View</a>
+    <a class="nav-link" href="7.21.html">18、空字符串转null</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.19.html">19、嵌套子函数</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.20.html">20、sys_guid 函数</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.21.html">21、空字符串转null</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.22.html">22、CALL INTO</a>
+    <a class="nav-link" href="7.22.html">19、CALL INTO</a>
   </li>
 </ul>
   </li>
@@ -350,64 +380,7 @@
           <a href="../v4.6/v4.6/welcome.html">v4.6</a>
         </li>
         <li class="version">
-          <a href="../v4.5/v4.5/welcome.html">v4.5</a>
-        </li>
-        <li class="version">
-          <a href="../v4.4/v4.4/welcome.html">v4.4</a>
-        </li>
-        <li class="version">
-          <a href="../v4.2/v4.2/welcome.html">v4.2</a>
-        </li>
-        <li class="version">
-          <a href="../v4.0/v4.0/welcome.html">v4.0</a>
-        </li>
-        <li class="version">
-          <a href="../v3.4/v3.4/welcome.html">v3.4</a>
-        </li>
-        <li class="version">
-          <a href="../v3.3/v3.3/welcome.html">v3.3</a>
-        </li>
-        <li class="version">
-          <a href="../v3.2/v3.2/welcome.html">v3.2</a>
-        </li>
-        <li class="version">
-          <a href="../v3.1/v3.1/welcome.html">v3.1</a>
-        </li>
-        <li class="version">
-          <a href="../v3.0/v3.0/welcome.html">v3.0</a>
-        </li>
-        <li class="version">
-          <a href="../v2.3/v2.3/welcome.html">v2.3</a>
-        </li>
-        <li class="version">
-          <a href="../v2.2/v2.2/welcome.html">v2.2</a>
-        </li>
-        <li class="version">
-          <a href="../v2.1/v2.1/welcome.html">v2.1</a>
-        </li>
-        <li class="version">
           <a href="../v1.17/v1.17/welcome.html">v1.17</a>
-        </li>
-        <li class="version">
-          <a href="../v1.8/v1.8/welcome.html">v1.8</a>
-        </li>
-        <li class="version">
-          <a href="../v1.5/v1.5/welcome.html">v1.5</a>
-        </li>
-        <li class="version">
-          <a href="../v1.4/v1.4/welcome.html">v1.4</a>
-        </li>
-        <li class="version">
-          <a href="../v1.3/v1.3/welcome.html">v1.3</a>
-        </li>
-        <li class="version">
-          <a href="../v1.2/v1.2/welcome.html">v1.2</a>
-        </li>
-        <li class="version">
-          <a href="../v1.1/v1.1/welcome.html">v1.1</a>
-        </li>
-        <li class="version">
-          <a href="../v1.0/v1.0/welcome.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -2934,7 +2907,7 @@ expression::type</code></pre>
 <div class="sect3">
 <h4 id="标量子查询"><a class="anchor" href="#标量子查询"></a>6.2.11. 标量子查询</h4>
 <div class="paragraph">
-<p>一个标量子查询是一种圆括号内的普通 <code>SELECT</code> 查询，它刚好返回一行一列（关于书写查询可见 <a href="http://www.postgresql.org/docs/17/queries.html">第 7 章</a>）。`SELECT`查询被执行并且该单一返回值被使用在周围的值表达式中。将一个返回超过一行或一列的查询作为一个标量子查询使用是一种错误（但是如果在一次特定执行期间该子查询没有返回行则不是错误，该标量结果被当做为空）。该子查询可以从周围的查询中引用变量，这些变量在该子查询的任何一次计算中都将作为常量。对于其他涉及子查询的表达式还可见 <a href="http://www.postgresql.org/docs/17/functions-subquery.html">第 9.23 节</a>。</p>
+<p>一个标量子查询是一种圆括号内的普通 <code>SELECT</code> 查询，它刚好返回一行一列（关于书写查询可见 <a href="http://www.postgresql.org/docs/17/queries.html">第 7 章</a>）。`SELECT`查询被执行并且该单一返回值被使用在周围的值表达式中。将一个返回超过一行或一列的查询作为一个标量子查询使用是一种错误（但是如果在一次特定执行期间该子查询没有返回行则不是错误，该标量结果被当作为空）。该子查询可以从周围的查询中引用变量，这些变量在该子查询的任何一次计算中都将作为常量。对于其他涉及子查询的表达式还可见 <a href="http://www.postgresql.org/docs/17/functions-subquery.html">第 9.23 节</a>。</p>
 </div>
 <div class="paragraph">
 <p>例如，下列语句会寻找每个州中最大的城市人口：</p>
@@ -3344,16 +3317,6 @@ SELECT concat_lower_or_upper(a =&gt; 'Hello', uppercase =&gt; true, b =&gt; 'Wor
 <div class="sect1">
 <h2 id="oracle兼容功能"><a class="anchor" href="#oracle兼容功能"></a>7. Oracle兼容功能</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p><strong>详见：</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>[GUC变量](<a href="https://docs.ivorysql.org/cn/ivorysql-doc/v4.5/v4.5/15" class="bare">https://docs.ivorysql.org/cn/ivorysql-doc/v4.5/v4.5/15</a>)</p>
-</li>
-</ul>
-</div>
 <div class="sect2">
 <h3 id="更改表"><a class="anchor" href="#更改表"></a>7.1. 更改表</h3>
 <div class="sect3">
@@ -3369,10 +3332,10 @@ action:
     | DROP [ COLUMN ] ( column_name [, ... ] )
 
 add_coldef:
-    cloumn_name data_type
+    column_name data_type
 
 modify_coldef:
-    cloumn_name data_type alter_using
+    column_name data_type alter_using
 
 alter_using:
     USING expression</code></pre>
@@ -3385,7 +3348,7 @@ alter_using:
 <p><code>name</code> 表名.</p>
 </div>
 <div class="paragraph">
-<p><code>cloumn_name</code> 列名.</p>
+<p><code>column_name</code> 列名.</p>
 </div>
 <div class="paragraph">
 <p><code>data_type</code> 列类型.</p>
@@ -5550,7 +5513,7 @@ DETAIL:  Key (b)=(11) already exists.</code></pre>
 <p>将新表附加到具有全局唯一索引的分区表时，系统将对所有现有分区进行重复检查。 如果在现有分区中发现与附加表中的元组匹配的重复项，则会引发错误并且附加失败。</p>
 </div>
 <div class="paragraph">
-<p>附加需要所有现有分区上的共享锁（sharedlock）。 如果其中一个分区正在进行并发 INSERT，则附加将等待它先完成。 这可以在未来的版本中改进</p>
+<p>附加需要所有现有分区上的共享锁（SHARE LOCK）。 如果其中一个分区正在进行并发 INSERT，则附加将等待它先完成。 这可以在未来的版本中改进</p>
 </div>
 </div>
 <div class="sect3">
@@ -5584,8 +5547,8 @@ DETAIL:  Key (b)=(572814) is duplicated.</code></pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="4.2.html">集群搭建</a></span>
-  <span class="next"><a href="4.4.html">运维管理指南</a></span>
+  <span class="prev"><a href="4.5.html">迁移指南</a></span>
+  <span class="next"><a href="4.6.1.html">K8S部署</a></span>
 </nav>
 </article>
   </div>

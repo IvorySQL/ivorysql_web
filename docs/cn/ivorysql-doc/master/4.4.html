@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>运维管理指南 :: IvorySQL文档中心</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/4.4.html">
-    <link rel="prev" href="4.3.html">
-    <link rel="next" href="4.5.html">
+    <link rel="prev" href="4.6.3.html">
+    <link rel="next" href="4.7.1.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../_/css/site.css">
     <script>var uiRootPath = '../../_'</script>
@@ -83,13 +83,43 @@
     <a class="nav-link" href="4.2.html">集群搭建</a>
   </li>
   <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.5.html">迁移指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="4.3.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.1.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.2.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.4.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.3.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
   </li>
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="4.4.html">运维管理指南</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="4.5.html">迁移指南</a>
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.1.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.2.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -162,6 +192,15 @@
     <span class="nav-text">兼容框架</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.1.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.2.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.4.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="6.2.1.html">initdb过程</a>
   </li>
 </ul>
@@ -230,70 +269,61 @@
     <span class="nav-text">Oracle兼容功能列表</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.1.html">1、框架设计</a>
+    <a class="nav-link" href="7.3.html">1、大小写转换</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.2.html">2、GUC框架</a>
+    <a class="nav-link" href="7.5.html">2、LIKE操作符</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.3.html">3、大小写转换</a>
+    <a class="nav-link" href="7.6.html">3、匿名块</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.4.html">4、双模式设计</a>
+    <a class="nav-link" href="7.7.html">4、函数与存储过程</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.5.html">5、兼容Oracle like</a>
+    <a class="nav-link" href="7.8.html">5、内置数据类型与内置函数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.6.html">6、兼容Oracle匿名块</a>
+    <a class="nav-link" href="7.9.html">6、端口与IP</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.7.html">7、兼容Oracle函数与存储过程</a>
+    <a class="nav-link" href="7.10.html">7、XML函数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.8.html">8、内置数据类型与内置函数</a>
+    <a class="nav-link" href="7.11.html">8、sequence</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.9.html">9、新增Oracle兼容模式的端口与IP</a>
+    <a class="nav-link" href="7.12.html">9、包</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.10.html">10、XML函数</a>
+    <a class="nav-link" href="7.13.html">10、不可见列</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.11.html">11、兼容Oracle sequence</a>
+    <a class="nav-link" href="7.14.html">11、RowID</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.12.html">12、包</a>
+    <a class="nav-link" href="7.15.html">12、OUT 参数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.13.html">13、不可见列</a>
+    <a class="nav-link" href="7.16.html">13、%TYPE、%ROWTYPE</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.14.html">14、RowID</a>
+    <a class="nav-link" href="7.17.html">14、NLS 参数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.15.html">15、OUT 参数</a>
+    <a class="nav-link" href="7.18.html">15、Force View</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.16.html">16、%TYPE、%ROWTYPE</a>
+    <a class="nav-link" href="7.19.html">16、嵌套子函数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.17.html">17、NLS 参数</a>
+    <a class="nav-link" href="7.20.html">17、sys_guid 函数</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.18.html">18、Force View</a>
+    <a class="nav-link" href="7.21.html">18、空字符串转null</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.19.html">19、嵌套子函数</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.20.html">20、sys_guid 函数</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.21.html">21、空字符串转null</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="7.22.html">22、CALL INTO</a>
+    <a class="nav-link" href="7.22.html">19、CALL INTO</a>
   </li>
 </ul>
   </li>
@@ -350,64 +380,7 @@
           <a href="../v4.6/v4.6/welcome.html">v4.6</a>
         </li>
         <li class="version">
-          <a href="../v4.5/v4.5/welcome.html">v4.5</a>
-        </li>
-        <li class="version">
-          <a href="../v4.4/v4.4/welcome.html">v4.4</a>
-        </li>
-        <li class="version">
-          <a href="../v4.2/v4.2/welcome.html">v4.2</a>
-        </li>
-        <li class="version">
-          <a href="../v4.0/v4.0/welcome.html">v4.0</a>
-        </li>
-        <li class="version">
-          <a href="../v3.4/v3.4/welcome.html">v3.4</a>
-        </li>
-        <li class="version">
-          <a href="../v3.3/v3.3/welcome.html">v3.3</a>
-        </li>
-        <li class="version">
-          <a href="../v3.2/v3.2/welcome.html">v3.2</a>
-        </li>
-        <li class="version">
-          <a href="../v3.1/v3.1/welcome.html">v3.1</a>
-        </li>
-        <li class="version">
-          <a href="../v3.0/v3.0/welcome.html">v3.0</a>
-        </li>
-        <li class="version">
-          <a href="../v2.3/v2.3/welcome.html">v2.3</a>
-        </li>
-        <li class="version">
-          <a href="../v2.2/v2.2/welcome.html">v2.2</a>
-        </li>
-        <li class="version">
-          <a href="../v2.1/v2.1/welcome.html">v2.1</a>
-        </li>
-        <li class="version">
           <a href="../v1.17/v1.17/welcome.html">v1.17</a>
-        </li>
-        <li class="version">
-          <a href="../v1.8/v1.8/welcome.html">v1.8</a>
-        </li>
-        <li class="version">
-          <a href="../v1.5/v1.5/welcome.html">v1.5</a>
-        </li>
-        <li class="version">
-          <a href="../v1.4/v1.4/welcome.html">v1.4</a>
-        </li>
-        <li class="version">
-          <a href="../v1.3/v1.3/welcome.html">v1.3</a>
-        </li>
-        <li class="version">
-          <a href="../v1.2/v1.2/welcome.html">v1.2</a>
-        </li>
-        <li class="version">
-          <a href="../v1.1/v1.1/welcome.html">v1.1</a>
-        </li>
-        <li class="version">
-          <a href="../v1.0/v1.0/welcome.html">v1.0</a>
         </li>
       </ul>
     </li>
@@ -572,7 +545,7 @@
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/local/pqsql/bin/psql -d postgres -f outputfile</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/local/pgsql/bin/psql -d postgres -f outputfile</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -590,7 +563,115 @@
 <div class="sect2">
 <h3 id="利用pg_upgrade-工具进行升级"><a class="anchor" href="#利用pg_upgrade-工具进行升级"></a>1.3. 利用pg_upgrade 工具进行升级</h3>
 <div class="paragraph">
-<p>pg_upgrade 工具可以支持IvorySQL跨版本的就地升级。 升级可以在数分钟内被执行，特别是使用&#8212;&#8203;link模式时。它要求和上面的pg_dumpall相似的步骤，例如启动/停止 服务器、运行initdb。pg_upgrade <a href="https://www.postgresql.org/docs/current/pgupgrade.html">文档</a>概述了所需的步骤。</p>
+<p>pg_upgrade 工具是PostgreSQL 内置的跨版本升级工具，能够对数据库就地升级，不需要执行导出和导入操作。IvorySQL源自于PG，因此也能够使用pg_upgrade 工具进行大版本升级。 下面简要介绍一下CentOS8平台上如何使用 pg_upgrade 将IvorySQL升级到最新的5.0版本。</p>
+</div>
+<div class="paragraph">
+<p>pg_upgrade 提供了升级前的兼容性检查（-c 或者 --check 选项）功能，可以发现插件、数据类型不兼容等问题。如果指定了&#8212;&#8203;link 选项，新版本服务可以直接使用原有的数据库文件而不需要执行复制，通常可以在几分钟内完成升级操作。</p>
+</div>
+<div class="paragraph">
+<p>常用的参数包括：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>-b bindir，--old-bindir=bindir：旧的 IvorySQL 可执行文件目录；</p>
+</li>
+<li>
+<p>-B bindir，--new-bindir=bindir：新的 IvorySQL 可执行文件目录；</p>
+</li>
+<li>
+<p>-d configdir，--old-datadir=configdir：旧版本的数据目录；</p>
+</li>
+<li>
+<p>-D configdir，--new-datadir=configdir：新版本的数据目录；</p>
+</li>
+<li>
+<p>-c，--check：只检查升级兼容性，不更改任何数据；</p>
+</li>
+<li>
+<p>-k，--link：硬链接方式升级；</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>升级准备：</p>
+</div>
+<div class="paragraph">
+<p>首先停止旧版本的IvorySQL4.6数据库：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/ivory-4/bin/pg_ctl -D ./data stop</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>然后安装新版本的IvorySQL5.0数据库：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">dnf install -y ivorysql5-5.0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>初始化新版IvorySQL5.0数据目录：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/ivory-5/bin/initdb -D ./data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>检查版本兼容性：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/ivory-5/bin/pg_upgrade --old-datadir=/home/ivorysql/test/4.6/data --new-datadir=/home/ivorysql/test/5.0/data --old-bindir=/usr/ivory-4/bin/ --new-bindir=/usr/ivory-5/bin/ --check</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>最后出现 “Clusters are compatible” 表明两个版本之间的数据不存在兼容性问题，可以进行升级。</p>
+</div>
+<div class="paragraph">
+<p>正式升级：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/ivory-5/bin/pg_upgrade --old-datadir=/home/ivorysql/test/4.6/data --new-datadir=/home/ivorysql/test/5.0/data --old-bindir=/usr/ivory-4/bin/ --new-bindir=/usr/ivory-5/bin/</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>看到 Upgrade Complete 说明升级已经顺利完成。</p>
+</div>
+<div class="paragraph">
+<p>更新统计信息：</p>
+</div>
+<div class="paragraph">
+<p>pg_upgrade 会创建新的系统表，并重用旧的数据进行升级，统计信息并不会随升级过程迁移，所以在启用新版本之前，应该首先重新收集统计信息，避免没有统计信息导致错误的查询计划。
+启动新版本数据库</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/usr/ivory-5/bin/pg_ctl -D ./data -l logfile start</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>手动运行vacuum命令</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">vacuum --all --analyze-in-stage -h 127.0.0.1 -p 1521</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>升级后清理</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">rm -rf /home/ivorysql/test/4.6/data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>pg_upgrade <a href="https://www.postgresql.org/docs/current/pgupgrade.html">文档</a>概述了上述所需的步骤。</p>
 </div>
 </div>
 <div class="sect2">
@@ -608,7 +689,7 @@
 <h2 id="管理ivorysql版本"><a class="anchor" href="#管理ivorysql版本"></a>2. 管理IvorySQL版本</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>IvorySQL基于PostgreSQL开发，版本更新频率与PostgreSQL版本更新频率保持一致，每年更新一个大版本，每季度更新一个小版本。IvorySQL目前发布的版本有1.0到4.5，分别基于PostgreSQL 14.0到17.5进行开发，最新版本为IvorySQL 4.5，基于PostgreSQL 17.5进行开发。IvorySQL 的所有版本全部都做到了向下兼容。相关版本特性可以查看 <a href="https://www.ivorysql.org/zh-CN/releases-page">官网</a>。</p>
+<p>IvorySQL基于PostgreSQL开发，版本更新频率与PostgreSQL版本更新频率保持一致，每年更新一个大版本，每季度更新一个小版本。IvorySQL目前发布的版本有1.0到5.0，分别基于PostgreSQL 14.0到18.0进行开发，最新版本为IvorySQL 5.0，基于PostgreSQL 18.0进行开发。IvorySQL 的所有版本全部都做到了向下兼容。相关版本特性可以查看 <a href="https://www.ivorysql.org/zh-CN/releases-page">官网</a>。</p>
 </div>
 </div>
 </div>
@@ -1806,7 +1887,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2 ORDER BY t1.fivethous;
 
                                                                  QUERY PLAN
 -------------------------------------------------------------------​-------------------------------------------------------------------​------
- Sort  (cost=717.34..717.59 rows=101 width=488) (actual time=7.761..7.774 rows=100 loops=1)
+ Sort  (cost=717.34..718.09 rows=101 width=488) (actual time=7.761..7.774 rows=100 loops=1)
    Sort Key: t1.fivethous
    Sort Method: quicksort  Memory: 77kB
    -&gt;  Hash Join  (cost=230.47..713.98 rows=101 width=488) (actual time=0.711..7.427 rows=100 loops=1)
@@ -2471,8 +2552,8 @@ WHERE somethingelse;</code></pre>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="4.3.html">开发者指南</a></span>
-  <span class="next"><a href="4.5.html">迁移指南</a></span>
+  <span class="prev"><a href="4.6.3.html">Docker Swarm &amp; Docker Compose部署</a></span>
+  <span class="next"><a href="4.7.1.html">IvorySQL Cloud安装</a></span>
 </nav>
 </article>
   </div>

@@ -703,7 +703,8 @@ will win in case of conflicts with any annotations or labels a user configures e
 </div>
 <div class="paragraph">
 <p>Finally, if you are exposing your Services externally and are relying on TLS
-verification, you will need to use the <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">custom TLS</a>
+verification, you will need to use the
+<a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">custom TLS</a>
 features of IVYO).</p>
 </div>
 </div>
@@ -3004,7 +3005,8 @@ cluster should be accessible via the network and allow TLS authentication (TLS i
 In the following manifest, we have <code>standby.enabled</code> set to <code>true</code> and have provided both the <code>host</code>
 and <code>port</code> that point to the primary cluster. We have also defined <code>customTLSSecret</code> and
 <code>customReplicationTLSSecret</code> to provide certs that allow the standby to authenticate to the primary.
-For this type of standby, you must use <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">custom TLS</a>:</p>
+For this type of standby, you must use
+<a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">custom TLS</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -3663,7 +3665,7 @@ Note that by default, the connection string disable JDBC managing prepared trans
 <div class="sect2">
 <h3 id="tls"><a class="anchor" href="#tls"></a>11.3. TLS</h3>
 <div class="paragraph">
-<p>IVYO deploys every cluster and component over TLS. This includes the PgBouncer connection pooler. If you are using your own <a href="#./customize-cluster.md#customize-tls" class="xref unresolved">custom TLS setup</a>, you will need to provide a Secret reference for a TLS key / certificate pair for PgBouncer in <code>spec.proxy.pgBouncer.customTLSSecret</code>.</p>
+<p>IVYO deploys every cluster and component over TLS. This includes the PgBouncer connection pooler. If you are using your own custom TLS setup, you will need to provide a Secret reference for a TLS key / certificate pair for PgBouncer in <code>spec.proxy.pgBouncer.customTLSSecret</code>.</p>
 </div>
 <div class="paragraph">
 <p>Your TLS certificate for PgBouncer should have a Common Name (CN) setting that matches the PgBouncer Service name. This is the name of the cluster suffixed with <code>-pgbouncer</code>. For example, for our <code>hippo</code> cluster this would be <code>hippo-pgbouncer</code>. For the <code>keycloakdb</code> example, it would be <code>keycloakdb-pgbouncer</code>.</p>

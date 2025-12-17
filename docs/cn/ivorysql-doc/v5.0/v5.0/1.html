@@ -376,6 +376,9 @@
         <li class="version is-latest">
           <a href="../../master/welcome.html">master</a>
         </li>
+        <li class="version">
+          <a href="../../v5.1/v5.1/welcome.html">v5.1</a>
+        </li>
         <li class="version is-current">
           <a href="welcome.html">v5.0</a>
         </li>
@@ -585,8 +588,8 @@
 <div class="ulist">
 <ul>
 <li>
-<p>容器化部署支持（Docker Compose &amp; Docker Swarm）：
-支持在 Docker Swarm 与 Docker Compose 中部署单实例数据库与高可用集群。</p>
+<p>容器化部署支持（Docker Compose &amp; podman &amp; Docker Swarm）：
+支持在 Docker Compose 、 podman 和 Docker Swarm 环境中部署单机版 IvorySQL 数据库及高可用集群。</p>
 </li>
 <li>
 <p>容器化部署支持（Kubernetes 基础版）：
@@ -665,9 +668,6 @@ Operator v5 适配 IvorySQL v5.0，并同步升级系统组件版本与数据库
 </li>
 <li>
 <p>扩展 GitHub 工作流回归测试，覆盖 <code>--with-libnuma</code> 配置，防止未来在启用 NUMA 的主机上出问题：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/869">#869</a></p>
-</li>
-<li>
-<p>让 <code>psql</code> 用户可以通过 <code>\h create package</code> 获取 CREATE PACKAGE 语法帮助，补齐 PL/iSQL 包的 CLI 文档：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/936">#936</a></p>
 </li>
 <li>
 <p>排除 MainLoop 悬空指针引发的并发压力下间歇性段错误：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/898">#898</a></p>

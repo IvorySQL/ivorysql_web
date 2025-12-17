@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IvorySQL :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v5.1/v5.1/1.html">
+    <link rel="prev" href="welcome.html">
+    <link rel="next" href="2.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v5.1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.1.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.2.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.3.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.1.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.2.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.5.html">迁移指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.3.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.1.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.2.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.4.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.3.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.4.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.1.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.2.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="cpu_arch_adp.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="os_arch_adp.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.0.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.1.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.2.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.3.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.4.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.5.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.6.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.7.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.8.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.9.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.10.html">system_stats</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.1.1.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.1.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.2.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.4.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.2.1.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.1.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.3.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.2.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.4.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.5.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.6.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.7.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.8.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.9.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.10.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.11.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.12.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.1.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.2.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.5.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.3.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.5.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.6.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.7.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.8.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.9.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.10.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.11.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.12.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.13.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.14.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.15.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.16.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.17.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.18.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.19.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.20.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.21.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.22.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL贡献指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="8.1.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="8.2.html">asciidoc语法快速参考</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="100.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="110.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">v5.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../master/welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../master/welcome.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">文档中心</a></li>
+    <li>IvorySQL</li>
+    <li><a href="1.html">发行说明</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v5.1/v5.1/1.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v5.1/CN/modules/ROOT/pages/v5.1/1.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<div class="sect1">
+<h2 id="版本概览"><a class="anchor" href="#版本概览"></a>1. 版本概览</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>[<strong>发布日期：2025 年 11 月 25 日</strong>]</p>
+</div>
+<div class="paragraph">
+<p>IvorySQL 5.0 基于 PostgreSQL 18.0 全面升级：Oracle 兼容性再突破，生态组件集成再升级，云原生深度支持，配合全平台安装包与在线丝滑体验，让复杂变得简单。
+有关完整更新列表，请访问我们的 <a href="https://docs.ivorysql.org/">文档站点</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="增强内容"><a class="anchor" href="#增强内容"></a>2. 增强内容</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>PostgreSQL 18.0</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>新增异步 I/O（AIO）子系统，可提升顺序扫描、位图堆扫描、vacuum 等操作的性能。</p>
+</li>
+<li>
+<p>pg_upgrade 现在会保留优化器统计信息。</p>
+</li>
+<li>
+<p>支持 "skip scan" 查找，使多列 B-tree 索引能够在更多场景下使用。</p>
+</li>
+<li>
+<p>提供用于生成按时间排序 UUID 的 uuidv7() 函数。</p>
+</li>
+<li>
+<p>支持虚拟生成列（在读取时计算值），并将其设为生成列的默认模式。</p>
+</li>
+<li>
+<p>增加 OAuth 认证能力。</p>
+</li>
+<li>
+<p>在 INSERT、UPDATE、DELETE 和 MERGE 的 RETURNING 子句中支持 OLD 和 NEW。</p>
+</li>
+<li>
+<p>对 PRIMARY KEY、UNIQUE 与 FOREIGN KEY 引入时间区间约束。</p>
+</li>
+</ol>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>更多细节请参阅 <a href="https://www.postgresql.org/docs/release/18.0/">PostgreSQL 18.0 发布说明</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="新特性"><a class="anchor" href="#新特性"></a>3. 新特性</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="新增21-项-oracle-兼容能力"><a class="anchor" href="#新增21-项-oracle-兼容能力"></a>3.1. 新增21 项 Oracle 兼容能力</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Oracle 兼容 ROWID：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/126">#126</a><br>
+让 IvorySQL 行标识符与 Oracle 语义保持一致，便于跨数据库工具协同。</p>
+</li>
+<li>
+<p>PL/iSQL CALL 调用语法：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/764">#764</a><br>
+新增 Oracle 风格的 <code>CALL</code> 入口，实现存储过程一致的调用体验。</p>
+</li>
+<li>
+<p>PL/iSQL <code>%ROWTYPE</code>：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/765">#765</a><br>
+允许变量复用整张表或游标行的结构，便于紧凑编写 PL/iSQL。</p>
+</li>
+<li>
+<p>PL/iSQL <code>%TYPE</code>：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/766">#766</a><br>
+支持变量继承既有列或变量的类型，降低类型漂移风险。</p>
+</li>
+<li>
+<p>区分大小写兼容开关：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/767">#767</a><br>
+在需要时可保留标识符大小写，以匹配 Oracle 行为。</p>
+</li>
+<li>
+<p>NLS 参数兼容性：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/768">#768</a><br>
+支持 <code>NLS_DATE_FORMAT</code>、<code>NLS_TIMESTAMP_FORMAT</code> 等 Oracle 风格 NLS 设置。</p>
+</li>
+<li>
+<p>空字符串转 NULL：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/769">#769</a><br>
+将长度为零的字符串转换为 NULL，以遵循 Oracle 的兼容规则。</p>
+</li>
+<li>
+<p>解析器切换能力：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/770">#770</a><br>
+可在 Oracle 与 PostgreSQL 解析器之间切换，实现会话级灵活性。</p>
+</li>
+<li>
+<p>GB18030 数据库编码：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/771">#771</a><br>
+为中国市场提供 GB18030 初始化和创建数据库选项。</p>
+</li>
+<li>
+<p>Oracle 兼容 <code>SYS_GUID</code>：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/773">#773</a><br>
+实现 Oracle <code>SYS_GUID</code> 函数，生成基于 RAW 的 GUID。</p>
+</li>
+<li>
+<p>Oracle 兼容 <code>SYS_CONTEXT</code>：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/774">#774</a><br>
+提供 Oracle <code>SYS_CONTEXT</code> API，用于查询会话与环境元数据。</p>
+</li>
+<li>
+<p>Oracle 兼容 <code>USERENV</code>：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/775">#775</a><br>
+引入 <code>USERENV</code> 函数，使会话可检查 Oracle 风格的上下文信息。</p>
+</li>
+<li>
+<p>Oracle 兼容函数语法：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/776">#776</a><br>
+支持 EDITIONABLE/NONEDITIONABLE、<code>RETURN</code>、<code>IS</code>、<code>OUT &#8230;&#8203; NOCOPY</code> 等 Oracle 结构。</p>
+</li>
+<li>
+<p>Oracle 兼容过程语法：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/777">#777</a><br>
+支持包含 Oracle 选项的过程 DDL、EXEC 调用以及 ALTER PROCEDURE。</p>
+</li>
+<li>
+<p>libpq OUT 参数传递：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/778">#778</a><br>
+扩展客户端协议，使 OUT 参数可像 OCI 一样被消费。</p>
+</li>
+<li>
+<p>过程 OUT 参数：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/779">#779</a><br>
+存储过程现在可按 Oracle 约定声明 IN、OUT、IN OUT 模式。</p>
+</li>
+<li>
+<p>函数 OUT 参数：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/780">#780</a><br>
+函数支持 Oracle 风格 OUT（含 IN OUT）参数。</p>
+</li>
+<li>
+<p>嵌套子程序：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/781">#781</a><br>
+允许在子程序内部定义函数或过程，并支持重载。</p>
+</li>
+<li>
+<p>Oracle 兼容 <code>INSTR</code>：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/782">#782</a><br>
+与 Oracle <code>INSTR</code> 行为保持一致，覆盖子串搜索与位置判断。</p>
+</li>
+<li>
+<p>Oracle 兼容 FORCE VIEW：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/783">#783</a><br>
+允许在引用对象尚未存在时创建视图，重现 Oracle FORCE 选项。</p>
+</li>
+<li>
+<p>Oracle 兼容 LIKE 运算符：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/784">#784</a><br>
+对齐 Oracle 的通配符语义，确保匹配行为可预测。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="在线体验与多平台发行包"><a class="anchor" href="#在线体验与多平台发行包"></a>3.2. 在线体验与多平台发行包</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>在线体验：IvorySQL v5.0：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/887">#887</a><br>
+上线交互式浏览器环境，用户可实时体验与评估 IvorySQL v5.0，无需安装。</p>
+</li>
+<li>
+<p>全平台打包：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/949">#949</a><br>
+为 X86、ARM、MIPS、龙芯架构等平台提供多架构安装介质。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="云原生与容器化"><a class="anchor" href="#云原生与容器化"></a>3.3. 云原生与容器化</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>容器化部署支持（Docker Compose &amp; Docker Swarm）：
+支持在 Docker Swarm 与 Docker Compose 中部署单实例数据库与高可用集群。</p>
+</li>
+<li>
+<p>容器化部署支持（Kubernetes 基础版）：
+使用 Helm 在 Kubernetes（K8S）中部署单实例数据库与高可用集群。</p>
+</li>
+<li>
+<p>发布 IvorySQL Operator v5（Kubernetes 进阶版）：
+Operator v5 适配 IvorySQL v5.0，并同步升级系统组件版本与数据库扩展版本。</p>
+</li>
+<li>
+<p>发布 IvorySQL Cloud v5（统一全生命周期与可视化控制平面）：
+提供可视化托管控制平面，覆盖订阅、全生命周期编排以及生态集成。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="新增-10-个-postgresql-扩展"><a class="anchor" href="#新增-10-个-postgresql-扩展"></a>3.4. 新增 10 个 PostgreSQL 扩展</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>pg_cron：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/882">#882</a><br>
+通过 pg_cron 集成在数据库层内执行计划任务。</p>
+</li>
+<li>
+<p>pgAudit：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/929">#929</a><br>
+借助 PostgreSQL 标准日志能力输出详尽的会话 / 对象审计记录。</p>
+</li>
+<li>
+<p>PostGIS：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/880">#880</a><br>
+提供空间数据处理与地理分析能力。</p>
+</li>
+<li>
+<p>pgRouting：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/881">#881</a><br>
+引入网络与路径分析能力。</p>
+</li>
+<li>
+<p>PGroonga：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/879">#879</a><br>
+增强全文检索。</p>
+</li>
+<li>
+<p>ddlx：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/877">#877</a><br>
+支持 ddlx，便于高级模式洞察与自动化 DDL 生成。</p>
+</li>
+<li>
+<p>pgsql-http：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/883">#883</a><br>
+允许数据库内部发起 HTTP/HTTPS 请求，实现与外部 Web 服务的无缝通信。</p>
+</li>
+<li>
+<p>system_stats：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/946">#946</a><br>
+通过 system_stats 提供系统级统计信息。</p>
+</li>
+<li>
+<p>plpgsql_check：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/915">#915</a><br>
+在运行前对 PL/pgSQL 函数做静态分析，定位错误、警告与潜在问题。</p>
+</li>
+<li>
+<p>pgvector：Feature <a href="https://github.com/IvorySQL/IvorySQL/issues/878">#878</a><br>
+融合 pgvector，为 AI/ML 工作负载提供原生向量相似度检索。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="缺陷修复"><a class="anchor" href="#缺陷修复"></a>4. 缺陷修复</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>修复 <code>unused_oids</code> 与 <code>duplicate_oids</code> 目录工具，使头文件扫描能准确检测冲突且无误报：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/841">#841</a></p>
+</li>
+<li>
+<p>为 <code>libpq/ivytest</code> 产物新增 <code>.gitignore</code>，避免生成的二进制与日志污染开发树：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/843">#843</a></p>
+</li>
+<li>
+<p>扩展 GitHub 工作流回归测试，覆盖 <code>--with-libnuma</code> 配置，防止未来在启用 NUMA 的主机上出问题：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/869">#869</a></p>
+</li>
+<li>
+<p>让 <code>psql</code> 用户可以通过 <code>\h create package</code> 获取 CREATE PACKAGE 语法帮助，补齐 PL/iSQL 包的 CLI 文档：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/936">#936</a></p>
+</li>
+<li>
+<p>排除 MainLoop 悬空指针引发的并发压力下间歇性段错误：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/898">#898</a></p>
+</li>
+<li>
+<p>修复 <code>oracle_test/modules/*/sql</code> 的测试框架假设，让 Oracle 兼容测试套件再次端到端运行：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/897">#897</a></p>
+</li>
+<li>
+<p>更新 <code>README.md</code> 与 <code>README_CN.md</code>，同步 IvorySQL v5 特性、打包与快速上手信息：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/896">#896</a></p>
+</li>
+<li>
+<p>更正全局唯一索引的强制机制，使相关回归测试在所有支持平台上稳定通过：Issue <a href="https://github.com/IvorySQL/IvorySQL/issues/894">#894</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="源码仓库"><a class="anchor" href="#源码仓库"></a>5. 源码仓库</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL 的主要代码仓库：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>IvorySQL 数据库源码：https://github.com/IvorySQL/IvorySQL</p>
+</li>
+<li>
+<p>IvorySQL 官网：https://github.com/IvorySQL/Ivory-www</p>
+</li>
+<li>
+<p>IvorySQL 文档：https://github.com/IvorySQL/IvorySQL-docs</p>
+</li>
+<li>
+<p>IvorySQL Docker：https://github.com/IvorySQL/docker_library</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="贡献者名单"><a class="anchor" href="#贡献者名单"></a>6. 贡献者名单</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以下人员（按字母顺序）作为补丁作者、提交者、审阅者、测试者或问题报告者，为本次发布做出了贡献。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ccwxl</p>
+</li>
+<li>
+<p>Cédric Villemain</p>
+</li>
+<li>
+<p>Grant Zhou</p>
+</li>
+<li>
+<p>Imran Zaheer</p>
+</li>
+<li>
+<p>luss</p>
+</li>
+<li>
+<p>Martin Gerhardy</p>
+</li>
+<li>
+<p>omstack</p>
+</li>
+<li>
+<p>otegami</p>
+</li>
+<li>
+<p>rophy</p>
+</li>
+<li>
+<p>shlei6067</p>
+</li>
+<li>
+<p>sjw1933</p>
+</li>
+<li>
+<p>Yasir Hussain Shah</p>
+</li>
+<li>
+<p>初少林</p>
+</li>
+<li>
+<p>崇鹏豪</p>
+</li>
+<li>
+<p>高雪玉</p>
+</li>
+<li>
+<p>矫顺田</p>
+</li>
+<li>
+<p>冯明冉</p>
+</li>
+<li>
+<p>付贝</p>
+</li>
+<li>
+<p>类延良</p>
+</li>
+<li>
+<p>李苑</p>
+</li>
+<li>
+<p>梁翔宇</p>
+</li>
+<li>
+<p>刘晓辉</p>
+</li>
+<li>
+<p>吕新杰</p>
+</li>
+<li>
+<p>牛世继</p>
+</li>
+<li>
+<p>彭冲</p>
+</li>
+<li>
+<p>潘振浩</p>
+</li>
+<li>
+<p>石卓妍</p>
+</li>
+<li>
+<p>隋戈</p>
+</li>
+<li>
+<p>孙锐克</p>
+</li>
+<li>
+<p>陶郑</p>
+</li>
+<li>
+<p>童水森</p>
+</li>
+<li>
+<p>王硕</p>
+</li>
+<li>
+<p>薛晓刚</p>
+</li>
+<li>
+<p>严少安</p>
+</li>
+<li>
+<p>杨世华</p>
+</li>
+<li>
+<p>赵法威</p>
+</li>
+<li>
+<p>张哲</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="welcome.html">欢迎</a></span>
+  <span class="next"><a href="2.html">关于IvorySQL</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

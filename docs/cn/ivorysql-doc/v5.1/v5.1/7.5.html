@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>兼容Oracle like :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v5.1/v5.1/7.5.html">
+    <link rel="prev" href="7.3.html">
+    <link rel="next" href="7.6.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v5.1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.1.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.2.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.3.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.1.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.2.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.5.html">迁移指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.3.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.1.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.2.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.4.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.3.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.4.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.1.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.2.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="cpu_arch_adp.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="os_arch_adp.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.0.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.1.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.2.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.3.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.4.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.5.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.6.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.7.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.8.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.9.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.10.html">system_stats</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.1.1.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.1.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.2.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.4.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.2.1.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.1.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.3.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.2.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.4.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.5.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.6.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.7.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.8.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.9.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.10.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.11.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.12.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.1.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.2.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.5.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.3.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="7.5.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.6.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.7.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.8.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.9.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.10.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.11.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.12.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.13.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.14.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.15.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.16.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.17.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.18.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.19.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.20.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.21.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.22.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL贡献指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="8.1.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="8.2.html">asciidoc语法快速参考</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="100.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="110.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">v5.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../master/welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../master/welcome.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">文档中心</a></li>
+    <li>IvorySQL</li>
+    <li>Oracle兼容功能列表</li>
+    <li><a href="7.5.html">2、LIKE操作符</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v5.1/v5.1/7.5.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v5.1/CN/modules/ROOT/pages/v5.1/7.5.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">兼容Oracle like</h1>
+<div class="sect1">
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>本文档意在为使用 like 模糊查询的人员提供一个深入了解兼容Oracle 的模糊查询like实现的过程，是like兼容的实现文档。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">数据库名称</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">like模糊查询</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">oracle</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">oracle的字符串类型是varchar2，支持对数字、日期、字符串字段类型的列用Like关键字配合通配符来实现模糊查询</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IvorySQL的字符串基本类型是text，所以like是以text为基础上，其他IvorySQL的类型能隐式转换成text，这样不用创建operator就能自动转换</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">create table t_ora_like (id int ,str1 varchar(8), date1 timestamp with time zone, date2 time with time zone, num int, str2 varchar(8));
+insert into t_ora_like (id ,str1 ,date1 ,date2) values (123456,'test1','2022-09-26 16:39:20','2022-09-26 16:39:20');
+insert into t_ora_like (id ,str1 ,date1 ,date2) values (123457,'test2','2022-09-26 16:40:20','2022-09-26 16:40:20');
+insert into t_ora_like (id ,str1 ,date1 ,date2) values (223456,'test3','2022-09-26 16:41:20','2022-09-26 16:41:20');
+insert into t_ora_like (id ,str1 ,date1 ,date2) values (123458,'test4','2022-09-26 16:42:20','2022-09-26 16:42:20');
+
+select * from t_ora_like where str1 like 'test%';
+   id   | str1  |               date1               |    date2    | num | str2
+--------+-------+-----------------------------------+-------------+-----+------
+ 123456 | test1 | 2022-09-26 16:39:20.000000 +08:00 | 16:39:20+08 |     |
+ 123457 | test2 | 2022-09-26 16:40:20.000000 +08:00 | 16:40:20+08 |     |
+ 223456 | test3 | 2022-09-26 16:41:20.000000 +08:00 | 16:41:20+08 |     |
+ 123458 | test4 | 2022-09-26 16:42:20.000000 +08:00 | 16:42:20+08 |     |
+(4 rows)
+
+select * from t_ora_like where date1 like '2022%';
+   id   | str1  |               date1               |    date2    | num | str2
+--------+-------+-----------------------------------+-------------+-----+------
+ 123456 | test1 | 2022-09-26 16:39:20.000000 +08:00 | 16:39:20+08 |     |
+ 123457 | test2 | 2022-09-26 16:40:20.000000 +08:00 | 16:40:20+08 |     |
+ 223456 | test3 | 2022-09-26 16:41:20.000000 +08:00 | 16:41:20+08 |     |
+ 123458 | test4 | 2022-09-26 16:42:20.000000 +08:00 | 16:42:20+08 |     |
+(4 rows)
+
+select * from t_ora_like where date2 like '16%';
+   id   | str1  |               date1               |    date2    | num | str2
+--------+-------+-----------------------------------+-------------+-----+------
+ 123456 | test1 | 2022-09-26 16:39:20.000000 +08:00 | 16:39:20+08 |     |
+ 123457 | test2 | 2022-09-26 16:40:20.000000 +08:00 | 16:40:20+08 |     |
+ 223456 | test3 | 2022-09-26 16:41:20.000000 +08:00 | 16:41:20+08 |     |
+ 123458 | test4 | 2022-09-26 16:42:20.000000 +08:00 | 16:42:20+08 |     |
+(4 rows)
+
+select * from t_ora_like where id like '123%';
+   id   | str1  |               date1               |    date2    | num | str2
+--------+-------+-----------------------------------+-------------+-----+------
+ 123456 | test1 | 2022-09-26 16:39:20.000000 +08:00 | 16:39:20+08 |     |
+ 123457 | test2 | 2022-09-26 16:40:20.000000 +08:00 | 16:40:20+08 |     |
+ 123458 | test4 | 2022-09-26 16:42:20.000000 +08:00 | 16:42:20+08 |     |
+(3 rows)
+
+select * from t_ora_like where id like null;
+ id | str1 | date1 | date2 | num | str2
+----+------+-------+-------+-----+------
+(0 rows)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="7.3.html">1、大小写转换</a></span>
+  <span class="next"><a href="7.6.html">3、匿名块</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>GB18030 字符集服务端支持 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v5.1/v5.1/6.5.html">
+    <link rel="prev" href="6.4.2.html">
+    <link rel="next" href="7.3.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v5.1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.1.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.2.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.3.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.1.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.2.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.5.html">迁移指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.3.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.1.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.2.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.4.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.3.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.4.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.1.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.2.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="cpu_arch_adp.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="os_arch_adp.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.0.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.1.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.2.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.3.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.4.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.5.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.6.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.7.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.8.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.9.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.10.html">system_stats</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.1.1.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.1.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.2.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.4.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.2.1.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.1.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.3.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.2.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.4.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.5.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.6.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.7.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.8.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.9.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.10.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.11.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.12.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.1.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.2.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="6.5.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.3.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.5.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.6.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.7.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.8.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.9.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.10.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.11.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.12.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.13.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.14.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.15.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.16.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.17.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.18.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.19.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.20.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.21.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.22.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL贡献指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="8.1.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="8.2.html">asciidoc语法快速参考</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="100.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="110.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">v5.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../master/welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../master/welcome.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">文档中心</a></li>
+    <li>IvorySQL</li>
+    <li>IvorySQL架构设计</li>
+    <li><a href="6.5.html">国标GB18030</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v5.1/v5.1/6.5.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v5.1/CN/modules/ROOT/pages/v5.1/6.5.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">GB18030 字符集服务端支持</h1>
+<div class="sect1">
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>PostgreSQL 服务端提供了对 GB18030 字符集的全面支持。GB18030是中国国家标准，旨在包含所有汉字和多种少数民族文字，实现与Unicode的统一。在PostgreSQL中正确配置和使用GB18030字符集，对于处理和存储需要符合此标准的中文数据至关重要。</p>
+</div>
+<div class="paragraph">
+<p>服务端 GB18030 支持应当具备以下特性：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. 支持 GB18030 作为服务端编码：initdb -E GB18030 可用，SHOW server_encoding 显示为 GB18030。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2. 提供 GB18030 &lt;&#8594; UTF8 的双向转换。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3. 支持多字节边界判定。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="实现说明"><a class="anchor" href="#实现说明"></a>2. 实现说明</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="initdb时通过-e指定gb18030或gb18030_2022"><a class="anchor" href="#initdb时通过-e指定gb18030或gb18030_2022"></a>2.1. initdb时通过-E指定GB18030或GB18030_2022</h3>
+<div class="paragraph">
+<p>PostgreSQL已支持GB18030-2000版本作为客户端编码，通过扩展的方式支持GB18030_2022字符集与UTF的转换。</p>
+</div>
+<div class="paragraph">
+<p>修改pg_enc来实现可指定GB18030作为服务端编码，PostgreSQL编码框架中增加底层函数以供pg内核调用。</p>
+</div>
+<div class="paragraph">
+<p>设置一个全局变量is_load_gb18030_2022,默认为true,当用户指定-E选项时,在get_encoding_id中判断其设置的是否为gb18030_2022,如果是,将其字符串转为gb18030,然后将is_load_gb18030_2022 设为true,如果-E 选项为Gb18030,将其设为false。</p>
+</div>
+<div class="paragraph">
+<p>在适当位置判断是否要加载插件,如果是,执行load_gb18030_2022,并将ivorysql.conf中的shared_preload_library添加gb18030_2022。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">if (encoding_name &amp;&amp; *encoding_name)
+{
+    encoding_name_modify = pg_strdup(encoding_name);
+    if(pg_strcasecmp(encoding_name,"gb18030_2022") == 0)
+    {
+        encoding_name_modify = pg_strdup("gb18030");
+        is_load_gb18030_2022 =  true;
+    }
+    else if(pg_strcasecmp(encoding_name,"gb18030") == 0)
+    is_load_gb18030_2022 = false;
+
+    if ((enc = pg_valid_server_encoding((const char *)encoding_name_modify)) &gt;= 0)
+        return enc;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="多字节处理"><a class="anchor" href="#多字节处理"></a>2.2. 多字节处理</h3>
+<div class="paragraph">
+<p>wchar.c，增加 GB18030 的函数指针：</p>
+</div>
+<div class="paragraph">
+<p>pg_gb180302wchar_with_len(const unsigned char *from, pg_wchar *to, int len) gb18030 &#8594; wchar</p>
+</div>
+<div class="paragraph">
+<p>pg_wchar2gb18030_with_len(const pg_wchar *from, unsigned char *to, int len) wchar &#8594; gb18030</p>
+</div>
+<div class="paragraph">
+<p>pg_gb18030_mblen(const unsigned char *s)：返回 1/2/4。</p>
+</div>
+<div class="paragraph">
+<p>pg_gb18030_dsplen(const unsigned char *s)：ASCII 显示宽度 1；其它按 1 处理（与UTF8一致）。</p>
+</div>
+<div class="paragraph">
+<p>pg_gb18030_verifier(const unsigned char *s, int len)：校验字节范围，拒绝非法序列。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="与客户端的交互"><a class="anchor" href="#与客户端的交互"></a>2.3. 与客户端的交互</h3>
+<div class="paragraph">
+<p>接收数据: 如果一个使用 UTF-8 编码的客户端连接上来，服务端在接收到数据后，会调用其内部的 utf8_to_gb18030 函数，将数据转换为 GB18030 格式，然后才进行验证和存储。</p>
+</div>
+<div class="paragraph">
+<p>发送数据: 当该客户端执行 SELECT 查询时，服务端会从磁盘/内存中读取原生的 GB18030 数据，然后调用 gb18030_to_utf8 函数将其转换为 UTF-8 格式，最后再通过网络协议发送给客户端。</p>
+</div>
+<div class="paragraph">
+<p>新增GB18030-2022.xml数据文件，通过perl脚本解析为map文件，提供 gb18030_to_utf8() 与 utf8_to_gb18030()，优先表驱动，覆盖不到的区间通过算法映射。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">static inline uint32
+unicode_to_utf8word(uint32 c)
+{
+	uint32		word;
+
+	if (c &lt;= 0x7F)
+	{
+		word = c;
+	}
+	else if (c &lt;= 0x7FF)
+	{
+		word = (0xC0 | ((c &gt;&gt; 6) &amp; 0x1F)) &lt;&lt; 8;
+		word |= 0x80 | (c &amp; 0x3F);
+	}
+	else if (c &lt;= 0xFFFF)
+	{
+		word = (0xE0 | ((c &gt;&gt; 12) &amp; 0x0F)) &lt;&lt; 16;
+		word |= (0x80 | ((c &gt;&gt; 6) &amp; 0x3F)) &lt;&lt; 8;
+		word |= 0x80 | (c &amp; 0x3F);
+	}
+	else
+	{
+		word = (0xF0 | ((c &gt;&gt; 18) &amp; 0x07)) &lt;&lt; 24;
+		word |= (0x80 | ((c &gt;&gt; 12) &amp; 0x3F)) &lt;&lt; 16;
+		word |= (0x80 | ((c &gt;&gt; 6) &amp; 0x3F)) &lt;&lt; 8;
+		word |= 0x80 | (c &amp; 0x3F);
+	}
+
+	return word;
+}
+
+static uint32
+conv_18030_2022_to_utf8(uint32 code)
+{
+#define conv18030(minunicode, mincode, maxcode) \
+	if (code &gt;= mincode &amp;&amp; code &lt;= maxcode) \
+		return unicode_to_utf8word(gb_linear(code) - gb_linear(mincode) + minunicode)
+
+	conv18030(0x0452, 0x8130D330, 0x8136A531);
+	conv18030(0x2643, 0x8137A839, 0x8138FD38);
+	conv18030(0x361B, 0x8230A633, 0x8230F237);
+	conv18030(0x3CE1, 0x8231D438, 0x8232AF32);
+	conv18030(0x4160, 0x8232C937, 0x8232F837);
+	conv18030(0x44D7, 0x8233A339, 0x8233C931);
+	conv18030(0x478E, 0x8233E838, 0x82349638);
+	conv18030(0x49B8, 0x8234A131, 0x8234E733);
+	conv18030(0x9FA6, 0x82358F33, 0x8336C738);
+	conv18030(0xE865, 0x8336D030, 0x84308534);
+	conv18030(0xFA2A, 0x84309C38, 0x84318537);
+	conv18030(0xFFE6, 0x8431A234, 0x8431A439);
+	conv18030(0x10000, 0x90308130, 0xE3329A35);
+	/* No mapping exists */
+	return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="6.4.2.html">userenv</a></span>
+  <span class="next"><a href="7.3.html">1、大小写转换</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

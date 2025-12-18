@@ -447,7 +447,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>本章将详细介绍每种方式的安装、运行及卸载过程。想要更快获得IvorySQL，请参阅<a href="#v5.0/3.1.adoc#快速开始" class="xref unresolved">快速开始</a>。</p>
+<p>本章将详细介绍每种方式的安装、运行及卸载过程。想要更快获得IvorySQL，请参阅<a href="3.1.html#快速开始" class="xref page">快速开始</a>。</p>
 </div>
 <div class="paragraph">
 <p>同样，安装前请先创建一个用户，并赋予其root权限，安装、使用和卸载均以该用户执行。这里以ivorysql用户为例。</p>
@@ -475,7 +475,7 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y ivorysql5-5.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y ivorysql5-5.1</code></pre>
 </div>
 </div>
 </div>
@@ -492,7 +492,7 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/ivorysql:5.0-ubi8</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/ivorysql:5.1-ubi8</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -504,7 +504,7 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/ivorysql:5.0-ubi8</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/ivorysql:5.1-ubi8</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -606,7 +606,7 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_5.0/IvorySQL-5.0-9d890e9-20251120.x86_64.rpm</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_5.1/IvorySQL-5.1-62069c2-20251211.x86_64.rpm</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -641,8 +641,14 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y bison readline-devel zlib-devel openssl-devel
-$ sudo dnf groupinstall -y 'Development Tools'</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># CentOS
+$ sudo dnf install -y bison readline-devel zlib-devel openssl-devel uuid-devel
+$ sudo dnf groupinstall -y 'Development Tools'
+
+# Ubuntu
+$ sudo apt install -y bison libreadline-dev zlib1g-dev libssl-dev
+$ sudo apt install -y build-essential
+$ sudo apt install -y pkg-config uuid-dev</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -656,7 +662,7 @@ $ sudo dnf groupinstall -y 'Development Tools'</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ git clone https://github.com/IvorySQL/IvorySQL.git
 $ cd IvorySQL
-$ git checkout -b IVORY_REL_5_STABLE origin/IVORY_REL_5_STABLE</code></pre>
+$ git checkout tags/IvorySQL_5.1</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -744,7 +750,7 @@ $ git checkout -b IVORY_REL_5_STABLE origin/IVORY_REL_5_STABLE</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_5.0/IvorySQL-5.0-a50789d-20250304.amd64.deb</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_5.1/IvorySQL-5.1-62069c2-20251211.amd64.deb</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -756,7 +762,7 @@ $ git checkout -b IVORY_REL_5_STABLE origin/IVORY_REL_5_STABLE</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dpkg -i IvorySQL-5.0-a50789d-20250304.amd64.deb</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dpkg -i IvorySQL-5.1-62069c2-20251211.amd64.deb</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -867,7 +873,7 @@ ivorysql  130445  130274  0 02:45 pts/1    00:00:00 grep --color=auto postgres</
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d &lt;database&gt;
-psql (18.0)
+psql (18.1)
 Type "help" for help.
 
 ivorysql=#</code></pre>
@@ -931,7 +937,7 @@ Docker运行IvorySQL时，需要添加额外参数，参考：psql -d ivorysql -
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker stop ivorysql
 $ docker rm ivorysql
-$ docker rmi ivorysql/ivorysql:5.0-ubi8</code></pre>
+$ docker rmi ivorysql/ivorysql:5.1-ubi8</code></pre>
 </div>
 </div>
 </div>
@@ -967,7 +973,7 @@ $ sudo rm -rf /usr/ivory-5</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dpkg -P IvorySQL-5.0
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dpkg -P IvorySQL-5.1
 $ sudo rm -rf /usr/ivory-5</code></pre>
 </div>
 </div>

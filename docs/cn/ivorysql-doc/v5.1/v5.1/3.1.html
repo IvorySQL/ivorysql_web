@@ -519,12 +519,12 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y ivorysql5-5.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y ivorysql5-5.1</code></pre>
 </div>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>  正确安装后，数据库将被安装在/usr/ivory-5/路径下的IvorySQL-version(如:IvorySQL-5.0)文件夹内</pre>
+<pre>  正确安装后，数据库将被安装在/usr/ivory-5/路径下的IvorySQL-version(如:IvorySQL-5.1)文件夹内</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -617,7 +617,7 @@ ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/ivorysql:5.0-ubi8</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/ivorysql:5.1-ubi8</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -629,7 +629,7 @@ ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/ivorysql:5.0-ubi8</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/ivorysql:5.1-ubi8</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -643,7 +643,7 @@ ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker ps | grep ivorysql
 CONTAINER ID   IMAGE               COMMAND                   CREATED          STATUS          PORTS                              NAMES
-6faa2d0ed705   ivorysql:5.0-ubi8   "docker-entrypoint.s…"   50 seconds ago   Up 49 seconds   5866/tcp, 0.0.0.0:5434-&gt;5432/tcp   ivorysql</code></pre>
+6faa2d0ed705   ivorysql:5.1-ubi8   "docker-entrypoint.s…"   50 seconds ago   Up 49 seconds   5866/tcp, 0.0.0.0:5434-&gt;5432/tcp   ivorysql</code></pre>
 </div>
 </div>
 </div>
@@ -658,7 +658,7 @@ CONTAINER ID   IMAGE               COMMAND                   CREATED          ST
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d &lt;database&gt;
-psql (18.0)
+psql (18.1)
 Type "help" for help.
 
 ivorysql=#</code></pre>
@@ -687,7 +687,7 @@ Docker运行IvorySQL时，需要添加额外参数，如 psql -d ivorysql -U ivo
 <p>现在可以开始使用IvorySQL啦！就是这么简单！</p>
 </div>
 <div class="paragraph">
-<p>想要获得更多安装方式，请参考<a href="#v5.0/4.1.adoc" class="xref unresolved">安装指南</a></p>
+<p>想要获得更多安装方式，请参考<a href="4.1.html" class="xref page">安装指南</a></p>
 </div>
 </div>
 </div>

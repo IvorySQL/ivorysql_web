@@ -491,7 +491,7 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y ivorysql5-5.0</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dnf install -y ivorysql5-5.1</code></pre>
 </div>
 </div>
 <div id="setting-environment-variables" class="ulist">
@@ -585,7 +585,7 @@ ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/ivorysql:5.0-ubi8</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/IvorySQL 5.1-ubi8</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -597,7 +597,7 @@ ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/ivorysql:5.0-ubi8</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/IvorySQL 5.1-ubi8</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -611,7 +611,7 @@ ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker ps | grep ivorysql
 CONTAINER ID   IMAGE               COMMAND                   CREATED          STATUS          PORTS                              NAMES
-6faa2d0ed705   ivorysql:5.0-ubi8   "docker-entrypoint.s…"   50 seconds ago   Up 49 seconds   5866/tcp, 0.0.0.0:5434-&gt;5432/tcp   ivorysql</code></pre>
+6faa2d0ed705   IvorySQL 5.1-ubi8   "docker-entrypoint.s…"   50 seconds ago   Up 49 seconds   5866/tcp, 0.0.0.0:5434-&gt;5432/tcp   ivorysql</code></pre>
 </div>
 </div>
 </div>
@@ -626,7 +626,7 @@ CONTAINER ID   IMAGE               COMMAND                   CREATED          ST
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d &lt;database&gt;
-psql (18.0)
+psql (18.1)
 Type "help" for help.
 
 ivorysql=#</code></pre>
@@ -655,7 +655,7 @@ When running IvorySQL in Docker, additional parameters need to be added, like: p
 <p>Now you can start your journey of IvorySQL! Enjoy!</p>
 </div>
 <div class="paragraph">
-<p>To explore additional installation methods, please refer to the <a href="#v5.0/4.1.adoc" class="xref unresolved">Installation</a>.</p>
+<p>To explore additional installation methods, please refer to the <a href="4.1.html" class="xref page">Installation</a>.</p>
 </div>
 </div>
 </div>

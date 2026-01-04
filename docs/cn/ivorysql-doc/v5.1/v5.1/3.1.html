@@ -524,7 +524,7 @@ gpgcheck=0</code></pre>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>  正确安装后，数据库将被安装在/usr/ivory-5/路径下的IvorySQL-version(如:IvorySQL-5.1)文件夹内</pre>
+<pre>  正确安装后，数据库将被安装在/usr/ivory-5/路径下的IvorySQL-version(如:IvorySQL-{ivorysql-version})文件夹内</pre>
 </div>
 </div>
 <div class="paragraph">
@@ -643,7 +643,7 @@ ivorysql  3238  1551  0 20:35 pts/0    00:00:00 grep --color=auto postgres</code
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker ps | grep ivorysql
 CONTAINER ID   IMAGE               COMMAND                   CREATED          STATUS          PORTS                              NAMES
-6faa2d0ed705   ivorysql:5.1-ubi8   "docker-entrypoint.s…"   50 seconds ago   Up 49 seconds   5866/tcp, 0.0.0.0:5434-&gt;5432/tcp   ivorysql</code></pre>
+6faa2d0ed705   ivorysql:5.1-ubi8   "docker-entrypoint.s…"   50 seconds ago   Up 49 seconds   5866/tcp, 0.0.0.0:5434->5432/tcp   ivorysql</code></pre>
 </div>
 </div>
 </div>
@@ -657,7 +657,7 @@ CONTAINER ID   IMAGE               COMMAND                   CREATED          ST
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d &lt;database&gt;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d <database>
 psql (18.1)
 Type "help" for help.
 

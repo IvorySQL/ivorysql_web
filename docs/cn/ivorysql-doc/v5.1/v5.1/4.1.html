@@ -606,7 +606,7 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_5.1/IvorySQL-5.1-62069c2-20251211.x86_64.rpm</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_5.1/IvorySQL-5.1-9d890e9-20251120.x86_64.rpm</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -662,7 +662,7 @@ $ sudo apt install -y pkg-config uuid-dev</code></pre>
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ git clone https://github.com/IvorySQL/IvorySQL.git
 $ cd IvorySQL
-$ git checkout tags/IvorySQL_5.1</code></pre>
+$ git checkout -b IVORY_REL_5_STABLE origin/IVORY_REL_5_STABLE</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -750,7 +750,7 @@ $ git checkout tags/IvorySQL_5.1</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_5.1/IvorySQL-5.1-62069c2-20251211.amd64.deb</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo wget https://github.com/IvorySQL/IvorySQL/releases/download/IvorySQL_5.1/IvorySQL-5.1-a50789d-20250304.amd64.deb</code></pre>
 </div>
 </div>
 <div class="ulist">
@@ -762,7 +762,7 @@ $ git checkout tags/IvorySQL_5.1</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dpkg -i IvorySQL-5.1-62069c2-20251211.amd64.deb</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ sudo dpkg -i IvorySQL-5.1-a50789d-20250304.amd64.deb</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -872,7 +872,7 @@ ivorysql  130445  130274  0 02:45 pts/1    00:00:00 grep --color=auto postgres</
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d &lt;database&gt;
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ psql -d <database>
 psql (18.1)
 Type "help" for help.
 

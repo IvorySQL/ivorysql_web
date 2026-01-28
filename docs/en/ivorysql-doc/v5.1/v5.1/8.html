@@ -516,7 +516,15 @@
 <p>All new functionality that is contributed to IvorySQL should be covered by regression tests that are contributed alongside it. If you are uncertain about how to test or document your work, please raise the question on the ivorysql-hackers mailing list and the developer community will do its best to help you.</p>
 </div>
 <div class="paragraph">
-<p>At the very minimum, you should always be running make installcheck-world to make sure that you&#8217;re not breaking anything.</p>
+<p>At the very minimum, you should always be running</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">make installcheck world</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>to make sure that you&#8217;re not breaking anything.</p>
 </div>
 </div>
 <div class="sect3">

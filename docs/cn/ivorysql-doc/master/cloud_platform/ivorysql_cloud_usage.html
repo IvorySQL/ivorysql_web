@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>使用说明 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/cloud_platform/ivorysql_cloud_usage.html">
+    <link rel="prev" href="ivorysql_cloud_installation.html">
+    <link rel="next" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL贡献指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>IvorySQL</li>
+    <li>IvorySQL高级</li>
+    <li>云服务平台指南</li>
+    <li><a href="ivorysql_cloud_usage.html">IvorySQL Cloud使用</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/cloud_platform/ivorysql_cloud_usage.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/cloud_platform/ivorysql_cloud_usage.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">使用说明</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL Cloud是一个基于Web的服务平台，用户可以在任意电脑上通过浏览器进行访问，安装云服务平台的服务器IP为192.168.31.43，然后在浏览器输入http://192.168.31.43:9104/（9104为前端nginx.conf.default中设置的端口）即可进入登录页面页面：</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image3.png" alt="image3" width="274" height="355">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="登录和退出"><a class="anchor" href="#登录和退出"></a>1. 登录和退出</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="用户登录"><a class="anchor" href="#用户登录"></a>1.1. 用户登录</h3>
+<div class="paragraph">
+<p>进入登录页面，根据提示输入信息即可访问IvorySQL云服务平台：</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image4.png" alt="image4" width="552" height="272">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="退出登录"><a class="anchor" href="#退出登录"></a>1.2. 退出登录</h3>
+<div class="paragraph">
+<p>点击页面右上角的头像，会显示当前登录用户名和“Log Out”。点击“Log Out”退出当前登录页面。点击用户名则保留当前登录页面：</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image5.png" alt="image5" width="552" height="62">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="管理员功能"><a class="anchor" href="#管理员功能"></a>2. 管理员功能</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="添加集群"><a class="anchor" href="#添加集群"></a>2.1. 添加集群</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>平台登录admin用户后，点击左侧菜单栏的“K8S集群管理”按钮，进入集群管理页。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image6.png" alt="image6" width="601" height="91">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="2">
+<li>
+<p>点击页面左上角“增加Kubernetes集群”按钮，输入集群信息后提交。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image7.png" alt="image7" width="333" height="291">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="管理集群"><a class="anchor" href="#管理集群"></a>2.2. 管理集群</h3>
+<div class="paragraph">
+<p>在集群管理页面，可以查看已添加集群的详细信息，同时对集群信息进行编辑和删除操作。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image8.png" alt="image8" width="553" height="82">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="demo用户功能"><a class="anchor" href="#demo用户功能"></a>3. demo用户功能</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="数据库订阅"><a class="anchor" href="#数据库订阅"></a>3.1. 数据库订阅</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>使用demo用户登录平台。</p>
+</li>
+<li>
+<p>点击左侧菜单栏"数据库订阅"按钮，填写需要申请的数据库的各个参数，然后点击"下一步：确认信息"。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image9.png" alt="image9" width="552" height="272">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>检查信息后，点击"确定"</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image10.png" alt="image10" width="552" height="272">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>"确定"后，会自动跳转到"数据库管理"页面，查看订阅任务</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image11.png" alt="image11" width="552" height="77">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image12.png" alt="image12" width="552" height="79">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="数据库管理"><a class="anchor" href="#数据库管理"></a>3.2. 数据库管理</h3>
+<div class="paragraph">
+<p>显示云服务平台管理的数据库信息。</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image12.png" alt="image12" width="552" height="79">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="数据库重启"><a class="anchor" href="#数据库重启"></a>3.3. 数据库重启</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>demo用户登录平台。</p>
+</li>
+<li>
+<p>点击左侧导航栏"数据库管理"，选中数据库，点击"操作"列的"更多"按钮，在下拉选项中选择"重启"选项。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image13.png" alt="image13" width="79" height="286">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>检查信息后，点"确认"</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image14.png" alt="image14" width="553" height="210">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="修改密码"><a class="anchor" href="#修改密码"></a>3.4. 修改密码</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>demo用户登录平台。</p>
+</li>
+<li>
+<p>点击左侧导航栏"数据库管理"，选中数据库，点击"实例ID"列。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image15.png" alt="image15" width="553" height="48">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>进入数据库详情页面，点击"修改密码"列的图标。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image17.png" alt="image17" width="553" height="173">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>输入新的数据库密码，点击"确定"按钮。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image18.png" alt="image18" width="553" height="352">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="删除实例"><a class="anchor" href="#删除实例"></a>3.5. 删除实例</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>demo用户登录平台。</p>
+</li>
+<li>
+<p>点击左侧导航栏"数据库管理"，选中数据库，点击"操作"列的"更多"按钮，在下拉选项中选择"删除实例"选项。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image19.png" alt="image19" width="55" height="201">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>检查信息后，点击"确定"按钮。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image20.png" alt="image20" width="552" height="207">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="磁盘扩容"><a class="anchor" href="#磁盘扩容"></a>3.6. 磁盘扩容</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>此功能需用户自行配置相关插件，如topolvm</p>
+</li>
+<li>
+<p>demo用户登录平台。</p>
+</li>
+<li>
+<p>点击左侧导航栏"磁盘扩容"，选中数据库，点击"操作"列的"修改"按钮；或者点击左侧导航栏"数据库管理"，选中数据库，点击"操作"列的"更多"按钮，在下拉选项中选择"磁盘扩容"选项。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image21.png" alt="image21" width="552" height="197">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image22.png" alt="image22" width="63" height="200">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>检查并输入磁盘扩容的大小后，点击"确定"按钮。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image23.png" alt="image23" width="553" height="242">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="规格变更"><a class="anchor" href="#规格变更"></a>3.7. 规格变更</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>demo用户登录平台。</p>
+</li>
+<li>
+<p>点击左侧导航栏"规格变更"，选中数据库，点击"操作"列的"修改"按钮；或者点击左侧导航栏"数据库管理"，选中数据库，点击"操作"列的"更多"按钮，在下拉选项中选择"规格变更"选项。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image24.png" alt="image24" width="552" height="196">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image25.png" alt="image25" width="59" height="205">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>检查信息并输入规格变更的大小后，点击"确定"按钮。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image26.png" alt="image26" width="552" height="240">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="数据库备份"><a class="anchor" href="#数据库备份"></a>3.8. 数据库备份</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>demo用户登录平台。</p>
+</li>
+<li>
+<p>点击左侧导航栏"数据库备份"，选中数据库，点击"操作"列的"备份"；或者点击左侧导航栏"数据库管理"，选中数据库，点击"操作"列的"更多"按钮，在下拉选项中选择"备份"选项。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image27.png" alt="image27" width="552" height="197">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image28.png" alt="image28" width="64" height="199">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>检查信息并输入备份名称后，点击"确定"按钮。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image29.png" alt="image29" width="552" height="285">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="数据库恢复"><a class="anchor" href="#数据库恢复"></a>3.9. 数据库恢复</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>demo用户登录平台。</p>
+</li>
+<li>
+<p>点击左侧导航栏"数据库恢复"，选中数据库，点击"操作"列的"查看"按钮；或者点击左侧导航栏"数据库管理"，选中数据库，点击"操作"列的"更多"按钮，在下拉选项中选择"恢复"选项。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image30.png" alt="image30" width="552" height="196">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image31.png" alt="image31" width="58" height="201">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>选择需要备份的文件后，点"操作"列的"恢复"</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image32.png" alt="image32" width="552" height="304">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image33.png" alt="image33" width="552" height="305">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>输入需要恢复的数据库信息，密码为备份前的数据库密码</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image34.png" alt="image34" width="552" height="246">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>后续参考"4.1数据库订阅"的步骤。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="数据库监控"><a class="anchor" href="#数据库监控"></a>3.10. 数据库监控</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>demo用户登录平台。</p>
+</li>
+<li>
+<p>点击左侧导航栏"监控工具"，选择数据库所在的集群；或者点击左侧导航栏"数据库管理"，选中数据库，点击"操作"列的"更多"按钮，在下拉选项中选择"监控"选项。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image35.png" alt="image35" width="552" height="261">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image36.jpeg" alt="image36" width="65" height="215">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>等待监控创建完毕后，再次重复（2）中操作，跳转新页面，输入用户名：admin，密码admin，点击login登录</p>
+</li>
+</ol>
+</div>
+<div class="quoteblock">
+<blockquote>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image37.png" alt="image37" width="552" height="272">
+</div>
+</div>
+</blockquote>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>选择放大镜图标，点击查看监控指标。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image39.png" alt="image39" width="553" height="264">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image40.png" alt="image40" width="552" height="261">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image41.png" alt="image41" width="553" height="261">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image42.png" alt="image42" width="552" height="72">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image43.png" alt="image43" width="552" height="259">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image44.png" alt="image44" width="552" height="280">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="可视化登录工具"><a class="anchor" href="#可视化登录工具"></a>3.11. 可视化登录工具</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>demo用户登录平台。</p>
+</li>
+<li>
+<p>点击左侧导航栏"数据库管理"，选中数据库，点击"操作"列的"更多"按钮，选择"登录"选项。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image45.jpeg" alt="image45" width="65" height="205">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>跳转新页面后，输入数据库用户名 <a href="mailto:sysdba@ivyo.com">sysdba@ivyo.com</a> 及数据库密码，点击"Login"按钮。</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/media/image46.png" alt="image46" width="383" height="263">
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>连接数据库，即可进行操作。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="ivorysql_cloud_installation.html">IvorySQL Cloud安装</a></span>
+  <span class="next"><a href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

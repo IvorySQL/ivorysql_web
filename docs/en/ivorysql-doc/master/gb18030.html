@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Server-Side Support for the GB18030 Character Set :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/gb18030.html">
+    <link rel="prev" href="oracle_builtin_functions/userenv.html">
+    <link rel="next" href="oracle_compatibility/compat_case_conversion.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="release_notes.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="about_ivorysql.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started/quick_start.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started/daily_monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="getting-started/daily_maintenance.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installation_guide.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cluster_setup.html">Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="migration_guide.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="developer_guide.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containerization/k8s_deployment.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containerization/operator_deployment.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containerization/docker_podman_deployment.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="operation_guide.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cpu_os_adaptation/cpu_architecture_adaptation.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cpu_os_adaptation/os_architecture_adaptation.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/ecosystem_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="architecture/dual_parser.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="architecture/framework_design.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="architecture/guc_framework.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="architecture/dual_mode_design.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="architecture/initdb_process.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/out_parameter.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/type_rowtype.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/nls_parameter.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/function_procedure.html">Function and stored procedure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/nested_function.html">Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/case_conversion.html">Case Conversion</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/sys_guid_function.html">sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/empty_string_to_null.html">Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Built-in Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="gb18030.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_case_conversion.html">1、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_like_operator.html">2、LIKE operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/anonymous_block.html">3、anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_function_procedure.html">4、functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/builtin_types_functions.html">5、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/port_ip.html">6、ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/xml_functions.html">7、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/package.html">9、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/invisible_column.html">10、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_rowid.html">11、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_out_parameter.html">12、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_type_rowtype.html">13、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_nls_parameter.html">14、NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_nested_function.html">16、Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_sys_guid.html">17、sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_empty_string_to_null.html">18、Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contribution/community_contribution_guide.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="tools_reference.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../v5.1/v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Architecture Design</li>
+    <li><a href="gb18030.html">GB18030 Character Set</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/gb18030.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/gb18030.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Server-Side Support for the GB18030 Character Set</h1>
+<div class="sect1">
+<h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>PostgreSQL provides comprehensive server-side support for the GB18030 character set. GB18030 is a Chinese national standard designed to include all Chinese characters and various minority scripts, aiming for alignment with Unicode. Proper configuration and use of the GB18030 character set within PostgreSQL are essential for processing and storing Chinese data that must comply with this standard.</p>
+</div>
+<div class="paragraph">
+<p>Server-side GB18030 support should provide the following features:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. Support for GB18030 as a server encoding: initdb -E GB18030 is available, and SHOW server_encoding displays GB18030.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2. Provide bidirectional conversion between GB18030 and UTF8.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3. Support for multibyte character boundary determination.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation-details"><a class="anchor" href="#implementation-details"></a>2. Implementation Details</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="specifying-gb18030-or-gb18030_2022-with-the-e-option-during-initdb"><a class="anchor" href="#specifying-gb18030-or-gb18030_2022-with-the-e-option-during-initdb"></a>2.1. Specifying GB18030 or GB18030_2022 with the -E Option during initdb</h3>
+<div class="paragraph">
+<p>PostgreSQL has historically supported the GB18030-2000 standard as a client-side encoding. Support for conversion between the GB18030_2022 character set and UTF-8 is provided via an extension.</p>
+</div>
+<div class="paragraph">
+<p>To enable GB18030 as a server encoding, modifications are made to pg_enc, and new low-level functions are added to the PostgreSQL encoding framework for invocation by the core system.</p>
+</div>
+<div class="paragraph">
+<p>A global variable, is_load_gb18030_2022, is introduced with a default value of true. When the -E option is used during initdb, the get_encoding_id function checks the specified encoding name. If the name is gb18030_2022, it is internally mapped to the gb18030 encoding ID, and the is_load_gb18030_2022 flag is set to true. If the -E option is GB18030, the flag is set to false.</p>
+</div>
+<div class="paragraph">
+<p>At the appropriate stage in the startup process, the system checks this flag to determine if the extension should be loaded. If required, the load_gb18030_2022 function is executed, and the gb18030_2022 extension is added to the shared_preload_libraries parameter in ivorysql.conf.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">if (encoding_name &amp;&amp; *encoding_name)
+{
+    encoding_name_modify = pg_strdup(encoding_name);
+    if(pg_strcasecmp(encoding_name,"gb18030_2022") == 0)
+    {
+        encoding_name_modify = pg_strdup("gb18030");
+        is_load_gb18030_2022 =  true;
+    }
+    else if(pg_strcasecmp(encoding_name,"gb18030") == 0)
+    is_load_gb18030_2022 = false;
+
+    if ((enc = pg_valid_server_encoding((const char *)encoding_name_modify)) &gt;= 0)
+        return enc;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="multibyte-character-handling"><a class="anchor" href="#multibyte-character-handling"></a>2.2. Multibyte Character Handling</h3>
+<div class="paragraph">
+<p>Function pointers for GB18030 are added in wchar.c:</p>
+</div>
+<div class="paragraph">
+<p>pg_gb180302wchar_with_len(const unsigned char *from, pg_wchar *to, int len) gb18030 &#8594; wchar</p>
+</div>
+<div class="paragraph">
+<p>pg_wchar2gb18030_with_len(const pg_wchar *from, unsigned char *to, int len) wchar &#8594; gb18030</p>
+</div>
+<div class="paragraph">
+<p>pg_gb18030_mblen(const unsigned char *s)：Returns 1/2/4.</p>
+</div>
+<div class="paragraph">
+<p>pg_gb18030_dsplen(const unsigned char *s)：Calculates the display width of a character. ASCII characters have a width of 1, while others are also treated as having a width of 1 .</p>
+</div>
+<div class="paragraph">
+<p>pg_gb18030_verifier(const unsigned char *s, int len)：Verifies that a byte sequence is a valid GB18030 character, rejecting illegal sequences.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="client-server-interaction"><a class="anchor" href="#client-server-interaction"></a>2.3. Client-Server Interaction</h3>
+<div class="paragraph">
+<p>Receiving Data</p>
+</div>
+<div class="paragraph">
+<p>When a client using UTF-8 encoding connects to the server, the server, upon receiving data, invokes its internal utf8_to_gb18030 function. This converts the data to the GB18030 format, which is then validated and stored.</p>
+</div>
+<div class="paragraph">
+<p>Sending Data</p>
+</div>
+<div class="paragraph">
+<p>When the same client executes a SELECT query, the server reads the native GB18030 data from disk or memory. It then calls the gb18030_to_utf8 function to convert the data to UTF-8 format before sending it to the client via the network protocol.</p>
+</div>
+<div class="paragraph">
+<p>A new data file, GB18030-2022.xml, is introduced. This file is parsed by a Perl script to generate mapping files that provide the logic for the gb18030_to_utf8() and utf8_to_gb18030() conversion functions. The implementation prioritizes a table-driven approach, falling back to algorithmic mapping for ranges not covered by the tables.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">static inline uint32
+unicode_to_utf8word(uint32 c)
+{
+	uint32		word;
+
+	if (c &lt;= 0x7F)
+	{
+		word = c;
+	}
+	else if (c &lt;= 0x7FF)
+	{
+		word = (0xC0 | ((c &gt;&gt; 6) &amp; 0x1F)) &lt;&lt; 8;
+		word |= 0x80 | (c &amp; 0x3F);
+	}
+	else if (c &lt;= 0xFFFF)
+	{
+		word = (0xE0 | ((c &gt;&gt; 12) &amp; 0x0F)) &lt;&lt; 16;
+		word |= (0x80 | ((c &gt;&gt; 6) &amp; 0x3F)) &lt;&lt; 8;
+		word |= 0x80 | (c &amp; 0x3F);
+	}
+	else
+	{
+		word = (0xF0 | ((c &gt;&gt; 18) &amp; 0x07)) &lt;&lt; 24;
+		word |= (0x80 | ((c &gt;&gt; 12) &amp; 0x3F)) &lt;&lt; 16;
+		word |= (0x80 | ((c &gt;&gt; 6) &amp; 0x3F)) &lt;&lt; 8;
+		word |= 0x80 | (c &amp; 0x3F);
+	}
+
+	return word;
+}
+
+static uint32
+conv_18030_2022_to_utf8(uint32 code)
+{
+#define conv18030(minunicode, mincode, maxcode) \
+	if (code &gt;= mincode &amp;&amp; code &lt;= maxcode) \
+		return unicode_to_utf8word(gb_linear(code) - gb_linear(mincode) + minunicode)
+
+	conv18030(0x0452, 0x8130D330, 0x8136A531);
+	conv18030(0x2643, 0x8137A839, 0x8138FD38);
+	conv18030(0x361B, 0x8230A633, 0x8230F237);
+	conv18030(0x3CE1, 0x8231D438, 0x8232AF32);
+	conv18030(0x4160, 0x8232C937, 0x8232F837);
+	conv18030(0x44D7, 0x8233A339, 0x8233C931);
+	conv18030(0x478E, 0x8233E838, 0x82349638);
+	conv18030(0x49B8, 0x8234A131, 0x8234E733);
+	conv18030(0x9FA6, 0x82358F33, 0x8336C738);
+	conv18030(0xE865, 0x8336D030, 0x84308534);
+	conv18030(0xFA2A, 0x84309C38, 0x84318537);
+	conv18030(0xFFE6, 0x8431A234, 0x8431A439);
+	conv18030(0x10000, 0x90308130, 0xE3329A35);
+	/* No mapping exists */
+	return 0;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="oracle_builtin_functions/userenv.html">userenv</a></span>
+  <span class="next"><a href="oracle_compatibility/compat_case_conversion.html">1、Case conversion</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

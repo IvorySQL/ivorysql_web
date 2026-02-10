@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>PL/iSQL function and stored procedure :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/compatibility_features_design/function_procedure.html">
+    <link rel="prev" href="nls_parameter.html">
+    <link rel="next" href="nested_function.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../release_notes.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../about_ivorysql.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_parser.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/framework_design.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="out_parameter.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="type_rowtype.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="nls_parameter.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="function_procedure.html">Function and stored procedure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="nested_function.html">Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="case_conversion.html">Case Conversion</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="sys_guid_function.html">sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="empty_string_to_null.html">Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="call_into.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Built-in Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../gb18030.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools_reference.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Architecture Design</li>
+    <li>Compatibility Features</li>
+    <li><a href="function_procedure.html">Function and stored procedure</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/compatibility_features_design/function_procedure.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/compatibility_features_design/function_procedure.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">PL/iSQL function and stored procedure</h1>
+<div class="sect1">
+<h2 id="purpose"><a class="anchor" href="#purpose"></a>1. Purpose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>PostgreSQL supports functions and stored procedures, but there are syntax differences between PostgreSQL and Oracle. To enable Oracle&#8217;s PL/SQL statements to run on IvorySQL—i.e., to achieve "syntax compatibility"—IvorySQL adopts the following solution: If an Oracle clause has a counterpart clause with the same function in IvorySQL, it is directly mapped to the corresponding IvorySQL clause; otherwise, only the syntax of the Oracle clause is implemented, while its function is not.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation-description"><a class="anchor" href="#implementation-description"></a>2. Implementation description</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>PL/iSQL is the name of the procedural language in IvorySQL, specifically designed to be compatible with Oracle&#8217;s PL/SQL statements. To achieve compatibility with Oracle-style syntax for functions and stored procedures, corresponding adjustments need to be made to the psql client tool, the SQL layer, and the PL/iSQL layer.</p>
+</div>
+<div class="sect2">
+<h3 id="client-tool-psql"><a class="anchor" href="#client-tool-psql"></a>2.1. Client tool psql</h3>
+<div class="paragraph">
+<p>Oracle&#8217;s sqlplus tool uses a slash (/) to terminate functions and stored procedures. IvorySQL&#8217;s client tool, psql, needs to be compatible with the same syntax. This means that the conventional mechanism—where statements are sent to the server upon encountering a semicolon—becomes ineffective when dealing with Oracle-style function and stored procedure commands; instead, a slash (/) is used to send the commands.</p>
+</div>
+<div class="paragraph">
+<p>To this end the following fields are added to the PsqlScanStateData structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">	bool		cancel_semicolon_terminator; /* not send command when semicolon found */
+
+	/*
+	 * State to track boundaries of Oracle ANONYMOUS BLOCK.
+	 * Case 1: Statements starting with &lt;&lt; ident &gt;&gt; is Oracle anonymous block.
+	 */
+	int		token_count;			/* # of tokens, not blank or newline since start of statement */
+	bool		anonymous_label_start;	    /* T if the first token is "&lt;&lt;" */
+	bool		anonymous_label_ident;	/* T if the second token is an identifier */
+	bool		anonymous_label_end;	    /* T if the third token is "&gt;&gt;" */
+
+	/*
+	 * Case 2: DECLARE BEGIN ... END is Oracle anonymous block syntax.
+	 * DECLARE can also be a PostgreSQL cursor declaration statement, we need to tell this.
+	 */
+	bool		maybe_anonymous_declare_start;	/* T if the first token is DECLARE */
+	int		token_cursor_idx;		/* the position of keyword CURSOR in SQL statement */
+
+	/*
+	 * Case 3: DECLARE BEGIN ... END is Oracle anonymous block syntax.
+	 * BEGIN can also be a PostgreSQL transaction statement.
+	 */
+	bool		maybe_anonymous_begin_start;	/* T if the first token is BEGIN */</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Meanwhile, modify ora_psqlscan.l and add or update the corresponding lexical rules.
+Below is a code snippet example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">{
+	if (is_oracle_slash(cur_state, cur_state-&gt;scanline))
+	{
+		/* Terminate lexing temporarily */
+		cur_state-&gt;cancel_semicolon_terminator = false;
+		cur_state-&gt;maybe_anonymous_declare_start = false;
+		cur_state-&gt;maybe_anonymous_begin_start = false;
+		cur_state-&gt;anonymous_label_start = false;
+		cur_state-&gt;anonymous_label_ident = false;
+		cur_state-&gt;anonymous_label_end = false;
+		cur_state-&gt;start_state = YY_START;
+		cur_state-&gt;token_count = 0;
+		cur_state-&gt;token_cursor_idx = 0;
+		cur_state-&gt;identifier_count = 0;
+		cur_state-&gt;begin_depth = 0;
+		cur_state-&gt;ora_plsql_expect_end_symbol = END_SYMBOL_INVALID;
+		return LEXRES_SEMI;
+	}
+	ECHO;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The psql tool needs to detect the meaning of the slash (/), to avoid identifying slashes in comments and other parts as terminators. To this end, a separate interface is_oracle_slash is added in the oracle_fe_utils/ora_psqlscan.l file for detection.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">bool
+is_oracle_slash(PsqlScanState state, const char *line)
+{
+	bool result = false;
+
+	switch (state-&gt;start_state)
+	{
+		case INITIAL:
+		case xqs:	/* treat these like INITIAL */
+			{
+				int len, i;
+				bool has_slash = false;
+
+				len = strlen(line);
+				for (i = 0; i &lt; len; i++)
+				{
+					/* allow special char */
+					if (line[i] == '\t' ||
+						line[i] == '\n' ||
+						line[i] == '\r' ||
+						line[i] == ' ')
+						continue;
+
+					if (line[i] == '/')
+					{
+						if (has_slash)
+							break;
+						has_slash = true;
+						continue;
+					}
+					/* others */
+					break;
+				}
+
+				if (i == len &amp;&amp; has_slash)
+					result = true;
+			}
+			break;
+		default:
+			break;
+	}
+
+	return result;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sql-layer"><a class="anchor" href="#sql-layer"></a>2.2. SQL layer</h3>
+<div class="paragraph">
+<p>The SQL layer needs to be able to recognize the creation syntax for functions and stored procedures, and this is achieved by modifying ora_base_yylex. This function prefetches and caches tokens: if the token follows Oracle syntax, it organizes an SCONST and sends it to the PL/SQL layer; otherwise, it retrieves the previously preread tokens from the stack and processes them according to the native PostgreSQL logic.</p>
+</div>
+<div class="paragraph">
+<p>The following fields are added to the ora_base_yy_extra_type structure:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">	/*
+	 * The native PG only cache one-token info include yylloc, yylval and token
+	 * number in yyextra, IvorySQL cache multiple tokens info using two arrays.
+	 */
+	int max_pushbacks;		/* the max size of cache array */
+	int loc_pushback; 		/* # of used tokens */
+	int	num_pushbacks;		/* # of cached tokens */
+	int	*pushback_token;			/* token number array */
+	TokenAuxData *pushback_auxdata; /* auxdata array */
+
+	OraBodyStyle body_style;
+	int          body_start;
+	int          body_level;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Add operation interfaces for the token stack:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 100%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">push_back_token</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">forward_token</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ora_internal_yylex</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">internal_yylex</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>
+In the ora_base_yylex function, when creating functions, procedures, or anonymous blocks, some tokens are preread. These tokens are cached into the stack using the aforementioned structure, and this is done to construct an SCONST that conforms to Oracle PL/SQL syntax and send it to the PL/iSQL layer for processing. For details, please refer to the source code.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="plisql-layer"><a class="anchor" href="#plisql-layer"></a>2.3. PL/iSQL layer</h3>
+<div class="paragraph">
+<p>This part mainly modifies the pl_gram.y file to achieve compatibility with the syntax of PL/SQL functions and stored procedures. It enables compatibility with Oracle PL/SQL syntax forms without affecting PostgreSQL&#8217;s native PL/pgSQL. Below is a code example for the compatibility of the DECLARE section; for more details, please refer to the IvorySQL source code.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/*
+ * The declaration section of the outermost block in Oracle does not have the DECLARE keyword.
+ */
+ora_outermost_pl_block: ora_decl_sect K_BEGIN proc_sect exception_sect K_END opt_label
+					{
+						PLiSQL_stmt_block *new;
+
+						new = palloc0(sizeof(PLiSQL_stmt_block));
+
+						new-&gt;cmd_type	= PLISQL_STMT_BLOCK;
+						new-&gt;lineno		= plisql_location_to_lineno(@2);
+						new-&gt;stmtid		= ++plisql_curr_compile-&gt;nstatements;
+						new-&gt;label		= $1.label;
+						new-&gt;n_initvars = $1.n_initvars;
+						new-&gt;initvarnos = $1.initvarnos;
+						new-&gt;body		= $3;
+						new-&gt;exceptions	= $4;
+
+						check_labels($1.label, $6, @6);
+						plisql_ns_pop();
+
+						$$ = (PLiSQL_stmt *)new;
+					}
+				;
+
+ora_decl_sect: opt_block_label opt_ora_decl_start opt_ora_decl_stmts
+				{
+						if ($2)
+						{
+								if ($1 == NULL)
+								{
+										plisql_ns_push(NULL, PLISQL_LABEL_BLOCK);
+								}
+						}
+				}
+				opt_ora_decl_stmts
+				{
+						if ($4)
+						{
+								plisql_IdentifierLookup = IDENTIFIER_LOOKUP_NORMAL;
+								$$.label          = ($1 == NULL ?  plisql_curr_compile-&gt;namelabel : $1);
+								if ($2 &amp;&amp; $1 == NULL)
+										$$.popname = true;
+								else
+										$$.popname = false;
+								/* Remember variables declared in decl_stmts */
+								$$.n_initvars = plisql_add_initdatums(&amp;($$.initvarnos));
+						}
+						else
+						{
+								plisql_IdentifierLookup = IDENTIFIER_LOOKUP_NORMAL;
+								$$.label          = ($1 == NULL ?  plisql_curr_compile-&gt;namelabel : $1);
+								$$.n_initvars = 0;
+								if ($2 &amp;&amp; $1 == NULL)
+										$$.popname = true;
+								else
+										$$.popname = false;
+								$$.initvarnos = NULL;
+						}
+				}
+                ;
+
+opt_ora_decl_start: K_DECLARE
+					{
+						/* Forget any variables created before block */
+						plisql_add_initdatums(NULL);
+						/*
+						 * Disable scanner lookup of identifiers while
+						 * we process the decl_stmts
+						 */
+						plisql_IdentifierLookup = IDENTIFIER_LOOKUP_DECLARE;
+						$$ = true;
+					}
+				| /*EMPTY*/
+					{
+						/* Forget any variables created before block */
+						plisql_add_initdatums(NULL);
+						/*
+						 * Disable scanner lookup of identifiers while
+						 * we process the decl_stmts
+						 */
+						plisql_IdentifierLookup = IDENTIFIER_LOOKUP_DECLARE;
+						$$ = false;
+					}
+				;
+
+opt_ora_decl_stmts:
+				ora_decl_stmts
+					{
+						$$ = true;
+					}
+				| /*EMPTY*/
+					{
+						$$ = false;
+					}
+
+ora_decl_stmts: ora_decl_stmts ora_decl_stmt
+				| ora_decl_stmt
+				;
+
+ora_decl_stmt: decl_statement
+				;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="nls_parameter.html">NLS Parameters</a></span>
+  <span class="next"><a href="nested_function.html">Nested Subfunctions</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,3440 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IvorySQL Operator部署IvorySQL :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/containerization/operator_deployment.html">
+    <link rel="prev" href="k8s_deployment.html">
+    <link rel="next" href="docker_podman_deployment.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL贡献指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>IvorySQL</li>
+    <li>IvorySQL高级</li>
+    <li>容器化指南</li>
+    <li><a href="operator_deployment.html">Operator部署</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/containerization/operator_deployment.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/containerization/operator_deployment.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">IvorySQL Operator部署IvorySQL</h1>
+<div class="sect1">
+<h2 id="operator安装"><a class="anchor" href="#operator安装"></a>1. Operator安装</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Fork <a href="https://github.com/IvorySQL/ivory-operator">ivory-operator 仓库</a> 并克隆到本地：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">YOUR_GITHUB_UN="&lt;your GitHub username&gt;"
+git clone --depth 1 "git@github.com:${YOUR_GITHUB_UN}/ivory-operator.git"
+cd ivory-operator</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>执行以下命令完成安装：</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -k examples/kustomize/install/namespace
+kubectl apply --server-side -k examples/kustomize/install/default</code></pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="说明"><a class="anchor" href="#说明"></a>2. 说明</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在本教程中，我们将基于 <code>examples/kustomize/ivory</code> 目录中的示例进行构建。</p>
+</div>
+<div class="paragraph">
+<p>当引用 YAML 清单中的嵌套对象时，我们将使用类似 <code>kubectl explain</code> 的 <code>.</code> 格式。例如，对于以下 YAML 文件：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  hippos:
+    appetite: huge</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>我们会用 <code>spec.hippos.appetite</code> 来表示最深层的元素。</p>
+</div>
+<div class="paragraph">
+<p><code>kubectl explain</code> 是一个非常有用的命令。你可以使用它来查看 <code>ivorycluster.ivory-operator.ivorysql.org</code> 自定义资源定义（CRD）的结构：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl explain ivorycluster</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="创建一个-ivory-集群"><a class="anchor" href="#创建一个-ivory-集群"></a>3. 创建一个 Ivory 集群</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="create"><a class="anchor" href="#create"></a>3.1. 创建</h3>
+<div class="paragraph">
+<p>创建一个 Ivory 集群非常简单。使用 <code>examples/kustomize/ivory</code> 目录中的示例，只需运行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -k examples/kustomize/ivory</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>IVYO 将在 <code>ivory-operator</code> 命名空间中创建一个名为 <code>hippo</code> 的简单 Ivory 集群。你可以通过以下命令跟踪 Ivory 集群的状态：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n ivory-operator describe ivoryclusters.ivory-operator.ivorysql.org hippo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>你也可以使用以下命令跟踪 Ivory Pod 的状态：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n ivory-operator get pods \
+  --selector=ivory-operator.ivorysql.org/cluster=hippo,ivory-operator.ivorysql.org/instance</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="what-just-happened"><a class="anchor" href="#what-just-happened"></a>3.1.1. 发生了什么？</h4>
+<div class="paragraph">
+<p>IVYO 根据 <code>examples/kustomize/ivory</code> 目录中的 Kustomize 清单信息创建了 Ivory 集群。让我们通过查看 <code>examples/kustomize/ivory/ivory.yaml</code> 文件来更好地理解发生了什么：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: hippo
+spec:
+  image: {{&lt; param imageIvorySQL &gt;}}
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  instances:
+    - name: instance1
+      dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: {{&lt; param imagePGBackrest &gt;}}
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>当我们运行 <code>kubectl apply</code> 命令时，实际上是在 Kubernetes 中创建了一个 <code>ivorycluster</code> 自定义资源。IVYO 检测到新增的 <code>ivorycluster</code> 资源后，开始创建在 Kubernetes 中运行 Ivory 所需的所有对象！</p>
+</div>
+<div class="paragraph">
+<p>还发生了什么？IVYO 从 <code>metadata.name</code> 读取值，为 Ivory 集群命名为 <code>hippo</code>。此外，IVYO 通过查看 <code>spec.image</code> 和 <code>spec.backups.pgbackrest.image</code> 的值，分别确定了 Ivory 和 pgBackRest 使用的容器镜像。<code>spec.postgresVersion</code> 的值也很重要，它帮助 IVYO 跟踪你使用的 Ivory 主版本。</p>
+</div>
+<div class="paragraph">
+<p>IVYO 通过清单中的 <code>spec.instances</code> 部分知道要创建多少个 Ivory 实例。虽然 <code>name</code> 是可选的，但我们选择将其命名为 <code>instance1</code>。我们也可以在集群初始化期间创建多个副本和实例，但稍后在我们讨论 <a href="https://github.com/IvonySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md">如何扩展并创建高可用 Ivory 集群</a> 时会详细介绍。</p>
+</div>
+<div class="paragraph">
+<p><code>ivorycluster</code> 自定义资源中非常重要的一部分是 <code>dataVolumeClaimSpec</code> 部分。它描述了 Ivory 实例将使用的存储，建模自 <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/">Persistent Volume Claim</a>。如果你没有提供 <code>spec.instances.dataVolumeClaimSpec.storageClassName</code>，则将使用 Kubernetes 环境中的默认存储类。</p>
+</div>
+<div class="paragraph">
+<p>作为创建 Ivory 集群的一部分，我们还指定了备份存档的信息。IVYO 使用 <a href="https://pgbackrest.org/">pgBackRest</a>，这是一个开源的备份与恢复工具，专为处理 TB 级备份而设计。在集群初始化期间，我们可以指定备份和归档（https://www.postgresql.org/docs/current/wal-intro.html[预写日志或 WAL]）的存储位置。我们将在本教程的 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md">灾难恢复</a> 部分更深入地讨论 <code>ivorycluster</code> 规范的这一部分，并了解如何将备份存储在 Amazon S3、Google GCS 和 Azure Blob Storage 中。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>3.2. 故障排查</h3>
+<div class="sect3">
+<h4 id="pods-stuck-pending"><a class="anchor" href="#pods-stuck-pending"></a>3.2.1. IvorySQL / pgBackRest Pod 处于 <code>Pending</code> 状态</h4>
+<div class="paragraph">
+<p>最常见的原因是 PVC 未绑定。请确保你在任何 <code>volumeClaimSpec</code> 中正确设置了存储选项。你可以随时更新设置并使用 <code>kubectl apply</code> 重新应用更改。</p>
+</div>
+<div class="paragraph">
+<p>还要确保你有足够的持久卷可用：你的 Kubernetes 管理员可能需要配置更多持久卷。</p>
+</div>
+<div class="paragraph">
+<p>如果你使用的是 OpenShift，可能需要将 <code>spec.openshift</code> 设置为 <code>true</code>。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="连接到-ivory-集群"><a class="anchor" href="#连接到-ivory-集群"></a>4. 连接到 Ivory 集群</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>创建 Ivory 集群是一回事，连接到它又是另一回事。让我们看看 IVYO 如何让连接 Ivory 集群变得简单！</p>
+</div>
+<div class="sect2">
+<h3 id="background"><a class="anchor" href="#background"></a>4.1. 背景：Service、Secret 与 TLS</h3>
+<div class="paragraph">
+<p>IVYO 会创建一系列 Kubernetes <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a>，为访问 Ivory 数据库提供稳定的端点。这些端点让应用程序能够始终如一地连接到数据。要查看可用的 Service，可执行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n ivory-operator get svc --selector=ivory-operator.ivorysql.org/cluster=hippo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>输出示例：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>NAME              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+hippo-ha          ClusterIP   10.103.73.92   &lt;none&gt;        5432/TCP   3h14m
+hippo-ha-config   ClusterIP   None           &lt;none&gt;        &lt;none&gt;     3h14m
+hippo-pods        ClusterIP   None           &lt;none&gt;        &lt;none&gt;     3h14m
+hippo-primary     ClusterIP   None           &lt;none&gt;        5432/TCP   3h14m
+hippo-replicas    ClusterIP   10.98.110.215  &lt;none&gt;        5432/TCP   3h14m</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>大多数 Service 用于集群内部管理，无需关注。连接数据库时，只需关注名为 <code>hippo-primary</code> 的 Service。得益于 IVYO，你甚至无需手动指定它——这些信息已被写入 Secret！</p>
+</div>
+<div class="paragraph">
+<p>集群初始化时，IVYO 会引导创建一个数据库和用户，供应用程序使用。相关信息保存在名为 <code>&lt;clusterName&gt;-pguser-&lt;userName&gt;</code> 的 Secret 中。对于 <code>hippo</code> 集群，该 Secret 名为 <code>hippo-pguser-hippo</code>，包含以下键值：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>user</code>：用户账户名</p>
+</li>
+<li>
+<p><code>password</code>：用户密码</p>
+</li>
+<li>
+<p><code>dbname</code>：用户默认可访问的数据库名</p>
+</li>
+<li>
+<p><code>host</code>：数据库主机名（指向主实例的 Service）</p>
+</li>
+<li>
+<p><code>port</code>：数据库监听端口</p>
+</li>
+<li>
+<p><code>uri</code>： <a href="https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING">PostgreSQL 连接 URI</a>，含完整登录信息</p>
+</li>
+<li>
+<p><code>jdbc-uri</code>： <a href="https://jdbc.postgresql.org/documentation/use/">PostgreSQL JDBC 连接 URI</a>，供 JDBC 驱动使用</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>所有连接均通过 TLS 进行。IVYO 自带证书中心（CA），支持使用 Ivory 的 <code>verify-full</code> SSL 模式，防止窃听与中间人攻击。你也可以稍后使用自定义 CA，详见 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md">自定义集群</a> 章节。</p>
+</div>
+<div class="sect3">
+<h4 id="modify-service"><a class="anchor" href="#modify-service"></a>4.1.1. 修改 Service 类型、NodePort 值与元数据</h4>
+<div class="paragraph">
+<p>默认情况下，IVYO 部署的 Service 类型为 <code>ClusterIP</code>。根据暴露数据库的方式，你可能需要更改为其他 <a href="https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types">Service 类型</a> 或指定 <a href="https://kubernetes.io/docs/concepts/services-networking/service/#type-nodeport">NodePort 值</a>。</p>
+</div>
+<div class="paragraph">
+<p>可通过以下字段调整 IVYO 管理的 Service：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spec.service</code>：控制连接主库的 Service</p>
+</li>
+<li>
+<p><code>spec.userInterface.pgAdmin.service</code>：控制 pgAdmin 管理工具的 Service</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>例如，将主库 Service 改为 <code>NodePort</code> 并指定端口、注解与标签：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  service:
+    metadata:
+      annotations:
+        my-annotation: value1
+      labels:
+        my-label: value2
+    type: NodePort
+    nodePort: 32000</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>重新应用后，再次查看 Service：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n ivory-operator get svc --selector=ivory-operator.ivorysql.org/cluster=hippo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>输出示例：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>NAME              TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)          AGE
+hippo-ha          NodePort    10.105.57.191   &lt;none&gt;        5432:32000/TCP   48s
+hippo-ha-config   ClusterIP   None            &lt;none&gt;        &lt;none&gt;           48s
+hippo-pods        ClusterIP   None            &lt;none&gt;        &lt;none&gt;           48s
+hippo-primary     ClusterIP   None            &lt;none&gt;        5432/TCP         48s
+hippo-replicas    ClusterIP   10.106.18.99    &lt;none&gt;        5432/TCP         48s</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>查看 <code>hippo-ha</code> 的详细信息，顶部将显示自定义注解与标签已生效：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>Name:              hippo-ha
+Namespace:         ivory-operator
+Labels:            my-label=value2
+                   ivory-operator.ivorysql.org/cluster=hippo
+                   ivory-operator.ivorysql.org/patroni=hippo-ha
+Annotations:       my-annotation: value1</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+使用默认 <code>ClusterIP</code> 类型时禁止设置 <code>nodePort</code>；该值必须在合法范围内且未被占用。此处提供的注解与标签优先级最高。若通过外部暴露 Service 并依赖 TLS 验证，需使用 IVYO 的 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">自定义 TLS</a> 功能。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="connect-app"><a class="anchor" href="#connect-app"></a>4.2. 连接应用程序</h3>
+<div class="paragraph">
+<p>本教程以 <a href="https://www.keycloak.org/">Keycloak</a>（开源身份管理应用）为例。Keycloak 可部署在 Kubernetes 上，并使用 Ivory 作为数据库。以下示例清单将 Keycloak 连接到已运行的 <code>hippo</code> 集群：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply --filename=- &lt;&lt;EOF
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: keycloak
+  namespace: ivory-operator
+  labels:
+    app.kubernetes.io/name: keycloak
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: keycloak
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: keycloak
+    spec:
+      containers:
+      - image: quay.io/keycloak/keycloak:latest
+        args: ["start-dev"]
+        name: keycloak
+        env:
+        - name: DB_VENDOR
+          value: "ivory"
+        - name: DB_ADDR
+          valueFrom: { secretKeyRef: { name: hippo-pguser-hippo, key: host } }
+        - name: DB_PORT
+          valueFrom: { secretKeyRef: { name: hippo-pguser-hippo, key: port } }
+        - name: DB_DATABASE
+          valueFrom: { secretKeyRef: { name: hippo-pguser-hippo, key: dbname } }
+        - name: DB_USER
+          valueFrom: { secretKeyRef: { name: hippo-pguser-hippo, key: user } }
+        - name: DB_PASSWORD
+          valueFrom: { secretKeyRef: { name: hippo-pguser-hippo, key: password } }
+        - name: KEYCLOAK_ADMIN
+          value: "admin"
+        - name: KEYCLOAK_ADMIN_PASSWORD
+          value: "admin"
+        - name: KC_PROXY
+          value: "edge"
+        ports:
+        - name: http
+          containerPort: 8080
+        - name: https
+          containerPort: 8443
+        readinessProbe:
+          httpGet:
+            path: /realms/master
+            port: 8080
+      restartPolicy: Always
+EOF</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>注意环境变量部分：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: DB_ADDR
+  valueFrom: { secretKeyRef: { name: hippo-pguser-hippo, key: host } }
+- name: DB_PORT
+  valueFrom: { secretKeyRef: { name: hippo-pguser-hippo, key: port } }
+- name: DB_DATABASE
+  valueFrom: { secretKeyRef: { name: hippo-pguser-hippo, key: dbname } }
+- name: DB_USER
+  valueFrom: { secretKeyRef: { name: hippo-pguser-hippo, key: user } }
+- name: DB_PASSWORD
+  valueFrom: { secretKeyRef: { name: hippo-pguser-hippo, key: password } }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>所有连接信息均来自 <code>hippo-pguser-hippo</code> Secret，无需硬编码或明文传递凭据，即可直接在 GitOps 流水线中使用！</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="高可用ha"><a class="anchor" href="#高可用ha"></a>5. 高可用（HA）</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Ivory 以稳定著称，通常“开箱即用”。但在 Kubernetes 这样的分布式环境中，仍可能遇到多种影响可用的事件：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>数据库磁盘或其余硬件故障</p>
+</li>
+<li>
+<p>网络不可达</p>
+</li>
+<li>
+<p>节点操作系统崩溃</p>
+</li>
+<li>
+<p>数据文件损坏</p>
+</li>
+<li>
+<p>整个数据中心失联</p>
+</li>
+<li>
+<p>Kubernetes 自身组件（如 Service）被误删</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>此外，常规运维（小版本升级、安全补丁、硬件更换）也会带来计划内停机。</p>
+</div>
+<div class="paragraph">
+<p>好消息：IVYO 已针对上述场景提供保护。要让集群<strong>真正高可用</strong>，首先把它<strong>扩容</strong>。</p>
+</div>
+<div class="sect2">
+<h3 id="scale-replicas"><a class="anchor" href="#scale-replicas"></a>5.1. 为 Ivory 集群添加副本</h3>
+<div class="paragraph">
+<p>IVYO 支持两种快速获得 HA 集群的方式：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>调大 <code>spec.instances.replicas</code></p>
+</li>
+<li>
+<p>在 <code>spec.instances</code> 新增条目</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>本文采用方法 1，将副本数设为 2。对应 YAML 片段：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: hippo
+spec:
+  image: "{{&lt; param imageIvorySQL &gt;}}"
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  instances:
+    - name: instance1
+      replicas: 2          # &lt;── 新增副本
+      dataVolumeClaimSpec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: "{{&lt; param imagePGBackrest &gt;}}"
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 1Gi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>应用后稍等片刻，新副本自动初始化。通过以下命令可实时查看实例 Pod：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n ivory-operator get pods \
+  -l ivory-operator.ivorysql.org/cluster=hippo,\
+    ivory-operator.ivorysql.org/instance-set</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="test-ha"><a class="anchor" href="#test-ha"></a>5.2. 验证集群自愈能力</h3>
+<div class="sect3">
+<h4 id="test-delete-svc"><a class="anchor" href="#test-delete-svc"></a>5.2.1. 测试 1 —— 删除主库 Service</h4>
+<div class="paragraph">
+<p>上一篇《连接集群》提到，应用默认通过 <code>hippo-primary</code> Service 读写。我们人为删除它：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n ivory-operator delete svc hippo-primary</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>立刻再查询 Service 列表：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n ivory-operator get svc \
+  -l ivory-operator.ivorysql.org/cluster=hippo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>可见 <code>hippo-primary</code> 已被 IVYO <strong>秒级重建</strong>。多数应用凭借重连逻辑几乎无感知。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="test-delete-sts"><a class="anchor" href="#test-delete-sts"></a>5.2.2. 测试 2 —— 删除主库 StatefulSet</h4>
+<div class="paragraph">
+<p>首先找到当前主库 Pod 对应的 StatefulSet 名字：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PRIMARY_STS=$(kubectl -n ivory-operator get sts \
+  -l ivory-operator.ivorysql.org/cluster=hippo,\
+    ivory-operator.ivorysql.org/role=master \
+  -o jsonpath='{.items[0].metadata.name}')
+echo $PRIMARY_STS</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>假设输出为 <code>hippo-instance1-zj5s</code>，直接删除：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n ivory-operator delete sts "$PRIMARY_STS"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>再次查看 StatefulSet：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n ivory-operator get sts \
+  -l ivory-operator.ivorysql.org/cluster=hippo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>IVYO 会立即重建被删对象，并自动将原副本重新加入集群。同时，另一实例已被提升为新主：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl -n ivory-operator get pods \
+  -l ivory-operator.ivorysql.org/role=master \
+  -o jsonpath='{.items[0].metadata.labels.ivory-operator\.ivorysql\.org/instance}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>即使 IVYO 进程短暂离线，Patroni 仍能独立完成故障切换，确保应用读写不中断。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sync-repl"><a class="anchor" href="#sync-repl"></a>5.3. 同步复制（Synchronous Replication）</h3>
+<div class="paragraph">
+<p>IvorySQL 支持同步复制，可进一步降低事务丢失风险。只需在集群里增加：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  patroni:
+    dynamicConfiguration:
+      synchronous_mode: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如需强制所有提交都同步到至少一个副本，可再加：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">      synchronous_mode_strict: true</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Patroni 默认“可用性优先”，当同步副本全部失效时会退化为异步；若业务要求<strong>绝对同步</strong>，请启用 <code>synchronous_mode_strict</code>，此时无可用同步副本将拒绝写入。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="affinity"><a class="anchor" href="#affinity"></a>5.4. 亲和性（Affinity）与反亲和性</h3>
+<div class="sect3">
+<h4 id="pod-antiaffinity"><a class="anchor" href="#pod-antiaffinity"></a>5.4.1. Pod 反亲和</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>preferredDuringSchedulingIgnoredDuringExecution</code> —— 尽力分散，资源不足时允许同节点</p>
+</li>
+<li>
+<p><code>requiredDuringSchedulingIgnoredDuringExecution</code> —— 强制分散，找不到空闲节点则 Pending</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>示例 —— 强制让同一 <code>instance-set</code> 的 Pod 落在不同节点：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - topologyKey: kubernetes.io/hostname
+            labelSelector:
+              matchLabels:
+                ivory-operator.ivorysql.org/cluster: hippo
+                ivory-operator.ivorysql.org/instance-set: instance1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="node-affinity"><a class="anchor" href="#node-affinity"></a>5.4.2. 节点亲和</h4>
+<div class="paragraph">
+<p>将数据库实例固定在带 <code>workload-role=db</code> 标签的节点：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: workload-role
+                operator: In
+                values: ["db"]</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="topology-spread"><a class="anchor" href="#topology-spread"></a>5.5. Pod 拓扑分布约束（Topology Spread Constraints）</h3>
+<div class="paragraph">
+<p>相比反亲和的“0 或 1”限制，拓扑分布约束可按比例打散，粒度更细。字段模板：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">topologySpreadConstraints:
+- maxSkew: &lt;整数&gt;
+  topologyKey: &lt;标签键&gt;
+  whenUnsatisfiable: &lt;DoNotSchedule | ScheduleAnyway&gt;
+  labelSelector: &lt;对象&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>示例 —— 5 个实例 Pod 在 3 节点间尽量均衡：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  instances:
+    - name: instance1
+      replicas: 5
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: my-node-label
+          whenUnsatisfiable: DoNotSchedule
+          labelSelector:
+            matchLabels:
+              ivory-operator.ivorysql.org/instance-set: instance1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>备份仓库主机（repo-host）也可同理配置，确保多集群场景下仓库 Pod 分散。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="在线调整-ivory-集群规格"><a class="anchor" href="#在线调整-ivory-集群规格"></a>6. 在线调整 Ivory 集群规格</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>业务蒸蒸日上，流量激增，需要给 Ivory 集群扩容，却又担心 resize 造成停机？
+IVYO 提供<strong>滚动升级</strong>机制，能在<strong>零感知或毫秒级中断</strong>内完成 CPU、内存、磁盘等所有规格的在线调整。
+继续阅读前，请确保已按上一章《高可用》部署了 <strong>HA 集群</strong>（至少 2 副本）。</p>
+</div>
+<div class="sect2">
+<h3 id="resize-cpu-memory"><a class="anchor" href="#resize-cpu-memory"></a>6.1. 垂直调整 CPU / 内存</h3>
+<div class="paragraph">
+<p>IVYO 把资源声明分散在多处，保持统一语义（与 Kubernetes 原生 <code>resources</code> 字段一致），并支持 QoS 类别设置：</p>
+</div>
+<div class="paragraph">
+<p><code>spec.instances.resources</code>
+  └ Ivory 主容器、init 容器、数据迁移 Job 的 CPU / 内存</p>
+</div>
+<div class="paragraph">
+<p><code>spec.instances.sidecars.replicaCertCopy.resources</code>
+  └ 副本证书复制 sidecar</p>
+</div>
+<div class="paragraph">
+<p><code>spec.backups.pgbackrest.repoHost.resources</code>
+  └ pgBackRest 仓库主机及对应 init / 迁移 Job</p>
+</div>
+<div class="paragraph">
+<p><code>spec.backups.pgbackrest.sidecars.*.resources</code>
+<code>spec.backups.pgbackrest.jobs.resources</code>
+<code>spec.backups.pgbackrest.restore.resources</code>
+<code>spec.dataSource.ivorycluster.resources</code></p>
+</div>
+<div class="paragraph">
+<p>示例：把 <code>hippo</code> 每个实例上限调整为 2 CPU、4 GiB 内存</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: hippo
+spec:
+  instances:
+    - name: instance1
+      replicas: 2
+      resources:          # &lt;── 新增或修改
+        limits:
+          cpu: "2"
+          memory: 4Gi
+      dataVolumeClaimSpec:
+        accessModes: ["ReadWriteOnce"]
+        resources:
+          requests:
+            storage: 1Gi</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -k examples/kustomize/ivory
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>实时观察滚动过程（逐 Pod 重建）：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">watch kubectl -n ivory-operator get pods \
+  -l ivory-operator.ivorysql.org/cluster=hippo,\
+    ivory-operator.ivorysql.org/instance \
+  -o custom-columns=NAME:.metadata.name,ROLE:.metadata.labels.ivory-operator\.ivorysql\.org/role,PHASE:.status.phase
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>流程解析：
+1. 先升级所有 <strong>副本</strong> 实例 → 新 Pod 就绪后旧 Pod 才删除
+2. 执行<strong>受控主从切换</strong>（switchover）→ 应用仅感受到毫秒级重连
+3. 最后升级原主库 → 再次选主完成</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="resize-pvc"><a class="anchor" href="#resize-pvc"></a>6.2. 在线扩容 PVC（磁盘）</h3>
+<div class="sect3">
+<h4 id="pvc-expansion-supported"><a class="anchor" href="#pvc-expansion-supported"></a>6.2.1. 场景 A – StorageClass 允许扩容</h4>
+<div class="paragraph">
+<p>要求：
+- 底层 StorageClass 的 <code>allowVolumeExpansion=true</code>
+- 只能<strong>增</strong>不能减</p>
+</div>
+<div class="paragraph">
+<p>需要调大的字段：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spec.instances.dataVolumeClaimSpec.resources.requests.storage</code>        （数据目录）</p>
+</li>
+<li>
+<p><code>spec.backups.pgbackrest.repos[*].volume.volumeClaimSpec&#8230;&#8203;</code>          （备份仓库）</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>示例：数据盘 1 GiB → 10 GiB，备份盘 1 GiB → 20 GiB</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  instances:
+    - name: instance1
+      dataVolumeClaimSpec:
+        resources:
+          requests:
+            storage: 10Gi   # 1→10
+  backups:
+    pgbackrest:
+      repos:
+        - name: repo1
+          volume:
+            volumeClaimSpec:
+              resources:
+                requests:
+                  storage: 20Gi   # 1→20</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl apply -k examples/kustomize/ivory
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>IVYO 会按 <strong>副本优先、主库最后</strong> 的顺序触发底层 <code>pvc.spec.resources.requests.storage</code> 修改，Kubelet 与存储插件完成文件系统在线扩容，<strong>Pod 无需重建</strong>，业务无感知。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pvc-expansion-unsupported"><a class="anchor" href="#pvc-expansion-unsupported"></a>6.2.2. 场景 B – StorageClass <strong>禁止</strong> 扩容</h4>
+<div class="paragraph">
+<p>部分公有云早期 StorageClass 或本地盘 CSI 驱动未开启扩容，仍可通过 <strong>“新增大容量实例集 → 切换 → 删除老实例集”</strong> 完成“曲线”扩容。</p>
+</div>
+<div class="paragraph">
+<p>步骤示例：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>保留原 <code>instance1</code>（1 GiB），新增 <code>instance2</code>（10 GiB）</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  instances:
+    - name: instance1
+      replicas: 2
+      dataVolumeClaimSpec:
+        resources:
+          requests:
+            storage: 1Gi
+    - name: instance2          # 新实例集
+      replicas: 2
+      dataVolumeClaimSpec:
+        resources:
+          requests:
+            storage: 10Gi</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>等待 <code>instance2</code> 副本同步追上主库</p>
+</li>
+<li>
+<p>提交仅含 <code>instance2</code> 的清单，IVYO 将自动：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>把 <code>instance2</code> 某一副本提升为新主</p>
+</li>
+<li>
+<p>删除 <code>instance1</code> 所有 Pod &amp; PVC</p>
+</li>
+<li>
+<p>完成“数据迁移”</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>结果：业务未中断，磁盘已换成 10 GiB，<strong>老 PVC 被释放，费用停止计费</strong>。
+反向操作即可“缩容”磁盘（先建小盘实例集 → 切换 → 删大盘）。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="troubleshooting"><a class="anchor" href="#troubleshooting"></a>6.3. 常见问题</h3>
+<div class="sect3">
+<h4 id="pod-unschedulable"><a class="anchor" href="#pod-unschedulable"></a>6.3.1. Pod 无法调度</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>节点剩余资源不满足 <code>requests</code> → 扩容节点或降低 requests</p>
+</li>
+<li>
+<p>PVC 申请过大 / StorageClass 不存在 → 检查存储类及配额</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pvc-not-expand"><a class="anchor" href="#pvc-not-expand"></a>6.3.2. PVC 大小未变</h4>
+<div class="paragraph">
+<p>确认 StorageClass：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl get sc -o custom-columns=NAME:.metadata.name,ALLOW Expansion:.allowVolumeExpansion
+----</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>若返回 <code>false</code> 或空值，请：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>换用支持扩容的 StorageClass，或</p>
+</li>
+<li>
+<p>使用上文“场景 B”实例集替换方案</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="自定义-ivory-配置"><a class="anchor" href="#自定义-ivory-配置"></a>7. 自定义 Ivory 配置</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>管理 Ivory 集群中多个实例的诀窍之一是确保所有配置更改都能传播到每个实例。这正是 IVYO 的用武之地：当您为集群进行 Ivory 配置更改时，IVYO 会将其应用到所有 Ivory 实例。</p>
+</div>
+<div class="paragraph">
+<p>例如，在上一步中，我们分别添加了 CPU 和内存限制为 <code>2.0</code> 和 <code>4Gi</code>。让我们调整一些 Ivory 设置以更好地利用我们的新资源。我们可以在 <code>spec.patroni.dynamicConfiguration</code> 部分中进行此操作。以下是一个更新后的示例清单，其中调整了几个设置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: hippo
+spec:
+  image: {{&lt; param imageIvorySQL &gt;}}
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  instances:
+    - name: instance1
+      replicas: 2
+      resources:
+        limits:
+          cpu: 2.0
+          memory: 4Gi
+      dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: {{&lt; param imagePGBackrest &gt;}}
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi
+  patroni:
+    dynamicConfiguration:
+      postgresql:
+        parameters:
+          max_parallel_workers: 2
+          max_worker_processes: 2
+          shared_buffers: 1GB
+          work_mem: 2MB</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>特别是，我们在 <code>spec</code> 中添加了以下内容：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">patroni:
+  dynamicConfiguration:
+    postgresql:
+      parameters:
+        max_parallel_workers: 2
+        max_worker_processes: 2
+        shared_buffers: 1GB
+        work_mem: 2MB</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>使用以下命令将这些更新应用到您的 Ivory 集群：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">kubectl apply -k examples/kustomize/ivory</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>IVYO 将应用这些设置，并在必要时重新启动每个 Ivory 实例。您可以使用 Ivory 的 <code>SHOW</code> 命令验证更改是否已生效，例如：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SHOW work_mem;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>应该会产生类似以下的结果：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"> work_mem
+----------
+ 2MB</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="自定义-tls"><a class="anchor" href="#自定义-tls"></a>7.1. 自定义 TLS</h3>
+<div class="paragraph">
+<p>IVYO 中的所有连接都使用 TLS 加密组件之间的通信。IVYO 设置了一个 PKI 和证书颁发机构 (CA)，允许您创建可验证的端点。但是，您可能希望根据组织要求引入不同的 TLS 基础设施。好消息是：IVYO 允许您这样做！</p>
+</div>
+<div class="sect3">
+<h4 id="如何自定义-tls"><a class="anchor" href="#如何自定义-tls"></a>7.1.1. 如何自定义 TLS</h4>
+<div class="paragraph">
+<p>IVYO 有几个不同的 TLS 端点可以自定义，包括 Ivory 集群的端点以及控制 Ivory 实例之间如何进行身份验证的端点。让我们看看如何通过定义以下内容来自定义 TLS：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>一个 <code>spec.customTLSSecret</code>，用于标识集群并加密通信；以及</p>
+</li>
+<li>
+<p>一个 <code>spec.customReplicationTLSSecret</code>，用于复制身份验证。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>要自定义 Ivory 集群的 TLS，您需要在 Ivory 集群的命名空间中创建两个 Secret。其中一个 Secret 将是 <code>customTLSSecret</code>，另一个将是 <code>customReplicationTLSSecret</code>。这两个 Secret 都包含要使用的 TLS 密钥（<code>tls.key</code>）、TLS 证书（<code>tls.crt</code>）和 CA 证书（<code>ca.crt</code>）。</p>
+</div>
+<div class="paragraph">
+<p>注意：如果提供了 <code>spec.customTLSSecret</code>，则<strong>必须</strong>也提供 <code>spec.customReplicationTLSSecret</code>，并且两者都必须包含相同的 <code>ca.crt</code>。</p>
+</div>
+<div class="paragraph">
+<p>自定义 TLS 和自定义复制 TLS Secret 应包含以下字段（如果您无法控制 Secret 的 <code>data</code> 中的字段名称，请参见下面的解决方法）：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">data:
+  ca.crt: &lt;value&gt;
+  tls.crt: &lt;value&gt;
+  tls.key: &lt;value&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>例如，如果您本地计算机上存储有名为 <code>ca.crt</code>、<code>hippo.key</code> 和 <code>hippo.crt</code> 的文件，您可以运行以下命令从这些文件创建 Secret：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">kubectl create secret generic -n ivory-operator hippo-cluster.tls \
+  --from-file=ca.crt=ca.crt \
+  --from-file=tls.key=hippo.key \
+  --from-file=tls.crt=hippo.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>创建 Secret 后，您可以在 <code>ivorycluster.ivory-operator.ivorysql.org</code> 自定义资源中指定自定义 TLS Secret。例如，如果您创建了 <code>hippo-cluster.tls</code> Secret 和 <code>hippo-replication.tls</code> Secret，您可以将它们添加到您的 Ivory 集群中：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  customTLSSecret:
+    name: hippo-cluster.tls
+  customReplicationTLSSecret:
+    name: hippo-replication.tls</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果您无法控制 Secret 中的键值对，您可以创建一个映射来告诉 Ivory Operator 哪个键保存了预期的值。它看起来类似于以下内容：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  customTLSSecret:
+    name: hippo.tls
+    items:
+      - key: &lt;tls.crt key in the referenced hippo.tls Secret&gt;
+        path: tls.crt
+      - key: &lt;tls.key key in the referenced hippo.tls Secret&gt;
+        path: tls.key
+      - key: &lt;ca.crt key in the referenced hippo.tls Secret&gt;
+        path: ca.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>例如，如果 <code>hippo.tls</code> Secret 中的 <code>tls.crt</code> 位于名为 <code>hippo-tls.crt</code> 的键中，<code>tls.key</code> 位于名为 <code>hippo-tls.key</code> 的键中，<code>ca.crt</code> 位于名为 <code>hippo-ca.crt</code> 的键中，那么您的映射将如下所示：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  customTLSSecret:
+    name: hippo.tls
+    items:
+      - key: hippo-tls.crt
+        path: tls.crt
+      - key: hippo-tls.key
+        path: tls.key
+      - key: hippo-ca.crt
+        path: ca.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>注意：尽管自定义 TLS 和自定义复制 TLS Secret 共享相同的 <code>ca.crt</code>，但它们不共享相同的 <code>tls.crt</code>：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>您的 <code>spec.customTLSSecret</code> TLS 证书应具有与主服务名称匹配的通用名称 (CN) 设置。这是集群名称后缀为 <code>-primary</code> 的名称。例如，对于我们的 <code>hippo</code> 集群，这将是 <code>hippo-primary</code>。</p>
+</li>
+<li>
+<p>您的 <code>spec.customReplicationTLSSecret</code> TLS 证书应具有与预设复制用户 <code>_ivoryrepl</code> 匹配的通用名称 (CN) 设置。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>与其他更改一样，您可以使用 <code>kubectl apply</code> 推出 TLS 自定义设置。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="标签"><a class="anchor" href="#标签"></a>7.2. 标签</h3>
+<div class="paragraph">
+<p>有几种方法可以将您自己的自定义 Kubernetes <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/">标签</a> 添加到您的 Ivory 集群。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>集群：您可以通过编辑自定义资源的 <code>spec.metadata.labels</code> 部分将标签应用于集群中的任何 IVYO 托管对象。</p>
+</li>
+<li>
+<p>Ivory：您可以通过编辑 <code>spec.instances.metadata.labels</code> 将标签应用于 Ivory 实例集及其对象。</p>
+</li>
+<li>
+<p>pgBackRest：您可以通过编辑 <code>ivoryclusters.spec.backups.pgbackrest.metadata.labels</code> 将标签应用于 pgBackRest 及其对象。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="注解"><a class="anchor" href="#注解"></a>7.3. 注解</h3>
+<div class="paragraph">
+<p>有几种方法可以将您自己的自定义 Kubernetes <a href="https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/">注解</a> 添加到您的 Ivory 集群。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>集群：您可以通过编辑自定义资源的 <code>spec.metadata.annotations</code> 部分将注解应用于集群中的任何 IVYO 托管对象。</p>
+</li>
+<li>
+<p>Ivory：您可以通过编辑 <code>spec.instances.metadata.annotations</code> 将注解应用于 Ivory 实例集及其对象。</p>
+</li>
+<li>
+<p>pgBackRest：您可以通过编辑 <code>spec.backups.pgbackrest.metadata.annotations</code> 将注解应用于 pgBackRest 及其对象。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pod-优先级类"><a class="anchor" href="#pod-优先级类"></a>7.4. Pod 优先级类</h3>
+<div class="paragraph">
+<p>IVYO 允许您使用 <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/pod-priority-preemption/">pod 优先级类</a> 通过设置 Ivory 集群上的 <code>priorityClassName</code> 字段来指示 pod 的相对重要性。这可以通过以下方式完成：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>实例：优先级是按实例集定义的，并应用于该实例集中的所有 Pod，方法是编辑自定义资源的 <code>spec.instances.priorityClassName</code> 部分。</p>
+</li>
+<li>
+<p>专用仓库主机：在规范的 repoHost 部分下定义的优先级通过编辑自定义资源的 <code>spec.backups.pgbackrest.repoHost.priorityClassName</code> 部分应用于专用仓库主机。</p>
+</li>
+<li>
+<p>备份（手动和计划）：优先级在 <code>spec.backups.pgbackrest.jobs.priorityClassName</code> 部分下定义，并将该优先级应用于所有 pgBackRest 备份作业（手动和计划）。</p>
+</li>
+<li>
+<p>还原（数据源或就地）：通过编辑自定义资源的 <code>spec.dataSource.ivorycluster.priorityClassName</code> 部分为“数据源”还原或就地还原定义优先级。</p>
+</li>
+<li>
+<p>数据迁移：规范中第一个实例集（数组位置 0）定义的优先级用于 PGDATA 和 WAL 迁移作业。pgBackRest 仓库迁移作业将使用应用于 repoHost 的优先级类。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="独立的-wal-pvc"><a class="anchor" href="#独立的-wal-pvc"></a>7.5. 独立的 WAL PVC</h3>
+<div class="paragraph">
+<p>IvorySQL 通过将更改存储在其https://www.postgresql.org/docs/current/wal-intro.html[预写日志 (WAL)] 中来提交事务。由于访问和使用 WAL 文件的方式通常与数据文件不同，并且在高性能情况下，可能需要将 WAL 文件放在单独的存储卷上。使用 IVYO，可以通过在您的 ivorycluster 规范中为您所需的实例添加 <code>walVolumeClaimSpec</code> 块来实现，无论是在创建集群时还是之后的任何时间：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  instances:
+    - name: instance
+      walVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>稍后可以通过从实例中移除 <code>walVolumeClaimSpec</code> 部分来移除此卷。请注意，在更改 WAL 目录时，会小心避免丢失任何 WAL 文件。只有在先前配置的卷上不再有任何 WAL 文件时，IVYO 才会删除 PVC。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="数据库初始化-sql"><a class="anchor" href="#数据库初始化-sql"></a>7.6. 数据库初始化 SQL</h3>
+<div class="paragraph">
+<p>IVYO 可以在集群创建和初始化过程中为您运行 SQL。IVYO 使用 psql 客户端运行 SQL，因此您可以使用元命令连接到不同的数据库、更改错误处理或设置和使用变量。其功能在 <a href="https://www.postgresql.org/docs/current/app-psql.html">psql 文档</a> 中有所描述。</p>
+</div>
+<div class="sect3">
+<h4 id="初始化-sql-configmap"><a class="anchor" href="#初始化-sql-configmap"></a>7.6.1. 初始化 SQL ConfigMap</h4>
+<div class="paragraph">
+<p>Ivory 集群规范接受对包含您的 init SQL 文件的 ConfigMap 的引用。更新您的集群规范以包括 ConfigMap 名称 <code>spec.databaseInitSQL.name</code> 和您的 SQL 文件的数据键 <code>spec.databaseInitSQL.key</code>。例如，如果您使用以下命令创建 ConfigMap：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">kubectl -n ivory-operator create configmap hippo-init-sql --from-file=init.sql=/path/to/init.sql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>您可以将以下部分添加到您的 ivorycluster 规范中：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  databaseInitSQL:
+    key: init.sql
+    name: hippo-init-sql</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>ConfigMap 必须与您的 Ivory 集群位于同一命名空间中。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>在您将 ConfigMap 引用添加到您的规范后，使用 <code>kubectl apply -k examples/kustomize/ivory</code> 应用更改。IVYO 将创建您的 <code>hippo</code> 集群，并在集群启动后运行您的初始化 SQL。您可以通过检查 Ivory 集群上的 <code>databaseInitSQL</code> 状态来验证您的 SQL 是否已运行。在状态设置期间，您的 init SQL 不会再次运行。您可以使用 <code>kubectl describe</code> 命令检查集群状态：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">kubectl -n ivory-operator describe ivoryclusters.ivory-operator.ivorysql.org hippo</code></pre>
+</div>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>在某些情况下，由于 Kubernetes 处理 ivorycluster 状态的方式，IVYO 可能会多次运行您的 SQL 命令。请确保您在 init SQL 中定义的命令是幂等的。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>现在 <code>databaseInitSQL</code> 已在您的集群状态中定义，请验证数据库对象是否已按预期创建。验证后，我们建议从您的规范中移除 <code>spec.databaseInitSQL</code> 字段。从规范中移除该字段也将从集群状态中移除 <code>databaseInitSQL</code>。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="psql-用法"><a class="anchor" href="#psql-用法"></a>7.6.2. PSQL 用法</h4>
+<div class="paragraph">
+<p>IVYO 使用 psql 交互式终端在您的数据库中执行 SQL 语句。语句使用标准输入和文件名标志传递（例如 <code>psql -f -</code>）。</p>
+</div>
+<div class="paragraph">
+<p>SQL 语句以超级用户身份在默认维护数据库中执行。这意味着您可以完全控制创建数据库对象、扩展或运行您可能需要的任何 SQL 语句。</p>
+</div>
+<div class="sect4">
+<h5 id="与用户和数据库管理集成"><a class="anchor" href="#与用户和数据库管理集成"></a>7.6.2.1. 与用户和数据库管理集成</h5>
+<div class="paragraph">
+<p>如果您正在创建用户或数据库，请参阅 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/user-management.md">用户/数据库管理</a> 文档。通过规范的用户管理部分创建的数据库可以在您的初始化 sql 中引用。例如，如果定义了数据库 <code>zoo</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  users:
+    - name: hippo
+      databases:
+       - "zoo"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>您可以通过将以下 <code>psql</code> 元命令添加到您的 SQL 来连接到 <code>zoo</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">\c zoo
+create table t_zoo as select s, md5(random()::text) from generate_Series(1,5) s;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="事务支持"><a class="anchor" href="#事务支持"></a>7.6.2.2. 事务支持</h5>
+<div class="paragraph">
+<p>默认情况下，<code>psql</code> 会在每个 SQL 命令完成时提交它。要将多个命令组合成一个单独的 <a href="https://www.postgresql.org/docs/current/tutorial-transactions.html">事务</a>，请使用 <a href="https://www.postgresql.org/docs/current/sql-begin.html"><code>BEGIN</code></a> 和 <a href="https://www.postgresql.org/docs/current/sql-commit.html"><code>COMMIT</code></a> 命令。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">BEGIN;
+create table t_random as select s, md5(random()::text) from generate_Series(1,5) s;
+COMMIT;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="psql-退出代码和数据库-init-sql-状态"><a class="anchor" href="#psql-退出代码和数据库-init-sql-状态"></a>7.6.2.3. PSQL 退出代码和数据库 Init SQL 状态</h5>
+<div class="paragraph">
+<p><code>psql</code> 的退出代码将决定何时设置 <code>databaseInitSQL</code> 状态。当 <code>psql</code> 返回 <code>0</code> 时，状态将被设置，并且不会再次运行 SQL。当 <code>psql</code> 返回错误退出代码时，状态将不会被设置。IVYO 将继续尝试执行 SQL，作为其协调循环的一部分，直到 <code>psql</code> 正常返回。如果 <code>psql</code> 以失败退出，您将需要编辑 ConfigMap 中的文件，以确保您的 SQL 语句将导致成功的 <code>psql</code> 返回。对 ConfigMap 进行实时更改的最简单方法是使用以下 <code>kubectl edit</code> 命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">kubectl -n &lt;cluster-namespace&gt; edit configmap hippo-init-sql</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>请务必将所有更改传回您的本地文件。另一个选项是在本地文件中进行更改，并使用 <code>kubectl --dry-run</code> 创建模板，并将输出通过管道传输到 <code>kubectl apply</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">kubectl create configmap hippo-init-sql --from-file=init.sql=/path/to/init.sql --dry-run=client -o yaml | kubectl apply -f -</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果您编辑了 ConfigMap 但更改没有显示出来，您可能正在等待 IVYO 协调您的集群。一段时间后，IVYO 将自动协调集群，或者您可以通过对集群应用任何更改来触发协调（例如，使用 <code>kubectl apply -k examples/kustomize/ivory</code>）。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>为了确保 <code>psql</code> 在您的 SQL 命令失败时返回失败退出代码，请在您的 SQL 文件中设置 <code>ON_ERROR_STOP</code> <a href="https://www.postgresql.org/docs/current/app-psql.html#APP-PSQL-VARIABLES">变量</a>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">\set ON_ERROR_STOP
+\echo Any error will lead to exit code 3
+create table t_random as select s, md5(random()::text) from generate_Series(1,5) s;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="用户数据库管理"><a class="anchor" href="#用户数据库管理"></a>8. 用户/数据库管理</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IVYO 内置了一些即用型便利功能，用于管理 Ivory 集群中的用户和数据库。然而，您可能有需要创建额外用户、调整用户权限或向集群添加额外数据库的需求。</p>
+</div>
+<div class="paragraph">
+<p>有关 IVYO 中用户和数据库管理工作原理的详细信息，请参阅架构指南中的 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/user-management.md">用户管理</a> 部分。</p>
+</div>
+<div class="sect2">
+<h3 id="创建新用户"><a class="anchor" href="#创建新用户"></a>8.1. 创建新用户</h3>
+<div class="paragraph">
+<p>您可以通过在 <code>ivorycluster</code> 自定义资源中添加以下片段来创建新用户。让我们将其添加到我们的 <code>hippo</code> 数据库中：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  users:
+    - name: rhino</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>现在您可以应用更改，并看到新用户已创建。请注意以下事项：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>该用户只能连接到默认的 <code>ivory</code> 数据库。</p>
+</li>
+<li>
+<p>用户不会将任何连接凭据填充到 <code>hippo-pguser-rhino</code> Secret 中。</p>
+</li>
+<li>
+<p>该用户是未特权的。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>让我们创建一个名为 <code>zoo</code> 的新数据库，我们将允许 <code>rhino</code> 用户访问该数据库：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  users:
+    - name: rhino
+      databases:
+        - zoo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>检查 <code>hippo-pguser-rhino</code> Secret。您现在应该看到 <code>dbname</code> 和 <code>uri</code> 字段已填充！</p>
+</div>
+<div class="paragraph">
+<p>我们可以通过使用 Ivory 提供的标准 <a href="https://www.postgresql.org/docs/current/role-attributes.html">角色属性</a> 并将它们添加到 <code>spec.users.options</code> 来设置角色权限。假设我们希望 rhino 成为超级用户（在授予 Ivory 超级用户权限时要小心！）。您可以将以下内容添加到规范中：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  users:
+    - name: rhino
+      databases:
+        - zoo
+      options: "SUPERUSER"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>就这样：我们创建了一个名为 <code>rhino</code> 的 Ivory 用户，该用户具有超级用户权限，并且可以访问 <code>rhino</code> 数据库（尽管超级用户可以访问所有数据库！）。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="调整权限"><a class="anchor" href="#调整权限"></a>8.2. 调整权限</h3>
+<div class="paragraph">
+<p>假设您想从 <code>rhino</code> 中撤销超级用户权限。您可以通过以下方式执行此操作：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  users:
+    - name: rhino
+      databases:
+        - zoo
+      options: "NOSUPERUSER"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果您想添加多个权限，您可以在 <code>options</code> 中用空格分隔每个权限，例如：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  users:
+    - name: rhino
+      databases:
+        - zoo
+      options: "CREATEDB CREATEROLE"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="管理-ivory-用户"><a class="anchor" href="#管理-ivory-用户"></a>8.3. 管理 <code>ivory</code> 用户</h3>
+<div class="paragraph">
+<p>默认情况下，IVYO 不允许您访问 <code>ivory</code> 用户。但是，您可以通过执行以下操作来访问此帐户：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  users:
+    - name: ivory</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这将创建一个模式为 <code>&lt;clusterName&gt;-pguser-ivory</code> 的 Secret，其中包含 <code>ivory</code> 帐户的凭据。对于我们的 <code>hippo</code> 集群，这将是 <code>hippo-pguser-ivory</code>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="删除用户"><a class="anchor" href="#删除用户"></a>8.4. 删除用户</h3>
+<div class="paragraph">
+<p>IVYO 不会自动删除用户：将用户从规范中移除后，它将仍然存在于您的集群中。要删除用户及其所有对象，作为超级用户，您需要在用户拥有对象的每个数据库中运行 <a href="https://www.postgresql.org/docs/current/sql-drop-owned.html"><code>DROP OWNED</code></a>，并在您的 Ivory 集群中运行 <a href="https://www.postgresql.org/docs/current/sql-droprole.html"><code>DROP ROLE</code></a>。</p>
+</div>
+<div class="paragraph">
+<p>例如，对于上面的 <code>rhino</code> 用户，您将运行以下命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">DROP OWNED BY rhino;
+DROP ROLE rhino;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>请注意，您可能需要根据对象所有权结构运行 <code>DROP OWNED BY rhino CASCADE;</code> —— 请非常小心此命令！</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="删除数据库"><a class="anchor" href="#删除数据库"></a>8.5. 删除数据库</h3>
+<div class="paragraph">
+<p>IVYO 不会自动删除数据库：从规范中移除数据库的所有实例后，它将仍然存在于您的集群中。要完全删除数据库，您必须以 Ivory 超级用户身份运行 <a href="https://www.postgresql.org/docs/current/sql-dropdatabase.html"><code>DROP DATABASE</code></a> 命令。</p>
+</div>
+<div class="paragraph">
+<p>例如，要删除 <code>zoo</code> 数据库，您将执行以下命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">DROP DATABASE zoo;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="灾难恢复与克隆"><a class="anchor" href="#灾难恢复与克隆"></a>9. 灾难恢复与克隆</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>也许有人不小心删除了 <code>users</code> 表。也许你想把生产数据库克隆到降级环境。也许你想演练灾难恢复系统（这很重要！）。</p>
+</div>
+<div class="paragraph">
+<p>无论哪种情况，了解如何使用 IVYO 执行“恢复”操作以便从特定时间点恢复数据，或出于其他目的克隆数据库都很重要。</p>
+</div>
+<div class="paragraph">
+<p>我们来看看如何执行不同类型的恢复操作。首先，让我们了解自定义资源上的核心恢复属性。</p>
+</div>
+<div class="sect2">
+<h3 id="恢复属性"><a class="anchor" href="#恢复属性"></a>9.1. 恢复属性</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>IVYO 提供了从现有 ivorycluster 或远程云数据源（如 S3、GCS 等）恢复的能力。有关更多信息，请参阅 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md#cloud-based-data-source">从 S3 / GCS / Azure Blob 存储中存储的备份克隆</a> 部分。</p>
+</div>
+<div class="paragraph">
+<p>请注意，您<strong>不能</strong>同时使用本地 ivorycluster 数据源和远程云数据源；如果同时填写了 <code>dataSource.ivorycluster</code> 和 <code>dataSource.pgbackrest</code> 字段，本地 ivorycluster 数据源将优先。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>自定义资源上有几个重要属性需要了解，这些都是恢复过程中的关键。所有这些属性都分组在自定义资源的 spec.dataSource.ivorycluster 部分中。</p>
+</div>
+<div class="paragraph">
+<p>请查看下表，了解每个属性在设置恢复操作时的工作原理。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spec.dataSource.ivorycluster.clusterName</code>：您要从中恢复的集群的名称。这对应于另一个 <code>ivorycluster</code> 自定义资源的 <code>metadata.name</code> 属性。</p>
+</li>
+<li>
+<p><code>spec.dataSource.ivorycluster.clusterNamespace</code>：您要从中恢复的集群的命名空间。当集群存在于不同的命名空间时使用。</p>
+</li>
+<li>
+<p><code>spec.dataSource.ivorycluster.repoName</code>：用于恢复的 <code>spec.dataSource.ivorycluster.clusterName</code> 中的 pgBackRest 仓库的名称。可以是 <code>repo1</code>、<code>repo2</code>、<code>repo3</code> 或 <code>repo4</code> 之一。仓库必须存在于另一个集群中。</p>
+</li>
+<li>
+<p><code>spec.dataSource.ivorycluster.options</code>：IVYO 允许的任何额外 <a href="https://pgbackrest.org/command.html#command-restore">pgBackRest 恢复选项</a> 或常规选项。例如，您可能希望设置 <code>--process-max</code> 以帮助提高大型数据库的性能；但您将无法设置 <code>--target-action</code>，因为该选项目前被禁止。（如果存在 <code>--target</code>，IVYO 总是将其设置为 <code>promote</code>，否则将其留空。）</p>
+</li>
+<li>
+<p><code>spec.dataSource.ivorycluster.resources</code>：设置恢复作业的 <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#requests-and-limits">资源限制和请求</a> 可以确保其高效运行。</p>
+</li>
+<li>
+<p><code>spec.dataSource.ivorycluster.affinity</code>：自定义 <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/">Kubernetes 亲和性</a> 规则约束恢复作业，使其仅在某些节点上运行。</p>
+</li>
+<li>
+<p><code>spec.dataSource.ivorycluster.tolerations</code>：自定义 <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">Kubernetes 容忍度</a> 允许恢复作业在 <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">污点</a> 节点上运行。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>让我们通过一些示例来了解如何克隆和恢复我们的数据库。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="克隆-ivory-集群"><a class="anchor" href="#克隆-ivory-集群"></a>9.2. 克隆 Ivory 集群</h3>
+<div class="paragraph">
+<p>让我们创建一个我们之前创建的 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/create-cluster.md"><code>hippo</code></a> 集群的克隆。我们知道我们的集群名为 <code>hippo</code>（基于其 <code>metadata.name</code>），并且我们只有一个名为 <code>repo1</code> 的备份仓库。</p>
+</div>
+<div class="paragraph">
+<p>让我们称我们的新集群为 <code>elephant</code>。我们可以使用如下所示的清单创建 <code>hippo</code> 集群的克隆：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: elephant
+spec:
+  dataSource:
+    ivoryCluster:
+      clusterName: hippo
+      repoName: repo1
+  image: {{&lt; param imageIvorySQL &gt;}}
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: {{&lt; param imagePGBackrest &gt;}}
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>请注意规范中的这一部分：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  dataSource:
+    ivoryCluster:
+      clusterName: hippo
+      repoName: repo1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这部分告诉 IVYO 将 <code>elephant</code> 集群创建为 <code>hippo</code> 集群的独立副本。</p>
+</div>
+<div class="paragraph">
+<p>以上就是克隆 Ivory 集群所需的全部操作！IVYO 将在新的持久卷声明 (PVC) 上创建数据副本，并致力于将集群初始化到规范。很简单！</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="执行时间点恢复-pitr"><a class="anchor" href="#执行时间点恢复-pitr"></a>9.3. 执行时间点恢复 (PITR)</h3>
+<div class="paragraph">
+<p>有人删除了用户表吗？您可能希望执行时间点恢复 (PITR) 以将数据库恢复到更改发生之前的状态。幸运的是，IVYO 可以帮助您做到这一点。</p>
+</div>
+<div class="paragraph">
+<p>您可以使用为 IVYO 的灾难恢复功能提供支持的备份管理工具 <a href="https://www.pgbackrest.org">pgBackRest</a> 的 <a href="https://pgbackrest.org/command.html#command-restore">restore</a> 命令来设置 PITR。您需要在 <code>spec.dataSource.ivorycluster.options</code> 上设置一些选项来执行 PITR。这些选项包括：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>--type=time</code>：这告诉 pgBackRest 执行 PITR。</p>
+</li>
+<li>
+<p><code>--target</code>：执行 PITR 的目标位置。恢复目标的一个示例是 <code>2021-06-09 14:15:11-04</code>。此处指定的时区为 -04，即东部夏令时。有关其他时区选项，请参阅 <a href="https://pgbackrest.org/user-guide.html#pitr">pgBackRest 文档</a>。</p>
+</li>
+<li>
+<p><code>--set</code>（可选）：选择从哪个备份开始 PITR。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>开始前的一些快速说明：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>要执行 PITR，您必须有一个在 PITR 时间之前完成的备份。换句话说，您不能对没有备份的时间执行 PITR！</p>
+</li>
+<li>
+<p>所有相关的 WAL 文件必须成功推送，以便恢复正确完成。</p>
+</li>
+<li>
+<p>确保选择包含所需备份的正确仓库名称！</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>考虑到这一点，让我们使用上面的 <code>elephant</code> 示例。假设我们要执行到 <code>2021-06-09 14:15:11-04</code> 的时间点恢复 (PITR)，我们可以使用以下清单：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: elephant
+spec:
+  dataSource:
+    ivoryCluster:
+      clusterName: hippo
+      repoName: repo1
+      options:
+      - --type=time
+      - --target="2021-06-09 14:15:11-04"
+  image: {{&lt; param imageIvorySQL &gt;}}
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: {{&lt; param imagePGBackrest &gt;}}
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>需要注意的部分是：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  dataSource:
+    ivoryCluster:
+      clusterName: hippo
+      repoName: repo1
+      options:
+      - --type=time
+      - --target="2021-06-09 14:15:11-04"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>请注意我们如何放入选项以指定进行 PITR 的位置。</p>
+</div>
+<div class="paragraph">
+<p>使用上述清单，IVYO 将继续创建一个恢复其数据直到 <code>2021-06-09 14:15:11-04</code> 的新 Ivory 集群。此时，集群被提升，您可以从该特定时间点开始访问您的数据库！</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="执行就地时间点恢复-pitr"><a class="anchor" href="#执行就地时间点恢复-pitr"></a>9.4. 执行就地时间点恢复 (PITR)</h3>
+<div class="paragraph">
+<p>与上面描述的 PITR 恢复类似，您可能希望执行类似的回退到更改发生之前的状态，但不创建另一个 IvorySQL 集群。幸运的是，IVYO 也可以帮助您做到这一点。</p>
+</div>
+<div class="paragraph">
+<p>您可以使用为 IVYO 的灾难恢复功能提供支持的备份管理工具 <a href="https://www.pgbackrest.org">pgBackRest</a> 的 <a href="https://pgbackrest.org/command.html#command-restore">restore</a> 命令来设置 PITR。您需要在 <code>spec.backups.pgbackrest.restore.options</code> 上设置一些选项来执行 PITR。这些选项包括：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>--type=time</code>：这告诉 pgBackRest 执行 PITR。</p>
+</li>
+<li>
+<p><code>--target</code>：执行 PITR 的目标位置。恢复目标的一个示例是 <code>2021-06-09 14:15:11-04</code>。</p>
+</li>
+<li>
+<p><code>--set</code>（可选）：选择从哪个备份开始 PITR。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>开始前的一些快速说明：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>要执行 PITR，您必须有一个在 PITR 时间之前完成的备份。换句话说，您不能对没有备份的时间执行 PITR！</p>
+</li>
+<li>
+<p>所有相关的 WAL 文件必须成功推送，以便恢复正确完成。</p>
+</li>
+<li>
+<p>确保选择包含所需备份的正确仓库名称！</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>要执行就地恢复，用户首先需要填写规范的恢复部分，如下所示：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  backups:
+    pgbackrest:
+      restore:
+        enabled: true
+        repoName: repo1
+        options:
+        - --type=time
+        - --target="2021-06-09 14:15:11-04"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>然后，要触发恢复，您需要使用以下命令注释 ivorycluster：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">kubectl annotate -n ivory-operator ivorycluster hippo --overwrite \
+  ivory-operator.ivorysql.org/pgbackrest-restore=id1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>恢复完成后，可以禁用就地恢复：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  backups:
+    pgbackrest:
+      restore:
+        enabled: false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>请注意我们如何放入选项以指定进行 PITR 的位置。</p>
+</div>
+<div class="paragraph">
+<p>使用上述清单，IVYO 将继续重新创建您的 Ivory 集群，以恢复其数据直到 <code>2021-06-09 14:15:11-04</code>。此时，集群被提升，您可以从该特定时间点开始访问您的数据库！</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="恢复单个数据库"><a class="anchor" href="#恢复单个数据库"></a>9.5. 恢复单个数据库</h3>
+<div class="paragraph">
+<p>出于性能原因或为了将选定数据库移动到没有足够空间来恢复整个集群备份的计算机上，您可能需要从备份中恢复特定数据库。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>pgBackRest 支持这种情况，但请务必确保这是您想要的。以这种方式恢复将从备份中恢复请求的数据库并使其可访问，但备份中的所有其他数据库在恢复后将<strong>无法</strong>访问。</p>
+</div>
+<div class="paragraph">
+<p>例如，如果您的备份包含数据库 <code>test1</code>、<code>test2</code> 和 <code>test3</code>，并且您请求恢复 <code>test2</code>，则恢复完成后，<code>test1</code> 和 <code>test3</code> 数据库将<strong>无法</strong>访问。请查看 pgBackRest 文档中关于 <a href="https://pgbackrest.org/user-guide.html#restore/option-db-include">恢复单个数据库的限制</a>。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>您可以使用类似于以下规范的规范从备份中恢复单个数据库：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  backups:
+    pgbackrest:
+      restore:
+        enabled: true
+        repoName: repo1
+        options:
+        - --db-include=hippo</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>其中 <code>--db-include=hippo</code> 将仅恢复 <code>hippo</code> 数据库的内容。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="备用集群"><a class="anchor" href="#备用集群"></a>9.6. 备用集群</h3>
+<div class="paragraph">
+<p>高级高可用性和灾难恢复策略涉及将您的数据库集群分布在数据中心之间，以帮助最大化正常运行时间。IVYO 提供了使用外部存储系统或 IvorySQL 流复制部署可以跨越多个 Kubernetes 集群的 ivorycluster 的方法。https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/disaster-recovery.md[灾难恢复架构] 文档中提供了 IVYO 备用集群的高级概述。</p>
+</div>
+<div class="sect3">
+<h4 id="创建备用集群"><a class="anchor" href="#创建备用集群"></a>9.6.1. 创建备用集群</h4>
+<div class="paragraph">
+<p>本教程部分将描述如何创建三种不同类型的备用集群，一种使用外部存储系统，一种直接从主集群流式传输数据，一种利用外部存储和流式传输。这些示例集群可以在同一个 Kubernetes 集群中使用单个 IVYO 实例创建，也可以通过正确的存储和网络配置分布在不同的 Kubernetes 集群和 IVYO 实例中。</p>
+</div>
+<div class="sect4">
+<h5 id="基于仓库的备用集群"><a class="anchor" href="#基于仓库的备用集群"></a>9.6.1.1. 基于仓库的备用集群</h5>
+<div class="paragraph">
+<p>基于仓库的备用集群将从存储在外部存储中的 pgBackRest 仓库中恢复。主集群应使用基于云的 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md">备份配置</a> 创建。以下清单定义了一个 ivorycluster，其中 <code>standby.enabled</code> 设置为 true，并且 <code>repoName</code> 配置为指向主集群中配置的 <code>s3</code> 仓库：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: hippo-standby
+spec:
+  image: {{&lt; param imageIvorySQL &gt;}}
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  instances:
+    - dataVolumeClaimSpec: { accessModes: [ReadWriteOnce], resources: { requests: { storage: 1Gi } } }
+  backups:
+    pgbackrest:
+      image: {{&lt; param imagePGBackrest &gt;}}
+      repos:
+      - name: repo1
+        s3:
+          bucket: "my-bucket"
+          endpoint: "s3.ca-central-1.amazonaws.com"
+          region: "ca-central-1"
+  standby:
+    enabled: true
+    repoName: repo1</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="流式备用集群"><a class="anchor" href="#流式备用集群"></a>9.6.1.2. 流式备用集群</h5>
+<div class="paragraph">
+<p>流式备用集群依赖于通过网络到主集群的经过身份验证的连接。主集群应可通过网络访问并允许 TLS 身份验证（默认启用 TLS）。在以下清单中，我们将 <code>standby.enabled</code> 设置为 <code>true</code>，并提供了指向主集群的 <code>host</code> 和 <code>port</code>。我们还定义了 <code>customTLSSecret</code> 和 <code>customReplicationTLSSecret</code> 以提供允许备用集群向主集群进行身份验证的证书。对于这种类型的备用集群，您必须使用 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">自定义 TLS</a>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: hippo-standby
+spec:
+  image: {{&lt; param imageIvorySQL &gt;}}
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  instances:
+    - dataVolumeClaimSpec: { accessModes: [ReadWriteOnce], resources: { requests: { storage: 1Gi } } }
+  backups:
+    pgbackrest:
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec: { accessModes: [ReadWriteOnce], resources: { requests: { storage: 1Gi } } }
+  customTLSSecret:
+    name: cluster-cert
+  customReplicationTLSSecret:
+    name: replication-cert
+  standby:
+    enabled: true
+    host: "192.0.2.2"
+    port: 5432</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="具有外部仓库的流式备用集群"><a class="anchor" href="#具有外部仓库的流式备用集群"></a>9.6.1.3. 具有外部仓库的流式备用集群</h5>
+<div class="paragraph">
+<p>另一个选项是使用从主集群流式传输的外部 pgBackRest 仓库创建备用集群。通过此设置，如果流式复制落后，备用集群将继续从 pgBackRest 仓库恢复。在此清单中，我们启用了前两个示例中的设置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: hippo-standby
+spec:
+  image: {{&lt; param imageIvorySQL &gt;}}
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  instances:
+    - dataVolumeClaimSpec: { accessModes: [ReadWriteOnce], resources: { requests: { storage: 1Gi } } }
+  backups:
+    pgbackrest:
+      image: {{&lt; param imagePGBackrest &gt;}}
+      repos:
+      - name: repo1
+        s3:
+          bucket: "my-bucket"
+          endpoint: "s3.ca-central-1.amazonaws.com"
+          region: "ca-central-1"
+  customTLSSecret:
+    name: cluster-cert
+  customReplicationTLSSecret:
+    name: replication-cert
+  standby:
+    enabled: true
+    repoName: repo1
+    host: "192.0.2.2"
+    port: 5432</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="提升备用集群"><a class="anchor" href="#提升备用集群"></a>9.7. 提升备用集群</h3>
+<div class="paragraph">
+<p>在某些时候，您会希望提升备用集群以开始接受读取和写入。这具有将 WAL（事务归档）推送到 pgBackRest 仓库的净效应，因此我们需要确保我们不会意外创建脑裂场景。如果两个主实例尝试写入同一个仓库，则可能会发生脑裂。如果主集群仍处于活动状态，请确保在尝试提升备用集群之前 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/administrative-tasks.md#shutdown">关闭</a> 主集群。</p>
+</div>
+<div class="paragraph">
+<p>一旦主集群处于非活动状态，我们可以通过移除或禁用其 <code>spec.standby</code> 部分来提升备用集群：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">spec:
+  standby:
+    enabled: false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>此更改触发将备用领导者提升为 IvorySQL 主实例，并且集群开始接受写入。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="从-s3-gcs-azure-blob-存储中存储的备份克隆-cloud-based-data-source"><a class="anchor" href="#从-s3-gcs-azure-blob-存储中存储的备份克隆-cloud-based-data-source"></a>9.8. 从 S3 / GCS / Azure Blob 存储中存储的备份克隆 {#cloud-based-data-source}</h3>
+<div class="paragraph">
+<p>您可以从存储在 AWS S3（或使用 S3 协议的存储系统）、GCS 或 Azure Blob 存储中的备份克隆 Ivory 集群，而无需活动的 Ivory 集群！方法与从现有 ivorycluster 克隆类似。如果您希望为人们提供数据集但将其压缩在更便宜的存储上，这很有用。</p>
+</div>
+<div class="paragraph">
+<p>出于本示例的目的，假设您创建了一个名为 <code>hippo</code> 的 Ivory 集群，其备份存储在 S3 中，看起来类似于以下内容：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: hippo
+spec:
+  image: {{&lt; param imageIvorySQL &gt;}}
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: {{&lt; param imagePGBackrest &gt;}}
+      configuration:
+      - secret:
+          name: ivyo-s3-creds
+      global:
+        repo1-path: /pgbackrest/ivory-operator/hippo/repo1
+      manual:
+        repoName: repo1
+        options:
+         - --type=full
+      repos:
+      - name: repo1
+        s3:
+          bucket: "my-bucket"
+          endpoint: "s3.ca-central-1.amazonaws.com"
+          region: "ca-central-1"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>确保 <code>ivyo-s3-creds</code> 中的凭据与您的 S3 凭据匹配。有关 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md#using-s3">使用 S3 部署 Ivory 集群进行备份</a> 的更多详细信息，请参阅教程的 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/backups.md#using-s3">备份</a> 部分。</p>
+</div>
+<div class="paragraph">
+<p>为了从活跃集群创建新集群时获得最佳性能，请确保对前一个集群进行了最近的完整备份。上面的清单设置为进行完整备份。假设 <code>hippo</code> 是在 <code>ivory-operator</code> 命名空间中创建的，您可以使用以下命令触发完整备份：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl annotate -n ivory-operator ivorycluster hippo --overwrite \
+  ivory-operator.ivorysql.org/pgbackrest-backup="$( date '+%F_%H:%M:%S' )"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>等待备份完成。完成后，您可以删除 Ivory 集群。</p>
+</div>
+<div class="paragraph">
+<p>现在，让我们将 <code>hippo</code> 备份中的数据克隆到一个名为 <code>elephant</code> 的新集群中。您可以使用类似于以下的清单：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: elephant
+spec:
+  image: {{&lt; param imageIvorySQL &gt;}}
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  dataSource:
+    pgbackrest:
+      stanza: db
+      configuration:
+      - secret:
+          name: ivyo-s3-creds
+      global:
+        repo1-path: /pgbackrest/ivory-operator/hippo/repo1
+      repo:
+        name: repo1
+        s3:
+          bucket: "my-bucket"
+          endpoint: "s3.ca-central-1.amazonaws.com"
+          region: "ca-central-1"
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: {{&lt; param imagePGBackrest &gt;}}
+      configuration:
+      - secret:
+          name: ivyo-s3-creds
+      global:
+        repo1-path: /pgbackrest/ivory-operator/elephant/repo1
+      repos:
+      - name: repo1
+        s3:
+          bucket: "my-bucket"
+          endpoint: "s3.ca-central-1.amazonaws.com"
+          region: "ca-central-1"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在此清单中需要注意以下几点。首先，请注意我们新的 ivorycluster 中的 <code>spec.dataSource.pgbackrest</code> 对象与旧的 ivorycluster 中的 <code>spec.backups.pgbackrest</code> 对象非常相似，但略有不同。主要区别是：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>从基于云的数据源恢复时不需要镜像</p>
+</li>
+<li>
+<p>从基于云的数据源恢复时，<code>stanza</code> 是必填字段</p>
+</li>
+<li>
+<p><code>backups.pgbackrest</code> 有一个 <code>repos</code> 字段，这是一个数组</p>
+</li>
+<li>
+<p><code>dataSource.pgbackrest</code> 有一个 <code>repo</code> 字段，这是一个单一对象</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>还要注意相似之处：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>我们正在为两者重用密钥（因为新的恢复 pod 需要具有与原始备份 pod 相同的凭据）</p>
+</li>
+<li>
+<p><code>repo</code> 对象是相同的</p>
+</li>
+<li>
+<p><code>global</code> 对象是相同的</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>这是因为 <code>elephant</code> ivorycluster 的新恢复 pod 将需要重用最初设置 <code>hippo</code> ivorycluster 时使用的配置和凭据。</p>
+</div>
+<div class="paragraph">
+<p>在此示例中，我们正在创建一个新的集群，该集群也备份到同一个 S3 存储桶；只有 <code>spec.backups.pgbackrest.global</code> 字段已更改为指向不同的路径。这将确保新的 <code>elephant</code> 集群将预填充来自 <code>hippo</code> 备份的数据，但将备份到自己的文件夹，确保原始备份仓库得到适当保留。</p>
+</div>
+<div class="paragraph">
+<p>部署此清单以创建 <code>elephant</code> Ivory 集群。观察它启动并运行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl -n ivory-operator describe ivorycluster elephant</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>当它准备就绪时，您将看到预期实例的数量与就绪实例的数量相匹配，例如：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Instances:
+  Name:               00
+  Ready Replicas:     1
+  Replicas:           1
+  Updated Replicas:   1</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>前面的示例展示了如何使用现有的 S3 仓库预填充 ivorycluster，同时使用新的 S3 仓库进行备份。但是使用基于云的数据源的 ivorycluster 也可以使用本地仓库。</p>
+</div>
+<div class="paragraph">
+<p>例如，假设一个名为 <code>rhino</code> 的 ivorycluster 旨在从原始的 <code>hippo</code> ivorycluster 预填充，清单将如下所示：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">apiVersion: ivory-operator.ivorysql.org/v1beta1
+kind: IvoryCluster
+metadata:
+  name: rhino
+spec:
+  image: {{&lt; param imageIvorySQL &gt;}}
+  postgresVersion: {{&lt; param postgresVersion &gt;}}
+  dataSource:
+    pgbackrest:
+      stanza: db
+      configuration:
+      - secret:
+          name: ivyo-s3-creds
+      global:
+        repo1-path: /pgbackrest/ivory-operator/hippo/repo1
+      repo:
+        name: repo1
+        s3:
+          bucket: "my-bucket"
+          endpoint: "s3.ca-central-1.amazonaws.com"
+          region: "ca-central-1"
+  instances:
+    - dataVolumeClaimSpec:
+        accessModes:
+        - "ReadWriteOnce"
+        resources:
+          requests:
+            storage: 1Gi
+  backups:
+    pgbackrest:
+      image: {{&lt; param imagePGBackrest &gt;}}
+      repos:
+      - name: repo1
+        volume:
+          volumeClaimSpec:
+            accessModes:
+            - "ReadWriteOnce"
+            resources:
+              requests:
+                storage: 1Gi</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="监控"><a class="anchor" href="#监控"></a>10. 监控</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>虽然拥有 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/high-availability.md">高可用性</a> 和 <a href="https://github.com/Ivory-operator/blob/master/docs/content/tutorial/disaster-recovery.md">灾难恢复</a> 系统可以在您的 IvorySQL 集群出现问题时提供帮助，但监控可以帮助您预防问题的发生。此外，监控可以帮助您诊断和解决可能导致性能下降的问题，而不是停机。</p>
+</div>
+<div class="paragraph">
+<p>让我们看看 IVYO 如何允许您在集群中启用监控。</p>
+</div>
+<div class="sect2">
+<h3 id="添加-exporter-sidecar"><a class="anchor" href="#添加-exporter-sidecar"></a>10.1. 添加 Exporter Sidecar</h3>
+<div class="paragraph">
+<p>让我们看看如何使用 <a href="https://github.com/CrunchyData/postgres-operator-examples">Postgres Operator 示例</a> 仓库中的 <code>kustomize/ivory</code> 示例将 IvorySQL Exporter sidecar 添加到您的集群中。</p>
+</div>
+<div class="paragraph">
+<p>监控工具是使用自定义资源的 <code>spec.monitoring</code> 部分添加的。目前，唯一支持的监控工具是使用 <a href="https://github.com/CrunchyData/pgmonitor">pgMonitor</a> 配置的 IvorySQL Exporter。</p>
+</div>
+<div class="paragraph">
+<p>在 <code>kustomize/ivory/ivory.yaml</code> 文件中，将以下 YAML 添加到规范中：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">monitoring:
+  pgmonitor:
+    exporter:
+      image: {{&lt; param imagePostgresExporter &gt;}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>保存您的更改并运行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -k kustomize/ivory</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>IVYO 将检测到更改并将 Exporter sidecar 添加到集群中存在的所有 Ivory Pod 中。IVYO 还将完成允许 Exporter 连接到数据库并使用 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/monitoring.md#ivyo-monitoring">IVYO 监控</a> 堆栈收集指标的工作。</p>
+</div>
+<div class="sect3">
+<h4 id="为-exporter-配置-tls-加密"><a class="anchor" href="#为-exporter-配置-tls-加密"></a>10.1.1. 为 Exporter 配置 TLS 加密</h4>
+<div class="paragraph">
+<p>IVYO 允许您配置 exporter sidecar 以使用 TLS 加密。如果您通过 exporter 规范提供自定义 TLS Secret：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  monitoring:
+    pgmonitor:
+      exporter:
+        customTLSSecret:
+          name: hippo.tls</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>与 IVYO 可以配置的其他自定义 TLS Secret 一样，Secret 需要在与您的 PostgresCluster 相同的命名空间中创建。它还应该包含启用加密所需的 TLS 密钥 (<code>tls.key</code>) 和 TLS 证书 (<code>tls.crt</code>)。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">data:
+  tls.crt: &lt;value&gt;
+  tls.key: &lt;value&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>为 exporter 配置 TLS 后，您将需要更新您的 Prometheus 部署以使用 TLS，并且与 exporter 的连接将被加密。查看 <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#tls_config">Prometheus</a> 文档，了解有关为 <a href="https://prometheus.io/">Prometheus</a> 配置 TLS 的更多信息。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="访问指标"><a class="anchor" href="#访问指标"></a>10.2. 访问指标</h3>
+<div class="paragraph">
+<p>在您的集群中启用 IvorySQL Exporter 后，请按照 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/monitoring.md#ivyo-monitoring">IVYO 监控</a> 中概述的步骤安装监控堆栈。这将允许您在 Kubernetes 中部署 <a href="https://github.com/CrunchyData/pgmonitor">pgMonitor</a> 配置的 <a href="https://prometheus.io/">Prometheus</a>、https://grafana.com/[Grafana] 和 <a href="https://prometheus.io/docs/alerting/latest/alertmanager/">Alertmanager</a> 监控工具。这些工具将默认设置为连接到您的 Ivory Pod 上的 Exporter 容器。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="配置监控"><a class="anchor" href="#配置监控"></a>10.3. 配置监控</h3>
+<div class="paragraph">
+<p>虽然默认的 Kustomize 安装应该在大多数 Kubernetes 环境中工作，但可能需要根据您的特定需求进一步自定义项目。</p>
+</div>
+<div class="paragraph">
+<p>例如，默认情况下，<code>fsGroup</code> 设置为 <code>26</code>，用于为组成 IVYO 监控堆栈的各种部署定义的 <code>securityContext</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">securityContext:
+  fsGroup: 26</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在大多数 Kubernetes 环境中，此设置是必需的，以确保容器内的进程具有写入组成 IVYO 监控堆栈的每个 Pod 挂载的任何卷所需的权限。但是，在 OpenShift 环境中安装时（更具体地说，当使用 <code>restricted</code> 安全上下文约束时），应删除 <code>fsGroup</code> 设置，因为 OpenShift 将自动处理在 Pod 的 <code>securityContext</code> 中设置适当的 <code>fsGroup</code>。</p>
+</div>
+<div class="paragraph">
+<p>此外，在同一部分中，可能还需要根据您的特定存储配置修改 <code>supplmentalGroups</code> 设置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">securityContext:
+  supplementalGroups : 65534</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>因此，应修改和/或修补（例如，使用额外的覆盖）<code>kustomize/monitoring</code> 下的以下文件，以确保 <code>securityContext</code> 为您的 Kubernetes 环境正确定义：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>deploy-alertmanager.yaml</code></p>
+</li>
+<li>
+<p><code>deploy-grafana.yaml</code></p>
+</li>
+<li>
+<p><code>deploy-prometheus.yaml</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>为了修改 IVYO 监控安装程序创建的各种存储资源（即 PersistentVolumeClaims）的配置，还可以修改 <code>kustomize/monitoring/pvcs.yaml</code> 文件。</p>
+</div>
+<div class="paragraph">
+<p>此外，还可以通过修改以下配置资源来进一步自定义组成 IVYO 监控堆栈的各种组件（Grafana、Prometheus 和/或 AlertManager）的配置：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>alertmanager-config.yaml</code></p>
+</li>
+<li>
+<p><code>alertmanager-rules-config.yaml</code></p>
+</li>
+<li>
+<p><code>grafana-datasources.yaml</code></p>
+</li>
+<li>
+<p><code>prometheus-config.yaml</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>最后，请注意，可以通过修改 <code>kustomize/monitoring/grafana-secret.yaml</code> 文件中的 Grafana Secret 来更新 Grafana 的默认用户名和密码。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="安装"><a class="anchor" href="#安装"></a>10.4. 安装</h3>
+<div class="paragraph">
+<p>一旦 Kustomize 项目根据您的特定需求进行了修改，就可以使用 <code>kubectl</code> 和 Kustomize 安装 IVYO 监控：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -k kustomize/monitoring</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="卸载"><a class="anchor" href="#卸载"></a>10.5. 卸载</h3>
+<div class="paragraph">
+<p>同样，一旦安装了 IVYO 监控，就可以使用 <code>kubectl</code> 和 Kustomize 卸载它：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl delete -k kustomize/monitoring</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="连接池"><a class="anchor" href="#连接池"></a>11. 连接池</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>连接池有助于扩展和维护应用程序与数据库之间的整体可用性。IVYO 通过支持 <a href="https://www.pgbouncer.org/">PgBouncer</a> 连接池和状态管理器来促进这一点。</p>
+</div>
+<div class="paragraph">
+<p>让我们看看我们如何添加连接池并将其连接到我们的应用程序！</p>
+</div>
+<div class="sect2">
+<h3 id="添加连接池"><a class="anchor" href="#添加连接池"></a>11.1. 添加连接池</h3>
+<div class="paragraph">
+<p>让我们看看如何使用 <a href="https://github.com/IvorySQL/ivory-operator">Ivory Operator</a> 仓库示例文件夹中的 <code>kustomize/keycloak</code> 示例添加连接池。</p>
+</div>
+<div class="paragraph">
+<p>连接池是使用自定义资源的 <code>spec.proxy</code> 部分添加的。目前，唯一支持的连接池是 <a href="https://www.pgbouncer.org/">PgBouncer</a>。</p>
+</div>
+<div class="paragraph">
+<p>添加 PgBouncer 连接池的唯一必需属性是设置 <code>spec.proxy.pgBouncer.image</code> 属性。在 <code>kustomize/keycloak/ivory.yaml</code> 文件中，将以下 YAML 添加到规范中：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">proxy:
+  pgBouncer:
+    image: {{&lt; param imageIvoryPGBouncer &gt;}}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>（您也可以在 <code>kustomize/examples/high-availability</code> 示例中找到此示例）。</p>
+</div>
+<div class="paragraph">
+<p>保存您的更改并运行：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -k kustomize/keycloak</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>IVYO 将检测到更改并创建一个新的 PgBouncer Deployment！</p>
+</div>
+<div class="paragraph">
+<p>设置起来相当容易，所以现在让我们看看如何将我们的应用程序连接到连接池。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="连接到连接池"><a class="anchor" href="#连接到连接池"></a>11.2. 连接到连接池</h3>
+<div class="paragraph">
+<p>当连接池部署到集群时，IVYO 会将附加信息添加到用户 Secret 中，以允许应用程序直接连接到连接池。回想一下，在此示例中，我们的用户 Secret 称为 <code>keycloakdb-pguser-keycloakdb</code>。描述用户 Secret：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl -n ivory-operator describe secrets keycloakdb-pguser-keycloakdb</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>您应该看到此 Secret 中包含几个新属性，允许您通过连接池连接到您的 Ivory 实例：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>pgbouncer-host</code>：PgBouncer 连接池的主机名。这引用了 PgBouncer 连接池的 <a href="https://kubernetes.io/docs/concepts/services-networking/service/">Service</a>。</p>
+</li>
+<li>
+<p><code>pgbouncer-port</code>：PgBouncer 连接池正在侦听的端口。</p>
+</li>
+<li>
+<p><code>pgbouncer-uri</code>：一个 <a href="https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING">PostgreSQL 连接 URI</a>，提供通过 PgBouncer 连接池登录到 Ivory 数据库的所有信息。</p>
+</li>
+<li>
+<p><code>pgbouncer-jdbc-uri</code>：一个 <a href="https://jdbc.postgresql.org/documentation/use/">PostgreSQL JDBC 连接 URI</a>，提供通过使用 JDBC 驱动程序的 PgBouncer 连接池登录到 Ivory 数据库的所有信息。请注意，默认情况下，连接字符串禁用 JDBC 管理预处理事务以实现 <a href="https://www.pgbouncer.org/faq.html#how-to-use-prepared-statements-with-transaction-pooling">与 PgBouncer 一起使用的最佳方式</a>。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>打开 <code>kustomize/keycloak/keycloak.yaml</code> 中的文件。更新 <code>DB_ADDR</code> 和 <code>DB_PORT</code> 值如下：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">- name: DB_ADDR
+  valueFrom: { secretKeyRef: { name: keycloakdb-pguser-keycloakdb, key: pgbouncer-host } }
+- name: DB_PORT
+  valueFrom: { secretKeyRef: { name: keycloakdb-pguser-keycloakdb, key: pgbouncer-port } }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这会更改 Keycloak 的配置，使其现在通过连接池连接。</p>
+</div>
+<div class="paragraph">
+<p>应用更改：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl apply -k kustomize/keycloak</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Kubernetes 将检测到更改并开始部署新的 Keycloak Pod。完成后，Keycloak 现在将通过 PgBouncer 连接池连接到 Ivory！</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tls"><a class="anchor" href="#tls"></a>11.3. TLS</h3>
+<div class="paragraph">
+<p>IVYO 通过 TLS 部署每个集群和组件。这包括 PgBouncer 连接池。如果您使用自己的 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls">自定义 TLS 设置</a>，则需要在 <code>spec.proxy.pgBouncer.customTLSSecret</code> 中为 PgBouncer 提供 Secret 引用。</p>
+</div>
+<div class="paragraph">
+<p>PgBouncer 的 TLS 证书应具有与 PgBouncer Service 名称匹配的通用名称 (CN)。这是集群的名称，后缀为 <code>-pgbouncer</code>。例如，对于我们的 <code>hippo</code> 集群，这将是 <code>hippo-pgbouncer</code>。对于 <code>keycloakdb</code> 示例，它将是 <code>keycloakdb-pgBouncer</code>。</p>
+</div>
+<div class="paragraph">
+<p>要自定义 PgBouncer 的 TLS，您需要在您的 Ivory 集群的命名空间中创建一个 Secret，其中包含要使用的 TLS 密钥 (<code>tls.key</code>)、TLS 证书 (<code>tls.crt</code>) 和 CA 证书 (<code>ca.crt</code>)。Secret 应包含以下值：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">data:
+  ca.crt: &lt;value&gt;
+  tls.crt: &lt;value&gt;
+  tls.key: &lt;value&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>例如，如果您本地计算机上存储有名为 <code>ca.crt</code>、<code>keycloakdb-pgBouncer.key</code> 和 <code>keycloakdb-pgBouncer.crt</code> 的文件，则可以运行以下命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl create secret generic -n ivory-operator keycloakdb-pgBouncer.tls \
+  --from-file=ca.crt=ca.crt \
+  --from-file=tls.key=keycloakdb-pgBouncer.key \
+  --from-file=tls.crt=keycloakdb-pgBouncer.crt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>您可以在您的 <code>ivorycluster.ivory-operator.ivorysql.org</code> 自定义资源中的 <code>spec.proxy.pgBouncer.customTLSSecret.name</code> 字段中指定自定义 TLS Secret，例如：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  proxy:
+    pgBouncer:
+      customTLSSecret:
+        name: keycloakdb-pgBouncer.tls</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="自定义"><a class="anchor" href="#自定义"></a>11.4. 自定义</h3>
+<div class="paragraph">
+<p>PgBouncer 连接池是高度可定制的，从配置和 Kubernetes 部署角度来看都是如此。让我们探索一些您可以进行的自定义！</p>
+</div>
+<div class="sect3">
+<h4 id="配置"><a class="anchor" href="#配置"></a>11.4.1. 配置</h4>
+<div class="paragraph">
+<p>可以通过 <code>spec.proxy.pgBouncer.config</code> 自定义 <a href="https://www.pgbouncer.org/config.html">PgBouncer 配置</a>。进行配置更改后，IVYO 会将它们推出到任何 PgBouncer 实例，并自动发出“重新加载”。</p>
+</div>
+<div class="paragraph">
+<p>您可以通过以下几种方式自定义配置：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spec.proxy.pgBouncer.config.global</code>：接受键值对，这些更改全局应用于 PgBouncer。</p>
+</li>
+<li>
+<p><code>spec.proxy.pgBouncer.config.databases</code>：接受键值对，这些键值对代表 PgBouncer <a href="https://www.pgbouncer.org/config.html#section-databases">数据库定义</a>。</p>
+</li>
+<li>
+<p><code>spec.proxy.pgBouncer.config.users</code>：接受键值对，这些键值对代表 <a href="https://www.pgbouncer.org/config.html#section-users">应用于特定用户的连接设置</a>。</p>
+</li>
+<li>
+<p><code>spec.proxy.pgBouncer.config.files</code>：接受文件列表，这些文件挂载在 <code>/etc/pgbouncer</code> 目录中，并在使用 PgBouncer 的 <a href="https://www.pgbouncer.org/config.html#include-directive">include 指令</a> 考虑任何其他选项之前加载。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>例如，要将连接池模式设置为 <code>transaction</code>，您需要设置以下配置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  proxy:
+    pgBouncer:
+      config:
+        global:
+          pool_mode: transaction</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>有关 <a href="https://www.pgbouncer.org/config.html">PgBouncer 配置</a> 的参考，请参阅：</p>
+</div>
+<div class="paragraph">
+<p><a href="https://www.pgbouncer.org/config.html" class="bare">https://www.pgbouncer.org/config.html</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="副本"><a class="anchor" href="#副本"></a>11.4.2. 副本</h4>
+<div class="paragraph">
+<p>默认情况下，IVYO 部署一个 PgBouncer 实例。您可能希望运行多个 PgBouncer 实例以具有一定的冗余级别，尽管您仍然希望注意有多少连接将连接到您的 Ivory 数据库！</p>
+</div>
+<div class="paragraph">
+<p>您可以通过 <code>spec.proxy.pgBouncer.replicas</code> 属性管理部署的 PgBouncer 实例的数量。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="资源"><a class="anchor" href="#资源"></a>11.4.3. 资源</h4>
+<div class="paragraph">
+<p>您可以通过 <code>spec.proxy.pgBouncer.resources</code> 属性管理分配给 PgBouncer 实例的 CPU 和内存资源。<code>spec.proxy.pgBouncer.resources</code> 的布局应该很熟悉：它遵循设置 <a href="https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/">容器资源</a> 的标准 Kubernetes 结构。</p>
+</div>
+<div class="paragraph">
+<p>例如，假设我们想为 PgBouncer 实例设置一些 CPU 和内存限制。我们可以添加以下配置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  proxy:
+    pgBouncer:
+      resources:
+        limits:
+          cpu: 200m
+          memory: 128Mi</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>由于 IVYO 使用 <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployment</a> 部署 PgBouncer 实例，因此这些更改会使用滚动更新推出，以最大程度地减少应用程序与 Ivory 实例之间的中断！</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="注释-标签"><a class="anchor" href="#注释-标签"></a>11.4.4. 注释 / 标签</h4>
+<div class="paragraph">
+<p>您可以通过 <code>spec.proxy.pgBouncer.metadata.annotations</code> 和 <code>spec.proxy.pgBouncer.metadata.labels</code> 属性分别为您的 PgBouncer 实例应用自定义注释和标签。请注意，对这两个属性中的任何一个的任何更改都将优先于您添加的任何其他自定义标签。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pod-反亲和性-pod-亲和性-节点亲和性"><a class="anchor" href="#pod-反亲和性-pod-亲和性-节点亲和性"></a>11.4.5. Pod 反亲和性 / Pod 亲和性 / 节点亲和性</h4>
+<div class="paragraph">
+<p>您可以通过 <code>spec.proxy.pgBouncer.affinity</code> 属性控制 <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity">pod 反亲和性、pod 亲和性和节点亲和性</a>，特别是：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>spec.proxy.pgBouncer.affinity.nodeAffinity</code>：控制 PgBouncer 实例的节点亲和性。</p>
+</li>
+<li>
+<p><code>spec.proxy.pgBouncer.affinity.podAffinity</code>：控制 PgBouncer 实例的 Pod 亲和性。</p>
+</li>
+<li>
+<p><code>spec.proxy.pgBouncer.affinity.podAntiAffinity</code>：控制 PgBouncer 实例的 Pod 反亲和性。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>以上每个都遵循 <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#affinity-and-anti-affinity">设置亲和性的标准 Kubernetes 规范</a>。</p>
+</div>
+<div class="paragraph">
+<p>例如，要为 <code>kustomize/keycloak</code> 示例设置首选 Pod 反亲和性规则，您需要向配置中添加以下内容：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  proxy:
+    pgBouncer:
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 1
+            podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  ivory-operator.ivorysql.org/cluster: keycloakdb
+                  ivory-operator.ivorysql.org/role: pgbouncer
+              topologyKey: kubernetes.io/hostname</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="容忍度"><a class="anchor" href="#容忍度"></a>11.4.6. 容忍度</h4>
+<div class="paragraph">
+<p>您可以通过设置 <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">容忍度</a> 通过 <code>spec.proxy.pgBouncer.tolerations</code> 将 PgBouncer 实例部署到 <a href="https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/">具有污点的节点</a>。此属性遵循 Kubernetes 标准容忍度布局。</p>
+</div>
+<div class="paragraph">
+<p>例如，如果有一组具有 <code>role=connection-poolers:NoSchedule</code> 污点的节点，您希望将 PgBouncer 实例调度到这些节点，您可以应用以下配置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  proxy:
+    pgBouncer:
+      tolerations:
+      - effect: NoSchedule
+        key: role
+        operator: Equal
+        value: connection-poolers</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>请注意，设置容忍度并不一定意味着 PgBouncer 实例将被分配给具有这些污点的节点。容忍度充当<strong>密钥</strong>：它们允许您访问节点。如果您希望确保您的 PgBouncer 实例部署到特定节点，您需要将设置容忍度与节点亲和性相结合。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pod-分布约束"><a class="anchor" href="#pod-分布约束"></a>11.4.7. Pod 分布约束</h4>
+<div class="paragraph">
+<p>除了使用亲和性、反亲和性和容忍度之外，您还可以通过 <code>spec.proxy.pgBouncer.topologySpreadConstraints</code> 设置 <a href="https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/">拓扑分布约束</a>。此属性遵循 Kubernetes 标准拓扑分布约束布局。</p>
+</div>
+<div class="paragraph">
+<p>例如，由于我们的每个 pgBouncer Pod 都将设置标准的 <code>ivory-operator.ivorysql.org/role: pgbouncer</code> 标签，我们可以在确定 <code>maxSkew</code> 时使用此标签。在下面的示例中，由于我们有 3 个节点，<code>maxSkew</code> 为 1，并且我们将 <code>whenUnsatisfiable</code> 设置为 <code>ScheduleAnyway</code>，我们理想情况下应该在每个节点上看到 1 个 Pod，但如果其他约束阻止这种情况发生，我们的 Pod 可以分布得不那么均匀。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">  proxy:
+    pgBouncer:
+      replicas: 3
+      topologySpreadConstraints:
+        - maxSkew: 1
+          topologyKey: my-node-label
+          whenUnsatisfiable: ScheduleAnyway
+          labelSelector:
+            matchLabels:
+              ivory-operator.ivorysql.org/role: pgbouncer</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>如果您希望确保您的 PgBouncer 实例分布得更均匀（或根本不部署），您需要将 <code>whenUnsatisfiable</code> 更新为 <code>DoNotSchedule</code>。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="管理任务"><a class="anchor" href="#管理任务"></a>12. 管理任务</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="手动重启-ivorysql"><a class="anchor" href="#手动重启-ivorysql"></a>12.1. 手动重启 IvorySQL</h3>
+<div class="paragraph">
+<p>有时您可能需要手动重启 IvorySQL。这可以通过向集群的 <code>spec.metadata.annotations</code> 部分添加或更新自定义注释来完成。IVYO 将检测到更改并执行 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/high-availability.md#rolling-update">滚动重启</a>。</p>
+</div>
+<div class="paragraph">
+<p>例如，如果您在命名空间 <code>ivory-operator</code> 中有一个名为 <code>hippo</code> 的集群，您只需要使用以下命令修补 hippo ivorycluster：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch ivorycluster/hippo -n ivory-operator --type merge \
+  --patch '{"spec":{"metadata":{"annotations":{"restarted":"'"$(date)"'"}}}}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>观察您的 hippo 集群：您将看到滚动更新已触发，重启已开始。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="关闭"><a class="anchor" href="#关闭"></a>12.2. 关闭</h3>
+<div class="paragraph">
+<p>您可以通过将 <code>spec.shutdown</code> 属性设置为 <code>true</code> 来关闭 Ivory 集群。您可以通过编辑清单来执行此操作，或者在 <code>hippo</code> 集群的情况下，执行如下命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch ivorycluster/hippo -n ivory-operator --type merge \
+  --patch '{"spec":{"shutdown": true}}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这样做的结果是，此集群的所有 Kubernetes 工作负载都缩放为 0。您可以使用以下命令验证这一点：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl get deploy,sts,cronjob --selector=ivory-operator.ivorysql.org/cluster=hippo -n ivory-operator
+
+NAME                             READY   AGE
+statefulset.apps/hippo-00-lwgx   0/0     1h
+
+NAME                             SCHEDULE   SUSPEND   ACTIVE
+cronjob.batch/hippo-repo1-full   @daily     True      0</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>要将已关闭的 Ivory 集群重新打开，您可以将 <code>spec.shutdown</code> 设置为 <code>false</code>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="暂停协调和部署"><a class="anchor" href="#暂停协调和部署"></a>12.3. 暂停协调和部署</h3>
+<div class="paragraph">
+<p>您可以通过将 <code>spec.paused</code> 属性设置为 <code>true</code> 来暂停 Ivory 集群协调过程。您可以通过编辑清单来执行此操作，或者在 <code>hippo</code> 集群的情况下，执行如下命令：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl patch ivorycluster/hippo -n ivory-operator --type merge \
+  --patch '{"spec":{"paused": true}}'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>暂停集群将暂停对集群当前状态的任何更改，直到协调恢复。这允许您完全控制何时将 ivorycluster spec 的更改部署到 Ivory 集群。在暂停期间，除了“Progressing”条件外，不会更新任何状态。</p>
+</div>
+<div class="paragraph">
+<p>要恢复 Ivory 集群的协调，您可以将 <code>spec.paused</code> 设置为 <code>false</code> 或从清单中删除该设置。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="轮换-tls-证书"><a class="anchor" href="#轮换-tls-证书"></a>12.4. 轮换 TLS 证书</h3>
+<div class="paragraph">
+<p>应尽可能频繁地使凭据失效并替换（轮换）它们，以最大限度地降低其被滥用的风险。与密码不同，每个 TLS 证书都有一个过期日期，因此替换它们是不可避免的。</p>
+</div>
+<div class="paragraph">
+<p>实际上，IVYO 会在证书过期日期 <strong>之前</strong> 自动轮换其管理的客户端证书。将在其工作持续时间的 2/3 之后生成新的客户端证书；因此，例如，IVYO 创建的证书在 12 个月后过期，将在大约第 8 个月时被 IVYO 替换。这样做是为了让您不必担心遇到过期证书的问题或服务中断。</p>
+</div>
+<div class="sect3">
+<h4 id="触发证书轮换"><a class="anchor" href="#触发证书轮换"></a>12.4.1. 触发证书轮换</h4>
+<div class="paragraph">
+<p>如果您想轮换单个客户端证书，您可以通过从其证书 Secret 中删除 <code>tls.key</code> 字段来重新生成现有集群的证书。</p>
+</div>
+<div class="paragraph">
+<p>是时候轮换您的 IVYO 根证书了吗？您只需要删除 <code>ivyo-root-cacert</code> secret。IVYO 将无缝地重新生成并推出它，确保您的应用程序继续与 Ivory 集群通信，而无需更新任何配置或处理任何停机时间。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">kubectl delete secret ivyo-root-cacert</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>IVYO 仅更新包含生成的根证书的 secret。它不会触及自定义证书。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="轮换自定义-tls-证书"><a class="anchor" href="#轮换自定义-tls-证书"></a>12.4.2. 轮换自定义 TLS 证书</h4>
+<div class="paragraph">
+<p>当您使用自己的 TLS 证书与 IVYO 时，您有责任适当地替换它们。方法如下。</p>
+</div>
+<div class="paragraph">
+<p>IVYO 会自动检测并加载对 IvorySQL 服务器和复制 Secret 内容的更改，而不会停机。您或您的证书管理器只需要替换 <code>spec.customTLSSecret</code> 引用的 Secret 中的值。</p>
+</div>
+<div class="paragraph">
+<p>如果您将 <code>spec.customTLSSecret</code> 更改为引用新的 Secret 或新的字段，IVYO 将执行 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/architecture/high-availability.md#rolling-update">滚动重启</a>。</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>更改 IvorySQL 证书颁发机构时，请确保同时更新 <a href="https://github.com/IvorySQL/ivory-operator/blob/master/docs/content/tutorial/customize-cluster.md#customize-tls"><code>customReplicationTLSSecret</code></a>。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="更改主节点"><a class="anchor" href="#更改主节点"></a>12.5. 更改主节点</h3>
+<div class="paragraph">
+<p>有时您可能希望更改 HA 集群中的主节点。这可以通过使用 ivorycluster spec 的 <code>patroni.switchover</code> 部分来完成。它允许您在 ivoryclusters 中启用切换，将特定实例作为新的主节点，并在您的 ivorycluster 进入不良状态时运行故障转移。</p>
+</div>
+<div class="paragraph">
+<p>让我们完成执行切换的过程！</p>
+</div>
+<div class="paragraph">
+<p>首先，您需要更新您的 spec 以准备您的集群以更改主节点。编辑您的 spec 以具有以下字段：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  patroni:
+    switchover:
+      enabled: true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>应用此更改后，IVYO 将寻找触发器以在您的集群中执行切换。您将通过将 <code>ivory-operator.ivorysql.org/trigger-switchover</code> 注释添加到您的自定义资源来触发切换。设置此注释的最佳方法是使用时间戳，这样您就知道何时启动了更改。</p>
+</div>
+<div class="paragraph">
+<p>例如，对于我们的 <code>hippo</code> 集群，我们可以运行以下命令来触发切换：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl annotate -n ivory-operator ivorycluster hippo \
+  ivory-operator.ivorysql.org/trigger-switchover="$(date)"</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>如果您想执行另一次切换，您可以重新运行注释命令并添加 <code>--overwrite</code> 标志：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl annotate -n ivory-operator ivorycluster hippo --overwrite \
+  ivory-operator.ivorysql.org/trigger-switchover="$(date)"</code></pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>IVYO 将检测到此注释并使用 Patroni API 请求更改当前主节点！</p>
+</div>
+<div class="paragraph">
+<p>随着 Patroni 的工作，您的数据库实例 Pod 上的角色将开始更改。新的主节点将具有 <code>master</code> 角色标签，旧的主节点将更新为 <code>replica</code>。</p>
+</div>
+<div class="paragraph">
+<p>切换的状态将使用 <code>status.patroni.switchover</code> 字段进行跟踪。这将设置为您在触发器注释中定义的值。如果您使用时间戳作为注释，这是确定何时请求切换的另一种方法。</p>
+</div>
+<div class="paragraph">
+<p>在实例 Pod 标签已更新且 <code>status.patroni.switchover</code> 已设置后，主节点已在您的集群上更改！</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>更改主节点后，我们建议您通过将 <code>spec.patroni.switchover.enabled</code> 设置为 false 或完全从您的 spec 中删除该字段来禁用切换。如果该字段被删除，相应的状态也将从 ivorycluster 中删除。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="定位实例"><a class="anchor" href="#定位实例"></a>12.5.1. 定位实例</h4>
+<div class="paragraph">
+<p>切换主节点时，您可以选择的另一个选项是提供目标实例作为新的主节点。在执行切换时，此目标实例将用作候选节点。<code>spec.patroni.switchover.targetInstance</code> 字段接受您要切换到的实例的名称。</p>
+</div>
+<div class="paragraph">
+<p>此名称可以在几个不同的地方找到；一个是 StatefulSet 的名称，另一个是数据库 Pod 上的 <code>ivory-operator.ivorysql.org/instance</code> 标签。以下命令可以帮助您确定谁是当前主节点以及用作 <code>targetInstance</code> 的名称：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell-session hljs" data-lang="shell-session">$ kubectl get pods -l ivory-operator.ivorysql.org/cluster=hippo \
+    -L ivory-operator.ivorysql.org/instance \
+    -L ivory-operator.ivorysql.org/role -n ivory-operator
+
+NAME                      READY   STATUS      RESTARTS   AGE     INSTANCE               ROLE
+hippo-instance1-jdb5-0    3/3     Running     0          2m47s   hippo-instance1-jdb5   master
+hippo-instance1-wm5p-0    3/3     Running     0          2m47s   hippo-instance1-wm5p   replica</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>在我们的示例集群中，<code>hippo-instance1-jdb5</code> 当前是主节点，这意味着我们希望在切换中定位 <code>hippo-instance1-wm5p</code>。现在您知道哪个实例当前是主节点以及如何找到您的 <code>targetInstance</code>，让我们更新您的集群 spec：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  patroni:
+    switchover:
+      enabled: true
+      targetInstance: hippo-instance1-wm5p</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>应用此更改后，您将再次需要通过注释 ivorycluster 来触发切换（请参见上面的命令）。您可以通过检查 Pod 角色标签和 <code>status.patroni.switchover</code> 来验证切换是否已完成。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="故障转移"><a class="anchor" href="#故障转移"></a>12.5.2. 故障转移</h4>
+<div class="paragraph">
+<p>最后，当您的集群进入不健康状态时，我们可以选择进行故障转移。完成此操作所需的唯一 spec 更改是将 <code>spec.patroni.switchover.type</code> 字段更新为 <code>Failover</code> 类型。需要注意的是，执行故障转移时需要 <code>targetInstance</code>。基于上面的示例集群，假设 <code>hippo-instance1-wm5p</code> 仍然是副本，我们可以更新 spec：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">spec:
+  patroni:
+    switchover:
+      enabled: true
+      targetInstance: hippo-instance1-wm5p
+      type: Failover</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>应用此 spec 更改后，您的 ivorycluster 将准备好执行故障转移。同样，您需要通过注释 ivorycluster 来触发切换（请参见上面的命令），并验证 Pod 角色标签和 <code>status.patroni.switchover</code> 是否已相应更新。</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>切换过程中遇到的错误可能会使您的集群处于不良状态。如果您遇到问题，请在 operator 日志中找到问题，您可以更新 spec 以修复问题并应用更改。应用更改后，IVYO 将尝试再次执行切换。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="删除ivory集群"><a class="anchor" href="#删除ivory集群"></a>13. 删除Ivory集群</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>总有一个时刻，您需要删除自己的集群。如果您一直在跟着示例操作，只需运行下面一条命令即可删除 Ivory 集群：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">kubectl delete -k examples/kustomize/ivory</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>IVYO 会清理与该集群相关的所有对象。</p>
+</div>
+<div class="paragraph">
+<p>关于数据保留：这取决于您 PVC 的 <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming">回收策略</a>。如需了解 Kubernetes 如何管理数据保留，请参阅 <a href="https://kubernetes.io/docs/concepts/storage/persistent-volumes/#reclaiming">Kubernetes 官方文档关于卷回收的说明</a>。</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="k8s_deployment.html">K8S部署</a></span>
+  <span class="next"><a href="docker_podman_deployment.html">Docker &amp; Podman部署</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

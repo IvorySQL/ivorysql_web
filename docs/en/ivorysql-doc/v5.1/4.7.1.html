@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Installation Guide :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v5.1/4.7.1.html">
+    <link rel="prev" href="4.4.html">
+    <link rel="next" href="4.7.2.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v5.1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.1.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.2.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.3.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.1.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.2.html">Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.5.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.3.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.1.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.2.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.4.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.3.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.4.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="4.7.1.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.7.2.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cpu_arch_adp.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="os_arch_adp.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.0.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.1.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.2.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.3.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.4.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.5.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.6.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.7.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.8.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.9.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.10.html">system_stats</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.1.1.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.1.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.2.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.4.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.2.1.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.1.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.3.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.2.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.4.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.5.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.6.html">Function and stored procedure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.7.html">Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.8.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.9.html">Case Conversion</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.10.html">sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.11.html">Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.3.12.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Built-in Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.4.1.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.4.2.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.5.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.3.html">1、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.5.html">2、LIKE operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.6.html">3、anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.7.html">4、functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.8.html">5、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.9.html">6、ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.10.html">7、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.11.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.12.html">9、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.13.html">10、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.14.html">11、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.15.html">12、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.16.html">13、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.17.html">14、NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.18.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.19.html">16、Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.20.html">17、sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.21.html">18、Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.22.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="8.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="9.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="10.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v5.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../master/welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../master/welcome.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Advanced Feature</li>
+    <li>Cloud Service Platform</li>
+    <li><a href="4.7.1.html">IvorySQL Cloud Installation</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/v5.1/4.7.1.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v5.1/EN/modules/ROOT/pages/4.7.1.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Installation Guide</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The IvorySQL Cloud platform is a comprehensive solution that integrates the IvorySQL database and its surrounding ecosystem to deliver end-to-end database and resource management capabilities. Before starting the installation, compile and install the following projects from GitHub:</p>
+</div>
+<div class="paragraph">
+<p>Frontend: <a href="https://github.com/IvorySQL/ivory-cloud-web" class="bare">https://github.com/IvorySQL/ivory-cloud-web</a></p>
+</div>
+<div class="paragraph">
+<p>Backend: <a href="https://github.com/IvorySQL/ivory-cloud" class="bare">https://github.com/IvorySQL/ivory-cloud</a></p>
+</div>
+<div class="paragraph">
+<p>Prepare a Kubernetes cluster (version 1.23) and install <code>ivory-operator</code> on the master node:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/IvorySQL/ivory-operator/tree/IVYO_REL_5_STABLE" class="bare">https://github.com/IvorySQL/ivory-operator/tree/IVYO_REL_5_STABLE</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="ivorysql-cloud-platform-installation"><a class="anchor" href="#ivorysql-cloud-platform-installation"></a>1. IvorySQL Cloud Platform Installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The IvorySQL Cloud platform currently supports installation on Linux systems. The required packages are listed below.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 99%;">
+<colgroup>
+<col style="width: 28%;">
+<col style="width: 72%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Component</th>
+<th class="tableblock halign-left valign-top">Package</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Frontend</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dist</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Backend</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cloudnative-1.0-SNAPSHOT.jar</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">K8S cluster</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>docker.io/ivorysql/ivory-operator:v5.1</p>
+</li>
+<li>
+<p>docker.io/ivorysql/pgadmin:ubi8-9.9-5.0-1</p>
+</li>
+<li>
+<p>docker.io/ivorysql/pgbackrest:ubi8-2.56.0-5.0-1</p>
+</li>
+<li>
+<p>docker.io/ivorysql/postgres-exporter:ubi8-0.17.0-5.0-1</p>
+</li>
+<li>
+<p>docker.io/ivorysql/ivorysql:ubi8-5.0-5.0-1</p>
+</li>
+</ol>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>In addition, install the following supporting components:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Backend database</strong>: Stores and manages all data related to cloud resources, user information, access control, billing, and more. Use a PostgreSQL-compatible database such as PostgreSQL, HighGo DB, or IvorySQL.</p>
+</li>
+<li>
+<p><strong>NGINX</strong>: Hosts the web user interface of the cloud platform.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="pre-installation-checklist"><a class="anchor" href="#pre-installation-checklist"></a>2. Pre-installation Checklist</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Complete the preparation steps on every server before installation. Deploy IvorySQL Cloud on a Kubernetes (1.23) cluster that already has a default storage class.</p>
+</div>
+<div class="sect2">
+<h3 id="disable-the-firewall"><a class="anchor" href="#disable-the-firewall"></a>2.1. Disable the firewall</h3>
+<div class="paragraph">
+<p>Disable the firewall on every server to ensure full connectivity.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>systemctl stop firewalld.service
+
+systemctl disable firewalld.service</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="backend-deployment"><a class="anchor" href="#backend-deployment"></a>2.2. Backend deployment</h3>
+<div class="sect3">
+<h4 id="backend-db"><a class="anchor" href="#backend-db"></a>2.2.1. Backend database</h4>
+<div class="paragraph">
+<p>Install the backend database yourself by following the instructions on the IvorySQL official website.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="backend-services"><a class="anchor" href="#backend-services"></a>2.2.2. Backend services</h4>
+<div class="sect4">
+<h5 id="compile-the-backend-service"><a class="anchor" href="#compile-the-backend-service"></a>2.2.2.1. Compile the backend service</h5>
+<div class="literalblock">
+<div class="content">
+<pre># Clone the code
+
+git clone https://github.com/IvorySQL/ivory-cloud.git
+
+# Go to the project root
+
+cd ivory-cloud</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Ensure that every <code>.sh</code> file in <code>ivory-cloud\cloudnative\src\main\resources\monitor</code> and its subdirectories uses the Unix format. If not, run <code>dos2unix</code> to convert them.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>dos2unix cloudnative\src\main\resources\monitor\*
+
+# Build
+
+mvn clean
+
+mvn package -D maven.test.skip=true
+
+The packaged artifact `cloudnative-1.0-SNAPSHOT.jar` can be found under `ivory-cloud/cloudnative/target`.</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="deploy-the-service"><a class="anchor" href="#deploy-the-service"></a>2.2.2.2. Deploy the service</h5>
+<div class="literalblock">
+<div class="content">
+<pre>Execute the following steps on the Kubernetes server:
+
+# Create a working directory
+
+mkdir -p /home/ivory
+
+# Upload `ivory-cloud/cloudnative/target/cloudnative-1.0-SNAPSHOT.jar` to the directory created above
+
+# Configuration files
+
+## Create a configuration directory
+
+mkdir -p /home/ivory/config
+
+## Upload configuration files
+
+Copy the following files from `ivory-cloud/cloudnative/src/main/resources` to `/home/ivory/config`:
+
+application.yaml
+
+application-native.yaml
+
+spring_pro_logback.xml
+
+## Update the configuration
+
+Replace `url`, `username`, and `password` with the database information configured in &lt;&lt;Backend database&gt;&gt;.
+
+## /home/ivory/config/application-native.yaml
+
+datasource:
+
+druid:
+
+db-type: com.alibaba.druid.pool.DruidDataSource
+
+driver-class-name: org.postgresql.Driver
+
+url: jdbc:postgresql://127.0.0.1:5432/ivorysql
+
+username: ivorysql
+
+password: "ivory@123"</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="start-the-backend-service"><a class="anchor" href="#start-the-backend-service"></a>2.2.3. Start the backend service</h4>
+<div class="literalblock">
+<div class="content">
+<pre># Install JDK 1.8
+
+yum install -y java-1.8.0-openjdk.x86_64
+
+[root@cloud ivory]# pwd
+
+/home/ivory/
+
+[root@cloud ivory]# nohup java -jar cloudnative-1.0-SNAPSHOT.jar &gt; log_native 2&gt;&amp;1 &amp;
+
+[root@cloud ivory]# ps -ef | grep java
+
+root 77494 1 0 Oct09 ? 00:03:07 java -jar cloudnative-1.0-SNAPSHOT.jar</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="frontend-deployment"><a class="anchor" href="#frontend-deployment"></a>2.3. Frontend deployment</h3>
+<div class="sect3">
+<h4 id="compile-the-frontend"><a class="anchor" href="#compile-the-frontend"></a>2.3.1. Compile the frontend</h4>
+<div class="literalblock">
+<div class="content">
+<pre>## Fetch the code
+
+git clone https://github.com/IvorySQL/ivory-cloud-web.git
+
+## Go to the project root
+
+cd ivorysql-cloud-web
+
+## Install dependencies
+
+npm install
+
+## Build for production
+
+npm run build:prod</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="update-directory-and-file-permissions"><a class="anchor" href="#update-directory-and-file-permissions"></a>2.3.2. Update directory and file permissions</h4>
+<div class="literalblock">
+<div class="content">
+<pre># Create a deployment directory
+
+[root@cloud opt]# mkdir -p /opt/cloud/web
+
+# Copy the generated `dist` folder to /opt/cloud/web
+
+# Grant permissions
+
+[root@cloud web]# chmod 755 /opt/cloud/web/dist
+
+[root@cloud web]# chmod -R 777 /opt/cloud/web/dist</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="update-config-js"><a class="anchor" href="#update-config-js"></a>2.3.3. Update config.js</h4>
+<div class="paragraph">
+<p>Edit the configuration file:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[root@cloud dist]# pwd
+
+/home/cloud/web/dist
+
+[root@cloud dist]# vi config.js
+
+var PLATFROM_CONFIG = {};
+
+// Replace with the IP address of the current server
+
+PLATFROM_CONFIG.baseUrl = "http://192.168.31.43:8081/cloudapi/api/v1"
+
+// true: show the “Register” button on the login page
+
+// false: hide the “Register” button on the login page
+
+globalShowRegister = true
+
+// Hide the cloud-native database? true: hide; false: show
+
+disableNative = false
+
+// Database type
+
+dbtype = "IvorySQL"
+
+dbversion = "5.1"</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="install-and-configure-nginx"><a class="anchor" href="#install-and-configure-nginx"></a>2.4. Install and configure NGINX</h3>
+<div class="paragraph">
+<p>The IvorySQL Cloud host must have NGINX installed to serve the web interface. Users can select any installation method; the following steps are provided for reference.</p>
+</div>
+<div class="sect3">
+<h4 id="download-the-nginx-source-package"><a class="anchor" href="#download-the-nginx-source-package"></a>2.4.1. Download the NGINX source package</h4>
+<div class="literalblock">
+<div class="content">
+<pre>[root@cloud web]# wget https://nginx.org/download/nginx-1.20.1.tar.gz
+
+[root@cloud web]# ls -lrt
+
+total 3924
+
+-rwxrwxr-x. 1 root root 1061461 May 25 2021 nginx-1.20.1.tar.gz
+
+-rwxrwxr-x. 1 root root 2943732 Oct  9 16:43 dist.tar.gz
+
+drwxrwxrwx. 4 root root     103 Oct 21 13:20 dist</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="install-dependencies"><a class="anchor" href="#install-dependencies"></a>2.4.2. Install dependencies</h4>
+<div class="literalblock">
+<div class="content">
+<pre>[root@host30 cloud]# yum -y install pcre-devel
+
+[root@host30 cloud]# yum -y install openssl openssl-devel</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="build-and-install-nginx"><a class="anchor" href="#build-and-install-nginx"></a>2.4.3. Build and install NGINX</h4>
+<div class="paragraph">
+<p>NGINX is installed under the directory specified by <code>--prefix</code> during <code>configure</code>. The example below installs it to <code>/opt/cloud/nginx</code>.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>## Extract nginx-1.20.1.tar.gz
+
+[root@cloud web]# tar -zxvf nginx-1.20.1.tar.gz
+
+## Verify that nginx-1.20.1 was created
+
+[root@cloud web]# ls -lrt
+
+total 3924
+
+-rwxrwxr-x. 1 root root 1061461 May 25 2021 nginx-1.20.1.tar.gz
+
+-rwxrwxr-x. 1 root root 2943732 Oct  9 16:43 dist.tar.gz
+
+drwxrwxr-x. 9 1001 1001     186 Oct  9 16:53 nginx-1.20.1
+
+drwxrwxrwx. 4 root root     103 Oct 21 13:20 dist
+
+## Configure
+
+[root@cloud web]# cd nginx-1.20.1
+
+[root@cloud nginx-1.20.1]# ./configure --prefix=/opt/cloud/nginx --with-http_ssl_module
+
+## Compile and install
+
+[root@cloud nginx-1.20.1]# make
+
+[root@cloud nginx-1.20.1]# make install</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="update-nginx-conf"><a class="anchor" href="#update-nginx-conf"></a>2.4.4. Update nginx.conf</h4>
+<div class="paragraph">
+<p>The configuration file is stored under <code>/opt/cloud/nginx</code>. Adjust it according to the README on GitHub, and replace the IP with the address of the current server.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>server {
+
+listen 9104;
+
+server_name 192.168.31.43;
+
+location / {
+
+root /opt/cloud/web/dist;
+
+index index.html index.htm;
+
+}
+
+error_page 500 502 503 504 /50x.html;
+
+location = /50x.html {
+
+root html;
+
+}
+
+}</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="start-nginx"><a class="anchor" href="#start-nginx"></a>2.4.5. Start NGINX</h4>
+<div class="literalblock">
+<div class="content">
+<pre>[root@cloud sbin]# pwd
+
+/opt/cloud/nginx/sbin
+
+[root@cloud sbin]# ./nginx -c /opt/cloud/nginx/conf/nginx.conf
+
+[root@cloud sbin]# ps -ef | grep nginx
+
+root  2179 131037 0 09:46 pts/1 00:00:00 grep --color=auto nginx
+
+root 55047      1 0 Oct21 ?     00:00:00 nginx: master process ./nginx -c /opt/cloud/nginx/conf/nginx.conf
+
+nobody 55048 55047 0 Oct21 ?    00:00:00 nginx: worker process</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="operator-deployment"><a class="anchor" href="#operator-deployment"></a>2.5. Operator deployment</h3>
+<div class="paragraph">
+<p>Set up the Kubernetes cluster yourself. This section describes how to install <code>ivory-operator</code> on the cluster and preload container images.</p>
+</div>
+<div class="sect3">
+<h4 id="install-ivory-operator"><a class="anchor" href="#install-ivory-operator"></a>2.5.1. Install ivory-operator</h4>
+<div class="paragraph">
+<p>Refer to the README on GitHub:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/IvorySQL/ivory-operator/tree/IVYO_REL_5_STABLE">https://github.com/IvorySQL/ivory-operator/tree/IVYO_REL_5_STABLE</a></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="load-container-images"><a class="anchor" href="#load-container-images"></a>2.5.2. Load container images</h4>
+<div class="paragraph">
+<p>If your servers have direct access to Docker Hub, you can skip this step. Otherwise, preload the following images on every node in the Kubernetes cluster.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>docker.io/ivorysql/pgadmin:ubi8-9.9-5.0-1
+
+docker.io/ivorysql/pgbackrest:ubi8-2.56.0-5.0-1
+
+docker.io/ivorysql/pgbouncer:ubi8-1.23.0-5.0-1
+
+docker.io/ivorysql/postgres-exporter:ubi8-0.17.0-5.0-1
+
+docker.io/ivorysql/ivorysql:ubi8-5.0-5.0-1
+
+docker.io/prom/prometheus:v2.33.5
+
+docker.io/prom/alertmanager:v0.22.2
+
+docker.io/grafana/grafana:8.5.10</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="4.4.html">Operation Management</a></span>
+  <span class="next"><a href="4.7.2.html">IvorySQL Cloud Usage</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

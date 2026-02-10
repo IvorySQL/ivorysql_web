@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Force View :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v5.1/6.3.8.html">
+    <link rel="prev" href="6.3.7.html">
+    <link rel="next" href="6.3.9.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v5.1">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.1.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.2.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="3.3.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.1.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.2.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.5.html">迁移指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.3.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.1.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.2.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.4.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.6.3.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.4.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.1.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="4.7.2.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="cpu_arch_adp.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="os_arch_adp.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.0.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.1.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.2.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.3.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.4.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.5.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.6.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.7.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.8.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.9.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="5.10.html">system_stats</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.1.1.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.1.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.2.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.4.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.2.1.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.1.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.3.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.2.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.4.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.5.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.6.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.7.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="6.3.8.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.9.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.10.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.11.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.12.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.1.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.2.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.5.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.3.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.5.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.6.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.7.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.8.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.9.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.10.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.11.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.12.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.13.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.14.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.15.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.16.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.17.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.18.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.19.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.20.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.21.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="7.22.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL贡献指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="8.1.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="8.2.html">asciidoc语法快速参考</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="100.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="110.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">v5.1</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../master/welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../master/welcome.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">文档中心</a></li>
+    <li>IvorySQL</li>
+    <li>IvorySQL架构设计</li>
+    <li>兼容特性</li>
+    <li><a href="6.3.8.html">Force View</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v5.1/6.3.8.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v5.1/CN/modules/ROOT/pages/6.3.8.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Force View</h1>
+<div class="sect1">
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Force View 提供 Oracle 兼容的 <code>CREATE [OR REPLACE] FORCE VIEW</code> 与 <code>ALTER VIEW &#8230;&#8203; COMPILE</code> 行为，允许开发者先落地视图占位，再在依赖补齐后恢复正常执行。</p>
+</li>
+<li>
+<p>系统将原始 SQL 及标识符大小写模式写入专属目录项，依赖恢复时可自动或手动编译为普通视图，且保持 Oracle 风格的告警与错误提示。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="实现说明"><a class="anchor" href="#实现说明"></a>2. 实现说明</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>PG在删除基表时，如果有视图依赖于此基表，则不允许删除，需要使用cascade 关键字全部删除；Oracle删除基表时，允许直接删除基表，而保留force view并将force view 转为无效状态，且创建普通视图后，也可以删除此视图的基表，但把视图转为无效状态。</p>
+</div>
+<div class="paragraph">
+<p>为了支持新的语法，需要增加对应的语法规则。且FORCE VIEW的状态在多个session之间是共享的，新增一张系统表用来存储FORCE VIEW的相关信息。</p>
+</div>
+<div class="sect2">
+<h3 id="语法与解析入口"><a class="anchor" href="#语法与解析入口"></a>2.1. 语法与解析入口</h3>
+<div class="sect3">
+<h4 id="force-view-语法支持"><a class="anchor" href="#force-view-语法支持"></a>2.1.1. Force View 语法支持</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>src/backend/oracle_parser/ora_gram.y</code> 注册 Force View 关键字。</p>
+</li>
+<li>
+<p>语法阶段为 <code>ViewStmt&#8594;force</code> 赋值，并在 <code>AlterTableStmt</code> 阶段生成 <code>AT_ForceViewCompile</code> 选项。</p>
+</li>
+<li>
+<p>解析阶段保留 <code>ViewStmt&#8594;stmt_literal</code>，后续占位时需要复用原始文本。</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">/* Insert or update the pg_force_view catalog as needed */
+if (need_store)
+{
+	......
+
+	StoreForceViewQuery(address.objectId, stmt-&gt;replace, ident_case, stmt-&gt;stmt_literal ? stmt-&gt;stmt_literal : queryString);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ast-字段扩展"><a class="anchor" href="#ast-字段扩展"></a>2.1.2. AST 字段扩展</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>src/include/nodes/parsenodes.h</code> 为 <code>ViewStmt</code> 增加 <code>bool force</code>、<code>char *stmt_literal</code> 字段。</p>
+</li>
+<li>
+<p><code>AT_ForceViewCompile</code> 在 <code>parsenodes.h</code> 与 <code>tablecmds.c</code> 成对定义，确保 <code>ALTER VIEW &#8230;&#8203; COMPILE</code> 进入 AlterTable 流程。</p>
+</li>
+<li>
+<p><code>parse_analyze</code> 仍按普通路径执行，Force 模式只在解析报错后介入。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="解析入口"><a class="anchor" href="#解析入口"></a>2.1.3. 解析入口</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DefineView()</code>（<code>src/backend/commands/view.c</code>）统一处理普通与 Force 视图。</p>
+</li>
+<li>
+<p>代码在 <code>PG_TRY/PG_CATCH</code> 包裹下先尝试普通解析，捕获语义错误后根据 <code>stmt&#8594;force</code> 决定是否进入Force View 流程。</p>
+</li>
+<li>
+<p>成功解析继续调用 <code>StoreViewQuery()</code> 写入 <code>_RETURN</code> 规则，失败则进入 Force View 分支，保证视图对象仍然存在。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="force-view-元数据"><a class="anchor" href="#force-view-元数据"></a>2.2. Force View 元数据</h3>
+<div class="sect3">
+<h4 id="pg_force_view-目录"><a class="anchor" href="#pg_force_view-目录"></a>2.2.1. <code>pg_force_view</code> 目录</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>src/include/catalog/pg_force_view.h</code> 定义目录表，字段包含视图 OID (<code>fvoid</code>)、标识符大小写模式 (<code>ident_case</code>)、原始 SQL 文本 (<code>source</code>)。</p>
+</li>
+<li>
+<p>唯一索引 <code>pg_force_view_fvoid_index</code> 搭配 syscache <code>FORCEVIEWOID</code>（<code>src/include/catalog/syscache_info.h</code>）实现按视图 OID 查找。</p>
+</li>
+<li>
+<p>目录表开启 TOAST，长 SQL 文本不会被截断，可覆盖复杂迁移脚本。</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CATALOG(pg_force_view,9120,ForceViewRelationId)
+{
+    /* oid of force view */
+	Oid			fvoid;
+
+    /* see IDENT_CASE__xxx constants below */
+	char		ident_case;
+
+#ifdef CATALOG_VARLEN			/* variable-length fields start here */
+
+    /* sql definition */
+	text		source;
+#endif
+} FormData_pg_force_view;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="视图状态"><a class="anchor" href="#视图状态"></a>2.2.2. 视图状态</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>bool rel_is_force_view(Oid relid)</code> 位于 <code>src/backend/commands/view.c</code>，通过判断 <code>_RETURN</code> 规则是否存在确认视图是否处于 Force 状态。</p>
+</li>
+<li>
+<p>Force View 仍登记为 <code>relkind = RELKIND_VIEW</code>，避免额外兼容分支。</p>
+</li>
+<li>
+<p><code>pg_class.relhasrules</code> 在占位状态设置为 <code>false</code>，配合作为判断依据。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="创建与替换流程"><a class="anchor" href="#创建与替换流程"></a>2.3. 创建与替换流程</h3>
+<div class="sect3">
+<h4 id="普通-view"><a class="anchor" href="#普通-view"></a>2.3.1. 普通 view</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>DefineView()</code> 在解析成功后调用 <code>DefineVirtualRelation()</code> 写入 <code>pg_class</code>、<code>pg_attribute</code> 等结构。</p>
+</li>
+<li>
+<p><code>StoreViewQuery()</code> 生成 <code>_RETURN</code> 规则并维护依赖关系。</p>
+</li>
+<li>
+<p>该路径不会触及 <code>pg_force_view</code>，视图完成后立即可用。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="force-view"><a class="anchor" href="#force-view"></a>2.3.2. Force view</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>CreateForceVirtualPlaceholder()</code>（<code>src/backend/commands/view.c</code>）负责生成或复用占位视图：</p>
+</li>
+<li>
+<p>若视图不存在，调用 <code>DefineVirtualRelation()</code> 建立基础对象，但不写入 <code>_RETURN</code> 规则。</p>
+</li>
+<li>
+<p>若已有 Force View，复用当前记录，更新列定义或清理旧元数据。</p>
+</li>
+<li>
+<p>若已有普通视图且声明了 <code>OR REPLACE</code>，调用 <code>make_view_invalid()</code> 失效原视图，再写入新的占位定义。</p>
+</li>
+<li>
+<p><code>StoreForceViewQuery()</code> 将 <code>stmt_literal</code> 与当前 <code>ivorysql.identifier_case_switch</code> 持久化到 <code>pg_force_view</code>，以便后续恢复大小写语义。</p>
+</li>
+<li>
+<p>视图占位完成后向客户端返回 <code>WARNING: View created with compilation errors</code>，提示仍处于不可用状态。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="依赖失效与回退"><a class="anchor" href="#依赖失效与回退"></a>2.4. 依赖失效与回退</h3>
+<div class="sect3">
+<h4 id="主动失效逻辑"><a class="anchor" href="#主动失效逻辑"></a>2.4.1. 主动失效逻辑</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>make_view_invalid()</code> 在依赖对象被 DROP/ALTER 等操作影响时调用。</p>
+</li>
+<li>
+<p>函数删除 <code>_RETURN</code> 规则、清理 <code>pg_depend</code> 依赖、重置 <code>pg_class.relhasrules</code> 并清空 <code>pg_attribute</code> 列信息。</p>
+</li>
+<li>
+<p>同步生成 <code>CREATE FORCE VIEW &#8230;&#8203; AS &lt;pg_get_viewdef&gt;</code> 文本写入 <code>pg_force_view</code>，<code>ident_case</code> 设置为 <code>IDENT_CASE_UNDEFINE</code> 表示该文本由系统构造。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="失效后的可见行为"><a class="anchor" href="#失效后的可见行为"></a>2.4.2. 失效后的可见行为</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>视图仍然存在并可在元数据中枚举，但实际访问会触发 Force 判定。</p>
+</li>
+<li>
+<p><code>_RETURN</code> 缺失导致执行器在打开视图时调用 <code>compile_force_view()</code>，若编译仍失败则抛出 <code>view "&lt;schema&gt;.&lt;name&gt;" has errors</code>。</p>
+</li>
+<li>
+<p>用户可通过 <code>ALTER VIEW &#8230;&#8203; COMPILE</code> 或再次 <code>CREATE OR REPLACE FORCE VIEW</code> 来恢复。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="自动与主动编译"><a class="anchor" href="#自动与主动编译"></a>2.5. 自动与主动编译</h3>
+<div class="sect3">
+<h4 id="自动编译触发点"><a class="anchor" href="#自动编译触发点"></a>2.5.1. 自动编译触发点</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>parse_relation.c</code> 的 <code>addRangeTableEntry()</code> 和 <code>parse_clause.c</code> 的目标关系打开逻辑在判定 Force View 后调用 <code>compile_force_view()</code>。</p>
+</li>
+<li>
+<p>该函数重新执行 <code>raw_parser</code> 与 <code>parse_analyze</code>，成功则再安装 <code>_RETURN</code> 规则，失败直接终止当前语句。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="主动编译"><a class="anchor" href="#主动编译"></a>2.5.2. 主动编译</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>AT_ForceViewCompile</code> 在 <code>tablecmds.c</code> Phase 2 阶段执行，先申请 <code>AccessExclusiveLock</code> 再调用 <code>compile_force_view()</code>。</p>
+</li>
+<li>
+<p>成功编译返回常规 <code>ALTER VIEW</code> 完成信息；失败打印 <code>WARNING: View altered with compilation errors</code>，视图仍保持占位。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="列校验与元数据更新"><a class="anchor" href="#列校验与元数据更新"></a>2.5.3. 列校验与元数据更新</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>compile_force_view()</code> 读取 <code>pg_force_view.source</code> 并构造 <code>ViewStmt</code>，随后调用 <code>compile_force_view_internal()</code>。</p>
+</li>
+<li>
+<p>函数通过 <code>checkViewColumns()</code> 比对旧列，允许新增列但禁止类型不兼容的替换；新增列由 <code>AT_AddColumnToView()</code> 完成。</p>
+</li>
+<li>
+<p><code>_RETURN</code> 规则由 <code>StoreViewQuery()</code> 重新生成，最后 <code>DeleteForceView()</code> 删除目录项，视图恢复为普通状态。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="6.3.7.html">嵌套子函数</a></span>
+  <span class="next"><a href="6.3.9.html">大小写转换</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

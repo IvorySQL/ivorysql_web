@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Docker Swarm &amp; Docker Compose 部署IvorySQL高可用集群 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/containerization/docker_swarm_compose_deployment.html">
+    <link rel="prev" href="docker_podman_deployment.html">
+    <link rel="next" href="../operation_guide.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL贡献指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">PostgreSQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>IvorySQL</li>
+    <li>IvorySQL高级</li>
+    <li>容器化指南</li>
+    <li><a href="docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/containerization/docker_swarm_compose_deployment.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/containerization/docker_swarm_compose_deployment.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Docker Swarm &amp; Docker Compose 部署IvorySQL高可用集群</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>准备三个网络互通的服务器，并搭建swarm集群。
+测试集群名称及对应ip地址如下：</p>
+</div>
+<div class="paragraph">
+<p>manager-node1: 192.168.21.205</p>
+</div>
+<div class="paragraph">
+<p>manager-node2: 192.168.21.164</p>
+</div>
+<div class="paragraph">
+<p>manager-node3: 192.168.21.51</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 docker-swarm]# docker node ls
+ID                            HOSTNAME        STATUS    AVAILABILITY   MANAGER STATUS   ENGINE VERSION
+y9d9wd9t2ncy4t9bvw6bg9sjs *   manager-node1   Ready     Active         Reachable        26.1.4
+iv17o6m9t9e06vd9iu1o6damd     manager-node2   Ready     Active         Leader           25.0.4
+vjnax76qj812mlvut6cv4qotl     manager-node3   Ready     Active         Reachable        24.0.6</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="docker-swarm搭建ivorysql-ha-cluster"><a class="anchor" href="#docker-swarm搭建ivorysql-ha-cluster"></a>1. docker swarm搭建IvorySQL HA Cluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下载源码</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 ~]# git clone https://github.com/IvorySQL/docker_library.git
+[root@manager-node1 ~]# cd docker_library/docker-cluster/docker-swarm</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>部署一个三节点的etcd</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 docker-swarm]# docker stack deploy -c docker-swarm-etcd.yml ivoryhac-etcd
+Creating network ivoryhac-etcd_etcd-net
+Creating service ivoryhac-etcd_etcd3
+Creating service ivoryhac-etcd_etcd1
+Creating service ivoryhac-etcd_etcd2
+[root@manager-node1 docker-swarm]# docker service ls
+ID             NAME                  MODE         REPLICAS   IMAGE                        PORTS
+1jst0mva8o5n   ivoryhac-etcd_etcd1   replicated   1/1        quay.io/coreos/etcd:v3.5.8   *:2379-2380-&gt;2379-2380/tcp
+sosag5017cis   ivoryhac-etcd_etcd2   replicated   1/1        quay.io/coreos/etcd:v3.5.8
+8twpgkzo2mnx   ivoryhac-etcd_etcd3   replicated   1/1        quay.io/coreos/etcd:v3.5.8</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>可自定义数据库外挂目录，修改docker-swarm-ivypatroni.yml中的volumes，修改完成后修改目录权限及属主；示例如下</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">mkdir -p /home/ivorysql/{data,patroni}
+chown -R 1000:1000 /home/ivorysql/{data,patroni}
+chmod 700 /home/ivorysql/{data,patroni}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>部署IvorySQL高可用集群</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 docker-swarm]# docker stack deploy -c docker-swarm-ivypatroni.yml ivoryhac-patroni
+Since --detach=false was not specified, tasks will be created in the background.
+In a future release, --detach=false will become the default.
+Creating service ivoryhac-patroni_ivypatroni1
+Creating service ivoryhac-patroni_ivypatroni2
+[root@manager-node1 docker-swarm]# docker service ls
+ID             NAME                       MODE         REPLICAS   IMAGE                                             PORTS
+1jst0mva8o5n   ivoryhac-etcd_etcd1        replicated   1/1        quay.io/coreos/etcd:v3.5.8                        *:2379-2380-&gt;2379-2380/tcp
+sosag5017cis   ivoryhac-etcd_etcd2        replicated   1/1        quay.io/coreos/etcd:v3.5.8
+8twpgkzo2mnx   ivoryhac-etcd_etcd3        replicated   1/1        quay.io/coreos/etcd:v3.5.8
+uzdvjq5j2gwt   ivorysql-hac_ivypatroni1   replicated   1/1        ivorysql/docker-swarm-ha-cluster:5.0-4.0.6-ubi8   *:1521-&gt;1521/tcp, *:5866-&gt;5866/tcp
+fr0m9chu3ce8   ivorysql-hac_ivypatroni2   replicated   1/1        ivorysql/docker-swarm-ha-cluster:5.0-4.0.6-ubi8   *:1522-&gt;1521/tcp, *:5867-&gt;5866/tcp</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>psql连接数据库的Oracle端口及PG端口</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 docker-swarm]# psql -h127.0.0.1 -p1521 -U ivorysql -d ivorysql
+Password for user ivorysql:
+
+ivorysql=# select version();
+                                                        version
+------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 18.0 (IvorySQL 5.0) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-28), 64-bit
+(1 row)
+
+ivorysql=# show ivorysql.compatible_mode;
+ ivorysql.compatible_mode
+--------------------------
+ oracle
+(1 row)
+
+ivorysql=# exit</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 docker-swarm]# psql -h127.0.0.1 -p5432 -U ivorysql -d ivorysql
+Password for user ivorysql:
+
+ivorysql=# select version();
+                                                        version
+------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 18.0 (IvorySQL 5.0) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-28), 64-bit
+(1 row)
+
+ivorysql=# show ivorysql.compatible_mode;
+ ivorysql.compatible_mode
+--------------------------
+ pg
+(1 row)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>卸载IvorySQL集群</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 ~] docker stack rm ivoryhac-patroni
+[root@manager-node1 ~] docker stack rm ivoryhac-etcd</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="docker-compose搭建ivorysql-ha-cluster"><a class="anchor" href="#docker-compose搭建ivorysql-ha-cluster"></a>2. docker compose搭建IvorySQL HA Cluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>下载源码</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 ~]# git clone https://github.com/IvorySQL/docker_library.git
+[root@manager-node1 ~]# cd docker_library/docker-cluster/docker-compose</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>拷贝文件至其他服务器</p>
+</div>
+<div class="paragraph">
+<p>将etcd和ivypatroni的docker-compose文件，分别拷贝到其他服务器上。</p>
+</div>
+<div class="paragraph">
+<p>如测试服务器:</p>
+</div>
+<div class="paragraph">
+<p>192.168.21.205 存放etcd1+ivorypatroni1，</p>
+</div>
+<div class="paragraph">
+<p>192.168.21.164 存放etcd2+ivorypatroni2，</p>
+</div>
+<div class="paragraph">
+<p>192.168.21.51  存放etcd3+ivorypatroni3</p>
+</div>
+<div class="paragraph">
+<p>部署一个三节点的etcd，以node1为例</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 docker-compose]# docker-compose -f ./docker-compose-etcd1.yml up -d
+[+] Running 1/1
+ ✔ Container etcd  Started                                                                                                                                                                   0.1s</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>部署IvorySQL高可用集群</p>
+</div>
+<div class="paragraph">
+<p>在每个节点上，部署ivyhac服务
+以node1为例</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 docker-compose]# docker-compose -f ./docker-compose-ivypatroni_1.yml up -d
+[+] Running 1/1
+ ✔ Container ivyhac1  Started                                                                                                                                                                0.1s
+[root@manager-node1 docker-compose]# docker ps
+CONTAINER ID   IMAGE                                               COMMAND                  CREATED          STATUS          PORTS     NAMES
+736c0d188bdd   ivorysql/docker-compose-ha-cluster:5.0-4.0.6-ubi8   "/bin/sh /docker-ent…"   18 seconds ago   Up 17 seconds             ivyhac1
+9d8e04e4f819   quay.io/coreos/etcd:v3.5.8                          "/usr/local/bin/etcd"    24 minutes ago   Up 24 minutes             etcd</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>此时，一主两备集群搭建完成
+psql连接数据库的Oracle端口及PG端口</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 docker-swarm]# psql -h127.0.0.1 -p1521 -U ivorysql -d ivorysql
+Password for user ivorysql:
+
+ivorysql=# select version();
+                                                        version
+------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 18.0 (IvorySQL 5.0) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-28), 64-bit
+(1 row)
+
+ivorysql=# show ivorysql.compatible_mode;
+ ivorysql.compatible_mode
+--------------------------
+ oracle
+(1 row)
+
+ivorysql=# exit</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 docker-swarm]# psql -h127.0.0.1 -p5432 -U ivorysql -d ivorysql
+Password for user ivorysql:
+
+ivorysql=# select version();
+                                                        version
+------------------------------------------------------------------------------------------------------------------------
+ PostgreSQL 18.0 (IvorySQL 5.0) on x86_64-pc-linux-gnu, compiled by gcc (GCC) 8.5.0 20210514 (Red Hat 8.5.0-28), 64-bit
+(1 row)
+
+ivorysql=# show ivorysql.compatible_mode;
+ ivorysql.compatible_mode
+--------------------------
+ pg
+(1 row)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>卸载IvorySQL集群
+以node1为例</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[root@manager-node1 ~] docker-compose -f ./docker-compose-ivypatroni_1.yml down
+[root@manager-node1 ~] docker-compose -f ./docker-compose-etcd1.yml down</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="docker_podman_deployment.html">Docker &amp; Podman部署</a></span>
+  <span class="next"><a href="../operation_guide.html">运维管理指南</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

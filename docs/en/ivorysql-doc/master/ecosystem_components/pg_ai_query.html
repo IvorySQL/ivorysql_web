@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>pg_ai_query :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pg_ai_query.html">
+    <link rel="prev" href="plpgsql_check.html">
+    <link rel="next" href="pgroonga.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../release_notes.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../about_ivorysql.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">Cluster</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">Migration</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">Operation Management</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="wal2json.html">wal2json</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_parser.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/framework_design.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">Function and stored procedure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">Case Conversion</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Built-in Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../gb18030.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../tools_reference.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Ecosystem</li>
+    <li>Eco Component Adaption</li>
+    <li><a href="pg_ai_query.html">pg_ai_query</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/ecosystem_components/pg_ai_query.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/ecosystem_components/pg_ai_query.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">pg_ai_query</h1>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>1. Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>pg_ai_query is an AI-powered natural language to SQL extension for IvorySQL/PostgreSQL. It leverages Large Language Models (LLMs) to convert user&#8217;s natural language descriptions directly into executable SQL query statements. It supports multiple AI models including OpenAI, Anthropic Claude, and Google Gemini.</p>
+</div>
+<div class="paragraph">
+<p>Project URL: <a href="https://github.com/benodiwal/pg_ai_query/tree/main" class="bare">https://github.com/benodiwal/pg_ai_query/tree/main</a></p>
+</div>
+<div class="paragraph">
+<p>License: Apache-2.0</p>
+</div>
+<div class="paragraph">
+<p>Key features:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Natural Language to SQL</strong>: Convert plain text descriptions into valid SQL queries</p>
+</li>
+<li>
+<p><strong>Multi-model Support</strong>: Supports gpt-4o-mini, gpt-4o, gpt-5, claude-3-haiku-20240307, claude-sonnet-4-5-20250929, claude-4.5-opus and other large models</p>
+</li>
+<li>
+<p><strong>System Table Protection</strong>: Blocks access to <code>information_schema</code> and <code>pg_catalog</code></p>
+</li>
+<li>
+<p><strong>Limited Scope</strong>: Only operates on user tables</p>
+</li>
+<li>
+<p><strong>Configurable Limits</strong>: Built-in row limit enforcement</p>
+</li>
+<li>
+<p><strong>API Key Security</strong>: Secure handling of API credentials</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="quick-start"><a class="anchor" href="#quick-start"></a>2. Quick Start</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The following demonstration uses v0.1.1 as an example.</p>
+</div>
+<div class="sect2">
+<h3 id="installation"><a class="anchor" href="#installation"></a>2.1. Installation</h3>
+<div class="paragraph">
+<p><strong>Prerequisites</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PostgreSQL 14+ with development headers</p>
+</li>
+<li>
+<p>CMake 3.16+</p>
+</li>
+<li>
+<p>C++20 compatible compiler</p>
+</li>
+<li>
+<p>API key from OpenAI, Anthropic, or Google (Gemini)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Install dependencies</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo apt-get install libcurl4-openssl-dev</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Compile and install IvorySQL</strong></p>
+</div>
+<div class="paragraph">
+<p>If you need to compile IvorySQL from source, you can refer to the following configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./configure \
+--prefix=$PWD/inst \
+--enable-cassert \
+--enable-debug \
+--enable-tap-tests \
+--enable-rpath \
+--enable-nls \
+--enable-injection-points \
+--with-tcl \
+--with-python \
+--with-gssapi \
+--with-pam \
+--with-ldap \
+--with-openssl \
+--with-libedit-preferred \
+--with-uuid=e2fs \
+--with-ossp-uuid \
+--with-libxml \
+--with-libxslt \
+--with-perl \
+--with-icu \
+--with-libnuma</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Compile and install pg_ai_query</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone --recurse-submodules https://github.com/benodiwal/pg_ai_query.git
+cd pg_ai_query
+mkdir build &amp;&amp; cd build
+export PATH="$HOME/works/repo/ivorysql/IvorySQL/inst/bin:$PATH"
+cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/works/repo/ivorysql/IvorySQL/inst
+make &amp;&amp; sudo make install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Create extension</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION pg_ai_query;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="configuration"><a class="anchor" href="#configuration"></a>2.2. Configuration</h3>
+<div class="paragraph">
+<p>Create a <code>~/.pg_ai.config</code> configuration file in your home directory:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">[general]
+log_level = "INFO"
+enable_logging = false
+
+[query]
+enforce_limit = true
+default_limit = 1000
+
+[response]
+show_explanation = true
+show_warnings = true
+show_suggested_visualization = false
+use_formatted_response = false
+
+[anthropic]
+# Your Anthropic API key (if using Claude)
+api_key = "******"
+
+# Default model to use (options: claude-sonnet-4-5-20250929)
+default_model = "claude-sonnet-4-5-20250929"
+
+# Custom API endpoint (optional) - for Anthropic-compatible APIs
+api_endpoint = "https://open.bigmodel.cn/api/anthropic"
+
+[prompts]
+# Use file paths to read custom prompts
+system_prompt = /home/highgo/.pg_ai.prompts
+explain_system_prompt = /home/highgo/.pg_ai.explain.prompts</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more examples, please refer to: <a href="https://github.com/benodiwal/pg_ai_query/blob/main/docs/src/examples.md" class="bare">https://github.com/benodiwal/pg_ai_query/blob/main/docs/src/examples.md</a></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage-examples"><a class="anchor" href="#usage-examples"></a>3. Usage Examples</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="basic-usage"><a class="anchor" href="#basic-usage"></a>3.1. Basic Usage</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT generate_query('Find all users');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Example output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[INFO] Text generation successful - model: claude-sonnet-4-5-20250929, response_id: msg_20260209135507cc16362d5d324ccd
+
+                    generate_query
+--------------------------------------------------------
+ SELECT * FROM public.users LIMIT 1000;
++
+ -- Explanation:
+ -- Retrieves all columns and rows from the users table.
++
+ -- Warning: INFO: Applied LIMIT 1000 to prevent large result sets. Remove LIMIT if you need all data.
++
+ -- Note: Row limit was automatically applied to this query for safety
+(1 row)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Execute the query:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT * FROM public.users LIMIT 1000;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"> id |     name      |       email       | age |         created_at         |     city
+----+---------------+-------------------+-----+----------------------------+---------------
+  1 | Alice Johnson | alice@example.com |  28 | 2026-02-04 15:47:55.208111 | New York
+  2 | Bob Smith     | bob@example.com   |  35 | 2026-02-04 15:47:55.208111 | San Francisco
+  3 | Carol Davis   | carol@example.com |  31 | 2026-02-04 15:47:55.208111 | Chicago
+  4 | David Wilson  | david@example.com |  27 | 2026-02-04 15:47:55.208111 | Seattle
+  5 | Eva Brown     | eva@example.com   |  33 | 2026-02-04 15:47:55.208111 | Boston
+(5 rows)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="generate_query-examples"><a class="anchor" href="#generate_query-examples"></a>3.2. generate_query Examples</h3>
+<div class="paragraph">
+<p><strong>Generate test data</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT generate_query('Generate 100 user records and insert into users table');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[INFO] Text generation successful - model: claude-sonnet-4-5-20250929, response_id: msg_2026021114092101601c5650864a2d
+
+                          generate_query
+--------------------------------------------------------------------------------------------------------
+ INSERT INTO public.users (name, email, age, city, status)
+ SELECT 'User_' || generate_series AS name,
+        'user' || generate_series || '@example.com' AS email,
+        (18 + (generate_series % 50)) AS age,
+        (ARRAY['Beijing','Shanghai','Guangzhou','Shenzhen','Hangzhou'])[1 + (generate_series % 5)] AS city,
+        'active' AS status
+ FROM generate_series(1, 100);
++
+ -- Explanation:
+ -- Generates 100 simulated user records and inserts them into the users table. Data includes auto-generated names, unique emails, random ages (18-67), random cities, and default status.
++
+ -- Warnings:
+ --   1. INFO: Relies on DEFAULT auto-increment setting for id column in users table, id is not manually inserted.
+ --   2. INFO: Uses generate_series function to generate sequence data, which is a PostgreSQL/IvorySQL feature.
+ --   3. WARN: Ensure users table is empty or id sequence does not conflict before running, otherwise duplicate inserts may occur.
+ --   4. WARN: Email format is simple simulation, actual environment may require more complex logic or duplicate checking.
+(1 row)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>Case-insensitive query</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT generate_query('Show users from beijing, beijing is non-Case insensitive');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[INFO] Text generation successful - model: claude-sonnet-4-5-20250929, response_id: msg_20260211142845878f5f1a5a2f44a7
+
+                generate_query
+-----------------------------------------
+ SELECT id, name, email, age, created_at, city, status
+ FROM public.users
+ WHERE LOWER(city) = LOWER('beijing') LIMIT 100;
++
+ -- Explanation:
+ -- Selects all user details for users located in Beijing, performing a case-insensitive match on the city column.
++
+ -- Warnings:
+ --   1. INFO: Using LOWER() on both sides ensures case-insensitive matching but may prevent the database from using a standard index on the city column if one exists.
+ --   2. INFO: Row limit of 100 applied to prevent large result sets.
++
+ -- Note: Row limit was automatically applied to this query for safety
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="explain_query-examples"><a class="anchor" href="#explain_query-examples"></a>3.3. explain_query Examples</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT explain_query('SELECT * FROM orders WHERE user_id = 12');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[INFO] Text generation successful - model: claude-sonnet-4-5-20250929, response_id: msg_20260211175909d47a6871bcca4897
+
+                                          explain_query
+--------------------------------------------------------------------------------------------------------------
+ 1. Query Overview
++
+ - This query aims to retrieve all records from the orders table where user_id equals 12 (SELECT *).
+ - This is a typical query that filters data based on a specific field (user_id).
++
+ 2. Performance Summary
++
+ - Total execution time: 0.021 ms
+ - Planning time: 0.430 ms
+ - Total cost: 18.12
+ - Rows returned: 0 rows (Actual Rows: 0)
+ - Rows scanned: 0 rows (Rows Removed by Filter: 0)
++
+ 3. Execution Plan Analysis
++
+ - Key step: Sequential Scan
+ - The database performed a full table scan on the orders table.
+ - The planner estimated finding 3 rows, but actual execution returned 0 rows.
+ - Filter condition: orders.user_id = 12, which means the database must read every row in the table to check this condition.
++
+ 4. Performance Issues
++
+ - Full table scan risk: Although the current table data volume is small (execution time is only 0.021ms), using Seq Scan (sequential scan) means the database is not using an index. If the orders table grows to millions of rows over time, this query approach will become extremely slow (high I/O consumption).
+ - Missing index: The plan shows no index was used to locate rows where user_id = 12, indicating that a necessary B-Tree index may be missing on the user_id column.
++
+ 5. Optimization Recommendations
++
+ - Primary recommendation: Create an index on the user_id column to avoid full table scans. This will transform the query from O(N) (scanning all rows) to O(log N) (index lookup).
+ - SQL optimization example:
++
+ CREATE INDEX idx_orders_user_id ON orders(user_id);
++
+ 6. Index Recommendations
++
+ - Recommended index: Create a B-Tree index on the user_id column of the orders table.
+ - Reason: The query condition is based on equality comparison (=) of user_id. After creating the index, IvorySQL (PostgreSQL) will be able to use the index to quickly locate data, significantly reducing query time and resource consumption, especially when data volume is large.
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="best-practices"><a class="anchor" href="#best-practices"></a>4. Best Practices</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="prompt-writing-guidelines"><a class="anchor" href="#prompt-writing-guidelines"></a>4.1. Prompt Writing Guidelines</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Use English</strong>: While AI supports multiple languages, English works best</p>
+</li>
+<li>
+<p><strong>Understand your database structure</strong>: The more you understand your database structure, the more accurate the generated queries will be</p>
+</li>
+<li>
+<p><strong>Refine iteratively</strong>: Start broad, then add details step by step to improve results</p>
+</li>
+<li>
+<p><strong>Be explicit</strong>: If you know specific tables or columns, mention them in your prompts - this helps AI generate more precise queries</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="error-handling-examples"><a class="anchor" href="#error-handling-examples"></a>4.2. Error Handling Examples</h3>
+<div class="paragraph">
+<p>When tables referenced in the query do not exist, the system returns an error message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT generate_query('List all products and prices');</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Error output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">[INFO] Text generation successful - model: claude-sonnet-4-5-20250929, response_id: msg_20260209135642777cbc5c82ca4a85
+
+ERROR:  Query generation failed: Cannot generate query. Referenced table(s) for 'products' or 'goods' do not exist in the database. Available tables: public.orders, public.student_scores, public.users, sys.dual</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the AI informs you of the available table list to help adjust your query.</p>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="plpgsql_check.html">plpgsql_check</a></span>
+  <span class="next"><a href="pgroonga.html">pgroonga</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

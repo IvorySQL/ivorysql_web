@@ -715,7 +715,211 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="管理ivorysql版本"><a class="anchor" href="#管理ivorysql版本"></a>2. 管理IvorySQL版本</h2>
+<h2 id="使用-pg_upgrade-将-postgresql-升级到-ivorysql"><a class="anchor" href="#使用-pg_upgrade-将-postgresql-升级到-ivorysql"></a>2. 使用 pg_upgrade 将 PostgreSQL 升级到 IvorySQL</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>pg_upgrade</code> 支持将原生 PostgreSQL 集群升级到 IvorySQL。当源集群为原生 PostgreSQL ，而目标为 IvorySQL 集群时，必须使用 <code>-g</code>（<code>--using-ora-pg</code>）参数。</p>
+</div>
+<div class="paragraph">
+<p>从 PostgreSQL 升级到 IvorySQL 属于“跨产品”迁移，建议在生产环境操作前完成完整的测试验证，并制定详细的回滚方案。</p>
+</div>
+<div class="sect2">
+<h3 id="参数说明"><a class="anchor" href="#参数说明"></a>2.1. 参数说明</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">参数</th>
+<th class="tableblock halign-left valign-top">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-g</code> / <code>--using-ora-pg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">表示源集群为 PostgreSQL ，而目标为 IvorySQL 集群。启用此选项后，<code>pg_upgrade</code> 在连接两端集群时统一使用 PostgreSQL 标准端口，从而正确处理升级。</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="升级步骤"><a class="anchor" href="#升级步骤"></a>2.2. 升级步骤</h3>
+<div class="sect3">
+<h4 id="第一步初始化新-ivorysql-集群"><a class="anchor" href="#第一步初始化新-ivorysql-集群"></a>2.2.1. 第一步：初始化新 IvorySQL 集群</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 使用 IvorySQL 的 initdb 初始化新集群
+/opt/ivorysql/bin/initdb -D /data/ivorysql/data</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="第二步停止源-postgresql-集群"><a class="anchor" href="#第二步停止源-postgresql-集群"></a>2.2.2. 第二步：停止源 PostgreSQL 集群</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">/usr/lib/postgresql/16/bin/pg_ctl -D /data/pg/data stop</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="第三步运行升级检查可选"><a class="anchor" href="#第三步运行升级检查可选"></a>2.2.3. 第三步：运行升级检查（可选）</h4>
+<div class="paragraph">
+<p>使用 <code>-c</code> 仅做兼容性检查，不修改任何数据：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">/opt/ivorysql/bin/pg_upgrade \
+  -b /usr/lib/postgresql/16/bin \   # 源 PG 可执行文件目录
+  -B /opt/ivorysql/bin \            # 目标 IvorySQL 可执行文件目录
+  -d /data/pg/data \                # 源 PG 数据目录
+  -D /data/ivorysql/data \          # 目标 IvorySQL 数据目录
+  -g \                              # 源为 PostgreSQL，目标为 IvorySQL
+  -c                                # 仅检查，不升级</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="第四步执行升级"><a class="anchor" href="#第四步执行升级"></a>2.2.4. 第四步：执行升级</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">/opt/ivorysql/bin/pg_upgrade \
+  -b /usr/lib/postgresql/16/bin \
+  -B /opt/ivorysql/bin \
+  -d /data/pg/data \
+  -D /data/ivorysql/data \
+  -g</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="第五步启动-ivorysql-并验证"><a class="anchor" href="#第五步启动-ivorysql-并验证"></a>2.2.5. 第五步：启动 IvorySQL 并验证</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">/opt/ivorysql/bin/pg_ctl -D /data/ivorysql/data start
+
+# 验证数据库是否正常
+/opt/ivorysql/bin/psql -p 5432 -c "SELECT version();"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="第六步清理旧集群"><a class="anchor" href="#第六步清理旧集群"></a>2.2.6. 第六步：清理旧集群</h4>
+<div class="paragraph">
+<p>升级完成后，<code>pg_upgrade</code> 会生成一个清理脚本：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">./delete_old_cluster.sh</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="常用参数速查"><a class="anchor" href="#常用参数速查"></a>2.3. 常用参数速查</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">参数</th>
+<th class="tableblock halign-left valign-top">长选项</th>
+<th class="tableblock halign-left valign-top">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-b</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--old-bindir</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">源集群可执行文件目录</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-B</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--new-bindir</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目标集群可执行文件目录</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-d</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--old-datadir</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">源集群数据目录</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-D</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--new-datadir</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目标集群数据目录</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-g</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--using-ora-pg</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">源为 PostgreSQL 升级到 IvorySQL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-p</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--old-port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">源集群端口</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-P</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--new-port</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目标集群 PG 端口</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-q</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--old-oraport</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">源集群 Oracle 端口</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-Q</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--new-oraport</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目标集群 Oracle 端口</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-j</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--jobs</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">并行进程数</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-k</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--link</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用硬链接替代文件复制</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--check</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">仅检查兼容性，不执行升级</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>-v</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>--verbose</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">输出详细日志</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="注意事项"><a class="anchor" href="#注意事项"></a>2.4. 注意事项</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><code>-g</code> 参数仅在 <strong>源为纯 PostgreSQL 集群</strong>、目标为 <strong>IvorySQL</strong> 时使用。若源集群已是 IvorySQL，则无需此参数。</p>
+</li>
+<li>
+<p>升级期间源集群和目标集群均须处于停止状态。</p>
+</li>
+<li>
+<p>升级前务必对源集群做完整备份。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="管理ivorysql版本"><a class="anchor" href="#管理ivorysql版本"></a>3. 管理IvorySQL版本</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>IvorySQL基于PostgreSQL开发，版本更新频率与PostgreSQL版本更新频率保持一致，每年更新一个大版本，每季度更新一个小版本。IvorySQL目前发布的版本有1.0到5.3，分别基于PostgreSQL 14.0到18.3进行开发，最新版本为IvorySQL 5.3，基于PostgreSQL 18.3进行开发。IvorySQL 的所有版本全部都做到了向下兼容。相关版本特性可以查看 <a href="https://www.ivorysql.org/zh-CN/releases-page">官网</a>。</p>
@@ -723,7 +927,7 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="管理ivorysql数据库访问"><a class="anchor" href="#管理ivorysql数据库访问"></a>3. 管理IvorySQL数据库访问</h2>
+<h2 id="管理ivorysql数据库访问"><a class="anchor" href="#管理ivorysql数据库访问"></a>4. 管理IvorySQL数据库访问</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>IvorySQL使用 <strong>角色</strong> 的概念管理数据库访问权限。一个角色可以看成是一个数据库用户或者是数据库用户组，这取决于角色被怎样设置。角色可以拥有数据库对象（例如，表和函数）并且能够把那些对象上的权限赋予给其他角色来控制谁能访问哪些对象。此外，还可以把一个角色中的 <strong>成员资格</strong> 授予给另一个角色，这样允许成员角色使用被赋予给另一个角色的权限。</p>
@@ -791,21 +995,21 @@ dropuser name</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="定义数据对象"><a class="anchor" href="#定义数据对象"></a>4. 定义数据对象</h2>
+<h2 id="定义数据对象"><a class="anchor" href="#定义数据对象"></a>5. 定义数据对象</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>IvorySQL基于PostgreSQL，具有完整的SQL，其定义数据对象可以参考 <a href="https://www.postgresql.org/docs/current/ddl.html">手册</a>。在此基础之上，IvorySQL为兼容Oracle，还做了一些Oracle专有数据对象的兼容。</p>
 </div>
 <div class="sect2">
-<h3 id="varchar2"><a class="anchor" href="#varchar2"></a>4.1. VARCHAR2</h3>
+<h3 id="varchar2"><a class="anchor" href="#varchar2"></a>5.1. VARCHAR2</h3>
 <div class="sect3">
-<h4 id="概述"><a class="anchor" href="#概述"></a>4.1.1. 概述</h4>
+<h4 id="概述"><a class="anchor" href="#概述"></a>5.1.1. 概述</h4>
 <div class="paragraph">
 <p>具有最大长度大小字节或字符的可变长度字符串。 您必须为 VARCHAR2 指定大小。 最小大小为 1 个字节或 1 个字符。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="语法"><a class="anchor" href="#语法"></a>4.1.2. 语法</h4>
+<h4 id="语法"><a class="anchor" href="#语法"></a>5.1.2. 语法</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">VARCHAR2(size)</code></pre>
@@ -813,7 +1017,7 @@ dropuser name</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="用例"><a class="anchor" href="#用例"></a>4.1.3. 用例</h4>
+<h4 id="用例"><a class="anchor" href="#用例"></a>5.1.3. 用例</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">create table test(a varchar2(5));
@@ -837,7 +1041,7 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="查询数据"><a class="anchor" href="#查询数据"></a>5. 查询数据</h2>
+<h2 id="查询数据"><a class="anchor" href="#查询数据"></a>6. 查询数据</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>IvorySQL基于PostgreSQL开发，具有完全的SQL，查询数据具体的操作可以参考 <a href="https://www.postgresql.org/docs/current/queries.html">手册</a>。</p>
@@ -845,7 +1049,7 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="使用外部数据"><a class="anchor" href="#使用外部数据"></a>6. 使用外部数据</h2>
+<h2 id="使用外部数据"><a class="anchor" href="#使用外部数据"></a>7. 使用外部数据</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>IvorySQL实现了部分的SQL/MED规定，允许我们使用普通SQL查询来访问位于IvorySQL之外的数据。这种数据被称为外部数据（注意这种用法不要和外键混淆，后者是数据库中的一种约束）。</p>
@@ -862,7 +1066,7 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="备份与恢复"><a class="anchor" href="#备份与恢复"></a>7. 备份与恢复</h2>
+<h2 id="备份与恢复"><a class="anchor" href="#备份与恢复"></a>8. 备份与恢复</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>由于包含着有价值的数据，IvorySQL数据库应当被定期地备份。虽然过程相当简单，但清晰地理解其底层技术和假设是非常重要的。</p>
@@ -884,7 +1088,7 @@ INSERT 0 1</code></pre>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="sql转储"><a class="anchor" href="#sql转储"></a>7.1. SQL转储</h3>
+<h3 id="sql转储"><a class="anchor" href="#sql转储"></a>8.1. SQL转储</h3>
 <div class="paragraph">
 <p>SQL 转储方法的思想是创建一个由SQL命令组成的文件，当把这个文件回馈给服务器时，服务器将利用其中的SQL命令重建与转储时状态一样的数据库。 IvorySQL为此提供了工具pg_dump。这个工具的基本用法是：</p>
 </div>
@@ -912,7 +1116,7 @@ INSERT 0 1</code></pre>
 <p>​    由pg_dump创建的备份在内部是一致的， 也就是说，转储表现了pg_dump开始运行时刻的数据库快照，且在pg_dump运行过程中发生的更新将不会被转储。pg_dump工作的时候并不阻塞其他的对数据库的操作。（但是会阻塞那些需要排它锁的操作，比如大部分形式的ALTER TABLE）</p>
 </div>
 <div class="sect3">
-<h4 id="从转储中恢复"><a class="anchor" href="#从转储中恢复"></a>7.1.1. 从转储中恢复</h4>
+<h4 id="从转储中恢复"><a class="anchor" href="#从转储中恢复"></a>8.1.1. 从转储中恢复</h4>
 <div class="paragraph">
 <p>pg_dump生成的文本文件可以由psql程序读取。 从转储中恢复的常用命令是：</p>
 </div>
@@ -954,7 +1158,7 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="使用pg_dumpall"><a class="anchor" href="#使用pg_dumpall"></a>7.1.2. 使用pg_dumpall</h4>
+<h4 id="使用pg_dumpall"><a class="anchor" href="#使用pg_dumpall"></a>8.1.2. 使用pg_dumpall</h4>
 <div class="paragraph">
 <p>pg_dump每次只转储一个数据库，而且它不会转储关于角色或表空间（因为它们是集簇范围的）的信息。为了支持方便地转储一个数据库集簇的全部内容，提供了pg_dumpall程序。pg_dumpall备份一个给定集簇中的每一个数据库，并且也保留了集簇范围的数据，如角色和表空间定义。该命令的基本用法是：</p>
 </div>
@@ -982,7 +1186,7 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="处理大型数据库"><a class="anchor" href="#处理大型数据库"></a>7.1.3. 处理大型数据库</h4>
+<h4 id="处理大型数据库"><a class="anchor" href="#处理大型数据库"></a>8.1.3. 处理大型数据库</h4>
 <div class="paragraph">
 <p>在一些具有最大文件尺寸限制的操作系统上创建大型的pg_dump输出文件可能会出现问题。幸运地是，pg_dump可以写出到标准输出，因此你可以使用标准Unix工具来处理这种潜在的问题。有几种可能的方法：</p>
 </div>
@@ -1073,7 +1277,7 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="文件系统级别备份"><a class="anchor" href="#文件系统级别备份"></a>7.2. 文件系统级别备份</h3>
+<h3 id="文件系统级别备份"><a class="anchor" href="#文件系统级别备份"></a>8.2. 文件系统级别备份</h3>
 <div class="paragraph">
 <p>另外一种备份策略是直接复制 IvorySQL用于存储数据库中数据的文件，你可以采用任何你喜欢的方式进行文件系统备份，例如：</p>
 </div>
@@ -1112,7 +1316,7 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="连续归档和时间点恢复pitr"><a class="anchor" href="#连续归档和时间点恢复pitr"></a>7.3. 连续归档和时间点恢复（PITR）</h3>
+<h3 id="连续归档和时间点恢复pitr"><a class="anchor" href="#连续归档和时间点恢复pitr"></a>8.3. 连续归档和时间点恢复（PITR）</h3>
 <div class="paragraph">
 <p>在任何时间，IvorySQL在数据集簇目录的pg_wal/子目录下都保持有一个预写式日志（WAL）。这个日志存在的目的是为了保证崩溃后的安全：如果系统崩溃，可以“重放”从最后一次检查点以来的日志项来恢复数据库的一致性。该日志的存在也使得第三种备份数据库的策略变得可能：我们可以把一个文件系统级别的备份和WAL文件的备份结合起来。当需要恢复时，我们先恢复文件系统备份，然后从备份的WAL文件中重放来把系统带到一个当前状态。这种方法比之前的方法管理起来要更复杂，但是有其显著的优点：</p>
 </div>
@@ -1145,7 +1349,7 @@ INSERT 0 1</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="装卸数据"><a class="anchor" href="#装卸数据"></a>8. 装卸数据</h2>
+<h2 id="装卸数据"><a class="anchor" href="#装卸数据"></a>9. 装卸数据</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>copy 在 IvorySQL表和标准文件之间移动数据。COPY TO 把一个表的内容复制到一个文件，而COPY FROM 则从一个文件复制数据到一个表（把数据追加到表中原有数据）。COPY TO 也能复制一个SELECT查询的结果。</p>
@@ -1160,7 +1364,7 @@ INSERT 0 1</code></pre>
 <p>​    运行COPY的每个后端将在pg_stat_progress_copy视图中报告其进度。</p>
 </div>
 <div class="sect2">
-<h3 id="大纲"><a class="anchor" href="#大纲"></a>8.1. 大纲</h3>
+<h3 id="大纲"><a class="anchor" href="#大纲"></a>9.1. 大纲</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">COPY table_name [ ( column_name [, ...] ) ]
@@ -1192,7 +1396,7 @@ COPY { table_name [ ( column_name [, ...] ) ] | ( query ) }
 </div>
 </div>
 <div class="sect2">
-<h3 id="输出"><a class="anchor" href="#输出"></a>8.2. 输出</h3>
+<h3 id="输出"><a class="anchor" href="#输出"></a>9.2. 输出</h3>
 <div class="paragraph">
 <p>在成功完成时，一个COPY命令会返回一个形为</p>
 </div>
@@ -1207,7 +1411,7 @@ COPY { table_name [ ( column_name [, ...] ) ] | ( query ) }
 </div>
 </div>
 <div class="sect2">
-<h3 id="注解"><a class="anchor" href="#注解"></a>8.3. 注解</h3>
+<h3 id="注解"><a class="anchor" href="#注解"></a>9.3. 注解</h3>
 <div class="paragraph">
 <p>COPY TO只能用于普通表，而不能用于视图，并且不能从子表或子分区复制行。 例如，COPY table TO 复制与SELECT * FROM ONLY table 相同的行。 语法COPY (SELECT * FROM table) TO &#8230;&#8203; 可用于转储一个继承层次结构、分区表或视图中的所有行。</p>
 </div>
@@ -1252,9 +1456,9 @@ COPY { table_name [ ( column_name [, ...] ) ] | ( query ) }
 </div>
 </div>
 <div class="sect2">
-<h3 id="文件格式"><a class="anchor" href="#文件格式"></a>8.4. 文件格式</h3>
+<h3 id="文件格式"><a class="anchor" href="#文件格式"></a>9.4. 文件格式</h3>
 <div class="sect3">
-<h4 id="文本格式"><a class="anchor" href="#文本格式"></a>8.4.1. 文本格式</h4>
+<h4 id="文本格式"><a class="anchor" href="#文本格式"></a>9.4.1. 文本格式</h4>
 <div class="paragraph">
 <p>在使用text格式时，读取或写入的是一个文本文件，其中每一行就是表中的一行。一行中的列被定界字符分隔。列值本身是由输出函数产生的或者是可被输入函数接受的属于每个属性数据类型的字符串。在为空值的列的位置使用指定的空值串。如果输入文件的任何行包含比预期更多或者更少的列，COPY FROM将会抛出一个错误。</p>
 </div>
@@ -1331,7 +1535,7 @@ COPY { table_name [ ( column_name [, ...] ) ] | ( query ) }
 </div>
 </div>
 <div class="sect3">
-<h4 id="csv格式"><a class="anchor" href="#csv格式"></a>8.4.2. CSV格式</h4>
+<h4 id="csv格式"><a class="anchor" href="#csv格式"></a>9.4.2. CSV格式</h4>
 <div class="paragraph">
 <p>这种格式选项被用于导入和导出很多其他程序（例如电子表格）使用的逗号 分隔值（CSV）文件格式。不同于 IvorySQL标准文本格式使用的转义 规则，它产生并且识别一般的 CSV 转义机制。</p>
 </div>
@@ -1370,7 +1574,7 @@ COPY { table_name [ ( column_name [, ...] ) ] | ( query ) }
 </div>
 </div>
 <div class="sect3">
-<h4 id="二进制格式"><a class="anchor" href="#二进制格式"></a>8.4.3. 二进制格式</h4>
+<h4 id="二进制格式"><a class="anchor" href="#二进制格式"></a>9.4.3. 二进制格式</h4>
 <div class="paragraph">
 <p>binary格式选项导致所有数据被以二进制格式 而不是文本格式存储/读取。它比文本和CSV格式要 快一些，但是二进制格式文件在不同的机器架构和 IvorySQL 版本之间的可移 植性要差些。还有，二进制格式与数据格式非常相关。例如不能从 一个smallint列中输出二进制数据并且把它读入到一个 integer列中，虽然这样做在文本格式中是可行的。</p>
 </div>
@@ -1448,7 +1652,7 @@ COPY { table_name [ ( column_name [, ...] ) ] | ( query ) }
 </div>
 </div>
 <div class="sect2">
-<h3 id="示例"><a class="anchor" href="#示例"></a>8.5. 示例</h3>
+<h3 id="示例"><a class="anchor" href="#示例"></a>9.5. 示例</h3>
 <div class="paragraph">
 <p>下面的例子使用竖线（|）作为域定界符把一个表复制到客户端：</p>
 </div>
@@ -1523,13 +1727,13 @@ ZW      ZIMBABWE</code></pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="性能管理"><a class="anchor" href="#性能管理"></a>9. 性能管理</h2>
+<h2 id="性能管理"><a class="anchor" href="#性能管理"></a>10. 性能管理</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>查询性能可能受多种因素影响。其中一些因素可以由用户控制，而其他的则属于系统下层设计的基本原理。</p>
 </div>
 <div class="sect2">
-<h3 id="使用explain"><a class="anchor" href="#使用explain"></a>9.1. 使用EXPLAIN</h3>
+<h3 id="使用explain"><a class="anchor" href="#使用explain"></a>10.1. 使用EXPLAIN</h3>
 <div class="paragraph">
 <p>IvorySQL为每个收到查询产生一个查询计划。 选择正确的计划来匹配查询结构和数据的属性对于好的性能来说绝对是最关键的，因此系统包含了一个复杂的规划器来尝试选择好的计划。 你可以使用EXPLAIN命令察看规划器为任何查询生成的查询计划。 阅读查询计划是一门艺术，它要求一些经验来掌握，但是本节只试图覆盖一些基础。</p>
 </div>
@@ -1537,7 +1741,7 @@ ZW      ZIMBABWE</code></pre>
 <p>​    这些例子使用EXPLAIN的默认“text”输出格式，这种格式紧凑并且便于阅读。如果你想把EXPLAIN的输出交给一个程序做进一步分析，你应该使用它的某种机器可读的输出格式（XML、JSON 或 YAML）。</p>
 </div>
 <div class="sect3">
-<h4 id="explain基础"><a class="anchor" href="#explain基础"></a>9.1.1. EXPLAIN基础</h4>
+<h4 id="explain基础"><a class="anchor" href="#explain基础"></a>10.1.1. EXPLAIN基础</h4>
 <div class="paragraph">
 <p>查询计划的结构是一个计划结点的树。最底层的结点是扫描结点：它们从表中返回未经处理的行。 不同的表访问模式有不同的扫描结点类型：顺序扫描、索引扫描、位图索引扫描。 也还有不是表的行来源，例如VALUES子句和FROM中返回集合的函数，它们有自己的结点类型。如果查询需要连接、聚集、排序、或者在未经处理的行上的其它操作，那么就会在扫描结点之上有其它额外的结点来执行这些操作。 并且，做这些操作通常都有多种方法，因此在这些位置也有可能出现不同的结点类型。 EXPLAIN给计划树中每个结点都输出一行，显示基本的结点类型和计划器为该计划结点的执行所做的开销估计。 第一行（最上层的结点）是对该计划的总执行开销的估计；计划器试图最小化的就是这个数字。</p>
 </div>
@@ -1872,7 +2076,7 @@ WHERE t1.unique1 &lt; 100 AND t1.unique2 = t2.unique2;
 </div>
 </div>
 <div class="sect3">
-<h4 id="explain-analyze"><a class="anchor" href="#explain-analyze"></a>9.1.2. EXPLAIN ANALYZE</h4>
+<h4 id="explain-analyze"><a class="anchor" href="#explain-analyze"></a>10.1.2. EXPLAIN ANALYZE</h4>
 <div class="paragraph">
 <p>可以通过使用EXPLAIN的ANALYZE选项来检查规划器估计值的准确性。通过使用这个选项，EXPLAIN会实际执行该查询，然后显示真实的行计数和在每个计划结点中累计的真实运行时间，还会有一个普通EXPLAIN显示的估计值。例如，我们可能得到这样一个结果：</p>
 </div>
@@ -2077,7 +2281,7 @@ ROLLBACK;</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="警告"><a class="anchor" href="#警告"></a>9.1.3. 警告</h4>
+<h4 id="警告"><a class="anchor" href="#警告"></a>10.1.3. 警告</h4>
 <div class="paragraph">
 <p>在两种有效的方法中EXPLAIN ANALYZE所度量的运行时间可能偏离同一个查询的正常执行。首先，由于不会有输出行被递交给客户端，网络传输开销和 I/O 转换开销没有被包括在内。其次，由EXPLAIN ANALYZE所增加的度量开销可能会很可观，特别是在操作系统调用gettimeofday()很慢的机器上。你可以使用pg_test_timing工具来度量在你的系统上的计时开销。</p>
 </div>
@@ -2117,9 +2321,9 @@ ROLLBACK;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="规划器使用的统计信息"><a class="anchor" href="#规划器使用的统计信息"></a>9.2. 规划器使用的统计信息</h3>
+<h3 id="规划器使用的统计信息"><a class="anchor" href="#规划器使用的统计信息"></a>10.2. 规划器使用的统计信息</h3>
 <div class="sect3">
-<h4 id="单列统计信息"><a class="anchor" href="#单列统计信息"></a>9.2.1. 单列统计信息</h4>
+<h4 id="单列统计信息"><a class="anchor" href="#单列统计信息"></a>10.2.1. 单列统计信息</h4>
 <div class="paragraph">
 <p>如我们在上一节所见，查询规划器需要估计一个查询要检索的行数，这样才能对查询计划做出好的选择。 本节对系统用于这些估计的统计信息进行一个快速的介绍。</p>
 </div>
@@ -2187,7 +2391,7 @@ WHERE tablename = 'road';
 </div>
 </div>
 <div class="sect3">
-<h4 id="扩展统计信息"><a class="anchor" href="#扩展统计信息"></a>9.2.2. 扩展统计信息</h4>
+<h4 id="扩展统计信息"><a class="anchor" href="#扩展统计信息"></a>10.2.2. 扩展统计信息</h4>
 <div class="paragraph">
 <p>常常可以看到由于查询子句中用到的多个列相互关联而运行着糟糕的执行计划的慢查询。规划器通常会假设多个条件是彼此独立的，这种假设在列值相互关联的情况下是不成立的。由于常规的统计信息天然的针对个体列的性质，它们无法捕捉到跨列关联的知识。不过，IvorySQL有能力计算多元统计信息，它能捕捉这类信息。</p>
 </div>
@@ -2204,7 +2408,7 @@ WHERE tablename = 'road';
 <p>​    下面的小节介绍当前支持的扩展统计信息类型。</p>
 </div>
 <div class="sect4">
-<h5 id="函数依赖"><a class="anchor" href="#函数依赖"></a>9.2.2.1. 函数依赖</h5>
+<h5 id="函数依赖"><a class="anchor" href="#函数依赖"></a>10.2.2.1. 函数依赖</h5>
 <div class="paragraph">
 <p>最简单的一类扩展统计信息跟踪函数依赖，这是在数据库范式定义中使用的概念。如果列a的值的知识足以决定列b的值，即不会有两个行具有相同的a值但是有不同的b值，我们就说列b函数依赖于列a。在一个完全规范化的数据库中，函数依赖应该仅存在于主键和超键上。不过，实际上很多数据集合会由于各种原因无法被完全规范化，常见的例子是为了性能而有意地反规范化。即使在一个完全规范化的数据库中，也会有某些列之间的部分关联，这些可以表达成部分函数依赖。</p>
 </div>
@@ -2239,7 +2443,7 @@ SELECT stxname, stxkeys, stxddependencies
 <p>在为涉及函数依赖列的查询计算选择度时，规划器会使用依赖系数来调整针对条件的选择度估计，这样就不会产生低估。</p>
 </div>
 <div class="sect5">
-<h6 id="函数依赖的限制"><a class="anchor" href="#函数依赖的限制"></a>9.2.2.1.1. 函数依赖的限制</h6>
+<h6 id="函数依赖的限制"><a class="anchor" href="#函数依赖的限制"></a>10.2.2.1.1. 函数依赖的限制</h6>
 <div class="paragraph">
 <p>当前只有在考虑简单等值条件（将列与常量值比较）和具有常量值的IN 子句时，函数依赖才适用。不会使用它们来改进比较两个列或者比较列和表达式的等值条件的估计， 也不会用它们来改进范围子句、LIKE或者任何其他类型的条件。</p>
 </div>
@@ -2268,7 +2472,7 @@ SELECT stxname, stxkeys, stxddependencies
 </div>
 </div>
 <div class="sect4">
-<h5 id="多元可区分值计数"><a class="anchor" href="#多元可区分值计数"></a>9.2.2.2. 多元可区分值计数</h5>
+<h5 id="多元可区分值计数"><a class="anchor" href="#多元可区分值计数"></a>10.2.2.2. 多元可区分值计数</h5>
 <div class="paragraph">
 <p>单列统计信息存储每一列中可区分值的数量。在组合多个列（例如GROUP BY a, b）时，如果规划器只有单列统计数据，则对可区分值数量的估计常常会错误，导致选择不好的计划。</p>
 </div>
@@ -2301,7 +2505,7 @@ nd | {"1, 2": 33178, "1, 5": 33178, "2, 5": 27435, "1, 2, 5": 33178}
 </div>
 </div>
 <div class="sect4">
-<h5 id="多元mcv列表"><a class="anchor" href="#多元mcv列表"></a>9.2.2.3. 多元MCV列表</h5>
+<h5 id="多元mcv列表"><a class="anchor" href="#多元mcv列表"></a>10.2.2.3. 多元MCV列表</h5>
 <div class="paragraph">
 <p>为每列存储的另一种统计信息是频繁值列表。 这样可以对单个列进行非常准确的估计，但是对于在多个列上具有条件的查询，可能会导致严重的错误估计。</p>
 </div>
@@ -2346,7 +2550,7 @@ SELECT m.* FROM pg_statistic_ext join pg_statistic_ext_data on (oid = stxoid),
 </div>
 </div>
 <div class="sect2">
-<h3 id="用显示join子句控制规划器"><a class="anchor" href="#用显示join子句控制规划器"></a>9.3. 用显示JOIN子句控制规划器</h3>
+<h3 id="用显示join子句控制规划器"><a class="anchor" href="#用显示join子句控制规划器"></a>10.3. 用显示JOIN子句控制规划器</h3>
 <div class="paragraph">
 <p>我们可以在一定程度上用显式JOIN语法控制查询规划器。要明白为什么需要它，我们首先需要一些背景知识。</p>
 </div>
@@ -2443,18 +2647,18 @@ WHERE somethingelse;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="填充一个数据库"><a class="anchor" href="#填充一个数据库"></a>9.4. 填充一个数据库</h3>
+<h3 id="填充一个数据库"><a class="anchor" href="#填充一个数据库"></a>10.4. 填充一个数据库</h3>
 <div class="paragraph">
 <p>第一次填充数据库时可能需要插入大量的数据。本节包含一些如何让这个处理尽可能高效的建议。</p>
 </div>
 <div class="sect3">
-<h4 id="禁用自动提交"><a class="anchor" href="#禁用自动提交"></a>9.4.1. 禁用自动提交</h4>
+<h4 id="禁用自动提交"><a class="anchor" href="#禁用自动提交"></a>10.4.1. 禁用自动提交</h4>
 <div class="paragraph">
 <p>在使用多个INSERT时，关闭自动提交并且只在最后做一次提交（在普通 SQL 中，这意味着在开始发出BEGIN并且在结束时发出COMMIT。某些客户端库可能背着你就做了这些，在这种情况下你需要确定在你需要做这些时该库确实帮你做了）。如果你允许每一个插入都被独立地提交，IvorySQL要为每一个被增加的行做很多工作。在一个事务中做所有插入的一个额外好处是：如果一个行的插入失败则所有之前插入的行都会被回滚，这样你不会被卡在部分载入的数据中。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="使用copy"><a class="anchor" href="#使用copy"></a>9.4.2. 使用COPY</h4>
+<h4 id="使用copy"><a class="anchor" href="#使用copy"></a>10.4.2. 使用COPY</h4>
 <div class="paragraph">
 <p>使用COPY在一条命令中装载所有记录，而不是一系列INSERT命令。 COPY命令是为装载大量行而优化过的； 它没INSERT那么灵活，但是在大量数据装载时导致的负荷也更少。 因为COPY是单条命令，因此使用这种方法填充表时无须关闭自动提交。</p>
 </div>
@@ -2469,7 +2673,7 @@ WHERE somethingelse;</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="移除索引"><a class="anchor" href="#移除索引"></a>9.4.3. 移除索引</h4>
+<h4 id="移除索引"><a class="anchor" href="#移除索引"></a>10.4.3. 移除索引</h4>
 <div class="paragraph">
 <p>如果你正在载入一个新创建的表，最快的方法是创建该表，用COPY批量载入该表的数据，然后创建表需要的任何索引。在已存在数据的表上创建索引要比在每一行被载入时增量地更新它更快。</p>
 </div>
@@ -2478,7 +2682,7 @@ WHERE somethingelse;</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="移除外键约束"><a class="anchor" href="#移除外键约束"></a>9.4.4. 移除外键约束</h4>
+<h4 id="移除外键约束"><a class="anchor" href="#移除外键约束"></a>10.4.4. 移除外键约束</h4>
 <div class="paragraph">
 <p>和索引一样，“成批地”检查外键约束比一行行检查效率更高。 因此，先删除外键约束、载入数据然后重建约束会很有用。 同样，载入数据和约束缺失期间错误检查的丢失之间也存在平衡。</p>
 </div>
@@ -2487,19 +2691,19 @@ WHERE somethingelse;</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="增加-maintenance_work_mem"><a class="anchor" href="#增加-maintenance_work_mem"></a>9.4.5. 增加 maintenance_work_mem</h4>
+<h4 id="增加-maintenance_work_mem"><a class="anchor" href="#增加-maintenance_work_mem"></a>10.4.5. 增加 maintenance_work_mem</h4>
 <div class="paragraph">
 <p>在载入大量数据时，临时增大maintenance_work_mem配置变量可以改进性能。这个参数也可以帮助加速CREATE INDEX命令和ALTER TABLE ADD FOREIGN KEY命令。 它不会对COPY本身起很大作用，所以这个建议只有在你使用上面的一个或两个技巧时才有用。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="增加max_wal_size"><a class="anchor" href="#增加max_wal_size"></a>9.4.6. 增加max_wal_size</h4>
+<h4 id="增加max_wal_size"><a class="anchor" href="#增加max_wal_size"></a>10.4.6. 增加max_wal_size</h4>
 <div class="paragraph">
 <p>临时增大max_wal_size配置变量也可以让大量数据载入更快。 这是因为向IvorySQL中载入大量的数据将导致检查点的发生比平常（由checkpoint_timeout配置变量指定）更频繁。无论何时发生一个检查点时，所有脏页都必须被刷写到磁盘上。 通过在批量数据载入时临时增加max_wal_size，所需的检查点数目可以被缩减。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="禁用wal归档和流复制"><a class="anchor" href="#禁用wal归档和流复制"></a>9.4.7. 禁用WAL归档和流复制</h4>
+<h4 id="禁用wal归档和流复制"><a class="anchor" href="#禁用wal归档和流复制"></a>10.4.7. 禁用WAL归档和流复制</h4>
 <div class="paragraph">
 <p>当使用 WAL 归档或流复制向一个安装中载入大量数据时，在录入结束后执行一次新的基础备份比处理大量的增量 WAL 数据更快。为了防止载入时记录增量 WAL，通过将wal_level设置为minimal、将archive_mode设置为off以及将max_wal_senders设置为零来禁用归档和流复制。 但需要注意的是，修改这些设置需要重启服务。</p>
 </div>
@@ -2508,13 +2712,13 @@ WHERE somethingelse;</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="事后运行analyze"><a class="anchor" href="#事后运行analyze"></a>9.4.8. 事后运行ANALYZE</h4>
+<h4 id="事后运行analyze"><a class="anchor" href="#事后运行analyze"></a>10.4.8. 事后运行ANALYZE</h4>
 <div class="paragraph">
 <p>不管什么时候你显著地改变了表中的数据分布后，我们都强烈推荐运行ANALYZE。这包括向表中批量载入大量数据。运行ANALYZE（或者VACUUM ANALYZE）保证规划器有表的最新统计信息。 如果没有统计数据或者统计数据过时，那么规划器在查询规划时可能做出很差劲决定，导致在任意表上的性能低下。需要注意的是，如果启用了 autovacuum 守护进程，它可能会自动运行ANALYZE。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="关于pg_dump的一些注记"><a class="anchor" href="#关于pg_dump的一些注记"></a>9.4.9. 关于pg_dump的一些注记</h4>
+<h4 id="关于pg_dump的一些注记"><a class="anchor" href="#关于pg_dump的一些注记"></a>10.4.9. 关于pg_dump的一些注记</h4>
 <div class="paragraph">
 <p>pg_dump生成的转储脚本自动应用上面的若干个（但不是全部）技巧。 要尽可能快地载入pg_dump转储，你需要手工做一些额外的事情（请注意，这些要点适用于恢复一个转储，而不是创建它的时候。同样的要点也适用于使用psql载入一个文本转储或用pg_restore从一个pg_dump归档文件载入）。</p>
 </div>
@@ -2551,7 +2755,7 @@ WHERE somethingelse;</code></pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="非持久设置"><a class="anchor" href="#非持久设置"></a>9.5. 非持久设置</h3>
+<h3 id="非持久设置"><a class="anchor" href="#非持久设置"></a>10.5. 非持久设置</h3>
 <div class="paragraph">
 <p>持久性是数据库的一个保证已提交事务的记录的特性（即使是发生服务器崩溃或断电）。 然而，持久性会明显增加数据库的负荷，因此如果你的站点不需要这个保证，IvorySQL可以被配置成运行更快。在这种情况下，你可以调整下列配置来提高性能。除了下面列出的，在数据库软件崩溃的情况下也能保证持久性。当这些设置被使用时，只有突然的操作系统停止会产生数据丢失或损坏的风险。</p>
 </div>

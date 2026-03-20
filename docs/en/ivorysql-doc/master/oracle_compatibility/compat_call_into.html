@@ -172,6 +172,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -546,7 +549,15 @@ ivorysql=# PRINT default_result;
 <h3 id="reference-bind-variables-in-parameters-or-into-clauses"><a class="anchor" href="#reference-bind-variables-in-parameters-or-into-clauses"></a>3.4. Reference bind variables in parameters or INTO clauses</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Set input bind variables
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Create functions stand_alone_func
+CREATE OR REPLACE FUNCTION stand_alone_func(p_input NUMBER)
+RETURN NUMBER
+IS
+BEGIN
+    RETURN p_input * 2;
+END;
+/
+-- Set input bind variables
 ivorysql=# VARIABLE input_num NUMBER = 7;
 -- Call a function using bind variables as parameters
 ivorysql=# VARIABLE func_result NUMBER;

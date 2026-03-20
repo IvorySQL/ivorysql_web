@@ -588,7 +588,15 @@ ivorysql=# PRINT default_result;
 <h3 id="在参数或into子句中引用绑定变量"><a class="anchor" href="#在参数或into子句中引用绑定变量"></a>3.4. 在参数或INTO子句中引用绑定变量</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 设置输入绑定变量
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建独立函数 stand_alone_func
+CREATE OR REPLACE FUNCTION stand_alone_func(p_input NUMBER)
+RETURN NUMBER
+IS
+BEGIN
+    RETURN p_input * 2;
+END;
+/
+-- 设置输入绑定变量
 ivorysql=# VARIABLE input_num NUMBER = 7;
 -- 使用绑定变量作为参数调用函数
 ivorysql=# VARIABLE func_result NUMBER;

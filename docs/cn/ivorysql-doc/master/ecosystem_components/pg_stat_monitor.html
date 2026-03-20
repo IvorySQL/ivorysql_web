@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>wal2json :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/wal2json.html">
-    <link rel="prev" href="system_stats.html">
-    <link rel="next" href="pg_stat_monitor.html">
+    <title>pg_stat_monitor :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pg_stat_monitor.html">
+    <link rel="prev" href="wal2json.html">
+    <link rel="next" href="../architecture/dual_parser.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -173,10 +173,10 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="system_stats.html">system_stats</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="4">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="wal2json.html">wal2json</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item is-current-page" data-depth="4">
     <a class="nav-link" href="pg_stat_monitor.html">pg_stat_monitor</a>
   </li>
 </ul>
@@ -416,201 +416,162 @@
     <li>IvorySQL</li>
     <li>IvorySQL生态</li>
     <li>生态组件适配</li>
-    <li><a href="wal2json.html">wal2json</a></li>
+    <li><a href="pg_stat_monitor.html">pg_stat_monitor</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/ecosystem_components/wal2json.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/ecosystem_components/pg_stat_monitor.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/ecosystem_components/wal2json.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/ecosystem_components/pg_stat_monitor.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">wal2json</h1>
+<h1 class="page">pg_stat_monitor</h1>
 <div class="sect1">
 <h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>wal2json 是一个用于 PostgreSQL 逻辑解码的输出插件，这个插件为每个事务生成一个JSON对象。</p>
+<p>pg_stat_monitor 是 PostgreSQL 的查询性能监控工具。它能收集性能统计数据，并通过统一视图和直方图形式直观展示查询性能指标。</p>
+</div>
+<div class="paragraph">
+<p>该工具可帮助数据库用户全面掌握查询来源、执行情况、计划统计与详细信息，以及查询元数据。这极大地提升了可观测性，使用户能够有效调试和优化查询性能。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="安装"><a class="anchor" href="#安装"></a>2. 安装</h2>
 <div class="sectionbody">
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-源码安装环境为 Ubuntu 24.04(x86_64)，环境中已经安装了IvorySQL5及以上版本，安装路径为/usr/ivory-5
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="源码安装"><a class="anchor" href="#源码安装"></a>2.1. 源码安装</h3>
-<div class="literalblock">
-<div class="content">
-<pre># 从 https://github.com/eulerto/wal2json/releases/tag/wal2json_2_6 下载 2.6 的源码包 wal2json_2_6.zip
-
-unzip wal2json_2_6.zip
-cd wal2json_2_6
-
-# 编译安装插件
-make PG_CONFIG=/usr/ivory-5/bin/pg_config
-make PG_CONFIG=/usr/ivory-5/bin/pg_config install</pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-如果出现找不到xlocale.h的错误，需要手动修改 /usr/ivory-5/include/postgresql/server/pg_config.h
-删除或者注释掉 #define HAVE_XLOCALE_H 1 这一行
-</td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="修改数据库配置文件"><a class="anchor" href="#修改数据库配置文件"></a>2.2. 修改数据库配置文件</h3>
 <div class="paragraph">
-<p>修改 postgresql.conf 文件
-启用wal_level为logical，并设置最大复制槽数和最大wal发送进程数</p>
+<p>IvorySQL的安装包里已经集成了pg_stat_monitor插件，如果使用安装包安装的IvorySQL，通常不需要再手动安装pg_stat_monitor。如您使用源码方式安装了IvorySQL，可以继续通过源码方式继续安装pg_stat_monitor插件，IvorySQL社区为您提供了源码安装步骤：</p>
 </div>
-<div class="literalblock">
+<div class="paragraph">
+<p>要从源代码构建 pg_stat_monitor，您需要以下组件:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>git</p>
+</li>
+<li>
+<p>make</p>
+</li>
+<li>
+<p>gcc</p>
+</li>
+<li>
+<p>pg_config</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>您可以从 <a href="https://github.com/Percona/pg_stat_monitor/releases">GitHub 上的发布页面</a> 下载 pg_stat_monitor 指定版本的源代码，或者使用 git 命令：</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>wal_level = logical
-max_replication_slots = 10
-max_wal_senders = 10</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/percona/pg_stat_monitor.git</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>pg_hba.conf不需要修改，有以下内容即可（仅限本地链接测试）：</p>
+<p>编译并安装扩展程序，假如环境中已经安装了IvorySQL，安装路径为/usr/ivory-5</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>     local   replication     all                                     trust
-     host    replication     all             127.0.0.1/32            trust
-     host    replication     all             ::1/128                 trust</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>重启数据库后配置生效。</p>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd pg_stat_monitor
+export PG_CONFIG=/usr/ivory-5/bin/pg_config
+make USE_PGXS=1
+make USE_PGXS=1 install</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="使用"><a class="anchor" href="#使用"></a>3. 使用</h2>
+<h2 id="加载模块"><a class="anchor" href="#加载模块"></a>3. 加载模块</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>在第一个终端中执行命令：</p>
+<p>在启动时，将 pg_stat_monitor 添加到 shared_preload_libraries 配置参数中，以加载该库。这是因为 pg_stat_monitor 需要额外的共享内存。</p>
 </div>
-<div class="literalblock">
+<div class="paragraph">
+<p>修改 shared_preload_libraries 参数：</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>sudo -u ivorysql /usr/ivory-5/bin/bin/pg_recvlogical -d postgres --slot wal2json_slot --create-slot -P wal2json
-
-启动监听，实时输出变更的JSON格式
-sudo -u ivorysql /usr/ivory-5/bin/bin/pg_recvlogical -d postgres --slot wal2json_slot --start -o pretty-print=1 -f -</pre>
+<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">shared_preload_libraries = 'pg_stat_monitor';</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>在第二个终端中连接数据库：</p>
+<p>注意：若 shared_preload_libraries 参数中已存在其他模块（例如 pg_stat_statements），需用逗号分隔全部列出。pg_stat_monitor 必须排在 pg_stat_statements 之后，例如：</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>/usr/ivory-5/bin/psql -d postgres -p 1521</pre>
+<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">shared_preload_libraries = 'liboracle_parser, ivorysql_ora, pg_stat_statements, pg_stat_monitor';</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>执行下面的SQL语句：</p>
+<p>配置完成后，重启 IvorySQL实例使配置生效。</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>CREATE TABLE test_cdc (id int primary key, name varchar(50));
-INSERT INTO test_cdc VALUES (1, 'test1');
-UPDATE test_cdc SET name = 'test1_update' WHERE id = 1;
-DELETE FROM test_cdc WHERE id = 1;
-DROP TABLE test_cdc;</pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pg_ctl restart -D data</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>此时在第一个终端上可以看到下面的输出：</p>
+<p>将 pg_stat_monitor 添加至 shared_preload_libraries 后，该扩展会立即开始收集所有现有数据库的统计信息。要查看监控数据，需在每个待监控的数据库中创建视图。</p>
 </div>
-<div class="literalblock">
+</div>
+</div>
+<div class="sect1">
+<h2 id="创建扩展视图"><a class="anchor" href="#创建扩展视图"></a>4. 创建扩展视图</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>请使用具有超级用户或数据库所有者权限的账户执行以下操作。以超级用户身份连接至目标数据库，运行以下命令创建扩展：</p>
+</div>
+<div class="listingblock">
 <div class="content">
-<pre>{
-        "change": [
-        ]
-}
-{
-        "change": [
-                {
-                        "kind": "insert",
-                        "schema": "public",
-                        "table": "test_cdc",
-                        "columnnames": ["id", "name"],
-                        "columntypes": ["integer", "sys.oravarcharbyte(50)"],
-                        "columnvalues": [1, "test1"]
-                }
-        ]
-}
-{
-        "change": [
-                {
-                        "kind": "update",
-                        "schema": "public",
-                        "table": "test_cdc",
-                        "columnnames": ["id", "name"],
-                        "columntypes": ["integer", "sys.oravarcharbyte(50)"],
-                        "columnvalues": [1, "test1_update"],
-                        "oldkeys": {
-                                "keynames": ["id"],
-                                "keytypes": ["integer"],
-                                "keyvalues": [1]
-                        }
-                }
-        ]
-}
-{
-        "change": [
-                {
-                        "kind": "delete",
-                        "schema": "public",
-                        "table": "test_cdc",
-                        "oldkeys": {
-                                "keynames": ["id"],
-                                "keytypes": ["integer"],
-                                "keyvalues": [1]
-                        }
-                }
-        ]
-}
-{
-        "change": [
-        ]
-}</pre>
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION pg_stat_monitor;</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>完成设置后，即可查看pg_stat_monitor收集的统计信息。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用"><a class="anchor" href="#使用"></a>5. 使用</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>以获取查询执行时间信息为例，连接数据库执行以下SQL：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT  userid,  total_exec_time, min_exec_time, max_exec_time, mean_exec_time, query FROM pg_stat_monitor;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">userid | total_exec_time | min_exec_time | max_exec_time | mean_exec_time |                                            query
+--------+-----------------+---------------+---------------+----------------+----------------------------------------------------------------------------------------------
+     10 |        1.532168 |      0.749108 |       0.78306 |       0.766084 | SELECT userid,  datname, queryid, substr(query,$1, $2) AS query, calls FROM pg_stat_monitor
+     10 |        0.755857 |      0.755857 |      0.755857 |       0.755857 | SELECT application_name, client_ip, substr(query,$1,$2) as query FROM pg_stat_monitor
+     10 |               0 |             0 |             0 |              0 | SELECT  userid,  total_time, min_time, max_time, mean_time, query FROM pg_stat_monitor;
+     10 |               0 |             0 |             0 |              0 | SELECT  userid,  total_exec_time, min_time, max_time, mean_time, query FROM pg_stat_monitor;
+(4 rows)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>更多关于pg_stat_monitor的使用，请参阅 pg_stat_monitor <a href="https://docs.percona.com/pg-stat-monitor/user_guide.html">官方文档</a></p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="system_stats.html">system_stats</a></span>
-  <span class="next"><a href="pg_stat_monitor.html">pg_stat_monitor</a></span>
+  <span class="prev"><a href="wal2json.html">wal2json</a></span>
+  <span class="next"><a href="../architecture/dual_parser.html">双parser</a></span>
 </nav>
 </article>
   </div>

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Dual-mode design :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/architecture/dual_mode_design.html">
-    <link rel="prev" href="guc_framework.html">
-    <link rel="next" href="initdb_process.html">
+    <title>pg_stat_monitor :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pg_stat_monitor.html">
+    <link rel="prev" href="wal2json.html">
+    <link rel="next" href="../architecture/dual_parser.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -134,46 +134,46 @@
     <span class="nav-text">Eco Component Adaption</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">Overview</a>
+    <a class="nav-link" href="ecosystem_overview.html">Overview</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+    <a class="nav-link" href="postgis.html">postgis</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+    <a class="nav-link" href="pgvector.html">pgvector</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+    <a class="nav-link" href="pgddl.html">pgddl(DDL Extractor)</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+    <a class="nav-link" href="pg_cron.html">pg_cron</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+    <a class="nav-link" href="pgsql_http.html">pgsql-http</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+    <a class="nav-link" href="plpgsql_check.html">plpgsql_check</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+    <a class="nav-link" href="pg_ai_query.html">pg_ai_query</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+    <a class="nav-link" href="pgroonga.html">pgroonga</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+    <a class="nav-link" href="pgaudit.html">pgaudit</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+    <a class="nav-link" href="pgrouting.html">pgrouting</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+    <a class="nav-link" href="system_stats.html">system_stats</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+    <a class="nav-link" href="wal2json.html">wal2json</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="pg_stat_monitor.html">pg_stat_monitor</a>
   </li>
 </ul>
   </li>
@@ -188,7 +188,7 @@
     <span class="nav-text">Query Processing</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="dual_parser.html">Dual Parser</a>
+    <a class="nav-link" href="../architecture/dual_parser.html">Dual Parser</a>
   </li>
 </ul>
   </li>
@@ -197,16 +197,16 @@
     <span class="nav-text">Compatibility Framework</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="framework_design.html">Ivorysql frame design</a>
+    <a class="nav-link" href="../architecture/framework_design.html">Ivorysql frame design</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="guc_framework.html">GUC Framework</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="dual_mode_design.html">Dual-mode design</a>
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC Framework</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="initdb_process.html">initdb Process</a>
+    <a class="nav-link" href="../architecture/dual_mode_design.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb Process</a>
   </li>
 </ul>
   </li>
@@ -386,95 +386,173 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../welcome.html">IvorySQL</a></li>
-    <li>IvorySQL Architecture Design</li>
-    <li>Compatibility Framework</li>
-    <li><a href="dual_mode_design.html">Dual-mode design</a></li>
+    <li>IvorySQL Ecosystem</li>
+    <li>Eco Component Adaption</li>
+    <li><a href="pg_stat_monitor.html">pg_stat_monitor</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/architecture/dual_mode_design.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/ecosystem_components/pg_stat_monitor.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/architecture/dual_mode_design.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/ecosystem_components/pg_stat_monitor.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Dual-mode design</h1>
+<h1 class="page">pg_stat_monitor</h1>
 <div class="sect1">
-<h2 id="objective"><a class="anchor" href="#objective"></a>1. Objective</h2>
+<h2 id="overview"><a class="anchor" href="#overview"></a>1. Overview</h2>
 <div class="sectionbody">
-<div class="ulist">
-<ul>
-<li>
-<p>In order to support both the PG mode and Oracle-compatible mode, IvorySQL allows specifying the -m parameter during initdb to obtain either a PG mode database or an Oracle-compatible mode database.</p>
-</li>
-</ul>
+<div class="paragraph">
+<p>pg_stat_monitor is a Query Performance Monitoring tool for PostgreSQL. pg_stat_monitor collects performance statistics and provides query performance insights in a single view and graphically in histogram.</p>
 </div>
-<div class="exampleblock">
-<div class="content">
-<div class="ulist">
-<ul>
-<li>
-<p>If the -m parameter is not specified, it defaults to Oracle-compatible mode.</p>
-</li>
-<li>
-<p>If the -m parameter is specified as pg, the database will no longer be compatible with Oracle syntax.</p>
-</li>
-</ul>
-</div>
-</div>
+<div class="paragraph">
+<p>These insights allow database users to understand query origins, execution, planning statistics and details, query information, and metadata. This significantly improves observability, enabling users to debug and tune query performance.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="function"><a class="anchor" href="#function"></a>2. Function</h2>
+<h2 id="installation"><a class="anchor" href="#installation"></a>2. Installation</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>The IvorySQL installation package already includes the pg_stat_monitor plugin. If you installed IvorySQL using the installation package, you typically don&#8217;t need to manually install pg_stat_monitor. If you installed IvorySQL from source code, you can proceed to install the pg_stat_monitor plugin also from source. The IvorySQL community provides step-by-step instructions for source code installation：</p>
+</div>
+<div class="paragraph">
+<p>To build pg_stat_monitor from source code, you require the following:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>initdb -m initialization requires judgment of different modes, among which oracle mode requires the execution of SQL statements postgres_oracle.bki. The default is Oracle compatibility mode, and the process is as follows:</p>
+<p>git</p>
 </li>
 <li>
-<p>Startup: When starting, it determines whether it is an Oracle compatibility mode based on the initialization mode;</p>
+<p>make</p>
+</li>
+<li>
+<p>gcc</p>
+</li>
+<li>
+<p>pg_config</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>You can download the source code of the latest release of pg_stat_monitor from <a href="https://github.com/Percona/pg_stat_monitor/releases">the releases page on GitHub</a> or using git:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Description:
-database_mode: Used to indicate initialization mode;
-database_mode=DB_PG，PG mode, and cannot be switched;
-database_mode=DB_ORACLE， oracle compatibility mode;</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/percona/pg_stat_monitor.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Compile and install the extension. Assuming IvorySQL is already installed in the environment with the installation path at /usr/ivory-5.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd pg_stat_monitor
+export PG_CONFIG=/usr/ivory-5/bin/pg_config
+make USE_PGXS=1
+make USE_PGXS=1 install</code></pre>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="test-cases"><a class="anchor" href="#test-cases"></a>3. Test cases</h2>
+<h2 id="load-the-module"><a class="anchor" href="#load-the-module"></a>3. Load the module</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>Load pg_stat_monitor at the start time by adding it to the shared_preload_libraries configuration parameter. This is because pg_stat_monitor requires additional shared memory.</p>
+</div>
+<div class="paragraph">
+<p>modify the shared_preload_libraries parameter：</p>
+</div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Initialize the PG mode:
-./initdb -D ../data -m pg
-
-Initialize the Oracle compatibility mode:
-./initdb -D ../data -m oracle
-
-or
-./initdb -D ../data</code></pre>
+<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">shared_preload_libraries = 'pg_stat_monitor';</code></pre>
 </div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+If you’ve added other modules to the shared_preload_libraries parameter (for example, pg_stat_statements), list all of them separated by commas for the ALTER SYSTEM command.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">shared_preload_libraries = 'liboracle_parser, ivorysql_ora, pg_stat_statements, pg_stat_monitor';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Start or restart the IvorySQL instance to apply the changes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pg_ctl restart -D data</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After you have added pg_stat_monitor to the shared_preload_libraries, it starts collecting statistics data for all existing databases. To access this data, you need to create the view on every database that you wish to monitor.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="create-the-extension-view"><a class="anchor" href="#create-the-extension-view"></a>4. Create the extension view</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Create the extension view with the user that has the privileges of a superuser or a database owner. Connect to psql as a superuser for a database and run the CREATE EXTENSION command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION pg_stat_monitor;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After the setup is complete, you can see the stats collected by pg_stat_monitor.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>5. Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To obtain query execution time information as an example, connect to the database and execute the following SQL：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT  userid,  total_exec_time, min_exec_time, max_exec_time, mean_exec_time, query FROM pg_stat_monitor;</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">userid | total_exec_time | min_exec_time | max_exec_time | mean_exec_time |                                            query
+--------+-----------------+---------------+---------------+----------------+----------------------------------------------------------------------------------------------
+     10 |        1.532168 |      0.749108 |       0.78306 |       0.766084 | SELECT userid,  datname, queryid, substr(query,$1, $2) AS query, calls FROM pg_stat_monitor
+     10 |        0.755857 |      0.755857 |      0.755857 |       0.755857 | SELECT application_name, client_ip, substr(query,$1,$2) as query FROM pg_stat_monitor
+     10 |               0 |             0 |             0 |              0 | SELECT  userid,  total_time, min_time, max_time, mean_time, query FROM pg_stat_monitor;
+     10 |               0 |             0 |             0 |              0 | SELECT  userid,  total_exec_time, min_time, max_time, mean_time, query FROM pg_stat_monitor;
+(4 rows)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For more information on using pg_stat_monitor, please refer to pg_stat_monitor <a href="https://docs.percona.com/pg-stat-monitor/user_guide.html"> Official documentation</a></p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="guc_framework.html">GUC Framework</a></span>
-  <span class="next"><a href="initdb_process.html">initdb Process</a></span>
+  <span class="prev"><a href="wal2json.html">wal2json</a></span>
+  <span class="next"><a href="../architecture/dual_parser.html">Dual Parser</a></span>
 </nav>
 </article>
   </div>

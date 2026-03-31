@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>pg_stat_monitor :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pg_stat_monitor.html">
-    <link rel="prev" href="wal2json.html">
-    <link rel="next" href="pg_partman.html">
+    <title>pg_textsearch :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pg_textsearch.html">
+    <link rel="prev" href="pg_curl.html">
+    <link rel="next" href="../getting-started/daily_monitoring.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -229,7 +229,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="wal2json.html">wal2json</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_stat_monitor.html">pg_stat_monitor</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -241,7 +241,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_curl.html">pg_curl</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="pg_textsearch.html">pg_textsearch</a>
   </li>
 </ul>
@@ -433,171 +433,151 @@
     <li><a href="../welcome.html">IvorySQL</a></li>
     <li>IvorySQL Ecosystem</li>
     <li>Eco Component Adaption</li>
-    <li><a href="pg_stat_monitor.html">pg_stat_monitor</a></li>
+    <li><a href="pg_textsearch.html">pg_textsearch</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/ecosystem_components/pg_stat_monitor.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/ecosystem_components/pg_textsearch.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/ecosystem_components/pg_stat_monitor.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/ecosystem_components/pg_textsearch.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">pg_stat_monitor</h1>
+<h1 class="page">pg_textsearch</h1>
 <div class="sect1">
 <h2 id="overview"><a class="anchor" href="#overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>pg_stat_monitor is a Query Performance Monitoring tool for PostgreSQL. pg_stat_monitor collects performance statistics and provides query performance insights in a single view and graphically in histogram.</p>
-</div>
-<div class="paragraph">
-<p>These insights allow database users to understand query origins, execution, planning statistics and details, query information, and metadata. This significantly improves observability, enabling users to debug and tune query performance.</p>
+<p>pg_textsearch is a PostgreSQL extension developed by the Timescale team. It is designed to provide high-performance, modern full-text search capabilities for Postgres, and is optimized for AI workloads and hybrid search.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="installation"><a class="anchor" href="#installation"></a>2. Installation</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The IvorySQL installation package already includes the pg_stat_monitor plugin. If you installed IvorySQL using the installation package, you typically don&#8217;t need to manually install pg_stat_monitor. If you installed IvorySQL from source code, you can proceed to install the pg_stat_monitor plugin also from source. The IvorySQL community provides step-by-step instructions for source code installation：</p>
-</div>
-<div class="paragraph">
-<p>To build pg_stat_monitor from source code, you require the following:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>git</p>
-</li>
-<li>
-<p>make</p>
-</li>
-<li>
-<p>gcc</p>
-</li>
-<li>
-<p>pg_config</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>You can download the source code of the latest release of pg_stat_monitor from <a href="https://github.com/Percona/pg_stat_monitor/releases">the releases page on GitHub</a> or using git:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/percona/pg_stat_monitor.git</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Compile and install the extension. Assuming IvorySQL is already installed in the environment with the installation path at /usr/ivory-5.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd pg_stat_monitor
-export PG_CONFIG=/usr/ivory-5/bin/pg_config
-make USE_PGXS=1
-make USE_PGXS=1 install</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="load-the-module"><a class="anchor" href="#load-the-module"></a>3. Load the module</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Load pg_stat_monitor at the start time by adding it to the shared_preload_libraries configuration parameter. This is because pg_stat_monitor requires additional shared memory.</p>
-</div>
-<div class="paragraph">
-<p>modify the shared_preload_libraries parameter：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">shared_preload_libraries = 'pg_stat_monitor';</code></pre>
-</div>
-</div>
-<div class="admonitionblock note">
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If you’ve added other modules to the shared_preload_libraries parameter (for example, pg_stat_statements), list all of them separated by commas for the ALTER SYSTEM command.
+The source code installation environment is Ubuntu 24.04 (x86_64), in which IvorySQL 5 or a later version has been installed. The installation path is /usr/ivory-5.
 </td>
 </tr>
 </table>
 </div>
-<div class="listingblock">
+<div class="sect2">
+<h3 id="source-code-installation"><a class="anchor" href="#source-code-installation"></a>2.1. Source Code Installation</h3>
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">shared_preload_libraries = 'liboracle_parser, ivorysql_ora, pg_stat_statements, pg_stat_monitor';</code></pre>
+<pre># download source code package from: https://github.com/timescale/pg_textsearch/archive/refs/tags/v0.6.1.tar.gz
+
+tar xzvf v0.6.1.tar.gz
+cd pg_textsearch-0.6.1
+
+# compile and install the extension
+make PG_CONFIG=/usr/ivory-5/bin/pg_config
+make PG_CONFIG=/usr/ivory-5/bin/pg_config install</pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If there is error "xlocale.h: No such file or directory" during compilation, user should remove the
+line of "#define HAVE_XLOCALE_H 1" from file /usr/ivory-5/include/postgresql/server/pg_config.h.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="modify-the-configuration-file"><a class="anchor" href="#modify-the-configuration-file"></a>2.2. Modify the configuration file</h3>
+<div class="paragraph">
+<p>Modify the ivorysql.conf file to add pg_textsearch into shared_preload_libraries.</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>shared_preload_libraries = 'gb18030_2022, liboracle_parser, ivorysql_ora, pg_textsearch'</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Start or restart the IvorySQL instance to apply the changes.</p>
+<p>Then restart the database.</p>
 </div>
-<div class="listingblock">
+</div>
+<div class="sect2">
+<h3 id="create-extension"><a class="anchor" href="#create-extension"></a>2.3. Create Extension</h3>
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pg_ctl restart -D data</code></pre>
+<pre>postgres=# create extension pg_textsearch;
+WARNING:  pg_textsearch v0.6.1 is a prerelease. Do not use in production.
+CREATE EXTENSION</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>After you have added pg_stat_monitor to the shared_preload_libraries, it starts collecting statistics data for all existing databases. To access this data, you need to create the view on every database that you wish to monitor.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="create-the-extension-view"><a class="anchor" href="#create-the-extension-view"></a>4. Create the extension view</h2>
+<h2 id="use"><a class="anchor" href="#use"></a>3. Use</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Create the extension view with the user that has the privileges of a superuser or a database owner. Connect to psql as a superuser for a database and run the CREATE EXTENSION command:</p>
+<p>Create a table with text content:</p>
 </div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION pg_stat_monitor;</code></pre>
+<pre>postgres=# CREATE TABLE documents (id bigserial PRIMARY KEY, content text);
+CREATE TABLE
+
+postgres=# INSERT INTO documents (content) VALUES
+    ('PostgreSQL is a powerful database system'),
+    ('BM25 is an effective ranking function'),
+    ('Full text search with custom scoring');
+INSERT 0 3</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>After the setup is complete, you can see the stats collected by pg_stat_monitor.</p>
+<p>Create a pg_textsearch index on the text column:</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="usage"><a class="anchor" href="#usage"></a>5. Usage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>To obtain query execution time information as an example, connect to the database and execute the following SQL：</p>
-</div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT  userid,  total_exec_time, min_exec_time, max_exec_time, mean_exec_time, query FROM pg_stat_monitor;</code></pre>
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">userid | total_exec_time | min_exec_time | max_exec_time | mean_exec_time |                                            query
---------+-----------------+---------------+---------------+----------------+----------------------------------------------------------------------------------------------
-     10 |        1.532168 |      0.749108 |       0.78306 |       0.766084 | SELECT userid,  datname, queryid, substr(query,$1, $2) AS query, calls FROM pg_stat_monitor
-     10 |        0.755857 |      0.755857 |      0.755857 |       0.755857 | SELECT application_name, client_ip, substr(query,$1,$2) as query FROM pg_stat_monitor
-     10 |               0 |             0 |             0 |              0 | SELECT  userid,  total_time, min_time, max_time, mean_time, query FROM pg_stat_monitor;
-     10 |               0 |             0 |             0 |              0 | SELECT  userid,  total_exec_time, min_time, max_time, mean_time, query FROM pg_stat_monitor;
-(4 rows)</code></pre>
+<pre>postgres=# CREATE INDEX docs_idx ON documents USING bm25(content) WITH (text_config='english');
+NOTICE:  BM25 index build started for relation docs_idx
+NOTICE:  Using text search configuration: english
+NOTICE:  Using index options: k1=1.20, b=0.75
+NOTICE:  BM25 index build completed: 3 documents, avg_length=4.33
+CREATE INDEX</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>For more information on using pg_stat_monitor, please refer to pg_stat_monitor <a href="https://docs.percona.com/pg-stat-monitor/user_guide.html"> Official documentation</a></p>
+<p>Get the most relevant documents using the &lt;@&gt; operator:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>postgres=# SELECT * FROM documents ORDER BY content &lt;@&gt; 'database system' LIMIT 5;
+ id |                 content
+----+------------------------------------------
+  1 | PostgreSQL is a powerful database system
+  2 | BM25 is an effective ranking function
+  3 | Full text search with custom scoring
+(3 rows)</pre>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="wal2json.html">wal2json</a></span>
-  <span class="next"><a href="pg_partman.html">pg_partman</a></span>
+  <span class="prev"><a href="pg_curl.html">pg_curl</a></span>
+  <span class="next"><a href="../getting-started/daily_monitoring.html">Monitoring</a></span>
 </nav>
 </article>
   </div>

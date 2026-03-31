@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>PgBouncer :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pgbouncer.html">
-    <link rel="prev" href="pg_partman.html">
-    <link rel="next" href="pg_curl.html">
+    <title>pg_partman :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pg_partman.html">
+    <link rel="prev" href="pg_ai_query.html">
+    <link rel="next" href="pgbouncer.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -232,10 +232,10 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_ai_query.html">pg_ai_query</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="pg_partman.html">pg_partman</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pgbouncer.html">pgbouncer</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -445,294 +445,317 @@
     <li><a href="../welcome.html">文档中心</a></li>
     <li>IvorySQL生态</li>
     <li>生态组件适配</li>
-    <li><a href="pgbouncer.html">pgbouncer</a></li>
+    <li><a href="pg_partman.html">pg_partman</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/ecosystem_components/pgbouncer.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/ecosystem_components/pg_partman.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/ecosystem_components/pgbouncer.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/ecosystem_components/pg_partman.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">PgBouncer</h1>
+<h1 class="page">pg_partman</h1>
 <div class="sect1">
 <h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>PgBouncer 是轻量级连接池中间件，部署在应用层与数据库之间，通过复用后端连接来降低连接开销、保护数据库资源、提高应用并发性能。</p>
+<p>pg_partman 用于简化和自动化对 PostgreSQL 原生声明式分区表的管理，它提供了自动创建、维护和清理分区的功能，尤其是基于时间范围和整数范围分区。</p>
 </div>
 <div class="paragraph">
-<p>PgBouncer 使用标准 PostgreSQL 通信协议，IvorySQL 完全兼容该协议。</p>
+<p>PostgreSQL 支持的 3 种分区方式：范围分区、列表分区、哈希分区。其中，pg_partman 扩展不支持哈希分区，对列表分区支持有限，它主要用于按时间（如天、周、月）或数值区间（如自增 ID）进行的范围分区。</p>
 </div>
 <div class="paragraph">
-<p><strong>三种连接池模式：</strong></p>
+<p>注意，pg_partman 作为 PostgreSQL 的扩展，专门设计用于对 PostgreSQL 的分区表进行管理，所以它不支持在 Oracle 兼容模式下运行。</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 40%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">模式</th>
-<th class="tableblock halign-left valign-top">说明</th>
-<th class="tableblock halign-left valign-top">适用场景</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">session</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">客户端连接期间独占一个后端连接</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">需要过程内 COMMIT、完整会话特性</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">transaction</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">每个事务结束后归还连接</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">最常用，连接复用率最高</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">statement</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">每条语句后归还连接</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">限制最多，不支持显式事务</p></td>
-</tr>
-</tbody>
-</table>
+<div class="paragraph">
+<p>项目地址：<a href="https://github.com/pgpartman/pg_partman" class="bare">https://github.com/pgpartman/pg_partman</a></p>
+</div>
+<div class="paragraph">
+<p>版本：5.2-STABLE</p>
+</div>
+<div class="paragraph">
+<p>开源协议：PostgreSQL License</p>
+</div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="安装"><a class="anchor" href="#安装"></a>2. 安装</h2>
+<h2 id="安装启用"><a class="anchor" href="#安装启用"></a>2. 安装启用</h2>
 <div class="sectionbody">
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-源码测试安装环境为 Ubuntu 24.04。
-</td>
-</tr>
-</table>
-</div>
 <div class="sect2">
-<h3 id="依赖"><a class="anchor" href="#依赖"></a>2.1. 依赖</h3>
-<div class="literalblock">
-<div class="content">
-<pre># Ubuntu / Debian
-sudo apt install libevent-dev libssl-dev pkg-config
-
-# RHEL / Rocky Linux
-sudo dnf install libevent-devel openssl-devel pkgconfig</pre>
-</div>
+<h3 id="前提"><a class="anchor" href="#前提"></a>2.1. 前提</h3>
+<div class="paragraph">
+<p>已安装 IvorySQL 5.0，且 pg_config 命令在命令行能成功执行。</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="源码安装"><a class="anchor" href="#源码安装"></a>2.2. 源码安装</h3>
+<div class="paragraph">
+<p>从 <a href="https://github.com/pgpartman/pg_partman" class="bare">https://github.com/pgpartman/pg_partman</a> 获取源码：</p>
+</div>
 <div class="literalblock">
 <div class="content">
-<pre>git clone https://github.com/pgbouncer/pgbouncer.git
-cd pgbouncer
+<pre>git clone https://github.com/pgpartman/pg_partman.git
+cd pg_partman
+git switch 5.2-STABLE
 
-./autogen.sh
-
-./configure \
-    --prefix=/usr/ivory-5 \
-    --with-openssl \
-    --with-pam
-
-make -j4
-make install
-cp pgbouncer /usr/ivory-5/bin/</pre>
+make &amp;&amp; sudo make install</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="验证安装"><a class="anchor" href="#验证安装"></a>2.3. 验证安装</h3>
+<h3 id="启用扩展"><a class="anchor" href="#启用扩展"></a>2.3. 启用扩展</h3>
 <div class="literalblock">
 <div class="content">
-<pre>pgbouncer --version
-# PgBouncer 1.25.1
-# libevent 2.1.12-stable
-# tls: OpenSSL 3.0.2 15 Mar 2022</pre>
+<pre>-- 登录进入数据库
+CREATE SCHEMA partman;
+CREATE EXTENSION pg_partman SCHEMA partman;</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+pg_partman 安装启用后不会自动创建 SCHEMA，如果没有特别指定，PG 会将扩展对象默认安装到当前 search_path 中的第一个有效 SCHEMA（通常是 public）。推荐将其安装到独立 SCHEMA 中。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用流程"><a class="anchor" href="#使用流程"></a>3. 使用流程</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>pg_partman 本身不负责创建分区主表，它的主要功能是在已有分区表的基础上，自动创建和维护分区子表。所以在使用 pg_partman 之前，要先手动创建一个已经启动分区机制的主表。主表创建完成后，先将主表注册给 pg_partman 管理，注册时会指定分区策略等。注册成功会在数据库中创建一个命名为 template_[schema]_[table_name] 的模板表，这个模板表不会存数据，是后面所有子分区的模板。注册完成后必须通过手动调用或通过脚本自动调用 run_maintenance()/run_maintenance_proc() 来创建分区、清理分区。</p>
+</div>
+<div class="paragraph">
+<p>下面给出两个使用案例，有其他使用需求请参考 <a href="https://github.com/pgpartman/pg_partman/blob/master/doc/pg_partman.md">pg_partman 官方文档</a>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="案例一-基于时间字段分区"><a class="anchor" href="#案例一-基于时间字段分区"></a>4. 案例一 基于时间字段分区</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>场景假设：有一个日志表 logs，每天产生大量数据，希望按天自动创建子分区，并保留最近 30 天的数据，自动删除更旧的分区。</p>
+</div>
+<div class="sect2">
+<h3 id="手动创建分区主表"><a class="anchor" href="#手动创建分区主表"></a>4.1. 手动创建分区主表</h3>
+<div class="literalblock">
+<div class="content">
+<pre>CREATE TABLE public.logs (
+    id BIGSERIAL,
+    log_time TIMESTAMPTZ NOT NULL DEFAULT now(),
+    message TEXT
+) PARTITION BY RANGE (log_time);</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="注册分区主表到-pg_partman"><a class="anchor" href="#注册分区主表到-pg_partman"></a>4.2. 注册分区主表到 pg_partman</h3>
+<div class="paragraph">
+<p>注册 logs 表，按天分区，从当前时间开始预创建未来 3 天，保留最近 30 天：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>SELECT partman.create_parent(
+    p_parent_table =&gt; 'public.logs',   -- 要管理的分区父表，注意要显式带 SCHEMA
+    p_control =&gt; 'log_time',           -- 分区字段
+    p_interval =&gt; '1 day',             -- 按天分区
+    p_type =&gt; 'range',                 -- 使用范围分区
+    p_premake =&gt; 3,                    -- 预创建3个未来的分区
+    p_start_partition =&gt; '2025-12-24', -- 起始分区
+    p_default_table =&gt; false           -- 是否创建默认分区
+);</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>上面 SQL 会从 2025-12-24 开始按天创建分区，并且预创建以当前服务器时间为基准的未来 3 个分区，分区命名以该分区表的起始时间为后缀。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>INSERT INTO public.logs (log_time) VALUES ('2025-12-28 00:01:00');</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="注册清理可选"><a class="anchor" href="#注册清理可选"></a>4.3. 注册清理（可选）</h3>
+<div class="literalblock">
+<div class="content">
+<pre>UPDATE partman.part_config
+SET retention = '30 days'
+WHERE parent_table = 'public.logs';</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="手动维护"><a class="anchor" href="#手动维护"></a>4.4. 手动维护</h3>
+<div class="literalblock">
+<div class="content">
+<pre>select partman.run_maintenance();</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>或</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>CALL partman.run_maintenance_proc();</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>调用 run_maintenance() 时，会根据分区策略自动预生成新的分区表，预生成的基准是表的分区字段的数据。如果最近一条插入数据的 log_time 字段是 20251228，则以此为基准预生成 logs_p20251229/logs_p20251230/logs_p20251231 三张分区子表。</p>
+</div>
+<div class="paragraph">
+<p>另外，run_maintenance() 也会执行清理机制，清理机制以服务器时间为基准，上面的例子会将服务器当前时间 30 天之前的子表从主表记录上移除，但不会真正删除，以避免误删数据。此时 \d+ logs 查看分区主表的分区信息，看不到 30 天之前被移除的表，但 \dt 查看数据库所有的表，能看到被移除分区的子表依然存在。这些子表可以手动删除。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="自动维护"><a class="anchor" href="#自动维护"></a>4.5. 自动维护</h3>
+<div class="paragraph">
+<p>使用操作系统的 crontab：</p>
+</div>
+<div class="paragraph">
+<p>创建 shell 脚本 /usr/local/bin/partman_maintenance.sh：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cd /usr/local/bin
+vi partman_maintenance.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>脚本内容：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>#!/bin/bash
+psql -U [db_username] -d [db_name] -c "CALL partman.run_maintenance_proc();"</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>赋予执行权限：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>chmod +x partman_maintenance.sh</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>配置执行计划：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>crontab -e
+# 添加一行，配置每天凌晨一点执行一次
+0 1 * * * /usr/local/bin/partman_maintenance.sh</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="配置"><a class="anchor" href="#配置"></a>3. 配置</h2>
+<h2 id="案例二-基于自增id字段分区"><a class="anchor" href="#案例二-基于自增id字段分区"></a>5. 案例二 基于自增ID字段分区</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="连接-ivorysql-pg-模式端口-5432"><a class="anchor" href="#连接-ivorysql-pg-模式端口-5432"></a>3.1. 连接 IvorySQL PG 模式（端口 5432）</h3>
 <div class="paragraph">
-<p>创建 <code>/etc/pgbouncer/pgbouncer.ini</code>：</p>
+<p>场景假设：创建一个订单表，每 10,000 个 ID 创建一个分区。</p>
 </div>
+<div class="sect2">
+<h3 id="手动创建分区主表-2"><a class="anchor" href="#手动创建分区主表-2"></a>5.1. 手动创建分区主表</h3>
 <div class="literalblock">
 <div class="content">
-<pre>[databases]
-postgres = host=127.0.0.1 port=5432 dbname=postgres
-
-[pgbouncer]
-listen_addr = 127.0.0.1
-listen_port = 6432
-auth_type = trust
-auth_file = /etc/pgbouncer/userlist.txt
-pool_mode = transaction
-max_client_conn = 200
-default_pool_size = 20
-logfile = /var/log/pgbouncer/pgbouncer.log
-pidfile = /var/run/pgbouncer/pgbouncer.pid</pre>
+<pre>CREATE TABLE orders (
+    id BIGINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY, -- 分区键
+    amount NUMERIC
+);</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="连接-ivorysql-oracle-兼容模式端口-1521"><a class="anchor" href="#连接-ivorysql-oracle-兼容模式端口-1521"></a>3.2. 连接 IvorySQL Oracle 兼容模式（端口 1521）</h3>
+<h3 id="注册分区主表到-pg_partman-2"><a class="anchor" href="#注册分区主表到-pg_partman-2"></a>5.2. 注册分区主表到 pg_partman</h3>
 <div class="literalblock">
 <div class="content">
-<pre>[databases]
-postgres = host=127.0.0.1 port=1521 dbname=postgres
-
-[pgbouncer]
-listen_addr = 127.0.0.1
-listen_port = 2521
-auth_type = trust
-auth_file = /etc/pgbouncer/userlist.txt
-
-# Oracle 兼容模式建议使用 session 模式
-pool_mode = session
-
-max_client_conn = 200
-default_pool_size = 20
-logfile = /var/log/pgbouncer/pgbouncer_oracle.log
-pidfile = /var/run/pgbouncer/pgbouncer_oracle.pid</pre>
+<pre>SELECT partman.create_parent(
+    p_parent_table =&gt; 'public.orders', -- 要管理的分区父表，注意要带 SCHEMA
+    p_control =&gt; 'id',                 -- 分区字段
+    p_interval =&gt; '10000',             -- 每1万条数据一个分区
+    p_type =&gt; 'range',                 -- 使用范围分区
+    p_premake =&gt; 3,                    -- 预创建3个未来的分区
+    p_start_partition =&gt; '0',          -- 起始分区
+    p_default_table =&gt; false           -- 是否创建默认分区
+);</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="用户认证文件"><a class="anchor" href="#用户认证文件"></a>3.3. 用户认证文件</h3>
+<h3 id="手动维护-2"><a class="anchor" href="#手动维护-2"></a>5.3. 手动维护</h3>
 <div class="literalblock">
 <div class="content">
-<pre># /etc/pgbouncer/userlist.txt
-# 格式："用户名" "密码"（trust 模式密码留空）
-"postgres" ""
-"app_user" "app_password"</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="启动与停止"><a class="anchor" href="#启动与停止"></a>3.4. 启动与停止</h3>
-<div class="literalblock">
-<div class="content">
-<pre># 前台启动（调试）
-pgbouncer /etc/pgbouncer/pgbouncer.ini
-
-# 后台启动
-pgbouncer -d /etc/pgbouncer/pgbouncer.ini
-
-# 重载配置（不中断连接）
-kill -HUP $(cat /var/run/pgbouncer/pgbouncer.pid)
-
-# 停止
-kill -INT $(cat /var/run/pgbouncer/pgbouncer.pid)</pre>
+<pre>CALL partman.run_maintenance_proc();</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="使用"><a class="anchor" href="#使用"></a>4. 使用</h2>
+<h2 id="常用操作"><a class="anchor" href="#常用操作"></a>6. 常用操作</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="客户端连接"><a class="anchor" href="#客户端连接"></a>4.1. 客户端连接</h3>
-<div class="paragraph">
-<p>通过 PgBouncer 连接与直连 IvorySQL 语法完全一致，只需修改端口：</p>
-</div>
+<h3 id="获取被-pg_partman-管理的分区父表"><a class="anchor" href="#获取被-pg_partman-管理的分区父表"></a>6.1. 获取被 pg_partman 管理的分区父表</h3>
 <div class="literalblock">
 <div class="content">
-<pre># PG 模式（经由 PgBouncer）
-psql -U postgres -p 6432 -d postgres
-
-# Oracle 兼容模式（经由 PgBouncer）
-psql -U postgres -p 2521 -d postgres</pre>
+<pre>SELECT parent_table FROM partman.part_config;</pre>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="管理控制台"><a class="anchor" href="#管理控制台"></a>4.2. 管理控制台</h3>
+<h3 id="将分区父表从-pg_partman-的管理中移除"><a class="anchor" href="#将分区父表从-pg_partman-的管理中移除"></a>6.2. 将分区父表从 pg_partman 的管理中移除</h3>
 <div class="paragraph">
-<p>PgBouncer 提供内置管理数据库：</p>
+<p>删除维护信息：</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>psql -U postgres -p 6432 -d pgbouncer</pre>
+<pre>DELETE FROM partman.part_config
+WHERE parent_table = 'table_name';</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>删除模板：</p>
 </div>
 <div class="literalblock">
 <div class="content">
-<pre>-- 查看连接池状态
-SHOW POOLS;
-
--- 查看统计信息
-SHOW STATS;
-
--- 查看客户端连接
-SHOW CLIENTS;
-
--- 查看后端连接
-SHOW SERVERS;
-
--- 重载配置
-RELOAD;</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="oracle-兼容模式"><a class="anchor" href="#oracle-兼容模式"></a>4.3. Oracle 兼容模式</h3>
-<div class="literalblock">
-<div class="content">
-<pre>-- 确认 Oracle 模式已激活
-SHOW ivorysql.compatible_mode;
---  ivorysql.compatible_mode
--- --------------------------
---  oracle
-
--- Oracle 数据类型与函数
-CREATE TABLE bouncer_test (
-    id     NUMBER(10) PRIMARY KEY,
-    name   VARCHAR2(100),
-    hired  DATE DEFAULT SYSDATE
-);
-
-INSERT INTO bouncer_test VALUES (1, 'Alice', SYSDATE);
-
-SELECT id,
-       NVL(name, 'N/A')                   AS name,
-       DECODE(id, 1, 'CEO', 'Staff')       AS title,
-       TO_CHAR(hired, 'YYYY-MM-DD')        AS hire_date
-FROM bouncer_test;
-
--- Oracle 序列
-CREATE SEQUENCE ora_seq START WITH 100 INCREMENT BY 10;
-SELECT ora_seq.NEXTVAL FROM DUAL;   -- 100
-SELECT ora_seq.NEXTVAL FROM DUAL;   -- 110
-SELECT ora_seq.CURRVAL FROM DUAL;   -- 110</pre>
+<pre>DROP TABLE template_[schema]_[table_name];</pre>
 </div>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="pg_partman.html">pg_partman</a></span>
-  <span class="next"><a href="pg_curl.html">pg_curl</a></span>
+  <span class="prev"><a href="pg_ai_query.html">pg_ai_query</a></span>
+  <span class="next"><a href="pgbouncer.html">pgbouncer</a></span>
 </nav>
 </article>
   </div>

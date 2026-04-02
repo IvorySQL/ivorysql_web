@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Default Logical Replication Support for Tables Without Primary Key :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.17/v1.17/42.html">
+    <link rel="prev" href="41.html">
+    <link rel="next" href="20.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v1.17">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">Release</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">About</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Getting Started with IvorySQL</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">Quick Start</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">Maintenance</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Advanced Feature</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">Operation Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="33.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="34.html">PGroonga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="35.html">pgddl (DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="36.html">pgRouting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="37.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="38.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="40.html">pgvectorscale</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">List of Oracle compatible features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">1、Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">2、GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="13.html">3、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">4、Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">5、Compatible with Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">6、Compatible with Oracle anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">7、Compatible with Oracle functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">8、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">9、Added Oracle compatibility mode ports and IP</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Experimental Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="41.html">1、Global Unique Index</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="42.html">2、Default Logical Replication Support for Tables Without Primary Key</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="20.html">Community contribution</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="21.html">Tool Reference</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="22.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">v1.17</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../master/welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../master/welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Experimental Features</li>
+    <li><a href="42.html">2、Default Logical Replication Support for Tables Without Primary Key</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/v1.17/v1.17/42.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v1.17/EN/modules/ROOT/pages/v1.17/42.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">Default Logical Replication Support for Tables Without Primary Key</h1>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>1. Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In PostgreSQL/IvorySQL logical replication, UPDATE and DELETE operations rely on the Replica Identity to locate target rows on the subscriber side. By default, tables use <code>REPLICA IDENTITY DEFAULT</code>, where the system relies on the Primary Key to locate rows. If a table has no primary key, the replication strategy falls back to <code>REPLICA IDENTITY NOTHING</code>, causing UPDATE and DELETE operations to fail because the target rows cannot be located.</p>
+</div>
+<div class="paragraph">
+<p>IvorySQL introduces the GUC parameter <code>logical_replication_fallback_to_full_identity</code>. When this parameter is enabled, if a table&#8217;s replica identity is <code>DEFAULT</code> and it has no primary key, the system automatically falls back to <code>REPLICA IDENTITY FULL</code> — recording the complete old row data in the WAL, allowing UPDATE and DELETE operations on tables without a primary key to work correctly through logical replication.</p>
+</div>
+<div class="paragraph">
+<p>This feature only takes effect on the publisher side; no additional configuration is required on the subscriber side.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="parameter-description"><a class="anchor" href="#parameter-description"></a>2. Parameter Description</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql"># postgresql.conf
+logical_replication_fallback_to_full_identity = on</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Parameter description:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Type: <code>boolean</code>;</p>
+</li>
+<li>
+<p>Default value: <code>off</code>;</p>
+</li>
+<li>
+<p>Scope: <code>sighup</code>; takes effect by modifying <code>postgresql.conf</code> and executing <code>SELECT pg_reload_conf();</code>, no database restart required;</p>
+</li>
+<li>
+<p>Applicable node: only takes effect on the publisher side; no configuration needed on the subscriber side.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="test-cases"><a class="anchor" href="#test-cases"></a>3. Test Cases</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="without-the-parameter-enabled-update-and-delete-replication-fails-for-tables-without-primary-key"><a class="anchor" href="#without-the-parameter-enabled-update-and-delete-replication-fails-for-tables-without-primary-key"></a>3.1. Without the Parameter Enabled, UPDATE and DELETE Replication Fails for Tables Without Primary Key</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Publisher: create a table without a primary key
+CREATE TABLE test_no_pk (id int, name text);
+
+-- Subscriber: create the same table structure
+CREATE TABLE test_no_pk (id int, name text);
+
+-- Publisher: create a publication and add the table
+CREATE PUBLICATION tap_pub FOR TABLE test_no_pk;
+
+-- Subscriber: create a subscription
+CREATE SUBSCRIPTION tap_sub CONNECTION 'host=publisher dbname=postgres' PUBLICATION tap_pub;
+
+-- Publisher: INSERT operations always work (do not depend on replica identity)
+INSERT INTO test_no_pk VALUES (1, 'alice');
+
+-- Publisher: UPDATE fails (no primary key, cannot locate the target row)
+UPDATE test_no_pk SET name = 'bob' WHERE id = 1;
+-- ERROR:  cannot update table "test_no_pk" because it does not have a replica identity and publishes updates
+
+-- Publisher: DELETE also fails
+DELETE FROM test_no_pk WHERE id = 1;
+-- ERROR:  cannot delete from table "test_no_pk" because it does not have a replica identity and publishes deletes</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="with-the-parameter-enabled-update-and-delete-replication-works-for-tables-without-primary-key"><a class="anchor" href="#with-the-parameter-enabled-update-and-delete-replication-works-for-tables-without-primary-key"></a>3.2. With the Parameter Enabled, UPDATE and DELETE Replication Works for Tables Without Primary Key</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Publisher: enable the parameter and reload the configuration
+ALTER SYSTEM SET logical_replication_fallback_to_full_identity = on;
+SELECT pg_reload_conf();
+
+-- Publisher: INSERT works
+INSERT INTO test_no_pk VALUES (1, 'alice');
+
+-- Publisher: UPDATE works (automatically records the complete old row data in FULL mode)
+UPDATE test_no_pk SET name = 'bob' WHERE id = 1;
+
+-- Publisher: DELETE works
+DELETE FROM test_no_pk WHERE id = 1;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-parameter-does-not-affect-tables-with-a-primary-key"><a class="anchor" href="#the-parameter-does-not-affect-tables-with-a-primary-key"></a>3.3. The Parameter Does Not Affect Tables With a Primary Key</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Tables with a primary key always use the primary key to locate rows, regardless of this parameter
+CREATE TABLE test_with_pk (id int PRIMARY KEY, name text);
+
+-- Whether the parameter is enabled or not, UPDATE and DELETE work normally
+INSERT INTO test_with_pk VALUES (1, 'alice');
+UPDATE test_with_pk SET name = 'bob' WHERE id = 1;
+DELETE FROM test_with_pk WHERE id = 1;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="the-parameter-does-not-affect-tables-explicitly-set-to-replica-identity-nothing"><a class="anchor" href="#the-parameter-does-not-affect-tables-explicitly-set-to-replica-identity-nothing"></a>3.4. The Parameter Does Not Affect Tables Explicitly Set to REPLICA IDENTITY NOTHING</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Create a table and explicitly set it to REPLICA IDENTITY NOTHING
+CREATE TABLE test_nothing (id int, data text);
+ALTER TABLE test_nothing REPLICA IDENTITY NOTHING;
+
+-- Even with logical_replication_fallback_to_full_identity enabled,
+-- UPDATE and DELETE still fail (the parameter does not override an explicit NOTHING setting)
+INSERT INTO test_nothing VALUES (1, 'test');
+UPDATE test_nothing SET data = 'modified' WHERE id = 1;
+-- ERROR:  cannot update table "test_nothing" because it does not have a replica identity and publishes updates
+
+DELETE FROM test_nothing WHERE id = 1;
+-- ERROR:  cannot delete from table "test_nothing" because it does not have a replica identity and publishes deletes</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dynamically-switching-the-parameter-at-runtime"><a class="anchor" href="#dynamically-switching-the-parameter-at-runtime"></a>3.5. Dynamically Switching the Parameter at Runtime</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Disable the parameter: UPDATE/DELETE on tables without a primary key will revert to error behavior
+ALTER SYSTEM SET logical_replication_fallback_to_full_identity = off;
+SELECT pg_reload_conf();
+
+-- Enable the parameter: UPDATE/DELETE on tables without a primary key will work normally
+ALTER SYSTEM SET logical_replication_fallback_to_full_identity = on;
+SELECT pg_reload_conf();</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="limitations"><a class="anchor" href="#limitations"></a>4. Limitations</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>This parameter only takes effect for tables whose replica identity is <code>REPLICA IDENTITY DEFAULT</code> and that have no primary key; tables explicitly set to <code>FULL</code>, <code>USING INDEX</code>, or <code>NOTHING</code> are not affected;</p>
+</li>
+<li>
+<p>When this parameter is enabled, UPDATE and DELETE on tables without a primary key will record the complete old row data in the WAL (same effect as <code>REPLICA IDENTITY FULL</code>), which increases WAL size and network traffic compared to recording only primary key columns when a primary key exists;</p>
+</li>
+<li>
+<p>This parameter only takes effect on the publisher side; no configuration is needed on the subscriber side;</p>
+</li>
+<li>
+<p>INSERT operations do not depend on replica identity and can always be replicated normally, regardless of whether this parameter is enabled;</p>
+</li>
+<li>
+<p>This parameter does not replace an explicit <code>ALTER TABLE &#8230;&#8203; REPLICA IDENTITY FULL</code> setting, nor does it override tables explicitly set to <code>NOTHING</code>.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="41.html">1、Global Unique Index</a></span>
+  <span class="next"><a href="20.html">Community contribution</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

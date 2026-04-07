@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>pg_cron :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.17/v1.17/37.html">
-    <link rel="prev" href="36.html">
-    <link rel="next" href="38.html">
+    <title>修改列类型时自动重建依赖视图 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.17/v1.17/43.html">
+    <link rel="prev" href="42.html">
+    <link rel="next" href="20.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -105,7 +105,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="36.html">pgRouting</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="37.html">pg_cron</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -159,7 +159,7 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="42.html">2、新增无主键表默认支持逻辑复制</a>
   </li>
-  <li class="nav-item" data-depth="2">
+  <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="43.html">3、修改列类型时自动重建依赖视图</a>
   </li>
 </ul>
@@ -218,197 +218,238 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="welcome.html">IvorySQL</a></li>
-    <li>IvorySQL生态</li>
-    <li><a href="37.html">pg_cron</a></li>
+    <li>IvorySQL试验田</li>
+    <li><a href="43.html">3、修改列类型时自动重建依赖视图</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/v1.17/v1.17/37.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v1.17/v1.17/43.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v1.17/CN/modules/ROOT/pages/v1.17/37.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v1.17/CN/modules/ROOT/pages/v1.17/43.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">pg_cron</h1>
+<h1 class="page">修改列类型时自动重建依赖视图</h1>
 <div class="sect1">
-<h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
+<h2 id="功能介绍"><a class="anchor" href="#功能介绍"></a>1. 功能介绍</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>在 PostgreSQL 中运行周期性任务，例如执行 VACUUM或删除旧数据，是一种常见需求。实现这一点的简单方法是配置 cron或其他外部守护进程，使其定期连接到数据库并运行命令。然而，随着数据库越来越多地作为托管服务或独立容器运行，配置和运行一个单独的守护进程通常变得不切实际。此外，很难让您的 cron任务感知故障转移，或者跨集群节点调度任务。</p>
+<p>在标准 PostgreSQL 中，若某列被视图所引用，执行 <code>ALTER TABLE &#8230;&#8203; ALTER COLUMN &#8230;&#8203; TYPE</code> 修改该列的数据类型时，数据库会直接报错：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ERROR: cannot alter type of a column used by a view or rule</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>pg_cron 是 PostgreSQL 的开源定时任务扩展，允许直接在数据库内部设置 cron 风格的任务调度，用于自动化数据维护任务(清理，聚合), 数据库健康检查，执行存储过程和自定义函数等操作。它将cron任务存储在表中，周期性任务会随着 PostgreSQL 服务器自动进行故障转移。详情可以参见 <a href="https://github.com/citusdata/pg_cron">pg_cron文档</a>。</p>
+<p>用户必须手动删除所有依赖视图，完成列类型修改后再逐一重建，操作繁琐且容易出错，在存在多层视图依赖时尤为困难。</p>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="安装配置"><a class="anchor" href="#安装配置"></a>2. 安装配置</h2>
-<div class="sectionbody">
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-源码安装环境为 Ubuntu 24.04(x86_64)，环境中已经安装了IvorySQL1.17及以上版本，安装路径为/usr/local/ivorysql/ivorysql-1
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="源码安装"><a class="anchor" href="#源码安装"></a>2.1. 源码安装</h3>
-<div class="literalblock">
-<div class="content">
-<pre># 拉取pg_cron源码
-git clone https://github.com/citusdata/pg_cron.git
-cd pg_cron
-# 将pg_config的路径设置到PATH环境变量里，eg：
-export PATH=/usr/local/ivorysql/ivorysql-1/bin/:$PATH
-make
-make install</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="配置文件-ivorysql-conf"><a class="anchor" href="#配置文件-ivorysql-conf"></a>2.2. 配置文件 (ivorysql.conf)</h3>
-<div class="literalblock">
-<div class="content">
-<pre># 共享预加载扩展
-shared_preload_libraries = 'pg_cron'
-
-# 指定任务元数据存储库（默认当前库）
-cron.database_name = 'ivorysql'
-
-# 允许的最大并发任务数
-cron.max_running_jobs = 5</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="重启服务"><a class="anchor" href="#重启服务"></a>2.3. 重启服务</h3>
-<div class="literalblock">
-<div class="content">
-<pre>pg_ctl restart -D ./data -l logfile</pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="创建extension并确认pg_cron版本"><a class="anchor" href="#创建extension并确认pg_cron版本"></a>2.4. 创建Extension并确认pg_cron版本</h3>
 <div class="paragraph">
-<p>psql 连接到数据库，执行如下命令：</p>
+<p>IvorySQL 对此行为进行了增强：执行列类型变更时，数据库会自动保存所有依赖视图（包括间接依赖的级联视图）的定义，在完成类型修改后按正确顺序重建这些视图
+，对用户完全透明。若重建过程中发生错误（例如视图使用了新类型不支持的操作符），整个 <code>ALTER TABLE</code> 操作将整体回滚，保证数据一致性。</p>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>ivorysql=# CREATE extension pg_cron;
-CREATE EXTENSION
-
-ivorysql=# SELECT * FROM pg_available_extensions WHERE name = 'pg_cron';
-   name  | default_version | installed_version |         comment
----------+-----------------+-------------------+---------------------------
- pg_cron | 1.6             |                   |Job scheduler for PostgreSQL
-(1 row)</pre>
-</div>
-</div>
+<div class="paragraph">
+<p>该功能同时支持 PG 兼容模式与 Oracle 兼容模式。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="核心功能使用"><a class="anchor" href="#核心功能使用"></a>3. 核心功能使用</h2>
+<h2 id="语法"><a class="anchor" href="#语法"></a>2. 语法</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>语法与标准 <code>ALTER TABLE</code> 完全一致，无需额外关键字：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER TABLE table_name ALTER COLUMN column_name TYPE new_type;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>参数说明：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>table_name</code>：目标表名，可带 schema 前缀；</p>
+</li>
+<li>
+<p><code>column_name</code>：需要修改类型的列名；</p>
+</li>
+<li>
+<p><code>new_type</code>：目标数据类型，需与原类型兼容或可隐式转换。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="创建定时任务"><a class="anchor" href="#创建定时任务"></a>3.1. 创建定时任务</h3>
+<h3 id="单视图依赖自动重建"><a class="anchor" href="#单视图依赖自动重建"></a>3.1. 单视图依赖：自动重建</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT cron.schedule(
-    'nightly-data-cleanup',        -- 任务名称（唯一标识）
-    '0 3 * * *',                   -- cron表达式（每天UTC 3:00）
-    $$DELETE FROM logs
-      WHERE created_at &lt; now() - interval '30 days'$$  -- 执行SQL
-);</code></pre>
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建基表
+CREATE TABLE t (a int, b text);
+
+-- 创建依赖列 a 的视图
+CREATE VIEW v AS SELECT a, b FROM t;
+
+-- 标准 PostgreSQL 此处会报错，IvorySQL 自动重建视图
+ALTER TABLE t ALTER COLUMN a TYPE bigint;
+
+-- 验证视图仍然有效，且列类型已更新
+SELECT pg_typeof(a) FROM v LIMIT 1;
+-- 返回 bigint
+ pg_typeof
+-----------
+(0 rows)
+
+
+\d v
+                 View "public.v"
+ Column |  Type  | Collation | Nullable | Default
+--------+--------+-----------+----------+---------
+ a      | bigint |           |          |
+ b      | text   |           |          |</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>cron表达式速查表：</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">示例</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">含义</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'0 * * * *'</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">每小时整点执行</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'*/15 * * * *'</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">每15分钟执行</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'0 9 * * 1-5'</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">工作日早9点执行</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">'0 1 1 * *'</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">每月1日凌晨1点执行</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>pg_cron还允许使用 '$'表示月份的最后一天。</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="任务管理"><a class="anchor" href="#任务管理"></a>3.2. 任务管理</h3>
+<h3 id="级联视图依赖按序自动重建"><a class="anchor" href="#级联视图依赖按序自动重建"></a>3.2. 级联视图依赖：按序自动重建</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># 查看所有任务
-SELECT * FROM cron.job;</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/p31.png" alt="p31">
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># 查看任务执行历史
-SELECT * FROM cron.job_run_details ORDER BY start_time DESC LIMIT 10;</code></pre>
-</div>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="../_images/p32.png" alt="p32">
-</div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># 删除任务
-SELECT cron.unschedule('nightly-data-cleanup');
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建基表
+CREATE TABLE t (a int, b text);
 
-# 暂停任务（更新状态）
-UPDATE cron.job SET active = false WHERE jobname = 'delete-job-run-details';</code></pre>
+-- 创建两层视图依赖：v2 依赖 v1，v1 依赖 t
+CREATE VIEW v1 AS SELECT a, b FROM t;
+CREATE VIEW v2 AS SELECT a FROM v1;
+
+-- 修改列类型，自动按依赖顺序重建 v1、v2
+ALTER TABLE t ALTER COLUMN a TYPE bigint;
+
+-- 验证两个视图均已正确重建
+SELECT pg_typeof(a) FROM v1 LIMIT 1;
+-- 返回 bigint
+ pg_typeof
+-----------
+(0 rows)
+
+SELECT pg_typeof(a) FROM v2 LIMIT 1;
+-- 返回 bigint
+ pg_typeof
+-----------
+(0 rows)</code></pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="保留视图选项security_barrier"><a class="anchor" href="#保留视图选项security_barrier"></a>3.3. 保留视图选项：security_barrier</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建带 security_barrier 选项的视图
+CREATE VIEW v WITH (security_barrier) AS SELECT a, b FROM t;
+
+ALTER TABLE t ALTER COLUMN a TYPE bigint;
+
+-- 验证 security_barrier 选项在重建后被正确保留
+SELECT relname, reloptions FROM pg_class WHERE relname = 'v';
+-- reloptions: {security_barrier=true}
+ relname |       reloptions
+---------+-------------------------
+ v       | {security_barrier=true}
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="保留视图选项with-check-option"><a class="anchor" href="#保留视图选项with-check-option"></a>3.4. 保留视图选项：WITH CHECK OPTION</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建带 WITH LOCAL CHECK OPTION 的视图
+CREATE VIEW v AS SELECT a, b FROM t WHERE a &gt; 0
+    WITH LOCAL CHECK OPTION;
+
+ALTER TABLE t ALTER COLUMN a TYPE bigint;
+
+-- 验证 CHECK OPTION 在重建后被正确保留
+\d+ v
+                              View "public.v"
+ Column |  Type  | Collation | Nullable | Default | Storage  | Description
+--------+--------+-----------+----------+---------+----------+-------------
+ a      | bigint |           |          |         | plain    |
+ b      | text   |           |          |         | extended |
+View definition:
+ SELECT t.a,
+    t.b
+   FROM t
+  WHERE t.a &gt; 0;
+Options: check_option=local</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="重建失败时整体回滚"><a class="anchor" href="#重建失败时整体回滚"></a>3.5. 重建失败时整体回滚</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE t (a int, b text);
+CREATE VIEW v AS SELECT a::integer + 1 AS a_plus FROM t;
+
+-- 若新类型与视图中的表达式不兼容，整个操作回滚
+-- 例如将 a 改为 text 类型，视图中的 a::integer + 1 将无法执行
+ALTER TABLE t ALTER COLUMN a TYPE text;
+ERROR:  operator does not exist: text + integer
+LINE 1: ALTER TABLE t ALTER COLUMN a TYPE text;
+                                               ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+-- 确认表结构与视图均未受影响
+\d t
+                 Table "public.t"
+ Column |  Type   | Collation | Nullable | Default
+--------+---------+-----------+----------+---------
+ a      | integer |           |          |
+ b      | text    |           |          |</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能限制"><a class="anchor" href="#功能限制"></a>4. 功能限制</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>若视图中使用了与新列类型不兼容的操作符或函数（例如对 <code>text</code> 类型列执行算术运算），重建将失败，整个 <code>ALTER TABLE</code> 操作回滚；</p>
+</li>
+<li>
+<p>仅支持视图（view）的自动重建，依赖该列的<strong>规则（rule）</strong>仍会报错；</p>
+</li>
+<li>
+<p>列类型变更需满足 PostgreSQL 类型转换规则，不支持任意两种类型之间的直接转换；</p>
+</li>
+<li>
+<p>视图重建按依赖拓扑顺序执行，循环依赖（通常由数据库约束避免）不在处理范围内；</p>
+</li>
+<li>
+<p>重建过程在同一事务内完成，期间依赖视图处于不可用状态，高并发场景下需注意对查询的影响。</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="36.html">pgRouting</a></span>
-  <span class="next"><a href="38.html">pgsql-http</a></span>
+  <span class="prev"><a href="42.html">2、新增无主键表默认支持逻辑复制</a></span>
+  <span class="next"><a href="20.html">社区贡献指南</a></span>
 </nav>
 </article>
   </div>

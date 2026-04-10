@@ -247,6 +247,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_hint_plan.html">pg_hint_plan</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="redis_fdw.html">redis_fdw</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -560,10 +563,10 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">11</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_ai_query.html" class="xref page">pg_ai_query</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AI驱动的自然语言转SQL扩展，支持多种大语言模型</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AI辅助查询、自然语言数据库交互</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="wal2json.html" class="xref page">wal2json</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">用于 PostgreSQL 逻辑解码的输出插件，为每个事务生成一个JSON对象</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">变更数据捕获（CDC）、实时数据同步、事件驱动微服务、缓存刷新及跨库数据同步等</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">12</p></td>
@@ -574,24 +577,52 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">13</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_ai_query.html" class="xref page">pg_ai_query</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AI驱动的自然语言转SQL扩展，支持多种大语言模型</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AI辅助查询、自然语言数据库交互</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">14</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_partman.html" class="xref page">pg_partman</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">辅助管理原生分区表，自动创建、维护、清理分区子表</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">海量数据存储管理</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">14</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pgbouncer.html" class="xref page">pgbouncer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x.x</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_curl.html" class="xref page">pg_curl</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">基于 libcurl 的网络传输扩展，支持 HTTP/HTTPS、FTP、SMTP、IMAP 等二十余种协议，可在 SQL 中完成各类网络数据传输操作</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">REST API 集成、邮件发送、文件传输、外部系统通知</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">15</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">17</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_textsearch.html" class="xref page">pg_textsearch</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.6.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">提供全文检索能力，支持文本分词、索引构建与高效全文查询</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">文档检索与内容搜索</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">18</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_hint_plan.html" class="xref page">pg_hint_plan</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PG18</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">通过SQL注释中的hints控制执行计划，在不修改SQL逻辑的情况下优化查询性能</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">查询性能优化、执行计划调优、数据库性能分析</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">19</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="redis_fdw.html" class="xref page">redis_fdw</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PG18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">将 Redis 数据映射为 PostgreSQL 外部表，支持通过标准 SELECT/INSERT/UPDATE/DELETE 语句读写 Redis</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">统一 SQL 查询、轻量级数据同步、透明化缓存读写及跨库数据分析</p></td>
 </tr>
 </tbody>
 </table>

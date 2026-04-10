@@ -247,6 +247,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_hint_plan.html">pg_hint_plan</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="redis_fdw.html">redis_fdw</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -548,10 +551,10 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>11</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_ai_query.html" class="xref page">pg_ai_query</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AI-driven natural language to SQL extension supporting multiple LLMs</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AI-assisted querying, natural language database interaction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="wal2json.html" class="xref page">wal2json</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.6</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">converts database Write-Ahead Log (WAL) changes into structured JSON format</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">it is primarily used for change data capture (CDC), real-time data replication, event-driven microservices, cache invalidation, and cross-database synchronization</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>12</strong></p></td>
@@ -562,24 +565,52 @@
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><strong>13</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_ai_query.html" class="xref page">pg_ai_query</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AI-driven natural language to SQL extension supporting multiple LLMs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AI-assisted querying, natural language database interaction</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>14</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_partman.html" class="xref page">pg_partman</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">5.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Automates the creation, maintenance, and cleanup of native partition subtables.</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Large-Scale Data Storage Management</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>14</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>15</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pgbouncer.html" class="xref page">pgbouncer</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">x.x</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>16</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_curl.html" class="xref page">pg_curl</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2.4</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">A libcurl-based network transfer extension supporting HTTP/HTTPS, FTP, SMTP, IMAP, and 20+ other protocols, enabling network data transfer operations directly in SQL</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">REST API integration, email sending, file transfer, external system notifications</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>15</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>17</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_textsearch.html" class="xref page">pg_textsearch</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.6.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">enhances PostgreSQL with full-text search capabilities, enabling fast text indexing, tokenization, and efficient full-text querying</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">document and content retrieval</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>18</strong></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_hint_plan.html" class="xref page">pg_hint_plan</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">PG18</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Controls execution plans via SQL comment hints, optimizing query performance without modifying SQL logic</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Query performance optimization, execution plan tuning, database performance analysis</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>19</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="redis_fdw.html" class="xref page">redis_fdw</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PG18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">connects PostgreSQL with Redis, supporting standard SQL operations including SELECT, INSERT, UPDATE, and DELETE</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">unified SQL querying, lightweight data synchronization, transparent cache access, and cross-database data analysis</p></td>
 </tr>
 </tbody>
 </table>

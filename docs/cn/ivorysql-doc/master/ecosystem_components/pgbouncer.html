@@ -6,7 +6,7 @@
     <title>PgBouncer :: IvorySQL文档中心</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pgbouncer.html">
     <link rel="prev" href="pg_partman.html">
-    <link rel="next" href="pg_curl.html">
+    <link rel="next" href="age.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -237,6 +237,9 @@
   </li>
   <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="age.html">age</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_curl.html">pg_curl</a>
@@ -548,8 +551,9 @@ sudo dnf install libevent-devel openssl-devel pkgconfig</pre>
 <h3 id="源码安装"><a class="anchor" href="#源码安装"></a>2.2. 源码安装</h3>
 <div class="literalblock">
 <div class="content">
-<pre>git clone https://github.com/pgbouncer/pgbouncer.git
-cd pgbouncer
+<pre>wget https://github.com/pgbouncer/pgbouncer/archive/refs/tags/pgbouncer_1_25_1.zip
+unzip pgbouncer_1_25_1.zip
+cd pgbouncer_1_25_1
 
 ./autogen.sh
 
@@ -741,7 +745,7 @@ SELECT ora_seq.CURRVAL FROM DUAL;   -- 110</pre>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="pg_partman.html">pg_partman</a></span>
-  <span class="next"><a href="pg_curl.html">pg_curl</a></span>
+  <span class="next"><a href="age.html">age</a></span>
 </nav>
 </article>
   </div>

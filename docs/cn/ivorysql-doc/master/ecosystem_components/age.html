@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>pg_stat_monitor :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pg_stat_monitor.html">
-    <link rel="prev" href="wal2json.html">
-    <link rel="next" href="pg_ai_query.html">
+    <title>Apache AGE :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/age.html">
+    <link rel="prev" href="pgbouncer.html">
+    <link rel="next" href="pg_curl.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -226,7 +226,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="wal2json.html">wal2json</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_stat_monitor.html">pg_stat_monitor</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -238,7 +238,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pgbouncer.html">pgbouncer</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="age.html">age</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -457,162 +457,281 @@
     <li><a href="../welcome.html">文档中心</a></li>
     <li>IvorySQL生态</li>
     <li>生态组件适配</li>
-    <li><a href="pg_stat_monitor.html">pg_stat_monitor</a></li>
+    <li><a href="age.html">age</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/ecosystem_components/pg_stat_monitor.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/ecosystem_components/age.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/ecosystem_components/pg_stat_monitor.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/ecosystem_components/age.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">pg_stat_monitor</h1>
+<h1 class="page">Apache AGE</h1>
 <div class="sect1">
 <h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>pg_stat_monitor 是 PostgreSQL 的查询性能监控工具。它能收集性能统计数据，并通过统一视图和直方图形式直观展示查询性能指标。</p>
+<p>Apache AGE 是一个 PostgreSQL 扩展，为关系型数据库提供图数据库处理能力。AGE 代表 <strong>Adaptive Graph Engine</strong>（自适应图引擎），它将图数据库的功能引入 PostgreSQL，允许用户在同一数据库中同时使用关系模型和图模型。</p>
 </div>
 <div class="paragraph">
-<p>该工具可帮助数据库用户全面掌握查询来源、执行情况、计划统计与详细信息，以及查询元数据。这极大地提升了可观测性，使用户能够有效调试和优化查询性能。</p>
+<p>Apache AGE 是 Apache 软件基金会的顶级项目，完全兼容 openCypher 查询语言（Neo4j 使用的图查询语言）。</p>
 </div>
+<div class="paragraph">
+<p><strong>核心特性：</strong></p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">特性</th>
+<th class="tableblock halign-left valign-top">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openCypher 支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">完整支持 openCypher 查询语言，行业标准的图查询语言</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">混合数据库</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">在同一数据库中同时使用关系型和图数据模型</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ACID 事务</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">继承 PostgreSQL 的完整 ACID 事务支持</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SQL 集成</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">可将 Cypher 图查询与 SQL 查询无缝集成</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">属性图模型</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持带有属性的顶点和边的属性图模型</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">图遍历</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">高效的图遍历和模式匹配能力</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">免费开源</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Apache 2.0 许可证，完全开源</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="安装"><a class="anchor" href="#安装"></a>2. 安装</h2>
+<h2 id="应用场景"><a class="anchor" href="#应用场景"></a>2. 应用场景</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>IvorySQL的安装包里已经集成了pg_stat_monitor插件，如果使用安装包安装的IvorySQL，通常不需要再手动安装pg_stat_monitor。如您使用源码方式安装了IvorySQL，可以继续通过源码方式继续安装pg_stat_monitor插件，IvorySQL社区为您提供了源码安装步骤：</p>
-</div>
-<div class="paragraph">
-<p>要从源代码构建 pg_stat_monitor，您需要以下组件:</p>
-</div>
 <div class="ulist">
 <ul>
 <li>
-<p>git</p>
+<p>社交网络分析（好友关系、关注关系、影响力分析）</p>
 </li>
 <li>
-<p>make</p>
+<p>知识图谱构建与推理</p>
 </li>
 <li>
-<p>gcc</p>
+<p>欺诈检测（金融交易网络分析）</p>
 </li>
 <li>
-<p>pg_config</p>
+<p>推荐系统（基于关系链的推荐）</p>
+</li>
+<li>
+<p>网络与 IT 基础设施管理</p>
+</li>
+<li>
+<p>路径规划与物流优化</p>
+</li>
+<li>
+<p>访问控制与权限管理</p>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>您可以从 <a href="https://github.com/Percona/pg_stat_monitor/releases">GitHub 上的发布页面</a> 下载 pg_stat_monitor 指定版本的源代码，或者使用 git 命令：</p>
 </div>
-<div class="listingblock">
+</div>
+<div class="sect1">
+<h2 id="安装"><a class="anchor" href="#安装"></a>3. 安装</h2>
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+源码测试安装环境为 Ubuntu 24.04。
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="依赖"><a class="anchor" href="#依赖"></a>3.1. 依赖</h3>
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git clone https://github.com/percona/pg_stat_monitor.git</code></pre>
+<pre># Ubuntu / Debian
+sudo apt install build-essential libreadline-dev zlib1g-dev flex bison libxml2-dev libxslt-dev libssl-dev libxml2-utils xsltproc ccache libssl-dev pkg-config
+
+# 安装 AGE 依赖
+sudo apt install python3 python3-pip python3-dev
+pip3 install antlr4-runtime4</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>编译并安装扩展程序，假如环境中已经安装了IvorySQL，安装路径为/usr/ivory-5</p>
 </div>
-<div class="listingblock">
+<div class="sect2">
+<h3 id="从源码安装"><a class="anchor" href="#从源码安装"></a>3.2. 从源码安装</h3>
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd pg_stat_monitor
-export PG_CONFIG=/usr/ivory-5/bin/pg_config
-make USE_PGXS=1
-make USE_PGXS=1 install</code></pre>
+<pre># 下载 Apache AGE 1.7.0 源码包
+wget https://github.com/apache/age/releases/download/PG18%2Fv1.7.0-rc0/apache-age-1.7.0-src.tar.gz
+
+# 解压
+tar -xzf apache-age-1.7.0-src.tar.gz
+cd apache-age-1.7.0-src
+
+# 编译安装
+make install
+
+# 或指定 IvorySQL 安装路径
+make install PG_CONFIG=/usr/ivory-5/bin/pg_config</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="验证安装"><a class="anchor" href="#验证安装"></a>3.3. 验证安装</h3>
+<div class="literalblock">
+<div class="content">
+<pre># 检查 AGE 扩展
+ls /usr/ivory-5/lib/age--*.so</pre>
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="加载模块"><a class="anchor" href="#加载模块"></a>3. 加载模块</h2>
+<h2 id="配置"><a class="anchor" href="#配置"></a>4. 配置</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="修改-ivorysql-配置"><a class="anchor" href="#修改-ivorysql-配置"></a>4.1. 修改 IvorySQL 配置</h3>
 <div class="paragraph">
-<p>在启动时，将 pg_stat_monitor 添加到 shared_preload_libraries 配置参数中，以加载该库。这是因为 pg_stat_monitor 需要额外的共享内存。</p>
+<p>编辑 <code>postgresql.conf</code> 或 <code>ivorysql.conf</code>：</p>
 </div>
-<div class="paragraph">
-<p>修改 shared_preload_libraries 参数：</p>
-</div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">shared_preload_libraries = 'pg_stat_monitor';</code></pre>
+<pre># 预加载 AGE 扩展（推荐）
+shared_preload_libraries = 'age'
+
+# 或者在数据库级别加载（不需要重启）
+# shared_preload_libraries = ''</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>注意：若 shared_preload_libraries 参数中已存在其他模块（例如 pg_stat_statements），需用逗号分隔全部列出。pg_stat_monitor 必须排在 pg_stat_statements 之后，例如：</p>
-</div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">shared_preload_libraries = 'liboracle_parser, ivorysql_ora, pg_stat_statements, pg_stat_monitor';</code></pre>
+<pre># 重启 IvorySQL 使配置生效
+# 使用 systemd
+sudo systemctl restart ivorysql-5
+
+# 或手动重启
+pg_ctl restart -D /usr/ivory-5/data</pre>
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="创建扩展"><a class="anchor" href="#创建扩展"></a>4.2. 创建扩展</h3>
 <div class="paragraph">
-<p>配置完成后，重启 IvorySQL实例使配置生效。</p>
+<p>连接到 IvorySQL 并创建 AGE 扩展：</p>
 </div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pg_ctl restart -D data</code></pre>
+<pre># 连接到数据库
+psql -U postgres -d postgres
+
+# 创建 AGE 扩展
+CREATE EXTENSION age;
+
+# 验证安装
+SELECT * FROM pg_extension WHERE extname = 'age';</pre>
 </div>
 </div>
-<div class="paragraph">
-<p>将 pg_stat_monitor 添加至 shared_preload_libraries 后，该扩展会立即开始收集所有现有数据库的统计信息。要查看监控数据，需在每个待监控的数据库中创建视图。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="创建扩展视图"><a class="anchor" href="#创建扩展视图"></a>4. 创建扩展视图</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>请使用具有超级用户或数据库所有者权限的账户执行以下操作。以超级用户身份连接至目标数据库，运行以下命令创建扩展：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION pg_stat_monitor;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>完成设置后，即可查看pg_stat_monitor收集的统计信息。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="使用"><a class="anchor" href="#使用"></a>5. 使用</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>以获取查询执行时间信息为例，连接数据库执行以下SQL：</p>
-</div>
-<div class="listingblock">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT  userid,  total_exec_time, min_exec_time, max_exec_time, mean_exec_time, query FROM pg_stat_monitor;</code></pre>
+<pre>要创建图，使用位于 ag_catalog 命名空间中的 create_graph 函数。
+
+SELECT create_graph('graph_name');
+
+要创建带有标签和属性的单个顶点，使用 CREATE 子句。
+
+SELECT *
+FROM cypher('graph_name', $$
+    CREATE (:label {property:"Node A"})
+$$) as (v agtype);
+
+SELECT *
+FROM cypher('graph_name', $$
+    CREATE (:label {property:"Node B"})
+$$) as (v agtype);
+
+要在两个节点之间创建边并设置其属性：
+
+SELECT *
+FROM cypher('graph_name', $$
+    MATCH (a:label), (b:label)
+    WHERE a.property = 'Node A' AND b.property = 'Node B'
+    CREATE (a)-[e:RELTYPE {property:a.property + '&lt;-&gt;' + b.property}]-&gt;(b)
+    RETURN e
+$$) as (e agtype);
+
+查询连接的节点：
+
+SELECT * from cypher('graph_name', $$
+        MATCH (V)-[R]-(V2)
+        RETURN V,R,V2
+$$) as (V agtype, R agtype, V2 agtype);</pre>
 </div>
 </div>
-<div class="listingblock">
+</div>
+</div>
+<div class="sect1">
+<h2 id="管理命令"><a class="anchor" href="#管理命令"></a>6. 管理命令</h2>
+<div class="sectionbody">
+<div class="literalblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">userid | total_exec_time | min_exec_time | max_exec_time | mean_exec_time |                                            query
---------+-----------------+---------------+---------------+----------------+----------------------------------------------------------------------------------------------
-     10 |        1.532168 |      0.749108 |       0.78306 |       0.766084 | SELECT userid,  datname, queryid, substr(query,$1, $2) AS query, calls FROM pg_stat_monitor
-     10 |        0.755857 |      0.755857 |      0.755857 |       0.755857 | SELECT application_name, client_ip, substr(query,$1,$2) as query FROM pg_stat_monitor
-     10 |               0 |             0 |             0 |              0 | SELECT  userid,  total_time, min_time, max_time, mean_time, query FROM pg_stat_monitor;
-     10 |               0 |             0 |             0 |              0 | SELECT  userid,  total_exec_time, min_time, max_time, mean_time, query FROM pg_stat_monitor;
-(4 rows)</code></pre>
+<pre>-- 列出所有图
+SELECT * FROM ag_graph;
+
+-- 删除图（删除所有相关顶点和边）
+SELECT drop_graph('graph_name', true);
+
+-- 查看图统计信息
+SELECT
+    graph_name,
+    (SELECT count(*) FROM ag_vertex WHERE graph_id = ag_graph.graph_id) AS vertex_count,
+    (SELECT count(*) FROM ag_edge WHERE graph_id = ag_graph.graph_id) AS edge_count
+FROM ag_graph;</pre>
 </div>
-</div>
-<div class="paragraph">
-<p>更多关于pg_stat_monitor的使用，请参阅 pg_stat_monitor <a href="https://docs.percona.com/pg-stat-monitor/user_guide.html">官方文档</a></p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="wal2json.html">wal2json</a></span>
-  <span class="next"><a href="pg_ai_query.html">pg_ai_query</a></span>
+  <span class="prev"><a href="pgbouncer.html">pgbouncer</a></span>
+  <span class="next"><a href="pg_curl.html">pg_curl</a></span>
 </nav>
 </article>
   </div>

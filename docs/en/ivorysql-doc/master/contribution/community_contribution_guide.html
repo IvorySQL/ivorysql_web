@@ -537,6 +537,9 @@
 <div class="paragraph">
 <p>The IvorySQL community provides Chinese and English documents. English documents are saved in &#8230;&#8203; document repository, Chinese documents are saved in i18n document repository. You can contribute to one of them or both.</p>
 </div>
+<div class="paragraph">
+<p>When you add or update a plugin compatibility document, you must also update the plugin summary table in <a href="../ecosystem_components/ecosystem_overview.html" class="xref page">ecosystem_overview.adoc</a>. Keep the plugin name, version, function description, use cases, and link to the detail page in sync so that the overview page and the detail page stay consistent.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="test-ivorysql-and-report-bugs"><a class="anchor" href="#test-ivorysql-and-report-bugs"></a>2.2.3. Test IvorySQL and Report Bugs</h4>
@@ -595,7 +598,7 @@
 <div class="sect3">
 <h4 id="patch-submission"><a class="anchor" href="#patch-submission"></a>2.3.3. Patch submission</h4>
 <div class="paragraph">
-<p>Once you are ready to share your work with the IvorySQL core team and the rest of the IvorySQL community, you should push all the commits to a branch in your own repository forked from the official IvorySQL and send us a pull request.</p>
+<p>Once you are ready to share your work with the IvorySQL core team and the rest of the IvorySQL community, you should first create or claim the corresponding GitHub Issue, then push all the commits to a branch in your own repository forked from the official IvorySQL and send us a pull request. Every pull request must correspond to at least one Issue so that the change request, discussion, review, and merge result remain traceable.</p>
 </div>
 </div>
 <div class="sect3">
@@ -724,6 +727,9 @@ Describe the feature that you expect to be real</code></pre>
 <div class="paragraph">
 <p>2 Click the fork button in the upper right corner, Wait for the fork to finish</p>
 </div>
+<div class="paragraph">
+<p>Before you start coding or editing documents, make sure there is a corresponding GitHub Issue for the change. You can create a new Issue or claim an existing one, but do not submit a PR without an associated Issue.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="second-clone-the-warehouse-to-local"><a class="anchor" href="#second-clone-the-warehouse-to-local"></a>4.2. Second: Clone the warehouse to local</h3>
@@ -777,6 +783,9 @@ Git commit -m “commit-message”</code></pre>
 <div class="paragraph">
 <p>2 Click Compare &amp; pull request button and create a PR.</p>
 </div>
+<div class="paragraph">
+<p>3 In the PR title or description, explicitly reference the corresponding Issue number, for example <code>Fixes #123</code> or <code>Refs #123</code>.</p>
+</div>
 </div>
 </div>
 </div>
@@ -786,17 +795,11 @@ Git commit -m “commit-message”</code></pre>
 <div class="paragraph">
 <p>A PR submission should contain only one function or one bug. Prohibit submitting multiple functions at one time.</p>
 </div>
-<div class="sect2">
-<h3 id="firstcreate-a-pull-request"><a class="anchor" href="#firstcreate-a-pull-request"></a>5.1. First:Create a Pull Request</h3>
 <div class="paragraph">
-<p>1 Open your warehouse: <a href="https://github.com/$user/docs-cn">https://github.com/$user/IvorySQL</a> ($user is your GitHub ID) 。</p>
-</div>
-<div class="paragraph">
-<p>2 Click Compare &amp; pull request button.</p>
-</div>
+<p>Every GitHub PR must have a corresponding Issue. A PR without an associated Issue does not meet the community contribution process requirements.</p>
 </div>
 <div class="sect2">
-<h3 id="secondfill-in-pr-information"><a class="anchor" href="#secondfill-in-pr-information"></a>5.2. Second:Fill in PR information</h3>
+<h3 id="fill-in-pr-information"><a class="anchor" href="#fill-in-pr-information"></a>5.1. Fill in PR information</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Fix test
@@ -809,9 +812,12 @@ Describe the function</code></pre>
 Give a detailed description of the submission function</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Reference the related Issue in the PR description and keep the Issue number visible to reviewers, for example <code>Fixes #123</code>.</p>
+</div>
 </div>
 <div class="sect2">
-<h3 id="thirdsubmit-pr"><a class="anchor" href="#thirdsubmit-pr"></a>5.3. Third:Submit PR</h3>
+<h3 id="submit-pr-2"><a class="anchor" href="#submit-pr-2"></a>5.2. Submit PR</h3>
 <div class="paragraph">
 <p>Click Create pull request button. WELL DONE!</p>
 </div>

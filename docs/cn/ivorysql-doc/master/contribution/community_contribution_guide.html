@@ -624,7 +624,13 @@
 <p>我们欢迎代码、文档、测试等各类贡献。</p>
 </div>
 <div class="sect3">
-<h4 id="签署cla"><a class="anchor" href="#签署cla"></a>2.3.1. 签署CLA</h4>
+<h4 id="文档贡献"><a class="anchor" href="#文档贡献"></a>2.3.1. 文档贡献</h4>
+<div class="paragraph">
+<p>如果您新增或更新某个插件适配文档，请同步更新 <a href="../ecosystem_components/ecosystem_overview.html" class="xref page">ecosystem_overview.adoc</a> 概述页面中的插件表格，至少补充或更新插件名称、版本、功能描述、适用场景以及详情页链接，确保概述页与插件详情页信息一致。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="签署cla"><a class="anchor" href="#签署cla"></a>2.3.2. 签署CLA</h4>
 <div class="paragraph">
 <p>在提交代码或文档贡献之前，为了确保代码合法合规，个人或企业贡献者需要签署贡献者许可协议(CLA)。签署CLA是IvorySQL社区接受贡献的必要条件，以确保您的贡献被合法分发。请根据下列链接下载CLA进行签署并将签署后的CLA发送至 <a href="mailto:cla@ivorysql.org">cla@ivorysql.org</a>。</p>
 </div>
@@ -643,7 +649,7 @@
 </div>
 </div>
 <div class="sect3">
-<h4 id="找到您感兴趣的项目"><a class="anchor" href="#找到您感兴趣的项目"></a>2.3.2. 找到您感兴趣的项目</h4>
+<h4 id="找到您感兴趣的项目"><a class="anchor" href="#找到您感兴趣的项目"></a>2.3.3. 找到您感兴趣的项目</h4>
 <div class="paragraph">
 <p>我们将仓库划分为多个子项目，您可以从如下列表中找到感兴趣的项目及其代码仓库</p>
 </div>
@@ -697,24 +703,27 @@
 </table>
 </div>
 <div class="sect3">
-<h4 id="给自己分配issue"><a class="anchor" href="#给自己分配issue"></a>2.3.3. 给自己分配Issue</h4>
+<h4 id="给自己分配issue"><a class="anchor" href="#给自己分配issue"></a>2.3.4. 给自己分配Issue</h4>
 <div class="paragraph">
 <p>您可以将自己创建的Issue或者愿意处理的Issue分配给自己。 只需要在评论框内输入/assign，机器人就会将问题分配给您。 每个 Issue 下面可能已经有参与者的交流和讨论，如果您感兴趣，也可以在评论框中发表自己的意见参与 Issue 讨论。</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="开发与提交pull-request"><a class="anchor" href="#开发与提交pull-request"></a>2.3.4. 开发与提交Pull Request</h4>
+<h4 id="开发与提交pull-request"><a class="anchor" href="#开发与提交pull-request"></a>2.3.5. 开发与提交Pull Request</h4>
 <div class="paragraph">
 <p>对于提交一个PR应该保持一个功能，或者一个bug提交一次。禁止多个功能一次提交。</p>
 </div>
+<div class="paragraph">
+<p>提交 GitHub PR 之前，请先创建或认领对应的 Issue。所有 PR 都必须有至少一个对应的 Issue，用于关联需求、缺陷、讨论、评审和合并结果；没有对应 Issue 的 PR 不符合社区贡献流程。</p>
+</div>
 <div class="sect4">
-<h5 id="fork仓库"><a class="anchor" href="#fork仓库"></a>2.3.4.1. Fork仓库</h5>
+<h5 id="fork仓库"><a class="anchor" href="#fork仓库"></a>2.3.5.1. Fork仓库</h5>
 <div class="paragraph">
 <p>前往项目主页，点击Fork按钮，将IvorySQL项目Fork到您自己的GitHub账户中。</p>
 </div>
 </div>
 <div class="sect4">
-<h5 id="编码"><a class="anchor" href="#编码"></a>2.3.4.2. 编码</h5>
+<h5 id="编码"><a class="anchor" href="#编码"></a>2.3.5.2. 编码</h5>
 <div class="paragraph">
 <p>使用如下命令将项目克隆到本地进行开发：</p>
 </div>
@@ -729,7 +738,7 @@
 </div>
 </div>
 <div class="sect4">
-<h5 id="创建一个pull-request并提交"><a class="anchor" href="#创建一个pull-request并提交"></a>2.3.4.3. 创建一个Pull Request并提交</h5>
+<h5 id="创建一个pull-request并提交"><a class="anchor" href="#创建一个pull-request并提交"></a>2.3.5.3. 创建一个Pull Request并提交</h5>
 <div class="paragraph">
 <p>打开你 Fork 的仓库： <a href="https://github.com/$user/IvorySQL.git" class="bare">https://github.com/$user/IvorySQL.git</a></p>
 </div>
@@ -747,6 +756,9 @@
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">leave a comment
 对该提交功能进行比较详细的描述</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>请在 PR 标题或描述中显式关联对应 Issue 编号，例如 <code>Fixes #123</code> 或 <code>Refs #123</code>。</p>
 </div>
 <div class="paragraph">
 <p>点击Create pull request 按钮即可提交。</p>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>修改列类型时自动重建依赖视图 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.22/v1.22/43.html">
+    <link rel="prev" href="42.html">
+    <link rel="next" href="20.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v1.22">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="33.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="34.html">PGroonga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="35.html">pgddl (DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="36.html">pgRouting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="37.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="38.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="40.html">pgvectorscale</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">1、Ivorysql框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="13.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">9、新增Oracle兼容模式的端口与IP</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL试验田</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="41.html">1、全局唯一索引</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="42.html">2、新增无主键表默认支持逻辑复制</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="43.html">3、修改列类型时自动重建依赖视图</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="20.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="21.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="22.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">v1.22</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../master/welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../master/welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL试验田</li>
+    <li><a href="43.html">3、修改列类型时自动重建依赖视图</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v1.22/v1.22/43.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v1.22/CN/modules/ROOT/pages/v1.22/43.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">修改列类型时自动重建依赖视图</h1>
+<div class="sect1">
+<h2 id="功能介绍"><a class="anchor" href="#功能介绍"></a>1. 功能介绍</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在标准 PostgreSQL 中，若某列被视图所引用，执行 <code>ALTER TABLE &#8230;&#8203; ALTER COLUMN &#8230;&#8203; TYPE</code> 修改该列的数据类型时，数据库会直接报错：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">ERROR: cannot alter type of a column used by a view or rule</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>用户必须手动删除所有依赖视图，完成列类型修改后再逐一重建，操作繁琐且容易出错，在存在多层视图依赖时尤为困难。</p>
+</div>
+<div class="paragraph">
+<p>IvorySQL 对此行为进行了增强：执行列类型变更时，数据库会自动保存所有依赖视图（包括间接依赖的级联视图）的定义，在完成类型修改后按正确顺序重建这些视图
+，对用户完全透明。若重建过程中发生错误（例如视图使用了新类型不支持的操作符），整个 <code>ALTER TABLE</code> 操作将整体回滚，保证数据一致性。</p>
+</div>
+<div class="paragraph">
+<p>该功能同时支持 PG 兼容模式与 Oracle 兼容模式。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="语法"><a class="anchor" href="#语法"></a>2. 语法</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>语法与标准 <code>ALTER TABLE</code> 完全一致，无需额外关键字：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER TABLE table_name ALTER COLUMN column_name TYPE new_type;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>参数说明：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>table_name</code>：目标表名，可带 schema 前缀；</p>
+</li>
+<li>
+<p><code>column_name</code>：需要修改类型的列名；</p>
+</li>
+<li>
+<p><code>new_type</code>：目标数据类型，需与原类型兼容或可隐式转换。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="单视图依赖自动重建"><a class="anchor" href="#单视图依赖自动重建"></a>3.1. 单视图依赖：自动重建</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建基表
+CREATE TABLE t (a int, b text);
+
+-- 创建依赖列 a 的视图
+CREATE VIEW v AS SELECT a, b FROM t;
+
+-- 标准 PostgreSQL 此处会报错，IvorySQL 自动重建视图
+ALTER TABLE t ALTER COLUMN a TYPE bigint;
+
+-- 验证视图仍然有效，且列类型已更新
+SELECT pg_typeof(a) FROM v LIMIT 1;
+-- 返回 bigint
+ pg_typeof
+-----------
+(0 rows)
+
+
+\d v
+                 View "public.v"
+ Column |  Type  | Collation | Nullable | Default
+--------+--------+-----------+----------+---------
+ a      | bigint |           |          |
+ b      | text   |           |          |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="级联视图依赖按序自动重建"><a class="anchor" href="#级联视图依赖按序自动重建"></a>3.2. 级联视图依赖：按序自动重建</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建基表
+CREATE TABLE t (a int, b text);
+
+-- 创建两层视图依赖：v2 依赖 v1，v1 依赖 t
+CREATE VIEW v1 AS SELECT a, b FROM t;
+CREATE VIEW v2 AS SELECT a FROM v1;
+
+-- 修改列类型，自动按依赖顺序重建 v1、v2
+ALTER TABLE t ALTER COLUMN a TYPE bigint;
+
+-- 验证两个视图均已正确重建
+SELECT pg_typeof(a) FROM v1 LIMIT 1;
+-- 返回 bigint
+ pg_typeof
+-----------
+(0 rows)
+
+SELECT pg_typeof(a) FROM v2 LIMIT 1;
+-- 返回 bigint
+ pg_typeof
+-----------
+(0 rows)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="保留视图选项security_barrier"><a class="anchor" href="#保留视图选项security_barrier"></a>3.3. 保留视图选项：security_barrier</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建带 security_barrier 选项的视图
+CREATE VIEW v WITH (security_barrier) AS SELECT a, b FROM t;
+
+ALTER TABLE t ALTER COLUMN a TYPE bigint;
+
+-- 验证 security_barrier 选项在重建后被正确保留
+SELECT relname, reloptions FROM pg_class WHERE relname = 'v';
+-- reloptions: {security_barrier=true}
+ relname |       reloptions
+---------+-------------------------
+ v       | {security_barrier=true}
+(1 row)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="保留视图选项with-check-option"><a class="anchor" href="#保留视图选项with-check-option"></a>3.4. 保留视图选项：WITH CHECK OPTION</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建带 WITH LOCAL CHECK OPTION 的视图
+CREATE VIEW v AS SELECT a, b FROM t WHERE a &gt; 0
+    WITH LOCAL CHECK OPTION;
+
+ALTER TABLE t ALTER COLUMN a TYPE bigint;
+
+-- 验证 CHECK OPTION 在重建后被正确保留
+\d+ v
+                              View "public.v"
+ Column |  Type  | Collation | Nullable | Default | Storage  | Description
+--------+--------+-----------+----------+---------+----------+-------------
+ a      | bigint |           |          |         | plain    |
+ b      | text   |           |          |         | extended |
+View definition:
+ SELECT t.a,
+    t.b
+   FROM t
+  WHERE t.a &gt; 0;
+Options: check_option=local</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="重建失败时整体回滚"><a class="anchor" href="#重建失败时整体回滚"></a>3.5. 重建失败时整体回滚</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE t (a int, b text);
+CREATE VIEW v AS SELECT a::integer + 1 AS a_plus FROM t;
+
+-- 若新类型与视图中的表达式不兼容，整个操作回滚
+-- 例如将 a 改为 text 类型，视图中的 a::integer + 1 将无法执行
+ALTER TABLE t ALTER COLUMN a TYPE text;
+ERROR:  operator does not exist: text + integer
+LINE 1: ALTER TABLE t ALTER COLUMN a TYPE text;
+                                               ^
+HINT:  No operator matches the given name and argument types. You might need to add explicit type casts.
+
+-- 确认表结构与视图均未受影响
+\d t
+                 Table "public.t"
+ Column |  Type   | Collation | Nullable | Default
+--------+---------+-----------+----------+---------
+ a      | integer |           |          |
+ b      | text    |           |          |</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能限制"><a class="anchor" href="#功能限制"></a>4. 功能限制</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>若视图中使用了与新列类型不兼容的操作符或函数（例如对 <code>text</code> 类型列执行算术运算），重建将失败，整个 <code>ALTER TABLE</code> 操作回滚；</p>
+</li>
+<li>
+<p>仅支持视图（view）的自动重建，依赖该列的<strong>规则（rule）</strong>仍会报错；</p>
+</li>
+<li>
+<p>列类型变更需满足 PostgreSQL 类型转换规则，不支持任意两种类型之间的直接转换；</p>
+</li>
+<li>
+<p>视图重建按依赖拓扑顺序执行，循环依赖（通常由数据库约束避免）不在处理范围内；</p>
+</li>
+<li>
+<p>重建过程在同一事务内完成，期间依赖视图处于不可用状态，高并发场景下需注意对查询的影响。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="42.html">2、新增无主键表默认支持逻辑复制</a></span>
+  <span class="next"><a href="20.html">社区贡献指南</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

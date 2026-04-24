@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>全局唯一索引 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.22/v1.22/41.html">
+    <link rel="prev" href="19.html">
+    <link rel="next" href="42.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v1.22">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="33.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="34.html">PGroonga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="35.html">pgddl (DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="36.html">pgRouting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="37.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="38.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="40.html">pgvectorscale</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">1、Ivorysql框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="13.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">9、新增Oracle兼容模式的端口与IP</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL试验田</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="41.html">1、全局唯一索引</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="42.html">2、新增无主键表默认支持逻辑复制</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="43.html">3、修改列类型时自动重建依赖视图</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="20.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="21.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="22.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">v1.22</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../master/welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../master/welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL试验田</li>
+    <li><a href="41.html">1、全局唯一索引</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v1.22/v1.22/41.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v1.22/CN/modules/ROOT/pages/v1.22/41.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">全局唯一索引</h1>
+<div class="sect1">
+<h2 id="功能介绍"><a class="anchor" href="#功能介绍"></a>1. 功能介绍</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>全局唯一索引（Global Unique Index）是 IvorySQL 针对分区表提供的跨分区唯一性约束能力。</p>
+</div>
+<div class="paragraph">
+<p>标准 PostgreSQL 的唯一索引仅在单个分区内强制执行唯一性，无法保证跨分区的数据唯一。IvorySQL 引入 <code>GLOBAL</code> 关键字，在创建唯一索引时指定该关键字后，数据库在执行插入或更新操作时会扫描所有分区，确保整张分区表范围内不存在重复数据。</p>
+</div>
+<div class="paragraph">
+<p>该功能同时支持 PG 兼容模式与 Oracle 兼容模式。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="语法"><a class="anchor" href="#语法"></a>2. 语法</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE UNIQUE INDEX [ index_name ] ON partitioned_table ( column [, ...] ) GLOBAL;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>参数说明：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>UNIQUE</code>：必须与 <code>GLOBAL</code> 同时使用，指定唯一性约束；</p>
+</li>
+<li>
+<p><code>GLOBAL</code>：启用跨分区唯一性检查，仅对分区表有效；</p>
+</li>
+<li>
+<p><code>index_name</code>：可选，省略时数据库自动生成索引名。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="创建分区表与全局唯一索引"><a class="anchor" href="#创建分区表与全局唯一索引"></a>3.1. 创建分区表与全局唯一索引</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建分区表
+CREATE TABLE gidxpart (a int, b int, c text) PARTITION BY RANGE (a);
+CREATE TABLE gidxpart1 PARTITION OF gidxpart FOR VALUES FROM (1) TO (10);
+CREATE TABLE gidxpart2 PARTITION OF gidxpart FOR VALUES FROM (10) TO (100);
+CREATE TABLE gidxpart3 PARTITION OF gidxpart FOR VALUES FROM (100) TO (200);
+
+-- 在分区表上创建全局唯一索引（指定索引名）
+CREATE UNIQUE INDEX gidx_u ON gidxpart USING btree(b) GLOBAL;
+
+-- 在分区表上创建全局唯一索引（不指定索引名）
+CREATE UNIQUE INDEX ON gidxpart (b) GLOBAL;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="插入数据跨分区唯一性验证"><a class="anchor" href="#插入数据跨分区唯一性验证"></a>3.2. 插入数据：跨分区唯一性验证</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 以下插入成功（各分区间 b 列无重复）
+INSERT INTO gidxpart VALUES (1, 1, 'first');
+INSERT INTO gidxpart VALUES (11, 11, 'eleventh');
+INSERT INTO gidxpart VALUES (2, 120, 'second');
+INSERT INTO gidxpart VALUES (12, 2, 'twelfth');
+INSERT INTO gidxpart VALUES (150, 13, 'no duplicate b');
+
+-- 以下插入失败：b=11 已存在于其他分区，违反跨分区唯一性约束
+INSERT INTO gidxpart VALUES (2, 11, 'duplicated (b)=(11) on other partition');
+-- ERROR: duplicate key value violates unique constraint
+
+INSERT INTO gidxpart VALUES (12, 1, 'duplicated (b)=(1) on other partition');
+-- ERROR: duplicate key value violates unique constraint
+
+INSERT INTO gidxpart VALUES (150, 11, 'duplicated (b)=(11) on other partition');
+-- ERROR: duplicate key value violates unique constraint</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="更新数据跨分区唯一性验证"><a class="anchor" href="#更新数据跨分区唯一性验证"></a>3.3. 更新数据：跨分区唯一性验证</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 更新操作同样受全局唯一索引约束
+UPDATE gidxpart SET b = 2 WHERE a = 2;
+-- ERROR: duplicate key value violates unique constraint（b=2 已存在）
+
+UPDATE gidxpart SET b = 12 WHERE a = 12;
+-- 成功（b=12 在全局范围内唯一）</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="分区的-attach-与-detach"><a class="anchor" href="#分区的-attach-与-detach"></a>3.4. 分区的 ATTACH 与 DETACH</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建一个独立的表，用于后续 ATTACH
+CREATE TABLE gidxpart_new (a int, b int, c text);
+INSERT INTO gidxpart_new VALUES (100001, 11, 'conflict with gidxpart1');
+
+-- ATTACH 时若存在跨分区重复值，操作将失败
+ALTER TABLE gidxpart ATTACH PARTITION gidxpart_new
+    FOR VALUES FROM (100000) TO (199999);
+-- ERROR: duplicate key value violates unique constraint
+
+-- DETACH 分区后，该分区的全局索引类型恢复为普通索引
+ALTER TABLE gidxpart DETACH PARTITION gidxpart2;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能限制"><a class="anchor" href="#功能限制"></a>4. 功能限制</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>GLOBAL</code> 关键字必须与 <code>UNIQUE</code> 配合使用，不支持创建全局非唯一索引；</p>
+</li>
+<li>
+<p>全局唯一索引仅适用于<strong>分区表</strong>，普通表不支持该关键字；</p>
+</li>
+<li>
+<p>每次插入或更新操作均需扫描所有分区以验证唯一性，在分区数量较多或数据量较大时存在<strong>性能开销</strong>；</p>
+</li>
+<li>
+<p>通过 <code>ATTACH PARTITION</code> 挂载分区时，若新分区中存在与其他分区重复的数据，挂载操作将失败；</p>
+</li>
+<li>
+<p>分区被 <code>DETACH</code> 后，其对应的全局索引自动降级为普通局部索引；</p>
+</li>
+<li>
+<p>不支持在子分区（二级分区）上单独创建全局唯一索引，全局唯一性约束由顶层分区表统一管理。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="19.html">9、新增Oracle兼容模式的端口与IP</a></span>
+  <span class="next"><a href="42.html">2、新增无主键表默认支持逻辑复制</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>新增无主键表默认支持逻辑复制 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v1.22/v1.22/42.html">
+    <link rel="prev" href="41.html">
+    <link rel="next" href="43.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v1.22">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL入门</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.html">快速开始</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="5.html">日常维护</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL高级</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="6.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="33.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">PostGIS</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="34.html">PGroonga</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="35.html">pgddl (DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="36.html">pgRouting</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="37.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="38.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="40.html">pgvectorscale</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能列表</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="11.html">1、Ivorysql框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="12.html">2、GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="13.html">3、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="14.html">4、双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="15.html">5、兼容Oracle like</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="16.html">6、兼容Oracle匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="17.html">7、兼容Oracle函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="18.html">8、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="19.html">9、新增Oracle兼容模式的端口与IP</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL试验田</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="41.html">1、全局唯一索引</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="42.html">2、新增无主键表默认支持逻辑复制</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="43.html">3、修改列类型时自动重建依赖视图</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="20.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="21.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="22.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">v1.22</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../../master/welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../master/welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">IvorySQL</a></li>
+    <li>IvorySQL试验田</li>
+    <li><a href="42.html">2、新增无主键表默认支持逻辑复制</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v1.22/v1.22/42.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v1.22/CN/modules/ROOT/pages/v1.22/42.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">新增无主键表默认支持逻辑复制</h1>
+<div class="sect1">
+<h2 id="功能介绍"><a class="anchor" href="#功能介绍"></a>1. 功能介绍</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在 PostgreSQL/IvorySQL 的逻辑复制中，UPDATE 和 DELETE 操作需要依赖复制标识（Replica Identity）来定位订阅端的目标行。默认情况下，表使用 <code>REPLICA IDENTITY DEFAULT</code>，此时系统依赖主键（Primary Key）来定位行。如果表没有主键，复制策略将回退为 <code>REPLICA IDENTITY NOTHING</code>，此时 UPDATE 和 DELETE 操作将因无法定位行而报错。</p>
+</div>
+<div class="paragraph">
+<p>IvorySQL 新增了 GUC 参数 <code>logical_replication_fallback_to_full_identity</code>。当该参数开启后，如果表的复制标识为 <code>DEFAULT</code> 且没有主键，系统会自动将其回退为 <code>REPLICA IDENTITY FULL</code>——即在 WAL 中记录完整的旧行数据，使无主键表的 UPDATE 和 DELETE 操作能够通过逻辑复制正常执行。</p>
+</div>
+<div class="paragraph">
+<p>该功能仅在发布端（Publisher）生效，订阅端无需任何额外配置。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="参数说明"><a class="anchor" href="#参数说明"></a>2. 参数说明</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql"># postgresql.conf
+logical_replication_fallback_to_full_identity = on</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>参数说明：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>类型：<code>boolean</code>；</p>
+</li>
+<li>
+<p>默认值：<code>off</code>；</p>
+</li>
+<li>
+<p>作用域：<code>sighup</code>，可通过修改 <code>postgresql.conf</code> 后执行 <code>SELECT pg_reload_conf();</code> 使配置生效，无需重启数据库；</p>
+</li>
+<li>
+<p>适用节点：仅在发布端（Publisher）生效，订阅端无需配置。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="未开启参数时无主键表的-update-和-delete-复制失败"><a class="anchor" href="#未开启参数时无主键表的-update-和-delete-复制失败"></a>3.1. 未开启参数时，无主键表的 UPDATE 和 DELETE 复制失败</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 发布端：创建无主键表
+CREATE TABLE test_no_pk (id int, name text);
+
+-- 订阅端：创建相同的表结构
+CREATE TABLE test_no_pk (id int, name text);
+
+-- 发布端：创建发布并添加表
+CREATE PUBLICATION tap_pub FOR TABLE test_no_pk;
+
+-- 订阅端：创建订阅
+CREATE SUBSCRIPTION tap_sub CONNECTION 'host=publisher dbname=postgres' PUBLICATION tap_pub;
+
+-- 发布端：INSERT 操作始终正常（不依赖复制标识）
+INSERT INTO test_no_pk VALUES (1, 'alice');
+
+-- 发布端：UPDATE 操作失败（无主键，无法定位目标行）
+UPDATE test_no_pk SET name = 'bob' WHERE id = 1;
+-- ERROR:  cannot update table "test_no_pk" because it does not have a replica identity and publishes updates
+
+-- 发布端：DELETE 操作同样失败
+DELETE FROM test_no_pk WHERE id = 1;
+-- ERROR:  cannot delete from table "test_no_pk" because it does not have a replica identity and publishes deletes</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="开启参数后无主键表的-update-和-delete-复制正常"><a class="anchor" href="#开启参数后无主键表的-update-和-delete-复制正常"></a>3.2. 开启参数后，无主键表的 UPDATE 和 DELETE 复制正常</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 发布端：开启参数并重新加载配置
+ALTER SYSTEM SET logical_replication_fallback_to_full_identity = on;
+SELECT pg_reload_conf();
+
+-- 发布端：INSERT 正常
+INSERT INTO test_no_pk VALUES (1, 'alice');
+
+-- 发布端：UPDATE 正常（自动按 FULL 方式记录完整旧行数据）
+UPDATE test_no_pk SET name = 'bob' WHERE id = 1;
+
+-- 发布端：DELETE 正常
+DELETE FROM test_no_pk WHERE id = 1;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="参数不影响有主键的表"><a class="anchor" href="#参数不影响有主键的表"></a>3.3. 参数不影响有主键的表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 有主键的表始终使用主键定位行，不受该参数影响
+CREATE TABLE test_with_pk (id int PRIMARY KEY, name text);
+
+-- 无论参数是否开启，UPDATE 和 DELETE 均正常工作
+INSERT INTO test_with_pk VALUES (1, 'alice');
+UPDATE test_with_pk SET name = 'bob' WHERE id = 1;
+DELETE FROM test_with_pk WHERE id = 1;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="参数不影响显式设置为-replica-identity-nothing-的表"><a class="anchor" href="#参数不影响显式设置为-replica-identity-nothing-的表"></a>3.4. 参数不影响显式设置为 REPLICA IDENTITY NOTHING 的表</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建表并显式设置为 REPLICA IDENTITY NOTHING
+CREATE TABLE test_nothing (id int, data text);
+ALTER TABLE test_nothing REPLICA IDENTITY NOTHING;
+
+-- 即使开启了 logical_replication_fallback_to_full_identity，
+-- UPDATE 和 DELETE 仍然失败（参数不会覆盖显式的 NOTHING 设置）
+INSERT INTO test_nothing VALUES (1, 'test');
+UPDATE test_nothing SET data = 'modified' WHERE id = 1;
+-- ERROR:  cannot update table "test_nothing" because it does not have a replica identity and publishes updates
+
+DELETE FROM test_nothing WHERE id = 1;
+-- ERROR:  cannot delete from table "test_nothing" because it does not have a replica identity and publishes deletes</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="运行时动态切换参数"><a class="anchor" href="#运行时动态切换参数"></a>3.5. 运行时动态切换参数</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 关闭参数：无主键表的 UPDATE/DELETE 将恢复为报错行为
+ALTER SYSTEM SET logical_replication_fallback_to_full_identity = off;
+SELECT pg_reload_conf();
+
+-- 开启参数：无主键表的 UPDATE/DELETE 将正常工作
+ALTER SYSTEM SET logical_replication_fallback_to_full_identity = on;
+SELECT pg_reload_conf();</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能限制"><a class="anchor" href="#功能限制"></a>4. 功能限制</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>该参数仅对复制标识为 <code>REPLICA IDENTITY DEFAULT</code> 且没有主键的表生效；已显式设置为 <code>FULL</code>、<code>USING INDEX</code> 或 <code>NOTHING</code> 的表不受影响；</p>
+</li>
+<li>
+<p>开启该参数后，无主键表的 UPDATE 和 DELETE 会在 WAL 中记录完整的旧行数据（与 <code>REPLICA IDENTITY FULL</code> 效果相同），相比有主键时只记录主键列，会增加 WAL 体积和网络传输量；</p>
+</li>
+<li>
+<p>该参数仅在发布端生效，订阅端无需配置；</p>
+</li>
+<li>
+<p>INSERT 操作不依赖复制标识，无论该参数是否开启均可正常复制；</p>
+</li>
+<li>
+<p>该参数不替代显式的 <code>ALTER TABLE &#8230;&#8203; REPLICA IDENTITY FULL</code> 设置，也不会覆盖显式设置为 <code>NOTHING</code> 的表。</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="41.html">1、全局唯一索引</a></span>
+  <span class="next"><a href="43.html">3、修改列类型时自动重建依赖视图</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

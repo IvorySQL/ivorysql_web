@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>sys_guid() 函数 :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/compatibility_features_design/sys_guid_function.html">
-    <link rel="prev" href="case_conversion.html">
-    <link rel="next" href="empty_string_to_null.html">
+    <title>视图只读属性 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/compatibility_features_design/read_only_view.html">
+    <link rel="prev" href="call_into.html">
+    <link rel="next" href="../oracle_builtin_functions/sys_context.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -356,7 +356,7 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="case_conversion.html">大小写转换</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="4">
+  <li class="nav-item" data-depth="4">
     <a class="nav-link" href="sys_guid_function.html">sys_guid 函数</a>
   </li>
   <li class="nav-item" data-depth="4">
@@ -365,7 +365,7 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="call_into.html">CALL INTO</a>
   </li>
-  <li class="nav-item" data-depth="4">
+  <li class="nav-item is-current-page" data-depth="4">
     <a class="nav-link" href="read_only_view.html">视图只读</a>
   </li>
 </ul>
@@ -470,59 +470,297 @@
     <li>IvorySQL开发者</li>
     <li>IvorySQL架构设计</li>
     <li>兼容特性</li>
-    <li><a href="sys_guid_function.html">sys_guid 函数</a></li>
+    <li><a href="read_only_view.html">视图只读</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/compatibility_features_design/sys_guid_function.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/compatibility_features_design/read_only_view.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/compatibility_features_design/sys_guid_function.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/compatibility_features_design/read_only_view.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">sys_guid() 函数</h1>
+<h1 class="page">视图只读属性</h1>
 <div class="sect1">
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>IvorySQL的sys_guid() 是一个强大的随机数产生函数，它产生并返回一个由16个字节组成的数据库级别唯一的标识符(原始值)。</p>
+<p>Oracle 数据库支持在创建视图时使用 <code>WITH READ ONLY</code> 子句，将视图设置为只读状态，防止对视图执行任何数据修改操作（INSERT、UPDATE、DELETE、MERGE）。为了兼容 Oracle 的这一特性，IvorySQL 实现了视图只读属性功能。当视图被标记为只读后，任何试图修改视图数据的 DML 操作都会被拒绝，从而保证 Oracle 应用程序在 IvorySQL 上的行为一致性。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="实现说明"><a class="anchor" href="#实现说明"></a>2. 实现说明</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="语法与解析"><a class="anchor" href="#语法与解析"></a>2.1. 语法与解析</h3>
+<div class="sect3">
+<h4 id="语法规则扩展"><a class="anchor" href="#语法规则扩展"></a>2.1.1. 语法规则扩展</h4>
 <div class="paragraph">
-<p>IvorySQL的sys_guid()函数通过修改插件uuid-ossp的代码实现。为了充分利用uuid的多种基础库，采用如下逻辑：</p>
+<p>在 <code>ora_gram.y</code> 文件中添加了 <code>READ_ONLY_OPTION</code> 枚举值，并扩展了 <code>opt_check_option</code> 语法规则：</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>如果系统有uuid-ossp，就使用uuid_make();</p>
-</li>
-<li>
-<p>如果系统有uuid-e2fs，就使用 uuid_generate_random();</p>
-</li>
-<li>
-<p>否则就调用 arc4random();</p>
-</li>
-</ol>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yacc hljs" data-lang="yacc">opt_check_option:
+    WITH CHECK OPTION { $$ = CASCADED_CHECK_OPTION; }
+    | WITH CASCADED CHECK OPTION { $$ = CASCADED_CHECK_OPTION; }
+    | WITH LOCAL CHECK OPTION { $$ = LOCAL_CHECK_OPTION; }
+    | WITH READ ONLY { $$ = READ_ONLY_OPTION; }  /* 新增 */
+    | /* EMPTY */ { $$ = NO_CHECK_OPTION; }
+    ;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewstmt-结构体扩展"><a class="anchor" href="#viewstmt-结构体扩展"></a>2.1.2. ViewStmt 结构体扩展</h4>
+<div class="paragraph">
+<p>在 <code>parsenodes.h</code> 文件中，<code>ViewCheckOption</code> 枚举新增 <code>READ_ONLY_OPTION</code> 选项，<code>ViewStmt</code> 结构体新增 <code>readOnly</code> 字段：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">typedef enum ViewCheckOption {
+    NO_CHECK_OPTION,
+    LOCAL_CHECK_OPTION,
+    CASCADED_CHECK_OPTION,
+    READ_ONLY_OPTION, /* WITH READ ONLY (Oracle compat) */
+} ViewCheckOption;
+
+typedef struct ViewStmt {
+    // ... 其他字段
+    bool readOnly; /* WITH READ ONLY (Oracle compat) */
+} ViewStmt;</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>同时修改代码使得IvorySQL能够自动载入uuid-ossp插件。</p>
+<p>解析时设置 <code>readOnly</code> 标志：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">n-&gt;readOnly = ($10 == READ_ONLY_OPTION);
+n-&gt;withCheckOption = n-&gt;readOnly ? NO_CHECK_OPTION : $10;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>需要注意的是，<code>WITH READ ONLY</code> 与 <code>WITH CHECK OPTION</code> 是互斥的，不能同时使用。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="关系选项系统"><a class="anchor" href="#关系选项系统"></a>2.2. 关系选项系统</h3>
+<div class="sect3">
+<h4 id="read_only-关系选项"><a class="anchor" href="#read_only-关系选项"></a>2.2.1. read_only 关系选项</h4>
+<div class="paragraph">
+<p>在 <code>reloptions.c</code> 文件中定义了 <code>read_only</code> 视图关系选项：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* reloptions.c */
+{
+    {"read_only",
+     "Prevents INSERT, UPDATE, and DELETE on this view (Oracle compatibility)",
+     RELOPT_KIND_VIEW,
+     AccessExclusiveLock},
+    false
+},
+
+/* view_reloptions() 函数中 */
+{"read_only", RELOPT_TYPE_BOOL,
+ offsetof(ViewOptions, read_only)},</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="viewoptions-结构体扩展"><a class="anchor" href="#viewoptions-结构体扩展"></a>2.2.2. ViewOptions 结构体扩展</h4>
+<div class="paragraph">
+<p>在 <code>rel.h</code> 文件中，<code>ViewOptions</code> 结构体新增 <code>read_only</code> 字段：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">typedef struct ViewOptions {
+    // ... 其他字段
+    bool read_only; /* WITH READ ONLY (Oracle compat) */
+} ViewOptions;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="relationisreadonlyview-宏"><a class="anchor" href="#relationisreadonlyview-宏"></a>2.2.3. RelationIsReadOnlyView 宏</h4>
+<div class="paragraph">
+<p>通过 <code>RelationIsReadOnlyView</code> 宏可以快速判断视图是否为只读：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">#define RelationIsReadOnlyView(relation) \
+    (AssertMacro(relation-&gt;rd_rel-&gt;relkind == RELKIND_VIEW), \
+     (relation)-&gt;rd_options &amp;&amp; \
+     ((ViewOptions *) (relation)-&gt;rd_options)-&gt;read_only)</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="视图创建处理"><a class="anchor" href="#视图创建处理"></a>2.3. 视图创建处理</h3>
+<div class="paragraph">
+<p>在 <code>view.c</code> 文件的 <code>DefineView</code> 函数中处理 <code>WITH READ ONLY</code> 选项：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* DefineView() 中处理 WITH READ ONLY */
+if (stmt-&gt;readOnly)
+{
+    /* 设置 read_only 关系选项 */
+    options = transformViewOptions(RelationGetRelid(newRelationView),
+                                   stmt-&gt;options, true);
+    setRelOptions(newRelationView, options, true, AccessExclusiveLock);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>同时在 <code>compile_force_view_internal</code> 函数中也支持 <code>WITH READ ONLY</code>，确保 FORCE VIEW 可以正常使用只读属性。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dml-执行拦截"><a class="anchor" href="#dml-执行拦截"></a>2.4. DML 执行拦截</h3>
+<div class="sect3">
+<h4 id="执行层拦截"><a class="anchor" href="#执行层拦截"></a>2.4.1. 执行层拦截</h4>
+<div class="paragraph">
+<p>在 <code>execMain.c</code> 文件的 <code>CheckValidResultRel()</code> 函数中，对只读视图的 DML 操作进行拦截：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* execMain.c */
+if (RelationIsReadOnlyView(resultRel))
+    ereport(ERROR,
+        (errcode(ERRCODE_WRONG_OBJECT_TYPE),
+         errmsg("cannot modify view \"%s\"",
+                RelationGetRelationName(resultRel)),
+         errhint("The view is defined as read-only.")));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>当执行 INSERT、UPDATE、DELETE 或 MERGE 语句时，如果目标视图被标记为只读，将抛出错误。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="重写层拦截"><a class="anchor" href="#重写层拦截"></a>2.4.2. 重写层拦截</h4>
+<div class="paragraph">
+<p>在 <code>rewriteHandler.c</code> 文件的 <code>rewriteTargetView()</code> 函数中也添加了相同的检查：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* rewriteHandler.c */
+if (RelationIsReadOnlyView(view))
+    ereport(ERROR,
+        (errcode(ERRCODE_WRONG_OBJECT_TYPE),
+         errmsg("cannot modify view \"%s\"",
+                RelationGetRelationName(view)),
+         errhint("The view is defined as read-only.")));</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这确保了在查询重写层面也能阻止对只读视图的修改操作。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pg_dump-支持"><a class="anchor" href="#pg_dump-支持"></a>2.5. pg_dump 支持</h3>
+<div class="paragraph">
+<p>在 <code>pg_dump.c</code> 文件中添加了对 <code>WITH READ ONLY</code> 属性的导出和恢复支持：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* pg_dump.h - TableInfo 结构体新增字段 */
+typedef struct _tableInfo {
+    // ... 其他字段
+    bool readOnly; /* WITH READ ONLY (Oracle compat) */
+    // ... 其他字段
+} _tableInfo;
+
+/* pg_dump.c - 提取 read_only 选项 */
+if (strcmp(options[i].defname, "read_only") == 0)
+    info-&gt;readOnly = defGetBoolean(options[i].def);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>导出时，<code>dumpTableSchema()</code> 和 <code>dumpRule()</code> 函数会在适当位置输出 <code>WITH READ ONLY</code> 子句，确保只读属性在数据库迁移过程中得以保留。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用示例"><a class="anchor" href="#使用示例"></a>3. 使用示例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="创建只读视图"><a class="anchor" href="#创建只读视图"></a>3.1. 创建只读视图</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建带 WITH READ ONLY 的视图
+CREATE VIEW emp_view AS
+SELECT * FROM employees
+WITH READ ONLY;
+
+-- 在只读视图上执行 DML 将被拒绝
+INSERT INTO emp_view VALUES (1, 'John', 5000);
+-- ERROR: cannot modify view "emp_view"
+-- HINT: The view is defined as read-only.
+
+UPDATE emp_view SET salary = 6000 WHERE id = 1;
+-- ERROR: cannot modify view "emp_view"
+-- HINT: The view is defined as read-only.
+
+DELETE FROM emp_view WHERE id = 1;
+-- ERROR: cannot modify view "emp_view"
+-- HINT: The view is defined as read-only.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="创建或替换只读视图"><a class="anchor" href="#创建或替换只读视图"></a>3.2. 创建或替换只读视图</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 使用 OR REPLACE 保留只读属性
+CREATE OR REPLACE VIEW emp_view AS
+SELECT id, name, department FROM employees
+WITH READ ONLY;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="force-view-与只读属性结合"><a class="anchor" href="#force-view-与只读属性结合"></a>3.3. FORCE VIEW 与只读属性结合</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建 FORCE VIEW 并设置为只读
+CREATE OR REPLACE FORCE VIEW emp_force_view AS
+SELECT * FROM employees
+WITH READ ONLY;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="与-with-check-option-的互斥性"><a class="anchor" href="#与-with-check-option-的互斥性"></a>3.4. 与 WITH CHECK OPTION 的互斥性</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 错误: WITH READ ONLY 和 WITH CHECK OPTION 不能同时使用
+CREATE VIEW emp_view AS
+SELECT * FROM employees
+WITH CHECK OPTION
+WITH READ ONLY;
+-- ERROR: READ ONLY and CHECK OPTION are mutually exclusive</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="case_conversion.html">大小写转换</a></span>
-  <span class="next"><a href="empty_string_to_null.html">空字符串转null</a></span>
+  <span class="prev"><a href="call_into.html">CALL INTO</a></span>
+  <span class="next"><a href="../oracle_builtin_functions/sys_context.html">sys_context</a></span>
 </nav>
 </article>
   </div>

@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>sys_guid() 函数 :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/compatibility_features_design/sys_guid_function.html">
-    <link rel="prev" href="case_conversion.html">
-    <link rel="next" href="empty_string_to_null.html">
+    <title>Read Only View :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/oracle_compatibility/compat_read_only_view.html">
+    <link rel="prev" href="compat_call_into.html">
+    <link rel="next" href="../containerization/k8s_deployment.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -82,64 +82,64 @@
     <span class="nav-text">Oracle兼容功能</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、大小写转换</a>
+    <a class="nav-link" href="compat_case_conversion.html">1、大小写转换</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE操作符</a>
+    <a class="nav-link" href="compat_like_operator.html">2、LIKE操作符</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、匿名块</a>
+    <a class="nav-link" href="anonymous_block.html">3、匿名块</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、函数与存储过程</a>
+    <a class="nav-link" href="compat_function_procedure.html">4、函数与存储过程</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、内置数据类型与内置函数</a>
+    <a class="nav-link" href="builtin_types_functions.html">5、内置数据类型与内置函数</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、端口与IP</a>
+    <a class="nav-link" href="port_ip.html">6、端口与IP</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML函数</a>
+    <a class="nav-link" href="xml_functions.html">7、XML函数</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+    <a class="nav-link" href="sequence.html">8、sequence</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/package.html">9、包</a>
+    <a class="nav-link" href="package.html">9、包</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、不可见列</a>
+    <a class="nav-link" href="invisible_column.html">10、不可见列</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID</a>
+    <a class="nav-link" href="compat_rowid.html">11、RowID</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT 参数</a>
+    <a class="nav-link" href="compat_out_parameter.html">12、OUT 参数</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+    <a class="nav-link" href="compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS 参数</a>
+    <a class="nav-link" href="compat_nls_parameter.html">14、NLS 参数</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+    <a class="nav-link" href="compat_force_view.html">15、Force View</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、嵌套子函数</a>
+    <a class="nav-link" href="compat_nested_function.html">16、嵌套子函数</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid 函数</a>
+    <a class="nav-link" href="compat_sys_guid.html">17、sys_guid 函数</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、空字符串转null</a>
+    <a class="nav-link" href="compat_empty_string_to_null.html">18、空字符串转null</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+    <a class="nav-link" href="compat_call_into.html">19、CALL INTO</a>
   </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、视图只读</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="compat_read_only_view.html">20、视图只读</a>
   </li>
 </ul>
   </li>
@@ -330,43 +330,43 @@
     <span class="nav-text">兼容特性</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="like_operator.html">like</a>
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="rowid.html">RowID</a>
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="out_parameter.html">OUT 参数</a>
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="type_rowtype.html">%TYPE、%ROWTYPE</a>
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="nls_parameter.html">NLS 参数</a>
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="function_procedure.html">函数与存储过程</a>
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="nested_function.html">嵌套子函数</a>
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="force_view.html">Force View</a>
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="case_conversion.html">大小写转换</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="4">
-    <a class="nav-link" href="sys_guid_function.html">sys_guid 函数</a>
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="empty_string_to_null.html">空字符串转null</a>
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="call_into.html">CALL INTO</a>
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="read_only_view.html">视图只读</a>
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">视图只读</a>
   </li>
 </ul>
   </li>
@@ -467,62 +467,221 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../welcome.html">文档中心</a></li>
-    <li>IvorySQL开发者</li>
-    <li>IvorySQL架构设计</li>
-    <li>兼容特性</li>
-    <li><a href="sys_guid_function.html">sys_guid 函数</a></li>
+    <li>Oracle兼容功能</li>
+    <li><a href="compat_read_only_view.html">20、视图只读</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/compatibility_features_design/sys_guid_function.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/oracle_compatibility/compat_read_only_view.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/compatibility_features_design/sys_guid_function.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/oracle_compatibility/compat_read_only_view.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">sys_guid() 函数</h1>
+<h1 class="page">Read Only View</h1>
 <div class="sect1">
 <h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>IvorySQL的sys_guid() 是一个强大的随机数产生函数，它产生并返回一个由16个字节组成的数据库级别唯一的标识符(原始值)。</p>
+<p>本文档解释 IvorySQL 中 <code>WITH READ ONLY</code> 视图的功能，实现只读视图功能以保持与 Oracle 行为一致。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="实现说明"><a class="anchor" href="#实现说明"></a>2. 实现说明</h2>
+<h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>IvorySQL的sys_guid()函数通过修改插件uuid-ossp的代码实现。为了充分利用uuid的多种基础库，采用如下逻辑：</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>WITH READ ONLY</code>：创建视图时指定此选项，可防止对视图进行 INSERT、UPDATE、DELETE 和 MERGE 操作。</p>
+</li>
+<li>
+<p>存储方式：<code>read_only=true</code> 存储在视图的 <code>reloptions</code> 中。</p>
+</li>
+<li>
+<p>互斥性：<code>WITH READ ONLY</code> 和 <code>WITH CHECK OPTION</code> 互斥，不能同时指定。</p>
+</li>
+<li>
+<p>Force View 支持：可以与 <code>FORCE VIEW</code> 一起使用，只读属性会在视图成功编译后生效。</p>
+</li>
+<li>
+<p>CREATE OR REPLACE 行为：如果使用 <code>CREATE OR REPLACE VIEW</code> 重新创建视图时未指定 <code>WITH READ ONLY</code>，则会清除只读属性。</p>
+</li>
+</ul>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>如果系统有uuid-ossp，就使用uuid_make();</p>
-</li>
-<li>
-<p>如果系统有uuid-e2fs，就使用 uuid_generate_random();</p>
-</li>
-<li>
-<p>否则就调用 arc4random();</p>
-</li>
-</ol>
 </div>
-<div class="paragraph">
-<p>同时修改代码使得IvorySQL能够自动载入uuid-ossp插件。</p>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>3. 测试用例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="创建只读视图"><a class="anchor" href="#创建只读视图"></a>3.1. 创建只读视图</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建基础表
+CREATE TABLE t_ro (a int, b text);
+INSERT INTO t_ro VALUES (1, 'hello'), (2, 'world');
+
+-- 创建只读视图，SELECT 成功
+CREATE VIEW ro_view AS SELECT * FROM t_ro WITH READ ONLY;
+SELECT * FROM ro_view ORDER BY a;
+-- 期望输出：
+--  a |   b
+-- ---+-------
+--  1 | hello
+--  2 | world</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="验证-dml-被阻止"><a class="anchor" href="#验证-dml-被阻止"></a>3.2. 验证 DML 被阻止</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- INSERT 被阻止
+INSERT INTO ro_view VALUES (3, 'fail');
+-- 期望输出：ERROR: cannot modify view "ro_view"
+-- HINT: The view is defined as read-only.
+
+-- UPDATE 被阻止
+UPDATE ro_view SET b = 'fail' WHERE a = 1;
+-- 期望输出：ERROR: cannot modify view "ro_view"
+-- HINT: The view is defined as read-only.
+
+-- DELETE 被阻止
+DELETE FROM ro_view WHERE a = 1;
+-- 期望输出：ERROR: cannot modify view "ro_view"
+-- HINT: The view is defined as read-only.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="merge-命令被阻止"><a class="anchor" href="#merge-命令被阻止"></a>3.3. MERGE 命令被阻止</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- MERGE with INSERT action
+MERGE INTO ro_view USING (SELECT 4 AS a, 'merge_ins' AS b) AS src
+ON (ro_view.a = src.a)
+WHEN NOT MATCHED THEN INSERT VALUES (src.a, src.b);
+-- 期望输出：ERROR: cannot modify view "ro_view"
+-- HINT: The view is defined as read-only.
+
+-- MERGE with UPDATE action
+MERGE INTO ro_view USING (SELECT 1 AS a, 'merge_upd' AS b) AS src
+ON (ro_view.a = src.a)
+WHEN MATCHED THEN UPDATE SET b = src.b;
+-- 期望输出：ERROR: cannot modify view "ro_view"
+-- HINT: The view is defined as read-only.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-or-replace-行为"><a class="anchor" href="#create-or-replace-行为"></a>3.4. CREATE OR REPLACE 行为</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 重新创建视图时保留 WITH READ ONLY：DML 仍然被阻止
+CREATE OR REPLACE VIEW ro_view AS SELECT a, b FROM t_ro WITH READ ONLY;
+INSERT INTO ro_view VALUES (3, 'fail');
+-- 期望输出：ERROR: cannot modify view "ro_view"
+-- HINT: The view is defined as read-only.
+
+-- 重新创建视图时不指定 WITH READ ONLY：只读属性被清除，视图变为可更新
+CREATE OR REPLACE VIEW ro_view AS SELECT a, b FROM t_ro;
+INSERT INTO ro_view VALUES (3, 'now_writable');
+SELECT * FROM ro_view ORDER BY a;
+-- 期望输出：
+--  a |      b
+-- ---+--------------
+--  1 | hello
+--  2 | world
+--  3 | now_writable</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="force-view-与-with-read-only"><a class="anchor" href="#force-view-与-with-read-only"></a>3.5. FORCE VIEW 与 WITH READ ONLY</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 创建时基础表不存在，视图为占位符
+CREATE FORCE VIEW force_ro_view AS SELECT * FROM nonexistent_for_ro WITH READ ONLY;
+-- 期望输出：WARNING: View created with compilation errors
+
+-- 创建基础表
+CREATE TABLE nonexistent_for_ro (a int, b text);
+
+-- 显式编译视图
+ALTER VIEW force_ro_view COMPILE;
+
+-- 编译成功后 DML 被阻止
+INSERT INTO force_ro_view VALUES (1, 'fail');
+-- 期望输出：ERROR: cannot modify view "force_ro_view"
+-- HINT: The view is defined as read-only.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="递归视图与-with-read-only"><a class="anchor" href="#递归视图与-with-read-only"></a>3.6. 递归视图与 WITH READ ONLY</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE RECURSIVE VIEW ro_recursive_view (a) AS
+    SELECT 1
+    UNION ALL
+    SELECT a + 1 FROM ro_recursive_view WHERE a &lt; 3
+WITH READ ONLY;
+
+SELECT * FROM ro_recursive_view ORDER BY a;
+-- 期望输出：
+--  a
+-- ---
+--  1
+--  2
+--  3
+
+INSERT INTO ro_recursive_view VALUES (99);
+-- 期望输出：ERROR: cannot modify view "ro_recursive_view"
+-- HINT: The view is defined as read-only.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="验证-reloptions-存储"><a class="anchor" href="#验证-reloptions-存储"></a>3.7. 验证 reloptions 存储</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT relname, reloptions
+FROM pg_class
+WHERE relname IN ('ro_view', 'ro_recursive_view', 'force_ro_view')
+ORDER BY relname;
+-- 期望输出：
+--       relname      |    reloptions
+-- -------------------+------------------
+--  force_ro_view     | {read_only=true}
+--  ro_recursive_view | {read_only=true}
+--  ro_view           |</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="清理"><a class="anchor" href="#清理"></a>3.8. 清理</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">DROP VIEW IF EXISTS ro_view;
+DROP VIEW IF EXISTS force_ro_view;
+DROP TABLE t_ro;
+DROP TABLE IF EXISTS nonexistent_for_ro;</code></pre>
+</div>
+</div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="case_conversion.html">大小写转换</a></span>
-  <span class="next"><a href="empty_string_to_null.html">空字符串转null</a></span>
+  <span class="prev"><a href="compat_call_into.html">19、CALL INTO</a></span>
+  <span class="next"><a href="../containerization/k8s_deployment.html">K8S部署</a></span>
 </nav>
 </article>
   </div>

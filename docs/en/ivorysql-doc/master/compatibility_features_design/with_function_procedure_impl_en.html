@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>WITH FUNCTION/PROCEDURE Implementation Notes :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/compatibility_features_design/with_function_procedure_impl_en.html">
+    <link rel="prev" href="read_only_view.html">
+    <link rel="next" href="create_index_online.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">About</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">Release</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Get Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">Quick Start</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">Cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle Compatibility</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure_en.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、ONLINE Parameter for CREATE INDEX</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization and Cloud Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Monitor and O&amp;M</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">Maintenance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">Operation Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Migration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Developers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">Community contribution</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_parser.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/framework_design.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="out_parameter.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="type_rowtype.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="nls_parameter.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="function_procedure.html">Function and stored procedure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="nested_function.html">Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="case_conversion.html">Case Conversion</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="sys_guid_function.html">sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="empty_string_to_null.html">Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="read_only_view.html">Read Only View</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="with_function_procedure_impl_en.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="create_index_online.html">ONLINE Parameter for CREATE INDEX</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Built-in Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../gb18030.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">Tool Reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Architecture Design</li>
+    <li>Compatibility Features</li>
+    <li><a href="with_function_procedure_impl_en.html">WITH FUNCTION/PROCEDURE</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/compatibility_features_design/with_function_procedure_impl_en.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/compatibility_features_design/with_function_procedure_impl_en.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">WITH FUNCTION/PROCEDURE Implementation Notes</h1>
+<div class="sect1">
+<h2 id="purpose"><a class="anchor" href="#purpose"></a>1. Purpose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document describes the internal implementation of the <code>WITH FUNCTION</code> and
+<code>WITH PROCEDURE</code> features in IvorySQL. The feature allows PL/SQL functions and
+procedures to be defined directly inside the WITH clause (Common Table Expression, CTE)
+of a SQL statement, implementing Oracle&#8217;s <em>Subquery Factoring with PL/SQL Declarations</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation-overview"><a class="anchor" href="#implementation-overview"></a>2. Implementation Overview</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="layered-architecture"><a class="anchor" href="#layered-architecture"></a>2.1. Layered Architecture</h3>
+<div class="paragraph">
+<p>The implementation spans four layers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">┌─────────────────────────────────────────────────────────────────────┐
+│  Layer 1: Oracle Parser  (ora_gram.y + liboracle_parser.c)          │
+│  - Extend with_clause grammar to allow plsql_declarations           │
+│  - Reuse OraBody_FUNC lexer mechanism to capture body as Sconst     │
+│  - Output: WithClause { plsql_defs: [InlineFunctionDef...], ctes: [...]}│
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  Layer 2: Semantic Analysis  (parse_cte.c + parse_func.c)           │
+│  - transformWithClause() processes InlineFunctionDef nodes          │
+│  - Resolve function signatures; register in ParseState.p_with_func_list│
+│  - p_subprocfunc_hook intercepts call resolution for WITH functions  │
+│  - FuncExpr.function_from = FUNC_FROM_WITH_CLAUSE ('w')             │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  Layer 3: Planner  (planner.c / createplan.c)                       │
+│  - Copy Query.withFuncDefs into PlannedStmt.withFuncDefs            │
+│  - No additional cost model changes                                 │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  Layer 4: Executor  (execExpr.c + pl_handler.c)                     │
+│  - ExecInitFunc() recognizes FUNC_FROM_WITH_CLAUSE                  │
+│  - Compiles WITH function body on demand (lazy compilation)         │
+│  - Compilation result cached in EState.es_with_func_container       │
+└─────────────────────────────────────────────────────────────────────┘</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="grammar-and-parsing"><a class="anchor" href="#grammar-and-parsing"></a>2.2. Grammar and Parsing</h3>
+<div class="sect3">
+<h4 id="grammar-rule-extension"><a class="anchor" href="#grammar-rule-extension"></a>2.2.1. Grammar Rule Extension</h4>
+<div class="paragraph">
+<p>The <code>with_clause</code> grammar rule in <code>ora_gram.y</code> is extended as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yacc hljs" data-lang="yacc">with_clause:
+    WITH plsql_declarations cte_list
+        {
+            WithClause *n = makeNode(WithClause);
+            n-&gt;plsql_defs = $2;
+            n-&gt;ctes = $3;
+            n-&gt;recursive = false;
+            n-&gt;location = @1;
+            $$ = n;
+        }
+    | WITH plsql_declarations
+        {
+            WithClause *n = makeNode(WithClause);
+            n-&gt;plsql_defs = $2;
+            n-&gt;ctes = NIL;
+            n-&gt;recursive = false;
+            n-&gt;location = @1;
+            $$ = n;
+        }
+    | WITH cte_list                          /* existing syntax unchanged */
+    | WITH_LA cte_list                       /* existing */
+    | WITH RECURSIVE cte_list               /* existing */
+    ;
+
+plsql_declarations:
+    plsql_declaration
+        { $$ = list_make1($1); }
+    | plsql_declarations plsql_declaration
+        { $$ = lappend($1, $2); }
+    ;
+
+plsql_declaration:
+    FUNCTION ora_func_name opt_ora_func_args_with_defaults
+    RETURN func_return
+    ora_func_is_or_as Sconst ';'
+        {
+            InlineFunctionDef *n = makeNode(InlineFunctionDef);
+            n-&gt;funcname = strVal(llast($2));
+            n-&gt;args = $3;
+            n-&gt;rettype = $5;
+            n-&gt;is_proc = false;
+            n-&gt;src = $7;
+            n-&gt;location = @2;
+            $$ = (Node *) n;
+        }
+    | PROCEDURE ora_func_name opt_procedure_args_with_defaults
+    ora_func_is_or_as Sconst ';'
+        {
+            InlineFunctionDef *n = makeNode(InlineFunctionDef);
+            n-&gt;funcname = strVal(llast($2));
+            n-&gt;args = $3;
+            n-&gt;rettype = NULL;
+            n-&gt;is_proc = true;
+            n-&gt;src = $5;
+            n-&gt;location = @2;
+            $$ = (Node *) n;
+        }
+    ;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="reuse-of-the-orabody_func-mechanism"><a class="anchor" href="#reuse-of-the-orabody_func-mechanism"></a>2.2.2. Reuse of the OraBody_FUNC Mechanism</h4>
+<div class="paragraph">
+<p>The Oracle parser already has a <code>set_oracle_plsql_body(OraBody_FUNC)</code> mechanism that
+captures the entire PL/SQL body after IS/AS as a single Sconst string. WITH FUNCTION
+reuses this mechanism directly; no changes to the lexer are required.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* ora_gram.y */
+ora_func_is_or_as:
+    IS  { set_oracle_plsql_body(yyscanner, OraBody_FUNC); }
+    | AS { set_oracle_plsql_body(yyscanner, OraBody_FUNC); }
+    ;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The lexer (<code>liboracle_parser.c:439-652</code>) enters body-capture mode, tracking the
+BEGIN/END/FUNCTION/PROCEDURE nesting depth until the outermost END, and returns the
+entire text as a single SCONST token.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="handling-grammar-ambiguity"><a class="anchor" href="#handling-grammar-ambiguity"></a>2.2.3. Handling Grammar Ambiguity</h4>
+<div class="paragraph">
+<p>Both <code>FUNCTION</code> and <code>PROCEDURE</code> are <code>unreserved_keyword</code> tokens and can therefore be
+used as CTE names. The LALR(1) state table disambiguates automatically based on the
+token that follows:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Token after <code>WITH FUNCTION|PROCEDURE</code></th>
+<th class="tableblock halign-left valign-top">LALR(1) action</th>
+<th class="tableblock halign-left valign-top">Path taken</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>IDENT</strong> / plain identifier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shift (enters <code>ora_func_name</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">plsql_declaration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>AS</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reduce</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CTE without column-name list</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong><code>(</code></strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">reduce</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CTE with column-name list</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ast-node-design"><a class="anchor" href="#ast-node-design"></a>2.3. AST Node Design</h3>
+<div class="sect3">
+<h4 id="inlinefunctiondef-node"><a class="anchor" href="#inlinefunctiondef-node"></a>2.3.1. InlineFunctionDef Node</h4>
+<div class="paragraph">
+<p>A new AST node represents an inline function/procedure definition inside the WITH clause:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* parsenodes.h */
+typedef struct InlineFunctionDef
+{
+    NodeTag     type;           /* T_InlineFunctionDef */
+    char       *funcname;       /* unqualified function/procedure name */
+    List       *args;           /* list of FunctionParameter nodes */
+    TypeName   *rettype;        /* return type (NULL for procedures) */
+    bool        is_proc;        /* true = procedure, false = function */
+    char       *src;            /* raw body text (full IS/AS...END text) */
+    ParseLoc    location;       /* position in the original SQL text */
+} InlineFunctionDef;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="withclause-extension"><a class="anchor" href="#withclause-extension"></a>2.3.2. WithClause Extension</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* parsenodes.h */
+typedef struct WithClause
+{
+    NodeTag     type;
+    List       *plsql_defs;    /* NEW: InlineFunctionDef list (ORA mode) */
+    List       *ctes;          /* existing: CommonTableExpr list */
+    bool        recursive;     /* true = WITH RECURSIVE */
+    ParseLoc    location;
+} WithClause;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="funcexpr-extension"><a class="anchor" href="#funcexpr-extension"></a>2.3.3. FuncExpr Extension</h4>
+<div class="paragraph">
+<p>A new function-origin tag is added in <code>primnodes.h</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* primnodes.h */
+#define FUNC_FROM_WITH_CLAUSE    'w'   /* inline function from WITH clause */
+
+/* Update macro to exclude 'w' from the pg_proc path */
+#define FUNC_EXPR_FROM_PG_PROC(function_from) \
+    (function_from != FUNC_FROM_SUBPROCFUNC &amp;&amp; \
+     function_from != FUNC_FROM_PACKAGE &amp;&amp; \
+     function_from != FUNC_FROM_PACKGE_INITBODY &amp;&amp; \
+     function_from != FUNC_FROM_WITH_CLAUSE)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="withfuncentry-structure"><a class="anchor" href="#withfuncentry-structure"></a>2.3.4. WithFuncEntry Structure</h4>
+<div class="paragraph">
+<p>A lightweight structure added to ParseState stores function signatures:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* parse_node.h */
+typedef struct WithFuncEntry
+{
+    char       *funcname;
+    List       *argtypes;          /* list of Oids */
+    Oid         rettype;
+    bool        is_proc;
+    int         funcindex;         /* corresponds to FuncExpr.funcid */
+    InlineFunctionDef *def;        /* pointer to the original definition node */
+} WithFuncEntry;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="withfunccontainer-runtime-container"><a class="anchor" href="#withfunccontainer-runtime-container"></a>2.3.5. WithFuncContainer Runtime Container</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* pl_handler.h */
+typedef struct WithFuncContainer
+{
+    int                        nfuncs;   /* number of WITH functions */
+    PLiSQL_subproc_function  **funcs;    /* array of compiled functions */
+    MemoryContext              mcxt;     /* memory context for this container */
+} WithFuncContainer;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="semantic-analysis"><a class="anchor" href="#semantic-analysis"></a>2.4. Semantic Analysis</h3>
+<div class="sect3">
+<h4 id="transformwithclause-extension"><a class="anchor" href="#transformwithclause-extension"></a>2.4.1. transformWithClause Extension</h4>
+<div class="paragraph">
+<p><code>transformWithFuncDefs()</code> is implemented in the new file <code>parse_with_plsql.c</code> and called
+from <code>transformWithClause()</code> in <code>parse_cte.c</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* parse_with_plsql.c */
+static void
+transformWithFuncDefs(ParseState *pstate, List *plsql_defs)
+{
+    int funcindex = 0;
+    ListCell *lc;
+
+    foreach(lc, plsql_defs)
+    {
+        InlineFunctionDef *ifd = (InlineFunctionDef *) lfirst(lc);
+        WithFuncEntry *entry = palloc(sizeof(WithFuncEntry));
+
+        /* resolve parameter types */
+        entry-&gt;argtypes = resolveWithFuncArgTypes(pstate, ifd-&gt;args);
+
+        /* resolve return type */
+        entry-&gt;rettype = ifd-&gt;rettype ?
+            typenameTypeId(pstate, ifd-&gt;rettype) : InvalidOid;
+
+        entry-&gt;funcname  = ifd-&gt;funcname;
+        entry-&gt;is_proc   = ifd-&gt;is_proc;
+        entry-&gt;funcindex = funcindex++;
+        entry-&gt;def       = ifd;
+
+        /* check for duplicate definition */
+        checkDuplicateWithFunc(pstate-&gt;p_with_func_list, entry);
+
+        pstate-&gt;p_with_func_list = lappend(pstate-&gt;p_with_func_list, entry);
+    }
+
+    /* install the function lookup hook */
+    if (pstate-&gt;p_subprocfunc_hook == NULL)
+        pstate-&gt;p_subprocfunc_hook = withFuncLookupHook;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="function-call-resolution-hook"><a class="anchor" href="#function-call-resolution-hook"></a>2.4.2. Function Call Resolution Hook</h4>
+<div class="paragraph">
+<p><code>withFuncLookupHook</code> intercepts calls to inline functions defined in the WITH clause:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* parse_with_plsql.c */
+static FuncDetailCode
+withFuncLookupHook(ParseState *pstate, List *funcname,
+                   List **fargs, List *fargnames, int nargs,
+                   Oid *argtypes, bool expand_variadic, bool expand_defaults,
+                   bool proc_call, Oid *funcid, Oid *rettype, bool *retset,
+                   int *nvargs, Oid *vatype, Oid **true_typeids,
+                   List **argdefaults, void **pfunc)
+{
+    char *fname;
+    ListCell *lc;
+
+    if (list_length(funcname) != 1)
+        return FUNCDETAIL_NOTFOUND;
+
+    fname = strVal(linitial(funcname));
+
+    foreach(lc, pstate-&gt;p_with_func_list)
+    {
+        WithFuncEntry *entry = (WithFuncEntry *) lfirst(lc);
+
+        if (strcmp(entry-&gt;funcname, fname) != 0)
+            continue;
+
+        /* check argument count and type compatibility */
+        if (!matchWithFuncArgs(entry, nargs, argtypes, fargnames,
+                               true_typeids, argdefaults))
+            continue;
+
+        *funcid  = (Oid) entry-&gt;funcindex;
+        *rettype = entry-&gt;rettype;
+        *retset  = false;
+        *nvargs  = 0;
+        *vatype  = InvalidOid;
+        *pfunc   = NULL;
+
+        return entry-&gt;is_proc ? FUNCDETAIL_PROCEDURE : FUNCDETAIL_NORMAL;
+    }
+
+    return FUNCDETAIL_NOTFOUND;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="executor-design"><a class="anchor" href="#executor-design"></a>2.5. Executor Design</h3>
+<div class="sect3">
+<h4 id="execinitfunc-extension"><a class="anchor" href="#execinitfunc-extension"></a>2.5.1. ExecInitFunc Extension</h4>
+<div class="paragraph">
+<p><code>FUNC_FROM_WITH_CLAUSE</code> is recognized in <code>execExpr.c</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* execExpr.c */
+if (funcexpr-&gt;function_from == FUNC_FROM_WITH_CLAUSE)
+{
+    scratch-&gt;d.func.finfo     = palloc0(sizeof(FmgrInfo));
+    scratch-&gt;d.func.fcinfo_data = palloc0(SizeForFunctionCallInfo(nargs));
+    flinfo = scratch-&gt;d.func.finfo;
+    fcinfo = scratch-&gt;d.func.fcinfo_data;
+
+    /* use the dedicated dispatch function */
+    flinfo-&gt;fn_addr = plisql_with_func_call_handler;
+    flinfo-&gt;fn_oid  = funcid;
+
+    /* fn_extra stores the EState pointer */
+    flinfo-&gt;fn_extra = state-&gt;parent-&gt;state;
+
+    fmgr_info_set_expr((Node *) node, flinfo);
+    InitFunctionCallInfoData(*fcinfo, flinfo, nargs, inputcollid, NULL, NULL);
+    scratch-&gt;d.func.fn_addr = flinfo-&gt;fn_addr;
+    scratch-&gt;d.func.nargs   = nargs;
+    return;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="runtime-dispatch-function"><a class="anchor" href="#runtime-dispatch-function"></a>2.5.2. Runtime Dispatch Function</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* pl_handler.c */
+Datum
+plisql_with_func_call_handler(PG_FUNCTION_ARGS)
+{
+    EState     *estate = (EState *) fcinfo-&gt;flinfo-&gt;fn_extra;
+    int         funcindex = (int) fcinfo-&gt;flinfo-&gt;fn_oid;
+    WithFuncContainer *container;
+
+    /* lazy load: compile all WITH functions on first call */
+    if (estate-&gt;es_with_func_container == NULL)
+        estate-&gt;es_with_func_container = buildWithFuncContainer(estate);
+
+    container = estate-&gt;es_with_func_container;
+
+    Assert(funcindex &gt;= 0 &amp;&amp; funcindex &lt; container-&gt;nfuncs);
+    subprocfunc = container-&gt;funcs[funcindex];
+
+    return execWithFunction(subprocfunc, fcinfo);
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="withfunccontainer-compilation"><a class="anchor" href="#withfunccontainer-compilation"></a>2.5.3. WithFuncContainer Compilation</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* pl_handler.c */
+WithFuncContainer *
+buildWithFuncContainer(EState *estate)
+{
+    PlannedStmt     *pstmt    = estate-&gt;es_plannedstmt;
+    MemoryContext    oldcxt   = MemoryContextSwitchTo(estate-&gt;es_query_cxt);
+    WithFuncContainer *container;
+    int             nfuncs, i;
+    ListCell        *lc;
+
+    nfuncs = list_length(pstmt-&gt;withFuncDefs);
+    container = palloc0(sizeof(WithFuncContainer));
+    container-&gt;nfuncs = nfuncs;
+    container-&gt;funcs  = palloc0(nfuncs * sizeof(PLiSQL_subproc_function *));
+    container-&gt;mcxt   = CurrentMemoryContext;
+
+    /* establish a shared compilation context to support cross-function calls */
+    plisql_push_subproc_func();
+    plisql_start_subproc_func();
+
+    /* Pass 1: register all function signatures */
+    i = 0;
+    foreach(lc, pstmt-&gt;withFuncDefs)
+    {
+        InlineFunctionDef *ifd = (InlineFunctionDef *) lfirst(lc);
+        List *argitems = buildArgItemsFromFuncParams(ifd-&gt;args);
+        PLiSQL_type *rettype = ifd-&gt;rettype ?
+            buildPLiSQLType(ifd-&gt;rettype) : NULL;
+
+        PLiSQL_subproc_function *subprocfunc =
+            plisql_build_subproc_function(ifd-&gt;funcname, argitems,
+                                          rettype, ifd-&gt;location);
+        subprocfunc-&gt;is_proc = ifd-&gt;is_proc;
+        subprocfunc-&gt;src     = ifd-&gt;src;
+
+        container-&gt;funcs[i++] = subprocfunc;
+    }
+
+    /* Pass 2: compile each function body */
+    i = 0;
+    foreach(lc, pstmt-&gt;withFuncDefs)
+    {
+        InlineFunctionDef *ifd = (InlineFunctionDef *) lfirst(lc);
+        PLiSQL_subproc_function *subprocfunc = container-&gt;funcs[i++];
+
+        PLiSQL_stmt_block *action =
+            compileWithFuncBody(ifd-&gt;src, subprocfunc);
+
+        plisql_set_subprocfunc_action(subprocfunc, action);
+    }
+
+    plisql_pop_subproc_func();
+
+    MemoryContextSwitchTo(oldcxt);
+    return container;
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="memory-lifecycle"><a class="anchor" href="#memory-lifecycle"></a>2.6. Memory Lifecycle</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SQL text parsing phase
+  ├── InlineFunctionDef nodes
+  │     Lifetime: same as the parse tree (ParseState.p_mem_cxt)
+  └── WithFuncEntry list
+        Lifetime: same as ParseState
+
+Query analysis phase
+  └── Query.withFuncDefs  (InlineFunctionDef list, pointer copy)
+        Lifetime: same as Query
+
+Planning phase
+  └── PlannedStmt.withFuncDefs  (same)
+        Lifetime: same as PlannedStmt (may be held by plancache)
+
+Execution phase
+  ├── EState.es_with_func_container  (WithFuncContainer)
+  │     Memory context: estate-&gt;es_query_cxt
+  │     Lifetime: bound to EState, freed at ExecutorEnd()
+  ├── PLiSQL_subproc_function array
+  │     Lifetime: same as WithFuncContainer
+  └── PLiSQL_function  (compilation result)
+        Lifetime: freed when query execution ends</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="key-design-principles"><a class="anchor" href="#key-design-principles"></a>2.7. Key Design Principles</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Reuse OraBody_FUNC</strong>: The Oracle parser&#8217;s existing
+<code>set_oracle_plsql_body(OraBody_FUNC)</code> mechanism is reused directly; no changes to
+the lexer are needed.</p>
+</li>
+<li>
+<p><strong>No system catalog writes</strong>: Compiled results are stored locally in EState, not
+written to <code>pg_proc</code>, generate no WAL, and are freed automatically at transaction end.</p>
+</li>
+<li>
+<p><strong>Deferred compilation</strong>: Function bodies are compiled during executor initialization
+(<code>ExecInitFunc</code>), not during parsing or planning. This avoids lifecycle issues that
+would arise from storing compiled pointers inside Plan nodes (which may be cached).</p>
+</li>
+<li>
+<p><strong>Isolated from PG_PARSER</strong>: All new logic is guarded by
+<code>compatible_db == ORA_PARSER</code>; the standard PostgreSQL parser path is unaffected.</p>
+</li>
+<li>
+<p><strong>Two-pass compilation</strong>: A two-pass design supports mutual calls between functions
+(Pass 1 registers all signatures; Pass 2 compiles each function body).</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cross-function-calls"><a class="anchor" href="#cross-function-calls"></a>2.8. Cross-Function Calls</h3>
+<div class="paragraph">
+<p>Thanks to the two-pass compilation design, <strong>the declaration order of functions inside
+the WITH clause does not matter</strong>: A can call B even if B is defined after A, and vice
+versa. No Oracle PL/SQL-style explicit forward declarations are required.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Cross-function call example
+WITH
+  FUNCTION mul2(n NUMBER) RETURN NUMBER AS BEGIN RETURN n*2; END;
+  FUNCTION add1(n NUMBER) RETURN NUMBER AS BEGIN RETURN n+1; END;
+SELECT mul2(add1(3)) FROM dual;  -- add1 is defined second, but mul2 can call it</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="explain-output"><a class="anchor" href="#explain-output"></a>2.9. EXPLAIN Output</h3>
+<div class="sect3">
+<h4 id="basic-output"><a class="anchor" href="#basic-output"></a>2.9.1. Basic Output</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">EXPLAIN WITH
+  FUNCTION add_one(n NUMBER) RETURN NUMBER AS BEGIN RETURN n + 1; END;
+SELECT add_one(5) FROM dual;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output includes: <code>WITH Function: add_one(number) RETURN number</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="verbose-mode"><a class="anchor" href="#verbose-mode"></a>2.9.2. VERBOSE Mode</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">EXPLAIN (VERBOSE ON) WITH
+  FUNCTION double(n NUMBER) RETURN NUMBER AS
+  BEGIN RETURN n * 2; END;
+SELECT double(3) FROM dual;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Output includes: <code>Body: BEGIN RETURN n * 2; END</code></p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="error-handling"><a class="anchor" href="#error-handling"></a>2.10. Error Handling</h3>
+<div class="sect3">
+<h4 id="duplicate-definition"><a class="anchor" href="#duplicate-definition"></a>2.10.1. Duplicate Definition</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION dup(n NUMBER) RETURN NUMBER AS BEGIN RETURN n; END;
+  FUNCTION dup(n NUMBER) RETURN NUMBER AS BEGIN RETURN n * 2; END;
+SELECT dup(1) FROM dual;
+-- ERROR: WITH clause function "dup" is defined more than once with the same argument types</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rejection-in-pg_parser-mode"><a class="anchor" href="#rejection-in-pg_parser-mode"></a>2.10.2. Rejection in PG_PARSER Mode</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET compatible_db = PG_PARSER;
+WITH FUNCTION foo(n NUMBER) RETURN NUMBER AS BEGIN RETURN n; END;
+SELECT foo(1);
+-- ERROR: syntax error at or near "FUNCTION"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="function-body-compilation-error"><a class="anchor" href="#function-body-compilation-error"></a>2.10.3. Function Body Compilation Error</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION broken(n NUMBER) RETURN NUMBER AS
+  BEGIN
+    RETRUN n;  -- typo
+  END;
+SELECT broken(1) FROM dual;
+-- ERROR: syntax error at or near "RETRUN"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Error context: <code>while compiling WITH FUNCTION "broken_body"</code></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rejection-of-table-function-usage"><a class="anchor" href="#rejection-of-table-function-usage"></a>2.10.4. Rejection of Table Function Usage</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION get_rows(n NUMBER) RETURN NUMBER AS
+  BEGIN RETURN n; END;
+SELECT * FROM get_rows(5);
+-- ERROR: WITH clause function cannot be used as a table or set-returning function</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rejection-of-qualified-names"><a class="anchor" href="#rejection-of-qualified-names"></a>2.10.5. Rejection of Qualified Names</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION public.qual_func(n NUMBER) RETURN NUMBER IS
+  BEGIN RETURN n; END;
+SELECT qual_func(1) FROM dual;
+-- ERROR: qualified name is not allowed in WITH FUNCTION declaration</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="file-inventory"><a class="anchor" href="#file-inventory"></a>2.11. File Inventory</h3>
+<div class="sect3">
+<h4 id="new-files"><a class="anchor" href="#new-files"></a>2.11.1. New Files</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">File</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/oracle_parser/ora_with_function.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">WITH function runtime logic stub</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/parser/parse_with_plsql.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformWithFuncDefs</code>, <code>withFuncLookupHook</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/include/oracle_parser/ora_with_function.h</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Header: <code>WithFuncEntry</code>, <code>WithFuncContainer</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/oracle_test/regress/sql/with_function.sql</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Regression tests (32 test cases)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/oracle_test/regress/expected/with_function.out</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Expected output for regression tests</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="modified-existing-files"><a class="anchor" href="#modified-existing-files"></a>2.11.2. Modified Existing Files</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">File</th>
+<th class="tableblock halign-left valign-top">Changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/include/nodes/parsenodes.h</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add <code>InlineFunctionDef</code>; extend <code>WithClause.plsql_defs</code> and <code>Query.withFuncDefs</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/include/nodes/plannodes.h</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extend <code>PlannedStmt.withFuncDefs</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/include/nodes/primnodes.h</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add <code>FUNC_FROM_WITH_CLAUSE = 'w'</code>; update <code>FUNC_EXPR_FROM_PG_PROC</code> macro</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/include/nodes/execnodes.h</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extend <code>EState.es_with_func_container</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/include/parser/parse_node.h</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extend <code>ParseState.p_with_func_list</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/oracle_parser/ora_gram.y</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extend <code>with_clause</code>; add <code>plsql_declarations</code> / <code>plsql_declaration</code> productions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/parser/parse_cte.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>transformWithClause()</code> calls <code>transformWithFuncDefs</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/parser/parse_func.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FuncExpr tagging logic; default-argument sync; <code>FUNC_MAX_ARGS</code> boundary check</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/parser/analyze.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Propagate <code>withFuncDefs</code> into Query node</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/optimizer/plan/planner.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Propagate <code>withFuncDefs</code> into PlannedStmt</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/optimizer/plan/setrefs.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Skip reference resolution for WITH-clause functions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/executor/execExpr.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ExecInitFunc()</code> handles WITH functions; three-level EState lookup chain</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/executor/execSRF.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>init_sexpr</code> early-rejects WITH functions (cannot be used as table/SRF)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/executor/execTuples.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Explicitly exclude <code>FUNC_FROM_WITH_CLAUSE</code> from subproc return-type change path</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/utils/fmgr/funcapi.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>get_internal_function_result_type</code> early-rejects WITH functions</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/commands/explain.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EXPLAIN output: <code>WITH Function:</code> / <code>WITH Procedure:</code> signatures; VERBOSE Body output</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/backend/commands/explain.c</code> (MERGE path)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>IvytransformMergeStmt</code> sets <code>qry&#8594;withFuncDefs</code> (fixes T16 MERGE crash)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/pl/plisql/src/pl_handler.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>buildWithFuncContainer</code>, <code>plisql_get_with_func</code>, <code>buildParamListForFunc</code> (typmod fix),
+  WITH-function compile error callback</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/pl/plisql/src/pl_comp.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>plisql_parser_setup</code> gates <code>p_with_func_list</code> exposure via <code>is_with_clause_func</code> flag
+  (prevents scope leakage)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/pl/plisql/src/plisql.h</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Add <code>PLiSQL_function.is_with_clause_func</code> field</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>src/oracle_fe_utils/ora_psqlscan.l</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">psql client scanner: recognize <code>WITH FUNCTION/PROCEDURE</code> and <code>EXPLAIN WITH &#8230;&#8203;</code>;
+  handle labeled END; handle nested BEGIN</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="automatically-generated-node-infrastructure-files"><a class="anchor" href="#automatically-generated-node-infrastructure-files"></a>2.12. Automatically Generated Node Infrastructure Files</h3>
+<div class="paragraph">
+<p>PostgreSQL 16+ introduced a node-infrastructure code generator
+(<code>src/backend/nodes/gen_node_support.pl</code>). After the <code>InlineFunctionDef</code> node is added
+to the header, the build system automatically regenerates:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Auto-generated File</th>
+<th class="tableblock halign-left valign-top">Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>copyfuncs.funcs.c</code> / <code>copyfuncs.switch.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_copyInlineFunctionDef</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>equalfuncs.funcs.c</code> / <code>equalfuncs.switch.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_equalInlineFunctionDef</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>outfuncs.funcs.c</code> / <code>outfuncs.switch.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_outInlineFunctionDef</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>readfuncs.funcs.c</code> / <code>readfuncs.switch.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_readInlineFunctionDef</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>nodetags.h</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>T_InlineFunctionDef = 498</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>queryjumblefuncs.funcs.c</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>_jumbleInlineFunctionDef</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage-examples"><a class="anchor" href="#usage-examples"></a>3. Usage Examples</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="simplest-inline-function"><a class="anchor" href="#simplest-inline-function"></a>3.1. Simplest Inline Function</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION double_it(n NUMBER) RETURN NUMBER AS
+  BEGIN RETURN n * 2; END;
+SELECT double_it(5) FROM dual;
+-- Output: 10</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="function-mixed-with-a-cte"><a class="anchor" href="#function-mixed-with-a-cte"></a>3.2. Function Mixed with a CTE</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION tax(amt NUMBER) RETURN NUMBER AS
+  BEGIN RETURN amt * 0.1; END;
+  orders AS (SELECT 100 AS amount)
+SELECT amount, tax(amount) FROM orders;
+-- Output: 100 | 10</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="multiple-inline-functions"><a class="anchor" href="#multiple-inline-functions"></a>3.3. Multiple Inline Functions</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION add1(n NUMBER) RETURN NUMBER AS BEGIN RETURN n+1; END;
+  FUNCTION mul2(n NUMBER) RETURN NUMBER AS BEGIN RETURN n*2; END;
+SELECT mul2(add1(3)) FROM dual;
+-- Output: 8</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="recursive-function"><a class="anchor" href="#recursive-function"></a>3.4. Recursive Function</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION factorial(n NUMBER) RETURN NUMBER AS
+  BEGIN
+    IF n &lt;= 1 THEN RETURN 1; END IF;
+    RETURN n * factorial(n-1);
+  END;
+SELECT factorial(5) FROM dual;
+-- Output: 120</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="integration-with-dml"><a class="anchor" href="#integration-with-dml"></a>3.5. Integration with DML</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Allowed: INSERT with inline function
+WITH
+  FUNCTION get_bonus(sal NUMBER) RETURN NUMBER AS
+  BEGIN RETURN sal * 1.2; END;
+INSERT INTO emp_bonus (empno, bonus)
+SELECT empno, get_bonus(sal) FROM emp WHERE deptno = 10;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Oracle does not allow WITH FUNCTION to precede UPDATE, DELETE, or MERGE.
+IvorySQL enforces the same restriction; such usage raises <code>ERRCODE_FEATURE_NOT_SUPPORTED</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="read_only_view.html">Read Only View</a></span>
+  <span class="next"><a href="create_index_online.html">ONLINE Parameter for CREATE INDEX</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

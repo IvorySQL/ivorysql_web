@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>WITH FUNCTION/PROCEDURE :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/oracle_compatibility/with_function_procedure.html">
+    <link rel="prev" href="compat_read_only_view.html">
+    <link rel="next" href="compat_create_index_online.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">快速上手</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">安装部署</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_read_only_view.html">20、视图只读</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_create_index_online.html">22、索引 ONLINE 参数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化与云服务</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">监控运维</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">数据迁移</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL开发者</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">索引 ONLINE 参数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">参考指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">常见问题解答</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>Oracle兼容功能</li>
+    <li><a href="with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/oracle_compatibility/with_function_procedure.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/oracle_compatibility/with_function_procedure.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">WITH FUNCTION/PROCEDURE</h1>
+<div class="sect1">
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本文档解释 IvorySQL 中 <code>WITH FUNCTION</code> 和 <code>WITH PROCEDURE</code> 的用途，实现 Oracle 风格的 SQL 内嵌 PL/SQL 函数和过程功能。</p>
+</div>
+<div class="paragraph">
+<p><code>WITH FUNCTION/PROCEDURE</code> 是 Oracle 数据库的 Subquery Factoring with PL/SQL Declarations 特性，允许在 SQL 的 WITH 子句（公共表表达式，CTE）中直接定义 PL/SQL 函数和过程。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="基本语法"><a class="anchor" href="#基本语法"></a>2.1. 基本语法</h3>
+<div class="paragraph">
+<p>在 Oracle 兼容模式（<code>compatible_db = ORA_PARSER</code>）下，WITH 子句支持以下扩展语法：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION func_name ( [ param_list ] ) RETURN return_type
+  { IS | AS }
+  [ declare_section ]
+  BEGIN
+      statements
+  END [ func_name ] ;
+
+  PROCEDURE proc_name ( [ param_list ] )
+  { IS | AS }
+  [ declare_section ]
+  BEGIN
+      statements
+  END [ proc_name ] ;
+
+  cte_name AS ( SELECT ... )
+SELECT ...</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="核心特性"><a class="anchor" href="#核心特性"></a>2.2. 核心特性</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>作用域限制</strong>：函数/过程在 WITH 子句中定义，作用域仅限于当前 SQL 语句</p>
+</li>
+<li>
+<p><strong>混合排列</strong>：函数/过程定义可与 CTE（AS (SELECT &#8230;&#8203;)）混合使用</p>
+</li>
+<li>
+<p><strong>完整 PL/SQL 语法</strong>：函数体支持完整的 PL/SQL 语法（BEGIN&#8230;&#8203;END）</p>
+</li>
+<li>
+<p><strong>不写入系统目录</strong>：执行结束后自动销毁，不持久化到 <code>pg_proc</code></p>
+</li>
+<li>
+<p><strong>仅 SELECT 上下文</strong>：适用于 SELECT 语句及 INSERT&#8230;&#8203;SELECT 语句；位于 UPDATE、DELETE、MERGE 之前时报错（与 Oracle 行为一致）</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="参数模式"><a class="anchor" href="#参数模式"></a>2.3. 参数模式</h3>
+<div class="paragraph">
+<p>内嵌过程支持标准 Oracle 参数模式：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>IN</code>（默认）：输入参数</p>
+</li>
+<li>
+<p><code>OUT</code>：输出参数</p>
+</li>
+<li>
+<p><code>IN OUT</code>：双向参数</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>内嵌函数仅支持`IN`类型输入参数。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="支持的语句类型"><a class="anchor" href="#支持的语句类型"></a>3. 支持的语句类型</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>WITH 内嵌函数/过程仅允许出现在以下顶层语句中：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>SELECT</code> 语句（最常见）</p>
+</li>
+<li>
+<p><code>INSERT &#8230;&#8203; SELECT</code> 语句（Oracle 兼容形式，WITH FUNCTION 位于 INSERT INTO 之后）</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>以下语句<strong>不支持</strong>（Oracle 不允许，报 <code>ERRCODE_FEATURE_NOT_SUPPORTED</code>）：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>WITH FUNCTION &#8230;&#8203; UPDATE &#8230;&#8203;</code>：WITH FUNCTION 不能位于 UPDATE 之前</p>
+</li>
+<li>
+<p><code>WITH FUNCTION &#8230;&#8203; DELETE &#8230;&#8203;</code>：WITH FUNCTION 不能位于 DELETE 之前</p>
+</li>
+<li>
+<p><code>WITH FUNCTION &#8230;&#8203; MERGE &#8230;&#8203;</code>：WITH FUNCTION 不能位于 MERGE 之前</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如需在 DML 中使用可复用逻辑，应定义 schema 级别的函数（<code>CREATE FUNCTION</code>）。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="语法示例"><a class="anchor" href="#语法示例"></a>4. 语法示例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="最简单的内嵌函数"><a class="anchor" href="#最简单的内嵌函数"></a>4.1. 最简单的内嵌函数</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION double_it(n NUMBER) RETURN NUMBER AS
+  BEGIN RETURN n * 2; END;
+SELECT double_it(5) FROM dual;
+-- 期望输出：10</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="函数与-cte-混合"><a class="anchor" href="#函数与-cte-混合"></a>4.2. 函数与 CTE 混合</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION tax(amt NUMBER) RETURN NUMBER AS
+  BEGIN RETURN amt * 0.1; END;
+  orders AS (SELECT 100 AS amount)
+SELECT amount, tax(amount) FROM orders;
+-- 期望输出：100 | 10</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="多个内嵌函数"><a class="anchor" href="#多个内嵌函数"></a>4.3. 多个内嵌函数</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION add1(n NUMBER) RETURN NUMBER AS BEGIN RETURN n+1; END;
+  FUNCTION mul2(n NUMBER) RETURN NUMBER AS BEGIN RETURN n*2; END;
+SELECT mul2(add1(3)) FROM dual;
+-- 期望输出：8</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="递归函数"><a class="anchor" href="#递归函数"></a>4.4. 递归函数</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION factorial(n NUMBER) RETURN NUMBER AS
+  BEGIN
+    IF n &lt;= 1 THEN RETURN 1; END IF;
+    RETURN n * factorial(n-1);
+  END;
+SELECT factorial(5) FROM dual;
+-- 期望输出：120</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="out-参数仅限-procedure"><a class="anchor" href="#out-参数仅限-procedure"></a>4.5. OUT 参数（仅限 PROCEDURE）</h3>
+<div class="paragraph">
+<p>WITH FUNCTION 不允许声明 <code>OUT</code> / <code>IN OUT</code> 参数（与 Oracle ORA-06572 行为一致）；
+仅 WITH PROCEDURE 允许 <code>OUT</code> / <code>IN OUT</code> 参数。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 正确：PROCEDURE 可声明 OUT 参数
+WITH
+  PROCEDURE swap(val IN NUMBER, result OUT NUMBER) AS
+  BEGIN
+    result := val * 10;
+  END;
+SELECT 1 FROM dual;  -- 过程由同一 WITH 块内的其他子程序调用，不直接出现在 SELECT 表达式中
+
+-- 错误：FUNCTION 不允许 OUT 参数
+WITH
+  FUNCTION bad_func(val NUMBER, result OUT NUMBER) RETURN NUMBER AS
+  BEGIN RETURN val; END;
+SELECT bad_func(5) FROM dual;
+-- 期望输出：ERROR: WITH FUNCTION "bad_func" cannot declare OUT or IN OUT parameters</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="默认参数值"><a class="anchor" href="#默认参数值"></a>4.6. 默认参数值</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION calc(n NUMBER DEFAULT 10) RETURN NUMBER AS
+  BEGIN RETURN n * 2; END;
+SELECT calc() FROM dual;
+-- 期望输出：20</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="异常处理"><a class="anchor" href="#异常处理"></a>4.7. 异常处理</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION safe_div(a NUMBER, b NUMBER) RETURN NUMBER AS
+  BEGIN
+    RETURN a / b;
+  EXCEPTION
+    WHEN OTHERS THEN RETURN NULL;
+  END;
+SELECT safe_div(1, 0) FROM dual;
+-- 期望输出：NULL</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="与-dml-集成"><a class="anchor" href="#与-dml-集成"></a>4.8. 与 DML 集成</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 允许：INSERT INTO ... WITH FUNCTION ... SELECT ...（Oracle 兼容形式）
+WITH
+  FUNCTION get_bonus(sal NUMBER) RETURN NUMBER AS
+  BEGIN RETURN sal * 1.2; END;
+INSERT INTO emp_bonus (empno, bonus)
+SELECT empno, get_bonus(sal) FROM emp WHERE deptno = 10;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Oracle 不允许 WITH FUNCTION 位于 UPDATE、DELETE、MERGE 之前。
+IvorySQL 遵循相同限制，此类用法会报 <code>ERRCODE_FEATURE_NOT_SUPPORTED</code> 错误。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="作用域与可见性"><a class="anchor" href="#作用域与可见性"></a>5. 作用域与可见性</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="作用域规则"><a class="anchor" href="#作用域规则"></a>5.1. 作用域规则</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>内嵌函数/过程的作用域仅限当前 SQL 语句（及其子查询）</p>
+</li>
+<li>
+<p>函数/过程可相互引用（前向声明后定义，支持互递归）</p>
+</li>
+<li>
+<p>函数/过程不能与当前数据库中已有的同名同签名函数冲突（WITH 定义优先）</p>
+</li>
+<li>
+<p>同一 WITH 子句中不允许定义同名、同参数类型的函数/过程</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="子查询中可见"><a class="anchor" href="#子查询中可见"></a>5.2. 子查询中可见</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION add_tax(n NUMBER) RETURN NUMBER AS
+  BEGIN RETURN n * 1.1; END;
+SELECT * FROM (SELECT add_tax(amount) AS total FROM orders);</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="与现有功能的关系"><a class="anchor" href="#与现有功能的关系"></a>6. 与现有功能的关系</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>| 现有功能 | 关系 |
+|---------|------|
+| PL/iSQL 嵌套子程序 | 直接复用：利用现有编译/执行基础设施 |
+| 标准 CTE（WITH&#8230;&#8203;AS (SELECT &#8230;&#8203;)） | 共存：在同一 WITH 子句中混用 |
+| <code>RECURSIVE</code> CTE | 共存：WITH RECURSIVE 与内嵌函数可同时使用 |
+| Oracle Package | 类似：Package 的过程/函数也是 session 级临时注册 |
+| PL/iSQL <code>CREATE FUNCTION</code> | 不同：WITH 内嵌函数不持久化，不写入系统目录 |</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="错误处理"><a class="anchor" href="#错误处理"></a>7. 错误处理</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="重复定义"><a class="anchor" href="#重复定义"></a>7.1. 重复定义</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION dup(n NUMBER) RETURN NUMBER AS BEGIN RETURN n; END;
+  FUNCTION dup(n NUMBER) RETURN NUMBER AS BEGIN RETURN n * 2; END;
+SELECT dup(1) FROM dual;
+-- 期望输出：ERROR: WITH clause function "dup" is defined more than once with the same argument types</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="在-pg_parser-模式下使用"><a class="anchor" href="#在-pg_parser-模式下使用"></a>7.2. 在 PG_PARSER 模式下使用</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 在 PG_PARSER 模式下尝试使用 WITH FUNCTION 语法
+SET compatible_db = PG_PARSER;
+WITH FUNCTION foo(n NUMBER) RETURN NUMBER AS BEGIN RETURN n; END;
+SELECT foo(1);
+-- 期望输出：ERROR: syntax error at or near "FUNCTION"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="函数体语法错误"><a class="anchor" href="#函数体语法错误"></a>7.3. 函数体语法错误</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION broken(n NUMBER) RETURN NUMBER AS
+  BEGIN
+    RETRUN n;  -- 拼写错误
+  END;
+SELECT broken(1) FROM dual;
+-- 期望输出：ERROR: syntax error at or near "RETRUN"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="表函数用法拒绝"><a class="anchor" href="#表函数用法拒绝"></a>7.4. 表函数用法拒绝</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION get_rows(n NUMBER) RETURN NUMBER AS
+  BEGIN RETURN n; END;
+SELECT * FROM get_rows(5);
+-- 期望输出：ERROR: WITH clause function cannot be used as a table or set-returning function</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="限定名拒绝"><a class="anchor" href="#限定名拒绝"></a>7.5. 限定名拒绝</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">WITH
+  FUNCTION public.qual_func(n NUMBER) RETURN NUMBER IS
+  BEGIN RETURN n; END;
+SELECT qual_func(1) FROM dual;
+-- 期望输出：ERROR: qualified name is not allowed in WITH FUNCTION declaration</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="explain-输出"><a class="anchor" href="#explain-输出"></a>8. EXPLAIN 输出</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="基本输出"><a class="anchor" href="#基本输出"></a>8.1. 基本输出</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">EXPLAIN WITH
+  FUNCTION add_one(n NUMBER) RETURN NUMBER AS BEGIN RETURN n + 1; END;
+SELECT add_one(5) FROM dual;
+-- 期望输出包含：WITH Function: add_one(number) RETURN number</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="verbose-模式"><a class="anchor" href="#verbose-模式"></a>8.2. VERBOSE 模式</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">EXPLAIN (VERBOSE ON) WITH
+  FUNCTION double(n NUMBER) RETURN NUMBER AS
+  BEGIN RETURN n * 2; END;
+SELECT double(3) FROM dual;
+-- 期望输出包含：Body: BEGIN RETURN n * 2; END</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="限制与约束"><a class="anchor" href="#限制与约束"></a>9. 限制与约束</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>仅 Oracle 解析器模式</strong>：该特性仅在 <code>compatible_db = ORA_PARSER</code> 时生效</p>
+</li>
+<li>
+<p><strong>不写入系统目录</strong>：内嵌函数/过程在语句执行期间动态注册，执行结束后撤销</p>
+</li>
+<li>
+<p><strong>事务安全</strong>：注册和撤销对事务完全透明，不产生 WAL 日志</p>
+</li>
+<li>
+<p><strong>并发安全</strong>：多个并发会话各自拥有独立的内嵌函数/过程注册上下文</p>
+</li>
+<li>
+<p><strong>作用域限制</strong>：内嵌函数不能在定义它的语句外部调用</p>
+</li>
+<li>
+<p><strong>不支持多态参数</strong>：声明 <code>ANYELEMENT</code> 等多态参数会在调用时失败</p>
+</li>
+<li>
+<p><strong>不支持表函数用法</strong>：<code>SELECT * FROM with_func(&#8230;&#8203;)</code> 会被拒绝</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="清理"><a class="anchor" href="#清理"></a>10. 清理</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- WITH FUNCTION/PROCEDURE 的作用域随语句结束自动清理
+-- 无需手动执行清理操作</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="compat_read_only_view.html">20、视图只读</a></span>
+  <span class="next"><a href="compat_create_index_online.html">22、索引 ONLINE 参数</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

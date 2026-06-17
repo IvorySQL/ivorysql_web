@@ -141,6 +141,12 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、视图只读</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、索引 ONLINE 参数</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -256,6 +262,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="redis_fdw.html">redis_fdw</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_show_plans.html">pg_show_plans</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -368,6 +377,12 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../compatibility_features_design/read_only_view.html">视图只读</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">索引 ONLINE 参数</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -435,6 +450,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
         </li>
         <li class="version">
           <a href="../../v5.3/welcome.html">v5.3</a>
@@ -645,6 +663,27 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">为 IvorySQL 提供图数据库处理能力，支持 openCypher 查询语言，实现关系型与图数据库的混合使用</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">社交网络分析、知识图谱、欺诈检测、推荐系统、路径规划</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">21</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_show_plans.html" class="xref page">pg_show_plans</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">显示当前所有正在运行的 SQL 语句的执行计划，支持 TEXT、JSON、YAML 等多种输出格式</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">查询性能诊断、实时执行计划监控、慢查询分析</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">22</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_bulkload.html" class="xref page">pg_bulkload</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.1.23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">为IvorySQL提供高速数据载入工具，可以跳过PG的共享缓存直接将数据导入表中</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">海量数据初始加载，历史数据归档，跨库迁移</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_bigm.html" class="xref page">pg_bigm</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">为 IvorySQL 提供二元分词全文检索能力，适配中日韩文本，快速实现模糊检索与相似度查询</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">中日韩文内容、商品、地址类文字搜索场景</p></td>
 </tr>
 </tbody>
 </table>

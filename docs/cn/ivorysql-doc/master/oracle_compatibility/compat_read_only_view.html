@@ -6,7 +6,7 @@
     <title>Read Only View :: IvorySQL文档中心</title>
     <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/oracle_compatibility/compat_read_only_view.html">
     <link rel="prev" href="compat_call_into.html">
-    <link rel="next" href="../containerization/k8s_deployment.html">
+    <link rel="next" href="with_function_procedure.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -141,6 +141,12 @@
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="compat_read_only_view.html">20、视图只读</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_create_index_online.html">22、索引 ONLINE 参数</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -256,6 +262,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -368,6 +377,12 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../compatibility_features_design/read_only_view.html">视图只读</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">索引 ONLINE 参数</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -435,6 +450,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
         </li>
         <li class="version">
           <a href="../../v5.3/welcome.html">v5.3</a>
@@ -681,7 +699,7 @@ DROP TABLE IF EXISTS nonexistent_for_ro;</code></pre>
 </div>
 <nav class="pagination">
   <span class="prev"><a href="compat_call_into.html">19、CALL INTO</a></span>
-  <span class="next"><a href="../containerization/k8s_deployment.html">K8S部署</a></span>
+  <span class="next"><a href="with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a></span>
 </nav>
 </article>
   </div>

@@ -141,6 +141,12 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、Read Only View</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure_en.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、ONLINE Parameter for CREATE INDEX</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -256,6 +262,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="redis_fdw.html">redis_fdw</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_show_plans.html">pg_show_plans</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -370,6 +379,12 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../compatibility_features_design/read_only_view.html">Read Only View</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl_en.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">ONLINE Parameter for CREATE INDEX</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -420,6 +435,9 @@
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
         </li>
         <li class="version">
           <a href="../../v5.3/welcome.html">v5.3</a>
@@ -633,6 +651,27 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.7.0</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Provides graph database capabilities to IvorySQL, supports openCypher query language, enabling hybrid use of relational and graph databases</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Social network analysis, knowledge graphs, fraud detection, recommendation systems, route planning</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>21</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_show_plans.html" class="xref page">pg_show_plans</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2.1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Displays execution plans of all currently running SQL statements, supporting TEXT, JSON, and YAML output formats</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Query performance diagnosis, real-time execution plan monitoring, slow query analysis</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>22</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_bulkload.html" class="xref page">pg_bulkload</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.1.23</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Provides high-speed data loading tool for IvorySQL, which directly imports data into tables bypassing PostgreSQL shared buffers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">initial loading of massive data, historical data archiving and cross-database migration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>23</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_bigm.html" class="xref page">pg_bigm</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Equips IvorySQL with bigram full-text search capability, supporting Chinese, Japanese and Korean texts to implement fuzzy retrieval and similarity query efficiently</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">text search for articles, commodities and addresses in CJK languages</p></td>
 </tr>
 </tbody>
 </table>

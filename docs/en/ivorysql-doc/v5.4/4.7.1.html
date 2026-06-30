@@ -142,6 +142,15 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <span class="nav-text">OLAP Analytics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ivy_mooncake.html">ivy_mooncake</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Containerization and Cloud Service</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -396,6 +405,9 @@
         </li>
         <li class="version">
           <a href="../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../v1.23/v1.22/welcome.html">v1.23</a>
         </li>
         <li class="version">
           <a href="../v1.22/v1.22/welcome.html">v1.22</a>
@@ -875,6 +887,18 @@ nobody 55048 55047 0 Oct21 ?    00:00:00 nginx: worker process</pre>
 <h4 id="load-container-images"><a class="anchor" href="#load-container-images"></a>2.5.2. Load container images</h4>
 <div class="paragraph">
 <p>If your servers have direct access to Docker Hub, you can skip this step. Otherwise, preload the following images on every node in the Kubernetes cluster.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Users in China can pull the following images from the IvorySQL community Harbor registry by replacing the <code>docker.io/</code> prefix with <code>registry.highgo.com/</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="literalblock">
 <div class="content">

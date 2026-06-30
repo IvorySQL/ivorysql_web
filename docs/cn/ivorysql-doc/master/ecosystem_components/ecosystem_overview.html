@@ -147,6 +147,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、索引 ONLINE 参数</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG 函数</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -264,6 +267,21 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgdog.html">PgDog</a>
   </li>
 </ul>
   </li>
@@ -398,6 +416,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -465,6 +486,9 @@
         </li>
         <li class="version">
           <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.22/welcome.html">v1.23</a>
         </li>
         <li class="version">
           <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
@@ -684,6 +708,27 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">为 IvorySQL 提供二元分词全文检索能力，适配中日韩文本，快速实现模糊检索与相似度查询</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">中日韩文内容、商品、地址类文字搜索场景</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_profile.html" class="xref page">pg_profile</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">收集数据库资源密集型活动的统计，基于两次采样点的差量分析生成历史负载报告，帮助定位性能瓶颈</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">数据库性能分析</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">25</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_repack.html" class="xref page">pg_repack</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">在几乎不阻塞业务读写的情况下在线重整表和索引、消除存储膨胀，效果类似 VACUUM FULL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">表与索引在线重建、存储空间回收</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">26</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pgdog.html" class="xref page">PgDog</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.45</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">专为 PostgreSQL 设计的高性能、开源集群中间件（代理工具），采用 Rust 语言编写</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">自动分片、连接池和负载均衡功能</p></td>
 </tr>
 </tbody>
 </table>

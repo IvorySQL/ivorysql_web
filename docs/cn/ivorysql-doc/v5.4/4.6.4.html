@@ -142,6 +142,15 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <span class="nav-text">OLAP 分析</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ivy_mooncake.html">ivy_mooncake</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">容器化与云服务</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -413,6 +422,9 @@
           <a href="../v4.6/v4.6/welcome.html">v4.6</a>
         </li>
         <li class="version">
+          <a href="../v1.23/v1.22/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
           <a href="../v1.22/v1.22/welcome.html">v1.22</a>
         </li>
         <li class="version">
@@ -451,6 +463,24 @@
 </aside>
 <article class="doc">
 <h1 class="page">Docker &amp; Podman 部署IvorySQL</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>除 Docker Hub 外，IvorySQL 社区还为国内用户提供 Harbor 镜像服务。将本章节中的镜像地址前缀替换为 <code>registry.highgo.com/</code> 即可使用，例如 <code>registry.highgo.com/ivorysql/ivorysql:5.4-ubi8</code>。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="docker方式运行"><a class="anchor" href="#docker方式运行"></a>1. docker方式运行</h2>
 <div class="sectionbody">

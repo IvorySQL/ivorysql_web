@@ -147,6 +147,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、索引 ONLINE 参数</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG 函数</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -264,6 +267,21 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgdog.html">PgDog</a>
   </li>
 </ul>
   </li>
@@ -398,6 +416,9 @@
   <li class="nav-item" data-depth="4">
     <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
   </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="3">
@@ -465,6 +486,9 @@
         </li>
         <li class="version">
           <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.22/welcome.html">v1.23</a>
         </li>
         <li class="version">
           <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
@@ -945,6 +969,18 @@ nobody 55048 55047 0 10月21 ? 00:00:00 nginx: worker process</pre>
 <h4 id="load镜像"><a class="anchor" href="#load镜像"></a>2.5.2. load镜像</h4>
 <div class="paragraph">
 <p>如果服务器可以直接访问到docker hub,可以跳过该章节。否则需要在所有的K8S集群节点提前load 如下docker镜像</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+国内用户也可使用 IvorySQL 社区的 Harbor 镜像服务拉取以下镜像，将 <code>docker.io/</code> 替换为 <code>registry.highgo.com/</code> 即可。
+</td>
+</tr>
+</table>
 </div>
 <div class="literalblock">
 <div class="content">

@@ -147,6 +147,9 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、ONLINE Parameter for CREATE INDEX</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG function</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="1">
@@ -264,6 +267,21 @@
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgdog.html">PgDog</a>
   </li>
 </ul>
   </li>
@@ -400,6 +418,9 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
   </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
@@ -450,6 +471,9 @@
         </li>
         <li class="version">
           <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.22/welcome.html">v1.23</a>
         </li>
         <li class="version">
           <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
@@ -672,6 +696,27 @@
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.2</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Equips IvorySQL with bigram full-text search capability, supporting Chinese, Japanese and Korean texts to implement fuzzy retrieval and similarity query efficiently</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">text search for articles, commodities and addresses in CJK languages</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>24</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_profile.html" class="xref page">pg_profile</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.11</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Collects statistics on resource-intensive database activities and generates historic workload reports based on delta analysis between two sample points, helping identify performance bottlenecks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database performance analysis</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>25</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pg_repack.html" class="xref page">pg_repack</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5.3</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rebuilds tables and indexes online with minimal locking, eliminating storage bloat and achieving effects similar to VACUUM FULL</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Online table and index rebuild, storage bloat reclamation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>26</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="pgdog.html" class="xref page">PgDog</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.45</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">High-performance, open-source clustering middleware (proxy tool) designed specifically for PostgreSQL and written in Rust</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Connection pooler, load balancer, distributed database.</p></td>
 </tr>
 </tbody>
 </table>

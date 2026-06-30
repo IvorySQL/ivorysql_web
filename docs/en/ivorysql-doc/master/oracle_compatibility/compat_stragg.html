@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>STRAGG Aggregate Function :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/oracle_compatibility/compat_stragg.html">
+    <link rel="prev" href="compat_create_index_online.html">
+    <link rel="next" href="../containerization/k8s_deployment.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">About</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">Release</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Get Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">Quick Start</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">Cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle Compatibility</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_case_conversion.html">1、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_like_operator.html">2、LIKE operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="anonymous_block.html">3、anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_function_procedure.html">4、functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="builtin_types_functions.html">5、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="port_ip.html">6、ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="xml_functions.html">7、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="package.html">9、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="invisible_column.html">10、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_rowid.html">11、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_out_parameter.html">12、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_type_rowtype.html">13、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_nls_parameter.html">14、NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_nested_function.html">16、Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_sys_guid.html">17、sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_empty_string_to_null.html">18、Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_read_only_view.html">20、Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="with_function_procedure_en.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_create_index_online.html">22、ONLINE Parameter for CREATE INDEX</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="compat_stragg.html">23、STRAGG function</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization and Cloud Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgdog.html">PgDog</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Monitor and O&amp;M</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">Maintenance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">Operation Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Migration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Developers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">Community contribution</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_parser.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/framework_design.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">Function and stored procedure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">Case Conversion</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl_en.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">ONLINE Parameter for CREATE INDEX</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Built-in Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../gb18030.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">Tool Reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.22/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">IvorySQL</a></li>
+    <li>Oracle Compatibility</li>
+    <li><a href="compat_stragg.html">23、STRAGG function</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/oracle_compatibility/compat_stragg.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/oracle_compatibility/compat_stragg.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">STRAGG Aggregate Function</h1>
+<div class="sect1">
+<h2 id="purpose"><a class="anchor" href="#purpose"></a>1. Purpose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document describes the <code>sys.stragg</code> aggregate function in IvorySQL, which
+concatenates multiple string values within a group into a single comma-separated string
+in a manner compatible with Oracle.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="functional-description"><a class="anchor" href="#functional-description"></a>2. Functional Description</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>sys.stragg(text)</code> is an aggregate function that joins all non-NULL text values within
+a group using a comma (<code>,</code>) as the separator.</p>
+</li>
+<li>
+<p>NULL values are silently ignored; they do not appear in the result and do not produce
+extra commas.</p>
+</li>
+<li>
+<p>When all values in a group are NULL, or when the group is an empty set, the function
+returns <code>NULL</code> (not an empty string).</p>
+</li>
+<li>
+<p>Output order is not guaranteed. To obtain a deterministic order, use an <code>ORDER BY</code>
+clause inside the aggregate call (a PostgreSQL aggregate extension).</p>
+</li>
+<li>
+<p>The function is defined in the <code>sys</code> schema and is available in both Oracle
+compatibility mode (don&#8217;t need sys prefix) and PG mode.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="syntax"><a class="anchor" href="#syntax"></a>3. Syntax</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">sys.stragg(expr [ORDER BY sort_expr [ASC | DESC] [, ...]])</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Parameter</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expr</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any expression that can be implicitly cast to <code>text</code>. NULL values are skipped.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ORDER BY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optional. Specifies the concatenation order within the group. If omitted, order is
+ indeterminate.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Return type: <code>text</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="test-cases"><a class="anchor" href="#test-cases"></a>4. Test Cases</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="test-environment-setup"><a class="anchor" href="#test-environment-setup"></a>4.1. Test Environment Setup</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE stragg_test (dept TEXT, name TEXT);
+INSERT INTO stragg_test VALUES ('HR', 'Alice');
+INSERT INTO stragg_test VALUES ('HR', 'Bob');
+INSERT INTO stragg_test VALUES ('HR', 'Carol');
+INSERT INTO stragg_test VALUES ('IT', 'Dave');
+INSERT INTO stragg_test VALUES ('IT', 'Eve');</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="basic-aggregation"><a class="anchor" href="#basic-aggregation"></a>4.2. Basic Aggregation</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Single-group aggregation with ORDER BY for deterministic output
+SELECT sys.stragg(name ORDER BY name) FROM stragg_test WHERE dept = 'HR';
+-- Expected: Alice,Bob,Carol
+
+-- Aggregation with GROUP BY, grouped by department
+SELECT dept, sys.stragg(name ORDER BY name)
+FROM stragg_test
+GROUP BY dept
+ORDER BY dept;
+-- Expected:
+--  HR | Alice,Bob,Carol
+--  IT | Dave,Eve</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="null-value-handling"><a class="anchor" href="#null-value-handling"></a>4.3. NULL Value Handling</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Insert a row with a NULL value
+INSERT INTO stragg_test VALUES ('HR', NULL);
+
+-- NULL is ignored; result is the same as without the NULL row
+SELECT sys.stragg(name ORDER BY name) FROM stragg_test WHERE dept = 'HR';
+-- Expected: Alice,Bob,Carol
+
+-- All-NULL input returns NULL
+SELECT sys.stragg(name) IS NULL FROM stragg_test WHERE name IS NULL;
+-- Expected: t</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="empty-set-handling"><a class="anchor" href="#empty-set-handling"></a>4.4. Empty Set Handling</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- No matching rows: returns NULL
+SELECT sys.stragg(name) IS NULL FROM stragg_test WHERE dept = 'NONE';
+-- Expected: t</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="single-value"><a class="anchor" href="#single-value"></a>4.5. Single Value</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Only one value in the group: result contains no comma
+SELECT sys.stragg(name) FROM stragg_test WHERE dept = 'IT' AND name = 'Dave';
+-- Expected: Dave</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="usage-in-pg-compatibility-mode"><a class="anchor" href="#usage-in-pg-compatibility-mode"></a>4.6. Usage in PG Compatibility Mode</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET ivorysql.compatible_mode = pg;
+SELECT sys.stragg(name ORDER BY name) FROM stragg_test WHERE dept = 'HR';
+-- Expected: Alice,Bob,Carol
+RESET ivorysql.compatible_mode;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="test-environment-cleanup"><a class="anchor" href="#test-environment-cleanup"></a>4.7. Test Environment Cleanup</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">DROP TABLE stragg_test;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="behavioral-differences-from-oracle"><a class="anchor" href="#behavioral-differences-from-oracle"></a>5. Behavioral Differences from Oracle</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Scenario</th>
+<th class="tableblock halign-left valign-top">Oracle STRAGG</th>
+<th class="tableblock halign-left valign-top">IvorySQL sys.stragg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Empty set</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NULL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NULL</code> (compatible)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">All-NULL group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NULL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NULL</code> (compatible)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NULL values</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignored</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ignored (compatible)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Concatenation order</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indeterminate</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Indeterminate; can be fixed with an <code>ORDER BY</code> clause</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ORDER BY</code> clause</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Not supported (no official syntax)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Supported (PostgreSQL aggregate extension syntax)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="comparison-with-listagg"><a class="anchor" href="#comparison-with-listagg"></a>6. Comparison with LISTAGG</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Feature</th>
+<th class="tableblock halign-left valign-top"><code>LISTAGG</code> (Oracle / IvorySQL)</th>
+<th class="tableblock halign-left valign-top"><code>STRAGG</code> (Oracle / IvorySQL)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Separator</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Any delimiter can be specified</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fixed comma</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ORDER BY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Specified via <code>WITHIN GROUP (ORDER BY &#8230;&#8203;)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Order not guaranteed; IvorySQL supports PostgreSQL aggregate <code>ORDER BY</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Result length limit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle enforces a 4000-byte limit (IvorySQL checks via <code>ora_listagg_check</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No limit</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Typical use case</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When precise control of delimiter and order is required</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quick concatenation; migration of legacy Oracle code</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="compat_create_index_online.html">22、ONLINE Parameter for CREATE INDEX</a></span>
+  <span class="next"><a href="../containerization/k8s_deployment.html">K8S deployment</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

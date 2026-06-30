@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>pg_repack :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pg_repack.html">
+    <link rel="prev" href="pg_profile.html">
+    <link rel="next" href="pgdog.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">快速上手</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">安装部署</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、索引 ONLINE 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG 函数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化与云服务</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgdog.html">PgDog</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">监控运维</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">数据迁移</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL开发者</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">索引 ONLINE 参数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">参考指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">常见问题解答</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.22/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>IvorySQL生态</li>
+    <li>生态组件适配</li>
+    <li><a href="pg_repack.html">pg_repack</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/ecosystem_components/pg_repack.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/ecosystem_components/pg_repack.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">pg_repack</h1>
+<div class="sect1">
+<h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>pg_repack 是 PostgreSQL 的一个扩展，用于在线重整表和索引、消除存储膨胀。它能达到与 <code>VACUUM FULL</code> 类似的效果，回收空间，但几乎不阻塞业务读写。</p>
+</div>
+<div class="paragraph">
+<p>IvorySQL 的 PG 模式和 Oracle 兼容模式都已经适配 pg_repack。</p>
+</div>
+<div class="paragraph">
+<p>项目地址：<a href="https://github.com/reorg/pg_repack" class="bare">https://github.com/reorg/pg_repack</a></p>
+</div>
+<div class="paragraph">
+<p>官方文档：<a href="https://reorg.github.io/pg_repack/" class="bare">https://reorg.github.io/pg_repack/</a></p>
+</div>
+<div class="paragraph">
+<p>开源协议：BSD-3-Clause License</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="原理"><a class="anchor" href="#原理"></a>2. 原理</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>VACUUM FULL 因没有"重写期间的并发变更捕获机制"，重写整表时全程持有 ACCESS EXCLUSIVE 锁，期间表不可读写，锁时长随表增大。pg_repack 通过"影子表 + 触发器 + 文件节点交换"把强锁压缩到首尾两个瞬间，从而支持在线重整。</p>
+</div>
+<div class="sect2">
+<h3 id="变更捕获与数据拷贝"><a class="anchor" href="#变更捕获与数据拷贝"></a>2.1. 变更捕获与数据拷贝</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>先在原表上安装行级触发器，把此后发生的 INSERT/UPDATE/DELETE 记入日志表（repack.log_&lt;oid&gt;）——这一步需短暂的 ACCESS EXCLUSIVE 锁以原子地装上触发器，装好即释放;</p>
+</li>
+<li>
+<p>创建与原表结构相同的影子表（repack.table_&lt;oid&gt;），在一致性 MVCC 快照下把原表数据批量拷入;此阶段只持 SHARE UPDATE EXCLUSIVE，原表照常读写;</p>
+</li>
+<li>
+<p>在影子表上重建索引，并回放日志，使影子表追平原表最新状态。</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="交换与清理"><a class="anchor" href="#交换与清理"></a>2.2. 交换与清理</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>取得短暂的 ACCESS EXCLUSIVE 锁，回放剩余日志后，在系统目录层面交换原表与影子表的物理文件节点（relfilenode），表的 OID 保持不变——交换是瞬时的;</p>
+</li>
+<li>
+<p>删除触发器、日志表，并删除影子表（此时它已指向旧堆，删除即回收旧物理文件）;最后对表执行 ANALYZE。</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>使用前提：目标表必须有主键或非空唯一键；操作过程中约需要两倍表大小的临时磁盘空间。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="安装启用"><a class="anchor" href="#安装启用"></a>3. 安装启用</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>环境中已经安装了 IvorySQL5 及以上版本。pg_repack 由两部分组成：服务端扩展（<code>pg_repack.so</code> 与 SQL 脚本）和客户端命令行工具 <code>pg_repack</code>。</p>
+</div>
+<div class="paragraph">
+<p>假设当前已安装 IvorySQL5，并且 pg_config 工具可用。</p>
+</div>
+<div class="sect2">
+<h3 id="源码安装"><a class="anchor" href="#源码安装"></a>3.1. 源码安装</h3>
+<div class="paragraph">
+<p>拉取 pg_repack 源码：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>git clone --branch ver_1.5.3 https://github.com/reorg/pg_repack.git</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>执行编译和安装：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>cd pg_repack
+make
+make install</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="创建扩展"><a class="anchor" href="#创建扩展"></a>3.2. 创建扩展</h3>
+<div class="literalblock">
+<div class="content">
+<pre>[ivorysql@localhost ivorysql]$ psql
+psql (18.0)
+Type "help" for help.
+
+ivorysql=# CREATE EXTENSION pg_repack;
+CREATE EXTENSION</pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p><code>CREATE EXTENSION pg_repack</code> 需要超级用户执行；客户端工具 <code>pg_repack</code> 默认也要求以超级用户身份连接运行。</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用流程"><a class="anchor" href="#使用流程"></a>4. 使用流程</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>pg_repack 通过命令行客户端驱动，连接参数与 psql 一致（<code>-h</code> 主机、<code>-p</code> 端口、<code>-U</code> 用户、<code>-d</code> 数据库，或使用 <code>PGHOST</code> / <code>PGPORT</code> / <code>PGUSER</code> 环境变量）。</p>
+</div>
+<div class="sect2">
+<h3 id="重整整个数据库中所有符合条件的表"><a class="anchor" href="#重整整个数据库中所有符合条件的表"></a>4.1. 重整整个数据库中所有符合条件的表</h3>
+<div class="literalblock">
+<div class="content">
+<pre>pg_repack -d ivorysql</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="重整指定表"><a class="anchor" href="#重整指定表"></a>4.2. 重整指定表</h3>
+<div class="paragraph">
+<p>推荐使用 schema.table 形式：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_repack -d ivorysql -t public.big_table</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="仅重建索引"><a class="anchor" href="#仅重建索引"></a>4.3. 仅重建索引</h3>
+<div class="literalblock">
+<div class="content">
+<pre>pg_repack -d ivorysql -t big_table --only-indexes    # 重建该表的全部索引
+pg_repack -d ivorysql -i public.big_table_idx        # 重建单个索引</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="预演模式"><a class="anchor" href="#预演模式"></a>4.4. 预演模式</h3>
+<div class="paragraph">
+<p>只显示将要执行的动作，不实际重整：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>pg_repack -d ivorysql -t big_table --dry-run</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="pg_profile.html">pg_profile</a></span>
+  <span class="next"><a href="pgdog.html">PgDog</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

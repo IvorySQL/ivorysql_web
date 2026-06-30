@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>STRAGG 聚合函数 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/oracle_compatibility/compat_stragg.html">
+    <link rel="prev" href="compat_create_index_online.html">
+    <link rel="next" href="../containerization/k8s_deployment.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">快速上手</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">安装部署</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_read_only_view.html">20、视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_create_index_online.html">22、索引 ONLINE 参数</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="compat_stragg.html">23、STRAGG 函数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化与云服务</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgdog.html">PgDog</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">监控运维</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">数据迁移</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL开发者</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">索引 ONLINE 参数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">参考指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">常见问题解答</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.22/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>Oracle兼容功能</li>
+    <li><a href="compat_stragg.html">23、STRAGG 函数</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/oracle_compatibility/compat_stragg.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/oracle_compatibility/compat_stragg.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">STRAGG 聚合函数</h1>
+<div class="sect1">
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本文档说明 IvorySQL 中 <code>sys.stragg</code> 聚合函数的功能，该函数以兼容 Oracle 的方式
+将组内多行字符串值拼接为一个逗号分隔的字符串。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><code>sys.stragg(text)</code> 是一个聚合函数，将同一分组中所有非 NULL 的文本值用逗号（<code>,</code>）连接。</p>
+</li>
+<li>
+<p>NULL 值被自动忽略，不出现在结果中，也不产生多余的逗号。</p>
+</li>
+<li>
+<p>分组内所有值均为 NULL 或分组为空集时，返回 <code>NULL</code>（而非空字符串）。</p>
+</li>
+<li>
+<p>不保证输出顺序；如需确定顺序，可在聚合调用中使用 <code>ORDER BY</code> 子句（PostgreSQL 扩展语法）。</p>
+</li>
+<li>
+<p>函数定义于 <code>sys</code> 模式，在 Oracle 兼容模式（不需要sys前缀）和 PG 模式下均可使用。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="语法"><a class="anchor" href="#语法"></a>3. 语法</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">sys.stragg(expr [ORDER BY sort_expr [ASC | DESC] [, ...]])</code></pre>
+</div>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">参数</th>
+<th class="tableblock halign-left valign-top">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>expr</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">任意可隐式转换为 <code>text</code> 的表达式；NULL 值将被跳过。</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ORDER BY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">可选，指定组内拼接顺序。省略时顺序不确定。</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>返回类型：<code>text</code></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="测试用例"><a class="anchor" href="#测试用例"></a>4. 测试用例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="测试环境准备"><a class="anchor" href="#测试环境准备"></a>4.1. 测试环境准备</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE stragg_test (dept TEXT, name TEXT);
+INSERT INTO stragg_test VALUES ('HR', 'Alice');
+INSERT INTO stragg_test VALUES ('HR', 'Bob');
+INSERT INTO stragg_test VALUES ('HR', 'Carol');
+INSERT INTO stragg_test VALUES ('IT', 'Dave');
+INSERT INTO stragg_test VALUES ('IT', 'Eve');</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="基础聚合"><a class="anchor" href="#基础聚合"></a>4.2. 基础聚合</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 单组聚合，使用 ORDER BY 保证结果确定
+SELECT sys.stragg(name ORDER BY name) FROM stragg_test WHERE dept = 'HR';
+-- 期望：Alice,Bob,Carol
+
+-- 配合 GROUP BY 按部门分组
+SELECT dept, sys.stragg(name ORDER BY name)
+FROM stragg_test
+GROUP BY dept
+ORDER BY dept;
+-- 期望：
+--  HR | Alice,Bob,Carol
+--  IT | Dave,Eve</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="null-值处理"><a class="anchor" href="#null-值处理"></a>4.3. NULL 值处理</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 插入一行 NULL 值
+INSERT INTO stragg_test VALUES ('HR', NULL);
+
+-- NULL 被忽略，结果与无 NULL 时相同
+SELECT sys.stragg(name ORDER BY name) FROM stragg_test WHERE dept = 'HR';
+-- 期望：Alice,Bob,Carol
+
+-- 所有值均为 NULL 时返回 NULL
+SELECT sys.stragg(name) IS NULL FROM stragg_test WHERE name IS NULL;
+-- 期望：t</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="空集处理"><a class="anchor" href="#空集处理"></a>4.4. 空集处理</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 无匹配行时返回 NULL
+SELECT sys.stragg(name) IS NULL FROM stragg_test WHERE dept = 'NONE';
+-- 期望：t</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="单值"><a class="anchor" href="#单值"></a>4.5. 单值</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 组内只有一个值时，结果中不含逗号
+SELECT sys.stragg(name) FROM stragg_test WHERE dept = 'IT' AND name = 'Dave';
+-- 期望：Dave</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="pg-兼容模式下使用"><a class="anchor" href="#pg-兼容模式下使用"></a>4.6. PG 兼容模式下使用</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET ivorysql.compatible_mode = pg;
+SELECT sys.stragg(name ORDER BY name) FROM stragg_test WHERE dept = 'HR';
+-- 期望：Alice,Bob,Carol
+RESET ivorysql.compatible_mode;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="测试环境清理"><a class="anchor" href="#测试环境清理"></a>4.7. 测试环境清理</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">DROP TABLE stragg_test;</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="与-oracle-的行为差异"><a class="anchor" href="#与-oracle-的行为差异"></a>5. 与 Oracle 的行为差异</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">场景</th>
+<th class="tableblock halign-left valign-top">Oracle STRAGG</th>
+<th class="tableblock halign-left valign-top">IvorySQL sys.stragg</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">空集</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NULL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NULL</code>（一致）</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">全 NULL 分组</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NULL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>NULL</code>（一致）</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NULL 值</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">忽略</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">忽略（一致）</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">拼接顺序</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不确定</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不确定；可用 <code>ORDER BY</code> 子句指定</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ORDER BY</code> 子句</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不支持（官方无此语法）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持（PostgreSQL 聚合扩展语法）</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="与-listagg-的比较"><a class="anchor" href="#与-listagg-的比较"></a>6. 与 LISTAGG 的比较</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">特性</th>
+<th class="tableblock halign-left valign-top"><code>LISTAGG</code>（Oracle / IvorySQL）</th>
+<th class="tableblock halign-left valign-top"><code>STRAGG</code>（Oracle / IvorySQL）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">分隔符</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">可指定任意分隔符</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">固定为逗号</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ORDER BY</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">通过 <code>WITHIN GROUP (ORDER BY &#8230;&#8203;)</code> 指定</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">不保证顺序（IvorySQL 支持 PostgreSQL 聚合 <code>ORDER BY</code>）</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">结果长度限制</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle 限制 4000 字节（IvorySQL 通过 <code>ora_listagg_check</code> 检查）</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">无限制</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用场景</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">需要精确控制分隔符和顺序的场合</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">快速拼接，历史遗留代码迁移</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="compat_create_index_online.html">22、索引 ONLINE 参数</a></span>
+  <span class="next"><a href="../containerization/k8s_deployment.html">K8S部署</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

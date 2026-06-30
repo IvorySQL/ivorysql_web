@@ -142,6 +142,15 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <span class="nav-text">OLAP Analytics</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ivy_mooncake.html">ivy_mooncake</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">Containerization and Cloud Service</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -398,6 +407,9 @@
           <a href="../v4.6/v4.6/welcome.html">v4.6</a>
         </li>
         <li class="version">
+          <a href="../v1.23/v1.22/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
           <a href="../v1.22/v1.22/welcome.html">v1.22</a>
         </li>
         <li class="version">
@@ -436,6 +448,24 @@
 </aside>
 <article class="doc">
 <h1 class="page">Docker &amp; Podman deployment IvorySQL</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>In addition to Docker Hub, the IvorySQL community also provides a Harbor registry for users in China. Replace the image prefix used in this chapter with <code>registry.highgo.com/</code>, e.g. <code>registry.highgo.com/ivorysql/ivorysql:5.4-ubi8</code>.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="running-ivorysql-in-docker"><a class="anchor" href="#running-ivorysql-in-docker"></a>1. Running IvorySQL in docker</h2>
 <div class="sectionbody">

@@ -142,6 +142,15 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
+    <span class="nav-text">OLAP 分析</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ivy_mooncake.html">ivy_mooncake</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
     <span class="nav-text">容器化与云服务</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
@@ -411,6 +420,9 @@
         </li>
         <li class="version">
           <a href="../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../v1.23/v1.22/welcome.html">v1.23</a>
         </li>
         <li class="version">
           <a href="../v1.22/v1.22/welcome.html">v1.22</a>
@@ -891,6 +903,18 @@ nobody 55048 55047 0 10月21 ? 00:00:00 nginx: worker process</pre>
 <h4 id="load镜像"><a class="anchor" href="#load镜像"></a>2.5.2. load镜像</h4>
 <div class="paragraph">
 <p>如果服务器可以直接访问到docker hub,可以跳过该章节。否则需要在所有的K8S集群节点提前load 如下docker镜像</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+国内用户也可使用 IvorySQL 社区的 Harbor 镜像服务拉取以下镜像，将 <code>docker.io/</code> 替换为 <code>registry.highgo.com/</code> 即可。
+</td>
+</tr>
+</table>
 </div>
 <div class="literalblock">
 <div class="content">

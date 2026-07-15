@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>pgBackRest :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pgbackrest.html">
+    <link rel="prev" href="zhparser.html">
+    <link rel="next" href="../getting-started/daily_monitoring.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">快速上手</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">安装部署</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、索引 ONLINE 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG 函数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化与云服务</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgdog.html">PgDog</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_readonly.html">pg_readonly</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="zhparser.html">zhparser</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="pgbackrest.html">pgBackRest</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">监控运维</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">数据迁移</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL开发者</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">索引 ONLINE 参数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">参考指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">常见问题解答</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.22/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>IvorySQL生态</li>
+    <li>生态组件适配</li>
+    <li><a href="pgbackrest.html">pgBackRest</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/ecosystem_components/pgbackrest.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/ecosystem_components/pgbackrest.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">pgBackRest</h1>
+<div class="sect1">
+<h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>pgBackRest 是一款可靠的 PostgreSQL 备份和恢复解决方案。其核心基于 PostgreSQL 的物理级备份（数据目录的文件）和WAL归档管理机制。特点是项目质量很高：100%测试覆盖、高质量编码、精简依赖。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+pgBackRest在 v2.48.0 版本引入了对 pg_control 文件的 CRC 校验，由于 IvorySQL 修改了 pg_control 文件布局，所以需要在 stanza 配置中使用 pg-version-force 选项指定 IvorySQL 对应的 PostgreSQL 版本。
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+pgBackRest 无需修改即可在 IvorySQL 5.x 下使用，但这仅是一个巧合，实际使用中仍建议增加 pg-version-force 选项。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>项目地址：<a href="https://github.com/pgbackrest/pgbackrest" class="bare">https://github.com/pgbackrest/pgbackrest</a></p>
+</div>
+<div class="paragraph">
+<p>版本：v2.58.0</p>
+</div>
+<div class="paragraph">
+<p>开源协议：MIT License</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="安装"><a class="anchor" href="#安装"></a>2. 安装</h2>
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+官网推荐从包管理器安装。
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+源码测试安装环境为 Ubuntu 26.04。
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="依赖"><a class="anchor" href="#依赖"></a>2.1. 依赖</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo apt update &amp;&amp; \
+sudo apt-get install python3-setuptools meson gcc \
+      libpq-dev libssl-dev libxml2-dev \
+      pkg-config liblz4-dev libzstd-dev \
+      libbz2-dev libz-dev libyaml-dev \
+      libssh2-1-dev</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="源码安装"><a class="anchor" href="#源码安装"></a>2.2. 源码安装</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ~
+mkdir -p build
+wget -q -O - \
+       https://github.com/pgbackrest/pgbackrest/archive/release/2.58.0.tar.gz | \
+       tar zx -C build
+meson setup build/pgbackrest build/pgbackrest-release-2.58.0
+ninja -C build/pgbackrest
+
+# 编译完成后，将在 build/src 路径下生成 pgbackrest 可执行文件
+./build/src/pgbackrest --version</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="验证安装"><a class="anchor" href="#验证安装"></a>2.3. 验证安装</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+pgBackRest本体只有一个可执行文件，使用时通过传入配置文件即可。本文仅作使用说明，无需额外安装步骤。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="配置"><a class="anchor" href="#配置"></a>3. 配置</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+pgBackRest 支持多备份仓库，详情参考：<a href="https://pgbackrest.org/user-guide.html#multi-repo" class="bare">https://pgbackrest.org/user-guide.html#multi-repo</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+本文演示中，PG数据库和备份仓库均在同一台主机上，备份仓库为本地文件。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>需要在两两处对进行配置：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">文件名</th>
+<th class="tableblock halign-left valign-top">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">postgresql.conf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">配置 <code>PostgreSQL</code> ，增加 <code>archive_command</code> ，使能 <code>WAL</code> 备份</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pgbackrest.conf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">对 <code>pgBackRest</code> 本身的配置，包括源数据库、备份仓库等的配置</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>在 <code>postgresql.conf</code> 末尾附加：</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+仅为示例，具体操作参考文档后续部分。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">port = 6551
+ivorysql.port = 6553
+listen_addresses = '127.0.0.1'
+unix_socket_directories = '/tmp/.pgbr_sock_1000_6551'
+archive_mode = on
+archive_command = '/path/to/pgbackrest --config=/path/to/pgbackrest.conf --stanza=ivory archive-push %p'
+log_min_messages = info</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>创建 <code>pgbackrest.conf</code> ：</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+仅为示例，具体操作参考文档后续部分。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">[global]
+# 配置了多个repos的话，WAL是全冗余、备份需要手动执行
+repo1-path=/tmp/pgbackrest_ivorysql/repo
+# 完整备份保留时间
+repo1-retention-full=9999
+# log文件
+log-path=/tmp/pgbackrest_ivorysql/log
+# console的loglevel
+log-level-console=info
+# 写入文件的loglevel
+log-level-file=detail
+# 不等下一个checkpoint
+start-fast=y
+
+[$STANZA]
+# 配置多个的pg的情况是primary+replica，编号不代表主备，自动识别
+pg1-path=/tmp/pgbackrest_ivorysql/pg1/data
+pg1-port=6551
+pg1-socket-path='/tmp/.pgbr_sock_1000_6551'
+pg-version-force=18</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用"><a class="anchor" href="#使用"></a>4. 使用</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="pgbackrest-命令"><a class="anchor" href="#pgbackrest-命令"></a>4.1. pgBackRest 命令</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 使用方式
+pgbackrest [选项] [命令]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>pgBackRest</code> 命令列表：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 增加或修改备份的注释，注释以JSON形式记录在backup.info文件
+annotate
+
+# 备份仓库中获取WAL段，PostgreSQL 通过 restore_command 调用。
+# 执行pgbackrest restore 时自动把它写进 postgresql.auto.conf：
+# "restore_command = 'pgbackrest --stanza=ivory archive-get %f "%p"'"
+archive-get
+
+# 向备份仓库存入WAL段，把 PostgreSQL 刚写完的 WAL 段推送到 pgbackrest 仓库。
+# 它和 archive-get 一进一出，构成 PITR 的基础。
+# 需要手动写入postgresql.conf: "archive_command = 'pgbackrest --stanza=ivory archive-push %p'"
+archive-push
+
+# 备份PG数据库，对整个数据目录做一次一致性备份并写入仓库。
+backup
+
+# 检查配置、核对仓库信息、归档链路测试（会执行pg_switch_wal）
+check
+
+# 删除超期的备份和不再需要的 WAL 归档
+expire
+
+# 显示帮助信息
+help
+
+# 获取备份的信息
+info
+
+# 用于调试，把仓库里的任意文件取出来写到 stdout 或本地文件。
+repo-get
+
+# 通过存储驱动列出仓库里的文件和目录
+repo-ls
+
+# 把仓库里的备份还原成可启动的数据目录，并自动配置好后续的 WAL 回放。
+restore
+
+# 运行多主机部署时的传输服务（TLS模式）：在主机间搬运备份数据。PG和Repo主机都要运行。
+server
+
+# pgBackRest server探活命令
+server-ping
+
+# 初始化命令：在仓库里为一套集群建立 stanza 的元数据骨架
+stanza-create
+
+# 删除stanza
+stanza-delete
+
+# 数据库大版本升级后，需要同步升级stanza
+stanza-upgrade
+
+# 不启动任何进程/服务，唯一的工作是删掉 stop 命令留下的停止文件，让 pgbackrest 操作恢复运行。
+start
+
+# 创建停止文件，backup、archive-push、expire、stanza-create/upgrade 及 remote 请求在启动时检测到该文件即拒绝。
+stop
+
+# 检查已存在的备份和 WAL 是否完好
+verify
+
+# 获取当前版本
+version</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>pgBackRest</code> 内部命令列表，这些命令不应该在生产场景下使用，可能导致数据损坏：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 以可读格式转储某次备份的 manifest
+manifest
+
+# 往仓库写文件（自动加密），repo-get 的反向
+repo-put
+
+# 删仓库文件/目录（--recurse）
+repo-rm</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="执行操作"><a class="anchor" href="#执行操作"></a>4.2. 执行操作</h3>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+由于操作过程较为复杂，为了便于测试，将命令进行参数化，并构造了辅助函数。下面的命令，请在同一终端回话内执行。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>变量准备：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 根据实际情况修改：IVORY_PG_VERSION_MAJOR、IVORY_BIN、PGBACKREST_BIN，其他可默认
+IVORY_PG_VERSION_MAJOR=18
+IVORY_BIN="/usr/local/ivorysql/bin"
+PGBACKREST_BIN="/home/lct/repos/pgbackrest/build/src/pgbackrest"
+TEST_BASE="/tmp/pgbackrest_ivorysql_regress"
+PG_PORT="6551"
+STANDBY_PORT="6552"
+ORA_PORT="6553"
+STANDBY_ORA_PORT="6554"
+DB_MODE="oracle"
+STANZA="ivory"
+
+PG1_DATA="$TEST_BASE/pg1/data"
+PG2_DATA="$TEST_BASE/pg2/data"
+REPO_PATH="$TEST_BASE/repo"
+# unix socket 路径有 107 字节上限，固定放在 /tmp 下的短目录
+SOCK_PATH="${SOCK_PATH:-/tmp/.pgbr_sock_$(id -u)_$PG_PORT}"
+LOG_PATH="$TEST_BASE/log"
+CONF="$TEST_BASE/pgbackrest.conf"
+RUN_LOG="$TEST_BASE/regression.log"
+TEST_DB="regress"
+RESTORE_POINT="pgb_regress_rp"
+
+sql()
+{
+    local port="$1" db="$2" query="$3"
+    "$IVORY_BIN/psql" -h "$SOCK_PATH" -p "$port" -d "$db" -U "$(id -un)" \
+        -v ON_ERROR_STOP=1 -Atc "$query" 2&gt;&gt;"$RUN_LOG"
+}
+switch_wal_and_wait()
+{
+    local wal i
+    # 先产生一条 WAL 记录，避免当前段为空时 pg_switch_wal() 空转（不会触发归档）
+    sql "$ORA_PORT" postgres "SELECT pg_create_restore_point('pgb_wal_sync')" &gt;/dev/null || return 1
+    wal=$(sql "$ORA_PORT" postgres "SELECT pg_walfile_name(pg_switch_wal())") || return 1
+    for i in $(seq 1 60); do
+        local archived
+        archived=$(sql "$ORA_PORT" postgres "SELECT last_archived_wal FROM pg_stat_archiver")
+        [[ -n "$archived" &amp;&amp; ! "$archived" &lt; "$wal" ]] &amp;&amp; return 0
+        sleep 1
+    done
+    return 1
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>执行前准备：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rm -rf "$SOCK_PATH"
+mkdir -p "$PG1_DATA" "$REPO_PATH" "$SOCK_PATH" "$LOG_PATH"
+chmod 700 "$PG1_DATA" "$SOCK_PATH"
+: &gt;"$RUN_LOG"
+export LD_LIBRARY_PATH="$(dirname "$IVORY_BIN")/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+# 确认一下版本
+${IVORY_BIN}/pg_ctl --version
+${PGBACKREST_BIN} --version</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>初始化主库及配置：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 初始化，使用oracle模式
+"$IVORY_BIN/initdb" -D "$PG1_DATA" -m "$DB_MODE" -E UTF8 --no-locale -A trust -U "$(id -un)"
+
+# 配置IvorySQL
+cat &gt;&gt;"$PG1_DATA/postgresql.conf" &lt;&lt;EOF
+
+# ---- pgbackrest 附加配置 ----
+port = $PG_PORT
+ivorysql.port = $ORA_PORT
+listen_addresses = '127.0.0.1'
+unix_socket_directories = '$SOCK_PATH'
+archive_mode = on
+archive_command = '$PGBACKREST_BIN --config=$CONF --stanza=$STANZA archive-push %p'
+log_min_messages = info
+EOF
+
+# 配置pgBackRest
+cat &gt;"$CONF" &lt;&lt;EOF
+[global]
+# 配置了多个repos的话，WAL是全冗余、备份需要手动执行
+# Path where backups and archive are stored.
+repo1-path=$REPO_PATH
+# 完整备份保留时间
+repo1-retention-full=9999
+# log文件
+log-path=$LOG_PATH
+# console的loglevel
+log-level-console=info
+# 写入文件的loglevel
+log-level-file=detail
+# 不等下一个checkpoint
+start-fast=y
+
+[$STANZA]
+# 配置多个的pg的情况是primary+replica，编号不代表主备，自动识别
+pg1-path=$PG1_DATA
+pg1-port=$PG_PORT
+pg1-socket-path=$SOCK_PATH
+pg-version-force=$IVORY_PG_VERSION_MAJOR
+EOF</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>pg-version-force=$IVORY_PG_VERSION_MAJOR</code> 在IvorySQL 5.x 下即使不设置也可以正常使用，但是这是由于一些列巧合导致的，所以仍建议确认这项被设置了。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>初始化数据：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 启动PG
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -l "$LOG_PATH/pg1.log" -w start
+
+# 初始化stanza
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" "stanza-create";
+
+# 检查配置
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" "check";
+
+# 创建数据
+sql "$ORA_PORT" "$TEST_DB" \
+  "CREATE TABLE t_ora(id number PRIMARY KEY, name varchar2(100));
+  INSERT INTO t_ora SELECT g, 'ora-' || g FROM generate_series(1, 1000) g;";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>全量备份：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" --type=full backup;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>差异备份：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 增加一千条
+
+sql "$ORA_PORT" "$TEST_DB" \
+  "INSERT INTO t_ora SELECT g, 'ora-' || g FROM generate_series(1001, 2000) g;";
+
+# 差异备份
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" --type=diff backup;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>增量备份：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 增加一千条
+sql "$ORA_PORT" "$TEST_DB" \
+  "INSERT INTO t_ora SELECT g, 'ora-' || g FROM generate_series(2001, 3000) g;";
+
+# 差异备份
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" --type=incr backup;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>看备份清单：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" info;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>预期能看到输出：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stanza: ivory
+    status: ok
+    cipher: none
+
+    db (current)
+        wal archive min/max (18): 000000010000000000000001/000000010000000000000007
+
+        full backup: 20260707-164512F
+            timestamp start/stop: 2026-07-07 16:45:12+08 / 2026-07-07 16:45:13+08
+            wal start/stop: 000000010000000000000003 / 000000010000000000000003
+            database size: 36.2MB, database backup size: 36.2MB
+            repo1: backup set size: 4.8MB, backup size: 4.8MB
+
+        diff backup: 20260707-164512F_20260707-164826D
+            timestamp start/stop: 2026-07-07 16:48:26+08 / 2026-07-07 16:48:27+08
+            wal start/stop: 000000010000000000000005 / 000000010000000000000005
+            database size: 36.3MB, database backup size: 496.3KB
+            repo1: backup set size: 4.8MB, backup size: 89.7KB
+            backup reference total: 1 full
+
+        incr backup: 20260707-164512F_20260707-165028I
+            timestamp start/stop: 2026-07-07 16:50:28+08 / 2026-07-07 16:50:29+08
+            wal start/stop: 000000010000000000000007 / 000000010000000000000007
+            database size: 36.3MB, database backup size: 272.3KB
+            repo1: backup set size: 4.8MB, backup size: 33.9KB
+            backup reference total: 1 full, 1 diff</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>备份仓库完整性校验：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" verify;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>会看到类似下面的输出：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">2026-07-07 16:54:01.819 P00   INFO: verify command begin 2.58.0: --config=/tmp/pgbackrest_ivorysql_regress/pgbackrest.conf --exec-id=3116367-e3fb70bf --log-level-console=info --log-level-file=detail --log-path=/tmp/pgbackrest_ivorysql_regress/log --repo1-path=/tmp/pgbackrest_ivorysql_regress/repo --stanza=ivory
+2026-07-07 16:54:02.100 P00   INFO: verify command end: completed successfully (283ms)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>全量恢复：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 保存当前md5，命令输出当前的值，例如：ae3361d0b4e8dadae6f7f7fffbfa54da
+sql "$ORA_PORT" "$TEST_DB" \
+  "SELECT md5(string_agg(id::text || ':' || name, ',' ORDER BY id)) FROM t_ora;";
+
+# 调用前面的函数，确保WAL归档，这里应该是正确备份时候的操作流程
+switch_wal_and_wait
+
+# 停止PG，并清空数据
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -w -t 60 -m fast stop
+find "$PG1_DATA" -mindepth 1 -delete
+
+# 执行全量恢复
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" restore;
+
+# 执行恢复后验证，这次的md5输出应该与上面的一致
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -l "$LOG_PATH/pg1.log" -w start
+sql "$ORA_PORT" "$TEST_DB" \
+  "SELECT md5(string_agg(id::text || ':' || name, ',' ORDER BY id)) FROM t_ora;";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>delta恢复，由于继续上面操作，md5保持一致：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 停止PG后模拟损坏情况
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -w -t 60 -m fast stop
+rm -f "$PG1_DATA/global/pg_control"
+
+# 执行delta恢复
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" --delta restore;
+
+# 验证，这次的md5输出应该与上面的一致
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -l "$LOG_PATH/pg1.log" -w start
+sql "$ORA_PORT" "$TEST_DB" \
+  "SELECT md5(string_agg(id::text || ':' || name, ',' ORDER BY id)) FROM t_ora;";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>恢复点回退，由于继续上面的操作，md5保持一致：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 创建还原点，输出类似：0/B00EAB8
+sql "$ORA_PORT" "$TEST_DB" \
+  "SELECT pg_create_restore_point('$RESTORE_POINT');";
+
+# 执行模拟的误操作
+sql "$ORA_PORT" "$TEST_DB" \
+  "DELETE FROM t_ora WHERE id &gt; 100;";
+
+# 执行恢复
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -w -t 60 -m fast stop
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" \
+  --delta --type=name --target="$RESTORE_POINT" \
+  --target-action=promote restore;
+
+# 验证，这次的md5输出应该与上面的一致
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -l "$LOG_PATH/pg1.log" -w start
+sql "$ORA_PORT" "$TEST_DB" \
+  "SELECT md5(string_agg(id::text || ':' || name, ',' ORDER BY id)) FROM t_ora;";</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="zhparser.html">zhparser</a></span>
+  <span class="next"><a href="../getting-started/daily_monitoring.html">日常监控</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

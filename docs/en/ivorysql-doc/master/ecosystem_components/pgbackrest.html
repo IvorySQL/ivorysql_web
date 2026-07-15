@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>pgBackRest :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pgbackrest.html">
+    <link rel="prev" href="zhparser_en.html">
+    <link rel="next" href="../getting-started/daily_monitoring.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">About</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">Release</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Get Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">Quick Start</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">Cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle Compatibility</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure_en.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、ONLINE Parameter for CREATE INDEX</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG function</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization and Cloud Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="ecosystem_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pgdog.html">PgDog</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="pg_readonly_en.html">pg_readonly</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="zhparser_en.html">zhparser</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="pgbackrest.html">pgBackRest</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Monitor and O&amp;M</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">Maintenance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">Operation Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Migration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Developers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">Developer</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/community_contribution_guide.html">Community contribution</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_parser.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/framework_design.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">Function and stored procedure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">Case Conversion</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl_en.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">ONLINE Parameter for CREATE INDEX</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Built-in Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../gb18030.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">Tool Reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.22/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Ecosystem</li>
+    <li>Eco Component Adaption</li>
+    <li><a href="pgbackrest.html">pgBackRest</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/ecosystem_components/pgbackrest.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/ecosystem_components/pgbackrest.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">pgBackRest</h1>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>1. Overview</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>pgBackRest is a reliable backup and restore solution for PostgreSQL. At its core, it is built on PostgreSQL physical-level backups (files in the data directory) and the WAL archive management mechanism. The project is notable for its high quality: 100% test coverage, high-quality code, and minimal dependencies.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+pgBackRest introduced a CRC check of the pg_control file in v2.48.0. Since IvorySQL modifies the pg_control file layout, the pg-version-force option must be used in the stanza configuration to specify the PostgreSQL version corresponding to IvorySQL.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+pgBackRest works with IvorySQL 5.x without modification, but this is merely a coincidence. In practice, it is still recommended to add the pg-version-force option.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Project URL: <a href="https://github.com/pgbackrest/pgbackrest" class="bare">https://github.com/pgbackrest/pgbackrest</a></p>
+</div>
+<div class="paragraph">
+<p>Version: v2.58.0</p>
+</div>
+<div class="paragraph">
+<p>License: MIT License</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installation"><a class="anchor" href="#installation"></a>2. Installation</h2>
+<div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The official website recommends installing from a package manager.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The source build was tested on Ubuntu 26.04.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="dependencies"><a class="anchor" href="#dependencies"></a>2.1. Dependencies</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">sudo apt update &amp;&amp; \
+sudo apt-get install python3-setuptools meson gcc \
+      libpq-dev libssl-dev libxml2-dev \
+      pkg-config liblz4-dev libzstd-dev \
+      libbz2-dev libz-dev libyaml-dev \
+      libssh2-1-dev</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="building-from-source"><a class="anchor" href="#building-from-source"></a>2.2. Building from Source</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">cd ~
+mkdir -p build
+wget -q -O - \
+       https://github.com/pgbackrest/pgbackrest/archive/release/2.58.0.tar.gz | \
+       tar zx -C build
+meson setup build/pgbackrest build/pgbackrest-release-2.58.0
+ninja -C build/pgbackrest
+
+# After compilation, the pgbackrest executable will be generated under build/src
+./build/src/pgbackrest --version</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="verifying-the-installation"><a class="anchor" href="#verifying-the-installation"></a>2.3. Verifying the Installation</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+pgBackRest itself is a single executable; simply pass in a configuration file when using it. This document is for usage instructions only — no additional installation steps are required.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="configuration"><a class="anchor" href="#configuration"></a>3. Configuration</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+pgBackRest supports multiple backup repositories. For details, see: <a href="https://pgbackrest.org/user-guide.html#multi-repo" class="bare">https://pgbackrest.org/user-guide.html#multi-repo</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+In the demonstration in this document, the PG database and the backup repository are on the same host, and the backup repository is a local file system.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Configuration is required in two places:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">File name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">postgresql.conf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configures <code>PostgreSQL</code>: add <code>archive_command</code> to enable <code>WAL</code> backup</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pgbackrest.conf</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration for <code>pgBackRest</code> itself, including the source database, backup repository, etc.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Append to the end of <code>postgresql.conf</code>:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is an example only; for actual steps, refer to the later sections of this document.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">port = 6551
+ivorysql.port = 6553
+listen_addresses = '127.0.0.1'
+unix_socket_directories = '/tmp/.pgbr_sock_1000_6551'
+archive_mode = on
+archive_command = '/path/to/pgbackrest --config=/path/to/pgbackrest.conf --stanza=ivory archive-push %p'
+log_min_messages = info</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Create <code>pgbackrest.conf</code>:</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+This is an example only; for actual steps, refer to the later sections of this document.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-conf hljs" data-lang="conf">[global]
+# With multiple repos configured, WAL is fully redundant and backups must be run manually
+repo1-path=/tmp/pgbackrest_ivorysql/repo
+# Retention period for full backups
+repo1-retention-full=9999
+# Log files
+log-path=/tmp/pgbackrest_ivorysql/log
+# Console log level
+log-level-console=info
+# Log level for the log file
+log-level-file=detail
+# Do not wait for the next checkpoint
+start-fast=y
+
+[$STANZA]
+# Configuring multiple pg entries is for primary+replica setups; the numbering does not indicate primary/standby roles, which are detected automatically
+pg1-path=/tmp/pgbackrest_ivorysql/pg1/data
+pg1-port=6551
+pg1-socket-path='/tmp/.pgbr_sock_1000_6551'
+pg-version-force=18</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>4. Usage</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="pgbackrest-commands"><a class="anchor" href="#pgbackrest-commands"></a>4.1. pgBackRest Commands</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Usage
+pgbackrest [options] [command]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>List of <code>pgBackRest</code> commands:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Add or modify a backup annotation; annotations are recorded in JSON form in the backup.info file
+annotate
+
+# Fetch a WAL segment from the backup repository; invoked by PostgreSQL via restore_command.
+# When running pgbackrest restore, it is automatically written into postgresql.auto.conf:
+# "restore_command = 'pgbackrest --stanza=ivory archive-get %f "%p"'"
+archive-get
+
+# Push a WAL segment into the backup repository — pushes the WAL segment PostgreSQL has just finished writing to the pgbackrest repository.
+# Together with archive-get (one in, one out), it forms the foundation of PITR.
+# Must be manually written into postgresql.conf: "archive_command = 'pgbackrest --stanza=ivory archive-push %p'"
+archive-push
+
+# Back up the PG database: take a consistent backup of the entire data directory and write it to the repository.
+backup
+
+# Check the configuration, verify repository information, and test the archiving pipeline (executes pg_switch_wal)
+check
+
+# Delete expired backups and WAL archives that are no longer needed
+expire
+
+# Display help information
+help
+
+# Get information about backups
+info
+
+# For debugging: fetch any file from the repository and write it to stdout or a local file.
+repo-get
+
+# List files and directories in the repository via the storage driver
+repo-ls
+
+# Restore a backup from the repository into a startable data directory, and automatically configure subsequent WAL replay.
+restore
+
+# Run the transport service for multi-host deployments (TLS mode): moves backup data between hosts. Must run on both the PG and Repo hosts.
+server
+
+# pgBackRest server liveness-check command
+server-ping
+
+# Initialization command: create the stanza metadata skeleton for a cluster in the repository
+stanza-create
+
+# Delete a stanza
+stanza-delete
+
+# After a major database version upgrade, the stanza must be upgraded accordingly
+stanza-upgrade
+
+# Does not start any process/service; its only job is to delete the stop file left by the stop command, allowing pgbackrest operations to resume.
+start
+
+# Create a stop file; backup, archive-push, expire, stanza-create/upgrade, and remote requests will refuse to run when they detect this file at startup.
+stop
+
+# Check whether existing backups and WAL are intact
+verify
+
+# Get the current version
+version</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>List of <code>pgBackRest</code> internal commands. These commands should not be used in production scenarios, as they may cause data corruption:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Dump the manifest of a backup in readable format
+manifest
+
+# Write a file into the repository (encrypted automatically); the reverse of repo-get
+repo-put
+
+# Delete repository files/directories (--recurse)
+repo-rm</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="performing-operations"><a class="anchor" href="#performing-operations"></a>4.2. Performing Operations</h3>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Since the process is fairly complex, the commands have been parameterized and helper functions have been created to make testing easier. Please run the commands below within the same terminal session.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Variable preparation:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Adjust as appropriate for your environment: IVORY_PG_VERSION_MAJOR, IVORY_BIN, PGBACKREST_BIN; the rest can be left at defaults
+IVORY_PG_VERSION_MAJOR=18
+IVORY_BIN="/usr/local/ivorysql/bin"
+PGBACKREST_BIN="/home/lct/repos/pgbackrest/build/src/pgbackrest"
+TEST_BASE="/tmp/pgbackrest_ivorysql_regress"
+PG_PORT="6551"
+STANDBY_PORT="6552"
+ORA_PORT="6553"
+STANDBY_ORA_PORT="6554"
+DB_MODE="oracle"
+STANZA="ivory"
+
+PG1_DATA="$TEST_BASE/pg1/data"
+PG2_DATA="$TEST_BASE/pg2/data"
+REPO_PATH="$TEST_BASE/repo"
+# Unix socket paths have a 107-byte limit, so use a fixed short directory under /tmp
+SOCK_PATH="${SOCK_PATH:-/tmp/.pgbr_sock_$(id -u)_$PG_PORT}"
+LOG_PATH="$TEST_BASE/log"
+CONF="$TEST_BASE/pgbackrest.conf"
+RUN_LOG="$TEST_BASE/regression.log"
+TEST_DB="regress"
+RESTORE_POINT="pgb_regress_rp"
+
+sql()
+{
+    local port="$1" db="$2" query="$3"
+    "$IVORY_BIN/psql" -h "$SOCK_PATH" -p "$port" -d "$db" -U "$(id -un)" \
+        -v ON_ERROR_STOP=1 -Atc "$query" 2&gt;&gt;"$RUN_LOG"
+}
+switch_wal_and_wait()
+{
+    local wal i
+    # First generate a WAL record, to avoid pg_switch_wal() being a no-op (which would not trigger archiving) when the current segment is empty
+    sql "$ORA_PORT" postgres "SELECT pg_create_restore_point('pgb_wal_sync')" &gt;/dev/null || return 1
+    wal=$(sql "$ORA_PORT" postgres "SELECT pg_walfile_name(pg_switch_wal())") || return 1
+    for i in $(seq 1 60); do
+        local archived
+        archived=$(sql "$ORA_PORT" postgres "SELECT last_archived_wal FROM pg_stat_archiver")
+        [[ -n "$archived" &amp;&amp; ! "$archived" &lt; "$wal" ]] &amp;&amp; return 0
+        sleep 1
+    done
+    return 1
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Preparation before execution:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">rm -rf "$SOCK_PATH"
+mkdir -p "$PG1_DATA" "$REPO_PATH" "$SOCK_PATH" "$LOG_PATH"
+chmod 700 "$PG1_DATA" "$SOCK_PATH"
+: &gt;"$RUN_LOG"
+export LD_LIBRARY_PATH="$(dirname "$IVORY_BIN")/lib${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+
+# Confirm the versions
+${IVORY_BIN}/pg_ctl --version
+${PGBACKREST_BIN} --version</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Initialize the primary database and configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Initialize, using oracle mode
+"$IVORY_BIN/initdb" -D "$PG1_DATA" -m "$DB_MODE" -E UTF8 --no-locale -A trust -U "$(id -un)"
+
+# Configure IvorySQL
+cat &gt;&gt;"$PG1_DATA/postgresql.conf" &lt;&lt;EOF
+
+# ---- pgbackrest additional configuration ----
+port = $PG_PORT
+ivorysql.port = $ORA_PORT
+listen_addresses = '127.0.0.1'
+unix_socket_directories = '$SOCK_PATH'
+archive_mode = on
+archive_command = '$PGBACKREST_BIN --config=$CONF --stanza=$STANZA archive-push %p'
+log_min_messages = info
+EOF
+
+# Configure pgBackRest
+cat &gt;"$CONF" &lt;&lt;EOF
+[global]
+# With multiple repos configured, WAL is fully redundant and backups must be run manually
+# Path where backups and archive are stored.
+repo1-path=$REPO_PATH
+# Retention period for full backups
+repo1-retention-full=9999
+# Log files
+log-path=$LOG_PATH
+# Console log level
+log-level-console=info
+# Log level for the log file
+log-level-file=detail
+# Do not wait for the next checkpoint
+start-fast=y
+
+[$STANZA]
+# Configuring multiple pg entries is for primary+replica setups; the numbering does not indicate primary/standby roles, which are detected automatically
+pg1-path=$PG1_DATA
+pg1-port=$PG_PORT
+pg1-socket-path=$SOCK_PATH
+pg-version-force=$IVORY_PG_VERSION_MAJOR
+EOF</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>pg-version-force=$IVORY_PG_VERSION_MAJOR</code> — under IvorySQL 5.x things work even without setting this, but that is the result of a series of coincidences, so it is still recommended to make sure this option is set.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Initialize the data:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Start PG
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -l "$LOG_PATH/pg1.log" -w start
+
+# Initialize the stanza
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" "stanza-create";
+
+# Check the configuration
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" "check";
+
+# Create data
+sql "$ORA_PORT" "$TEST_DB" \
+  "CREATE TABLE t_ora(id number PRIMARY KEY, name varchar2(100));
+  INSERT INTO t_ora SELECT g, 'ora-' || g FROM generate_series(1, 1000) g;";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Full backup:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" --type=full backup;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Differential backup:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Insert one thousand more rows
+
+sql "$ORA_PORT" "$TEST_DB" \
+  "INSERT INTO t_ora SELECT g, 'ora-' || g FROM generate_series(1001, 2000) g;";
+
+# Differential backup
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" --type=diff backup;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Incremental backup:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Insert one thousand more rows
+sql "$ORA_PORT" "$TEST_DB" \
+  "INSERT INTO t_ora SELECT g, 'ora-' || g FROM generate_series(2001, 3000) g;";
+
+# Incremental backup
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" --type=incr backup;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>View the backup list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" info;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Expected output:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">stanza: ivory
+    status: ok
+    cipher: none
+
+    db (current)
+        wal archive min/max (18): 000000010000000000000001/000000010000000000000007
+
+        full backup: 20260707-164512F
+            timestamp start/stop: 2026-07-07 16:45:12+08 / 2026-07-07 16:45:13+08
+            wal start/stop: 000000010000000000000003 / 000000010000000000000003
+            database size: 36.2MB, database backup size: 36.2MB
+            repo1: backup set size: 4.8MB, backup size: 4.8MB
+
+        diff backup: 20260707-164512F_20260707-164826D
+            timestamp start/stop: 2026-07-07 16:48:26+08 / 2026-07-07 16:48:27+08
+            wal start/stop: 000000010000000000000005 / 000000010000000000000005
+            database size: 36.3MB, database backup size: 496.3KB
+            repo1: backup set size: 4.8MB, backup size: 89.7KB
+            backup reference total: 1 full
+
+        incr backup: 20260707-164512F_20260707-165028I
+            timestamp start/stop: 2026-07-07 16:50:28+08 / 2026-07-07 16:50:29+08
+            wal start/stop: 000000010000000000000007 / 000000010000000000000007
+            database size: 36.3MB, database backup size: 272.3KB
+            repo1: backup set size: 4.8MB, backup size: 33.9KB
+            backup reference total: 1 full, 1 diff</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Backup repository integrity verification:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" verify;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You should see output similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">2026-07-07 16:54:01.819 P00   INFO: verify command begin 2.58.0: --config=/tmp/pgbackrest_ivorysql_regress/pgbackrest.conf --exec-id=3116367-e3fb70bf --log-level-console=info --log-level-file=detail --log-path=/tmp/pgbackrest_ivorysql_regress/log --repo1-path=/tmp/pgbackrest_ivorysql_regress/repo --stanza=ivory
+2026-07-07 16:54:02.100 P00   INFO: verify command end: completed successfully (283ms)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Full restore:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Save the current md5; the command outputs the current value, e.g.: ae3361d0b4e8dadae6f7f7fffbfa54da
+sql "$ORA_PORT" "$TEST_DB" \
+  "SELECT md5(string_agg(id::text || ':' || name, ',' ORDER BY id)) FROM t_ora;";
+
+# Call the function defined earlier to make sure the WAL is archived; this is the proper procedure when taking a backup
+switch_wal_and_wait
+
+# Stop PG and wipe the data
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -w -t 60 -m fast stop
+find "$PG1_DATA" -mindepth 1 -delete
+
+# Perform a full restore
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" restore;
+
+# Verify after the restore; this md5 output should match the one above
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -l "$LOG_PATH/pg1.log" -w start
+sql "$ORA_PORT" "$TEST_DB" \
+  "SELECT md5(string_agg(id::text || ':' || name, ',' ORDER BY id)) FROM t_ora;";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Delta restore — since this continues from the operations above, the md5 remains the same:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Stop PG, then simulate a corruption scenario
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -w -t 60 -m fast stop
+rm -f "$PG1_DATA/global/pg_control"
+
+# Perform a delta restore
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" --delta restore;
+
+# Verify; this md5 output should match the one above
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -l "$LOG_PATH/pg1.log" -w start
+sql "$ORA_PORT" "$TEST_DB" \
+  "SELECT md5(string_agg(id::text || ':' || name, ',' ORDER BY id)) FROM t_ora;";</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Rollback to a restore point — since this continues from the operations above, the md5 remains the same:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Create a restore point; the output looks like: 0/B00EAB8
+sql "$ORA_PORT" "$TEST_DB" \
+  "SELECT pg_create_restore_point('$RESTORE_POINT');";
+
+# Perform a simulated accidental operation
+sql "$ORA_PORT" "$TEST_DB" \
+  "DELETE FROM t_ora WHERE id &gt; 100;";
+
+# Perform the restore
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -w -t 60 -m fast stop
+"$PGBACKREST_BIN" --config="$CONF" --stanza="$STANZA" \
+  --delta --type=name --target="$RESTORE_POINT" \
+  --target-action=promote restore;
+
+# Verify; this md5 output should match the one above
+"$IVORY_BIN/pg_ctl" -D "$PG1_DATA" -l "$LOG_PATH/pg1.log" -w start
+sql "$ORA_PORT" "$TEST_DB" \
+  "SELECT md5(string_agg(id::text || ':' || name, ',' ORDER BY id)) FROM t_ora;";</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="zhparser_en.html">zhparser</a></span>
+  <span class="next"><a href="../getting-started/daily_monitoring.html">Monitoring</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

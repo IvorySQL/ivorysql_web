@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>PgAudit :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pgaudit.html">
-    <link rel="prev" href="pgroonga.html">
-    <link rel="next" href="pgrouting.html">
+    <title>set_user :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/set_user.html">
+    <link rel="prev" href="pgbackrest.html">
+    <link rel="next" href="../getting-started/daily_monitoring.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -226,7 +226,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pgroonga.html">pgroonga</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pgaudit.html">pgaudit</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -292,7 +292,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pgbackrest.html">pgBackRest</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="set_user.html">set_user</a>
   </li>
 </ul>
@@ -523,181 +523,484 @@
     <li><a href="../welcome.html">文档中心</a></li>
     <li>IvorySQL生态</li>
     <li>生态组件适配</li>
-    <li><a href="pgaudit.html">pgaudit</a></li>
+    <li><a href="set_user.html">set_user</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/ecosystem_components/pgaudit.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/ecosystem_components/set_user.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/ecosystem_components/pgaudit.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/ecosystem_components/set_user.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">PgAudit</h1>
+<h1 class="page">set_user</h1>
 <div class="sect1">
 <h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>PgAudit 是一个审计扩展，可以为 DDL、DML、DCL 等关键操作生成可追溯的日志记录。通过审计日志，数据库管理员能够满足合规要求、及时发现异常行为，并在出现问题时快速定位责任主体与影响范围。</p>
+<p>set_user 是 PostgreSQL 安全审计扩展，由 pgaudit 项目维护，优化原生用户切换能力。支持普通用户间互切，也可受控切换至超级用户；可配置白名单限定允许切换的用户，所有切换操作留存审计日志，切换到超级用户时强制完整记录 SQL，拦截修改数据库配置、调用系统命令等高风险操作，规范临时提权，部署需预加载插件并重启数据库，再创建扩展使用。</p>
+</div>
+<div class="paragraph">
+<p>项目地址：<a href="https://github.com/pgaudit/set_user" class="bare">https://github.com/pgaudit/set_user</a></p>
+</div>
+<div class="paragraph">
+<p>版本：REL4_2_0</p>
+</div>
+<div class="paragraph">
+<p>开源协议：PostgreSQL License</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="功能特点"><a class="anchor" href="#功能特点"></a>2. 功能特点</h2>
+<h2 id="原理介绍"><a class="anchor" href="#原理介绍"></a>2. 原理介绍</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>PostgreSQL原生的 <code>SET ROLE</code> / <code>SET SESSION AUTHORIZATION</code> 有两个安全短板：一是提权后可以随手 <code>SET log_statement = 'none'</code> 关掉日志、<code>RESET ROLE</code> 悄悄切回来，审计留不下痕迹；二是要让 DBA 能干超级用户的活，通常得给他们能直接登录 superuser 账号，权限过大且不可控。</p>
+</div>
+<div class="paragraph">
+<p>set_user 的思路是"不禁止提权，但让提权全程留痕、无法抵赖"。部署后，所有超级用户账号可设为 NOLOGIN，DBA 以普通账号登录，需要时调用 set_user_u('postgres') 提权。从提权到 reset_user() 恢复的整个窗口内：用户切换被记入日志，log_statement 被强制改为 all 使每条 SQL 落盘，日志前缀自动追加 AUDIT 标签便于过滤告警；同时 ALTER SYSTEM、COPY PROGRAM、SET log_statement、SET ROLE 及 set_config() 后门等所有可能破坏审计或逃逸身份的通道被全部封锁。由于 session_user 始终保持真实登录者，"谁在什么时候以什么身份做了什么"在日志中一目了然。</p>
+</div>
+<div class="paragraph">
+<p>实现上，它以 C 扩展形式通过 shared_preload_libraries 加载，核心依赖三个内核机制：ProcessUtility_hook 拦截危险语句，object_access_hook 封堵函数级后门，事务提交回调保证切换的事务安全。权限控制采用双闸设计——SQL 层的 GRANT EXECUTE 决定谁能调用，配置层的白名单（superuser_allowlist 等）可随时热调整收口。此外还提供带口令锁的 set_user(user, token) 供连接池代持连接时防逃逸，以及不可逆的 set_session_auth() 用于连接移交前的永久降权。</p>
+</div>
+<div class="paragraph">
+<p>set_user 并不能阻止超级用户作恶——它的定位是确保任何特权操作都无法逃避审计，配合日志告警系统，构成 PostgreSQL 最小权限运维体系的关键一环。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用说明"><a class="anchor" href="#使用说明"></a>3. 使用说明</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+需要将 <code>set_user</code> 添加到 <code>shared_preload_libraries</code>。如果有其他插件实现 <code>post-execution hooks</code> 那么需要将 <code>set_user</code> 列在这些插件之前。
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+superuser 账号（如 postgres）需要设为 NOLOGIN，DBA 用普通账号登录，需要时调用 <code>set_user_u('postgres')</code> 提权。
+</td>
+</tr>
+</table>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>全面审计能力</strong>：记录 <code>SELECT</code>、<code>INSERT</code>、<code>UPDATE</code>、<code>DELETE</code>、DDL 命令以及权限变更等操作，帮助构建完整的操作轨迹。</p>
-</li>
-<li>
-<p><strong>灵活的审计维度</strong>：支持全局审计、角色审计与对象审计，可按用户、角色、模式或具体操作类型进行精细化配置。</p>
-</li>
-<li>
-<p><strong>平滑集成</strong>：复用 PostgreSQL 标准日志子系统，可与 <code>syslog</code>、<code>logrotate</code> 等工具联动，兼容现有日志采集与分析方案。</p>
-</li>
-<li>
-<p><strong>合规支撑</strong>：提供结构化审计日志，便于生成符合金融、政企等行业规范的审计报告。</p>
-</li>
-<li>
-<p><strong>安全增强</strong>：通过记录和分析数据库活动，及时发现未授权访问、异常 DML 或潜在数据泄露风险。</p>
-</li>
-<li>
-<p><strong>运维优化</strong>：辅助回放操作行为、定位性能瓶颈，支撑 SQL 优化与问题排查。</p>
+<p>配置介绍</p>
 </li>
 </ul>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="安装部署"><a class="anchor" href="#安装部署"></a>3. 安装部署</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="环境准备"><a class="anchor" href="#环境准备"></a>3.1. 环境准备</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">配置项</th>
+<th class="tableblock halign-left valign-top">说明</th>
+<th class="tableblock halign-left valign-top">示例</th>
+<th class="tableblock halign-left valign-top">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.block_alter_system</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code> （默认）或者 <code>off</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">阻止 ALTER SYSTEM 命令</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.block_copy_program</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code> （默认）或者 <code>off</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">阻止 COPY PROGRAM 命令</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.block_log_statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code> （默认）或者 <code>off</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">阻止修改 log_statement</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.nosuperuser_target_allowlist</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">通配符 '*' （默认）或字符串</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'dba1, dba2, +admin_group'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">允许 set_user() 切换到的目标用户名单</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.superuser_allowlist</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">通配符 '*' （默认）或字符串</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'dba1, dba2, +admin_group'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">允许调用 set_user_u() 提权的用户名单</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.superuser_audit_tag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">字符串</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'AUDIT'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">日志前缀标签</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.exit_on_error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code> （默认）或者 <code>off</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">出现错误时是否退出当前会话</p></td>
+</tr>
+</tbody>
+</table>
 <div class="ulist">
 <ul>
 <li>
-<p>已安装的 IvorySQL 数据库。</p>
-</li>
-<li>
-<p>编译工具链：<code>gcc</code>、<code>make</code>、<code>tar</code> 等。</p>
-</li>
-<li>
-<p>数据库管理员权限，用于修改 <code>ivorysql.conf</code> 并重启数据库实例。</p>
+<p>函数介绍</p>
 </li>
 </ul>
 </div>
-</div>
-<div class="sect2">
-<h3 id="编译安装-pgaudit"><a class="anchor" href="#编译安装-pgaudit"></a>3.2. 编译安装 PgAudit</h3>
-<div class="paragraph">
-<p>以 PgAudit 18.0 为例：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">wget https://github.com/pgaudit/pgaudit/archive/refs/tags/18.0.tar.gz
-tar -xf 18.0.tar.gz
-cd pgaudit-18.0
-make install USE_PGXS=1 PG_CONFIG=$PGHOME/bin/pg_config</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>上述命令依赖环境变量 <code>PGHOME</code> 指向安装好的 IvorySQL 主目录。安装成功后，<code>pgaudit.so</code> 会被放置到 IvorySQL 的扩展目录中。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="注册扩展前的基础配置"><a class="anchor" href="#注册扩展前的基础配置"></a>3.3. 注册扩展前的基础配置</h3>
-<div class="paragraph">
-<p>修改 <code>ivorysql.conf</code>，启用插件并设置常用参数：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shared_preload_libraries = 'pgaudit'   # 需实例重启生效
-pgaudit.log = 'read, write, ddl'       # 审计范围示例，可按需调整</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>重启数据库实例，使共享库配置生效。</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="创建扩展并验证"><a class="anchor" href="#创建扩展并验证"></a>3.4. 创建扩展并验证</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION IF NOT EXISTS pgaudit;
-SELECT name,
-       default_version,
-       installed_version,
-       comment
-  FROM pg_available_extensions
- WHERE name = 'pgaudit';</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>若返回的 <code>installed_version</code> 与期望版本一致，说明扩展安装成功。</p>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">函数</th>
+<th class="tableblock halign-left valign-top">默认权限</th>
+<th class="tableblock halign-left valign-top">参数</th>
+<th class="tableblock halign-left valign-top">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_user(text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REMOVE FROM PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目标非superuser用户名</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">将当前会话的用户身份切换为指定的非superuser用户</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_user(text, text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REMOVE FROM PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目标非superuser用户名，随机token</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">同上，但需要提供一个随机token以增加安全性</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_user_u(text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REMOVE FROM PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目标superuser用户名</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">将当前会话的用户身份切换为指定的superuser用户</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reset_user()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GRANT TO PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">无</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">将当前会话的用户身份恢复为原始用户</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reset_user(text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GRANT TO PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">随机token</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">带口令恢复，但是需要提供对应的token</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_session_auth(text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REMOVE FROM PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">目标非superuser用户名</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">类似 <code>SET SESSION AUTHORIZATION</code> 但是只能切换到普通用户，并且不能切换回来</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
-<h2 id="使用"><a class="anchor" href="#使用"></a>4. 使用</h2>
+<h2 id="安装"><a class="anchor" href="#安装"></a>4. 安装</h2>
 <div class="sectionbody">
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+源码测试安装环境为 Ubuntu 26.04。需要安装IvorySQL，具体安装步骤请参考：<a href="https://github.com/IvorySQL/IvorySQL" class="bare">https://github.com/IvorySQL/IvorySQL</a>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="源码安装"><a class="anchor" href="#源码安装"></a>4.1. 源码安装</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>设置IvorySQL安装路径</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">export IVY_BIN_DIR=/usr/local/ivorysql/bin
+export TEST_DB_DIR=/tmp/test_db</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>获取源码</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git clone https://github.com/pgaudit/set_user.git
+cd set_user
+git checkout REL4_2_0</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>编译安装</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">make USE_PGXS=1 PG_CONFIG=${IVY_BIN_DIR}/pg_config clean
+make USE_PGXS=1 PG_CONFIG=${IVY_BIN_DIR}/pg_config
+make USE_PGXS=1 PG_CONFIG=${IVY_BIN_DIR}/pg_config install</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>配置</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shared_preload_libraries = 'set_user'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="创建测试数据库"><a class="anchor" href="#创建测试数据库"></a>4.2. 创建测试数据库</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+需要将 <code>set_user</code> 添加到 <code>shared_preload_libraries</code>。
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>初始化数据库</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># 初始化数据库
+${IVY_BIN_DIR}/initdb -U postgres -D ${TEST_DB_DIR}
+
+# 将 set_user 添加到 shared_preload_libraries 中，也可以手动配置
+sed -i "s/\(shared_preload_libraries = '.*\)'/\1, set_user'/g" ${TEST_DB_DIR}/ivorysql.conf
+
+# 修改PG端口和Oracle兼容端口，避免冲突
+cat &lt;&lt; EOF &gt;&gt; ${TEST_DB_DIR}/ivorysql.conf
+ivorysql.port = 1522
+port = 5433
+EOF
+
+# 启动测试数据库
+${IVY_BIN_DIR}/pg_ctl -D ${TEST_DB_DIR} -l ${TEST_DB_DIR}/logfile start</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="使用测试"><a class="anchor" href="#使用测试"></a>4.3. 使用测试</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>连接数据库</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PGHOST=127.0.0.1 PGPORT=1522 PGUSER=postgres $IVY_BIN_DIR/psql</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>测试示例</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+这里使用默认配置，即白名单为 '*。
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION set_user;
+LOAD 'set_user';
+
+--- 创建两个用户
+CREATE USER dba;
+CREATE USER bob;
+
+-- 让 dba 可以执行 set_user()
+GRANT EXECUTE ON FUNCTION set_user(text) TO dba;
+GRANT EXECUTE ON FUNCTION set_user(text,text) TO dba;
+GRANT EXECUTE ON FUNCTION set_user_u(text) TO dba;
+
+-- 切换到用户 dba，模拟dba登录
+SET SESSION AUTHORIZATION dba;
+SELECT SESSION_USER, CURRENT_USER;
+---  session_user | current_user
+--- --------------+--------------
+---  dba          | dba
+--- (1 row)
+
+--- 提权， 这里使用 set_user() 提权失败，因为目标用户是 superuser
+SELECT set_user('postgres');
+--- ERROR:  switching to superuser not allowed
+--- HINT:  Use 'set_user_u' to escalate.
+
+--- 提权， 这里使用 set_user_u() 提权成功
+SELECT set_user_u('postgres');
+---  set_user_u
+--- ------------
+---  OK
+--- (1 row)
+
+--- 查看提权后的用户状态
+SELECT SESSION_USER, CURRENT_USER;
+---  session_user | current_user
+--- --------------+--------------
+---  dba          | postgres
+--- (1 row)
+
+--- 测试重复 set_user，会失败
+SELECT set_user('bob');
+--- ERROR:  must reset previous user prior to setting again
+
+--- 提权中，测试 ALTER SYSTEM 会失败
+ALTER SYSTEM SET wal_level = minimal;
+--- ERROR:  ALTER SYSTEM blocked by set_user config
+
+--- 提权中，测试 COPY PROGRAM 会失败
+COPY (select 42) TO PROGRAM 'cat';
+--- ERROR:  COPY PROGRAM blocked by set_user config
+
+--- 提权中，测试 SET log_statement 会失败
+SET log_statement = 'none';
+--- ERROR:  "SET log_statement" blocked by set_user config
+
+--- 恢复初始用户
+SELECT reset_user();
+SELECT SESSION_USER, CURRENT_USER;
+---  session_user | current_user
+--- --------------+--------------
+---  dba          | dba
+--- (1 row)
+
+--- 切换到普通用户bob
+SELECT set_user('bob');
+SELECT SESSION_USER, CURRENT_USER;
+---  session_user | current_user
+--- --------------+--------------
+---  dba          | bob
+--- (1 row)
+
+--- 恢复初始用户
+SELECT reset_user();
+SELECT SESSION_USER, CURRENT_USER;
+---  session_user | current_user
+--- --------------+--------------
+---  dba          | dba
+--- (1 row)</code></pre>
+</div>
+</div>
 <div class="paragraph">
-<p>执行如下sql示例：</p>
+<p>查看 <code>logfile</code> 能看到提权后的所有操作都被记录了下来，并且日志前缀带有 <code>AUDIT</code> 标签。每个用户切换都有一条： <code>LOG:  XXX transitioning to YYY</code> 对应。</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE audit_demo(id serial PRIMARY KEY, info text);
-INSERT INTO audit_demo(info) VALUES ('pgaudit test');
-SELECT * FROM audit_demo;
-UPDATE audit_demo SET info = 'pgaudit update' WHERE id = 1;
-DELETE FROM audit_demo WHERE id = 1;</code></pre>
+<pre class="highlightjs highlight"><code class="language-log hljs" data-lang="log">2026-07-17 13:55:34.905 CST [2670610] LOG:  Role dba transitioning to Superuser Role postgres
+2026-07-17 13:55:34.905 CST [2670610] STATEMENT:  SELECT set_user_u('postgres');
+2026-07-16 16:01:21.193 CST [2644289] AUDIT: LOG:  statement: SELECT SESSION_USER, CURRENT_USER;
+2026-07-16 16:01:43.825 CST [2644289] AUDIT: LOG:  statement: SELECT set_user('bob');
+2026-07-16 16:01:43.829 CST [2644289] AUDIT: ERROR:  must reset previous user prior to setting again
+2026-07-16 16:01:43.829 CST [2644289] AUDIT: STATEMENT:  SELECT set_user('bob');
+2026-07-16 16:02:20.177 CST [2644289] AUDIT: LOG:  statement: ALTER SYSTEM SET wal_level = minimal;
+2026-07-16 16:02:20.177 CST [2644289] AUDIT: ERROR:  ALTER SYSTEM blocked by set_user config
+2026-07-16 16:02:20.177 CST [2644289] AUDIT: STATEMENT:  ALTER SYSTEM SET wal_level = minimal;
+2026-07-17 13:56:26.924 CST [2670610] STATEMENT:  SELECT set_user_u('postgres');
+2026-07-17 14:01:12.017 CST [2670610] AUDIT: LOG:  statement: select reset_user();
+2026-07-17 14:01:12.017 CST [2670610] AUDIT: LOG:  Superuser Role postgres transitioning to Role dba
+2026-07-17 14:18:42.884 CST [2671784] LOG:  Role dba transitioning to Role bob
+2026-07-17 14:18:42.884 CST [2671784] STATEMENT:  select set_user('bob');
+2026-07-17 14:18:53.301 CST [2671784] LOG:  Role bob transitioning to Role dba
+2026-07-17 14:18:53.301 CST [2671784] STATEMENT:  select reset_user();
+2026-07-17 14:26:16.737 CST [2671784] LOG:  Role dba transitioning to Role bob
+2026-07-17 14:26:16.737 CST [2671784] STATEMENT:  SELECT set_user('bob');</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>在数据库服务器上查看审计日志：</p>
 </div>
+<div class="sect2">
+<h3 id="清理测试数据库"><a class="anchor" href="#清理测试数据库"></a>4.4. 清理测试数据库</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">tail -f $PGDATA/log/*.log | grep 'AUDIT:'</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># 关闭测试数据库
+${IVY_BIN_DIR}/pg_ctl -D ${TEST_DB_DIR} -l ${TEST_DB_DIR}/logfile stop
+
+# 删除测试数据库
+rm -rf ${TEST_DB_DIR}</code></pre>
 </div>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,CREATE SEQUENCE,SEQUENCE,public.audit_demo_id_seq,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
-2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,CREATE TABLE,TABLE,public.audit_demo,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
-2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,CREATE INDEX,INDEX,public.audit_demo_pkey,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
-2025-10-31 15:56:32.113 CST [11451] LOG:  AUDIT: SESSION,1,1,DDL,ALTER SEQUENCE,SEQUENCE,public.audit_demo_id_seq,"CREATE TABLE audit_demo(id serial PRIMARY KEY, info text)",&lt;not logged&gt;
-2025-10-31 15:56:32.117 CST [11451] LOG:  AUDIT: SESSION,2,1,WRITE,INSERT,,,INSERT INTO audit_demo(info) VALUES ('pgaudit test'),&lt;not logged&gt;
-2025-10-31 15:56:32.121 CST [11451] LOG:  AUDIT: SESSION,3,1,READ,SELECT,,,SELECT * FROM audit_demo,&lt;not logged&gt;
-2025-10-31 15:56:32.122 CST [11451] LOG:  AUDIT: SESSION,4,1,WRITE,UPDATE,,,UPDATE audit_demo SET info = 'pgaudit update' WHERE id = 1,&lt;not logged&gt;
-2025-10-31 15:56:32.127 CST [11451] LOG:  AUDIT: SESSION,5,1,WRITE,DELETE,,,DELETE FROM audit_demo WHERE id = 1,&lt;not logged&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>若想记录参数的值，打开`pgaudit.log_parameter = 'on'`，效果如下：</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">ivorysql=# SHOW pgaudit.log_parameter;
-pgaudit.log_parameter
------------------------
-on
-(1 row)</code></pre>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="pgroonga.html">pgroonga</a></span>
-  <span class="next"><a href="pgrouting.html">pgrouting</a></span>
+  <span class="prev"><a href="pgbackrest.html">pgBackRest</a></span>
+  <span class="next"><a href="../getting-started/daily_monitoring.html">日常监控</a></span>
 </nav>
 </article>
   </div>

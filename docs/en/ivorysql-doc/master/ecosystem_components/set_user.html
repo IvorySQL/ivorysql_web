@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>wal2json :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/wal2json.html">
-    <link rel="prev" href="pg_ai_query.html">
-    <link rel="next" href="pg_stat_monitor.html">
+    <title>set_user :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/set_user.html">
+    <link rel="prev" href="pgbackrest.html">
+    <link rel="next" href="../getting-started/daily_monitoring.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -238,7 +238,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_ai_query.html">pg_ai_query</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="wal2json.html">wal2json</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -292,7 +292,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pgbackrest.html">pgBackRest</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="set_user.html">set_user</a>
   </li>
 </ul>
@@ -508,34 +508,217 @@
     <li><a href="../welcome.html">IvorySQL</a></li>
     <li>IvorySQL Ecosystem</li>
     <li>Eco Component Adaption</li>
-    <li><a href="wal2json.html">wal2json</a></li>
+    <li><a href="set_user.html">set_user</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/ecosystem_components/wal2json.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/ecosystem_components/set_user.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/ecosystem_components/wal2json.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/ecosystem_components/set_user.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">wal2json</h1>
+<h1 class="page">set_user</h1>
 <div class="sect1">
 <h2 id="overview"><a class="anchor" href="#overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>wal2json is an output plugin for logical decoding. It generates JSON object for each transaction.</p>
+<p>set_user is a PostgreSQL security auditing extension maintained by the pgaudit project that enhances the native user-switching capability. It supports switching between ordinary users as well as controlled escalation to superuser; configurable allowlists restrict which users may be switched to, all switching operations are recorded in the audit log, full SQL logging is enforced when switching to superuser, and high-risk operations such as modifying database configuration or invoking system commands are blocked. It standardizes temporary privilege escalation. Deployment requires preloading the plugin and restarting the database, then creating the extension before use.</p>
+</div>
+<div class="paragraph">
+<p>Project page: <a href="https://github.com/pgaudit/set_user" class="bare">https://github.com/pgaudit/set_user</a></p>
+</div>
+<div class="paragraph">
+<p>Version: REL4_2_0</p>
+</div>
+<div class="paragraph">
+<p>License: PostgreSQL License</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="installation"><a class="anchor" href="#installation"></a>2. Installation</h2>
+<h2 id="how-it-works"><a class="anchor" href="#how-it-works"></a>2. How It Works</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>PostgreSQL&#8217;s native <code>SET ROLE</code> / <code>SET SESSION AUTHORIZATION</code> has two security weaknesses: first, after escalating privileges a user can casually run <code>SET log_statement = 'none'</code> to turn off logging, or <code>RESET ROLE</code> to quietly switch back, leaving no audit trail; second, to let DBAs perform superuser work, they typically must be allowed to log in directly as a superuser account, granting excessive and uncontrolled privileges.</p>
+</div>
+<div class="paragraph">
+<p>set_user&#8217;s approach is "don&#8217;t forbid privilege escalation, but make every escalation fully traceable and non-repudiable." Once deployed, all superuser accounts can be set to NOLOGIN; DBAs log in with ordinary accounts and call set_user_u('postgres') when escalation is needed. Throughout the window from escalation until reset_user() restores the original identity: the user switch is written to the log, log_statement is forcibly set to all so that every SQL statement is persisted, and the log prefix automatically gains an AUDIT tag for easy filtering and alerting; at the same time, every channel that could undermine auditing or escape the identity — ALTER SYSTEM, COPY PROGRAM, SET log_statement, SET ROLE, and the set_config() backdoor — is blocked. Because session_user always remains the real login user, "who did what, when, and under which identity" is plainly visible in the logs.</p>
+</div>
+<div class="paragraph">
+<p>Implementation-wise, it is a C extension loaded via shared_preload_libraries and relies on three kernel mechanisms: ProcessUtility_hook to intercept dangerous statements, object_access_hook to block function-level backdoors, and transaction commit callbacks to guarantee transactional safety of the switch. Access control uses a dual-gate design — at the SQL layer, GRANT EXECUTE determines who may call the functions, while at the configuration layer, allowlists (superuser_allowlist, etc.) can be hot-adjusted at any time to tighten control. In addition, it provides a token-locked set_user(user, token) to prevent escape when a connection pooler holds connections on behalf of clients, and the irreversible set_session_auth() for permanent privilege drop before handing over a connection.</p>
+</div>
+<div class="paragraph">
+<p>set_user cannot prevent a superuser from acting maliciously — its role is to ensure that no privileged operation can evade auditing. Combined with a log alerting system, it forms a key component of a least-privilege operations framework for PostgreSQL.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage-notes"><a class="anchor" href="#usage-notes"></a>3. Usage Notes</h2>
+<div class="sectionbody">
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>set_user</code> must be added to <code>shared_preload_libraries</code>. If other plugins implement <code>post-execution hooks</code>, <code>set_user</code> must be listed before them.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Superuser accounts (e.g., postgres) should be set to NOLOGIN; DBAs log in with ordinary accounts and call <code>set_user_u('postgres')</code> when escalation is needed.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configuration options</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Example</th>
+<th class="tableblock halign-left valign-top">Function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.block_alter_system</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code> (default) or <code>off</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Block ALTER SYSTEM commands</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.block_copy_program</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code> (default) or <code>off</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Block COPY PROGRAM commands</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.block_log_statement</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code> (default) or <code>off</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Block changes to log_statement</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.nosuperuser_target_allowlist</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wildcard '*' (default) or string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'dba1, dba2, +admin_group'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of target users that set_user() may switch to</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.superuser_allowlist</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Wildcard '*' (default) or string</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'dba1, dba2, +admin_group'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">List of users allowed to call set_user_u() for escalation</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.superuser_audit_tag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">String</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">'AUDIT'</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log prefix tag</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">set_user.exit_on_error</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code> (default) or <code>off</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>on</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to exit the current session on error</p></td>
+</tr>
+</tbody>
+</table>
+<div class="ulist">
+<ul>
+<li>
+<p>Functions</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Function</th>
+<th class="tableblock halign-left valign-top">Default privilege</th>
+<th class="tableblock halign-left valign-top">Parameters</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_user(text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REMOVE FROM PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Target non-superuser username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switch the current session&#8217;s user identity to the specified non-superuser</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_user(text, text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REMOVE FROM PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Target non-superuser username, random token</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Same as above, but requires a random token for added security</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_user_u(text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REMOVE FROM PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Target superuser username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Switch the current session&#8217;s user identity to the specified superuser</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reset_user()</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GRANT TO PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">None</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Restore the current session&#8217;s user identity to the original user</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>reset_user(text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">GRANT TO PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Random token</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Token-protected restore; the matching token must be supplied</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>set_session_auth(text)</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">REMOVE FROM PUBLIC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Target non-superuser username</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Similar to <code>SET SESSION AUTHORIZATION</code>, but can only switch to an ordinary user and cannot be reverted</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="installation"><a class="anchor" href="#installation"></a>4. Installation</h2>
 <div class="sectionbody">
 <div class="admonitionblock tip">
 <table>
@@ -544,24 +727,127 @@
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-The source code installation environment is Ubuntu 24.04 (x86_64), in which IvorySQL 5 or a later version has been installed. The installation path is /usr/ivory-5.
+The source build was tested on Ubuntu 26.04. IvorySQL must be installed; for installation steps see: <a href="https://github.com/IvorySQL/IvorySQL" class="bare">https://github.com/IvorySQL/IvorySQL</a>
 </td>
 </tr>
 </table>
 </div>
 <div class="sect2">
-<h3 id="source-code-installation"><a class="anchor" href="#source-code-installation"></a>2.1. Source Code Installation</h3>
-<div class="literalblock">
-<div class="content">
-<pre># download source code package from: https://github.com/eulerto/wal2json/releases/tag/wal2json_2_6
-
-unzip wal2json_2_6.zip
-cd wal2json_2_6
-
-# compile and install the extension
-make PG_CONFIG=/usr/ivory-5/bin/pg_config
-make PG_CONFIG=/usr/ivory-5/bin/pg_config install</pre>
+<h3 id="building-from-source"><a class="anchor" href="#building-from-source"></a>4.1. Building from Source</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Set the IvorySQL installation path</p>
+</li>
+</ul>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">export IVY_BIN_DIR=/usr/local/ivorysql/bin
+export TEST_DB_DIR=/tmp/test_db</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Get the source code</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git clone https://github.com/pgaudit/set_user.git
+cd set_user
+git checkout REL4_2_0</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Build and install</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">make USE_PGXS=1 PG_CONFIG=${IVY_BIN_DIR}/pg_config clean
+make USE_PGXS=1 PG_CONFIG=${IVY_BIN_DIR}/pg_config
+make USE_PGXS=1 PG_CONFIG=${IVY_BIN_DIR}/pg_config install</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Configuration</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">shared_preload_libraries = 'set_user'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="creating-a-test-database"><a class="anchor" href="#creating-a-test-database"></a>4.2. Creating a Test Database</h3>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>set_user</code> must be added to <code>shared_preload_libraries</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Initialize the database</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc"># Initialize the database
+${IVY_BIN_DIR}/initdb -U postgres -D ${TEST_DB_DIR}
+
+# Add set_user to shared_preload_libraries (this can also be done manually)
+sed -i "s/\(shared_preload_libraries = '.*\)'/\1, set_user'/g" ${TEST_DB_DIR}/ivorysql.conf
+
+# Change the PG port and the Oracle-compatible port to avoid conflicts
+cat &lt;&lt; EOF &gt;&gt; ${TEST_DB_DIR}/ivorysql.conf
+ivorysql.port = 1522
+port = 5433
+EOF
+
+# Start the test database
+${IVY_BIN_DIR}/pg_ctl -D ${TEST_DB_DIR} -l ${TEST_DB_DIR}/logfile start</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="usage-test"><a class="anchor" href="#usage-test"></a>4.3. Usage Test</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Connect to the database</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PGHOST=127.0.0.1 PGPORT=1522 PGUSER=postgres $IVY_BIN_DIR/psql</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Test examples</p>
+</li>
+</ul>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -570,138 +856,136 @@ make PG_CONFIG=/usr/ivory-5/bin/pg_config install</pre>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-If there is error "xlocale.h: No such file or directory" during compilation, user should remove the
-line of "#define HAVE_XLOCALE_H 1" from file /usr/ivory-5/include/postgresql/server/pg_config.h.
+The default configuration is used here, i.e., the allowlist is '*'.
 </td>
 </tr>
 </table>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION set_user;
+LOAD 'set_user';
+
+--- Create two users
+CREATE USER dba;
+CREATE USER bob;
+
+-- Allow dba to execute set_user()
+GRANT EXECUTE ON FUNCTION set_user(text) TO dba;
+GRANT EXECUTE ON FUNCTION set_user(text,text) TO dba;
+GRANT EXECUTE ON FUNCTION set_user_u(text) TO dba;
+
+-- Switch to user dba to simulate a DBA login
+SET SESSION AUTHORIZATION dba;
+SELECT SESSION_USER, CURRENT_USER;
+---  session_user | current_user
+--- --------------+--------------
+---  dba          | dba
+--- (1 row)
+
+--- Escalate privileges: using set_user() here fails because the target user is a superuser
+SELECT set_user('postgres');
+--- ERROR:  switching to superuser not allowed
+--- HINT:  Use 'set_user_u' to escalate.
+
+--- Escalate privileges: using set_user_u() here succeeds
+SELECT set_user_u('postgres');
+---  set_user_u
+--- ------------
+---  OK
+--- (1 row)
+
+--- Check the user state after escalation
+SELECT SESSION_USER, CURRENT_USER;
+---  session_user | current_user
+--- --------------+--------------
+---  dba          | postgres
+--- (1 row)
+
+--- Test a repeated set_user; it fails
+SELECT set_user('bob');
+--- ERROR:  must reset previous user prior to setting again
+
+--- While escalated, ALTER SYSTEM fails
+ALTER SYSTEM SET wal_level = minimal;
+--- ERROR:  ALTER SYSTEM blocked by set_user config
+
+--- While escalated, COPY PROGRAM fails
+COPY (select 42) TO PROGRAM 'cat';
+--- ERROR:  COPY PROGRAM blocked by set_user config
+
+--- While escalated, SET log_statement fails
+SET log_statement = 'none';
+--- ERROR:  "SET log_statement" blocked by set_user config
+
+--- Restore the original user
+SELECT reset_user();
+SELECT SESSION_USER, CURRENT_USER;
+---  session_user | current_user
+--- --------------+--------------
+---  dba          | dba
+--- (1 row)
+
+--- Switch to the ordinary user bob
+SELECT set_user('bob');
+SELECT SESSION_USER, CURRENT_USER;
+---  session_user | current_user
+--- --------------+--------------
+---  dba          | bob
+--- (1 row)
+
+--- Restore the original user
+SELECT reset_user();
+SELECT SESSION_USER, CURRENT_USER;
+---  session_user | current_user
+--- --------------+--------------
+---  dba          | dba
+--- (1 row)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Inspecting <code>logfile</code> shows that every operation performed after escalation was recorded, with the <code>AUDIT</code> tag in the log prefix. Each user switch has a corresponding line: <code>LOG:  XXX transitioning to YYY</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-log hljs" data-lang="log">2026-07-17 13:55:34.905 CST [2670610] LOG:  Role dba transitioning to Superuser Role postgres
+2026-07-17 13:55:34.905 CST [2670610] STATEMENT:  SELECT set_user_u('postgres');
+2026-07-16 16:01:21.193 CST [2644289] AUDIT: LOG:  statement: SELECT SESSION_USER, CURRENT_USER;
+2026-07-16 16:01:43.825 CST [2644289] AUDIT: LOG:  statement: SELECT set_user('bob');
+2026-07-16 16:01:43.829 CST [2644289] AUDIT: ERROR:  must reset previous user prior to setting again
+2026-07-16 16:01:43.829 CST [2644289] AUDIT: STATEMENT:  SELECT set_user('bob');
+2026-07-16 16:02:20.177 CST [2644289] AUDIT: LOG:  statement: ALTER SYSTEM SET wal_level = minimal;
+2026-07-16 16:02:20.177 CST [2644289] AUDIT: ERROR:  ALTER SYSTEM blocked by set_user config
+2026-07-16 16:02:20.177 CST [2644289] AUDIT: STATEMENT:  ALTER SYSTEM SET wal_level = minimal;
+2026-07-17 13:56:26.924 CST [2670610] STATEMENT:  SELECT set_user_u('postgres');
+2026-07-17 14:01:12.017 CST [2670610] AUDIT: LOG:  statement: select reset_user();
+2026-07-17 14:01:12.017 CST [2670610] AUDIT: LOG:  Superuser Role postgres transitioning to Role dba
+2026-07-17 14:18:42.884 CST [2671784] LOG:  Role dba transitioning to Role bob
+2026-07-17 14:18:42.884 CST [2671784] STATEMENT:  select set_user('bob');
+2026-07-17 14:18:53.301 CST [2671784] LOG:  Role bob transitioning to Role dba
+2026-07-17 14:18:53.301 CST [2671784] STATEMENT:  select reset_user();
+2026-07-17 14:26:16.737 CST [2671784] LOG:  Role dba transitioning to Role bob
+2026-07-17 14:26:16.737 CST [2671784] STATEMENT:  SELECT set_user('bob');</code></pre>
+</div>
+</div>
 </div>
 <div class="sect2">
-<h3 id="modify-the-configuration-file"><a class="anchor" href="#modify-the-configuration-file"></a>2.2. Modify the configuration file</h3>
-<div class="paragraph">
-<p>Modify the postgresql.conf file to set wal_level as "logical", and set max_replication_slots/max_wal_senders.</p>
-</div>
-<div class="literalblock">
+<h3 id="cleaning-up-the-test-database"><a class="anchor" href="#cleaning-up-the-test-database"></a>4.4. Cleaning Up the Test Database</h3>
+<div class="listingblock">
 <div class="content">
-<pre>wal_level = logical
-max_replication_slots = 10
-max_wal_senders = 10</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Make sure the following content to be in pg_hba.conf.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>     local   replication     all                                     trust
-     host    replication     all             127.0.0.1/32            trust
-     host    replication     all             ::1/128                 trust</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then restart the database.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="use"><a class="anchor" href="#use"></a>3. Use</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Open the first terminal and execute command:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>sudo -u ivorysql /usr/ivory-5/bin/pg_recvlogical -d postgres --slot wal2json_slot --create-slot -P wal2json
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Stop the test database
+${IVY_BIN_DIR}/pg_ctl -D ${TEST_DB_DIR} -l ${TEST_DB_DIR}/logfile stop
 
-Start monitoring, output the changes in JSON format and in real time.
-sudo -u ivorysql /usr/ivory-5/bin/pg_recvlogical -d postgres --slot wal2json_slot --start -o pretty-print=1 -f -</pre>
+# Remove the test database
+rm -rf ${TEST_DB_DIR}</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>Connect database in the second terminal:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>/usr/ivory-5/bin/psql -d postgres -p 1521</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Execute the following SQL statement:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>CREATE TABLE test_cdc (id int primary key, name varchar(50));
-INSERT INTO test_cdc VALUES (1, 'test1');
-UPDATE test_cdc SET name = 'test1_update' WHERE id = 1;
-DELETE FROM test_cdc WHERE id = 1;
-DROP TABLE test_cdc;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The following output will appear in the first terminal:</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>{
-        "change": [
-        ]
-}
-{
-        "change": [
-                {
-                        "kind": "insert",
-                        "schema": "public",
-                        "table": "test_cdc",
-                        "columnnames": ["id", "name"],
-                        "columntypes": ["integer", "sys.oravarcharbyte(50)"],
-                        "columnvalues": [1, "test1"]
-                }
-        ]
-}
-{
-        "change": [
-                {
-                        "kind": "update",
-                        "schema": "public",
-                        "table": "test_cdc",
-                        "columnnames": ["id", "name"],
-                        "columntypes": ["integer", "sys.oravarcharbyte(50)"],
-                        "columnvalues": [1, "test1_update"],
-                        "oldkeys": {
-                                "keynames": ["id"],
-                                "keytypes": ["integer"],
-                                "keyvalues": [1]
-                        }
-                }
-        ]
-}
-{
-        "change": [
-                {
-                        "kind": "delete",
-                        "schema": "public",
-                        "table": "test_cdc",
-                        "oldkeys": {
-                                "keynames": ["id"],
-                                "keytypes": ["integer"],
-                                "keyvalues": [1]
-                        }
-                }
-        ]
-}
-{
-        "change": [
-        ]
-}</pre>
 </div>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="pg_ai_query.html">pg_ai_query</a></span>
-  <span class="next"><a href="pg_stat_monitor.html">pg_stat_monitor</a></span>
+  <span class="prev"><a href="pgbackrest.html">pgBackRest</a></span>
+  <span class="next"><a href="../getting-started/daily_monitoring.html">Monitoring</a></span>
 </nav>
 </article>
   </div>

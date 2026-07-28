@@ -1,0 +1,1732 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IvorySQL Community Contribution Guide :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/contribution/contribution_guide.html">
+    <link rel="prev" href="../migration_guide.html">
+    <link rel="next" href="../developer_guide.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">About</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">Release</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Get Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">Quick Start</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">Cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle Compatibility</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure_en.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、ONLINE Parameter for CREATE INDEX</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG function</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization and Cloud Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgdog.html">PgDog</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_readonly_en.html">pg_readonly</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/zhparser_en.html">zhparser</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbackrest.html">pgBackRest</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/set_user.html">set_user</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Monitor and O&amp;M</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">Maintenance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">Operation Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Migration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Developers</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="contribution_guide.html">Contribution Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">Developer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_parser.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/framework_design.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">Function and stored procedure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">Case Conversion</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl_en.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">ONLINE Parameter for CREATE INDEX</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Built-in Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../gb18030.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">Tool Reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.23/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Developers</li>
+    <li><a href="contribution_guide.html">Contribution Guide</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/contribution/contribution_guide.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/contribution/contribution_guide.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page"><strong>IvorySQL Community Contribution Guide</strong></h1>
+<div class="sect1">
+<h2 id="overview"><a class="anchor" href="#overview"></a>1. <strong>Overview</strong></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="introduction"><a class="anchor" href="#introduction"></a>1.1. Introduction</h3>
+<div class="paragraph">
+<p>IvorySQL is maintained by a core development team that has commit access to the main IvorySQL repository on GitHub. We eagerly welcome contributions from members of the broader IvorySQL community. If you want to see your code or documentation changes added to IvorySQL and appearing in future releases, this section covers what you need to know.</p>
+</div>
+<div class="paragraph">
+<p>The IvorySQL community welcomes and appreciates all types of contributions, and we look forward to your participation!</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="code-of-conduct"><a class="anchor" href="#code-of-conduct"></a>1.2. Code of Conduct</h3>
+<div class="paragraph">
+<p>We welcome all community members and contributors to read and follow our <a href="https://github.com/IvorySQL/IvorySQL/blob/master/CODE_OF_CONDUCT.md"><strong>Code of Conduct</strong></a>. We are committed to creating an inclusive and respectful participation environment for everyone, regardless of their background or identity characteristics. The Code of Conduct clarifies our expectations for community behavior, ensuring that all participants can collaborate in a harassment-free environment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="governance"><a class="anchor" href="#governance"></a>1.3. Governance</h3>
+<div class="paragraph">
+<p>The IvorySQL project operates through open, collaborative teams, with each team focusing on specific areas of the project. Each team consists of reviewers, committers, and maintainers who jointly manage one or more repositories. Key decisions at the team level are made by maintainers.</p>
+</div>
+<div class="paragraph">
+<p>The typical career progression for IvorySQL developers is: user → reviewer → committer → maintainer. It should be understood that taking on more roles does not mean having special privileges in the community. All participants in the IvorySQL community are equal, and everyone has the responsibility to cooperate constructively with other contributors to create a friendly and inclusive community environment.</p>
+</div>
+<div class="paragraph">
+<p>These roles are recognition of your important contributions to IvorySQL development. They provide you with more capabilities in the development workflow to improve work efficiency, while also bringing greater responsibilities:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Team Stewardship</strong>: As a reviewer, committer, or maintainer, you now represent the project and team members. You need to uphold the highest standards of professionalism and maintain the reputation of the team and the project.</p>
+</li>
+<li>
+<p><strong>Accountability</strong>: Committers and maintainers have the authority to merge pull requests, while also needing to take responsibility for managing the consequences of code or documentation changes. This includes rolling back or fixing issues when changes cause problems, as well as working closely with the release manager to resolve any issues discovered during the pre-release testing cycle.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="roles-and-responsibilities"><a class="anchor" href="#roles-and-responsibilities"></a>2. Roles and Responsibilities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Before contributing, please confirm your current participation role to more efficiently understand the contribution methods suitable for you:</p>
+</div>
+<div class="sect2">
+<h3 id="users"><a class="anchor" href="#users"></a>2.1. Users</h3>
+<div class="paragraph">
+<p>As a user, you play an important role in using IvorySQL. We encourage you to:</p>
+</div>
+<div class="sect3">
+<h4 id="provide-feedback-and-requirements"><a class="anchor" href="#provide-feedback-and-requirements"></a>2.1.1. Provide Feedback and Requirements</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Found a bug, performance issue, or inaccurate documentation?</p>
+</li>
+<li>
+<p>Have new feature suggestions or usage experience improvements?</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you are preparing to report a bug or submit requirements to the community, please submit an Issue in the corresponding IvorySQL community repository and refer to the Submit Issue section of this guide.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="participate-in-community-discussions"><a class="anchor" href="#participate-in-community-discussions"></a>2.1.2. Participate in Community Discussions</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Discuss through the <a href="https://lists.ivorysql.org">mailing list</a></p>
+</li>
+<li>
+<p>Join <a href="https://github.com/IvorySQL/IvorySQL/discussions">GitHub Discussions</a> to supplement information or verify issues</p>
+</li>
+<li>
+<p>Participate in technical discussions in WeChat, Discord, and other chat groups</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contributors"><a class="anchor" href="#contributors"></a>2.2. Contributors</h3>
+<div class="paragraph">
+<p>We welcome all types of contributions including code, documentation, testing, etc.</p>
+</div>
+<div class="sect3">
+<h4 id="find-projects-youre-interested-in"><a class="anchor" href="#find-projects-youre-interested-in"></a>2.2.1. Find Projects You&#8217;re Interested In</h4>
+<div class="paragraph">
+<p>We divide the repositories into multiple sub-projects. You can find projects of interest and their code repositories from the following list:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Repository</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/IvorySQL">IvorySQL</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible for the development and maintenance of the IvorySQL database</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/Ivory-www">Ivory-www</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible for the development and maintenance of the community website</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivory-operator">ivory-operator</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible for the development and maintenance of IvorySQL cloud-native database and peripheral tools</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/docker_library">docker_library</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible for the construction and maintenance of IvorySQL multi-architecture images</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivory-cloud">ivory-cloud</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible for the development and maintenance of IvorySQL cloud service platform and peripheral ecosystem</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivorysql_docs">Ivorysql_docs</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible for the development and maintenance of the community documentation center</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivory-doc-builder">ivory-doc-builder</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible for compiling Ivorysql_docs</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivorysql_web">Ivorysql_web</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible for the maintenance of the community documentation website</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivorysql-wasm">Ivorysql_wasm</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Responsible for the development and maintenance of the IvorySQL online experience website</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="assign-issues-to-yourself"><a class="anchor" href="#assign-issues-to-yourself"></a>2.2.2. Assign Issues to Yourself</h4>
+<div class="paragraph">
+<p>You can assign Issues you created or Issues you are willing to handle to yourself. Simply enter <code>/assign</code> in the comment box, and the bot will assign the issue to you. There may already be communication and discussion among participants under each Issue. If you are interested, you can also express your opinions in the comment box to participate in Issue discussions.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="maintainers"><a class="anchor" href="#maintainers"></a>2.3. Maintainers</h3>
+<div class="paragraph">
+<p>Maintainers are responsible for managing IvorySQL code, PR reviews, leading version releases, and IvorySQL development direction.</p>
+</div>
+<div class="sect3">
+<h4 id="community-planning"><a class="anchor" href="#community-planning"></a>2.3.1. Community Planning</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Develop version planning and Roadmap</p>
+</li>
+<li>
+<p>Track and evaluate community needs</p>
+</li>
+<li>
+<p>Maintain a public TODO list</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="code-management"><a class="anchor" href="#code-management"></a>2.3.2. Code Management</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Participate in Pull Request reviews</p>
+</li>
+<li>
+<p>Review security issues to ensure project health</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="process-and-governance-mechanisms"><a class="anchor" href="#process-and-governance-mechanisms"></a>2.3.3. Process and Governance Mechanisms</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Optimize collaboration mechanisms (code contribution guides, PR templates, etc.)</p>
+</li>
+<li>
+<p>Establish vulnerability response mechanisms and codes of conduct</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="getting-started"><a class="anchor" href="#getting-started"></a>3. Getting Started</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="register-a-github-account"><a class="anchor" href="#register-a-github-account"></a>3.1. Register a GitHub Account</h3>
+<div class="paragraph">
+<p>Whether you want to submit Issues, participate in discussions, or contribute code and documentation, you need to log in with a GitHub account and interact with the IvorySQL project.</p>
+</div>
+<div class="paragraph">
+<p>Please refer to <a href="https://docs.github.com/en/get-started/start-your-journey" class="bare">https://docs.github.com/en/get-started/start-your-journey</a> to register your GitHub account and familiarize yourself with Git tools and workflows.</p>
+</div>
+<div class="paragraph">
+<p>IvorySQL source code is hosted on GitHub: <a href="https://github.com/IvorySQL" class="bare">https://github.com/IvorySQL</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sign-the-cla"><a class="anchor" href="#sign-the-cla"></a>3.2. Sign the CLA</h3>
+<div class="paragraph">
+<p>Before submitting code or documentation contributions, to ensure code legality and compliance, individual or corporate contributors need to sign the Contributor License Agreement (CLA). Signing the CLA is a necessary condition for the IvorySQL community to accept contributions, ensuring your contributions are legally distributed. Please download the CLA according to the following links, sign it, and send the signed CLA to <a href="mailto:cla@ivorysql.org">cla@ivorysql.org</a>.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.ivorysql.org/assets/files/individual_cla-7703700da5e1ca8f26cb8a68f610d4f2.pdf">Individual Contributor</a></p>
+</li>
+<li>
+<p><a href="https://www.ivorysql.org/assets/files/corporate_cla-88aa01a7e770ecf89dc401f925c3438e.pdf">Corporate Contributor</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you contribute via the AtomGit platform, the system will automatically assist you in completing the CLA signing process, without the need to manually download and send files.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Pull Requests from contributors who have not signed the CLA will not be able to enter the review stage.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="common-contribution-process"><a class="anchor" href="#common-contribution-process"></a>4. <strong>Common Contribution Process</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Submitting an Issue, claiming an Issue, and submitting a PR are common processes for all types of contributions (code contributions, documentation contributions, component adaptation contributions). Regardless of which type of contribution you participate in, you need to follow these three steps.</p>
+</div>
+<div class="sect2">
+<h3 id="submit-issue"><a class="anchor" href="#submit-issue"></a>4.1. Submit Issue</h3>
+<div class="sect3">
+<h4 id="enter-new-issue-page"><a class="anchor" href="#enter-new-issue-page"></a>4.1.1. Enter New issue page:</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Go to IvorySQL official website: <a href="https://github.com/IvorySQL/IvorySQL" class="bare">https://github.com/IvorySQL/IvorySQL</a></p>
+</li>
+<li>
+<p>Click New issue</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/p3.png" alt="p3">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="select-the-issue-type-to-fill-in"><a class="anchor" href="#select-the-issue-type-to-fill-in"></a>4.1.2. Select the issue type to fill in</h4>
+<div class="paragraph">
+<p><strong>1. bug report</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Title: Title</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">## Bug Report
+Describe the bug
+
+
+\### IvorySQL Version
+The version of IvorySQL where the problem was found
+
+\### OS Version (uname -a)
+System version
+
+\### Configuration options  ( config.status --config )
+Configuration parameters
+
+\### Current Behavior
+Current result
+
+\### Expected behavior/code
+Expected result
+
+\### Step to reproduce
+Reproduction steps
+
+\### Additional context that can be helpful for identifying the problem
+Other information helpful for identifying the problem</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>2. Enhancement</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Title: Title</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">## Enhancement
+Describe the functions you expect to be strengthened</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3. Feature Request</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Title: Title</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">## Feature Request
+Describe a feature you expect to be implemented</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="submit"><a class="anchor" href="#submit"></a>4.1.3. Submit</h4>
+<div class="paragraph">
+<p>Click the submit new issue button to submit</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="claim-an-issue"><a class="anchor" href="#claim-an-issue"></a>4.2. Claim an Issue</h3>
+<div class="paragraph">
+<p>Before starting your contribution, you need to find or create an Issue in the target repository:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Browse the repository&#8217;s Issue list and search for Issues related to what you want to contribute</p>
+</li>
+<li>
+<p>If you find a relevant Issue, confirm that it has not been assigned (Assignees is empty)</p>
+</li>
+<li>
+<p>If the Issue is unassigned, click <code>Assign yourself</code> in the Assignees area in the upper right corner to claim the Issue for yourself</p>
+</li>
+<li>
+<p>If the Issue has already been claimed by someone else, please choose another Issue or negotiate with the claimant</p>
+</li>
+<li>
+<p>If no relevant Issue is found, create a new Issue describing what you want to contribute and assign it to yourself</p>
+</li>
+<li>
+<p>Wait for maintainer evaluation and confirmation, and start your contribution work only after receiving maintainer confirmation</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+It is recommended to start working only after the Issue is confirmed by maintainers to avoid duplicate or invalid work.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="submit-pr"><a class="anchor" href="#submit-pr"></a>4.3. Submit PR</h3>
+<div class="paragraph">
+<p>For submitting a PR, you should keep one feature or one bug per submission. Submitting multiple features at once is prohibited.</p>
+</div>
+<div class="sect3">
+<h4 id="create-a-pull-request"><a class="anchor" href="#create-a-pull-request"></a>4.3.1. Create a Pull Request</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open your Forked repository (replace $user with your GitHub ID).</p>
+</li>
+<li>
+<p>Click Compare &amp; pull request button</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="fill-in-pr-information"><a class="anchor" href="#fill-in-pr-information"></a>4.3.2. Fill in PR information</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Fix test
+Function description</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">leave a comment
+Provide a more detailed description of the submitted function</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="submit-pr-2"><a class="anchor" href="#submit-pr-2"></a>4.3.3. Submit PR</h4>
+<div class="paragraph">
+<p>Click the Create pull request button to submit.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="code-contribution"><a class="anchor" href="#code-contribution"></a>5. <strong>Code Contribution</strong></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="fork-ivorysql-repository"><a class="anchor" href="#fork-ivorysql-repository"></a>5.1. Fork IvorySQL Repository</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the ivorysql repository <a href="https://github.com/IvorySQL/IvorySQL" class="bare">https://github.com/IvorySQL/IvorySQL</a></p>
+</li>
+<li>
+<p>Click the fork button in the upper right corner and wait for the fork to complete</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="clone-the-forked-repository-to-local"><a class="anchor" href="#clone-the-forked-repository-to-local"></a>5.2. Clone the forked repository to local</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd $working_dir # Replace $working_dir with the directory where you want to place the repo. For example, `cd ~/Documents/GitHub`
+
+git clone git@github.com:$user/IvorySQL.git # Replace `$user` with your GitHub ID</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="create-a-new-branch"><a class="anchor" href="#create-a-new-branch"></a>5.3. Create a new Branch</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd $working_dir/IvorySQL
+
+git checkout -b new-branch-name</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="modify-code"><a class="anchor" href="#modify-code"></a>5.4. Modify Code</h3>
+<div class="paragraph">
+<p>Modify the code in the newly created new-branch-name.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="generate-commit"><a class="anchor" href="#generate-commit"></a>5.5. Generate commit</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Git add &lt;file&gt;
+
+Git commit -m "commit-message"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="push-changes-to-remote"><a class="anchor" href="#push-changes-to-remote"></a>5.6. Push changes to remote</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Git push -u origin new-branch-name</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After completing the code push, please refer to the <a href="#_submit_pr">Submit PR</a> section to create a Pull Request.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="documentation-contribution"><a class="anchor" href="#documentation-contribution"></a>6. <strong>Documentation Contribution</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The IvorySQL community provides bilingual documentation. English documentation is saved in the EN/ directory, and Chinese documentation is saved in the CN/ directory. You can contribute to either documentation, or you can contribute to both at the same time. Documentation contributions follow the "fork - pull request - merge" process.</p>
+</div>
+<div class="sect2">
+<h3 id="documentation-center-structure"><a class="anchor" href="#documentation-center-structure"></a>6.1. Documentation Center Structure</h3>
+<div class="paragraph">
+<p>The IvorySQL documentation center consists of three parts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/IvorySQL/ivorysql_docs">Documentation Files</a>: Stores all AsciiDoc format source files</p>
+</li>
+<li>
+<p><a href="https://github.com/IvorySQL/ivorysql_web">Static Web Files</a>: Stores the generated static web pages</p>
+</li>
+<li>
+<p><a href="https://github.com/IvorySQL/ivory-doc-builder">Web Template Files</a>: Templates and configurations used to generate web pages</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you only want to modify existing content or add new pages, you only need to fork the documentation files repository. If you want to deeply participate in the documentation center construction (such as modifying the web UI), you need to fork all three repositories at the same time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contribution-methods"><a class="anchor" href="#contribution-methods"></a>6.2. Contribution Methods</h3>
+<div class="paragraph">
+<p>You can start from any of the following to help improve IvorySQL documentation:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Write and improve documentation</p>
+</li>
+<li>
+<p>Fix spelling errors or formatting (punctuation, spaces, indentation, code blocks, etc.)</p>
+</li>
+<li>
+<p>Correct or update inappropriate or outdated instructions</p>
+</li>
+<li>
+<p>Add missing content (sentences, paragraphs, or new documentation)</p>
+</li>
+<li>
+<p>Translate documentation changes from English to Chinese, or from Chinese to English</p>
+</li>
+<li>
+<p>Submit, reply to, and resolve documentation issues</p>
+</li>
+<li>
+<p>(Advanced) Review pull requests created by others</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="method-1-quick-edit-via-website-suitable-for-small-modifications"><a class="anchor" href="#method-1-quick-edit-via-website-suitable-for-small-modifications"></a>6.3. Method 1: Quick Edit via Website (Suitable for Small Modifications)</h3>
+<div class="paragraph">
+<p>For simple modifications (such as fixing spelling errors, updating a small amount of content), you can do it directly through the website:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Click the <code>Edit this page</code> button in the upper right corner of the documentation page</p>
+</li>
+<li>
+<p>The system will jump to the editing page of the corresponding source file on GitHub</p>
+</li>
+<li>
+<p>Modify the content according to AsciiDoc format</p>
+</li>
+<li>
+<p>Fill in the modification description and submit the PR</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>This method does not require a local environment and is suitable for quickly correcting small problems.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="method-2-complete-git-workflow-suitable-for-larger-changes"><a class="anchor" href="#method-2-complete-git-workflow-suitable-for-larger-changes"></a>6.4. Method 2: Complete Git Workflow (Suitable for Larger Changes)</h3>
+<div class="paragraph">
+<p>For larger changes or adding new pages, it is recommended to use the complete Git workflow:</p>
+</div>
+<div class="sect3">
+<h4 id="fork-documentation-repository"><a class="anchor" href="#fork-documentation-repository"></a>6.4.1. Fork Documentation Repository</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Open the documentation repository <a href="https://github.com/IvorySQL/ivorysql_docs" class="bare">https://github.com/IvorySQL/ivorysql_docs</a></p>
+</li>
+<li>
+<p>Click the fork button in the upper right corner and wait for the fork to complete</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="clone-the-forked-repository-to-local-2"><a class="anchor" href="#clone-the-forked-repository-to-local-2"></a>6.4.2. Clone the forked repository to local</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd $working_dir # Replace $working_dir with the directory where you want to place the repo
+
+git clone git@github.com:$user/ivorysql_docs.git # Replace `$user` with your GitHub ID</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="create-a-new-branch-2"><a class="anchor" href="#create-a-new-branch-2"></a>6.4.3. Create a new Branch</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd $working_dir/ivorysql_docs
+
+git checkout -b new-branch-name</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="edit-documentation"><a class="anchor" href="#edit-documentation"></a>6.4.4. Edit Documentation</h4>
+<div class="paragraph">
+<p>Edit the documentation in the newly created new-branch-name. IvorySQL documentation is written in AsciiDoc format. Please refer to <a href="#master/contribution/asciidoc_syntax_reference.adoc" class="xref unresolved">AsciiDoc Syntax Reference</a>.</p>
+</div>
+<div class="paragraph">
+<p>When adding new pages:
+. Place the <code>.adoc</code> file in the correct directory (CN/ or EN/ corresponding version directory)
+. Chinese and English files should have the same name
+. Modify the corresponding <code>nav.adoc</code> file to add navigation links</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="generate-commit-2"><a class="anchor" href="#generate-commit-2"></a>6.4.5. Generate commit</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git add &lt;file&gt;
+
+git commit -m "commit-message"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="push-changes-to-remote-2"><a class="anchor" href="#push-changes-to-remote-2"></a>6.4.6. Push changes to remote</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git push -u origin new-branch-name</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>After completing the documentation push, please refer to the <a href="#_submit_pr">Submit PR</a> section to create a Pull Request.</p>
+</div>
+<div class="paragraph">
+<p>After submitting the PR, the system will automatically generate a preview address on the PR page. Contributors can click the preview link to view the modified documentation effect and confirm whether the modification meets expectations. The maintenance team will review the PR, and if there are modification suggestions, they will leave a message in the PR. Contributors will modify according to the feedback. After the review is passed, the maintenance team will merge the PR, and the documentation contribution is complete.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="component-adaptation-contribution"><a class="anchor" href="#component-adaptation-contribution"></a>7. <strong>Component Adaptation Contribution</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>As an Oracle-compatible database developed based on PostgreSQL, IvorySQL naturally inherits PostgreSQL&#8217;s rich extension ecosystem. To enable more PostgreSQL ecosystem components to run stably on IvorySQL, the IvorySQL community welcomes external contributors to participate in the adaptation of ecosystem components.</p>
+</div>
+<div class="sect2">
+<h3 id="adaptation-scope"><a class="anchor" href="#adaptation-scope"></a>7.1. Adaptation Scope</h3>
+<div class="paragraph">
+<p>The following types of components are welcome for contributors to adapt:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Official PostgreSQL community extensions (contrib modules)</p>
+</li>
+<li>
+<p>Third-party plugins developed based on PostgreSQL&#8217;s extension mechanism</p>
+</li>
+<li>
+<p>Peripheral ecosystem tools that work with the database as independent processes, such as connection pools, proxies, middleware, etc.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="contribution-process"><a class="anchor" href="#contribution-process"></a>7.2. Contribution Process</h3>
+<div class="paragraph">
+<p>Ecosystem component adaptation is the work of adapting PostgreSQL ecosystem components to IvorySQL. The main content includes: understanding the characteristics, principles, and usage of the target component, testing whether it can be used normally in IvorySQL&#8217;s PG mode and Oracle compatibility mode; finally, based on the above research and test results, write an ecosystem component adaptation document and submit it to the <a href="https://github.com/IvorySQL/ivorysql_docs">IvorySQL docs</a> repository. After the document is submitted, maintainers will reproduce the test of the target component according to the steps given in the adaptation document, and merge the PR after confirming that the test results are consistent with the document description.</p>
+</div>
+<div class="paragraph">
+<p>For specific topic selection, testing, documentation writing, and other links, please refer to the detailed steps below.</p>
+</div>
+<div class="sect3">
+<h4 id="topic-selection-and-communication"><a class="anchor" href="#topic-selection-and-communication"></a>7.2.1. Topic Selection and Communication</h4>
+<div class="sect4">
+<h5 id="confirm-component-is-not-yet-adapted"><a class="anchor" href="#confirm-component-is-not-yet-adapted"></a>7.2.1.1. Confirm Component Is Not Yet Adapted</h5>
+<div class="paragraph">
+<p>Before starting the adaptation work, please first check the <a href="../ecosystem_components/ecosystem_overview.html" class="xref page">Ecosystem Component Adaptation List</a> to confirm whether the target component has been adapted. If the target component is not in the list, continue with the following process; otherwise, please reselect an unadapted component.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="claim-or-create-issue"><a class="anchor" href="#claim-or-create-issue"></a>7.2.1.2. Claim or Create Issue</h5>
+<div class="paragraph">
+<p>Follow the steps in the <a href="#_claim_an_issue">Claim an Issue</a> section to claim or create an Issue, and note the following component adaptation-specific requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When creating a new Issue, select the <code>Feature Request</code> type and add the <code>extension</code> label</p>
+</li>
+<li>
+<p>Title format: <code>Ecosystem Integration: &lt;component name&gt;</code></p>
+</li>
+<li>
+<p>Use one sentence in the body to explain the component to be adapted and its purpose</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Maintainers will evaluate whether the component is suitable for inclusion in the IvorySQL ecosystem and communicate with you in the Issue for confirmation.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="adaptation-testing"><a class="anchor" href="#adaptation-testing"></a>7.2.2. Adaptation Testing</h4>
+<div class="paragraph">
+<p>The goals of ecosystem component adaptation are divided into two levels:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PG mode: The component must be fully usable.</p>
+</li>
+<li>
+<p>Oracle compatibility mode: It should be fully usable as much as possible; if it cannot be fully usable, at least the main functions should be able to run normally. For PG-specific extensions whose underlying mechanisms conflict with Oracle compatibility mode and cannot run in this mode at all (such as pg_partman, which is specially designed to manage PostgreSQL partitioned tables and does not support running in Oracle compatibility mode), it is necessary to explain the situation in the adaptation document and PR description.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="component-compilation-and-installation"><a class="anchor" href="#component-compilation-and-installation"></a>7.2.2.1. Component Compilation and Installation</h5>
+<div class="paragraph">
+<p>Please refer to the official documentation of the target component for compilation and installation.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="test-pg-mode"><a class="anchor" href="#test-pg-mode"></a>7.2.2.2. Test PG Mode</h5>
+<div class="paragraph">
+<p>Start an IvorySQL instance, use psql to connect to the database through port 5432, and perform the following verifications:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Functional testing: Verify the core functions one by one according to the functional test cases provided in the component documentation;</p>
+</li>
+<li>
+<p>Regression testing: If the component source code comes with its own test cases, they should be run and ensured to pass completely;</p>
+</li>
+<li>
+<p>Boundary testing: Test boundary conditions and exception scenarios to confirm the robustness of the component.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If a certain function cannot be used or the test fails, it is necessary to investigate the cause: for problems on the IvorySQL side, please submit a PR to the IvorySQL repository for repair; for problems on the component side, you can provide feedback to the component repository and record this limitation in the adaptation document.</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="test-oracle-compatibility-mode"><a class="anchor" href="#test-oracle-compatibility-mode"></a>7.2.2.3. Test Oracle Compatibility Mode</h5>
+<div class="paragraph">
+<p>Use psql to connect to the database through port 1521 (Oracle compatibility port) and perform the following verifications:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Refer to the test method of PG mode to verify the main functions of the component;</p>
+</li>
+<li>
+<p>Test the data type compatibility of the component in Oracle compatibility mode;</p>
+</li>
+<li>
+<p>Test whether the component functions support Oracle-style anonymous blocks, stored procedures, functions, etc.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Record whether each function is available in Oracle compatibility mode, as the basis for the functional coverage description in the adaptation document.</p>
+</div>
+<div class="paragraph">
+<p>Please pay attention to the following two points when testing:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Use Oracle syntax to write test statements</strong>. Some syntax in Oracle compatibility mode is different from PG mode, and PG mode test cases cannot be directly copied. For example: the interval type needs to use Oracle-style syntax instead of PG syntax; statements such as <code>CREATE FUNCTION</code> and <code>CREATE PROCEDURE</code> need to add <code>/</code> as a terminator on a new line at the end.</p>
+</li>
+<li>
+<p><strong>Distinguish between "output differences" and "functional abnormalities"</strong>. Some outputs that are inconsistent with PG mode are normal phenomena and should not be recorded as compatibility issues. For example: type names in some outputs will have the <code>pg_catalog.</code> schema prefix. To determine whether a function is normal, it should be based on whether the semantics of the execution result are correct, rather than requiring the output text to be exactly the same as PG mode character by character.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Record whether each function is available in Oracle compatibility mode, as the basis for the functional coverage description in the adaptation document.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Not all components can work in Oracle compatibility mode. If executing <code>CREATE EXTENSION</code> or calling component functions fails due to syntax errors, it is mostly because the component internally uses PG-specific syntax that Oracle does not support. Please refer to the PG syntax whitelist mechanism in the next section for repair; if the component conflicts with Oracle compatibility mode at the underlying mechanism level (such as pg_partman), it is necessary to clearly explain in the adaptation document and PR description.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="fix-compatibility-issues-through-pg-syntax-whitelist"><a class="anchor" href="#fix-compatibility-issues-through-pg-syntax-whitelist"></a>7.2.2.4. Fix Compatibility Issues Through PG Syntax Whitelist</h5>
+<div class="paragraph">
+<p>A common reason why Oracle compatibility mode testing fails—especially when executing <code>CREATE EXTENSION</code> fails directly—is that the extension is implemented through SQL scripts, and the scripts use a large number of PG-specific syntax that Oracle does not support (such as PG-style interval expressions, array slicing, etc.), causing the scripts to fail to pass the syntax parsing in Oracle compatibility mode.</p>
+</div>
+<div class="paragraph">
+<p>In response to this situation, the IvorySQL kernel provides a PG syntax whitelist mechanism (see the <code>PgDialectExtensions</code> list in <code>src/backend/commands/extension.c</code>). After the extension is added to the whitelist, when executing <code>CREATE EXTENSION</code> in an Oracle compatibility mode cluster:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The extension&#8217;s installation script will temporarily switch to using the PG parser for parsing and execution, unaffected by the current session&#8217;s compatibility mode;</p>
+</li>
+<li>
+<p>Functions created by the installation script will be automatically injected with the <code>SET ivorysql.compatible_mode = pg</code> configuration, and thereafter, regardless of which compatibility mode session calls them, the function body will be parsed and executed by the PG parser.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>With this mechanism, extensions implemented using PG-specific syntax can be installed and run normally in Oracle compatibility mode clusters without modifying any code. The whitelist currently includes extensions such as pg_profile and pg_repack.</p>
+</div>
+<div class="paragraph">
+<p>This method is applicable to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Extensions mainly implemented through SQL or PL/pgSQL, where <code>CREATE EXTENSION</code> or function calls fail in Oracle compatibility mode due to the use of PG-specific syntax;</p>
+</li>
+<li>
+<p>Extensions whose functions are self-contained (such as management extensions for statistics collection, table reorganization, etc.), where users only need to call their entry functions, and do not require their internal implementation to interact with Oracle-style objects.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This method is not applicable to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Extensions that need to deeply interact with Oracle-style objects (stored procedures, Oracle proprietary data types, etc.) created by users, forcing parsing according to PG syntax will destroy this interaction;</p>
+</li>
+<li>
+<p>Extensions that conflict with Oracle compatibility mode at the underlying mechanism level (such as pg_partman, which relies on PostgreSQL&#8217;s native partitioned table management). Such problems are not at the syntax parsing level, and the whitelist cannot solve them. It is still necessary to explain the limitations in the adaptation document and PR description.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>After confirming that the target extension belongs to the applicable scenario, you can submit a PR to the IvorySQL repository to add the extension name to the <code>PgDialectExtensions</code> whitelist, and attach the test results under both modes in the PR description; at the same time, explain in the "Oracle Compatibility" section of the adaptation document that the extension runs through the whitelist mechanism.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="documentation-writing"><a class="anchor" href="#documentation-writing"></a>7.2.3. Documentation Writing</h4>
+<div class="paragraph">
+<p>IvorySQL documentation is written using AsciiDoc, which has syntax similar to Markdown but more powerful. If you are not familiar with AsciiDoc syntax, please refer to <a href="#master/contribution/asciidoc_syntax_reference.adoc" class="xref unresolved">AsciiDoc Syntax Quick Reference</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="documentation-structure"><a class="anchor" href="#documentation-structure"></a>7.2.3.1. Documentation Structure</h5>
+<div class="paragraph">
+<p>Each ecosystem component adaptation document should contain the following sections (which can be adjusted appropriately according to component characteristics):</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Section</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Overview</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Introduce the component&#8217;s functions, applicable scenarios, and relationship with IvorySQL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Principle Introduction</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(Optional) Introduce the component&#8217;s core working principles to help readers understand the component&#8217;s operating mechanism</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Installation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Detailed installation steps, including dependency installation, source code acquisition, compilation and installation, extension creation, etc.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">If the component requires additional configuration steps (such as modifying <code>ivorysql.conf</code>, restarting services, etc.), explain here</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usage examples of core functions, including creating objects, executing operations, querying results, etc.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle Compatibility</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The component&#8217;s performance in Oracle compatibility mode, including supported functions and known limitations</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="documentation-template"><a class="anchor" href="#documentation-template"></a>7.2.3.2. Documentation Template</h5>
+<div class="paragraph">
+<p>The following is a basic template for an ecosystem component adaptation document. Contributors can fill in content based on this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:sectnums:
+:sectnumlevels: 5
+
+= &lt;Component Name&gt;
+
+== Overview
+&lt;Component function introduction, applicable scenarios, and relationship with IvorySQL&gt;
+
+Project address: &lt;https://github.com/xxx/xxx&gt;
+
+Version: &lt;adapted component version number&gt;
+
+Open source license: &lt;component's open source license&gt;
+
+== Installation
+
+[TIP]
+The source code test installation environment is &lt;operating system version&gt;, with IvorySQL 5 or above installed in the environment, installation path is /usr/local/ivorysql/ivorysql-5
+
+=== Dependencies
+&lt;List and explain the dependencies required for installation&gt;
+
+=== Source Code Installation
+[literal]
+----
+# Get source code
+git clone &lt;repository address&gt;
+cd &lt;directory&gt;
+
+# Set pg_config path
+export PG_CONFIG=/usr/local/ivorysql/ivorysql-5/bin/pg_config
+
+# Compile and install
+make
+sudo make install
+----
+
+=== Create Extension
+[literal]
+----
+ivorysql=# CREATE EXTENSION &lt;extension name&gt;;
+CREATE EXTENSION
+
+ivorysql=# SELECT * FROM pg_available_extensions WHERE name = '&lt;extension name&gt;';
+----
+
+== Usage
+
+=== &lt;Function Point One&gt;
+&lt;Usage example and output&gt;
+
+=== &lt;Function Point Two&gt;
+&lt;Usage example and output&gt;
+
+== Oracle Compatibility
+&lt;Optional: Test results in Oracle compatibility mode&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="synchronously-update-overview-page"><a class="anchor" href="#synchronously-update-overview-page"></a>7.2.3.3. Synchronously Update Overview Page</h5>
+<div class="paragraph">
+<p>After completing the component documentation writing, please make sure to synchronously update the plugin list table in <a href="../ecosystem_components/ecosystem_overview.html" class="xref page">ecosystem_overview.adoc</a>, adding a new record at the end of the table, containing the following information:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Sequence number: Current maximum sequence number plus 1</p>
+</li>
+<li>
+<p>Plugin name: Plugin name with xref link</p>
+</li>
+<li>
+<p>Version: The component version you adapted</p>
+</li>
+<li>
+<p>Function description: Summarize the component function in one sentence</p>
+</li>
+<li>
+<p>Applicable scenarios: List main applicable scenarios</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Both Chinese and English versions of the overview page need to be synchronously updated.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="submit-pr-3"><a class="anchor" href="#submit-pr-3"></a>7.2.4. Submit PR</h4>
+<div class="sect4">
+<h5 id="create-branch"><a class="anchor" href="#create-branch"></a>7.2.4.1. Create Branch</h5>
+<div class="paragraph">
+<p>Ecosystem component adaptation documents are uniformly submitted to the <a href="https://github.com/IvorySQL/ivorysql_docs">IvorySQL docs</a> repository (note: not the IvorySQL main repository where the Issue is created). Please first fork this repository and clone it to local, then create a feature branch:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>git checkout -b feature/adapt-&lt;component name&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="add-files"><a class="anchor" href="#add-files"></a>7.2.4.2. Add Files</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Place the documentation file in the <code>EN/modules/ROOT/pages/master/ecosystem_components/</code> directory</p>
+</li>
+<li>
+<p>If there are image resources, place them in the <code>EN/modules/ROOT/images/</code> directory</p>
+</li>
+<li>
+<p>Synchronously prepare the Chinese version and place it in the corresponding CN directory</p>
+</li>
+<li>
+<p>Update the links in <code>nav.adoc</code> and <code>ecosystem_overview.adoc</code> for both CN and EN</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="create-pr"><a class="anchor" href="#create-pr"></a>7.2.4.3. Create PR</h5>
+<div class="paragraph">
+<p>Create a PR according to the steps in the <a href="#_submit_pr">Submit PR</a> section, and pay attention to the following special requirements:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Submit a PR to the master branch of the <a href="https://github.com/IvorySQL/ivorysql_docs">IvorySQL docs</a> repository</p>
+</li>
+<li>
+<p>Use <code>Fixes IvorySQL/IvorySQL#&lt;number&gt;</code> in the PR description to link the adaptation Issue claimed or created in the first step</p>
+</li>
+<li>
+<p>Explain in the PR description:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>The adapted component name and version</p>
+</li>
+<li>
+<p>Test environment information</p>
+</li>
+<li>
+<p>Completed test items</p>
+</li>
+<li>
+<p>Known limitations or issues</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Since the Issue is located in the IvorySQL main repository, you must use the full reference format <code>IvorySQL/IvorySQL#number</code>; after the PR is merged, the corresponding Issue will be automatically closed.</p>
+</li>
+<li>
+<p>The linking keyword must be written in the PR description submitted to the IvorySQL docs repository and spelled correctly (<code>Fixes</code>/<code>Closes</code>/<code>Resolves</code> + space + <code>IvorySQL/IvorySQL#&lt;number&gt;</code>), writing it in comments is invalid.</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="wait-for-review"><a class="anchor" href="#wait-for-review"></a>7.2.4.4. Wait for Review</h5>
+<div class="paragraph">
+<p>Maintainers will reproduce the test according to the steps in the document and review the PR, possibly proposing the following modification suggestions:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Supplement missing test cases</p>
+</li>
+<li>
+<p>Correct documentation formatting issues</p>
+</li>
+<li>
+<p>Improve Oracle compatibility testing</p>
+</li>
+<li>
+<p>Supplement Chinese version translation</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Please modify and update the PR in a timely manner according to the review opinions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="frequently-asked-questions"><a class="anchor" href="#frequently-asked-questions"></a>7.3. Frequently Asked Questions</h3>
+<div class="sect3">
+<h4 id="compilation-error-cannot-find-pg_config"><a class="anchor" href="#compilation-error-cannot-find-pg_config"></a>7.3.1. Compilation Error: Cannot Find pg_config</h4>
+<div class="paragraph">
+<p>Please confirm that the <code>PG_CONFIG</code> environment variable is set correctly, pointing to the <code>bin/pg_config</code> under the IvorySQL installation directory. You can confirm through the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$PG_CONFIG --version</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="extension-creation-fails"><a class="anchor" href="#extension-creation-fails"></a>7.3.2. Extension Creation Fails</h4>
+<div class="paragraph">
+<p>Please check:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Whether the extension&#8217;s <code>.so</code> file is correctly installed in IvorySQL&#8217;s <code>lib</code> directory</p>
+</li>
+<li>
+<p>Whether the extension&#8217;s <code>.sql</code> and <code>.control</code> files are correctly installed in the <code>share/extension</code> directory</p>
+</li>
+<li>
+<p>Whether the IvorySQL version is compatible with the PostgreSQL version required by the component</p>
+</li>
+<li>
+<p>If the failure reason is that PG-specific syntax cannot be parsed, you can refer to the PG syntax whitelist mechanism.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="functional-abnormality-in-oracle-compatibility-mode"><a class="anchor" href="#functional-abnormality-in-oracle-compatibility-mode"></a>7.3.3. Functional Abnormality in Oracle Compatibility Mode</h4>
+<div class="paragraph">
+<p>Some PostgreSQL extensions rely on the PG native parser and may not work properly in Oracle compatibility mode. When encountering such problems, please clearly explain the limitations in the "Oracle Compatibility" section of the documentation, and provide alternative solutions (if available).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="unsure-whether-the-component-is-suitable-for-adaptation"><a class="anchor" href="#unsure-whether-the-component-is-suitable-for-adaptation"></a>7.3.4. Unsure Whether the Component Is Suitable for Adaptation</h4>
+<div class="paragraph">
+<p>Please first initiate a discussion in <a href="https://github.com/IvorySQL/IvorySQL/issues">Issues</a>, describing the component&#8217;s functions and your adaptation plan. Maintainers will provide evaluation opinions.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../migration_guide.html">Migration</a></span>
+  <span class="next"><a href="../developer_guide.html">Developer</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

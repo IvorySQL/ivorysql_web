@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>IvorySQL社区贡献指南 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/contribution/contribution_guide.html">
+    <link rel="prev" href="../migration_guide.html">
+    <link rel="next" href="../developer_guide.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">快速上手</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">安装部署</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、索引 ONLINE 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG 函数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化与云服务</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgdog.html">PgDog</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_readonly.html">pg_readonly</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/zhparser.html">zhparser</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbackrest.html">pgBackRest</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/set_user.html">set_user</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">监控运维</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">数据迁移</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL开发者</span>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="contribution_guide.html">贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">索引 ONLINE 参数</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">参考指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">常见问题解答</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.23/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>IvorySQL开发者</li>
+    <li><a href="contribution_guide.html">贡献指南</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/contribution/contribution_guide.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/contribution/contribution_guide.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page"><strong>IvorySQL社区贡献指南</strong></h1>
+<div class="sect1">
+<h2 id="概述"><a class="anchor" href="#概述"></a>1. <strong>概述</strong></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="说明"><a class="anchor" href="#说明"></a>1.1. 说明</h3>
+<div class="paragraph">
+<p>IvorySQL由一个核心开发团队维护，该团队拥有对GitHub上的IvorySQL主存储库的提交权限。同时，我们非常渴望从更广泛的IvorySQL社区中的成员那里获得贡献。如果您希望看到您的代码或文档更改被添加到IvorySQL并出现在将来的版本中，本节的内容介绍是您需要知道的。</p>
+</div>
+<div class="paragraph">
+<p>​IvorySQL社区欢迎并欣赏所有类型的贡献，期待您的加入！</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="行为准则"><a class="anchor" href="#行为准则"></a>1.2. 行为准则</h3>
+<div class="paragraph">
+<p>我们欢迎所有社区成员、贡献者阅读并遵守我们的 <a href="https://github.com/IvorySQL/IvorySQL/blob/master/CODE_OF_CONDUCT_CN.md"><strong>行为准则</strong></a>。我们致力于为每个人创造包容、尊重的参与环境，不论其背景或身份特征如何。行为准则明确了我们对社区行为的期望，确保所有参与者都能在无骚扰的环境中合作。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="管理说明"><a class="anchor" href="#管理说明"></a>1.3. 管理说明</h3>
+<div class="paragraph">
+<p>IvorySQL 项目通过开放协作的团队运作，每个团队专注于项目的特定领域。每个团队由审查者、提交者和维护者组成，共同管理一个或多个代码仓库。团队层面的重要决策由维护者制定。</p>
+</div>
+<div class="paragraph">
+<p>IvorySQL 开发者的典型成长路径为：用户 → 审查者 → 提交者 → 维护者。需要理解的是，承担更多角色并不意味着在社区中拥有特权。IvorySQL 社区的所有参与者都是平等的，每个人都有责任与其他贡献者建设性地合作，共同营造一个友好、包容的社区环境。</p>
+</div>
+<div class="paragraph">
+<p>这些角色是对您为 IvorySQL 开发做出重要贡献的认可。它们为您提供了开发工作流中的更多能力以提升工作效率，同时也带来了更大的责任：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>团队担当</strong>：作为审查者、提交者或维护者，您现在代表着项目和团队成员。您需要秉持最高标准的职业精神，维护团队和项目的声誉。</p>
+</li>
+<li>
+<p><strong>责任担当</strong>：提交者和维护者拥有合并拉取请求的权限，同时也需要承担管理代码或文档变更后果的责任。这包括在变更引发问题时进行回滚或修复，以及与发布经理密切合作，解决发布前测试周期中发现的任何问题。</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="角色与职责"><a class="anchor" href="#角色与职责"></a>2. 角色与职责</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在参与贡献前，请确认您当前的参与身份，以便更高效地了解适合您的贡献方式：</p>
+</div>
+<div class="sect2">
+<h3 id="用户"><a class="anchor" href="#用户"></a>2.1. 用户</h3>
+<div class="paragraph">
+<p>作为用户，您在使用 IvorySQL 过程中扮演着重要角色。我们鼓励您：</p>
+</div>
+<div class="sect3">
+<h4 id="反馈问题与需求"><a class="anchor" href="#反馈问题与需求"></a>2.1.1. 反馈问题与需求</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>发现 Bug、性能缺陷或文档不准确？</p>
+</li>
+<li>
+<p>有新的功能建议或使用体验改进？</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如果您准备向社区上报 Bug 或者提交需求，请在 IvorySQL 社区对应的仓库上提交 Issue，并参考本指南的提交 Issue。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="参与社区讨论"><a class="anchor" href="#参与社区讨论"></a>2.1.2. 参与社区讨论</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>通过 <a href="https://lists.ivorysql.org">邮件列表</a>进行讨论</p>
+</li>
+<li>
+<p>加入 <a href="https://github.com/IvorySQL/IvorySQL/discussions">GitHub讨论</a>，补充信息或验证问题</p>
+</li>
+<li>
+<p>在微信、Discord 等聊天群参与技术交流</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="贡献者"><a class="anchor" href="#贡献者"></a>2.2. 贡献者</h3>
+<div class="paragraph">
+<p>我们欢迎代码、文档、测试等各类贡献。</p>
+</div>
+<div class="sect3">
+<h4 id="找到您感兴趣的项目"><a class="anchor" href="#找到您感兴趣的项目"></a>2.2.1. 找到您感兴趣的项目</h4>
+<div class="paragraph">
+<p>我们将仓库划分为多个子项目，您可以从如下列表中找到感兴趣的项目及其代码仓库：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">代码仓库</th>
+<th class="tableblock halign-left valign-top">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/IvorySQL">IvorySQL</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责社区 IvorySQL 数据库的开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/Ivory-www">Ivory-www</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责社区的官网开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivory-operator">ivory-operator</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责 IvorySQL 云原生数据库及周边工具开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/docker_library">docker_library</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责 IvorySQL 多架构的镜像构建开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivory-cloud">ivory-cloud</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责 IvorySQL 云服务平台及周边生态开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivorysql_docs">Ivorysql_docs</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责社区的文档中心开发和维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivory-doc-builder">ivory-doc-builder</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责 Ivorysql_docs 的编译</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivorysql_web">Ivorysql_web</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责社区的文档中心网站维护</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/IvorySQL/ivorysql-wasm">Ivorysql_wasm</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">负责 IvorySQL 在线易用体验网站的开发和维护</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="给自己分配-issue"><a class="anchor" href="#给自己分配-issue"></a>2.2.2. 给自己分配 Issue</h4>
+<div class="paragraph">
+<p>您可以将自己创建的 Issue 或者愿意处理的 Issue 分配给自己。只需要在评论框内输入 <code>/assign</code>，机器人就会将问题分配给您。每个 Issue 下面可能已经有参与者的交流和讨论，如果您感兴趣，也可以在评论框中发表自己的意见参与 Issue 讨论。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="维护者"><a class="anchor" href="#维护者"></a>2.3. 维护者</h3>
+<div class="paragraph">
+<p>维护者负责进行 IvorySQL 代码的管理，PR 审查，主导版本发布与 IvorySQL 发展方向。</p>
+</div>
+<div class="sect3">
+<h4 id="社区规划"><a class="anchor" href="#社区规划"></a>2.3.1. 社区规划</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>制定版本规划和 Roadmap</p>
+</li>
+<li>
+<p>跟踪与评估社区需求</p>
+</li>
+<li>
+<p>维护公开的 TODO 列表</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="代码管理"><a class="anchor" href="#代码管理"></a>2.3.2. 代码管理</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>参与 Pull Request 评审</p>
+</li>
+<li>
+<p>审查安全问题，保障项目健康</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="流程与治理机制"><a class="anchor" href="#流程与治理机制"></a>2.3.3. 流程与治理机制</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>优化协作机制（代码贡献指南、PR 模板等）</p>
+</li>
+<li>
+<p>建立漏洞响应机制和行为守则</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="入门准备"><a class="anchor" href="#入门准备"></a>3. 入门准备</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="注册-github-账号"><a class="anchor" href="#注册-github-账号"></a>3.1. 注册 GitHub 账号</h3>
+<div class="paragraph">
+<p>无论您是要提交 Issue、参与讨论，还是贡献代码与文档，您都需要使用 GitHub 账号登录并与 IvorySQL 项目进行交互。</p>
+</div>
+<div class="paragraph">
+<p>请参考 <a href="https://docs.github.com/en/get-started/start-your-journey" class="bare">https://docs.github.com/en/get-started/start-your-journey</a> 注册您的 GitHub 账号，并熟悉 Git 工具和工作流。</p>
+</div>
+<div class="paragraph">
+<p>IvorySQL 源码托管在 GitHub：<a href="https://github.com/IvorySQL" class="bare">https://github.com/IvorySQL</a>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="签署-cla"><a class="anchor" href="#签署-cla"></a>3.2. 签署 CLA</h3>
+<div class="paragraph">
+<p>在提交代码或文档贡献之前，为了确保代码合法合规，个人或企业贡献者需要签署贡献者许可协议（CLA）。签署 CLA 是 IvorySQL 社区接受贡献的必要条件，以确保您的贡献被合法分发。请根据下列链接下载 CLA 进行签署并将签署后的 CLA 发送至 <a href="mailto:cla@ivorysql.org">cla@ivorysql.org</a>。</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.ivorysql.org/zh-cn/assets/files/individual_cla-7703700da5e1ca8f26cb8a68f610d4f2.pdf">个人贡献者</a></p>
+</li>
+<li>
+<p><a href="https://www.ivorysql.org/zh-cn/assets/files/corporate_cla-88aa01a7e770ecf89dc401f925c3438e.pdf">企业贡献者</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+如果您通过 AtomGit 平台进行贡献，系统会自动协助您完成 CLA 签署流程，无需手动下载和发送文件。
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>未签署 CLA 的 Pull Request 将无法进入评审阶段。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="通用贡献流程"><a class="anchor" href="#通用贡献流程"></a>4. <strong>通用贡献流程</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>提交 Issue、认领 Issue 和提交 PR 是所有类型贡献（代码贡献、文档贡献、组件适配贡献）的公共流程。无论您参与哪种类型的贡献，都需要遵循这三个步骤。</p>
+</div>
+<div class="sect2">
+<h3 id="提交issue"><a class="anchor" href="#提交issue"></a>4.1. 提交Issue</h3>
+<div class="sect3">
+<h4 id="进入new-issue-页面"><a class="anchor" href="#进入new-issue-页面"></a>4.1.1. 进入New issue 页面：</h4>
+<div class="paragraph">
+<p>1、进入 IvorySql官网：https://github.com/IvorySQL/IvorySQL</p>
+</div>
+<div class="paragraph">
+<p>​2、点击New issue</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="../../_images/p3.png" alt="p3">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="选择需要填写的issue类型"><a class="anchor" href="#选择需要填写的issue类型"></a>4.1.2. 选择需要填写的issue类型</h4>
+<div class="paragraph">
+<p><strong>1、bug report</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Title: 标题</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">## Bug Report
+对bug进行描述
+
+
+\### IvorySQL Version
+在IvorySQL哪个版本发现的问题
+
+\### OS Version (uname -a)
+系统版本
+
+\### Configuration options  ( config.status --config )
+配置参数
+
+\### Current Behavior
+当前的结果
+
+\### Expected behavior/code
+期望的结果
+
+\### Step to reproduce
+复现步骤
+
+\### Additional context that can be helpful for identifying the problem
+有助于识别问题的其它信息</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>2、Enhancement</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Title: 标题</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">## Enhancement
+对于期望强化的功能作一个描述</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><strong>3、Feature Request</strong></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Title: 标题</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">## Feature Request
+描述你期望实现的一个功能</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="提交"><a class="anchor" href="#提交"></a>4.1.3. 提交</h4>
+<div class="paragraph">
+<p>点击 submit new issue 按钮, 提交即可</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="认领-issue"><a class="anchor" href="#认领-issue"></a>4.2. 认领 Issue</h3>
+<div class="paragraph">
+<p>在开始贡献之前，您需要在目标仓库的 Issue 列表中找到或创建一个 Issue：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>浏览仓库的 Issue 列表，搜索与您想要贡献的内容相关的 Issue</p>
+</li>
+<li>
+<p>如果找到相关 Issue，确认其尚未被分配（Assignees 为空）</p>
+</li>
+<li>
+<p>如果 Issue 未被分配，点击右上角 Assignees 区域的 <code>Assign yourself</code>，将 Issue 认领给自己</p>
+</li>
+<li>
+<p>如果 Issue 已被他人认领，请选择其他 Issue 或与认领者协商</p>
+</li>
+<li>
+<p>如果没有找到相关 Issue，新建一个 Issue，描述您想要贡献的内容，并分配给自己</p>
+</li>
+<li>
+<p>等待维护者评估和确认，在获得维护者确认后再开始贡献工作</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+建议在 Issue 获得维护者确认后再开始工作，避免重复或无效工作。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="提交pr"><a class="anchor" href="#提交pr"></a>4.3. 提交PR</h3>
+<div class="paragraph">
+<p>对于提交一个PR应该保持一个功能，或者一个bug提交一次。禁止多个功能一次提交。</p>
+</div>
+<div class="sect3">
+<h4 id="创建一个pull-request"><a class="anchor" href="#创建一个pull-request"></a>4.3.1. 创建一个Pull Request</h4>
+<div class="paragraph">
+<p>1、打开你 Fork 的仓库（将 $user 替换为你的 GitHub ID）。</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>2、点击 Compare &amp; pull request 按钮</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="填写pr信息"><a class="anchor" href="#填写pr信息"></a>4.3.2. 填写PR信息</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Fix test
+功能描述</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">leave a comment
+对该提交功能进行比较详细的描述</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="提交pr-2"><a class="anchor" href="#提交pr-2"></a>4.3.3. 提交PR</h4>
+<div class="paragraph">
+<p>点击Create pull request 按钮即可提交。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="代码贡献"><a class="anchor" href="#代码贡献"></a>5. <strong>代码贡献</strong></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="fork-ivorysql-仓库"><a class="anchor" href="#fork-ivorysql-仓库"></a>5.1. Fork IvorySQL 仓库</h3>
+<div class="paragraph">
+<p>1、打开ivorysql仓库 <a href="https://github.com/IvorySQL/IvorySQL" class="bare">https://github.com/IvorySQL/IvorySQL</a></p>
+</div>
+<div class="paragraph">
+<p>2、点击右上角fork按钮，等待fork完成</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="将fork的仓库克隆至本地"><a class="anchor" href="#将fork的仓库克隆至本地"></a>5.2. 将fork的仓库克隆至本地</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd $working_dir # 将 $working_dir 替换为你想放置 repo 的目录。例如，`cd ~/Documents/GitHub`
+
+git clone git@github.com:$user/IvorySQL.git # 将 `$user` 替换为你的 GitHub ID</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="创建一个新的branch"><a class="anchor" href="#创建一个新的branch"></a>5.3. 创建一个新的Branch</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd $working_dir/IvorySQL
+
+git checkout -b new-branch-name</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="修改代码"><a class="anchor" href="#修改代码"></a>5.4. 修改代码</h3>
+<div class="paragraph">
+<p>在新建的new-branch-name中修改代码。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="生成commit"><a class="anchor" href="#生成commit"></a>5.5. 生成commit</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Git add &lt;file&gt;
+
+Git commit -m “commit-message”</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="将修改推送至远端"><a class="anchor" href="#将修改推送至远端"></a>5.6. 将修改推送至远端</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">Git push -u origin new-branch-name</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>完成代码推送后，请参考 <a href="#_提交_pr">提交 PR</a> 章节创建 Pull Request。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="文档贡献"><a class="anchor" href="#文档贡献"></a>6. <strong>文档贡献</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL 社区提供双语文档。英文文档保存在 EN/ 目录中，中文文档保存在 CN/ 目录中。您可以为任何一方文档做出贡献，当然您也可以为两方同时做出贡献。文档贡献遵循"fork - pull request - merge"流程。</p>
+</div>
+<div class="sect2">
+<h3 id="文档中心结构"><a class="anchor" href="#文档中心结构"></a>6.1. 文档中心结构</h3>
+<div class="paragraph">
+<p>IvorySQL 文档中心由三部分组成：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://github.com/IvorySQL/ivorysql_docs">文档文件</a>：存放所有 AsciiDoc 格式的源文件</p>
+</li>
+<li>
+<p><a href="https://github.com/IvorySQL/ivorysql_web">静态网页文件</a>：存放生成的静态网页</p>
+</li>
+<li>
+<p><a href="https://github.com/IvorySQL/ivory-doc-builder">网页模板文件</a>：用于生成网页的模板和配置</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>如果您只是想修改现有内容或添加新页面，只需要 fork 文档文件仓库即可。如果想深度参与文档中心建设（如修改网页 UI），则需要同时 fork 这三个仓库。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="贡献方式"><a class="anchor" href="#贡献方式"></a>6.2. 贡献方式</h3>
+<div class="paragraph">
+<p>您可以从以下任何一项开始，以帮助改进 IvorySQL 文档：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>编写完善文档</p>
+</li>
+<li>
+<p>修复拼写错误或格式（标点符号、空格、缩进、代码块等）</p>
+</li>
+<li>
+<p>修正或更新不当或过时的说明</p>
+</li>
+<li>
+<p>添加缺少的内容（句子、段落或新文档）</p>
+</li>
+<li>
+<p>将文档更改从英文翻译成中文，或从中文翻译成英文</p>
+</li>
+<li>
+<p>提交、回复和解决文档问题</p>
+</li>
+<li>
+<p>（高级）查看其他人创建的拉取请求</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="方式一通过网站快速编辑适合小修改"><a class="anchor" href="#方式一通过网站快速编辑适合小修改"></a>6.3. 方式一：通过网站快速编辑（适合小修改）</h3>
+<div class="paragraph">
+<p>对于简单的修改（如修复拼写错误、更新少量内容），可以直接通过网站进行：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>在文档页面右上角点击 <code>Edit this page</code> 按钮</p>
+</li>
+<li>
+<p>系统会跳转到 GitHub 上对应源文件的编辑页面</p>
+</li>
+<li>
+<p>按照 AsciiDoc 格式修改内容</p>
+</li>
+<li>
+<p>填写修改说明后提交 PR</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>这种方式无需本地环境，适合快速修正小问题。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="方式二完整-git-工作流适合较大改动"><a class="anchor" href="#方式二完整-git-工作流适合较大改动"></a>6.4. 方式二：完整 Git 工作流（适合较大改动）</h3>
+<div class="paragraph">
+<p>对于较大的改动或添加新页面，建议使用完整的 Git 工作流：</p>
+</div>
+<div class="sect3">
+<h4 id="fork-文档仓库"><a class="anchor" href="#fork-文档仓库"></a>6.4.1. Fork 文档仓库</h4>
+<div class="paragraph">
+<p>1、打开文档仓库 <a href="https://github.com/IvorySQL/ivorysql_docs" class="bare">https://github.com/IvorySQL/ivorysql_docs</a></p>
+</div>
+<div class="paragraph">
+<p>2、点击右上角 fork 按钮，等待 fork 完成</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="将-fork-的仓库克隆至本地"><a class="anchor" href="#将-fork-的仓库克隆至本地"></a>6.4.2. 将 fork 的仓库克隆至本地</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd $working_dir # 将 $working_dir 替换为你想放置 repo 的目录
+
+git clone git@github.com:$user/ivorysql_docs.git # 将 `$user` 替换为你的 GitHub ID</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="创建一个新的-branch"><a class="anchor" href="#创建一个新的-branch"></a>6.4.3. 创建一个新的 Branch</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">cd $working_dir/ivorysql_docs
+
+git checkout -b new-branch-name</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="编辑文档"><a class="anchor" href="#编辑文档"></a>6.4.4. 编辑文档</h4>
+<div class="paragraph">
+<p>在新建的 new-branch-name 中编辑文档。IvorySQL 文档使用 AsciiDoc 格式编写，请参考 <a href="asciidoc_syntax_reference.html" class="xref page">AsciiDoc 语法参考</a>。</p>
+</div>
+<div class="paragraph">
+<p>添加新页面时：
+. 将 <code>.adoc</code> 文件放入正确目录（CN/ 或 EN/ 对应版本目录）
+. 中英文文件应该同名
+. 修改对应的 <code>nav.adoc</code> 文件添加导航链接</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="生成-commit"><a class="anchor" href="#生成-commit"></a>6.4.5. 生成 commit</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git add &lt;file&gt;
+
+git commit -m "commit-message"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="将修改推送至远端-2"><a class="anchor" href="#将修改推送至远端-2"></a>6.4.6. 将修改推送至远端</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">git push -u origin new-branch-name</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>完成文档推送后，请参考 <a href="#_提交_pr">提交 PR</a> 章节创建 Pull Request。</p>
+</div>
+<div class="paragraph">
+<p>提交 PR 后，系统会自动在 PR 页面生成预览地址。贡献者可以点击预览链接查看修改后的文档效果，确认修改是否符合预期。维护团队会对 PR 进行评审，如有修改建议会在 PR 中留言，贡献者根据反馈进行修改。评审通过后，维护团队会 merge PR，文档贡献即完成。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="组件适配贡献"><a class="anchor" href="#组件适配贡献"></a>7. <strong>组件适配贡献</strong></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>IvorySQL 作为一款基于 PostgreSQL 研发的 Oracle 兼容数据库，天然继承了 PostgreSQL 丰富的扩展生态。为了让更多的 PostgreSQL 生态组件能够在 IvorySQL 上稳定运行，IvorySQL 社区欢迎外部贡献者参与生态组件的适配工作。</p>
+</div>
+<div class="sect2">
+<h3 id="适配范围"><a class="anchor" href="#适配范围"></a>7.1. 适配范围</h3>
+<div class="paragraph">
+<p>以下类型的组件欢迎贡献者进行适配：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PostgreSQL 社区官方扩展（contrib 模块）</p>
+</li>
+<li>
+<p>基于 PostgreSQL 扩展机制开发的第三方插件</p>
+</li>
+<li>
+<p>以独立进程形式与数据库配合工作的周边生态工具，如连接池、代理、中间件等</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="贡献流程"><a class="anchor" href="#贡献流程"></a>7.2. 贡献流程</h3>
+<div class="paragraph">
+<p>生态组件适配，是将 PostgreSQL 生态组件适配到 IvorySQL 的工作。主要内容包括：了解目标组件的特点、原理和使用方式，测试其在 IvorySQL 的 PG 模式和 Oracle 兼容模式下能否正常使用；最后基于上述调研与测试结果，编写一篇生态组件适配文档，提交到 <a href="https://github.com/IvorySQL/ivorysql_docs">IvorySQL docs</a> 仓库。文档提交后，维护者会按照适配文档中给出的步骤对目标组件进行复现测试，确认测试结果与文档描述一致后，合并该 PR。</p>
+</div>
+<div class="paragraph">
+<p>具体的选题、测试、文档编写等环节，请参考下面的详细步骤。</p>
+</div>
+<div class="sect3">
+<h4 id="选题与沟通"><a class="anchor" href="#选题与沟通"></a>7.2.1. 选题与沟通</h4>
+<div class="sect4">
+<h5 id="确认组件未被适配"><a class="anchor" href="#确认组件未被适配"></a>7.2.1.1. 确认组件未被适配</h5>
+<div class="paragraph">
+<p>在开始适配工作之前，请先查阅 <a href="../ecosystem_components/ecosystem_overview.html" class="xref page">生态组件适配列表</a>，确认目标组件是否已完成适配。如果目标组件不在列表中，则继续后面的流程；否则，请重新选择一个未适配的组件。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="认领或新建-issue"><a class="anchor" href="#认领或新建-issue"></a>7.2.1.2. 认领或新建 Issue</h5>
+<div class="paragraph">
+<p>按照 <a href="#_认领_issue">认领 Issue</a> 章节的步骤认领或新建 Issue，并注意以下组件适配特有的要求：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>新建 Issue 时，选择 <code>Feature Request</code> 类型，添加 <code>extension</code> 标签</p>
+</li>
+<li>
+<p>标题格式：<code>Ecosystem Integration: &lt;组件名&gt;</code></p>
+</li>
+<li>
+<p>正文用一句话说明要适配的组件及其用途</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>维护者会评估该组件是否适合纳入 IvorySQL 生态，并在 Issue 中与您沟通确认。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="适配测试"><a class="anchor" href="#适配测试"></a>7.2.2. 适配测试</h4>
+<div class="paragraph">
+<p>生态组件适配的目标分为两个层面：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>PG 模式：组件必须完全可用。</p>
+</li>
+<li>
+<p>Oracle 兼容模式：应尽可能做到完全可用；若无法完全可用，至少应保证主要功能可以正常运行。对于底层机制与 Oracle 兼容模式冲突、完全无法在该模式下运行的 PG 专用扩展（例如 pg_partman 专为管理 PostgreSQL 分区表而设计，不支持在 Oracle 兼容模式下运行），需在适配文档和 PR 描述中说明情况。</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="组件编译安装"><a class="anchor" href="#组件编译安装"></a>7.2.2.1. 组件编译安装</h5>
+<div class="paragraph">
+<p>请参考目标组件的官方文档进行编译安装。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="测试-pg-模式"><a class="anchor" href="#测试-pg-模式"></a>7.2.2.2. 测试 PG 模式</h5>
+<div class="paragraph">
+<p>启动 IvorySQL 实例，使用 psql 通过 5432 端口连接数据库，进行以下验证：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>功能测试：根据组件文档提供的功能用例，逐一验证核心功能是否正常工作；</p>
+</li>
+<li>
+<p>回归测试：如果组件源码自带测试用例，应运行并确保其全部通过；</p>
+</li>
+<li>
+<p>边界测试：测试边界条件和异常场景，确认组件的健壮性。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>如果某个功能无法使用或测试失败，需排查原因：属于 IvorySQL 侧的问题，请向 IvorySQL 仓库提交 PR 修复；属于组件侧的问题，可向组件仓库反馈，并在适配文档中记录该限制。</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="测试-oracle-兼容模式"><a class="anchor" href="#测试-oracle-兼容模式"></a>7.2.2.3. 测试 Oracle 兼容模式</h5>
+<div class="paragraph">
+<p>使用 psql 通过 1521 端口（Oracle 兼容端口）连接数据库，进行以下验证：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>参照 PG 模式的测试方法验证组件的主要功能；</p>
+</li>
+<li>
+<p>测试组件在 Oracle 兼容模式下的数据类型兼容性；</p>
+</li>
+<li>
+<p>测试组件功能是否支持 Oracle 风格的匿名块、存储过程、函数等。</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>记录各功能在 Oracle 兼容模式下是否可用，作为适配文档中功能覆盖说明的依据。</p>
+</div>
+<div class="paragraph">
+<p>测试时请注意以下两点：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>使用 Oracle 语法编写测试语句</strong>。Oracle 兼容模式下的部分语法与 PG 模式不同，不能直接照搬 PG 模式的测试用例。例如：interval 类型需使用 Oracle 风格的语法，而非 PG 语法；<code>CREATE FUNCTION</code>、<code>CREATE PROCEDURE</code> 等语句需在末尾另起一行加 <code>/</code> 作为结束符。</p>
+</li>
+<li>
+<p><strong>区分"输出差异"与"功能异常"</strong>。部分输出与 PG 模式不一致属于正常现象，不应记为兼容性问题。例如：某些输出中的类型名会带有 <code>pg_catalog.</code> 模式前缀。判断功能是否正常，应以执行结果的语义是否正确为准，而不要求输出文本与 PG 模式逐字一致。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>记录各功能在 Oracle 兼容模式下是否可用，作为适配文档中功能覆盖说明的依据。</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+并非所有组件都能在 Oracle 兼容模式下工作。如果执行 <code>CREATE EXTENSION</code> 或调用组件功能时因语法错误而失败，多是组件内部使用了 Oracle 不支持的 PG 专用语法所致，请参考下一节的 PG 语法白名单机制进行修复；如果组件与 Oracle 兼容模式在底层机制上冲突（如 pg_partman），则需要在适配文档和 PR 描述中明确说明。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="通过-pg-语法白名单修复兼容问题"><a class="anchor" href="#通过-pg-语法白名单修复兼容问题"></a>7.2.2.4. 通过 PG 语法白名单修复兼容问题</h5>
+<div class="paragraph">
+<p>Oracle 兼容模式测试不通过——尤其是执行 <code>CREATE EXTENSION</code> 就直接失败——的一个常见原因是：扩展通过 SQL 脚本实现，脚本中大量使用了 Oracle 不支持的 PG 专用语法（如 PG 风格的 interval 表达式、数组切片等），导致脚本无法通过 Oracle 兼容模式下的语法解析。</p>
+</div>
+<div class="paragraph">
+<p>针对这种情况，IvorySQL 内核提供了 PG 语法白名单机制（见 <code>src/backend/commands/extension.c</code> 中的 <code>PgDialectExtensions</code> 列表）。扩展加入白名单后，在 Oracle 兼容模式集群中执行 <code>CREATE EXTENSION</code> 时：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>扩展的安装脚本会临时改用 PG 解析器解析执行，不受当前会话兼容模式的影响；</p>
+</li>
+<li>
+<p>安装脚本所创建的函数会被自动注入 <code>SET ivorysql.compatible_mode = pg</code> 配置，此后无论从哪种兼容模式的会话调用，函数体都由 PG 解析器解析执行。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>借助该机制，使用 PG 专用语法实现的扩展无需修改任何代码，即可在 Oracle 兼容模式集群中正常安装和运行。目前白名单中已包含 pg_profile、pg_repack 等扩展。</p>
+</div>
+<div class="paragraph">
+<p>该方式适用于：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>扩展主要通过 SQL 或 PL/pgSQL 实现，因使用 PG 专用语法导致 <code>CREATE EXTENSION</code> 或函数调用在 Oracle 兼容模式下失败；</p>
+</li>
+<li>
+<p>扩展功能自成一体（如统计信息采集、表重组等管理类扩展），用户只需调用其入口函数，不要求其内部实现与 Oracle 风格对象交互。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>该方式不适用于：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>扩展需要与用户创建的 Oracle 风格对象（存储过程、Oracle 专有数据类型等）深度交互，强制按 PG 语法解析会破坏这种交互；</p>
+</li>
+<li>
+<p>扩展与 Oracle 兼容模式在底层机制上冲突（如 pg_partman 依赖 PostgreSQL 原生的分区表管理），此类问题不在语法解析层面，白名单无法解决，仍需在适配文档和 PR 描述中说明限制。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>确认目标扩展属于适用场景后，您可以向 IvorySQL 仓库提交 PR，将扩展名加入 <code>PgDialectExtensions</code> 白名单，并在 PR 描述中附上两种模式下的测试结果；同时在适配文档的 "Oracle 兼容性" 章节中说明该扩展通过白名单机制运行。</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="文档编写"><a class="anchor" href="#文档编写"></a>7.2.3. 文档编写</h4>
+<div class="paragraph">
+<p>IvorySQL 文档使用 AsciiDoc 编写的，其语法与 Markdown 类似但功能更加强大。如果不熟悉 AsciiDoc 语法，可参阅 <a href="asciidoc_syntax_reference.html" class="xref page">asciidoc语法快速参考</a>。</p>
+</div>
+<div class="sect4">
+<h5 id="文档结构"><a class="anchor" href="#文档结构"></a>7.2.3.1. 文档结构</h5>
+<div class="paragraph">
+<p>每篇生态组件适配文档应包含以下章节（可根据组件特点适当调整）：</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">章节</th>
+<th class="tableblock halign-left valign-top">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">概述</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">介绍组件的功能、适用场景，以及与 IvorySQL 的关系</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">原理介绍</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">（可选）介绍组件的核心工作原理，帮助读者理解组件的运作机制</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">安装</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">详细的安装步骤，包括依赖安装、源码获取、编译安装、扩展创建等</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">配置</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">如果组件需要额外的配置步骤（如修改 <code>ivorysql.conf</code>、重启服务等），在此说明</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">使用</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">核心功能的使用示例，包括创建对象、执行操作、查询结果等</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle 兼容性</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">组件在 Oracle 兼容模式下的表现，包括支持的功能和已知限制</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="文档模板"><a class="anchor" href="#文档模板"></a>7.2.3.2. 文档模板</h5>
+<div class="paragraph">
+<p>以下是一个生态组件适配文档的基础模板，贡献者可以在此基础上填充内容：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">:sectnums:
+:sectnumlevels: 5
+
+= &lt;组件名称&gt;
+
+== 概述
+&lt;组件功能介绍、适用场景、与 IvorySQL 的关系&gt;
+
+项目地址：&lt;https://github.com/xxx/xxx&gt;
+
+版本：&lt;适配的组件版本号&gt;
+
+开源协议：&lt;组件的开源协议&gt;
+
+== 安装
+
+[TIP]
+源码测试安装环境为 &lt;操作系统版本&gt;，环境中已安装 IvorySQL 5 及以上版本，安装路径为 /usr/local/ivorysql/ivorysql-5
+
+=== 依赖
+&lt;列出并说明安装所需的依赖&gt;
+
+=== 源码安装
+[literal]
+----
+# 获取源码
+git clone &lt;仓库地址&gt;
+cd &lt;目录&gt;
+
+# 设置 pg_config 路径
+export PG_CONFIG=/usr/local/ivorysql/ivorysql-5/bin/pg_config
+
+# 编译安装
+make
+sudo make install
+----
+
+=== 创建扩展
+[literal]
+----
+ivorysql=# CREATE EXTENSION &lt;扩展名&gt;;
+CREATE EXTENSION
+
+ivorysql=# SELECT * FROM pg_available_extensions WHERE name = '&lt;扩展名&gt;';
+----
+
+== 使用
+
+=== &lt;功能点一&gt;
+&lt;使用示例及输出&gt;
+
+=== &lt;功能点二&gt;
+&lt;使用示例及输出&gt;
+
+== Oracle 兼容性
+&lt;可选：在 Oracle 兼容模式下的测试结果&gt;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="同步更新概述页"><a class="anchor" href="#同步更新概述页"></a>7.2.3.3. 同步更新概述页</h5>
+<div class="paragraph">
+<p>完成组件文档编写后，请务必同步更新 <a href="../ecosystem_components/ecosystem_overview.html" class="xref page">ecosystem_overview.adoc</a> 中的插件列表表格，在表格末尾追加一行新记录，包含以下信息：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>序号：当前最大序号加 1</p>
+</li>
+<li>
+<p>插件名称：带 xref 链接的插件名称</p>
+</li>
+<li>
+<p>版本：您适配的组件版本</p>
+</li>
+<li>
+<p>功能描述：一句话概括组件功能</p>
+</li>
+<li>
+<p>适用场景：列举主要适用场景</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+中英文版本的概述页都需要同步更新。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="提交-pr"><a class="anchor" href="#提交-pr"></a>7.2.4. 提交 PR</h4>
+<div class="sect4">
+<h5 id="创建分支"><a class="anchor" href="#创建分支"></a>7.2.4.1. 创建分支</h5>
+<div class="paragraph">
+<p>生态组件适配文档统一提交到 <a href="https://github.com/IvorySQL/ivorysql_docs">IvorySQL docs</a> 仓库（注意：不是创建 Issue 的 IvorySQL 主仓库）。请先 fork 该仓库并 clone 到本地，然后创建特性分支：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>git checkout -b feature/adapt-&lt;组件名称&gt;</pre>
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="添加文件"><a class="anchor" href="#添加文件"></a>7.2.4.2. 添加文件</h5>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>将文档文件放入 <code>CN/modules/ROOT/pages/master/ecosystem_components/</code> 目录</p>
+</li>
+<li>
+<p>如有图片资源，放入 <code>CN/modules/ROOT/images/</code> 目录</p>
+</li>
+<li>
+<p>同步准备英文版本，放入对应的 EN 目录</p>
+</li>
+<li>
+<p>更新 CN 和 EN 的 <code>nav.adoc</code> 和 <code>ecosystem_overview.adoc</code> 里的链接</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect4">
+<h5 id="创建-pr"><a class="anchor" href="#创建-pr"></a>7.2.4.3. 创建 PR</h5>
+<div class="paragraph">
+<p>按照 <a href="#_提交_pr">提交 PR</a> 章节的步骤创建 PR，并注意以下特殊要求：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>向 <a href="https://github.com/IvorySQL/ivorysql_docs">IvorySQL docs</a> 仓库的 master 分支提交 PR</p>
+</li>
+<li>
+<p>在 PR 描述中使用 <code>Fixes IvorySQL/IvorySQL#&lt;编号&gt;</code> 关联中认领或新建的适配 Issue</p>
+</li>
+<li>
+<p>在 PR 描述中说明：</p>
+<div class="ulist">
+<ul>
+<li>
+<p>适配的组件名称和版本</p>
+</li>
+<li>
+<p>测试环境信息</p>
+</li>
+<li>
+<p>已完成的测试项目</p>
+</li>
+<li>
+<p>已知的限制或问题</p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>由于 Issue 位于 IvorySQL 主仓库，必须使用 <code>IvorySQL/IvorySQL#编号</code> 的完整引用格式；PR 合并后，对应 Issue 会被自动关闭。</p>
+</li>
+<li>
+<p>关联关键字必须写在 IvorySQL docs 仓库提交的 PR 描述中且拼写规范（<code>Fixes</code>/<code>Closes</code>/<code>Resolves</code> + 空格 + <code>IvorySQL/IvorySQL#&lt;编号&gt;</code>），写在评论里无效。</p>
+</li>
+</ol>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5 id="等待评审"><a class="anchor" href="#等待评审"></a>7.2.4.4. 等待评审</h5>
+<div class="paragraph">
+<p>维护者会按照文档中的步骤复现测试，并对 PR 进行评审，可能会提出以下修改建议：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>补充缺失的测试用例</p>
+</li>
+<li>
+<p>修正文档格式问题</p>
+</li>
+<li>
+<p>完善 Oracle 兼容性测试</p>
+</li>
+<li>
+<p>补充英文版翻译</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>请根据评审意见及时修改并更新 PR。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="常见问题"><a class="anchor" href="#常见问题"></a>7.3. 常见问题</h3>
+<div class="sect3">
+<h4 id="编译报错找不到-pg_config"><a class="anchor" href="#编译报错找不到-pg_config"></a>7.3.1. 编译报错找不到 pg_config</h4>
+<div class="paragraph">
+<p>请确认 <code>PG_CONFIG</code> 环境变量设置正确，指向 IvorySQL 安装目录下的 <code>bin/pg_config</code>。可以通过以下命令确认：</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>$PG_CONFIG --version</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="扩展创建失败"><a class="anchor" href="#扩展创建失败"></a>7.3.2. 扩展创建失败</h4>
+<div class="paragraph">
+<p>请检查：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>扩展的 <code>.so</code> 文件是否正确安装到 IvorySQL 的 <code>lib</code> 目录</p>
+</li>
+<li>
+<p>扩展的 <code>.sql</code> 和 <code>.control</code> 文件是否正确安装到 <code>share/extension</code> 目录</p>
+</li>
+<li>
+<p>IvorySQL 版本是否与组件要求的 PostgreSQL 版本兼容</p>
+</li>
+<li>
+<p>若失败原因是 PG 专用语法无法解析，可参考的 PG 语法白名单机制。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect3">
+<h4 id="oracle-兼容模式下功能异常"><a class="anchor" href="#oracle-兼容模式下功能异常"></a>7.3.3. Oracle 兼容模式下功能异常</h4>
+<div class="paragraph">
+<p>部分 PostgreSQL 扩展依赖 PG 原生解析器，在 Oracle 兼容模式下可能无法正常工作。遇到此类问题时，请在文档的 "Oracle 兼容性" 章节中明确说明限制，并提供替代方案（如有）。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="不确定组件是否适合适配"><a class="anchor" href="#不确定组件是否适合适配"></a>7.3.4. 不确定组件是否适合适配</h4>
+<div class="paragraph">
+<p>请先在 <a href="https://github.com/IvorySQL/IvorySQL/issues">Issues</a> 中发起讨论，描述组件的功能和您的适配计划，维护者会给出评估意见。</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="../migration_guide.html">迁移指南</a></span>
+  <span class="next"><a href="../developer_guide.html">开发者指南</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ALTER INDEX &#8230;&#8203; UNUSABLE 实现说明 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/compatibility_features_design/alter_index_unusable_impl.html">
+    <link rel="prev" href="create_index_online.html">
+    <link rel="next" href="../oracle_builtin_functions/sys_context.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">快速上手</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">安装部署</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、索引 ONLINE 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_alter_index_unusable.html">24、禁用索引</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化与云服务</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgdog.html">PgDog</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_readonly.html">pg_readonly</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/zhparser.html">zhparser</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbackrest.html">pgBackRest</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/set_user.html">set_user</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">监控运维</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">数据迁移</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL开发者</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/contribution_guide.html">贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="read_only_view.html">视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="with_function_procedure_impl.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="create_index_online.html">索引 ONLINE 参数</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="alter_index_unusable_impl.html">禁用索引</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">参考指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">常见问题解答</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.23/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>IvorySQL开发者</li>
+    <li>IvorySQL架构设计</li>
+    <li>兼容特性</li>
+    <li><a href="alter_index_unusable_impl.html">禁用索引</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/compatibility_features_design/alter_index_unusable_impl.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/compatibility_features_design/alter_index_unusable_impl.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">ALTER INDEX &#8230;&#8203; UNUSABLE 实现说明</h1>
+<div class="sect1">
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本文档详细说明 IvorySQL 中 <code>ALTER INDEX &#8230;&#8203; UNUSABLE</code> 功能的实现原理。该功能允许在 Oracle 兼容模式下手动禁用一个索引，使其不再被规划器选用、不再被 DML 维护，实现 Oracle 数据库 <code>ALTER INDEX</code> 语句的 <code>UNUSABLE</code> 子句。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="实现说明"><a class="anchor" href="#实现说明"></a>2. 实现说明</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="系统分层架构"><a class="anchor" href="#系统分层架构"></a>2.1. 系统分层架构</h3>
+<div class="paragraph">
+<p><code>ALTER INDEX &#8230;&#8203; UNUSABLE</code> 的实现分为五个层次：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">┌───────────────────────────────────────────────────────────────────────┐
+│  Layer 1: Oracle 解析器  (ora_gram.y + ora_kwlist.h)                  │
+│  ─ 新增 UNUSABLE 关键字（UNRESERVED_KEYWORD, BARE_LABEL）             │
+│  ─ ALTER INDEX qualified_name UNUSABLE → OraAlterIndexUnusableStmt    │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│  Layer 2: 语句分发  (tcop/utility.c)                                  │
+│  ─ T_OraAlterIndexUnusableStmt 与既有 T_OraAlterIndexRebuildStmt      │
+│    并列出现在 4 处：只读事务分类 / ProcessUtilitySlow /               │
+│    CreateCommandTag / GetCommandLogLevel                              │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│  Layer 3: 执行层  (commands/indexcmds.c)                              │
+│  ─ ExecOraAlterIndexUnusable()：权限检查、解析锁定目标索引、          │
+│    拒绝分区索引、调用 index_set_unusable(indexOid, true)              │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│  Layer 4: 目录层  (catalog/index.c + include/catalog/pg_index.h)      │
+│  ─ 新增 pg_index.indisunusable 列                                     │
+│  ─ index_set_unusable()：与 index_set_state_flags() 同构的独立        │
+│    catalog 更新函数                                                   │
+│  ─ index_create() 的 values[] 数组补充该列初始值（false）             │
+│  ─ reindex_index() 在既有"修复索引状态"分支中一并清除该标记           │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│  Layer 5: 规划器 / 执行器  (plancat.c + BuildIndexInfo)               │
+│  ─ get_relation_info() 跳过 indisunusable 的索引                      │
+│  ─ BuildIndexInfo() 令 ii_ReadyForInserts 一并反映该标记，            │
+│    execIndexing.c 既有的跳过逻辑自然覆盖，无需改动执行器本身          │
+└───────────────────────────────────────────────────────────────────────┘</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="语法与解析"><a class="anchor" href="#语法与解析"></a>2.2. 语法与解析</h3>
+<div class="sect3">
+<h4 id="关键字注册"><a class="anchor" href="#关键字注册"></a>2.2.1. 关键字注册</h4>
+<div class="paragraph">
+<p><code>src/include/oracle_parser/ora_kwlist.h</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">PG_KEYWORD("until", UNTIL, UNRESERVED_KEYWORD, BARE_LABEL)
+PG_KEYWORD("unusable", UNUSABLE, UNRESERVED_KEYWORD, BARE_LABEL)
+PG_KEYWORD("update", UPDATE, UNRESERVED_KEYWORD, BARE_LABEL)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>与 <code>REBUILD</code>/<code>ONLINE</code>/<code>TABLESPACE</code>/<code>PARALLEL</code> 同属非保留关键字，按字母序插入。<code>UNUSABLE</code> 同时加入 <code>%token</code> 列表、<code>unreserved_keyword</code> 与 <code>bare_label_keyword</code> 两处产生式，使其可作为裸标识符/列标签使用。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="语法规则扩展"><a class="anchor" href="#语法规则扩展"></a>2.2.2. 语法规则扩展</h4>
+<div class="paragraph">
+<p><code>src/backend/oracle_parser/ora_gram.y</code> 中紧邻既有的 <code>REBUILD</code> 规则新增：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yacc hljs" data-lang="yacc">| ALTER INDEX qualified_name REBUILD rebuild_index_opt_list
+        {
+            OraAlterIndexRebuildStmt *n = makeNode(OraAlterIndexRebuildStmt);
+            n-&gt;relation = $3;
+            n-&gt;options = $5;
+            $$ = (Node *) n;
+        }
+| ALTER INDEX qualified_name UNUSABLE
+        {
+            OraAlterIndexUnusableStmt *n = makeNode(OraAlterIndexUnusableStmt);
+            n-&gt;relation = $3;
+            $$ = (Node *) n;
+        }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>与 REBUILD 不同，<code>UNUSABLE</code> 不带任何选项列表——Oracle 的 <code>UNUSABLE</code> 子句本身不接受参数。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ast-节点设计"><a class="anchor" href="#ast-节点设计"></a>2.3. AST 节点设计</h3>
+<div class="paragraph">
+<p><code>src/include/nodes/parsenodes.h</code> 中新增：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/*
+ * Oracle-compatible ALTER INDEX ... UNUSABLE Statement
+ *
+ * 标记索引不可用：规划器跳过、DML 不再维护，直到通过 REBUILD（或
+ * 普通 REINDEX）重建后恢复。
+ */
+typedef struct OraAlterIndexUnusableStmt
+{
+    NodeTag     type;
+    RangeVar   *relation;      /* index to mark unusable */
+} OraAlterIndexUnusableStmt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>copy/equal/out/read 函数由 <code>gen_node_support.pl</code> 从该结构体自动生成，无需手动维护（与既有 <code>OraAlterIndexRebuildStmt</code> 相同的处理方式）。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="目录层设计"><a class="anchor" href="#目录层设计"></a>2.4. 目录层设计</h3>
+<div class="sect3">
+<h4 id="为什么新增-pg_index-列而非-reloption-或复用-indisvalidindisready"><a class="anchor" href="#为什么新增-pg_index-列而非-reloption-或复用-indisvalidindisready"></a>2.4.1. 为什么新增 <code>pg_index</code> 列，而非 reloption 或复用 <code>indisvalid</code>/<code>indisready</code></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>reloption 方案不可行</strong>：PostgreSQL 的索引 reloption 按访问方法分别声明（btree/gin/hash 各自维护私有选项表），不存在通用的"索引级" reloption kind；绕开 AM 校验直接写 <code>pg_class.reloptions</code> 会导致 <code>pg_dump</code> 恢复时因未声明的 key 而报错。</p>
+</li>
+<li>
+<p><strong>不能复用 <code>indisvalid</code>/<code>indisready</code></strong>：两者与 <code>CREATE/DROP INDEX CONCURRENTLY</code> 的多阶段状态机强耦合（<code>index_set_state_flags()</code> 对状态转换有严格 <code>Assert</code>），重载语义会破坏并发建索引的不变式。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>最终方案：新增独立的 <code>bool indisunusable</code> 列，<code>src/include/catalog/pg_index.h</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">bool        indislive;         /* is this index alive at all? */
+bool        indisreplident;    /* is this index the identity for replication? */
+bool        indisunusable;     /* manually disabled via ALTER INDEX ...
+                                 * UNUSABLE (Oracle compat); skipped by the
+                                 * planner and unmaintained by DML until
+                                 * REBUILD */</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>对应 <code>catversion.h</code> 的 catalog 版本号升级。IvorySQL 此前已有直接扩展核心 catalog 的先例（<code>pg_class.relhasrowid</code> 用于 ROWID 特性、<code>pg_attribute.attisinvisible</code> 用于不可见列特性），本次沿用同样的模式。</p>
+</div>
+<div class="paragraph">
+<p><code>indisunusable</code> 是瞬态索引*状态*而非定义性属性，与 <code>indisvalid</code>/<code>indisready</code> 同类，<code>pg_dump</code> 从不导出这类状态列，因此不需要像 <code>attisinvisible</code> 那样额外增加 <code>pg_dump</code> 支持代码。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="index_set_unusable独立的状态变更函数"><a class="anchor" href="#index_set_unusable独立的状态变更函数"></a>2.4.2. <code>index_set_unusable()</code>：独立的状态变更函数</h4>
+<div class="paragraph">
+<p><code>src/backend/catalog/index.c</code>，紧邻既有的 <code>index_set_state_flags()</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/*
+ * index_set_unusable - set or clear pg_index.indisunusable
+ *
+ * Oracle-compatible companion to index_set_state_flags(): flips the
+ * "manually disabled via ALTER INDEX ... UNUSABLE" bit.  Unlike the
+ * indisvalid/indisready/indislive trio, this flag is not part of the
+ * CREATE/DROP INDEX CONCURRENTLY state machine, so no transition
+ * invariants need to be asserted here.
+ */
+void
+index_set_unusable(Oid indexId, bool unusable)
+{
+    Relation    pg_index;
+    HeapTuple   indexTuple;
+    Form_pg_index indexForm;
+
+    pg_index = table_open(IndexRelationId, RowExclusiveLock);
+
+    indexTuple = SearchSysCacheCopy1(INDEXRELID, ObjectIdGetDatum(indexId));
+    if (!HeapTupleIsValid(indexTuple))
+        elog(ERROR, "cache lookup failed for index %u", indexId);
+    indexForm = (Form_pg_index) GETSTRUCT(indexTuple);
+
+    if (indexForm-&gt;indisunusable != unusable)
+    {
+        indexForm-&gt;indisunusable = unusable;
+        CatalogTupleUpdate(pg_index, &amp;indexTuple-&gt;t_self, indexTuple);
+    }
+
+    table_close(pg_index, RowExclusiveLock);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>CatalogTupleUpdate()</code> 自带 cache invalidation，无需手动调用 <code>CacheInvalidateRelcache</code>。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="执行层设计"><a class="anchor" href="#执行层设计"></a>2.5. 执行层设计</h3>
+<div class="sect3">
+<h4 id="execoraalterindexunusable"><a class="anchor" href="#execoraalterindexunusable"></a>2.5.1. <code>ExecOraAlterIndexUnusable()</code></h4>
+<div class="paragraph">
+<p><code>src/backend/commands/indexcmds.c</code>，紧邻既有的 <code>ExecOraAlterIndexRebuild()</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">void
+ExecOraAlterIndexUnusable(ParseState *pstate, const OraAlterIndexUnusableStmt *stmt)
+{
+    ReindexParams params = {0};
+    struct ReindexIndexCallbackState cbstate;
+    Oid         indexOid;
+    char        relkind;
+
+    if (ORA_PARSER != compatible_db)
+        ereport(ERROR,
+                (errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
+                 errmsg("ALTER INDEX ... UNUSABLE is only available when compatible_db is oracle")));
+
+    /*
+     * 复用 ExecOraAlterIndexRebuild() 非 CONCURRENTLY 路径同样的解析/加锁
+     * 方式：索引本身 AccessExclusiveLock，堆表 ShareLock（由共享回调决定），
+     * 权限检查也由该回调完成。
+     */
+    cbstate.params = params;
+    cbstate.locked_table_oid = InvalidOid;
+
+    indexOid = RangeVarGetRelidExtended(stmt-&gt;relation,
+                                        AccessExclusiveLock,
+                                        0,
+                                        RangeVarCallbackForReindexIndex,
+                                        &amp;cbstate);
+
+    relkind = get_rel_relkind(indexOid);
+    if (relkind == RELKIND_PARTITIONED_INDEX)
+        ereport(ERROR,
+                (errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
+                 errmsg("ALTER INDEX ... UNUSABLE is not supported for partitioned indexes"),
+                 errhint("Mark each partition's leaf index unusable individually.")));
+
+    index_set_unusable(indexOid, true);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>RangeVarCallbackForReindexIndex</code> 是既有 REINDEX/REBUILD 基础设施中的共享回调，直接复用意味着权限检查（<code>pg_class_aclcheck(&#8230;&#8203;, ACL_MAINTAIN)</code>）、relkind 校验、堆表加锁顺序都与 REBUILD/REINDEX 完全一致，不需要重新实现。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="规划器跳过-unusable-索引"><a class="anchor" href="#规划器跳过-unusable-索引"></a>2.5.2. 规划器：跳过 unusable 索引</h4>
+<div class="paragraph">
+<p><code>src/backend/optimizer/util/plancat.c</code>，<code>get_relation_info()</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">if (!index-&gt;indisvalid)
+{
+    index_close(indexRelation, NoLock);
+    continue;
+}
+
+/*
+ * Ignore indexes manually disabled via the Oracle-compatible
+ * ALTER INDEX ... UNUSABLE.  This check is unconditional (not
+ * gated on the current session's compatible_db): indisunusable
+ * is a catalog fact about the index, not a per-session parser
+ * choice, and every session must honor it consistently to avoid
+ * planning against a stale/unmaintained index.
+ */
+if (index-&gt;indisunusable)
+{
+    index_close(indexRelation, NoLock);
+    continue;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="执行器跳过-unusable-索引的维护"><a class="anchor" href="#执行器跳过-unusable-索引的维护"></a>2.5.3. 执行器：跳过 unusable 索引的维护</h4>
+<div class="paragraph">
+<p><code>src/backend/catalog/index.c</code>，<code>BuildIndexInfo()</code>：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">ii = makeIndexInfo(indexStruct-&gt;indnatts,
+                   indexStruct-&gt;indnkeyatts,
+                   index-&gt;rd_rel-&gt;relam,
+                   RelationGetIndexExpressions(index),
+                   RelationGetIndexPredicate(index),
+                   indexStruct-&gt;indisunique,
+                   indexStruct-&gt;indnullsnotdistinct,
+                   /*
+                    * A manually UNUSABLE index (Oracle compat) is treated
+                    * as not ready for inserts, so DML stops maintaining
+                    * it, same as an in-progress CREATE INDEX CONCURRENTLY.
+                    */
+                   indexStruct-&gt;indisready &amp;&amp; !indexStruct-&gt;indisunusable,
+                   false,
+                   index-&gt;rd_indam-&gt;amsummarizing,
+                   indexStruct-&gt;indisexclusion &amp;&amp; indexStruct-&gt;indisunique);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>ii_ReadyForInserts</code> 一旦为 false，<code>execIndexing.c</code> 里既有的 <code>if (!indexInfo&#8594;ii_ReadyForInserts) continue;</code> 逻辑自然跳过该索引的插入/更新维护，<strong>执行器本身不需要任何改动</strong>。这也是唯一/主键索引 UNUSABLE 后唯一性检查自动停止的原因——检查发生在索引自身的 <code>aminsert</code> 路径内部，不需要额外联动 <code>pg_constraint</code>。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rebuild-reindex-收尾清除-unusable-标记"><a class="anchor" href="#rebuild-reindex-收尾清除-unusable-标记"></a>2.5.4. REBUILD / REINDEX 收尾：清除 UNUSABLE 标记</h4>
+<div class="paragraph">
+<p><code>src/backend/catalog/index.c</code>，<code>reindex_index()</code> 中"发现索引状态需要修复"的既有分支：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">index_bad = (!indexForm-&gt;indisvalid ||
+             !indexForm-&gt;indisready ||
+             !indexForm-&gt;indislive ||
+             indexForm-&gt;indisunusable);
+if (index_bad ||
+    (indexForm-&gt;indcheckxmin &amp;&amp; !indexInfo-&gt;ii_BrokenHotChain))
+{
+    ...
+    indexForm-&gt;indisvalid = true;
+    indexForm-&gt;indisready = true;
+    indexForm-&gt;indislive = true;
+    /* a completed non-concurrent rebuild always clears UNUSABLE */
+    indexForm-&gt;indisunusable = false;
+    CatalogTupleUpdate(pg_index, &amp;indexTuple-&gt;t_self, indexTuple);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这个分支覆盖：普通 <code>REINDEX INDEX</code>、<code>ALTER INDEX &#8230;&#8203; REBUILD</code>（非 <code>ONLINE</code>）、<code>REBUILD PARTITION</code>（非 <code>ONLINE</code>）。<code>REBUILD ONLINE</code>（并发路径，走 <code>ReindexRelationConcurrently()</code>，从不调用 <code>reindex_index()</code>）<strong>不会</strong>清除该标记，见"已知限制"。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="与-pg_parser-隔离策略"><a class="anchor" href="#与-pg_parser-隔离策略"></a>2.6. 与 PG_PARSER 隔离策略</h3>
+<div class="paragraph">
+<p>按项目惯例（<code>if (ORA_PARSER == compatible_db) { &#8230;&#8203; }</code>），本功能在两个层面隔离：</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>语法层天然隔离</strong>：<code>UNUSABLE</code> 语法只存在于 <code>ora_gram.y</code>，<code>PG_PARSER</code> 会话完全没有语法入口。</p>
+</li>
+<li>
+<p><strong>命令入口纵深防御</strong>：<code>ExecOraAlterIndexUnusable()</code> 额外用 <code>if (ORA_PARSER != compatible_db) ereport(ERROR, &#8230;&#8203;)</code> 兜底。</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="错误处理"><a class="anchor" href="#错误处理"></a>2.7. 错误处理</h3>
+<div class="sect3">
+<h4 id="分区索引拒绝"><a class="anchor" href="#分区索引拒绝"></a>2.7.1. 分区索引拒绝</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER INDEX idx_sales_id UNUSABLE;  -- idx_sales_id 是分区父索引
+-- ERROR: ALTER INDEX ... UNUSABLE is not supported for partitioned indexes
+-- HINT: Mark each partition's leaf index unusable individually.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>错误由 <code>ExecOraAlterIndexUnusable()</code> 中 <code>relkind == RELKIND_PARTITIONED_INDEX</code> 分支主动抛出。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="pg_parser-模式拒绝"><a class="anchor" href="#pg_parser-模式拒绝"></a>2.7.2. PG_PARSER 模式拒绝</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET compatible_db = PG_PARSER;
+ALTER INDEX idx_emp_email UNUSABLE;
+-- ERROR: syntax error at or near "UNUSABLE"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>语法层面在 <code>PG_PARSER</code> 下天然不存在该产生式，无需运行时判断即报错。</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="重复维护重建失败唯一性冲突"><a class="anchor" href="#重复维护重建失败唯一性冲突"></a>2.7.3. 重复维护重建失败（唯一性冲突）</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER INDEX idx_emp_email UNUSABLE;
+INSERT INTO emp VALUES (999, 'a@example.com');  -- 与已有行重复，成功
+ALTER INDEX idx_emp_email REBUILD;
+-- ERROR: could not create unique index "idx_emp_email"
+-- DETAIL: Key (email)=(a@example.com) is duplicated.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>错误来自 <code>reindex_index()</code> 内部 <code>index_build()</code> 的标准唯一性校验，非本功能新增逻辑，属于自然继承的行为。</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="已知限制"><a class="anchor" href="#已知限制"></a>2.8. 已知限制</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>不支持 <code>USABLE</code> 子句</strong>：与 Oracle 行为一致，REBUILD 是唯一恢复路径；</p>
+</li>
+<li>
+<p><strong><code>REBUILD ONLINE</code> 不清除 UNUSABLE</strong>：并发重建路径的多事务快照生命周期与在其后追加一次独立目录更新不兼容；</p>
+</li>
+<li>
+<p><strong>只有根/父分区索引本身不支持</strong>：<code>RELKIND_PARTITIONED_INDEX</code> 上执行会报错；每个分区自己的叶子物理索引不受限制；</p>
+</li>
+<li>
+<p><strong><code>SKIP_UNUSABLE_INDEXES</code> 会话参数</strong>：Oracle 允许通过该参数控制查询遇到 unusable 唯一索引时是否报错，不支持；</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="create_index_online.html">索引 ONLINE 参数</a></span>
+  <span class="next"><a href="../oracle_builtin_functions/sys_context.html">sys_context</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ALTER INDEX &#8230;&#8203; UNUSABLE :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/oracle_compatibility/compat_alter_index_unusable.html">
+    <link rel="prev" href="compat_stragg.html">
+    <link rel="next" href="../containerization/k8s_deployment.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">快速上手</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">安装部署</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_read_only_view.html">20、视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_create_index_online.html">22、索引 ONLINE 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_stragg.html">23、STRAGG 函数</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="compat_alter_index_unusable.html">24、禁用索引</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化与云服务</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgdog.html">PgDog</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_readonly.html">pg_readonly</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/zhparser.html">zhparser</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbackrest.html">pgBackRest</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/set_user.html">set_user</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">监控运维</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">数据迁移</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL开发者</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/contribution_guide.html">贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">索引 ONLINE 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/alter_index_unusable_impl.html">禁用索引</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">参考指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">常见问题解答</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.23/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>Oracle兼容功能</li>
+    <li><a href="compat_alter_index_unusable.html">24、禁用索引</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/oracle_compatibility/compat_alter_index_unusable.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/oracle_compatibility/compat_alter_index_unusable.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">ALTER INDEX &#8230;&#8203; UNUSABLE</h1>
+<div class="sect1">
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本文档解释 IvorySQL 中 <code>ALTER INDEX &#8230;&#8203; UNUSABLE</code> 的用途，实现 Oracle 风格的索引手动禁用功能。</p>
+</div>
+<div class="paragraph">
+<p><code>UNUSABLE</code> 是 Oracle 数据库 <code>ALTER INDEX</code> 语句的一个子句，用于将索引标记为不可用：索引对象仍保留在数据字典中，但停止参与查询优化和 DML 维护。典型用途是在批量数据装载前禁用索引维护以提升写入性能，装载完成后通过 <code>ALTER INDEX &#8230;&#8203; REBUILD</code> 统一重建。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="基本语法"><a class="anchor" href="#基本语法"></a>2.1. 基本语法</h3>
+<div class="paragraph">
+<p>在 Oracle 兼容模式（<code>compatible_db = ORA_PARSER</code>）下，<code>ALTER INDEX</code> 支持以下扩展语法：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER INDEX index_name UNUSABLE;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>真实 Oracle <strong>没有 <code>ALTER INDEX &#8230;&#8203; USABLE</code> 子句</strong>——恢复可用状态唯一记录在案的方式是 <code>ALTER INDEX &#8230;&#8203; REBUILD</code>（IvorySQL 已支持，见另文）。IvorySQL 与此保持一致，不提供 <code>USABLE</code> 子句。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="核心特性"><a class="anchor" href="#核心特性"></a>2.2. 核心特性</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>规划器排除</strong>：标记为 UNUSABLE 的索引不再被规划器选为访问路径，即使显式 <code>SET enable_seqscan = off</code> 也不例外——它会被彻底排除，而不是仅仅被降权</p>
+</li>
+<li>
+<p><strong>DML 停止维护</strong>：INSERT/UPDATE 不再更新该索引的物理结构</p>
+</li>
+<li>
+<p><strong>唯一性检查随之停止</strong>：若该索引是唯一索引或主键索引，由于唯一性检查发生在索引自身的插入路径中，维护停止后重复值可以被静默插入（与 Oracle 行为一致）</p>
+</li>
+<li>
+<p><strong>索引定义与数据不删除</strong>：索引对象、其定义、已有的物理页面均保留，只是不再被读写</p>
+</li>
+<li>
+<p><strong>仅 REBUILD 可恢复</strong>：<code>ALTER INDEX &#8230;&#8203; REBUILD</code>（非 <code>ONLINE</code>）或普通 <code>REINDEX INDEX</code> 会重新物理构建索引并自动清除 UNUSABLE 标记，恢复索引的规划器可见性和 DML 维护</p>
+</li>
+<li>
+<p><strong>不支持分区索引</strong>：对 <code>RELKIND_PARTITIONED_INDEX</code> 执行 <code>UNUSABLE</code> 会报错，需要对各叶子分区索引分别操作</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="语法示例"><a class="anchor" href="#语法示例"></a>3. 语法示例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="基本用法"><a class="anchor" href="#基本用法"></a>3.1. 基本用法</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE emp (id int PRIMARY KEY, email text);
+CREATE UNIQUE INDEX idx_emp_email ON emp(email);
+
+ALTER INDEX idx_emp_email UNUSABLE;
+-- 之后：查询不再使用该索引；INSERT 重复 email 也不会报错</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="批量装载工作流"><a class="anchor" href="#批量装载工作流"></a>3.2. 批量装载工作流</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 装载前禁用索引维护
+ALTER INDEX idx_emp_email UNUSABLE;
+
+-- 批量装载数据（跳过索引维护开销）
+INSERT INTO emp SELECT * FROM staging_emp;
+
+-- 装载完成后重建索引，恢复可用
+ALTER INDEX idx_emp_email REBUILD;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="规划器排除效果"><a class="anchor" href="#规划器排除效果"></a>3.3. 规划器排除效果</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET enable_seqscan = off;
+EXPLAIN (COSTS OFF) SELECT * FROM emp WHERE email = 'a@example.com';
+--                      QUERY PLAN
+-- ------------------------------------------------------
+--  Index Only Scan using idx_emp_email on emp
+--    Index Cond: (email = 'a@example.com'::text)
+
+ALTER INDEX idx_emp_email UNUSABLE;
+
+EXPLAIN (COSTS OFF) SELECT * FROM emp WHERE email = 'a@example.com';
+--            QUERY PLAN
+-- ----------------------------------
+--  Seq Scan on emp
+--    Disabled: true
+--    Filter: (email = 'a@example.com'::text)
+-- 即使 Seq Scan 已被 enable_seqscan=off 禁用，规划器也没有其它可选路径
+RESET enable_seqscan;</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="唯一性检查停止"><a class="anchor" href="#唯一性检查停止"></a>3.4. 唯一性检查停止</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER INDEX idx_emp_email UNUSABLE;
+INSERT INTO emp VALUES (999, 'a@example.com');  -- 与已有行重复
+-- 成功，无 ERROR（维护已停止，未检测到冲突）</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="rebuild-恢复可用"><a class="anchor" href="#rebuild-恢复可用"></a>3.5. REBUILD 恢复可用</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 如果 UNUSABLE 期间产生了违反唯一性的数据，REBUILD 会失败
+ALTER INDEX idx_emp_email REBUILD;
+-- ERROR: could not create unique index "idx_emp_email"
+-- DETAIL: Key (email)=(a@example.com) is duplicated.
+
+-- 清理重复数据后重建成功
+DELETE FROM emp WHERE id = 999;
+ALTER INDEX idx_emp_email REBUILD;
+-- 之后：索引重新可用，唯一性重新生效</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="普通-reindex-同样可以恢复"><a class="anchor" href="#普通-reindex-同样可以恢复"></a>3.6. 普通 REINDEX 同样可以恢复</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER INDEX idx_emp_email UNUSABLE;
+REINDEX INDEX idx_emp_email;
+-- 无需使用 Oracle 专用语法，普通 REINDEX 也会清除 UNUSABLE 标记</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cluster-replica-identity-拒绝使用-unusable-索引"><a class="anchor" href="#cluster-replica-identity-拒绝使用-unusable-索引"></a>3.7. CLUSTER / REPLICA IDENTITY 拒绝使用 unusable 索引</h3>
+<div class="paragraph">
+<p>一个已停止维护的索引可能缺失禁用期间发生变更的行，因此不能再被信任用作聚簇排序依据或复制身份识别索引：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER TABLE emp CLUSTER ON idx_emp_email;
+ALTER INDEX idx_emp_email UNUSABLE;
+
+CLUSTER emp;
+-- ERROR: cannot cluster on unusable index "idx_emp_email"
+
+ALTER INDEX idx_emp_email REBUILD;
+CLUSTER emp;  -- 恢复后重新可用</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>同理，若某索引被 <code>ALTER TABLE &#8230;&#8203; REPLICA IDENTITY USING INDEX</code> 指定为复制身份索引，标记为 UNUSABLE 期间逻辑复制会跳过该索引（旧行镜像不再包含旧的主键/唯一键值，而不是给出陈旧或错误的值），REBUILD 后自动恢复正常。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="错误处理"><a class="anchor" href="#错误处理"></a>4. 错误处理</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="只有父分区索引本身不支持叶子分区索引照常可用"><a class="anchor" href="#只有父分区索引本身不支持叶子分区索引照常可用"></a>4.1. 只有父分区索引本身不支持——叶子分区索引照常可用</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE sales (id int, region text) PARTITION BY RANGE (id);
+CREATE TABLE sales_p1 PARTITION OF sales FOR VALUES FROM (1) TO (1001);
+CREATE INDEX idx_sales_id ON sales(id);  -- 自动在 sales_p1 上创建并 attach 叶子索引
+
+-- 对父索引本身操作会报错：
+ALTER INDEX idx_sales_id UNUSABLE;
+-- ERROR: ALTER INDEX ... UNUSABLE is not supported for partitioned indexes
+-- HINT: Mark each partition's leaf index unusable individually.
+
+-- 但对叶子索引单独操作是设计上支持的，正常生效：
+ALTER INDEX sales_p1_id_idx UNUSABLE;
+ALTER INDEX sales_p1_id_idx REBUILD;</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+只有 <code>relkind = RELKIND_PARTITIONED_INDEX</code> 的根/父索引会被拒绝；每个分区自己的叶子物理索引（<code>relkind = RELKIND_INDEX</code>）完全不受此限制，按分区逐个禁用/重建正是官方错误提示推荐的用法。
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="索引不存在"><a class="anchor" href="#索引不存在"></a>4.2. 索引不存在</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER INDEX no_such_index UNUSABLE;
+-- ERROR: relation "no_such_index" does not exist</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="目标不是索引"><a class="anchor" href="#目标不是索引"></a>4.3. 目标不是索引</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER INDEX emp UNUSABLE;  -- emp 是表名而非索引名
+-- ERROR: "emp" is not an index</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="在-pg_parser-模式下使用"><a class="anchor" href="#在-pg_parser-模式下使用"></a>4.4. 在 PG_PARSER 模式下使用</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET compatible_db = PG_PARSER;
+ALTER INDEX idx_emp_email UNUSABLE;
+-- ERROR: syntax error at or near "UNUSABLE"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="cluster-拒绝使用-unusable-聚簇索引"><a class="anchor" href="#cluster-拒绝使用-unusable-聚簇索引"></a>4.5. CLUSTER 拒绝使用 unusable 聚簇索引</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER TABLE emp CLUSTER ON idx_emp_email;
+ALTER INDEX idx_emp_email UNUSABLE;
+CLUSTER emp;
+-- ERROR: cannot cluster on unusable index "idx_emp_email"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="toast-表索引不允许-unusable"><a class="anchor" href="#toast-表索引不允许-unusable"></a>4.6. TOAST 表索引不允许 UNUSABLE</h3>
+<div class="paragraph">
+<p>一个表的 TOAST 索引用于查找超长字段的存储位置；禁用它会导致新插入的大字段值查不到，且没有任何提示。因此直接禁止：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER INDEX pg_toast.pg_toast_16537_index UNUSABLE;
+-- ERROR: ALTER INDEX ... UNUSABLE is not supported for TOAST table indexes</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="on-conflict-遇到-unusable-唯一索引时报错而不是内部崩溃"><a class="anchor" href="#on-conflict-遇到-unusable-唯一索引时报错而不是内部崩溃"></a>4.7. ON CONFLICT 遇到 unusable 唯一索引时报错，而不是内部崩溃</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE t (id int UNIQUE, val text);
+INSERT INTO t VALUES (1, 'a');
+ALTER INDEX t_id_key UNUSABLE;
+
+INSERT INTO t VALUES (1, 'b') ON CONFLICT (id) DO UPDATE SET val = excluded.val;
+-- ERROR: there is no unique or exclusion constraint matching the ON CONFLICT specification
+
+ALTER INDEX t_id_key REBUILD;
+INSERT INTO t VALUES (1, 'c') ON CONFLICT (id) DO UPDATE SET val = excluded.val;
+-- 恢复正常</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="新建外键不能绑定到-unusable-的引用键"><a class="anchor" href="#新建外键不能绑定到-unusable-的引用键"></a>4.8. 新建外键不能绑定到 unusable 的引用键</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE parent (id int PRIMARY KEY, val text);
+ALTER INDEX parent_pkey UNUSABLE;
+
+CREATE TABLE child (id int REFERENCES parent);
+-- ERROR: cannot use an unusable primary key for referenced table "parent"
+
+ALTER INDEX parent_pkey REBUILD;
+CREATE TABLE child (id int REFERENCES parent);  -- 恢复正常</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>显式指定引用列（走命名唯一约束匹配而非主键查找）同样会被拒绝：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE parent2 (id int, email text UNIQUE);
+ALTER INDEX parent2_email_key UNUSABLE;
+
+CREATE TABLE child2 (email text REFERENCES parent2(email));
+-- ERROR: there is no unique constraint matching given keys for referenced table "parent2"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="using-index-建约束拒绝-unusable-索引"><a class="anchor" href="#using-index-建约束拒绝-unusable-索引"></a>4.9. USING INDEX 建约束拒绝 unusable 索引</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE t2 (id int, val text);
+CREATE UNIQUE INDEX idx_t2_val ON t2(val);
+ALTER INDEX idx_t2_val UNUSABLE;
+
+ALTER TABLE t2 ADD CONSTRAINT uq_val UNIQUE USING INDEX idx_t2_val;
+-- ERROR: index "idx_t2_val" is unusable</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="amcheck-拒绝检查-unusable-索引避免假阳性报告"><a class="anchor" href="#amcheck-拒绝检查-unusable-索引避免假阳性报告"></a>4.10. amcheck 拒绝检查 unusable 索引（避免假阳性报告）</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE TABLE t3 (id int PRIMARY KEY, val text);
+ALTER INDEX t3_pkey UNUSABLE;
+
+SELECT bt_index_check('t3_pkey');
+-- ERROR: cannot check index "t3_pkey"
+-- DETAIL: Index is unusable.</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="清理"><a class="anchor" href="#清理"></a>5. 清理</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 恢复索引可用状态：
+ALTER INDEX idx_emp_email REBUILD;
+-- 或者：
+REINDEX INDEX idx_emp_email;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="compat_stragg.html">23、STRAGG 函数</a></span>
+  <span class="next"><a href="../containerization/k8s_deployment.html">K8S部署</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

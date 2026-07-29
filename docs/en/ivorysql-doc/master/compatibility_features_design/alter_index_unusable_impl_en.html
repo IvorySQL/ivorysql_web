@@ -1,0 +1,981 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>ALTER INDEX &#8230;&#8203; UNUSABLE Implementation Notes :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/compatibility_features_design/alter_index_unusable_impl_en.html">
+    <link rel="prev" href="create_index_online.html">
+    <link rel="next" href="../oracle_builtin_functions/sys_context.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">About</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">Release</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Get Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">Quick Start</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">Cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle Compatibility</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure_en.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、ONLINE Parameter for CREATE INDEX</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_alter_index_unusable_en.html">24、Alter Index Unusable</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization and Cloud Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgdog.html">PgDog</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_readonly_en.html">pg_readonly</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/zhparser_en.html">zhparser</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbackrest.html">pgBackRest</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/set_user.html">set_user</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Monitor and O&amp;M</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">Maintenance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">Operation Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Migration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Developers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/contribution_guide.html">Contribution Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">Developer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_parser.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/framework_design.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="out_parameter.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="type_rowtype.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="nls_parameter.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="function_procedure.html">Function and stored procedure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="nested_function.html">Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="case_conversion.html">Case Conversion</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="sys_guid_function.html">sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="empty_string_to_null.html">Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="read_only_view.html">Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="with_function_procedure_impl_en.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="create_index_online.html">ONLINE Parameter for CREATE INDEX</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="alter_index_unusable_impl_en.html">Alter Index Unusable</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Built-in Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../gb18030.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">Tool Reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.23/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Architecture Design</li>
+    <li>Compatibility Features</li>
+    <li><a href="alter_index_unusable_impl_en.html">Alter Index Unusable</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/compatibility_features_design/alter_index_unusable_impl_en.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/compatibility_features_design/alter_index_unusable_impl_en.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">ALTER INDEX &#8230;&#8203; UNUSABLE Implementation Notes</h1>
+<div class="sect1">
+<h2 id="purpose"><a class="anchor" href="#purpose"></a>1. Purpose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document explains in detail how the <code>ALTER INDEX &#8230;&#8203; UNUSABLE</code> feature in IvorySQL is implemented. This feature allows manually disabling an index in Oracle compatibility mode so that it is no longer chosen by the planner and no longer maintained by DML, implementing the <code>UNUSABLE</code> clause of the Oracle database <code>ALTER INDEX</code> statement.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation-notes"><a class="anchor" href="#implementation-notes"></a>2. Implementation Notes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="system-layering"><a class="anchor" href="#system-layering"></a>2.1. System Layering</h3>
+<div class="paragraph">
+<p>The implementation of <code>ALTER INDEX &#8230;&#8203; UNUSABLE</code> is divided into five layers:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">┌───────────────────────────────────────────────────────────────────────┐
+│  Layer 1: Oracle Parser  (ora_gram.y + ora_kwlist.h)                  │
+│  ─ Adds the UNUSABLE keyword (UNRESERVED_KEYWORD, BARE_LABEL)         │
+│  ─ ALTER INDEX qualified_name UNUSABLE → OraAlterIndexUnusableStmt    │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│  Layer 2: Statement Dispatch  (tcop/utility.c)                        │
+│  ─ T_OraAlterIndexUnusableStmt appears alongside the existing         │
+│    T_OraAlterIndexRebuildStmt in 4 places: read-only transaction     	│
+│    classification / ProcessUtilitySlow / CreateCommandTag /           │
+│    GetCommandLogLevel                                                 │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│  Layer 3: Execution Layer  (commands/indexcmds.c)                     │
+│  ─ ExecOraAlterIndexUnusable(): permission check, resolves and        │
+│    locks the target index, rejects partitioned indexes, calls         │
+│    index_set_unusable(indexOid, true)                                 │
+└───────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────┐
+│  Layer 4: Catalog Layer  (catalog/index.c + include/catalog/pg_index.h) │
+│  ─ Adds the pg_index.indisunusable column                               │
+│  ─ index_set_unusable(): a standalone catalog update function           │
+│    structurally mirroring index_set_state_flags()                       │
+│  ─ index_create()'s values[] array is extended with an initial          │
+│    value (false) for this column                                        │
+│  ─ reindex_index() clears this flag as part of its existing             │
+│    "repair index state" branch                                          │
+└─────────────────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────────────┐
+│  Layer 5: Planner / Executor  (plancat.c + BuildIndexInfo)            │
+│  ─ get_relation_info() skips indexes with indisunusable set           │
+│  ─ BuildIndexInfo() makes ii_ReadyForInserts reflect this flag as     │
+│    well, so the existing skip logic in execIndexing.c naturally       │
+│    covers it — no changes to the executor itself are needed           │
+└───────────────────────────────────────────────────────────────────────┘</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="grammar-and-parsing"><a class="anchor" href="#grammar-and-parsing"></a>2.2. Grammar and Parsing</h3>
+<div class="sect3">
+<h4 id="keyword-registration"><a class="anchor" href="#keyword-registration"></a>2.2.1. Keyword Registration</h4>
+<div class="paragraph">
+<p><code>src/include/oracle_parser/ora_kwlist.h</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">PG_KEYWORD("until", UNTIL, UNRESERVED_KEYWORD, BARE_LABEL)
+PG_KEYWORD("unusable", UNUSABLE, UNRESERVED_KEYWORD, BARE_LABEL)
+PG_KEYWORD("update", UPDATE, UNRESERVED_KEYWORD, BARE_LABEL)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>UNUSABLE</code> is an unreserved keyword, inserted alphabetically alongside <code>REBUILD</code>/<code>ONLINE</code>/<code>TABLESPACE</code>/<code>PARALLEL</code>. It is added to the <code>%token</code> list as well as to both the <code>unreserved_keyword</code> and <code>bare_label_keyword</code> productions, allowing it to be used as a bare identifier/column label.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="grammar-rule-extension"><a class="anchor" href="#grammar-rule-extension"></a>2.2.2. Grammar Rule Extension</h4>
+<div class="paragraph">
+<p>In <code>src/backend/oracle_parser/ora_gram.y</code>, immediately next to the existing <code>REBUILD</code> rule, the following is added:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yacc hljs" data-lang="yacc">| ALTER INDEX qualified_name REBUILD rebuild_index_opt_list
+        {
+            OraAlterIndexRebuildStmt *n = makeNode(OraAlterIndexRebuildStmt);
+            n-&gt;relation = $3;
+            n-&gt;options = $5;
+            $$ = (Node *) n;
+        }
+| ALTER INDEX qualified_name UNUSABLE
+        {
+            OraAlterIndexUnusableStmt *n = makeNode(OraAlterIndexUnusableStmt);
+            n-&gt;relation = $3;
+            $$ = (Node *) n;
+        }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Unlike REBUILD, <code>UNUSABLE</code> does not take an options list — Oracle&#8217;s <code>UNUSABLE</code> clause itself accepts no parameters.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ast-node-design"><a class="anchor" href="#ast-node-design"></a>2.3. AST Node Design</h3>
+<div class="paragraph">
+<p>Added to <code>src/include/nodes/parsenodes.h</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/*
+ * Oracle-compatible ALTER INDEX ... UNUSABLE Statement
+ *
+ * Marks an index unusable: skipped by the planner and no longer
+ * maintained by DML, until restored by a REBUILD (or a plain REINDEX).
+ */
+typedef struct OraAlterIndexUnusableStmt
+{
+    NodeTag     type;
+    RangeVar   *relation;      /* index to mark unusable */
+} OraAlterIndexUnusableStmt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The copy/equal/out/read functions are auto-generated from this struct by <code>gen_node_support.pl</code> and require no manual maintenance (the same treatment as the existing <code>OraAlterIndexRebuildStmt</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="catalog-layer-design"><a class="anchor" href="#catalog-layer-design"></a>2.4. Catalog Layer Design</h3>
+<div class="sect3">
+<h4 id="why-add-a-new-pg_index-column-rather-than-a-reloption-or-reusing-indisvalidindisready"><a class="anchor" href="#why-add-a-new-pg_index-column-rather-than-a-reloption-or-reusing-indisvalidindisready"></a>2.4.1. Why Add a New <code>pg_index</code> Column, Rather Than a reloption or Reusing <code>indisvalid</code>/<code>indisready</code></h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>A reloption approach is not viable</strong>: PostgreSQL&#8217;s index reloptions are declared per access method (btree/gin/hash each maintain their own private option table); there is no generic "index-level" reloption kind. Bypassing AM validation and writing directly to <code>pg_class.reloptions</code> would cause <code>pg_dump</code> restores to fail on an undeclared key.</p>
+</li>
+<li>
+<p><strong><code>indisvalid</code>/<code>indisready</code> cannot be reused</strong>: both are tightly coupled to the multi-phase state machine of <code>CREATE/DROP INDEX CONCURRENTLY</code> (<code>index_set_state_flags()</code> has strict `Assert`s on state transitions); overloading their semantics would break the invariants of concurrent index builds.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The final approach: add an independent <code>bool indisunusable</code> column, in <code>src/include/catalog/pg_index.h</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">bool        indislive;         /* is this index alive at all? */
+bool        indisreplident;    /* is this index the identity for replication? */
+bool        indisunusable;     /* manually disabled via ALTER INDEX ...
+                                 * UNUSABLE (Oracle compat); skipped by the
+                                 * planner and unmaintained by DML until
+                                 * REBUILD */</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The corresponding catalog version number in <code>catversion.h</code> is bumped. IvorySQL already has precedent for extending core catalogs directly (<code>pg_class.relhasrowid</code> for the ROWID feature, <code>pg_attribute.attisinvisible</code> for the invisible-column feature); this change follows the same pattern.</p>
+</div>
+<div class="paragraph">
+<p><code>indisunusable</code> is a transient index <strong>state</strong> rather than a defining property, in the same category as <code>indisvalid</code>/<code>indisready</code>; <code>pg_dump</code> never exports state columns of this kind, so there is no need for extra <code>pg_dump</code> support code the way <code>attisinvisible</code> required.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="index_set_unusable-a-standalone-state-change-function"><a class="anchor" href="#index_set_unusable-a-standalone-state-change-function"></a>2.4.2. <code>index_set_unusable()</code>: A Standalone State-Change Function</h4>
+<div class="paragraph">
+<p><code>src/backend/catalog/index.c</code>, right next to the existing <code>index_set_state_flags()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/*
+ * index_set_unusable - set or clear pg_index.indisunusable
+ *
+ * Oracle-compatible companion to index_set_state_flags(): flips the
+ * "manually disabled via ALTER INDEX ... UNUSABLE" bit.  Unlike the
+ * indisvalid/indisready/indislive trio, this flag is not part of the
+ * CREATE/DROP INDEX CONCURRENTLY state machine, so no transition
+ * invariants need to be asserted here.
+ */
+void
+index_set_unusable(Oid indexId, bool unusable)
+{
+    Relation    pg_index;
+    HeapTuple   indexTuple;
+    Form_pg_index indexForm;
+
+    pg_index = table_open(IndexRelationId, RowExclusiveLock);
+
+    indexTuple = SearchSysCacheCopy1(INDEXRELID, ObjectIdGetDatum(indexId));
+    if (!HeapTupleIsValid(indexTuple))
+        elog(ERROR, "cache lookup failed for index %u", indexId);
+    indexForm = (Form_pg_index) GETSTRUCT(indexTuple);
+
+    if (indexForm-&gt;indisunusable != unusable)
+    {
+        indexForm-&gt;indisunusable = unusable;
+        CatalogTupleUpdate(pg_index, &amp;indexTuple-&gt;t_self, indexTuple);
+    }
+
+    table_close(pg_index, RowExclusiveLock);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>CatalogTupleUpdate()</code> handles cache invalidation on its own, so there is no need to call <code>CacheInvalidateRelcache</code> manually.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="execution-layer-design"><a class="anchor" href="#execution-layer-design"></a>2.5. Execution Layer Design</h3>
+<div class="sect3">
+<h4 id="execoraalterindexunusable"><a class="anchor" href="#execoraalterindexunusable"></a>2.5.1. <code>ExecOraAlterIndexUnusable()</code></h4>
+<div class="paragraph">
+<p><code>src/backend/commands/indexcmds.c</code>, right next to the existing <code>ExecOraAlterIndexRebuild()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">void
+ExecOraAlterIndexUnusable(ParseState *pstate, const OraAlterIndexUnusableStmt *stmt)
+{
+    ReindexParams params = {0};
+    struct ReindexIndexCallbackState cbstate;
+    Oid         indexOid;
+    char        relkind;
+
+    if (ORA_PARSER != compatible_db)
+        ereport(ERROR,
+                (errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
+                 errmsg("ALTER INDEX ... UNUSABLE is only available when compatible_db is oracle")));
+
+    /*
+     * Reuse the same parsing/locking approach as the non-CONCURRENTLY
+     * path of ExecOraAlterIndexRebuild(): AccessExclusiveLock on the
+     * index itself, ShareLock on the heap table (decided by the shared
+     * callback), with the permission check also handled by that
+     * callback.
+     */
+    cbstate.params = params;
+    cbstate.locked_table_oid = InvalidOid;
+
+    indexOid = RangeVarGetRelidExtended(stmt-&gt;relation,
+                                        AccessExclusiveLock,
+                                        0,
+                                        RangeVarCallbackForReindexIndex,
+                                        &amp;cbstate);
+
+    relkind = get_rel_relkind(indexOid);
+    if (relkind == RELKIND_PARTITIONED_INDEX)
+        ereport(ERROR,
+                (errcode(ERRCODE_FEATURE_NOT_SUPPORTED),
+                 errmsg("ALTER INDEX ... UNUSABLE is not supported for partitioned indexes"),
+                 errhint("Mark each partition's leaf index unusable individually.")));
+
+    index_set_unusable(indexOid, true);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>RangeVarCallbackForReindexIndex</code> is the shared callback already used by the existing REINDEX/REBUILD infrastructure; reusing it directly means the permission check (<code>pg_class_aclcheck(&#8230;&#8203;, ACL_MAINTAIN)</code>), relkind validation, and heap-table lock ordering are all fully consistent with REBUILD/REINDEX, with no need to reimplement any of it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="planner-skipping-unusable-indexes"><a class="anchor" href="#planner-skipping-unusable-indexes"></a>2.5.2. Planner: Skipping Unusable Indexes</h4>
+<div class="paragraph">
+<p><code>src/backend/optimizer/util/plancat.c</code>, <code>get_relation_info()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">if (!index-&gt;indisvalid)
+{
+    index_close(indexRelation, NoLock);
+    continue;
+}
+
+/*
+ * Ignore indexes manually disabled via the Oracle-compatible
+ * ALTER INDEX ... UNUSABLE.  This check is unconditional (not
+ * gated on the current session's compatible_db): indisunusable
+ * is a catalog fact about the index, not a per-session parser
+ * choice, and every session must honor it consistently to avoid
+ * planning against a stale/unmaintained index.
+ */
+if (index-&gt;indisunusable)
+{
+    index_close(indexRelation, NoLock);
+    continue;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="executor-skipping-maintenance-of-unusable-indexes"><a class="anchor" href="#executor-skipping-maintenance-of-unusable-indexes"></a>2.5.3. Executor: Skipping Maintenance of Unusable Indexes</h4>
+<div class="paragraph">
+<p><code>src/backend/catalog/index.c</code>, <code>BuildIndexInfo()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">ii = makeIndexInfo(indexStruct-&gt;indnatts,
+                   indexStruct-&gt;indnkeyatts,
+                   index-&gt;rd_rel-&gt;relam,
+                   RelationGetIndexExpressions(index),
+                   RelationGetIndexPredicate(index),
+                   indexStruct-&gt;indisunique,
+                   indexStruct-&gt;indnullsnotdistinct,
+                   /*
+                    * A manually UNUSABLE index (Oracle compat) is treated
+                    * as not ready for inserts, so DML stops maintaining
+                    * it, same as an in-progress CREATE INDEX CONCURRENTLY.
+                    */
+                   indexStruct-&gt;indisready &amp;&amp; !indexStruct-&gt;indisunusable,
+                   false,
+                   index-&gt;rd_indam-&gt;amsummarizing,
+                   indexStruct-&gt;indisexclusion &amp;&amp; indexStruct-&gt;indisunique);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once <code>ii_ReadyForInserts</code> is false, the existing <code>if (!indexInfo&#8594;ii_ReadyForInserts) continue;</code> logic in <code>execIndexing.c</code> naturally skips insert/update maintenance for that index — <strong>no changes to the executor itself are required</strong>. This is also why uniqueness checking automatically stops once a unique/primary key index becomes UNUSABLE: the check happens inside the index&#8217;s own <code>aminsert</code> path and requires no additional coordination with <code>pg_constraint</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rebuild-reindex-cleanup-clearing-the-unusable-flag"><a class="anchor" href="#rebuild-reindex-cleanup-clearing-the-unusable-flag"></a>2.5.4. REBUILD / REINDEX Cleanup: Clearing the UNUSABLE Flag</h4>
+<div class="paragraph">
+<p><code>src/backend/catalog/index.c</code>, in the existing "index state needs repair" branch of <code>reindex_index()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">index_bad = (!indexForm-&gt;indisvalid ||
+             !indexForm-&gt;indisready ||
+             !indexForm-&gt;indislive ||
+             indexForm-&gt;indisunusable);
+if (index_bad ||
+    (indexForm-&gt;indcheckxmin &amp;&amp; !indexInfo-&gt;ii_BrokenHotChain))
+{
+    ...
+    indexForm-&gt;indisvalid = true;
+    indexForm-&gt;indisready = true;
+    indexForm-&gt;indislive = true;
+    /* a completed non-concurrent rebuild always clears UNUSABLE */
+    indexForm-&gt;indisunusable = false;
+    CatalogTupleUpdate(pg_index, &amp;indexTuple-&gt;t_self, indexTuple);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This branch covers: a plain <code>REINDEX INDEX</code>, <code>ALTER INDEX &#8230;&#8203; REBUILD</code> (non-<code>ONLINE</code>), and <code>REBUILD PARTITION</code> (non-<code>ONLINE</code>). <code>REBUILD ONLINE</code> (the concurrent path, which goes through <code>ReindexRelationConcurrently()</code> and never calls <code>reindex_index()</code>) <strong>does not</strong> clear the flag — see "Known Limitations".</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="isolation-strategy-from-pg_parser"><a class="anchor" href="#isolation-strategy-from-pg_parser"></a>2.6. Isolation Strategy from PG_PARSER</h3>
+<div class="paragraph">
+<p>Following the project&#8217;s convention (<code>if (ORA_PARSER == compatible_db) { &#8230;&#8203; }</code>), this feature is isolated at two levels:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Natural isolation at the grammar level</strong>: the <code>UNUSABLE</code> syntax exists only in <code>ora_gram.y</code>; <code>PG_PARSER</code> sessions have no grammar entry point for it at all.</p>
+</li>
+<li>
+<p><strong>Defense in depth at the command entry point</strong>: <code>ExecOraAlterIndexUnusable()</code> additionally guards with <code>if (ORA_PARSER != compatible_db) ereport(ERROR, &#8230;&#8203;)</code> as a backstop.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="error-handling"><a class="anchor" href="#error-handling"></a>2.7. Error Handling</h3>
+<div class="sect3">
+<h4 id="partitioned-index-rejection"><a class="anchor" href="#partitioned-index-rejection"></a>2.7.1. Partitioned Index Rejection</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER INDEX idx_sales_id UNUSABLE;  -- idx_sales_id is a partitioned parent index
+-- ERROR: ALTER INDEX ... UNUSABLE is not supported for partitioned indexes
+-- HINT: Mark each partition's leaf index unusable individually.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The error is raised proactively by the <code>relkind == RELKIND_PARTITIONED_INDEX</code> branch in <code>ExecOraAlterIndexUnusable()</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rejection-under-pg_parser-mode"><a class="anchor" href="#rejection-under-pg_parser-mode"></a>2.7.2. Rejection Under PG_PARSER Mode</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET compatible_db = PG_PARSER;
+ALTER INDEX idx_emp_email UNUSABLE;
+-- ERROR: syntax error at or near "UNUSABLE"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>At the grammar level, this production simply does not exist under <code>PG_PARSER</code>, so the error is raised without any runtime check.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rebuild-failure-after-maintenance-was-skipped-uniqueness-conflict"><a class="anchor" href="#rebuild-failure-after-maintenance-was-skipped-uniqueness-conflict"></a>2.7.3. Rebuild Failure After Maintenance Was Skipped (Uniqueness Conflict)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER INDEX idx_emp_email UNUSABLE;
+INSERT INTO emp VALUES (999, 'a@example.com');  -- duplicates an existing row, succeeds
+ALTER INDEX idx_emp_email REBUILD;
+-- ERROR: could not create unique index "idx_emp_email"
+-- DETAIL: Key (email)=(a@example.com) is duplicated.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This error comes from the standard uniqueness validation inside <code>index_build()</code>, called from within <code>reindex_index()</code> — it is not new logic added for this feature, but naturally inherited behavior.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="known-limitations"><a class="anchor" href="#known-limitations"></a>2.8. Known Limitations</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>No <code>USABLE</code> clause is supported</strong>: consistent with Oracle&#8217;s behavior, REBUILD is the only path to restoration;</p>
+</li>
+<li>
+<p><strong><code>REBUILD ONLINE</code> does not clear UNUSABLE</strong>: the multi-transaction snapshot lifecycle of the concurrent rebuild path is incompatible with appending one additional standalone catalog update afterward;</p>
+</li>
+<li>
+<p><strong>Only the root/parent partitioned index itself is unsupported</strong>: running against <code>RELKIND_PARTITIONED_INDEX</code> raises an error; each partition&#8217;s own leaf physical index is unaffected;</p>
+</li>
+<li>
+<p><strong>The <code>SKIP_UNUSABLE_INDEXES</code> session parameter</strong>: Oracle allows this parameter to control whether a query errors out when it encounters an unusable unique index; this is not supported.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="create_index_online.html">ONLINE Parameter for CREATE INDEX</a></span>
+  <span class="next"><a href="../oracle_builtin_functions/sys_context.html">sys_context</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

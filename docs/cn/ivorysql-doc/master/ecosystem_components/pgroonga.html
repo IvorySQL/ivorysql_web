@@ -686,7 +686,30 @@ postgres=# select version();
 </div>
 </div>
 <div class="sect1">
-<h2 id="使用"><a class="anchor" href="#使用"></a>4. 使用</h2>
+<h2 id="编码兼容性"><a class="anchor" href="#编码兼容性"></a>4. 编码兼容性</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>PGroonga 依赖 <a href="https://groonga.org/docs/reference/api/util_8h.html#c.grn_encoding">Groonga 支持的字符编码</a>，其中不包含 GB18030。因此，在 GB18030 编码的数据库中创建 PGroonga 索引时，索引可能没有生成词元，并导致查询无法返回匹配结果。</p>
+</div>
+<div class="paragraph">
+<p>使用 PGroonga 的业务应创建 UTF-8 编码的数据库：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE DATABASE search_db
+  WITH ENCODING 'UTF8'
+       LC_COLLATE 'C'
+       LC_CTYPE 'C'
+       TEMPLATE template0;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>修改 Groonga 的运行时编码或重建索引不会改变数据库编码。已有数据需要迁移或重新导入 UTF-8 数据库，再创建 PGroonga 索引。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="使用"><a class="anchor" href="#使用"></a>5. 使用</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>关于PGroonga的使用，请参阅 <a href="https://pgroonga.github.io/tutorial">PGroonga官方文档</a></p>

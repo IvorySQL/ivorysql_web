@@ -584,7 +584,30 @@ postgres=# select version();
 </div>
 </div>
 <div class="sect1">
-<h2 id="usage"><a class="anchor" href="#usage"></a>4. Usage</h2>
+<h2 id="encoding-compatibility"><a class="anchor" href="#encoding-compatibility"></a>4. Encoding Compatibility</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>PGroonga relies on <a href="https://groonga.org/docs/reference/api/util_8h.html#c.grn_encoding">Groonga&#8217;s supported encodings</a>, which do not include GB18030. A PGroonga index created in a GB18030-encoded database may therefore contain no tokens and return no matches.</p>
+</div>
+<div class="paragraph">
+<p>Create a UTF-8 database for workloads that use PGroonga:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE DATABASE search_db
+  WITH ENCODING 'UTF8'
+       LC_COLLATE 'C'
+       LC_CTYPE 'C'
+       TEMPLATE template0;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Changing Groonga&#8217;s runtime encoding or rebuilding the index does not change the database encoding. Existing data must be migrated or reloaded into a UTF-8 database before creating the PGroonga index.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usage"><a class="anchor" href="#usage"></a>5. Usage</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For PGroonga usage, please refer to the <a href="https://pgroonga.github.io/tutorial">PGroonga Official Documentation</a></p>

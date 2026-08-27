@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DBTIMEZONE :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/oracle_compatibility/compat_dbtimezone.html">
+    <link rel="prev" href="compat_alter_index_unusable.html">
+    <link rel="next" href="../containerization/k8s_deployment.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">关于IvorySQL</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">发行说明</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">快速上手</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">快速开始</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">安装部署</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">集群搭建</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_case_conversion.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_like_operator.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="anonymous_block.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_function_procedure.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="builtin_types_functions.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="port_ip.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="xml_functions.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="package.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="invisible_column.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_rowid.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_out_parameter.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_type_rowtype.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_nls_parameter.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_nested_function.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_sys_guid.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_empty_string_to_null.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_read_only_view.html">20、视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="with_function_procedure.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_create_index_online.html">22、索引 ONLINE 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_stragg.html">23、STRAGG 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="compat_alter_index_unusable.html">24、禁用索引</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="compat_dbtimezone.html">25、dbtimezone</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化与云服务</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgdog.html">PgDog</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_readonly.html">pg_readonly</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/zhparser.html">zhparser</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbackrest.html">pgBackRest</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/set_user.html">set_user</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">监控运维</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">日常维护</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">运维管理指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">数据迁移</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL开发者</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/contribution_guide.html">贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_parser.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/framework_design.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">视图只读</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">索引 ONLINE 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../compatibility_features_design/alter_index_unusable_impl.html">禁用索引</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="../oracle_builtin_functions/dbtimezone_impl.html">dbtimezone</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../gb18030.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">参考指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">常见问题解答</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.23/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">文档中心</a></li>
+    <li>Oracle兼容功能</li>
+    <li><a href="compat_dbtimezone.html">25、dbtimezone</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/oracle_compatibility/compat_dbtimezone.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/oracle_compatibility/compat_dbtimezone.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">DBTIMEZONE</h1>
+<div class="sect1">
+<h2 id="目的"><a class="anchor" href="#目的"></a>1. 目的</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>本文档解释 IvorySQL 中 <code>DBTIMEZONE</code> 函数的用途，实现 Oracle 风格的数据库级时区查询功能。</p>
+</div>
+<div class="paragraph">
+<p>Oracle 提供两个时区相关的内置函数：<code>SESSIONTIMEZONE</code> 返回当前会话的时区（随 <code>ALTER SESSION SET TIME_ZONE</code> 改变），<code>DBTIMEZONE</code> 返回数据库级别固定的时区（在 <code>CREATE DATABASE</code> / <code>ALTER DATABASE SET TIME_ZONE</code> 时确定，不随会话变化）。IvorySQL 已实现 <code>SESSIONTIMEZONE</code>，本功能补齐 <code>DBTIMEZONE</code>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="功能说明"><a class="anchor" href="#功能说明"></a>2. 功能说明</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="基本语法"><a class="anchor" href="#基本语法"></a>2.1. 基本语法</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT dbtimezone() FROM dual;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>返回一个 <code>text</code> 类型的时区值，格式为 UTC 偏移（<code>[+-]HH:MI</code>），默认值为 <code>'+00:00'</code>。</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="核心特性"><a class="anchor" href="#核心特性"></a>2.2. 核心特性</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>数据库级、非会话级</strong>：返回值由 <code>ALTER DATABASE &#8230;&#8203; SET ivorysql.dbtimezone = &#8230;&#8203;</code> 固定，不受当前会话 <code>SET timezone</code> 影响，与 <code>SESSIONTIMEZONE</code>（会话级）形成对照</p>
+</li>
+<li>
+<p><strong>仅能通过 <code>ALTER DATABASE &#8230;&#8203; SET</code> 修改</strong>：会话内直接 <code>SET ivorysql.dbtimezone = &#8230;&#8203;</code>、以及任何形式的 <code>ALTER ROLE &#8230;&#8203; SET ivorysql.dbtimezone = &#8230;&#8203;</code>（<code>ALTER ROLE rolename SET</code>、<code>ALTER ROLE rolename IN DATABASE dbname SET</code>、<code>ALTER ROLE ALL SET</code>）都会在命令层直接报错，不会被静默接受；只有 <code>ALTER DATABASE dbname SET ivorysql.dbtimezone = &#8230;&#8203;</code> 才会在下次连接该库时生效</p>
+</li>
+<li>
+<p><strong>默认仅超级用户可设置</strong>：普通用户即使是自己创建/拥有的数据库的 owner，也无权执行 <code>ALTER DATABASE &#8230;&#8203; SET ivorysql.dbtimezone = &#8230;&#8203;</code>；超级用户可以通过 <code>GRANT SET ON PARAMETER ivorysql.dbtimezone TO &lt;role&gt;;</code> 显式授权某个非超级用户角色管理该设置</p>
+</li>
+<li>
+<p><strong>同一数据库下所有角色看到同一个值</strong>：<code>DBTIMEZONE</code> 是纯数据库属性，不支持"同一数据库、不同角色看到不同值"这种用法——任何试图按角色区分的 <code>ALTER ROLE &#8230;&#8203; SET</code> 都会在命令层直接被拒绝（<code>ALTER ROLE &#8230;&#8203; RESET</code> 除外，用于清理历史遗留的记录）</p>
+</li>
+<li>
+<p><strong>值格式校验</strong>：接受 <code>[+-]HH:MI</code> 形式的 UTC 偏移，范围 <code>-12:59</code> ~ <code>+14:00</code>（与 Oracle 一致），或合法的 IANA 时区区域名</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="语法示例"><a class="anchor" href="#语法示例"></a>3. 语法示例</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="基本用法"><a class="anchor" href="#基本用法"></a>3.1. 基本用法</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT dbtimezone() FROM dual;
+--  dbtimezone
+-- ------------
+--  +00:00
+-- (1 row)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="与-sessiontimezone-对比不受会话时区影响"><a class="anchor" href="#与-sessiontimezone-对比不受会话时区影响"></a>3.2. 与 SESSIONTIMEZONE 对比：不受会话时区影响</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET timezone = 'Asia/Hong_Kong';
+SELECT sessiontimezone() FROM dual;
+--  sessiontimezone
+-- -----------------
+--  Asia/Hong_Kong
+
+SELECT dbtimezone() FROM dual;
+-- 仍为数据库固定值，不受上面 SET timezone 影响
+--  dbtimezone
+-- ------------
+--  +00:00</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="通过-alter-database-固定某个数据库的时区"><a class="anchor" href="#通过-alter-database-固定某个数据库的时区"></a>3.3. 通过 ALTER DATABASE 固定某个数据库的时区</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER DATABASE mydb SET ivorysql.dbtimezone = '+08:00';
+-- 需要断开重连（新会话）后才生效
+\c mydb
+SELECT dbtimezone() FROM dual;   -- +08:00</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="授权非超级用户管理自己数据库的-dbtimezone"><a class="anchor" href="#授权非超级用户管理自己数据库的-dbtimezone"></a>3.4. 授权非超级用户管理自己数据库的 DBTIMEZONE</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 超级用户执行一次性授权：
+GRANT SET ON PARAMETER ivorysql.dbtimezone TO app_owner;
+
+-- app_owner 之后可以为自己拥有的数据库设置：
+\c app_db app_owner
+ALTER DATABASE app_db SET ivorysql.dbtimezone = '+05:30';
+\c app_db app_owner
+SELECT dbtimezone() FROM dual;   -- +05:30</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="错误处理"><a class="anchor" href="#错误处理"></a>4. 错误处理</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="会话内直接-set-被拒绝"><a class="anchor" href="#会话内直接-set-被拒绝"></a>4.1. 会话内直接 SET 被拒绝</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET ivorysql.dbtimezone = '+08:00';
+-- ERROR:  parameter "ivorysql.dbtimezone" cannot be set
+-- DETAIL:  "ivorysql.dbtimezone" can only be set with ALTER DATABASE ... SET, not within a session or per-role.</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="alter-role-set-在命令层直接被拒绝"><a class="anchor" href="#alter-role-set-在命令层直接被拒绝"></a>4.2. ALTER ROLE &#8230;&#8203; SET 在命令层直接被拒绝</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER ROLE myrole IN DATABASE mydb SET ivorysql.dbtimezone = '+09:00';
+-- ERROR:  parameter "ivorysql.dbtimezone" cannot be set
+-- DETAIL:  "ivorysql.dbtimezone" can only be set with ALTER DATABASE ... SET, not within a session or per-role.
+-- HINT:    Use ALTER DATABASE ... SET ivorysql.dbtimezone instead, or ALTER ROLE ... RESET ivorysql.dbtimezone to remove a stale per-role override.
+
+ALTER ROLE myrole SET ivorysql.dbtimezone = '+09:00';           -- 同样报错
+ALTER ROLE ALL SET ivorysql.dbtimezone = '+09:00';              -- 同样报错
+
+-- RESET / RESET ALL 不受影响，仍可用于清理历史遗留的记录：
+ALTER ROLE myrole IN DATABASE mydb RESET ivorysql.dbtimezone;  -- OK</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="非法值-超出范围偏移"><a class="anchor" href="#非法值-超出范围偏移"></a>4.3. 非法值 / 超出范围偏移</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER DATABASE mydb SET ivorysql.dbtimezone = 'not_a_zone';
+-- ERROR:  invalid value for parameter "ivorysql.dbtimezone": "not_a_zone"
+-- DETAIL:  "not_a_zone" is not a valid UTC offset (+/-HH:MI) or time zone name.
+
+ALTER DATABASE mydb SET ivorysql.dbtimezone = '+15:00';
+-- ERROR:  invalid value for parameter "ivorysql.dbtimezone": "+15:00"
+-- DETAIL:  time zone offset "+15:00" is out of range for DBTIMEZONE (-12:59 to +14:00)</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="未被授权的普通用户执行-alter-database"><a class="anchor" href="#未被授权的普通用户执行-alter-database"></a>4.4. 未被授权的普通用户执行 ALTER DATABASE</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- normal_user 是 mydb 的 owner，但没有被 GRANT SET ON PARAMETER 授权
+\c mydb normal_user
+ALTER DATABASE mydb SET ivorysql.dbtimezone = '+08:00';
+-- ERROR:  permission denied to set parameter "ivorysql.dbtimezone"</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+拥有/创建了一个数据库不代表对这个数据库能设置的每个 GUC 参数都有权限——数据库级权限（是否能 <code>ALTER</code> 这个库）与 GUC 参数级权限（是否能"设置"这个参数）是两层独立的检查。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="清理"><a class="anchor" href="#清理"></a>5. 清理</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- 恢复默认值：
+ALTER DATABASE mydb SET ivorysql.dbtimezone = '+00:00';
+-- 或者完全移除该数据库的自定义设置，回落到集群默认值：
+ALTER DATABASE mydb RESET ivorysql.dbtimezone;</code></pre>
+</div>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="compat_alter_index_unusable.html">24、禁用索引</a></span>
+  <span class="next"><a href="../containerization/k8s_deployment.html">K8S部署</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

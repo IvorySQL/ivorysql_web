@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>pgnodemx :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/v5.4/5.14.html">
+    <link rel="prev" href="5.11.html">
+    <link rel="next" href="3.2.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../_/css/site.css">
+    <script>var uiRootPath = '../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL文档中心</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">官方网站</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="v5.4">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="welcome.html">文档中心</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="2.html">关于IvorySQL</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="welcome.html">欢迎</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="1.html">发行说明</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">快速上手</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.1.html">快速开始</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">安装部署</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.1.html">安装指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.2.html">集群搭建</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle兼容功能</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.3.html">1、大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.5.html">2、LIKE操作符</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.6.html">3、匿名块</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.7.html">4、函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.8.html">5、内置数据类型与内置函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.9.html">6、端口与IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.10.html">7、XML函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.11.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.12.html">9、包</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.13.html">10、不可见列</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.14.html">11、RowID</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.15.html">12、OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.16.html">13、%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.17.html">14、NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.18.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.19.html">16、嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.20.html">17、sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.21.html">18、空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="7.22.html">19、CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="realtime_query.html">实时查询分析</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化与云服务</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">容器化指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.1.html">K8S部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.2.html">Operator部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.4.html">Docker &amp; Podman部署</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.6.3.html">Docker Swarm &amp; Docker Compose部署</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">云服务平台指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.7.1.html">IvorySQL Cloud安装</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="4.7.2.html">IvorySQL Cloud使用</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL生态</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="cpu_arch_adp.html">芯片架构适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="os_arch_adp.html">操作系统适配</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">生态组件适配</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.0.html">概述</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.1.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.2.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.3.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.4.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.5.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.6.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.7.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.8.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.9.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.10.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="5.11.html">pgtt</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="5.14.html">pgnodemx</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">监控运维</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.2.html">日常监控</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3.3.html">日常维护</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.4.html">运维管理</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">数据迁移</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.5.html">迁移指南</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL开发者</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.1.html">社区贡献指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="4.3.html">开发者指南</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL架构设计</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">查询处理</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.1.1.html">双parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容框架</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.1.html">框架设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.2.html">GUC框架</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="7.4.html">双模式设计</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.2.1.html">initdb过程</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">兼容特性</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.1.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.3.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.2.html">OUT 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.4.html">%TYPE、%ROWTYPE</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.5.html">NLS 参数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.6.html">函数与存储过程</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.7.html">嵌套子函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.8.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.9.html">大小写转换</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.10.html">sys_guid 函数</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.11.html">空字符串转null</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.3.12.html">CALL INTO</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">内置函数</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.1.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="4">
+    <a class="nav-link" href="6.4.2.html">userenv</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="6.5.html">国标GB18030</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">参考指南</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="9.html">工具参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="8.2.html">asciidoc语法快速参考</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="100.html">PG参数参考手册</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="110.html">PG函数参考手册</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">常见问题解答</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="10.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">文档中心</span>
+    <span class="version">v5.4</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../master/welcome.html">文档中心</a>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../master/welcome.html">master</a>
+        </li>
+        <li class="version is-current">
+          <a href="welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../v1.23/v1.23/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="welcome.html">文档中心</a></li>
+    <li>IvorySQL生态</li>
+    <li>生态组件适配</li>
+    <li><a href="5.14.html">pgnodemx</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to English">CN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">CN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/v5.4/5.14.html">EN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/v5.4/CN/modules/ROOT/pages/5.14.adoc">编辑此页面</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="目录" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">pgnodemx</h1>
+<div class="sect1">
+<h2 id="概述"><a class="anchor" href="#概述"></a>1. 概述</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>pgnodemx</code> 通过 SQL 提供 Linux 操作系统、进程、文件系统、cgroup 和 Kubernetes Downward API 指标。监控程序可以复用数据库连接采集节点及 IvorySQL 进程指标，无需额外部署独立的 exporter 端点。</p>
+</div>
+<div class="paragraph">
+<p>本文在 Ubuntu 22.04 x86_64 环境中使用 IvorySQL 5.4（PostgreSQL 18.4）和 pgnodemx 1.7 完成验证。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="已验证的兼容能力"><a class="anchor" href="#已验证的兼容能力"></a>2. 已验证的兼容能力</h2>
+<div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 16.6666%;">
+<col style="width: 50.0001%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">能力</th>
+<th class="tableblock halign-left valign-top">状态</th>
+<th class="tableblock halign-left valign-top">验证结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PGXS 编译安装</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pgnodemx 1.7 使用 IvorySQL 5.4 头文件和库成功编译</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Linux <code>/proc</code> 指标</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">内存、磁盘、进程、网络、负载和挂载信息函数均能返回数据</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cgroup 检测</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持，存在限制</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>cgroup_mode()</code> 能识别主机布局；上游 pgnodemx 1.7 不支持读取 hybrid 模式指标</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Oracle 兼容会话</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">支持</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">切换兼容模式后，版本、内存和磁盘指标查询均成功</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Kubernetes Downward API</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">取决于环境</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">配置的 Downward API 卷存在时可用</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="前提条件"><a class="anchor" href="#前提条件"></a>3. 前提条件</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>IvorySQL 5.4 已安装服务端开发头文件和 PGXS。</p>
+</li>
+<li>
+<p>目标系统为 Linux，并向 IvorySQL 服务进程提供所需的 <code>/proc</code> 和 cgroup 文件。</p>
+</li>
+<li>
+<p>已安装 C 编译器和 GNU make。</p>
+</li>
+<li>
+<p>pgnodemx 必须使用与 IvorySQL 相同的 OpenSSL 头文件和库进行编译。</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+不要在 IvorySQL 服务进程中混用不同 OpenSSL 主版本。如果加入 pgnodemx 后启动时报 OpenSSL 未定义符号，应在与 IvorySQL 匹配的构建环境中重新编译 pgnodemx。将另一个不兼容的 OpenSSL 库直接链接进扩展不是安全的解决方案。
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="编译安装"><a class="anchor" href="#编译安装"></a>4. 编译安装</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone --branch v1.7 --depth 1 \
+  https://github.com/CrunchyData/pgnodemx.git
+cd pgnodemx
+
+make USE_PGXS=1 \
+  PG_CONFIG=/usr/local/ivorysql/ivorysql-5/bin/pg_config
+sudo make USE_PGXS=1 \
+  PG_CONFIG=/usr/local/ivorysql/ivorysql-5/bin/pg_config install</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>编译前确认选中的 <code>pg_config</code> 属于 IvorySQL 5.4：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">/usr/local/ivorysql/ivorysql-5/bin/pg_config --version</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="配置预加载"><a class="anchor" href="#配置预加载"></a>5. 配置预加载</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>在 <code>postgresql.conf</code> 中将 pgnodemx 追加到已有的 <code>shared_preload_libraries</code>，不要删除 IvorySQL 原有预加载库。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">shared_preload_libraries = 'liboracle_parser, ivorysql_ora, gb18030_2022, pgnodemx'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>非 Kubernetes 主机可以关闭 Downward API 访问，避免无意义的启动警告：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">pgnodemx.kdapi_enabled = off</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>其他相关默认配置如下：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-ini hljs" data-lang="ini">pgnodemx.cgroup_enabled = on
+pgnodemx.containerized = off
+pgnodemx.cgrouproot = '/sys/fs/cgroup'
+pgnodemx.kdapi_path = '/etc/podinfo'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>修改 <code>shared_preload_libraries</code> 后重启 IvorySQL，并在每个需要提供指标的数据库中创建扩展：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION pgnodemx;
+
+SELECT extversion
+FROM pg_extension
+WHERE extname = 'pgnodemx';</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>预期扩展版本为 <code>1.7</code>。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="授予监控权限"><a class="anchor" href="#授予监控权限"></a>6. 授予监控权限</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>pgnodemx 要求调用者属于预定义的 <code>pg_monitor</code> 角色。应将该角色授予专用监控账户，不要让监控程序使用超级用户连接。</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE ROLE node_monitor LOGIN PASSWORD 'replace-with-a-strong-password';
+GRANT pg_monitor TO node_monitor;
+GRANT CONNECT ON DATABASE monitoring TO node_monitor;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>同时应通过 <code>pg_hba.conf</code>、网络访问控制和 TLS 配置限制只有监控系统可以连接。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="查询指标"><a class="anchor" href="#查询指标"></a>7. 查询指标</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="扩展和运行环境信息"><a class="anchor" href="#扩展和运行环境信息"></a>7.1. 扩展和运行环境信息</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT pgnodemx_version();
+SELECT exec_path();
+SELECT openssl_version();
+SELECT cgroup_mode();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="内存cpu磁盘和网络信息"><a class="anchor" href="#内存cpu磁盘和网络信息"></a>7.2. 内存、CPU、磁盘和网络信息</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT * FROM proc_meminfo()
+WHERE key IN ('MemTotal', 'MemAvailable');
+
+SELECT * FROM proc_loadavg();
+SELECT * FROM proc_cputime();
+SELECT * FROM proc_diskstats();
+SELECT * FROM proc_network_stats();</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ivorysql-进程信息"><a class="anchor" href="#ivorysql-进程信息"></a>7.3. IvorySQL 进程信息</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SELECT * FROM proc_pid_cmdline();
+SELECT * FROM proc_pid_io();
+SELECT * FROM proc_pid_stat();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>这些函数读取 IvorySQL 进程可见的操作系统视图。在容器中，查询结果反映的是容器可访问的命名空间和挂载文件系统。</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="oracle-兼容模式"><a class="anchor" href="#oracle-兼容模式"></a>8. Oracle 兼容模式</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>会话切换模式后扩展仍然可用：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET ivorysql.compatible_mode = oracle;
+
+SELECT pgnodemx_version() FROM dual;
+SELECT val FROM proc_meminfo() WHERE key = 'MemTotal';
+SELECT count(*) FROM proc_diskstats();</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>以上三条查询均已在 IvorySQL 5.4 验证通过。</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="限制与安全建议"><a class="anchor" href="#限制与安全建议"></a>9. 限制与安全建议</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>pgnodemx 1.7 支持 cgroup v1（<code>legacy</code>）和 cgroup v2（<code>unified</code>），不支持混合的 <code>hybrid</code> 布局。cgroup 指标不可用时，<code>/proc</code> 系列函数仍可使用。</p>
+</li>
+<li>
+<p><code>pgnodemx.kdapi_path</code> 不存在时，Kubernetes 函数返回 NULL 或空结果；非 Kubernetes 环境应关闭此功能。</p>
+</li>
+<li>
+<p>主机文件可能包含敏感的进程、挂载和环境变量信息，只应向可信监控角色授予 <code>pg_monitor</code>。</p>
+</li>
+<li>
+<p>指标采集会增加 SQL 和文件读取负载，应设置合理轮询间隔，并只查询必要的函数和字段。</p>
+</li>
+<li>
+<p>该扩展仅适用于 Linux，并依赖内核、容器运行时和安全策略暴露的文件。</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>完整函数列表请参阅 <a href="https://access.crunchydata.com/documentation/pgnodemx/1.7/">pgnodemx 1.7 官方文档</a>。</p>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="5.11.html">pgtt</a></span>
+  <span class="next"><a href="3.2.html">日常监控</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../_/js/site.js" data-ui-root-path="../../_"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/lunr-languages.js"></script>
+<script src="../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../.." data-snippet-length="100" data-stylesheet="../../_/css/search.css"></script>
+<script async src="../../search-index.js"></script>
+  </body>
+</html>

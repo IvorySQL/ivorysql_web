@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>DBTIMEZONE Implementation Notes :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/oracle_builtin_functions/dbtimezone_impl_en.html">
+    <link rel="prev" href="stragg.html">
+    <link rel="next" href="../gb18030.html">
+    <meta name="generator" content="Antora 3.1.7">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+    <script>var uiRootPath = '../../../_'</script>
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://docs.ivorysql.org">IvorySQL Document Site</a>
+      <div class="navbar-item search hide-for-print">
+        <div id="search-field" class="field">
+          <input id="search-input" type="text" placeholder="Search the docs">
+        </div>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <a class="navbar-item" href="https://www.ivorysql.org/">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ivorysql-doc" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../welcome.html">IvorySQL</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../about_ivorysql.html">About</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../welcome.html">Welcome</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../release_notes.html">Release</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Get Started</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/quick_start.html">Quick Start</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Deploy</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../installation_guide.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cluster_setup.html">Cluster</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Oracle Compatibility</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_case_conversion.html">1、Case conversion</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_like_operator.html">2、LIKE operator</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/anonymous_block.html">3、anonymous block</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_function_procedure.html">4、functions and stored procedures</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/builtin_types_functions.html">5、Built-in data types and built-in functions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/port_ip.html">6、ports and IP</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/xml_functions.html">7、XML Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/sequence.html">8、sequence</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/package.html">9、Package</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/invisible_column.html">10、Invisible Columns</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_rowid.html">11、RowID Column</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_out_parameter.html">12、OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_type_rowtype.html">13、%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nls_parameter.html">14、NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_force_view.html">15、Force View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_nested_function.html">16、Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_sys_guid.html">17、sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_empty_string_to_null.html">18、Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_call_into.html">19、CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_read_only_view.html">20、Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/with_function_procedure_en.html">21、WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_create_index_online.html">22、ONLINE Parameter for CREATE INDEX</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_stragg.html">23、STRAGG function</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_alter_index_unusable_en.html">24、Alter Index Unusable</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../oracle_compatibility/compat_dbtimezone_en.html">24、dbtimezone</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization and Cloud Service</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Containerization</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/k8s_deployment.html">K8S deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/operator_deployment.html">Operator deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_podman_deployment.html">Docker &amp; Podman deployment</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../containerization/docker_swarm_compose_deployment.html">Docker Swarm &amp; Docker Compose deployment</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Cloud Service Platform</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_installation.html">IvorySQL Cloud Installation</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../cloud_platform/ivorysql_cloud_usage.html">IvorySQL Cloud Usage</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Ecosystem</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/cpu_architecture_adaptation.html">CPU Architecture Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../cpu_os_adaptation/os_architecture_adaptation.html">Operating System Adaption</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Eco Component Adaption</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/ecosystem_overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/postgis.html">postgis</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgvector.html">pgvector</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgddl.html">pgddl(DDL Extractor)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_cron.html">pg_cron</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgsql_http.html">pgsql-http</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/plpgsql_check.html">plpgsql_check</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgroonga.html">pgroonga</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgaudit.html">pgaudit</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgrouting.html">pgrouting</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/system_stats.html">system_stats</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_ai_query.html">pg_ai_query</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/wal2json.html">wal2json</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_stat_monitor.html">pg_stat_monitor</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_partman.html">pg_partman</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbouncer.html">pgbouncer</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/age.html">age</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_curl.html">pg_curl</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_textsearch.html">pg_textsearch</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_hint_plan.html">pg_hint_plan</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/redis_fdw.html">redis_fdw</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_show_plans.html">pg_show_plans</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bulkload.html">pg_bulkload</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_bigm.html">pg_bigm</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_profile.html">pg_profile</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_repack.html">pg_repack</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgdog.html">PgDog</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pg_readonly_en.html">pg_readonly</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/zhparser_en.html">zhparser</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/pgbackrest.html">pgBackRest</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../ecosystem_components/set_user.html">set_user</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Monitor and O&amp;M</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_monitoring.html">Monitoring</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../getting-started/daily_maintenance.html">Maintenance</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../operation_guide.html">Operation Management</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Data Migration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../migration_guide.html">Migration</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Developers</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/contribution_guide.html">Contribution Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../developer_guide.html">Developer</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">IvorySQL Architecture Design</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Query Processing</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_parser.html">Dual Parser</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Framework</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/framework_design.html">Ivorysql frame design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/guc_framework.html">GUC Framework</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/dual_mode_design.html">Dual-mode design</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../architecture/initdb_process.html">initdb Process</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Compatibility Features</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/like_operator.html">like</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/rowid.html">RowID</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/out_parameter.html">OUT Parameter</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/type_rowtype.html">%Type &amp; %Rowtype</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/nls_parameter.html">NLS Parameters</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/function_procedure.html">Function and stored procedure</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/nested_function.html">Nested Subfunctions</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/force_view.html">Force View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/case_conversion.html">Case Conversion</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/sys_guid_function.html">sys_guid Function</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/empty_string_to_null.html">Empty String to NULL</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/call_into.html">CALL INTO</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/read_only_view.html">Read Only View</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/with_function_procedure_impl_en.html">WITH FUNCTION/PROCEDURE</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/create_index_online.html">ONLINE Parameter for CREATE INDEX</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../compatibility_features_design/alter_index_unusable_impl_en.html">Alter Index Unusable</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Built-in Functions</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="sys_context.html">sys_context</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="userenv.html">userenv</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="rawtohex.html">rawtohex</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="stragg.html">stragg</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="dbtimezone_impl_en.html">dbtimezone</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../gb18030.html">GB18030 Character Set</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Reference</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../tools_reference.html">Tool Reference</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">IvorySQL</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <a class="title" href="../welcome.html">IvorySQL</a>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../welcome.html">master</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.4/welcome.html">v5.4</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.3/welcome.html">v5.3</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.1/welcome.html">v5.1</a>
+        </li>
+        <li class="version">
+          <a href="../../v5.0/v5.0/welcome.html">v5.0</a>
+        </li>
+        <li class="version">
+          <a href="../../v4.6/v4.6/welcome.html">v4.6</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.23/v1.23/welcome.html">v1.23</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.22/v1.22/welcome.html">v1.22</a>
+        </li>
+        <li class="version">
+          <a href="../../v1.17/v1.17/welcome.html">v1.17</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../welcome.html">IvorySQL</a></li>
+    <li>IvorySQL Architecture Design</li>
+    <li>Built-in Functions</li>
+    <li><a href="dbtimezone_impl_en.html">dbtimezone</a></li>
+  </ul>
+</nav>
+  <div class="page-versions">
+  <button class="version-menu-toggle" title="switch to Chinese">EN</button>
+  <div class="version-menu">
+    <a class="version is-current" href="">EN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/oracle_builtin_functions/dbtimezone_impl_en.html">CN</a>
+  </div>
+  </div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/oracle_builtin_functions/dbtimezone_impl_en.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+<article class="doc">
+<h1 class="page">DBTIMEZONE Implementation Notes</h1>
+<div class="sect1">
+<h2 id="purpose"><a class="anchor" href="#purpose"></a>1. Purpose</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document describes in detail the implementation principles behind the <code>DBTIMEZONE</code> function feature in IvorySQL. This feature provides a database-level, non-session-level fixed time zone value, persisted through PostgreSQL&#8217;s native <code>ALTER DATABASE &#8230;&#8203; SET</code> mechanism, implementing the semantics of Oracle&#8217;s <code>DBTIMEZONE</code> function.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="implementation-notes"><a class="anchor" href="#implementation-notes"></a>2. Implementation Notes</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="system-layering-architecture"><a class="anchor" href="#system-layering-architecture"></a>2.1. System Layering Architecture</h3>
+<div class="paragraph">
+<p>The implementation of <code>DBTIMEZONE</code> is divided into four layers, all located under <code>contrib/ivorysql_ora</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">┌───────────────────────────────────────────────────────────────┐
+│  Layer 1: GUC Definition &amp; Permission Layer                   │
+│  (src/guc/guc.c + src/include/guc.h)                          │
+│  ─ Adds the custom GUC ivorysql.dbtimezone (PGC_SUSET)         │
+│  ─ check_dbtimezone(): rejects in-session SET/ALTER ROLE based │
+│    on GucSource, allowing only ALTER DATABASE ... SET; also    │
+│    validates the offset/region-name format                    │
+└───────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────┐
+│  Layer 2: Command-Level Interception (src/ivorysql_ora.c)      │
+│  ─ ivorysql_ora_ProcessUtility() (an existing                  │
+│    ProcessUtility_hook) adds                                   │
+│    reject_alter_role_dbtimezone(): intercepts                  │
+│    ALTER ROLE ... SET / ALTER ROLE ALL SET directly at the     │
+│    parse-tree level, ahead of the Layer 1 check hook, so the   │
+│    command itself errors out immediately with no catalog       │
+│    residue left behind                                         │
+└───────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────┐
+│  Layer 3: C Function Layer                                    │
+│  (src/builtin_functions/datetime_datatype_functions.c)         │
+│  ─ ora_dbtimezone(): reads the ivorysql_dbtimezone variable     │
+│    and returns it as text; placed right next to the existing   │
+│    ora_sessiontimezone() (which reads session_timezone) —      │
+│    same implementation style, deliberately distinct semantics  │
+└───────────────────────────────────────────────────────────────┘
+
+┌───────────────────────────────────────────────────────────────┐
+│  Layer 4: SQL Catalog Layer                                    │
+│  (src/builtin_functions/builtin_functions--1.0.sql)             │
+│  ─ CREATE FUNCTION sys.dbtimezone() ... STABLE                 │
+│    placed right next to the existing sys.sessiontimezone()     │
+└───────────────────────────────────────────────────────────────┘</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This feature adds no new syntax (no changes are needed at the Oracle parser/AST/catalog-column level) — <code>dbtimezone()</code> is an ordinary <code>STABLE</code> SQL function paired with a custom GUC, implemented by reusing PostgreSQL&#8217;s existing per-database configuration mechanism.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="design-approach-adding-a-new-guc"><a class="anchor" href="#design-approach-adding-a-new-guc"></a>2.2. Design Approach: Adding a New GUC</h3>
+<div class="paragraph">
+<p>A GUC itself is not "storage dedicated to per-database values" — rather, it reuses the generic <code>ALTER DATABASE/ROLE &#8230;&#8203; SET</code> mechanism that PostgreSQL supports for any GUC (persisted in the <code>pg_db_role_setting</code> system catalog). No dedicated catalog column was designed for <code>DBTIMEZONE</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="guc-definition-and-permission-model"><a class="anchor" href="#guc-definition-and-permission-model"></a>2.3. GUC Definition and Permission Model</h3>
+<div class="sect3">
+<h4 id="naming-convention"><a class="anchor" href="#naming-convention"></a>2.3.1. Naming Convention</h4>
+<div class="paragraph">
+<p>The GUC is named <code>ivorysql.dbtimezone</code>, consistent with the project&#8217;s existing custom-GUC naming convention. The corresponding C-side variable is <code>ivorysql_dbtimezone</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="permission-model-settable-only-via-alter-database"><a class="anchor" href="#permission-model-settable-only-via-alter-database"></a>2.3.2. Permission Model: Settable Only via ALTER DATABASE</h4>
+<div class="paragraph">
+<p><code>ALTER DATABASE dbname SET &lt;guc&gt; = value</code> actually involves two independent permission checks: permission on the database object itself (whether you&#8217;re allowed to <code>ALTER</code> this database — being the owner or a superuser suffices), and permission on the GUC parameter itself (whether "setting" this parameter is allowed, independent of whether you own the database). The <code>context</code> of <code>ivorysql.dbtimezone</code> is set to <code>PGC_SUSET</code>, so by default only superusers pass the second check; to delegate this to an ordinary role, a superuser must additionally run <code>GRANT SET ON PARAMETER ivorysql.dbtimezone TO &lt;role&gt;;</code> (corresponding to the <code>pg_parameter_acl</code> catalog introduced in PostgreSQL 15+).</p>
+</div>
+<div class="paragraph">
+<p>Setting <code>context = PGC_SUSET</code> alone is not enough to distinguish "in-session <code>SET`" from &#8220;ALTER DATABASE &#8230;&#8203; SET&#8221; — both internally call `set_config_option()</code> under the same <code>PGC_SUSET</code> identity. What actually distinguishes the call origin is the <code>GucSource source</code> parameter received by the check hook:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 50%;">
+<col style="width: 16.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top"><code>GucSource</code></th>
+<th class="tableblock halign-left valign-top">Triggering Scenario</th>
+<th class="tableblock halign-left valign-top">Allowed?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PGC_S_SESSION</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">In-session <code>SET ivorysql.dbtimezone = &#8230;&#8203;;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rejected</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PGC_S_USER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ALTER ROLE rolename SET &#8230;&#8203;</code> (not scoped to a database)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rejected</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PGC_S_DATABASE_USER</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ALTER ROLE rolename IN DATABASE dbname SET &#8230;&#8203;</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rejected</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PGC_S_CLIENT</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Client connection options (e.g. <code>PGOPTIONS</code>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rejected</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PGC_S_GLOBAL</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ALTER ROLE ALL SET &#8230;&#8203;</code> (global default)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Rejected</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PGC_S_DATABASE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>ALTER DATABASE dbname SET &#8230;&#8203;</code> taking effect at connection establishment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allowed</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PGC_S_TEST</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The validation phase while executing the <code>ALTER DATABASE &#8230;&#8203; SET</code> command itself</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allowed (otherwise the command itself could never execute)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PGC_S_DEFAULT</code> / <code>PGC_S_DYNAMIC_DEFAULT</code> / <code>PGC_S_FILE</code> / <code>PGC_S_ARGV</code> / <code>PGC_S_ENV_VAR</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Startup default value, <code>postgresql.conf</code>, <code>postmaster</code> command-line/environment variables</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allowed (to guarantee cluster startup is unaffected)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>PGC_S_OVERRIDE</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Replaying an already-validated value (e.g. parallel worker synchronization)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Allowed (otherwise parallel queries would error out)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="check_dbtimezone-implementation"><a class="anchor" href="#check_dbtimezone-implementation"></a>2.3.3. <code>check_dbtimezone()</code> Implementation</h4>
+<div class="paragraph">
+<p><code>contrib/ivorysql_ora/src/guc/guc.c</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/* Backing variable for ivorysql.dbtimezone, read by dbtimezone(). */
+char       *ivorysql_dbtimezone = NULL;
+
+static bool
+check_dbtimezone(char **newval, void **extra, GucSource source)
+{
+    char       *str = *newval;
+
+    if (source == PGC_S_SESSION ||
+        source == PGC_S_USER ||
+        source == PGC_S_DATABASE_USER ||
+        source == PGC_S_CLIENT ||
+        source == PGC_S_GLOBAL)
+    {
+        GUC_check_errcode(ERRCODE_CANT_CHANGE_RUNTIME_PARAM);
+        GUC_check_errmsg("parameter \"ivorysql.dbtimezone\" cannot be set");
+        GUC_check_errdetail("\"ivorysql.dbtimezone\" can only be set with "
+                             "ALTER DATABASE ... SET, not within a session "
+                             "or per-role.");
+        return false;
+    }
+
+    /* Validate [+-]HH:MI format, range -12:59 to +14:00 (consistent with Oracle) */
+    if (strlen(str) == 6 &amp;&amp; ... )
+    {
+        ...
+    }
+
+    /* Otherwise it must be a valid time zone region name (reuses pg_tzset() validation) */
+    if (!pg_tzset(str))
+    {
+        GUC_check_errdetail("\"%s\" is not a valid UTC offset (+/-HH:MI) "
+                             "or time zone name.", str);
+        return false;
+    }
+
+    return true;
+}
+
+void
+IvorysqlOraDefineGucs(void)
+{
+    DefineCustomStringVariable("ivorysql.dbtimezone",
+                                "Sets the database time zone reported by dbtimezone().",
+                                "Can only be set with ALTER DATABASE ... SET, not with a "
+                                "plain SET or ALTER ROLE ... SET. Requires superuser, or a "
+                                "role granted permission via "
+                                "GRANT SET ON PARAMETER ivorysql.dbtimezone TO &lt;role&gt;.",
+                                &amp;ivorysql_dbtimezone,
+                                "+00:00",
+                                PGC_SUSET,
+                                0,
+                                check_dbtimezone,
+                                NULL,
+                                NULL);
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>GUC_check_errcode(ERRCODE_CANT_CHANGE_RUNTIME_PARAM)</code> combined with <code>GUC_check_errmsg(&#8230;&#8203;)</code> changes the error raised when an in-session <code>SET</code> is rejected to <code>parameter "ivorysql.dbtimezone" cannot be set</code>, rather than the generic <code>invalid value for parameter &#8230;&#8203;: "&#8230;&#8203;"</code> — the reason for this kind of rejection is "this parameter cannot be set this way," not "this value is invalid," so a dedicated errcode/errmsg expresses the semantics more accurately; failures in the format/range validation (using <code>GUC_check_errdetail</code> but not setting <code>GUC_check_errmsg</code>) still fall through to the default <code>invalid value for parameter</code> message.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="command-level-interception-alter-role-set"><a class="anchor" href="#command-level-interception-alter-role-set"></a>2.4. Command-Level Interception: <code>ALTER ROLE &#8230;&#8203; SET</code></h3>
+<div class="paragraph">
+<p><code>contrib/ivorysql_ora/src/ivorysql_ora.c</code> already has a <code>ProcessUtility_hook</code>, into which the following is added:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">static void
+reject_alter_role_dbtimezone(Node *parsetree)
+{
+    AlterRoleSetStmt *stmt;
+    VariableSetStmt *setstmt;
+
+    if (nodeTag(parsetree) != T_AlterRoleSetStmt)
+        return;
+
+    stmt = (AlterRoleSetStmt *) parsetree;
+    setstmt = stmt-&gt;setstmt;
+
+    if (setstmt == NULL || setstmt-&gt;name == NULL)
+        return;                 /* RESET ALL, or malformed */
+
+    if (setstmt-&gt;kind == VAR_RESET || setstmt-&gt;kind == VAR_RESET_ALL)
+        return;                 /* clearing an override is always fine */
+
+    if (pg_strcasecmp(setstmt-&gt;name, "ivorysql.dbtimezone") == 0)
+        ereport(ERROR,
+                (errcode(ERRCODE_CANT_CHANGE_RUNTIME_PARAM),
+                 errmsg("parameter \"ivorysql.dbtimezone\" cannot be set"),
+                 errdetail("\"ivorysql.dbtimezone\" can only be set with "
+                           "ALTER DATABASE ... SET, not within a session "
+                           "or per-role."),
+                 errhint("Use ALTER DATABASE ... SET ivorysql.dbtimezone "
+                         "instead, or ALTER ROLE ... RESET "
+                         "ivorysql.dbtimezone to remove a stale per-role "
+                         "override.")));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This check is inserted into <code>ivorysql_ora_ProcessUtility()</code> before calling <code>standard_ProcessUtility()</code> (or the previously installed hook) — as soon as the command matches, it directly calls <code>ereport(ERROR, &#8230;&#8203;)</code>, so <code>ALTER ROLE</code> never reaches the point of writing to the catalog.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="sql-function-layer"><a class="anchor" href="#sql-function-layer"></a>2.5. SQL Function Layer</h3>
+<div class="sect3">
+<h4 id="the-ora_dbtimezone-c-function"><a class="anchor" href="#the-ora_dbtimezone-c-function"></a>2.5.1. The <code>ora_dbtimezone()</code> C Function</h4>
+<div class="paragraph">
+<p><code>contrib/ivorysql_ora/src/builtin_functions/datetime_datatype_functions.c</code>, placed right next to the existing <code>ora_sessiontimezone()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-c hljs" data-lang="c">/*
+ * returns the time zone of the database, as set by
+ * ivorysql.dbtimezone. Unlike sessiontimezone(), this value is
+ * independent of the session's TimeZone setting.
+ */
+Datum
+ora_dbtimezone(PG_FUNCTION_ARGS)
+{
+    PG_RETURN_TEXT_P(cstring_to_text(ivorysql_dbtimezone));
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Whereas <code>ora_sessiontimezone()</code> reads <code>session_timezone</code> (a session-level <code>pg_tz *</code>), <code>ora_dbtimezone()</code> directly reads the GUC string defined in Layer 1.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="catalog-declaration-sys-dbtimezone"><a class="anchor" href="#catalog-declaration-sys-dbtimezone"></a>2.5.2. Catalog Declaration: <code>sys.dbtimezone()</code></h4>
+<div class="paragraph">
+<p><code>contrib/ivorysql_ora/src/builtin_functions/builtin_functions&#8212;&#8203;1.0.sql</code>, placed right next to <code>sys.sessiontimezone()</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE FUNCTION sys.dbtimezone()
+RETURNS text
+AS 'MODULE_PATHNAME','ora_dbtimezone'
+LANGUAGE C
+STRICT
+STABLE;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Marked as <code>STABLE</code> rather than <code>IMMUTABLE</code>: the return value may change due to <code>ALTER DATABASE &#8230;&#8203; SET</code> (even though it will not change within a single connection), consistent with how <code>sessiontimezone()</code> is marked. This function is ultimately distributed as part of the extension script <code>ivorysql_ora&#8212;&#8203;1.0.sql</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="relationship-with-pg_parser"><a class="anchor" href="#relationship-with-pg_parser"></a>2.6. Relationship with PG_PARSER</h3>
+<div class="paragraph">
+<p>Unlike a new statement such as <code>ALTER INDEX &#8230;&#8203; UNUSABLE</code>, which exists only at the Oracle syntax layer, <code>dbtimezone()</code> is an ordinary SQL function whose syntax is not restricted by <code>compatible_db</code>/<code>ivorysql.compatible_mode</code>: <code>sys.dbtimezone()</code> can be called explicitly, schema-qualified, under any parsing mode. Only when calling it via the bare function name <code>dbtimezone()</code> (relying on <code>search_path</code> to resolve to the <code>sys</code> schema) does behavior become related to the Oracle-compatible-mode <code>search_path</code> behavior — this is a visibility concern of the <code>sys</code> schema itself, not something specific to this feature.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="error-handling"><a class="anchor" href="#error-handling"></a>3. Error Handling</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="in-session-set-is-rejected"><a class="anchor" href="#in-session-set-is-rejected"></a>3.1. In-Session SET Is Rejected</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">SET ivorysql.dbtimezone = '+08:00';
+-- ERROR:  parameter "ivorysql.dbtimezone" cannot be set
+-- DETAIL:  "ivorysql.dbtimezone" can only be set with ALTER DATABASE ... SET, not within a session or per-role.</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This error is actively raised by the <code>source == PGC_S_SESSION</code> branch in <code>check_dbtimezone()</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="alter-role-set-is-rejected-directly-at-the-command-level"><a class="anchor" href="#alter-role-set-is-rejected-directly-at-the-command-level"></a>3.2. ALTER ROLE &#8230;&#8203; SET Is Rejected Directly at the Command Level</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER ROLE myrole IN DATABASE mydb SET ivorysql.dbtimezone = '+09:00';
+-- ERROR:  parameter "ivorysql.dbtimezone" cannot be set
+-- DETAIL:  "ivorysql.dbtimezone" can only be set with ALTER DATABASE ... SET, not within a session or per-role.
+-- HINT:    Use ALTER DATABASE ... SET ivorysql.dbtimezone instead, or ALTER ROLE ... RESET ivorysql.dbtimezone to remove a stale per-role override.
+
+ALTER ROLE myrole SET ivorysql.dbtimezone = '+09:00';   -- Also errors
+ALTER ROLE ALL SET ivorysql.dbtimezone = '+09:00';      -- Also errors
+
+ALTER ROLE myrole IN DATABASE mydb RESET ivorysql.dbtimezone;  -- OK, unaffected</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This error is raised directly at the parse-tree level by <code>reject_alter_role_dbtimezone()</code> (Layer 2, the <code>ProcessUtility_hook</code> in <code>ivorysql_ora.c</code>), before the command actually executes and before <code>pg_db_role_setting</code> is written to. See the "Command-Level Interception" section above for details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="invalid-value-out-of-range-offset-errors-out-at-the-alter-database-stage"><a class="anchor" href="#invalid-value-out-of-range-offset-errors-out-at-the-alter-database-stage"></a>3.3. Invalid Value / Out-of-Range Offset Errors Out at the ALTER DATABASE Stage</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">ALTER DATABASE mydb SET ivorysql.dbtimezone = 'not_a_zone';
+-- ERROR:  invalid value for parameter "ivorysql.dbtimezone": "not_a_zone"
+-- DETAIL:  "not_a_zone" is not a valid UTC offset (+/-HH:MI) or time zone name.
+
+ALTER DATABASE mydb SET ivorysql.dbtimezone = '+15:00';
+-- ERROR:  invalid value for parameter "ivorysql.dbtimezone": "+15:00"
+-- DETAIL:  time zone offset "+15:00" is out of range for DBTIMEZONE (-12:59 to +14:00)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This error comes from the offset/region-name format validation branch of <code>check_dbtimezone()</code>, which falls through to the default <code>invalid value for parameter</code> message (since <code>GUC_check_errmsg</code> is not set).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="an-unauthorized-ordinary-user-executing-alter-database"><a class="anchor" href="#an-unauthorized-ordinary-user-executing-alter-database"></a>3.4. An Unauthorized Ordinary User Executing ALTER DATABASE</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">\c mydb normal_user
+ALTER DATABASE mydb SET ivorysql.dbtimezone = '+08:00';
+-- ERROR:  permission denied to set parameter "ivorysql.dbtimezone"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Since <code>context = PGC_SUSET</code> and <code>normal_user</code> has not been granted permission via <code>GRANT SET ON PARAMETER</code>, the permission check fails before <code>check_dbtimezone()</code> is even reached, so the error message is PostgreSQL&#8217;s generic GUC permission error, not a custom error message from this feature.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="known-limitations"><a class="anchor" href="#known-limitations"></a>4. Known Limitations</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Does not go through Oracle&#8217;s <code>CREATE DATABASE &#8230;&#8203; TIME_ZONE</code> syntax</strong>: Currently the value can only be set via PostgreSQL&#8217;s native <code>ALTER DATABASE &#8230;&#8203; SET</code>; no corresponding <code>CREATE/ALTER DATABASE &#8230;&#8203; SET TIME_ZONE</code> compatible keyword syntax has been added at IvorySQL&#8217;s Oracle syntax layer (<code>ora_gram.y</code>).</p>
+</li>
+<li>
+<p><strong>No fine-grained distinction between offset and region-name formats</strong>: Oracle actually has subtle differences in the allowed ranges of offsets and region names between <code>DBTIMEZONE</code> (database-level) and <code>SESSIONTIMEZONE</code>/<code>TIME_ZONE</code> (session-level); for simplicity, this implementation treats "either an offset or a region name" uniformly.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<nav class="pagination">
+  <span class="prev"><a href="stragg.html">stragg</a></span>
+  <span class="next"><a href="../gb18030.html">GB18030 Character Set</a></span>
+</nav>
+</article>
+  </div>
+</main>
+</div>
+<footer class="footer">
+
+</footer>
+<script id="site-script" src="../../../_/js/site.js" data-ui-root-path="../../../_"></script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/search-ui.js" id="search-ui-script" data-site-root-path="../../.." data-snippet-length="100" data-stylesheet="../../../_/css/search.css"></script>
+<script async src="../../../search-index.js"></script>
+  </body>
+</html>

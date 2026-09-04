@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>FAQ :: IvorySQL文档中心</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/contribution/faq.html">
-    <link rel="prev" href="../pg_reference/pg_functions_reference.html">
+    <title>功能概述 :: IvorySQL文档中心</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/oracle_builtin_functions/vsize.html">
+    <link rel="prev" href="dbtimezone_impl.html">
+    <link rel="next" href="../gb18030.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -333,7 +334,7 @@
     <span class="nav-text">IvorySQL开发者</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="contribution_guide.html">贡献指南</a>
+    <a class="nav-link" href="../contribution/contribution_guide.html">贡献指南</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../developer_guide.html">开发者指南</a>
@@ -428,22 +429,22 @@
     <span class="nav-text">内置函数</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../oracle_builtin_functions/sys_context.html">sys_context</a>
+    <a class="nav-link" href="sys_context.html">sys_context</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../oracle_builtin_functions/userenv.html">userenv</a>
+    <a class="nav-link" href="userenv.html">userenv</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../oracle_builtin_functions/rawtohex.html">rawtohex</a>
+    <a class="nav-link" href="rawtohex.html">rawtohex</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../oracle_builtin_functions/stragg.html">stragg</a>
+    <a class="nav-link" href="stragg.html">stragg</a>
   </li>
   <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../oracle_builtin_functions/dbtimezone_impl.html">dbtimezone</a>
+    <a class="nav-link" href="dbtimezone_impl.html">dbtimezone</a>
   </li>
-  <li class="nav-item" data-depth="4">
-    <a class="nav-link" href="../oracle_builtin_functions/vsize.html">vsize</a>
+  <li class="nav-item is-current-page" data-depth="4">
+    <a class="nav-link" href="vsize.html">vsize</a>
   </li>
 </ul>
   </li>
@@ -462,7 +463,7 @@
     <a class="nav-link" href="../tools_reference.html">工具参考</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
+    <a class="nav-link" href="../contribution/asciidoc_syntax_reference.html">asciidoc语法快速参考</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../pg_reference/pg_parameters_reference.html">PG参数参考手册</a>
@@ -476,8 +477,8 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">常见问题解答</span>
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="faq.html">FAQ</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contribution/faq.html">FAQ</a>
   </li>
 </ul>
   </li>
@@ -535,114 +536,227 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../welcome.html">文档中心</a></li>
-    <li>常见问题解答</li>
-    <li><a href="faq.html">FAQ</a></li>
+    <li>IvorySQL开发者</li>
+    <li>IvorySQL架构设计</li>
+    <li>内置函数</li>
+    <li><a href="vsize.html">vsize</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to English">CN</button>
   <div class="version-menu">
     <a class="version is-current" href="">CN</a>
-    <a class="version" href="../../../../en/ivorysql-doc/master/contribution/faq.html">EN</a>
+    <a class="version" href="../../../../en/ivorysql-doc/master/oracle_builtin_functions/vsize.html">EN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/contribution/faq.adoc">编辑此页面</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/CN/modules/ROOT/pages/master/oracle_builtin_functions/vsize.adoc">编辑此页面</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="目录" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">FAQ</h1>
-<div class="sect1">
-<h2 id="ivorysql贡献的许可"><a class="anchor" href="#ivorysql贡献的许可"></a>1. IvorySQL贡献的许可</h2>
+<h1 class="page"><strong>功能概述</strong></h1>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>如果您提交的贡献是原创作品，那么您可以假设IvorySQL将作为整个IvorySQL版本的一部分发布给下游用户，该版本将遵循Apache许可证2.0版本。</p>
-</div>
-<div class="paragraph">
-<p>如果您提交的内容不是原创作品，同样鼓励代码共享和尊重原作者的著作权，同样允许代码修改，再发布。请注意需要满足如下条件：</p>
-</div>
-<div class="paragraph">
-<p>1、需要给代码的用户一份Apache许可证。</p>
-</div>
-<div class="paragraph">
-<p>2、如果您修改了代码，需要在被修改的文件中说明。</p>
-</div>
-<div class="paragraph">
-<p>3、在延伸的代码中（修改和有源代码衍生的代码中）需要带有原来代码中的协议、商标、专利声明和其他原来作者规定需要包含的说明。</p>
-</div>
-<div class="paragraph">
-<p>4、如果再发布的产品中包含一个Notice文件，则在Notice文件中需要带有Apache许可证。您可以在Notice中增加自己的许可，但不可以表现为对Apache许可证构成更改。</p>
-</div>
-<div class="paragraph">
-<p>最后，请记住，从非原始的工作中删除许可标头从来都不是一个好主意。即使您使用的文件部分最初在顶部有许可标头，您也应该保留它。与往常一样，如果您不太确定您的贡献所涉及的许可问题，请随时在开发人员邮件列表中联系我们。</p>
+<p>IvorySQL提供兼容Oracle内置函数 <code><code>VSIZE('parameter')</code></code> ，用于返回参数在内部存储表示中所占用的字节数，
+即返回参数的“存储大小”。对于字符类型数据，返回其字节长度（不含变长头）；对于定长类型（如 NUMBER、
+BOOLEAN、DATE、TIMESTAMP 等），返回该类型的存储宽度；参数为 NULL 时返回 NULL。</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="编码指南"><a class="anchor" href="#编码指南"></a>2. 编码指南</h2>
+<h2 id="实现原理"><a class="anchor" href="#实现原理"></a>1. 实现原理</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>您获得反馈和看到代码合并到项目中的机会在很大程度上取决于更改的粒度。如果您的想法发生了更大的变化，我们强烈建议您在花大量时间编写代码之前，先加入开发人员的邮件列表，并与我们分享您的建议。即使您的建议得到社区的验证，我们仍然建议您将实际工作作为一系列小型的、独立的提交来完成。这使得评审员的工作更加容易，并提高了反馈的及时性。</p>
+<p>VSIZE 需要接受任意数据类型的入参（字符、数值、布尔、日期时间等），并根据其存储方式（变长 varlena 类型
+或定长类型）分别计算字节数，这类与具体类型存储细节相关的逻辑无法用简单的 SQL 包装实现，因此本次开发
+使用 C 语言编写扩展函数 <code>ora_vsize</code>，注册为：</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">sys.vsize(anycompatible) RETURNS int4</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>当谈到IvorySQL的C和C++部分时，我们尝试遵循PostgreSQL编码约定。除此之外：</p>
+<p>使用 <code>anycompatible</code> 伪类型作为参数类型，使得该函数可以接受任意数据类型的入参，未显式指定类型的字符串
+字面量（如 <code>'abc'</code>）会按照 PostgreSQL 的默认规则解析为 text 类型，与 Oracle 中 <code>VSIZE('abc')</code> 的行为一致。
+函数声明为 <code>STRICT</code>，因此入参为 NULL 时直接返回 NULL，无需在函数体中额外处理。</p>
 </div>
 <div class="paragraph">
-<p>对于C和Perl代码，如果需要，请运行pgindent。我们建议在查看更改时使用git diff&#8212;&#8203;color，这样您提交的代码中就不会出现任何虚假的空白问题。</p>
+<p>函数实现位于 <code>contrib/ivorysql_ora/src/builtin_functions/misc_functions.c</code> 中的 <code>ora_vsize</code>：</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>首次调用时，通过 <code>get_fn_expr_argtype()</code> 取得实参的真实类型 OID，并调用 <code>get_typlen()</code> 获取该类型的
+<code>typlen</code>（存储长度），缓存到 <code>fcinfo&#8594;flinfo&#8594;fn_extra</code>，避免同一查询中重复查目录；后续调用直接从
+<code>fn_extra</code> 中读取缓存值。</p>
+</li>
+<li>
+<p><code>typlen == -1</code>：表示变长（varlena）类型，如 text、varchar2、numeric 等。此时调用
+<code>toast_raw_datum_size()</code> 获取该值的逻辑（解压缩后）大小 —— 该函数会统一处理 1 字节/4 字节头、压缩存储
+以及 TOAST 外部存储等各种情况，返回值统一按 4 字节头换算，因此再减去 <code>VARHDRSZ</code> 即可得到不含头部的
+有效数据字节数。这与 <code>octet_length()</code> 计算字节长度所采用的方式一致，因此 <code>VSIZE('abc') = LENGTHB('abc')</code>。</p>
+</li>
+<li>
+<p><code>typlen == -2</code>：表示 cstring 类型，返回其字符串长度加 1（含结尾 <code>\0</code>）。</p>
+</li>
+<li>
+<p>其余情况：为定长类型，直接返回该类型的 <code>typlen</code> 作为存储宽度（例如 int4 为 4，int8/float8/date/
+timestamp/timestamptz 均为 8，boolean 为 1）。</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>所有贡献给IvorySQL的新功能都应该由与其一起贡献的回归测试覆盖。如果您不确定如何测试或记录您的工作，请在ivorysql-hackers邮件列表中提出问题，社区的开发人员将尽力帮助您。</p>
+<p>具体函数注册在 <code>builtin_functions&#8212;&#8203;1.0.sql</code> 中完成：</p>
 </div>
-<div class="paragraph">
-<p>至少，您应该始终运行make installcheck world，以确保您没有破坏任何东西。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">/* VSIZE */
+/*
+ * VSIZE: Oracle-compatible function returning the number of bytes in the
+ * internal representation of the argument.  Returns NULL for NULL input.
+ * For varlena types the logical (decompressed) data size, excluding the
+ * varlena header, is returned; for fixed-width types the storage width is
+ * returned.
+ *
+ * The anycompatible pseudo-type accepts a value of any data type, and an
+ * untyped string literal is resolved to text, so VSIZE('abc') works just
+ * like in Oracle.
+ */
+CREATE FUNCTION sys.vsize(anycompatible)
+RETURNS int4
+AS 'MODULE_PATHNAME', 'ora_vsize'
+LANGUAGE C
+STRICT
+IMMUTABLE;
+/* End - VSIZE */</code></pre>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="适用于上游postgresql的更改"><a class="anchor" href="#适用于上游postgresql的更改"></a>3. 适用于上游PostgreSQL的更改</h2>
+<h2 id="vsize-典型用例"><a class="anchor" href="#vsize-典型用例"></a>2. VSIZE 典型用例</h2>
 <div class="sectionbody">
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 80%;">
+<col style="width: 20%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>用例语句</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>返回值</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize('abc');</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(CAST('abc' AS VARCHAR2));</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize('abc'::varchar);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize('abc'::char(10));</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize('你好'::text);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(0::number);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(1::number);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(123::number);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(1.23::number);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(123::int4);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(123::int8);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(1.23::float8);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize('NaN'::float8);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(true);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize('2024-01-01'::date);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize('2024-01-01 10:00:00'::timestamp);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize('2024-01-01 10:00:00+08'::timestamptz);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(NULL::text);</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NULL</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SELECT vsize(repeat('a', 100000));</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100000</p></td>
+</tr>
+</tbody>
+</table>
 <div class="paragraph">
-<p>如果您正在进行的更改涉及PostgreSQL和IvorySQL之间的通用功能，则可能会要求您将其转发到PostgreSQL。这不仅是为了我们不断减少两个项目之间的差异，而且是为了让与PostgreSQL相关的任何变化都能从对上游PostgreSQL社区更广泛的审查中受益。一般来说，将这两个代码库都放在手边是个好主意，这样您就可以确定您的更改是否需要前移。</p>
+<p>对于同一字符串，<code>VSIZE</code> 与 <code>LENGTHB</code> 的结果一致：</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">SELECT vsize('abc') = lengthb('abc') AS same_as_lengthb;
+ same_as_lengthb
+-----------------
+ t</code></pre>
 </div>
-</div>
-<div class="sect1">
-<h2 id="补丁提交"><a class="anchor" href="#补丁提交"></a>4. 补丁提交</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>一旦您准备好与IvorySQL核心团队和IvorySQL社区的其他成员共享您的工作，您应该将所有提交推送到从官方IvorySQL派生的分支的您自己的存储库中，并向我们发送请求。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="补丁审查"><a class="anchor" href="#补丁审查"></a>5. 补丁审查</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>假定提交的拉取请求通过验证检查，可供同行审查。同行审查是确保对IvorySQL的贡献具有高质量并与路线图和社区期望保持一致的过程。我们鼓励IvorySQL社区的每个成员审查请求并提供反馈。由于您不必成为核心团队成员就可以做到这一点，因此我们建议您向有兴趣成为IvorySQL长期贡献者的任何人提供一系列拉动式评论。</p>
 </div>
 <div class="paragraph">
-<p>同行评审的一个结果可能是达成共识，即您需要以某些方式修改pull请求。GitHub允许您将其他提交推送到从中发送请求的分支中。这些额外的提交将对所有审阅者可见。</p>
+<p>即使数据经过压缩存储或 TOAST 到行外，<code>VSIZE</code> 仍然返回其未压缩的逻辑字节数：</p>
 </div>
-<div class="paragraph">
-<p>当同行评议收到参与者至少+1张+1和no-1张的选票时，同行评议会趋于一致。在这一点上，您应该期望核心团队成员之一将您的更改引入到项目中。</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">CREATE TABLE vsize_big(a text);
+INSERT INTO vsize_big SELECT repeat('b', 200000) FROM generate_series(1, 10);
+SELECT bool_and(vsize(a) = lengthb(a)) AS toasted_matches_lengthb, min(vsize(a)) AS min_size FROM vsize_big;
+ toasted_matches_lengthb | min_size
+-------------------------+----------
+ t                       |   200000</code></pre>
 </div>
-<div class="paragraph">
-<p>在补丁审查期间的任何时候，您都可能会因审查人员和核心团队成员的工作效率而遇到延迟。请耐心点，也不要气馁。如果您在几天内没有收到预期的反馈，请添加一条评论，要求更新pull请求本身，或者向邮件列表发送一封电子邮件。</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="直接提交到存储库"><a class="anchor" href="#直接提交到存储库"></a>6. 直接提交到存储库</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>有时，您会看到核心团队成员直接提交到存储库，而无需执行pull请求工作流。这仅适用于小的更改，我们使用的经验法则是：如果更改涉及任何可能导致测试失败的功能，那么它必须通过pull请求工作流。另一方面，如果更改发生在代码库的非功能部分（例如在注释块中修复打字错误），则核心团队成员可以决定直接提交到存储库。</p>
 </div>
 </div>
 </div>
 <nav class="pagination">
-  <span class="prev"><a href="../pg_reference/pg_functions_reference.html">PG函数参考手册</a></span>
+  <span class="prev"><a href="dbtimezone_impl.html">dbtimezone</a></span>
+  <span class="next"><a href="../gb18030.html">国标GB18030</a></span>
 </nav>
 </article>
   </div>

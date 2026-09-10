@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>pg_curl :: IvorySQL Document Site</title>
-    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pg_curl.html">
-    <link rel="prev" href="age.html">
-    <link rel="next" href="pg_textsearch.html">
+    <title>pg_jieba :: IvorySQL Document Site</title>
+    <link rel="canonical" href="https://docs.ivorysql.org/ivorysql-doc/master/ecosystem_components/pg_jieba.html">
+    <link rel="prev" href="set_user.html">
+    <link rel="next" href="../getting-started/daily_monitoring.html">
     <meta name="generator" content="Antora 3.1.7">
     <link rel="stylesheet" href="../../../_/css/site.css">
     <script>var uiRootPath = '../../../_'</script>
@@ -259,7 +259,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="age.html">age</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="3">
+  <li class="nav-item" data-depth="3">
     <a class="nav-link" href="pg_curl.html">pg_curl</a>
   </li>
   <li class="nav-item" data-depth="3">
@@ -301,7 +301,7 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="set_user.html">set_user</a>
   </li>
-  <li class="nav-item" data-depth="3">
+  <li class="nav-item is-current-page" data-depth="3">
     <a class="nav-link" href="pg_jieba.html">pg_jieba</a>
   </li>
 </ul>
@@ -526,38 +526,29 @@
     <li><a href="../welcome.html">IvorySQL</a></li>
     <li>IvorySQL Ecosystem</li>
     <li>Eco Component Adaption</li>
-    <li><a href="pg_curl.html">pg_curl</a></li>
+    <li><a href="pg_jieba.html">pg_jieba</a></li>
   </ul>
 </nav>
   <div class="page-versions">
   <button class="version-menu-toggle" title="switch to Chinese">EN</button>
   <div class="version-menu">
     <a class="version is-current" href="">EN</a>
-    <a class="version" href="../../../../cn/ivorysql-doc/master/ecosystem_components/pg_curl.html">CN</a>
+    <a class="version" href="../../../../cn/ivorysql-doc/master/ecosystem_components/pg_jieba.html">CN</a>
   </div>
   </div>
-  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/ecosystem_components/pg_curl.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/IvorySQL/ivorysql_docs/edit/master/EN/modules/ROOT/pages/master/ecosystem_components/pg_jieba.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">pg_curl</h1>
+<h1 class="page">pg_jieba</h1>
 <div class="sect1">
 <h2 id="overview"><a class="anchor" href="#overview"></a>1. Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>pg_curl is a PostgreSQL extension based on libcurl that brings cURL&#8217;s powerful data transfer capabilities directly into the database, allowing users to perform network protocol data transfer operations through SQL function calls without relying on external programs or middleware.</p>
-</div>
-<div class="paragraph">
-<p>Unlike lightweight extensions that only support HTTP, pg_curl fully encapsulates the libcurl easy interface API and supports more than twenty protocols including DICT, FILE, FTP, FTPS, GOPHER, HTTP, HTTPS, IMAP, IMAPS, LDAP, LDAPS, MQTT, POP3, POP3S, RTMP, RTMPS, RTSP, SCP, SFTP, SMB, SMBS, SMTP, SMTPS, TELNET, TFTP, WS, and WSS, providing extremely rich network interaction capabilities.</p>
-</div>
-<div class="paragraph">
-<p>Typical use cases include: sending HTTP notifications to external systems from triggers or stored procedures; sending emails directly from the database; uploading or downloading files via FTP/SFTP; calling third-party REST APIs and writing results back to database tables; and integrating with MQTT message brokers, LDAP directories, and other backend services in data processing workflows.</p>
-</div>
-<div class="paragraph">
-<p>pg_curl is licensed under the MIT License. Project repository: <a href="https://github.com/RekGRpth/pg_curl" class="bare">https://github.com/RekGRpth/pg_curl</a></p>
+<p>pg_jieba is a Chinese word segmentation extension for PostgreSQL, developed based on the well-known Jieba (结巴分词) segmentation library. It can split continuous Chinese text into meaningful sequences of words, providing foundational support for Chinese full-text search.</p>
 </div>
 </div>
 </div>
@@ -567,281 +558,85 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Multi-protocol support</strong>: Based on libcurl, supports more than twenty protocols including HTTP/HTTPS, FTP/FTPS, SMTP/SMTPS, IMAP, POP3, SCP, SFTP, MQTT, and LDAP, covering the vast majority of network integration scenarios.</p>
+<p><strong>Supports three segmentation modes</strong>: precise mode, full mode, and search engine mode.</p>
 </li>
 <li>
-<p><strong>Full HTTP method support</strong>: Supports standard HTTP methods including GET, POST (URL-encoded, JSON, multipart/form-data), PUT, DELETE, and PATCH. Custom methods can be specified via <code>curl_easy_setopt_customrequest</code>.</p>
+<p><strong>Seamless integration with PostgreSQL/IvorySQL</strong></p>
 </li>
 <li>
-<p><strong>Flexible request construction</strong>: Provides fine-grained <code>curl_easy_setopt_*</code> functions to precisely control request headers, authentication, timeouts, proxies, TLS certificates, cookies, and more.</p>
+<p><strong>Supports custom dictionaries</strong></p>
 </li>
 <li>
-<p><strong>Multiple authentication methods</strong>: Supports Basic Auth (username/password), Bearer Token, NTLM, Digest, OAuth, and other authentication mechanisms.</p>
-</li>
-<li>
-<p><strong>File transfer</strong>: Supports uploading (via <code>curl_easy_setopt_readdata</code>) and downloading files over FTP/FTPS/SFTP/SCP, with upload data passed directly as <code>bytea</code> type.</p>
-</li>
-<li>
-<p><strong>Email sending</strong>: Send emails directly from the database over SMTP/SMTPS, with support for setting sender, recipient, mail headers, and MIME body.</p>
-</li>
-<li>
-<p><strong>Response parsing</strong>: Provides <code>curl_easy_getinfo_data_in()</code>, <code>curl_easy_getinfo_header_in()</code>, and other functions to retrieve response body and headers. Headers can be parsed into a key-value table using regular expressions.</p>
-</li>
-<li>
-<p><strong>Error handling</strong>: <code>curl_easy_getinfo_errcode()</code>, <code>curl_easy_getinfo_errdesc()</code>, and <code>curl_easy_getinfo_errbuf()</code> provide complete error codes and descriptions for debugging.</p>
-</li>
-<li>
-<p><strong>Timeout and interruption</strong>: By registering a progress callback with libcurl that periodically checks PostgreSQL&#8217;s cancellation flag (<code>QueryCancelPending</code>), requests can be interrupted by <code>statement_timeout</code>, <code>pg_cancel_backend()</code>, and similar mechanisms, preventing long-running requests from blocking connections.</p>
-</li>
-<li>
-<p><strong>URL encoding utilities</strong>: Built-in <code>curl_easy_escape()</code> and <code>curl_easy_unescape()</code> functions for URL encoding and decoding in SQL.</p>
+<p><strong>Supports part-of-speech tagging</strong></p>
 </li>
 </ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="installation"><a class="anchor" href="#installation"></a>3. Installation</h2>
+<h2 id="installation-and-deployment"><a class="anchor" href="#installation-and-deployment"></a>3. Installation and Deployment</h2>
 <div class="sectionbody">
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The following example environment is Ubuntu 24.04 (x86_64) with IvorySQL 5 or later installed at <code>/usr/local/ivorysql/ivorysql-5</code>.
-</td>
-</tr>
-</table>
-</div>
 <div class="sect2">
-<h3 id="install-dependencies"><a class="anchor" href="#install-dependencies"></a>3.1. Install Dependencies</h3>
+<h3 id="building-and-installing-pg_jieba"><a class="anchor" href="#building-and-installing-pg_jieba"></a>3.1. Building and Installing pg_jieba</h3>
 <div class="paragraph">
-<p>pg_curl depends on the system libcurl development library. Ensure it is installed before building:</p>
+<p>Assume IvorySQL has already been installed in the <code>~/ivy_5/inst</code> directory.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">sudo apt install libcurl4-openssl-dev</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone https://github.com/jaiminpan/pg_jieba.git
+cd pg_jieba
+git submodule update --init --recursive
+mkdir build;cd build
+cmake -DCMAKE_PREFIX_PATH=~/ivy_5/inst ..
+make; make install</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>After a successful installation, files such as <code>pg_jieba.so</code> will be placed into IvorySQL&#8217;s installation directory.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="build-and-install-from-source"><a class="anchor" href="#build-and-install-from-source"></a>3.2. Build and Install from Source</h3>
-<div class="paragraph">
-<p>Clone the source code from <a href="https://github.com/RekGRpth/pg_curl" class="bare">https://github.com/RekGRpth/pg_curl</a> and run the build:</p>
-</div>
+<h3 id="creating-and-verifying-the-extension"><a class="anchor" href="#creating-and-verifying-the-extension"></a>3.2. Creating and Verifying the Extension</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone https://github.com/RekGRpth/pg_curl.git
-cd pg_curl
-# Ensure pg_config is accessible, or specify it explicitly via PG_CONFIG
-PG_CONFIG=/usr/local/ivorysql/ivorysql-5/bin/pg_config make
-PG_CONFIG=/usr/local/ivorysql/ivorysql-5/bin/pg_config sudo make install</code></pre>
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION IF NOT EXISTS pg_jieba;
+SELECT name,
+       default_version,
+       installed_version,
+       comment
+  FROM pg_available_extensions
+ WHERE name = 'pg_jieba';</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>After a successful installation, <code>pg_curl.so</code> and the corresponding SQL scripts will be placed in IvorySQL&#8217;s extension directory.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="create-extension-and-verify-version"><a class="anchor" href="#create-extension-and-verify-version"></a>4. Create Extension and Verify Version</h2>
+<h2 id="usage"><a class="anchor" href="#usage"></a>4. Usage</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Connect to the database using psql (either PG mode port 5432 or Oracle mode port 1521), then run:</p>
+<p>Run the following SQL example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">CREATE EXTENSION pg_curl;
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">select * from to_tsquery('jiebacfg', '是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。');
+                                        to_tsquery
+-----------------------------------------------------------------------------------------------
+'拖拉机' &amp; '学院' &amp; '手扶拖拉机' &amp; '专业' &amp; '不用' &amp; '多久' &amp; '会' &amp; '升职' &amp; '加薪' &amp; '当上' &amp; 'ceo' &amp; '走上' &amp; '人生' &amp; '巅峰'
+(1 row)
 
-SELECT name, default_version, installed_version, comment
-  FROM pg_available_extensions
- WHERE name = 'pg_curl';</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Expected output:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-text hljs" data-lang="text">  name   | default_version | installed_version |                                                                comment
----------+-----------------+-------------------+----------------------------------------------------------------------------------------------------------------------------------------
- pg_curl | 2.4             | 2.4               | PostgreSQL cURL allows most curl actions, including data transfer with URL syntax via HTTP, HTTPS, FTP, FTPS, GOPHER, TFTP, SCP, ...
+select * from to_tsvector('jiebacfg', '是拖拉机学院手扶拖拉机专业的。不用多久，我就会升职加薪，当上CEO，走上人生巅峰。');
+                                          to_tsvector
+-----------------------------------------------------------------------------------------------------
+'ceo':18 '不用':8 '专业':5 '人生':21 '会':13 '加薪':15 '升职':14 '多久':9 '学院':3 '巅峰':22 '当上':17 '手扶拖拉机':4 '拖拉机':2 '走上':20
 (1 row)</code></pre>
 </div>
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="usage"><a class="anchor" href="#usage"></a>5. Usage</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>pg_curl follows a "configure, execute, retrieve" pattern. The core workflow is:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Call <code>curl_easy_reset()</code> to initialize (or reset) the current cURL session.</p>
-</li>
-<li>
-<p>Call <code>curl_easy_setopt_*</code>, <code>curl_header_append</code>, <code>curl_postfield_append</code>, and other functions to configure request parameters.</p>
-</li>
-<li>
-<p>Call <code>curl_easy_perform()</code> to execute the request.</p>
-</li>
-<li>
-<p>Call <code>curl_easy_getinfo_*</code> functions to retrieve the response or error information.</p>
-</li>
-</ol>
-</div>
-<div class="sect2">
-<h3 id="http-get"><a class="anchor" href="#http-get"></a>5.1. HTTP GET</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">BEGIN;
-SELECT curl_easy_reset();
-SELECT curl_easy_setopt_url('https://httpbin.org/get?');
-SELECT curl_url_append('key1', 'value1');
-SELECT curl_url_append('key2', 'hello world');  -- automatically URL-encoded
-SELECT curl_easy_perform();
-SELECT convert_from(curl_easy_getinfo_data_in(), 'utf-8');
-END;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="http-post-json"><a class="anchor" href="#http-post-json"></a>5.2. HTTP POST (JSON)</h3>
-<div class="paragraph">
-<p>Form POST (<code>curl_postfield_append</code>) and multipart POST (<code>curl_mime_data</code>) follow the same pattern — simply replace the data-setting function.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">BEGIN;
-SELECT curl_easy_reset();
-SELECT curl_easy_setopt_postfields(convert_to('{"name":"IvorySQL"}', 'utf-8'));
-SELECT curl_easy_setopt_url('https://httpbin.org/post');
-SELECT curl_header_append('Content-Type', 'application/json; charset=utf-8');
-SELECT curl_easy_perform();
-SELECT convert_from(curl_easy_getinfo_data_in(), 'utf-8');
-END;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="authentication-and-request-headers"><a class="anchor" href="#authentication-and-request-headers"></a>5.3. Authentication and Request Headers</h3>
-<div class="paragraph">
-<p>Basic Auth uses <code>curl_easy_setopt_username</code> / <code>curl_easy_setopt_password</code>. Bearer Token and other custom headers are added via <code>curl_header_append</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">BEGIN;
-SELECT curl_easy_reset();
-SELECT curl_easy_setopt_url('https://httpbin.org/bearer');
-SELECT curl_header_append('Authorization', 'Bearer &lt;your_token&gt;');
-SELECT curl_easy_perform();
-SELECT convert_from(curl_easy_getinfo_data_in(), 'utf-8')::jsonb;
-END;</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="error-handling-and-timeouts"><a class="anchor" href="#error-handling-and-timeouts"></a>5.4. Error Handling and Timeouts</h3>
-<div class="paragraph">
-<p>After <code>curl_easy_perform()</code> returns, check the execution status with the following functions (<code>errcode</code> of 0 indicates success):</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">BEGIN;
-SELECT curl_easy_reset();
-SELECT curl_easy_setopt_url('https://httpbin.org/get');
-SELECT curl_easy_perform();
-SELECT
-    curl_easy_getinfo_errcode() AS errcode,
-    curl_easy_getinfo_errdesc() AS errdesc;
-END;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>pg_curl checks PostgreSQL&#8217;s cancellation flag via a libcurl progress callback. When <code>statement_timeout</code> fires, the in-progress request is immediately aborted and the current transaction is rolled back:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">BEGIN;
-SET LOCAL statement_timeout = '3s';
-SELECT curl_easy_reset();
-SELECT curl_easy_setopt_url('https://httpbin.org/delay/10');
-SELECT curl_easy_perform();  -- raises query_canceled after timeout, transaction rolls back
-END;</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="ivorysql-adaptation-notes"><a class="anchor" href="#ivorysql-adaptation-notes"></a>6. IvorySQL Adaptation Notes</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="dual-port-compatibility"><a class="anchor" href="#dual-port-compatibility"></a>6.1. Dual-Port Compatibility</h3>
-<div class="paragraph">
-<p>IvorySQL uses a dual-port architecture supporting both PostgreSQL mode (default port <strong>5432</strong>) and Oracle-compatible mode (default port <strong>1521</strong>):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Port <strong>5432</strong> (PG mode): accepts standard PostgreSQL SQL syntax.</p>
-</li>
-<li>
-<p>Port <strong>1521</strong> (Oracle mode): accepts Oracle-compatible SQL syntax.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>pg_curl works normally in both modes. <code>CREATE EXTENSION pg_curl</code> succeeds on both port 1521 and port 5432.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="oracle-mode-notes"><a class="anchor" href="#oracle-mode-notes"></a>6.2. Oracle Mode Notes</h3>
-<div class="paragraph">
-<p>When using pg_curl in Oracle mode (port 1521):</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>All pg_curl functions are invoked via plain <code>SELECT</code> statements (e.g. <code>SELECT curl_easy_reset()</code>), which are valid in Oracle mode. The Oracle-style <code>SELECT curl_easy_reset() FROM DUAL</code> syntax also works.</p>
-</li>
-<li>
-<p>The <code>ivorysql.enable_emptystring_to_NULL</code> parameter affects how empty strings are handled. The regression tests set <code>SET ivorysql.enable_emptystring_to_NULL = 'off'</code> to ensure empty-value parameters (such as empty form fields) are passed as expected. Configure this parameter according to your production requirements.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="using-pg_curl-in-plisql"><a class="anchor" href="#using-pg_curl-in-plisql"></a>6.3. Using pg_curl in PL/iSQL</h3>
-<div class="paragraph">
-<p>pg_curl can be called from IvorySQL&#8217;s PL/iSQL (the Oracle-compatible procedural language) to push external notifications automatically when data changes. PL/iSQL uses Oracle-style <code>IS</code> syntax for procedure declarations, and function return values are discarded by assigning them to a local variable:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Call pg_curl inside a PL/iSQL stored procedure (Oracle mode, IS syntax)
-CREATE OR REPLACE PROCEDURE notify_external(p_payload IN VARCHAR2) IS
-    v_ok BOOLEAN;
-BEGIN
-    v_ok := curl_easy_reset();
-    v_ok := curl_easy_setopt_postfields(convert_to(p_payload, 'utf-8'));
-    v_ok := curl_easy_setopt_url('https://hooks.example.com/notify');
-    v_ok := curl_header_append('Content-Type', 'application/json');
-    v_ok := curl_easy_perform();
-END;</code></pre>
-</div>
-</div>
-</div>
-</div>
-</div>
 <nav class="pagination">
-  <span class="prev"><a href="age.html">age</a></span>
-  <span class="next"><a href="pg_textsearch.html">pg_textsearch</a></span>
+  <span class="prev"><a href="set_user.html">set_user</a></span>
+  <span class="next"><a href="../getting-started/daily_monitoring.html">Monitoring</a></span>
 </nav>
 </article>
   </div>

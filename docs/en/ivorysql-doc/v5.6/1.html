@@ -453,7 +453,7 @@
 <h2 id="version-overview"><a class="anchor" href="#version-overview"></a>1. Version Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>[<strong>Release Date: September 17, 2026</strong>]</p>
+<p>[<strong>Release Date: September 18, 2026</strong>]</p>
 </div>
 <div class="paragraph">
 <p>IvorySQL 5.6 updates the PostgreSQL core to version 18.6 and delivers fixes for Oracle compatibility, memory safety, client interfaces, and extension builds. For a comprehensive list of updates, please visit our <a href="https://docs.ivorysql.org/">documentation site</a>.</p>
@@ -510,6 +510,12 @@
 PostgreSQL kernel upgraded to version 18.6.</p>
 </li>
 <li>
+<p>PGNexus Now Supports IvorySQL 5.6<br>
+PGNexus is now fully compatible with IvorySQL 5.6, bringing a zero-barrier, cloud-based AI-assisted experimentation experience. As a one-stop knowledge and experimentation platform for a wide range of scenarios, PGNexus lets users build environments with one click through an online sandbox, with no local installation required. It supports patch application, testing, and validation across multiple topologies, including standalone, streaming replication, logical replication, and high-availability clusters. Ready to use out of the box, PGNexus helps universities, enterprises, and developers collaborate efficiently and rapidly explore new version features.<br>
+<a href="https://pgnexus.ai">Learn more about PGNexus</a><br>
+<a href="https://pgnexus.ai/sandboxes">Try the IvorySQL 5.6 sandbox</a></p>
+</li>
+<li>
 <p>AI-assisted contribution guidelines: Feature <a href="https://github.com/IvorySQL/IvorySQL/pull/1473">#1473</a><br>
 Establish guidelines covering licensing compliance, human review and sign-off responsibilities, AI tool attribution, disclosure of AI-generated code percentages, and responsible participation in code reviews.</p>
 </li>
@@ -546,7 +552,7 @@ Support for 34 Extensions and Tools: AGE, ddlx, pg_ai_query, pg_bigm, pg_bulkloa
 <p>Fix potential overflow and NaN mishandling in Oracle-compatible interval multiplication and division: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1211">#1211</a></p>
 </li>
 <li>
-<p>Disallow persisting ivorysql.compatible\_mode through ALTER USER/ROLE/DATABASE SET, and close the SET &#8230;&#8203; TO DEFAULT and parameter-specific RESET bypasses: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1372">#1372</a></p>
+<p>Disallow persisting ivorysql.compatible_mode through ALTER USER/ROLE/DATABASE SET, and close the SET &#8230;&#8203; TO DEFAULT and parameter-specific RESET bypasses: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1372">#1372</a></p>
 </li>
 <li>
 <p>Fix package-qualified variable references resolving to unrelated local variables during expression evaluation: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1381">#1381</a></p>
@@ -561,19 +567,19 @@ Support for 34 Extensions and Tools: AGE, ddlx, pg_ai_query, pg_bigm, pg_bulkloa
 <p>Fix build failures of third-party PostgreSQL extensions against IvorySQL: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1448">#1448</a></p>
 </li>
 <li>
-<p>Make ivorysql.enable\_case\_switch visible in SHOW ALL and configurable in configuration files: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1450">#1450</a></p>
+<p>Make ivorysql.enable_case_switch visible in SHOW ALL and configurable in configuration files: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1450">#1450</a></p>
 </li>
 <li>
-<p>Fix missing package names and wrong schema qualification in DBMS\_UTILITY backtrace and call-stack output: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1471">#1471</a></p>
+<p>Fix missing package names and wrong schema qualification in DBMS_UTILITY backtrace and call-stack output: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1471">#1471</a></p>
 </li>
 <li>
-<p>Fix incorrect newline handling and m/n option behavior in REGEXP\_COUNT, REGEXP\_SUBSTR, REGEXP\_INSTR, and REGEXP\_REPLACE: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1489">#1489</a></p>
+<p>Fix incorrect newline handling and m/n option behavior in REGEXP_COUNT, REGEXP_SUBSTR, REGEXP_INSTR, and REGEXP_REPLACE: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1489">#1489</a></p>
 </li>
 <li>
 <p>Fix Ivyresult memory leaks on early-return paths: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1556">#1556</a></p>
 </li>
 <li>
-<p>Fix heap buffer overruns in psql named-bind query escaping and \\bind handling: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1569">#1569</a></p>
+<p>Fix heap buffer overruns in psql named-bind query escaping and \bind handling: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1569">#1569</a></p>
 </li>
 <li>
 <p>Fix heap buffer overflows when long namespace prefixes or URLs are used in XML functions: PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1827">#1827</a></p>

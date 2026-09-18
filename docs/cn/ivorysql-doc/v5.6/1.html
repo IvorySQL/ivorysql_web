@@ -468,7 +468,7 @@
 <h2 id="版本概览"><a class="anchor" href="#版本概览"></a>1. 版本概览</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>[<strong>发布日期：2026 年 9 月 17 日</strong>]</p>
+<p>[<strong>发布日期：2026 年 9 月 18 日</strong>]</p>
 </div>
 <div class="paragraph">
 <p>IvorySQL 5.6 将 PostgreSQL 内核升级至 18.6，并针对 Oracle 兼容性、内存安全、客户端接口和扩展构建提供多项修复。有关更新的完整列表，请访问我们的 <a href="https://docs.ivorysql.org/">文档站点</a>。</p>
@@ -525,6 +525,12 @@
 PostgreSQL 内核已升级至 18.6 版本。</p>
 </li>
 <li>
+<p>PGNexus 全新适配 IvorySQL 5.6，开启零门槛云端 AI 辅助实验新体验！<br>
+PGNexus 作为面向全场景的一站式知识与实验平台，现已同步支持最新 IvorySQL 5.6。无需本地安装，通过在线沙盒即可一键构建环境。支持补丁应用与测试验证，覆盖单机、流复制、逻辑复制及高可用集群等多种拓扑架构，开箱即用，助力高校、企业及开发者高效协作，极速探索新版本特性。<br>
+<a href="https://pgnexus.ai">了解 PGNexus</a><br>
+<a href="https://pgnexus.ai/sandboxes">立即体验 IvorySQL 5.6 沙盒</a></p>
+</li>
+<li>
 <p>AI 辅助贡献指南：Feature <a href="https://github.com/IvorySQL/IvorySQL/pull/1473">#1473</a><br>
 制定相关指南，涵盖许可证合规、人工审查与签署责任、AI 工具归属标注、AI 生成代码占比披露，以及负责任地参与代码审查。</p>
 </li>
@@ -561,7 +567,7 @@ PostgreSQL 内核已升级至 18.6 版本。</p>
 <p>修复 Oracle 兼容的 interval 乘除法中可能发生的溢出和 NaN 处理不当问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1211">#1211</a></p>
 </li>
 <li>
-<p>禁止通过 ALTER USER/ROLE/DATABASE SET 持久化 ivorysql.compatible\_mode，并封堵 SET &#8230;&#8203; TO DEFAULT 和针对该参数执行 RESET 的绕过方式：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1372">#1372</a></p>
+<p>禁止通过 ALTER USER/ROLE/DATABASE SET 持久化 ivorysql.compatible_mode，并封堵 SET &#8230;&#8203; TO DEFAULT 和针对该参数执行 RESET 的绕过方式：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1372">#1372</a></p>
 </li>
 <li>
 <p>修复表达式求值期间，带包限定符的变量引用被解析为无关局部变量的问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1381">#1381</a></p>
@@ -576,19 +582,19 @@ PostgreSQL 内核已升级至 18.6 版本。</p>
 <p>修复第三方 PostgreSQL 扩展针对 IvorySQL 构建时的失败问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1448">#1448</a></p>
 </li>
 <li>
-<p>使 ivorysql.enable\_case\_switch 在 SHOW ALL 中可见，并可通过配置文件进行配置：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1450">#1450</a></p>
+<p>使 ivorysql.enable_case_switch 在 SHOW ALL 中可见，并可通过配置文件进行配置：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1450">#1450</a></p>
 </li>
 <li>
-<p>修复 DBMS\_UTILITY 回溯和调用栈输出中缺少包名及模式限定错误的问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1471">#1471</a></p>
+<p>修复 DBMS_UTILITY 回溯和调用栈输出中缺少包名及模式限定错误的问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1471">#1471</a></p>
 </li>
 <li>
-<p>修复 REGEXP\_COUNT、REGEXP\_SUBSTR、REGEXP\_INSTR 和 REGEXP\_REPLACE 中换行符处理错误以及 m/n 选项行为异常的问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1489">#1489</a></p>
+<p>修复 REGEXP_COUNT、REGEXP_SUBSTR、REGEXP_INSTR 和 REGEXP_REPLACE 中换行符处理错误以及 m/n 选项行为异常的问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1489">#1489</a></p>
 </li>
 <li>
 <p>修复 Ivyresult 提前返回路径上的内存泄漏问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1556">#1556</a></p>
 </li>
 <li>
-<p>修复 psql 命名绑定查询转义和 \\bind 处理中发生的堆缓冲区越界问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1569">#1569</a></p>
+<p>修复 psql 命名绑定查询转义和 \bind 处理中发生的堆缓冲区越界问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1569">#1569</a></p>
 </li>
 <li>
 <p>修复 XML 函数使用过长的命名空间前缀或 URL 时发生的堆缓冲区溢出问题：PR <a href="https://github.com/IvorySQL/IvorySQL/pull/1827">#1827</a></p>

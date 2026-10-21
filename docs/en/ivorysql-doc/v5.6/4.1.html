@@ -521,7 +521,7 @@ gpgcheck=0</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/IvorySQL 5.6-ubi8</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker pull ivorysql/ivorysql:5.6-ubi8</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -545,7 +545,7 @@ Users in China can also pull from the IvorySQL community Harbor registry for fas
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/IvorySQL 5.6-ubi8</code></pre>
+<pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker run --name ivorysql -p 5434:5432 -e IVORYSQL_PASSWORD=your_password -d ivorysql/ivorysql:5.6-ubi8</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -983,7 +983,7 @@ When running IvorySQL in Docker, additional parameters need to be added, like: p
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-asciidoc hljs" data-lang="asciidoc">$ docker stop ivorysql
 $ docker rm ivorysql
-$ docker rmi ivorysql/IvorySQL 5.6-ubi8</code></pre>
+$ docker rmi ivorysql/ivorysql:5.6-ubi8</code></pre>
 </div>
 </div>
 </div>

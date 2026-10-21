@@ -788,7 +788,7 @@
 <p>After reading the parameter value, the <code>SetConfigOption()</code> function is called to assign the value.</p>
 </div>
 <div class="paragraph">
-<p>When each new backend process starts, since it is forked from the <code>postmaster</code> process, it automatically has the same <code>ivorysql.identifier_case_switch</code> parameter value. First, it processes the <code>startup</code> packet, and if it contains <code>database</code> or <code>user</code> parameters, the parameter values are processed accordingly based on <code>identifier_case_switch</code>.</p>
+<p>When each new backend process starts, since it is forked from the <code>postmaster</code> process, it automatically has the same <code>ivorysql.identifier_case_switch</code> parameter value. First, it processes the <code>startup</code> packet, and if it contains <code>database</code> or <code>user</code> parameters, the parameter values are processed accordingly based on <code>ivorysql.identifier_case_switch</code>.</p>
 </div>
 <div class="paragraph">
 <p>The source code is:</p>
